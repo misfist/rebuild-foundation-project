@@ -1,0 +1,27 @@
+*
+
+!.gitignore
+!/wp-content/
+!/wp-content/plugins/
+!/wp-content/plugins/*
+!/wp-content/plugins/*/*
+!/wp-content/plugins/*/*/*
+!/wp-content/plugins/*/*/*/*
+!/wp-content/plugins/*/*/*/*/*
+!/wp-content/themes/
+!/wp-content/themes/*
+!/wp-content/themes/*/*
+!/wp-content/themes/*/*/*
+!/wp-content/themes/*/*/*/*
+!/wp-content/themes/*/*/*/*/*
+
+# I don't want to track this one, so it's included here, after the negated patterns. 
+wp-content/themes/index.php
+
+.sass-cache/*
+node_modules
+
+.log
+.DS_Store
+.bak
+.zip

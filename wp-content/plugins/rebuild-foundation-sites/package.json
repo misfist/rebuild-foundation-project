@@ -1,0 +1,27 @@
+{
+  "name": "misfist/rebuild-foundation-sites",
+  "version": "1.0.0",
+  "description": "Adds rebuild sites cpt and taxonomies.",
+  "main": "rebuild-foundation-sites.php",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blackfyre/grayscale-sass.git"
+  },
+  "keywords": [
+    "plugin",
+    "wordpress",
+    "cpt",
+    "custom post type"
+  ],
+  "author": "Pea",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/misfist/rebuild-foundation-sites/issues"
+  },
+  "homepage": "https://github.com/misfist/rebuild-foundation-sites"
+}

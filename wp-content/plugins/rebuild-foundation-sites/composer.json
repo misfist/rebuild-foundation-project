@@ -1,0 +1,59 @@
+{
+  "name": "misfist/rebuild-foundation-sites",
+  "description": "Adds rebuild sites cpt and taxonomies.",
+  "keywords": ["wordpress", "plugin", "cpt", "custom post type"],
+  "homepage": "https://github.com/misfist/rebuild-foundation-sites",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Pea",
+      "homepage": "http://misfist.com"
+    }
+  ],
+  "dist": {
+    "type": "git",
+    "url": "https://github.com/misfist/rebuild-foundation-sites.git"
+  },
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "v1.0.21",
+    "acf": "*",
+    "acf-website-field": "*"
+  },
+  "repositories" : [
+    {
+        "type": "package",
+        "package": {
+            "name": "acf",
+            "version": "4.4.2",
+            "source": {
+                "type" : "git",
+                "url" : "https://github.com/elliotcondon/acf.git",
+                "reference" : "4.4.2"
+            },
+            "dist": {
+                "url": "https://github.com/elliotcondon/acf/archive/4.4.2.zip",
+                "type": "zip"
+            }
+        }
+    },
+    {
+      "type": "package",
+      "package": {
+          "name": "acf-website-field",
+          "version": "2.1",
+          "source": {
+              "type" : "git",
+              "url" : "https://github.com/Jeradin/acf-website-field.git",
+              "reference" : "2.1"
+          },
+          "dist": {
+              "url": "https://github.com/Jeradin/acf-website-field/archive/2.1.zip",
+              "type": "zip"
+          }
+      }
+    }
+
+  ]
+
+}

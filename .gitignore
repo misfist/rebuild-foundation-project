@@ -1,0 +1,31 @@
+# Ignore all files
+/*
+
+# Except files
+!.gitignore
+!README.md
+!composer.json
+
+# Ignore all files named .DS_Store or ending with .log
+**/.DS_Store
+**.log
+**.bak
+**.zip
+**.tar
+**.log
+**.sass-cache
+
+# Whitelist folder/a/b1/ and folder/a/b2/
+# last "/" is optional when folder, may match file though.
+# It is NOT optional when followed by a *
+!folder/
+folder/*
+!folder/a/
+folder/a/*
+!folder/a/b1/
+!folder/a/b2/
+
+!wp-content/
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
