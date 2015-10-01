@@ -29,6 +29,7 @@
     ],
     "require": {
         "wpackagist-plugin/events-manager": "5.6.1",
+        "wpackagist-plugin/mailchimp-for-wp": "2.3.14",
         "misfist/rebuild-foundation-sites": "v1.0"
     },
     "require-dev": {

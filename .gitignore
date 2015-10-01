@@ -7,7 +7,7 @@
 !composer.json
 
 # Ignore all these
-**/.DS_Store
+**.DS_Store
 **.log
 **.bak
 **.zip
