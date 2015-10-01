@@ -7,13 +7,13 @@
 !composer.json
 
 # Ignore all these
-**.DS_Store
-**.log
-**.bak
-**.zip
-**.tar
-**.log
-**.sass-cache
+*.DS_Store
+*.log
+*.bak
+*.zip
+*.tar
+*.log
+*.sass-cache
 
 # Whitelist folder/a/b1/ and folder/a/b2/
 # last "/" is optional when folder, may match file though.

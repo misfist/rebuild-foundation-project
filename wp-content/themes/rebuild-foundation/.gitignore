@@ -1,9 +1,9 @@
 # Ignore all these
-**/.DS_Store
-**.log
-**.bak
-**.zip
-**.tar
-**.log
-**.sass-cache
+*.DS_Store
+*.log
+*.bak
+*.zip
+*.tar
+*.log
+*.sass-cache
 node_modules
