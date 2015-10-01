@@ -6,7 +6,7 @@
 !README.md
 !composer.json
 
-# Ignore all files named .DS_Store or ending with .log
+# Ignore all these
 **/.DS_Store
 **.log
 **.bak
@@ -28,4 +28,5 @@ folder/a/*
 !wp-content/
 wp-content/*
 !wp-content/plugins/
-!wp-content/themes/
+!wp-content/themes/rebuild-foundation/
+!wp-content/themes/rebuild-foundation/*

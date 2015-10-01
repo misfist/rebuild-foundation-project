@@ -1,0 +1,21 @@
+{
+  "name": "starter-theme",
+  "description": "Custom Wordpress starter theme based on underscores (http://underscores.me)",
+  "keywords": ["wordpress", "theme", "_"],
+  "homepage": "https://github.com/misfist/starter-theme",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Pea",
+      "homepage": "http://misfist.com"
+    }
+  ],
+  "dist": {
+    "type": "git",
+    "url": "https://github.com/misfist/starter-theme.git"
+  },
+  "type": "wordpress-theme",
+  "require": {
+    "composer/installers": "v1.0.21"
+  }
+}
