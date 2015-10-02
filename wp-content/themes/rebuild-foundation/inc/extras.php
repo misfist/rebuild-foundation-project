@@ -23,6 +23,15 @@ function starter_theme_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'starter_theme_body_classes' );
 
+/**
+ * Sites menu - adds theme location for sites list menu
+ * The menu must be populated in the admin section in order to appear
+ * wp-admin/nav-menus.php
+ */
+
+register_nav_menus( array(
+        'sites_menu' => esc_html__( 'Sites Menu', 'rebuild-foundation' ),
+    ) );
 
 /**
  * Media - set default image link location to 'None' 

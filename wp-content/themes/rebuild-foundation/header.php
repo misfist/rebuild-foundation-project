@@ -34,10 +34,24 @@
 			<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'rebuild-foundation' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
+		<?php
+		/**
+		* Displays a navigation menu
+		* @param array $args Arguments
+		*/
+		$args = array(
+			'theme_location' => 'sites_menu',
+			'container' => 'div',
+			'container_class' => 'menu-{menu-slug}-container',
+			'menu_class' => 'menu',
+			'echo' => true,
+			'fallback_cb' => false,
+			'items_wrap' => '<ul id = "%1$s" class = "%2$s">%3$s</ul>',
+			'depth' => 0,
+		);
+	
+		wp_nav_menu( $args ); ?>
+
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
