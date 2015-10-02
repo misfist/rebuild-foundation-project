@@ -11,6 +11,8 @@
 wp-content/*
 !wp-content/plugins/
 !wp-content/themes/rebuild-foundation/
+!wp-content/themes/rebuild-foundation/*
+!wp-content/themes/rebuild-foundation/**
 
 # Ignore all these
 *.DS_Store
