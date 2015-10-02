@@ -6,14 +6,6 @@
 !README.md
 !composer.json
 
-# Folders
-!wp-content/
-wp-content/*
-!wp-content/plugins/
-!wp-content/themes/rebuild-foundation/
-!wp-content/themes/rebuild-foundation/*
-!wp-content/themes/rebuild-foundation/**
-
 # Ignore all these
 *.DS_Store
 *.log
@@ -22,3 +14,9 @@ wp-content/*
 *.tar
 *.log
 *.sass-cache
+
+# Folders
+!wp-content/
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
