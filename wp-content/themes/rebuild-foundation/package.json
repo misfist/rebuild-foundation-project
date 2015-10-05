@@ -1,5 +1,5 @@
 {
-  "name": "rebuild-foundation-theme",
+  "name": "rebuild-foundation",
   "version": "1.0.0",
   "description": "Custom start theme based on underscores.",
   "main": "gulpfile.js",
