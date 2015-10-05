@@ -20,7 +20,7 @@
 
         <h1 class="event-title"><?php echo $EM_Event->output( '#_EVENTNAME' ); ?></h1>
 
-        <h3 class="event-date"><time datetime="2011-01-12"><?php echo $EM_Event->output( '#M #j' ); ?></time></h3>
+        <h3 class="event-date"><time datetime="<?php echo $EM_Event->output( '#_{Y-m-d}' ); ?>"><?php echo $EM_Event->output( '#M #j' ); ?></time></h3>
 
     </header><!-- .entry-header -->
 
