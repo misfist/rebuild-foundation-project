@@ -21,6 +21,12 @@ function rebuild_foundation_site_add_metabox() {
     ) );
 
     $cmb->add_field( array(
+        'name' => __( 'Short Name', 'rebuild-foundation' ),
+        'id' => $prefix . 'short_name',
+        'type' => 'text_medium',
+    ) );
+
+    $cmb->add_field( array(
         'name' => __( 'Blog Posts', 'rebuild-foundation' ),
         'id' => $prefix . 'show_blog_posts',
         'type' => 'checkbox',
@@ -88,6 +94,8 @@ if(! function_exists( 'rebuild_site_fields' ) ) {
         $rebuild_custom_fields = [];
 
         $rebuild_custom_fields['id'] = $post_id;
+
+        $rebuild_custom_fields['short_name'] = get_post_meta( $post_id, $prefix . 'short_name', true ) ? get_post_meta( $post_id, $prefix . 'short_name', true ) : '';
 
         $location = get_post_meta( $post_id, $prefix . 'location', true ) ? get_post_meta( $post_id, $prefix . 'location', true ) : '';
 
