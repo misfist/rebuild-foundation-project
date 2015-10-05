@@ -21,14 +21,14 @@ function rebuild_foundation_exhibitions_add_metabox() {
     ) );
 
     $cmb->add_field( array(
-        'name' => __( 'Site Category', 'rebuild-foundation-cpt' ),
+        'name' => __( 'Site Category', 'cmb2' ),
         'id' => $prefix . 'site_category',
         'type' => 'taxonomy_select',
         'taxonomy' => 'rebuild_sites_category',
     ) );
 
     $cmb->add_field( array(
-        'name' => __( 'Gallery', 'rebuild-foundation-cpt' ),
+        'name' => __( 'Gallery', 'cmb2' ),
         'id' => $prefix . 'gallery',
         'type' => 'file_list',
         'preview_size' => array( 150, 150 ),
@@ -39,23 +39,29 @@ function rebuild_foundation_exhibitions_add_metabox() {
     ) );
 
     $cmb->add_field( array(
-        'name' => __( 'Address', 'rebuild-foundation-cpt' ),
+        'name' => __( 'Location Name', 'cmb2' ),
+        'id' => $prefix . 'location_name',
+        'type' => 'text_medium',
+    ) );
+
+    $cmb->add_field( array(
+        'name' => __( 'Address', 'cmb2' ),
         'id' => $prefix . 'location',
         'type' => 'address',
     ) );
 
     $cmb->add_field( array(
-        'name' => __( 'Hours', 'rebuild-foundation-cpt' ),
+        'name' => __( 'Hours', 'cmb2' ),
         'id' => $prefix . 'hours',
         'type' => 'textarea_small',
     ) );
 
-    // $cmb->add_field( array(
-    //     'name'  => __( 'Date Range', 'rebuild-foundation-cpt' ),
-    //     'desc' => __( 'Enter Exhibition Dates', 'rebuild-foundation-cpt' ),
-    //     'id' => $prefix . 'date_range',
-    //     'type' => 'date_range',
-    // ) );
+    $cmb->add_field( array(
+        'name'  => __( 'Date Range', 'cmb2' ),
+        'desc' => __( 'Enter Exhibition Dates', 'rebuild-foundation-cpt' ),
+        'id' => $prefix . 'date_range',
+        'type' => 'date_range',
+    ) );
 
     $cmb->add_field( array(
         'name' => __( 'Start Date', 'cmb2' ),
@@ -100,6 +106,8 @@ if(! function_exists( 'rebuild_exhibition_fields' ) ) {
         $rebuild_custom_fields['id'] = $post_id;
 
         $location = get_post_meta( $post_id, $prefix . 'location', true ) ? get_post_meta( $post_id, $prefix . 'location', true ) : '';
+
+        $rebuild_custom_fields['location_name'] = get_post_meta( $post_id, $prefix . 'location_name', true ) ? get_post_meta( $post_id, $prefix . 'location_name', true ) : '';
 
         $rebuild_custom_fields['street'] = isset( $location["address-1"] ) ? $location["address-1"] : '';
 
