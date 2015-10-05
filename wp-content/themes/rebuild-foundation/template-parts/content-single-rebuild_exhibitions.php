@@ -11,8 +11,10 @@
 
 <?php 
     if( function_exists( 'rebuild_exhibition_fields' ) ) {
-        $exhibition_fields = rebuild_exhibition_fields();
-        //var_dump( $exhibition_fields );
+        $custom_fields = rebuild_exhibition_fields();
+        echo '<pre>';
+		var_dump( $custom_fields );
+		echo '</pre>';
     }
 ?>
 

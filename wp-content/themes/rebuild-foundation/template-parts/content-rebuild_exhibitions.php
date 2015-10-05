@@ -11,14 +11,16 @@
 
 <?php 
     if( function_exists( 'rebuild_exhibition_fields' ) ) {
-        $exhibition_fields = rebuild_exhibition_fields();
-        //var_dump( $exhibition_fields );
+        $custom_fields = rebuild_exhibition_fields();
+        echo '<pre>';
+		var_dump( $custom_fields );
+		echo '</pre>';
     }
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title">Test<a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
