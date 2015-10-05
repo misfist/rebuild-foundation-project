@@ -12,33 +12,14 @@ $args = apply_filters('em_content_events_args', $args);
 
 // event category = events
 
-$args['format_header'] = '
-<header class="event-list-header">
-    <h6 class="event-list-date">Date</h6>
-    <h6 class="event-list-description">Description</h6>
-</header>
-';
+$args['format_header'] = '';
 
 
 $args['format'] = '
 <article id="event-#_EVENTID" class="post event">
-    <header class="post-header event-header">
-        <h4 class="meta">
-            <span class="event-day">#l</span>
-            <span class="event-date">#F #j</span>
-            <span class="event-time">#g:#i#a</span>
-        </h4>
-    </header>
-    <section class="post-body event-content">
-        {has_image}<div class="post-image event-image">#_EVENTIMAGE</div>{/has_image}
-        <h3 class="post-title event-title">#_EVENTLINK</h3>
-        {has_location}<h6 class="event-location">
-            <span class="event-location-name">#_LOCATIONNAME</span>
-            <span class="event-location-street">#_LOCATIONADDRESS</span>
-            <span class="event-location-city">#_LOCATIONTOWN #_LOCATIONSTATE</span>
-        </h6>{/has_location}
-        <p class="post-excerpt event-description">#_EVENTEXCERPT{25,...}</p>
-    </section>
+    <div class="site-name">#_SITE</div>
+    <div class="event-title">#_EVENTLINK</div>
+    <div class="event-date" style="background-image:url(#_EVENTIMAGEURL)"><time datetime="2011-01-12">#F #j</time></div>
 </article>
 ';
 
