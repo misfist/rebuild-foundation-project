@@ -56,4 +56,3 @@
 
 	<div id="content" class="site-content">
 
-		<?php echo get_post_type(); ?>
