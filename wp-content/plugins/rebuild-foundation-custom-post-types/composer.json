@@ -1,0 +1,45 @@
+{
+    "name": "misfist/rebuild-foundation-custom-post-types",
+    "description": "Adds rebuild cpts, taxonomies and custom fields.",
+    "keywords": ["wordpress", "plugin", "cpt", "custom post type"],
+    "homepage": "https://github.com/misfist/rebuild-foundation-custom-post-types/",
+    "license": "GPLv3",
+    "authors": [
+        {
+          "name": "Pea",
+          "homepage": "http://misfist.com"
+        }
+    ],
+    "dist": {
+        "type": "git",
+        "url": "https://github.com/misfist/rebuild-foundation-custom-post-types.git"
+    },
+    "type": "wordpress-plugin",
+    "config": {
+        "vendor-dir": "vendor/"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://wpackagist.org"
+        }
+    ],
+    "require": {
+        "mnsami/composer-custom-directory-installer": "1.0.*",
+        "wpackagist-plugin/cmb2": "2.1.2",
+        "wpackagist-plugin/cmb2-admin-extension": "0.0.2",
+        "wpackagist-plugin/cmb2-taxonomy": "1.0.2"
+    },
+    "extra":{
+        "installer-paths":{
+          "vendor/": ["wpackagist-plugin/cmb2"],
+          "vendor/": ["wpackagist-plugin/cmb2-admin-extension"],
+          "vendor/": ["wpackagist-plugin/cmb2-taxonomy"]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "cp -r wp-content/plugins/* vendor/ && rm -rf wp-content/",
+        "post-update-cmd": "cp -r wp-content/plugins/* vendor/ && rm -rf wp-content/"
+    }
+
+}
