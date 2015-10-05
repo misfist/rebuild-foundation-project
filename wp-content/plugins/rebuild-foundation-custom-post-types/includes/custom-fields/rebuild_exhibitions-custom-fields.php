@@ -49,11 +49,24 @@ function rebuild_foundation_exhibitions_add_metabox() {
         'id' => $prefix . 'hours',
         'type' => 'textarea_small',
     ) );
+
+    // $cmb->add_field( array(
+    //     'name'  => __( 'Date Range', 'rebuild-foundation-cpt' ),
+    //     'desc' => __( 'Enter Exhibition Dates', 'rebuild-foundation-cpt' ),
+    //     'id' => $prefix . 'date_range',
+    //     'type' => 'date_range',
+    // ) );
+
     $cmb->add_field( array(
-        'name'  => __( 'Date Range', 'rebuild-foundation-cpt' ),
-        'desc' => __( 'Enter Exhibition Dates', 'rebuild-foundation-cpt' ),
-        'id' => $prefix . 'date_range',
-        'type' => 'date_range',
+        'name' => __( 'Start Date', 'cmb2' ),
+        'id' => $prefix . 'start_date',
+        'type' => 'text_date_timestamp',
+    ) );
+
+    $cmb->add_field( array(
+        'name' => __( 'End Date', 'cmb2' ),
+        'id' => $prefix . 'end_date',
+        'type' => 'text_date_timestamp',
     ) );
 
 }
@@ -104,7 +117,11 @@ if(! function_exists( 'rebuild_exhibition_fields' ) ) {
 
         $rebuild_custom_fields['category'] = wp_get_post_terms( $post_id, 'rebuild_sites_category', array( "fields" => "slugs" ) ) ? wp_get_post_terms( $post_id, 'rebuild_sites_category', array( "fields" => "slugs" ) )[0] : '';
 
-        $rebuild_custom_fields['date_range'] = get_post_meta( $post_id, $prefix . 'date_range', true ) ? get_post_meta( $post_id, $prefix . 'date_range', true ) : '';
+        //$rebuild_custom_fields['date_range'] = get_post_meta( $post_id, $prefix . 'date_range', true ) ? get_post_meta( $post_id, $prefix . 'date_range', true ) : '';
+
+        $rebuild_custom_fields['start_date'] = get_post_meta( $post_id, $prefix . 'start_date', true ) ? get_post_meta( $post_id, $prefix . 'start_date', true ) : '';
+
+        $rebuild_custom_fields['end_date'] = get_post_meta( $post_id, $prefix . 'end_date', true ) ? get_post_meta( $post_id, $prefix . 'end_date', true ) : '';
 
         return $rebuild_custom_fields;
     }
