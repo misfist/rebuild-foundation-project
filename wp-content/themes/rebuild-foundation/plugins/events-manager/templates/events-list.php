@@ -16,10 +16,12 @@ $args['format_header'] = '';
 
 
 $args['format'] = '
-<article id="event-#_EVENTID" class="post event">
+<article id="event-#_EVENTID" data-year="#Y" data-month="#n" class="post event">
     <div class="site-name">#_SITE</div>
     <div class="event-title">#_EVENTLINK</div>
-    <div class="event-date" style="background-image:url(#_EVENTIMAGEURL)"><time datetime="2011-01-12">#F #j</time></div>
+    <div class="event-date" style="background-image: url(#_EVENTIMAGEURL);">
+        <time datetime="#_{Y-m-d}">#F #j</time>
+    </div>
 </article>
 ';
 
