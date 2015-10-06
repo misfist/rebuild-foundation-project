@@ -12,17 +12,20 @@
 <?php 
     if( function_exists( 'rebuild_exhibition_fields' ) ) {
         $custom_fields = rebuild_exhibition_fields();
+
+
         // echo '<pre>';
         // var_dump( $custom_fields );
         // echo '</pre>';
     }
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-        <div class="entry-meta dat">
+        <div class="entry-meta date">
             <span class="start-date"><?php echo isset( $custom_fields['start_date'] ) ? date( 'F j, Y', $custom_fields['start_date'] )  : ''; ?></span>
             <span class="end-date"><?php echo isset( $custom_fields['end_date'] ) ? date( 'F j, Y', $custom_fields['end_date'] )  : ''; ?></span>
         </div><!-- .entry-meta -->
