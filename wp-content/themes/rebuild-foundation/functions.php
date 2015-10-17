@@ -152,6 +152,32 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
- * Load Event placeholders.
+ * Load Event filters.
  */
-require get_template_directory() . '/inc/event-placeholders.php';
+// require_once get_template_directory() . '/inc/event-filters.php';
+
+/**
+ * Load Event scopes.
+ */
+//require_once get_template_directory() . '/inc/event-functions.php';
+
+/**
+ * Load Exhibition filters.
+ */
+// require_once get_template_directory() . '/inc/exhibition-filters.php';
+
+/**
+ * Load Event filters.
+ */
+// require_once get_template_directory() . '/inc/blog-filters.php';
+
+/**
+ * Load Site filters.
+ */
+// require_once get_template_directory() . '/inc/site-filters.php';
+
+/**
+ * Load Rewrite rules.
+ */
+// require_once get_template_directory() . '/inc/rewrite-rules.php';
+
