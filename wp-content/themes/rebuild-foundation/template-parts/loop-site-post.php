@@ -9,11 +9,14 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'site' ); ?> style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<div class="address">Address</div>
 
 		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+
+		<div class="entry-meta">
+			<time datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date( 'M d' ); ?></time>
+		</div><!-- .entry-meta -->
 
 	</header><!-- .entry-header -->
 
@@ -36,8 +39,5 @@
 
 	<footer class="entry-footer">
 		
-		<a href="<?php esc_url( get_permalink() ); ?>" class="button btn">View</a>
-
-		<?php rebuild_foundation_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

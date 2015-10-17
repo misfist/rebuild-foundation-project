@@ -1,0 +1,90 @@
+<?php
+/**
+ * Template part for displaying posts.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package RebuildFoundation
+ */
+
+?>
+
+<?php
+$start_date = get_field( 'start_date' );
+$end_date = get_field( 'end_date' )
+?>
+
+
+<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo isset( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo isset( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>">
+    <header class="entry-header">
+
+        <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+
+        <div class="entry-meta scope">
+            
+            <?php
+            $start_date = get_field( 'start_date' );
+            $end_date = get_field( 'end_date' )
+            ?>
+
+            <?php
+            if( get_field( 'ad_hoc_date' ) ) : ?>
+
+                <?php the_field( 'ad_hoc_date' ); ?>
+
+            <?php else: ?>
+
+                <span class="start-date"><?php echo ( $start_date ) ? date( 'F j, Y', strtotime( $start_date ) )  : ''; ?></span>
+                <span class="end-date"><?php echo ( $end_date ) ? date( 'F j, Y', strtotime( $end_date ) )  : ''; ?></span>
+
+            <?php endif; ?>
+
+        </div><!-- .entry-meta -->
+
+    </header><!-- .entry-header -->
+
+    <div id="details">
+
+        <?php if( has_post_thumbnail() ) { ?>
+
+        <div class="single-image featured-image">
+
+            <div class="exhibition-image"><?php the_post_thumbnail( ); ?></div>
+            
+        </div>
+
+        <?php }?>
+
+        <h4 class="site-info"><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
+
+        <div class="entry-meta location">
+            <span class="location-name"><?php echo ( function_exists( 'rebuild_get_location_name' ) ) ? rebuild_get_location_name() : ''; ?></span>
+        </div>
+        
+    </div>
+
+    <div class="entry-content">
+
+        <?php
+            the_excerpt( sprintf(
+                /* translators: %s: Name of current post. */
+                wp_kses( __( 'Learn more %s <span class="meta-nav">&rarr;</span>', 'rebuild-foundation' ), array( 'span' => array( 'class' => array() ) ) ),
+                the_title( '<span class="screen-reader-text">"', '"</span>', false )
+            ) );
+        ?>
+
+        <?php
+            wp_link_pages( array(
+                'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
+                'after'  => '</div>',
+            ) );
+        ?>
+    </div><!-- .entry-content -->
+
+    <footer class="entry-footer">
+        
+        <a href="<?php esc_url( get_permalink() ); ?>" class="button btn">View</a>
+
+        <?php rebuild_foundation_entry_footer(); ?>
+    </footer><!-- .entry-footer -->
+</article><!-- #post-## -->

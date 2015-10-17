@@ -14,13 +14,11 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
 
-        <?php the_title( '<div style="display:none">', '</div>' ); ?>
+        <h2 class="site-name">Site</h2>
 
-        <h2 class="site-name"><?php echo $EM_Event->output( '#_SITENAME' ); ?></h2>
+        <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-        <h1 class="event-title"><?php echo $EM_Event->output( '#_EVENTNAME' ); ?></h1>
-
-        <h3 class="event-date"><time datetime="<?php echo $EM_Event->output( '#_{Y-m-d}' ); ?>"><?php echo $EM_Event->output( '#M #j' ); ?></time></h3>
+        <h3 class="event-date"><time datetime="">Date</time></h3>
 
     </header><!-- .entry-header -->
 
@@ -37,15 +35,15 @@
         <?php }?>
 
         <div id="details">
-            <div class="event-date"><time datetime="<?php echo $EM_Event->output( '#_{Y-m-d}' ); ?>"><?php echo $EM_Event->output( '#_{l, F j, Y}' ); ?></time></div>
+            <div class="event-date"><time datetime="">Date</time></div>
 
             <div class="event-time">
-                <time class="start-time"><?php echo $EM_Event->output( '#_EVENTTIMES' ); ?></time>
+                <time class="start-time">Time</time>
             </div>
 
             <div class="event-export">
-                <a href="<?php echo $EM_Event->output( '#_EVENTGCALURL' ); ?>" class="google-calendar"><?php _e( 'Google Calendar', 'rebuild-foundation' ); ?></a>
-                <a href="<?php echo $EM_Event->output( '#_EVENTICALURL' ); ?>" class="ical"><?php _e( '.ics', 'rebuild-foundation' ); ?></a>
+                <a href="" class="google-calendar">Google</a>
+                <a href="" class="ical">iCal</a>
             </div>
 
             <div class="entry-meta">
@@ -59,15 +57,14 @@
         </div>
 
 
+    </div><!-- .entry-content -->
+
+    <footer class="entry-footer">
         <?php
             wp_link_pages( array(
                 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
                 'after'  => '</div>',
             ) );
         ?>
-    </div><!-- .entry-content -->
-
-    <footer class="entry-footer">
-        <?php rebuild_foundation_entry_footer(); ?>
     </footer><!-- .entry-footer -->
 </article><!-- #post-## -->
