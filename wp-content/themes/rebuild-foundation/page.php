@@ -15,11 +15,13 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main id="main" class="site-main" role="main">		
+
+            <div class="posts-list">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'template-parts/content', 'page' ); ?>
+				<?php get_template_part( 'template-parts/loop', get_post_type() ); ?>
 
 				<?php
 					// If comments are open or we have at least one comment, load up the comment template.
@@ -29,6 +31,8 @@ get_header(); ?>
 				?>
 
 			<?php endwhile; // End of the loop. ?>
+
+			</div>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
