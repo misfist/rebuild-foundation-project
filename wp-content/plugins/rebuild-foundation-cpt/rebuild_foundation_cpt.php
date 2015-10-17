@@ -33,6 +33,7 @@ include_once( 'inc/rebuild-event-tag-taxonomy.php' );
 include_once( 'inc/rebuild-exhibition-category-taxonomy.php' );
 include_once( 'inc/rebuild-rewrite-rules.php' );
 include_once( 'inc/rebuild-location-relationships.php' );
+include_once( 'inc/rebuild-custom-fields.php' );
 
 
 ?>
