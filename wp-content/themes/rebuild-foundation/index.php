@@ -19,6 +19,11 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
+            <?php if( 'post' == get_post_type() && function_exists( 'post_category_filter') ) {
+                post_category_filter();
+            } ?>
+
+
 			<?php if ( is_home() && ! is_front_page() ) : ?>
 				<header>
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
@@ -35,7 +40,7 @@ get_header(); ?>
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'template-parts/content', get_post_type() );
+					get_template_part( 'template-parts/loop', get_post_type() );
 				?>
 
 			<?php endwhile; ?>
