@@ -277,7 +277,9 @@ if(! function_exists( 'rebuild_get_location' ) ) {
 
         $location_id = ( !empty( $locations ) ) ? $locations[0]->ID : '' ;
 
-        return ( !empty( get_field( 'location_address', $location_id ) ) ) ? get_field( 'location_address', $location_id )['address'] : '';
+        $address = ( !empty( get_field( 'location_address', $location_id ) ) ) ? get_field( 'location_address', $location_id )['address'] : '';
+
+        return $address;
 
     }
 
@@ -297,7 +299,9 @@ if(! function_exists( 'rebuild_get_location_name' ) ) {
 
         $location_id = ( !empty( $locations ) ) ? $locations[0]->ID : '' ;
 
-        return ( '' != $location_id ) ? get_the_title( $location_id ) : '';
+        $location_name = ( '' != $location_id ) ? get_the_title( $location_id ) : '';
+
+        return $location_name;
 
     }
 
