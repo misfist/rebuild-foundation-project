@@ -12,7 +12,8 @@
 <?php 
 
 $term = ( get_the_terms( get_the_ID(), 'rebuild_site_category' ) );
-$site_cat ( !empty( $term ) ) ? $term[0]->name : '';
+
+$site_cat = ( !empty( $term ) ) ? $term[0]->name : '';
 
 $site_tax = array(
     array(

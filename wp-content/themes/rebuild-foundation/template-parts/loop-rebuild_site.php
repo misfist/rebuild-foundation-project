@@ -20,7 +20,10 @@
 
         <h2 class="entry-title">
         	<a href="<?php echo esc_url( get_permalink( get_the_ID() ) ) ?>" rel="bookmark">
-        		<?php echo ( !empty( get_field( 'short_name' ) ) ) ? get_field( 'short_name' ) : the_title(); ?>
+        		<?php
+                $short_name = get_field( 'short_name' );
+
+                echo ( !empty( $short_name ) ) ? $short_name : the_title(); ?>
         	</a>
         </h2>
 
