@@ -10,7 +10,8 @@
 ?>
 
 <?php 
-    $site_link = ( !empty( get_the_terms( get_the_ID(), 'rebuild_site_category' ) ) ) ? get_the_terms( get_the_ID(), 'rebuild_site_category' )[0]->name : '';
+    $terms = get_the_terms( get_the_ID(), 'rebuild_site_category' );
+    $site_link = ( !empty( $terms ) ) ? $terms[0]->name : '';
     $start_date = get_field( 'start_date' );
     $end_date = get_field( 'end_date' );
     $featured_image = has_post_thumbnail( get_the_ID() ) ? wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ) : '';

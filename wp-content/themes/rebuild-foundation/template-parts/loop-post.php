@@ -13,7 +13,9 @@
 	<header class="entry-header">
 
 		<div class="entry-meta site-name">
-			<?php echo ( !empty( get_the_terms( get_the_ID(), 'rebuild_site_category' ) ) ) ? get_the_terms( get_the_ID(), 'rebuild_site_category' )[0]->name : ''; ?>
+			<?php
+			$site_cat = ( get_the_terms( get_the_ID(), 'rebuild_site_category' ) );
+			 echo ( !empty( $site_cat ) ) ? $site_cat[0]->name : ''; ?>
 
 		</div><!-- .entry-meta -->
 
