@@ -277,9 +277,9 @@ if(! function_exists( 'rebuild_get_location' ) ) {
 
         $location_id = ( !empty( $locations ) ) ? $locations[0]->ID : '' ;
 
-        $address = ( !empty( get_field( 'location_address', $location_id ) ) ) ? get_field( 'location_address', $location_id )['address'] : '';
+        $address = get_field( 'location_address', $location_id );
 
-        return $address;
+        return ( !empty( $address ) ) ? get_field( 'location_address', $location_id )['address'] :;
 
     }
 
