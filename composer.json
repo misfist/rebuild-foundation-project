@@ -14,7 +14,7 @@
         {
             "type": "package",
             "package": {
-                "name": "misfist/rebuild-foundation-custom-post-types",
+                "name": "misfist/rebuild-foundation-cpt",
                 "version": "v1.0",
                 "type": "wordpress-plugin",
                 "dist": {
@@ -28,9 +28,10 @@
         }
     ],
     "require": {
-        "wpackagist-plugin/events-manager": "5.6.1",
+        "wpackagist-plugin/posts-to-posts": "1.6.5",
+        "wpackagist-plugin/advanced-custom-fields": "4.4.3",
         "wpackagist-plugin/mailchimp-for-wp": "2.3.14",
-        "misfist/rebuild-foundation-custom-post-types": "v1.0"
+        "misfist/rebuild-foundation-cpt": "v1.0"
     },
     "require-dev": {
         "wpackagist-plugin/developer": "1.2.5",
