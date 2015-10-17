@@ -14,9 +14,7 @@ get_header(); ?>
 		
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php global $EM_Event; ?>
-
-			<?php get_template_part( 'template-parts/content-single', get_post_type() ); ?>
+			<?php get_template_part( 'template-parts/content', get_post_type() ); ?>
 
 			<?php the_post_navigation(); ?>
 
