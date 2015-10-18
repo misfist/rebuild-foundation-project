@@ -84,6 +84,7 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
                     break;
                 default: 
                     $taxonomy = 'category';
+                    $query_var = get_taxonomy( $taxonomy )->query_var;
                     $slug = 'blog';
 
             }
@@ -147,6 +148,199 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
 }
 
+/**
+ * Year and Month Query Vars
+ * Add `year` and `month` query_var for events
+ * @return
+ */
+
+if(! function_exists( 'rebuild_register_query_vars' ) ) {
+
+    function rebuild_register_query_vars() {
+
+        global $wp;
+
+        $wp->add_query_var( 'event_year' );
+        $wp->add_query_var( 'event_month' );
+
+    }
+
+    add_filter( 'init', 'rebuild_register_query_vars' );
+
+}
+
 // Event Year Filters
 
+/**
+ * Year Filter
+ * Render years for which there are events, based on current query results?
+ * @return echo string
+ */
+
+if(! function_exists( 'rebuild_event_year_filter' ) ) {
+
+    function rebuild_event_year_filter() {
+
+        if( function_exists( 'rebuild_get_event_years' ) ) {
+
+            $years = rebuild_get_event_years();
+
+            // var_dump( $years );
+
+            echo '<ul class="event-year-filter">';
+
+            foreach( $years as $year ) {
+
+
+                echo '<li data-event_year="' . $year . '">';
+                echo '<a href="' . esc_url( add_query_arg( 'event_year', $year ) ) . '">';
+                echo $year;
+                echo '</a>';
+                echo '</li>';
+
+            }
+
+            echo '</ul>';
+
+        }
+
+        return;
+
+    }
+
+}
+
 // Event Month Filters
+
+/**
+ * Month Filter
+ * Render years for which there are events, based on current query results?
+ * @return echo string
+ */
+
+
+/**
+ * Helpers
+ */
+
+/**
+ * Get all the event start_dates
+ * @return array of dates
+ */
+
+if(! function_exists( 'rebuild_get_dates' ) ) {
+
+  function rebuild_get_dates() {
+
+    $post_type = 'rebuild_event';
+    $args = array(
+        'post_type' => $post_type,
+    );
+
+    $events = get_posts( $args );
+    $dates = [];
+
+    if( count( $events ) > 0 ) {
+
+      foreach( $events as $event ) {
+
+        if( get_post_meta( $event->ID, 'start_date', true ) ) {
+
+          array_push( $dates , get_post_meta( $event->ID, 'start_date', true ) );
+
+        }
+
+      }
+
+    }
+
+    return $dates;
+
+  }
+
+}
+
+
+/**
+ * Get all the event years
+ * @return array of years
+ */
+
+if(! function_exists( 'rebuild_get_event_years' ) ) {
+
+  function rebuild_get_event_years() {
+
+    if( function_exists( 'rebuild_get_dates' ) ) {
+
+      $dates = rebuild_get_dates();
+
+      return array_unique( array_map( 'convert_date_to_year', $dates ) );
+
+    }
+
+  }
+
+}
+
+/**
+ * Get all the event months
+ * TODO: Figure the best way to do this
+ * @return array of months
+ */
+
+if(! function_exists( 'rebuild_get_event_months' ) ) {
+
+  function rebuild_get_event_months() {
+
+    if( function_exists( 'rebuild_get_dates' ) ) {
+
+      $dates = rebuild_get_dates();
+      $months = [];
+
+      // Associative array - key => (int), value => (string)
+
+      $unique_dates = array_unique( $dates );
+
+      
+
+      // return array_unique( array_map( 'convert_date_to_month', $dates ) );
+
+    }
+
+  }
+
+}
+
+/**
+ * Convert date to year
+ * @return integer
+ */
+
+function convert_date_to_year( $date ) {
+
+  return date( 'Y', strtotime( $date ) );
+
+}
+
+/**
+ * Convert date to month
+ * @return integer
+ */
+
+function convert_date_to_month( $date ) {
+
+  return date( 'm', strtotime( $date ) );
+
+}
+
+/**
+ * Convert date to month
+ * @return string
+ */
+
+function convert_date_to_month_string( $date ) {
+
+  return date( 'M', strtotime( $date ) );
+
+}
+
