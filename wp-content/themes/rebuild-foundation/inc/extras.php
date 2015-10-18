@@ -153,20 +153,6 @@ if ( is_plugin_active( 'attachments/index.php' ) ) {
 
 }
 
-/**
- * Rewrite rules - rewrite to get friendly URLS
- */
-
-function rebuild_foundation_add_rewrite_rules() {
-    global $wp_rewrite;
- 
-    $new_rules = array(
-        // 'event/(.+)/?$' => 'index.php?post_type=event&event-categories=' . $wp_rewrite->preg_index(1),
-    );
-    $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
-}
-
-//add_action( 'generate_rewrite_rules', 'rebuild_foundation_add_rewrite_rules' );
 
 /**
  * Flush rewrite rules on theme switch
@@ -196,4 +182,16 @@ function rebuild_foundation_remove_archive_title_prefix( $title ) {
 }
 
 add_filter( 'get_the_archive_title', 'rebuild_foundation_remove_archive_title_prefix' );
+
+
+/**
+ * Change excerpt
+ * Add Learn More link to excerpts
+ */
+
+function rebuild_custom_excerpt_more( $more ) {
+  return ' <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'Learn More', 'rebuild-foundation' ) . '</a>';
+}
+
+add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
 
