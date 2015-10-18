@@ -10,20 +10,21 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
-if(! function_exists( 'rebuild_custom_columns' ) ) {
+if( function_exists( 'rebuild_custom_columns' ) ) {
 
     if ( function_exists( 'ac_register_columns' ) ) {
 
         function rebuild_custom_columns() {
 
             ac_register_columns( 'post', array(
-                'ssid' => array(
-                    'column-name' => 'ssid',
-                    'type' => 'ssid',
+                'column-postid' => array(
+                    'column-name' => 'column-postid',
+                    'type' => 'column-postid',
                     'clone' => '',
                     'label' => 'ID',
                     'width' => '',
-                    'width_unit' => '%'
+                    'width_unit' => '%',
+                    'sort' => 'on'
                 ),
                 'title' => array(
                     'column-name' => 'title',
@@ -107,14 +108,57 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'rebuild_site', array(
-                'ssid' => array(
-                    'column-name' => 'ssid',
-                    'type' => 'ssid',
+            ac_register_columns( 'page', array(
+                'column-postid' => array(
+                    'column-name' => 'column-postid',
+                    'type' => 'column-postid',
                     'clone' => '',
                     'label' => 'ID',
                     'width' => '',
-                    'width_unit' => '%'
+                    'width_unit' => '%',
+                    'sort' => 'on'
+                ),
+                'title' => array(
+                    'column-name' => 'title',
+                    'type' => 'title',
+                    'clone' => '',
+                    'label' => 'Title',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'sort' => 'on',
+                    'edit' => 'off'
+                ),
+                'author' => array(
+                    'column-name' => 'author',
+                    'type' => 'author',
+                    'clone' => '',
+                    'label' => 'Author',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'sort' => 'on',
+                    'edit' => 'off'
+                ),
+                'date' => array(
+                    'column-name' => 'date',
+                    'type' => 'date',
+                    'clone' => '',
+                    'label' => 'Date',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off',
+                    'date_save_format' => ''
+                )
+            ) );
+
+            ac_register_columns( 'rebuild_site', array(
+                'column-postid' => array(
+                    'column-name' => 'column-postid',
+                    'type' => 'column-postid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'sort' => 'on'
                 ),
                 'title' => array(
                     'column-name' => 'title',
@@ -166,13 +210,14 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
             ) );
 
             ac_register_columns( 'rebuild_event', array(
-                'ssid' => array(
-                    'column-name' => 'ssid',
-                    'type' => 'ssid',
+                'column-postid' => array(
+                    'column-name' => 'column-postid',
+                    'type' => 'column-postid',
                     'clone' => '',
                     'label' => 'ID',
                     'width' => '',
-                    'width_unit' => '%'
+                    'width_unit' => '%',
+                    'sort' => 'on'
                 ),
                 'title' => array(
                     'column-name' => 'title',
@@ -278,13 +323,14 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
             ) );
 
             ac_register_columns( 'rebuild_exhibition', array(
-                'ssid' => array(
-                    'column-name' => 'ssid',
-                    'type' => 'ssid',
+                'column-postid' => array(
+                    'column-name' => 'column-postid',
+                    'type' => 'column-postid',
                     'clone' => '',
                     'label' => 'ID',
                     'width' => '',
-                    'width_unit' => '%'
+                    'width_unit' => '%',
+                    'sort' => 'on'
                 ),
                 'title' => array(
                     'column-name' => 'title',
@@ -392,13 +438,14 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
             ) );
 
             ac_register_columns( 'rebuild_location', array(
-                'ssid' => array(
-                    'column-name' => 'ssid',
-                    'type' => 'ssid',
+                'column-postid' => array(
+                    'column-name' => 'column-postid',
+                    'type' => 'column-postid',
                     'clone' => '',
                     'label' => 'ID',
                     'width' => '',
-                    'width_unit' => '%'
+                    'width_unit' => '%',
+                    'sort' => 'on'
                 ),
                 'title' => array(
                     'column-name' => 'title',
@@ -406,7 +453,9 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'clone' => '',
                     'label' => 'Title',
                     'width' => '',
-                    'width_unit' => '%'
+                    'width_unit' => '%',
+                    'sort' => 'on',
+                    'edit' => 'off'
                 ),
                 'column-meta' => array(
                     'column-name' => 'column-meta',
@@ -419,7 +468,239 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'field_type' => '',
                     'before' => '',
                     'after' => '',
+                    'filter' => 'off',
+                    'sort' => 'on',
                     'date_format' => 'm/d/Y'
+                )
+            ) );
+
+            ac_register_columns( 'wp-taxonomy_category', array(
+                'column-termid' => array(
+                    'column-name' => 'column-termid',
+                    'type' => 'column-termid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%'
+                ),
+                'name' => array(
+                    'column-name' => 'name',
+                    'type' => 'name',
+                    'clone' => '',
+                    'label' => 'Name',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'description' => array(
+                    'column-name' => 'description',
+                    'type' => 'description',
+                    'clone' => '',
+                    'label' => 'Description',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'slug' => array(
+                    'column-name' => 'slug',
+                    'type' => 'slug',
+                    'clone' => '',
+                    'label' => 'Slug',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'posts' => array(
+                    'column-name' => 'posts',
+                    'type' => 'posts',
+                    'clone' => '',
+                    'label' => 'Count',
+                    'width' => '',
+                    'width_unit' => '%'
+                )
+            ) );
+
+            ac_register_columns( 'wp-taxonomy_rebuild_site_category', array(
+                'column-termid' => array(
+                    'column-name' => 'column-termid',
+                    'type' => 'column-termid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%'
+                ),
+                'name' => array(
+                    'column-name' => 'name',
+                    'type' => 'name',
+                    'clone' => '',
+                    'label' => 'Name',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'description' => array(
+                    'column-name' => 'description',
+                    'type' => 'description',
+                    'clone' => '',
+                    'label' => 'Description',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'slug' => array(
+                    'column-name' => 'slug',
+                    'type' => 'slug',
+                    'clone' => '',
+                    'label' => 'Slug',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'posts' => array(
+                    'column-name' => 'posts',
+                    'type' => 'posts',
+                    'clone' => '',
+                    'label' => 'Count',
+                    'width' => '',
+                    'width_unit' => '%'
+                )
+            ) );
+
+            ac_register_columns( 'wp-taxonomy_rebuild_event_category', array(
+                'column-termid' => array(
+                    'column-name' => 'column-termid',
+                    'type' => 'column-termid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%'
+                ),
+                'name' => array(
+                    'column-name' => 'name',
+                    'type' => 'name',
+                    'clone' => '',
+                    'label' => 'Name',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'description' => array(
+                    'column-name' => 'description',
+                    'type' => 'description',
+                    'clone' => '',
+                    'label' => 'Description',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'slug' => array(
+                    'column-name' => 'slug',
+                    'type' => 'slug',
+                    'clone' => '',
+                    'label' => 'Slug',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'posts' => array(
+                    'column-name' => 'posts',
+                    'type' => 'posts',
+                    'clone' => '',
+                    'label' => 'Count',
+                    'width' => '',
+                    'width_unit' => '%'
+                )
+            ) );
+
+            ac_register_columns( 'wp-taxonomy_rebuild_event_tag', array(
+                'column-termid' => array(
+                    'column-name' => 'column-termid',
+                    'type' => 'column-termid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%'
+                ),
+                'name' => array(
+                    'column-name' => 'name',
+                    'type' => 'name',
+                    'clone' => '',
+                    'label' => 'Name',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'description' => array(
+                    'column-name' => 'description',
+                    'type' => 'description',
+                    'clone' => '',
+                    'label' => 'Description',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'slug' => array(
+                    'column-name' => 'slug',
+                    'type' => 'slug',
+                    'clone' => '',
+                    'label' => 'Slug',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'posts' => array(
+                    'column-name' => 'posts',
+                    'type' => 'posts',
+                    'clone' => '',
+                    'label' => 'Count',
+                    'width' => '',
+                    'width_unit' => '%'
+                )
+            ) );
+
+            ac_register_columns( 'wp-taxonomy_rebuild_exhibition_category', array(
+                'column-termid' => array(
+                    'column-name' => 'column-termid',
+                    'type' => 'column-termid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%'
+                ),
+                'name' => array(
+                    'column-name' => 'name',
+                    'type' => 'name',
+                    'clone' => '',
+                    'label' => 'Name',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'description' => array(
+                    'column-name' => 'description',
+                    'type' => 'description',
+                    'clone' => '',
+                    'label' => 'Description',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'slug' => array(
+                    'column-name' => 'slug',
+                    'type' => 'slug',
+                    'clone' => '',
+                    'label' => 'Slug',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'edit' => 'off'
+                ),
+                'posts' => array(
+                    'column-name' => 'posts',
+                    'type' => 'posts',
+                    'clone' => '',
+                    'label' => 'Count',
+                    'width' => '',
+                    'width_unit' => '%'
                 )
             ) );
 
