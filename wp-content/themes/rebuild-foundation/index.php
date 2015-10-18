@@ -17,13 +17,11 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
+
 		<?php if ( have_posts() ) : ?>
 
-            <?php if( 'post' == get_post_type() && function_exists( 'post_category_filter') ) {
-                post_category_filter();
-            } ?>
-
-
+			<?php rebuild_site_category_filter(); ?>
+		
 			<?php if ( is_home() && ! is_front_page() ) : ?>
 				<header>
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
