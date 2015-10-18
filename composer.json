@@ -28,8 +28,8 @@
         }
     ],
     "require": {
-        "wpackagist-plugin/posts-to-posts": "1.6.5",
         "wpackagist-plugin/advanced-custom-fields": "4.4.3",
+        "wpackagist-plugin/codepress-admin-columns": "2.4.7",
         "wpackagist-plugin/mailchimp-for-wp": "2.3.14",
         "misfist/rebuild-foundation-cpt": "v1.0"
     },
