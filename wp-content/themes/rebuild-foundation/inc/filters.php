@@ -36,6 +36,7 @@ if(! function_exists( 'rebuild_site_category_filter' ) ) {
                 } else {
 
                     echo '<a href="' . esc_url( add_query_arg( 'site_category', $site->slug ) ) . '">' . $site->name . '</a>';
+
                 }
 
                 echo '</li>';
@@ -52,7 +53,11 @@ if(! function_exists( 'rebuild_site_category_filter' ) ) {
 
 }
 
-// Exhibition Scope Filters
+/**
+ * Taxonomy filter
+ * Renders taxonomy links based on post_type, excludes empty
+ * @return echo string
+ */
 
 if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
@@ -91,11 +96,42 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
                 foreach( $terms as $term ) {
 
-                    echo '<li>';
+                    // If terms have posts of type currently in, show them
+                    $term_args = array(
+                        'post_type' => $post_type,
+                        'tax_query' => array(
+                                array(
+                                    'taxonomy' => $taxonomy,
+                                    'field' => 'slug',
+                                    'terms' => $term->slug
+                                )
+                            )
+                        );
 
-                    echo '<a href="' . esc_url( add_query_arg( $query_var, $term->slug ) ) . '">' . $term->name . '</a>';
+                    // If query vars for rebuild_site_category set, add to tax query
 
-                    echo '</li>';
+                    $site_category = get_query_var( 'site_category' );
+
+                    if( $site_category ) {
+                        
+                        $term_args['tax_query'][][1] = array(
+                            'taxonomy' => 'rebuild_site_category',
+                            'field' => 'slug',
+                            'terms' => $site_category
+                        );
+                    }
+
+                    $terms_with_posts = get_posts( $term_args );
+
+                    if( $terms_with_posts ) {
+
+                        echo '<li>';
+
+                        echo '<a href="' . esc_url( add_query_arg( $query_var, $term->slug ) ) . '">' . $term->name . '</a>';
+
+                        echo '</li>';
+
+                    }
 
                 }
 
@@ -103,53 +139,7 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
             }
 
-            
-
         }
-
-        // $post_type_obj = get_post_type_object( $post_type );
-
-        // echo '<pre>';
-        // var_dump( $post_type );
-        // echo '</pre>';
-
-        // echo $post_type_obj->name;
-
-        // If Exhibition, taxonomy = rebuild_exhibition_category
-
-        // If Event, taxonomy = rebuild_event_category
-
-        // If Post, taxonomy = category
-
-        //$taxonomy = get_terms( 'rebuild_site_category' );
-    
-        // if( count( $sites ) > 0 ) {
-
-        //     $post_type = get_post_type( get_the_ID() );
-        //     $post_type_obj = get_post_type_object( $post_type );
-
-        //     echo '<ul class="site-filter">';
-
-        //     foreach( $sites as $site ) {
-
-        //         echo '<li>';
-
-        //         if( $post_type && $post_type_obj->has_archive ) {
-
-        //             echo '<a href="' . esc_url( add_query_arg( 'site_category', $site->slug, site_url( $post_type_obj->has_archive ) ) ) . '">' . $site->name . '</a>';
-
-        //         } else {
-
-        //             echo '<a href="' . esc_url( add_query_arg( 'site_category', $site->slug ) ) . '">' . $site->name . '</a>';
-        //         }
-
-        //         echo '</li>';
-
-        //     }
-
-        //     echo '</ul>';      
-
-        // }
 
         return;
 
