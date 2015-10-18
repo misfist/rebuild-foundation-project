@@ -47,7 +47,7 @@ if ( ! function_exists( 'rebuild_event_category' ) ) {
             'show_admin_column'          => true,
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
-            'query_var'                  => 'event-category',
+            'query_var'                  => 'event_category',
             'rewrite'                    => $rewrite,
         );
         register_taxonomy( 'rebuild_event_category', array( 'rebuild_event' ), $args );
