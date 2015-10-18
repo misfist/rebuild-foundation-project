@@ -156,5 +156,10 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require_once get_template_directory() . '/inc/filters.php';
 
+/**
+ * Load filters.
+ */
+require_once get_template_directory() . '/inc/event-functions.php';
+
 
 
