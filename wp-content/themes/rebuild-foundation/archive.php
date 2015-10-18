@@ -14,6 +14,8 @@ get_header(); ?>
 
             <?php rebuild_site_category_filter(); ?>
 
+            <?php rebuild_taxonomy_filter(); ?>
+
         <?php
         // Posts filter - by rebuild_site_category
         // Exhibitions filter - by scope: 
