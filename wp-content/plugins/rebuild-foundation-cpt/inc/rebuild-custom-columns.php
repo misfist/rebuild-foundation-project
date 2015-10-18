@@ -10,7 +10,7 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
-if( function_exists( 'rebuild_custom_columns' ) ) {
+if(! function_exists( 'rebuild_custom_columns' ) ) {
 
     if ( function_exists( 'ac_register_columns' ) ) {
 
