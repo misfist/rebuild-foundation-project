@@ -73,13 +73,13 @@
             <h4><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
 
             <div class="entry-meta location">
-                <span class="location-name"><?php echo ( function_exists( 'rebuild_get_location_name' ) ) ? rebuild_get_location_name() : ''; ?></span>
+                <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
             </div>
 
             <h4><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
 
             <div class="entry-meta address">
-                <?php echo ( function_exists( 'rebuild_get_location' ) ) ? rebuild_get_location() : ''; ?>
+                <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
             </div>
 
             <div class="entry-meta hours">

@@ -12,10 +12,9 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 
-		<div class="entry-meta site-name">
-			<?php
-			$site_cat = ( get_the_terms( get_the_ID(), 'rebuild_site_category' ) );
-			 echo ( !empty( $site_cat ) ) ? $site_cat[0]->name : ''; ?>
+		<div class="entry-meta site-name">			
+
+			<?php rebuild_get_site_category_content(); ?>
 
 		</div><!-- .entry-meta -->
 

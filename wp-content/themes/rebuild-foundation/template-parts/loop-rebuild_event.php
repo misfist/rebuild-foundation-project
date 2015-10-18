@@ -19,9 +19,13 @@
 ?>
 
 <article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( 'event' ); ?>>
+
     <?php the_title( sprintf( '<h3 class="entry-title event-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
+
     <div class="site-name"><?php echo $site_link; ?></div>
+
     <div class="entry-meta event-date"  style="background-image: url( <?php echo $featured_image[0]; ?> )">
         <time datetime="<?php echo date( 'Y-m-d', strtotime( $start_date ) ); ?>"><?php echo date( 'M j', strtotime( $start_date ) ); ?></time>
     </div><!-- .entry-meta -->
+    
 </article><!-- #post-## -->

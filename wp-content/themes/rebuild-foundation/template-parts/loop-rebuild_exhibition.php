@@ -58,7 +58,7 @@ $end_date = get_field( 'end_date' )
         <h4 class="site-info"><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
 
         <div class="entry-meta location">
-            <span class="location-name"><?php echo ( function_exists( 'rebuild_get_location_name' ) ) ? rebuild_get_location_name() : ''; ?></span>
+            <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
         </div>
         
     </div>
@@ -85,6 +85,5 @@ $end_date = get_field( 'end_date' )
         
         <a href="<?php esc_url( get_permalink() ); ?>" class="button btn">View</a>
 
-        <?php rebuild_foundation_entry_footer(); ?>
     </footer><!-- .entry-footer -->
 </article><!-- #post-## -->

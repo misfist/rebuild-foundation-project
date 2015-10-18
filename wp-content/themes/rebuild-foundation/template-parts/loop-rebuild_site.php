@@ -15,7 +15,7 @@
 	<header class="entry-header">
 
         <div class="entry-meta location">
-            <?php echo ( function_exists( 'rebuild_get_location' ) ) ? rebuild_get_location() : ''; ?>
+            <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
         </div><!-- .entry-meta -->
 
         <h2 class="entry-title">

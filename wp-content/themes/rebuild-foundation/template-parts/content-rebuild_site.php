@@ -11,9 +11,7 @@
 
 <?php 
 
-$term = ( get_the_terms( get_the_ID(), 'rebuild_site_category' ) );
-
-$site_cat = ( !empty( $term ) ) ? $term[0]->name : '';
+$site_cat = rebuild_get_site_category();
 
 $site_tax = array(
     array(
@@ -23,13 +21,18 @@ $site_tax = array(
     ),
 );  
 
+// $location = rebuild_get_location_fields();
+
+// var_dump($location);
+
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
 
         <div class="entry-meta location">
-            <?php echo ( function_exists( 'rebuild_get_location' ) ) ? rebuild_get_location() : ''; ?>
+            <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
         </div><!-- .entry-meta -->
 
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
@@ -73,7 +76,8 @@ $site_tax = array(
                 <h4 class="hours-location"><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
 
                 <div class="entry-meta location">
-                    <?php echo ( function_exists( 'rebuild_get_location' ) ) ? rebuild_get_location() : ''; ?>
+                    <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+
                 </div>
 
                 <div class="entry-meta hours">

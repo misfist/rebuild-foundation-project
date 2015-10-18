@@ -9,16 +9,15 @@
 
 ?>
 
-<?php global $EM_Event; ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="entry-header">
-
-        <h2 class="site-name">Site</h2>
+        
+        <h2 class="site-name"><?php rebuild_get_site_category_content(); ?></h2>
 
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-        <h3 class="event-date"><time datetime="">Date</time></h3>
+        <?php $date = get_field( 'start_date' ); ?>
+        <h3 class="event-date"><time datetime="<?php echo ( $date ) ? date( 'Y-m-d', strtotime( $date ) ) : ''; ?>"><?php echo ( $date ) ? date( 'M d', strtotime( $date ) ) : ''; ?></time></h3>
 
     </header><!-- .entry-header -->
 
@@ -35,19 +34,27 @@
         <?php }?>
 
         <div id="details">
-            <div class="event-date"><time datetime="">Date</time></div>
+            <div class="event-date"><time datetime="<?php echo ( $date ) ? date( 'Y-m-d', strtotime( $date ) ) : ''; ?>"><?php echo ( $date ) ? date( 'l, F d, Y', strtotime( $date ) ) : ''; ?></time></div>
 
             <div class="event-time">
-                <time class="start-time">Time</time>
+                <?php $start_time = get_field( 'start_time' ); ?>
+                <?php $end_time = get_field( 'end_time' ); ?>
+                <time class="start-time"><?php echo ( $start_time ) ? date( 'g:ia', strtotime( $start_time ) ) : ''; ?></time>
+                <time class="end-time"><?php echo ( $end_time ) ? date( 'g:ia', strtotime( $end_time ) ) : ''; ?></time>
             </div>
+
 
             <div class="event-export">
                 <a href="" class="google-calendar">Google</a>
                 <a href="" class="ical">iCal</a>
             </div>
 
+            <div class="entry-meta location">
+                <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+            </div>
+
             <div class="entry-meta">
-                <?php rebuild_foundation_entry_footer(); ?>
+                
             </div>
 
             <div class="description">
