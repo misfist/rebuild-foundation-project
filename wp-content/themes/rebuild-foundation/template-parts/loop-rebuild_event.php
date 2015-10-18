@@ -10,7 +10,6 @@
 ?>
 
 <?php 
-    $terms = get_the_terms( get_the_ID(), 'rebuild_site_category' );
     $start_date = get_field( 'start_date' );
     $end_date = get_field( 'end_date' );
     $featured_image = has_post_thumbnail( get_the_ID() ) ? wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' ) : '';
