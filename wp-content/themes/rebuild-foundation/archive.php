@@ -12,11 +12,8 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
 
-            <?php rebuild_site_category_filter(); ?>
-
-            <?php rebuild_taxonomy_filter(); ?>
-
         <?php
+
         // Posts filter - by rebuild_site_category
         // Exhibitions filter - by scope: 
             // past, current, future
@@ -26,6 +23,12 @@ get_header(); ?>
             // by rebuild_site_category
 
         ?>
+
+        <?php rebuild_site_category_filter(); ?>
+
+        <?php rebuild_taxonomy_filter(); ?>
+
+        <?php ( 'rebuild_event' == get_post_type() ) ?rebuild_event_year_filter() : ''; ?>
 
         <?php if ( have_posts() ) : ?>
 
