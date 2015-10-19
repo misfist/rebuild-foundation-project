@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Event Functions
+ *
+ *
+ * @package RebuildFoundation
+ */
+
 if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
 
   function rebuild_events_pre_query_filter( $query ) {

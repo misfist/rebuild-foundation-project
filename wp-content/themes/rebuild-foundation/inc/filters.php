@@ -9,7 +9,6 @@
 
 
 
-
 // Site Filters
 
 if(! function_exists( 'rebuild_site_category_filter' ) ) {
@@ -263,7 +262,7 @@ if(! function_exists( 'rebuild_get_dates' ) ) {
 
 /**
  * Get all the event years
- * @return array of years
+ * @return array of year integers
  */
 
 if(! function_exists( 'rebuild_get_event_years' ) ) {
@@ -285,7 +284,7 @@ if(! function_exists( 'rebuild_get_event_years' ) ) {
 /**
  * Get all the event months
  * TODO: Figure the best way to do this
- * @return array of months
+ * @return array of month integers
  */
 
 if(! function_exists( 'rebuild_get_event_months' ) ) {
