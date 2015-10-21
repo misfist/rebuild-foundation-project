@@ -43,12 +43,6 @@
                 <time class="end-time"><?php echo ( $end_time ) ? date( 'g:ia', strtotime( $end_time ) ) : ''; ?></time>
             </div>
 
-
-            <div class="event-export">
-                <a href="" class="google-calendar">Google</a>
-                <a href="" class="ical">iCal</a>
-            </div>
-
             <div class="entry-meta location">
                 <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
             </div>
