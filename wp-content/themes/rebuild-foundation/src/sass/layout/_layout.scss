@@ -1,0 +1,23 @@
+#masthead {
+	width: $size__site-sidebar;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 55px 0 0 55px;
+
+	.site-branding {
+		width: 110px;
+		padding-top: 110px;
+		background-image: url('img/logo.svg');
+		background-repeat: no-repeat;
+		background-position: 0;
+	}
+}
+
+#primary {
+	width: $size__site-main;
+	position: absolute;
+	top: 0;
+	left: $size__site-sidebar;
+}

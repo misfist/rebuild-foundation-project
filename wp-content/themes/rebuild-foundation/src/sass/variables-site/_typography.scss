@@ -1,4 +1,163 @@
-$font__main: sans-serif;
+/* Completed */
+
+@font-face {
+    font-family: "Akkurat-Light";
+    src:url("fonts/lineto-akkurat-light.eot");
+    src:url("fonts/lineto-akkurat-light.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkurat-light.woff") format("woff"),
+        url("fonts/lineto-akkurat-light.ttf") format("truetype"),
+        url("fonts/lineto-akkurat-light.svg#lineto-akkurat-light") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Regular";
+    src:url("fonts/lineto-akkurat-regular.eot");
+    src:url("fonts/lineto-akkurat-regular.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkurat-regular.woff") format("woff"),
+        url("fonts/lineto-akkurat-regular.ttf") format("truetype"),
+        url("fonts/lineto-akkurat-regular.svg#lineto-akkurat-regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Lightitalic";
+    src:url("fonts/lineto-akkurat-lightitalic.eot");
+    src:url("fonts/lineto-akkurat-lightitalic.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkurat-lightitalic.woff") format("woff"),
+        url("fonts/lineto-akkurat-lightitalic.ttf") format("truetype"),
+        url("fonts/lineto-akkurat-lightitalic.svg#lineto-akkurat-lightitalic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Italic";
+    src:url("fonts/lineto-akkurat-italic.eot");
+    src:url("fonts/lineto-akkurat-italic.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkurat-italic.woff") format("woff"),
+        url("fonts/lineto-akkurat-italic.ttf") format("truetype"),
+        url("fonts/lineto-akkurat-italic.svg#lineto-akkurat-italic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Bold";
+    src:url("fonts/lineto-akkurat-bold.eot");
+    src:url("fonts/lineto-akkurat-bold.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkurat-bold.woff") format("woff"),
+        url("fonts/lineto-akkurat-bold.ttf") format("truetype"),
+        url("fonts/lineto-akkurat-bold.svg#lineto-akkurat-bold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Bolditalic";
+    src:url("fonts/lineto-akkurat-bolditalic.eot");
+    src:url("fonts/lineto-akkurat-bolditalic.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkurat-bolditalic.woff") format("woff"),
+        url("fonts/lineto-akkurat-bolditalic.ttf") format("truetype"),
+        url("fonts/lineto-akkurat-bolditalic.svg#lineto-akkurat-bolditalic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkuratmono-Regular";
+    src:url("fonts/lineto-akkuratmono-regular.eot");
+    src:url("fonts/lineto-akkuratmono-regular.eot?#iefix") format("embedded-opentype"),
+        url("fonts/lineto-akkuratmono-regular.woff") format("woff"),
+        url("fonts/lineto-akkuratmono-regular.ttf") format("truetype"),
+        url("fonts/lineto-akkuratmono-regular.svg#lineto-akkuratmono-regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Subsetted */
+
+@font-face {
+    font-family: "Akkurat-Light-S";
+    src:url("fonts_subsetted/lineto-akkurat-light.eot");
+    src:url("fonts_subsetted/lineto-akkurat-light.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkurat-light.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkurat-light.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkurat-light.svg#lineto-akkurat-light") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Regular-S";
+    src:url("fonts_subsetted/lineto-akkurat-regular.eot");
+    src:url("fonts_subsetted/lineto-akkurat-regular.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkurat-regular.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkurat-regular.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkurat-regular.svg#lineto-akkurat-regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Lightitalic-S";
+    src:url("fonts_subsetted/lineto-akkurat-lightitalic.eot");
+    src:url("fonts_subsetted/lineto-akkurat-lightitalic.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkurat-lightitalic.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkurat-lightitalic.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkurat-lightitalic.svg#lineto-akkurat-lightitalic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Italic-S";
+    src:url("fonts_subsetted/lineto-akkurat-italic.eot");
+    src:url("fonts_subsetted/lineto-akkurat-italic.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkurat-italic.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkurat-italic.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkurat-italic.svg#lineto-akkurat-italic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Bold-S";
+    src:url("fonts_subsetted/lineto-akkurat-bold.eot");
+    src:url("fonts_subsetted/lineto-akkurat-bold.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkurat-bold.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkurat-bold.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkurat-bold.svg#lineto-akkurat-bold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkurat-Bolditalic-S";
+    src:url("fonts_subsetted/lineto-akkurat-bolditalic.eot");
+    src:url("fonts_subsetted/lineto-akkurat-bolditalic.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkurat-bolditalic.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkurat-bolditalic.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkurat-bolditalic.svg#lineto-akkurat-bolditalic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Akkuratmono-Regular-S";
+    src:url("fonts_subsetted/lineto-akkuratmono-regular.eot");
+    src:url("fonts_subsetted/lineto-akkuratmono-regular.eot?#iefix") format("embedded-opentype"),
+        url("fonts_subsetted/lineto-akkuratmono-regular.woff") format("woff"),
+        url("fonts_subsetted/lineto-akkuratmono-regular.ttf") format("truetype"),
+        url("fonts_subsetted/lineto-akkuratmono-regular.svg#lineto-akkuratmono-regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font__main: "Akkurat-Regular", sans-serif;
 $font__code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 $font__pre: "Courier 10 Pitch", Courier, monospace;
 $font__line-height-body: 1.5;
