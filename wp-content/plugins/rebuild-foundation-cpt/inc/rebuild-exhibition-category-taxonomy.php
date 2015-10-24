@@ -47,7 +47,7 @@ if ( ! function_exists( 'rebuild_exhibition_category' ) ) {
             'show_admin_column'          => true,
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
-            'query_var'                  => 'exhibition-category',
+            'query_var'                  => 'exhibition_category',
             'rewrite'                    => $rewrite,
         );
         register_taxonomy( 'rebuild_exhibition_category', array( 'rebuild_exhibition' ), $args );
