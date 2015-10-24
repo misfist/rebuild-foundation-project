@@ -10,6 +10,13 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
+/**
+ * Custom Fields
+ * Add custom fields for custom post types
+ * Relies on Advanced Custom Fields & Advanced Custom Fields: Date and Time Picker
+ * @return
+ */
+
 if( function_exists( 'acf_add_local_field_group' ) ) {
 
     acf_add_local_field_group( array(
@@ -698,5 +705,29 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
     ));
 
 }
+
+/**
+ * Year and Month Query Vars
+ * Add `year` and `month` query_var for events
+ * @return
+ */
+
+if(! function_exists( 'rebuild_register_query_vars' ) ) {
+
+    function rebuild_register_query_vars() {
+
+        global $wp;
+
+        $wp->add_query_var( 'start_date' );
+        $wp->add_query_var( 'end_date' );
+        $wp->add_query_var( 'event_year' );
+        $wp->add_query_var( 'event_month' );
+
+    }
+
+    add_filter( 'init', 'rebuild_register_query_vars' );
+
+}
+
 
 ?>
