@@ -1,4 +1,6 @@
 
-// $size__site-sidebar: 25%;
 $size__site-sidebar: 220px;
-$size__site-main: calc(100% - $size__site-sidebar);
+$size__site-main: calc(100% - #{$size__site-sidebar});
+
+$size__event-years-column: 100px;
+$size__event-listings-column: calc(100% - #{$size__event-years-column});
