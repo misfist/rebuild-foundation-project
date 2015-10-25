@@ -71,7 +71,7 @@ class MC4WP_Form {
 	 */
 	public function contains_field_type( $field_type ) {
 		$html = sprintf( ' type="%s" ', $field_type );
-		return stristr( $this->content, $html ) !== false;
+		return stripos( $this->content, $html ) !== false;
 	}
 
 
@@ -116,9 +116,9 @@ class MC4WP_Form {
 	public function get_hidden_fields( $element_id, $attributes = array() ) {
 
 		// hidden fields
-		$hidden_fields = '<div style="position: absolute; ' . ( is_rtl() ? 'right' : 'left' ) . ': -5000px;"><input type="text" name="_mc4wp_h_'. md5( time() ).'" value="" tabindex="-1" autocomplete="off" /></div>';
+		$hidden_fields = '<div style="display: none;"><input type="text" name="_mc4wp_ho_'. md5( time() ).'" value="" tabindex="-1" autocomplete="off" /></div>';
 		$hidden_fields .= '<input type="hidden" name="_mc4wp_timestamp" value="'. time() . '" />';
-		$hidden_fields .= '<input type="hidden" name="_mc4wp_form_id" value="'. $this->ID .'" />';
+		$hidden_fields .= '<input type="hidden" name="_mc4wp_form_id" value="'. esc_attr( $this->ID ) .'" />';
 		$hidden_fields .= '<input type="hidden" name="_mc4wp_form_element_id" value="'. esc_attr( $element_id ) .'" />';
 		$hidden_fields .= '<input type="hidden" name="_mc4wp_form_submit" value="1" />';
 		$hidden_fields .= '<input type="hidden" name="_mc4wp_form_nonce" value="'. wp_create_nonce( '_mc4wp_form_nonce' ) .'" />';
@@ -127,7 +127,7 @@ class MC4WP_Form {
 		// was "lists" parameter passed in shortcode arguments?
 		if( isset( $attributes['lists'] ) && ! empty( $attributes['lists'] ) ) {
 			$lists_string = ( is_array( $attributes['lists'] ) ) ? join( ',', $attributes['lists'] ) : $attributes['lists'];
-			$hidden_fields .= '<input type="hidden" name="_mc4wp_lists" value="'. $lists_string . '" />';
+			$hidden_fields .= '<input type="hidden" name="_mc4wp_lists" value="'. esc_attr( $lists_string ) . '" />';
 		}
 
 		return (string) $hidden_fields;
@@ -183,28 +183,28 @@ class MC4WP_Form {
 	 * @param string $response_html
 	 * @return string
 	 */
-	protected function get_html_before_fields( $response_html = '' ) {
-		$before_fields = (string) apply_filters( 'mc4wp_form_before_fields', '' );
+	protected function get_html_before_form( $response_html = '' ) {
+		$html = (string) apply_filters( 'mc4wp_form_before_form', '', $this );
 
 		if( $this->get_response_position() === 'before' ) {
-			$before_fields = $response_html . $response_html;
+			$html = $html . $response_html;
 		}
 
-		return $before_fields;
+		return $html;
 	}
 
 	/**
 	 * @param string $response_html
 	 * @return string
 	 */
-	protected function get_html_after_fields( $response_html = '' ) {
-		$after_fields = (string) apply_filters( 'mc4wp_form_after_fields', '' );
+	protected function get_html_after_form( $response_html = '' ) {
+		$html = (string) apply_filters( 'mc4wp_form_after_form', '', $this );
 
 		if( $this->get_response_position() === 'after' ) {
-			$after_fields = $response_html . $after_fields;
+			$html = $response_html . $html;
 		}
 
-		return $after_fields;
+		return $html;
 	}
 
 	/**
@@ -251,8 +251,8 @@ class MC4WP_Form {
 		$opening_html .= '<div id="' . esc_attr( $element_id ) . '" class="' . esc_attr( $this->get_css_classes( $element_id ) ) . '">';
 		$before_fields = apply_filters( 'mc4wp_form_before_fields', '' );
 		$after_fields = apply_filters( 'mc4wp_form_after_fields', '' );
-		$before_form = $this->get_html_before_fields( $response_html );
-		$after_form = $this->get_html_after_fields( $response_html );
+		$before_form = $this->get_html_before_form( $response_html );
+		$after_form = $this->get_html_after_form( $response_html );
 		$closing_html = '</div><!-- / MailChimp for WordPress Plugin -->';
 
 		// only generate form & fields HTML if necessary

@@ -168,7 +168,7 @@ abstract class MC4WP_Integration {
 
 		// after checkbox HTML (..., honeypot, closing comment)
 		$after = apply_filters( 'mc4wp_after_checkbox', '', $this->type );
-		$after .= '<div style="position: absolute; '. ( is_rtl() ? 'right' : 'left' ) . ':-5000px;"><input type="text" name="_mc4wp_required_but_not_really" value="" tabindex="-1" autocomplete="off" /></div>';
+		$after .= '<div style="display: none;"><input type="text" name="_mc4wp_required_but_not_really" value="" tabindex="-1" autocomplete="off" /></div>';
 		$after .= '<!-- / MailChimp for WordPress -->';
 
 		return $before . $content . $after;
@@ -183,8 +183,8 @@ abstract class MC4WP_Integration {
 		$opts = $this->get_options();
 		$lists = $opts['lists'];
 
-		// get lists from form, if set.
-		if( isset( $_POST['_mc4wp_lists'] ) && ! empty( $_POST['_mc4wp_lists'] ) ) {
+		// get lists from request, if set.
+		if( ! empty( $_POST['_mc4wp_lists'] ) ) {
 
 			$lists = $_POST['_mc4wp_lists'];
 
@@ -193,13 +193,13 @@ abstract class MC4WP_Integration {
 
 				// sanitize value
 				$lists = sanitize_text_field( $lists );
-				$lists = array( $lists );
+				$lists = array_map( 'trim', explode( ',', $lists ) );
 			}
 
 		}
 
-		// allow plugins to filter final
-		$lists = apply_filters( 'mc4wp_lists', $lists );
+		// allow plugins to filter final lists value
+		$lists = (array) apply_filters( 'mc4wp_lists', $lists );
 
 		return $lists;
 	}
@@ -241,7 +241,7 @@ abstract class MC4WP_Integration {
 
 		// set ip address
 		if( ! isset( $merge_vars['OPTIN_IP'] ) ) {
-			$merge_vars['OPTIN_IP'] = MC4WP_tools::get_client_ip();
+			$merge_vars['OPTIN_IP'] = MC4WP_Tools::get_client_ip();
 		}
 
 		$result = false;

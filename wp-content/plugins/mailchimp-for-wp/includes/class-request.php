@@ -13,7 +13,7 @@ abstract class MC4WP_Request implements iMC4WP_Request {
 	/**
 	 * @var MC4WP_Form
 	 */
-	protected $form;
+	public $form;
 
 	/**
 	 * @var string
@@ -40,6 +40,11 @@ abstract class MC4WP_Request implements iMC4WP_Request {
 	 */
 	public $user_data = array();
 
+	/**
+	 * @var string
+	 */
+	public $http_referer = '';
+
 
 	/**
 	 * Constructor
@@ -59,6 +64,11 @@ abstract class MC4WP_Request implements iMC4WP_Request {
 
 		// get form
 		$this->form = MC4WP_Form::get( $this );
+
+		// get referer
+		if( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
+			$this->http_referer = strip_tags( $_SERVER['HTTP_REFERER'] );
+		}
 	}
 
 	/**
@@ -79,7 +89,7 @@ abstract class MC4WP_Request implements iMC4WP_Request {
 				$key = substr( $key, 7 );
 
 				// if key starts with h_, change it to say "honeypot" (because field has dynamic name attribute)
-				if( strpos( $key, 'h_' ) === 0 ){
+				if( strpos( $key, 'ho_' ) === 0 ){
 					$key = 'honeypot';
 				}
 
@@ -128,7 +138,7 @@ abstract class MC4WP_Request implements iMC4WP_Request {
 			$value = array_map( array( $this, 'sanitize_deep' ), $value );
 		} elseif ( is_object($value) ) {
 			$vars = get_object_vars( $value );
-			foreach ($vars as $key=>$data) {
+			foreach ( $vars as $key => $data ) {
 				$value->{$key} = $this->sanitize_deep( $data );
 			}
 		}
@@ -271,23 +281,23 @@ abstract class MC4WP_Request implements iMC4WP_Request {
 
 		$lists = $this->form->settings['lists'];
 
-		// get lists from form, if set.
-		if( isset( $this->internal_data['lists'] ) && ! empty( $this->internal_data['lists'] ) ) {
+		// get lists from request, if set.
+		if( ! empty( $this->internal_data['lists'] ) ) {
 
 			$lists = $this->internal_data['lists'];
 
 			// make sure lists is an array
 			if( ! is_array( $lists ) ) {
 				$lists = sanitize_text_field( $lists );
-				$lists = array( $lists );
+				$lists = array_map( 'trim', explode( ',', $lists ) );
 			}
 
 		}
 
 		// allow plugins to alter the lists to subscribe to
-		$lists = apply_filters( 'mc4wp_lists', $lists );
+		$lists = (array) apply_filters( 'mc4wp_lists', $lists );
 
-		return (array) $lists;
+		return $lists;
 	}
 
 	/**

@@ -28,6 +28,13 @@ class MC4WP_Lite_Admin
 		$this->load_translations();
 		$this->setup_hooks();
 		$this->listen();
+
+		// Instantiate Usage Tracking nag
+		$options = mc4wp_get_options( 'general' );
+		if( ! $options['allow_usage_tracking'] ) {
+			$usage_tracking_nag = new MC4WP_Usage_Tracking_Nag( $this->get_required_capability() );
+			$usage_tracking_nag->add_hooks();
+		}
 	}
 
 	/**
@@ -57,7 +64,7 @@ class MC4WP_Lite_Admin
 		add_action( 'admin_init', array( $this, 'initialize' ) );
 		add_action( 'admin_menu', array( $this, 'build_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_css_and_js' ) );
-		add_action( 'admin_footer_text', array( $this, 'footer_text' ) );
+		add_filter( 'admin_footer_text', array( $this, 'footer_text' ) );
 
 		// Hooks for Plugins overview page
 		if( $current_page === 'plugins.php' ) {
@@ -188,9 +195,9 @@ class MC4WP_Lite_Admin
 	}
 
 	/**
-	* Register the setting pages and their menu items
-		*/
-	public function build_menu() {
+	 * @return string
+	 */
+	public function get_required_capability() {
 
 		/**
 		 * @filter mc4wp_settings_cap
@@ -198,7 +205,17 @@ class MC4WP_Lite_Admin
 		 *
 		 * Use to customize the required user capability to access the MC4WP settings pages
 		 */
-		$required_cap = apply_filters( 'mc4wp_settings_cap', 'manage_options' );
+		$required_cap = (string) apply_filters( 'mc4wp_settings_cap', 'manage_options' );
+
+		return $required_cap;
+	}
+
+	/**
+	* Register the setting pages and their menu items
+		*/
+	public function build_menu() {
+
+		$required_cap = $this->get_required_capability();
 
 		$menu_items = array(
 			array(
@@ -220,7 +237,7 @@ class MC4WP_Lite_Admin
 				'callback' => array( $this, 'show_form_settings' ) ),
 			array(
 				'title' => __( 'Upgrade to Pro', 'mailchimp-for-wp' ),
-				'text' => '<span style="line-height: 20px;"><span class="dashicons dashicons-external"></span> ' .__( 'Upgrade to Pro', 'mailchimp-for-wp' ),
+				'text' => '<span style="line-height: 20px; color: #cc4444;"><span class="dashicons dashicons-external"></span> ' .__( 'Upgrade to Pro', 'mailchimp-for-wp' ),
 				'slug' => 'upgrade',
 
 				'callback' => array( $this, 'redirect_to_pro' ),
@@ -250,6 +267,11 @@ class MC4WP_Lite_Admin
 	public function validate_settings( array $settings ) {
 
 		$current = mc4wp_get_options();
+
+		// Toggle usage tracking
+		if( isset( $settings['allow_usage_tracking'] ) ) {
+			MC4WP_Usage_Tracking::instance()->toggle( (bool) $settings['allow_usage_tracking'] );
+		}
 
 		// sanitize simple text fields (no HTML, just chars & numbers)
 		$simple_text_fields = array( 'api_key', 'redirect', 'css' );
