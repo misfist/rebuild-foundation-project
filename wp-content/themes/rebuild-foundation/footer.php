@@ -15,7 +15,10 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+			<?php if ( is_active_sidebar( 'footer-widget' ) ) {
+                dynamic_sidebar( 'footer-widget' ); 
+            }
+            ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
