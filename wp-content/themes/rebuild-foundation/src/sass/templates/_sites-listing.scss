@@ -1,0 +1,149 @@
+.post-type-archive-rebuild_site {
+
+	article {
+		width: $size__site-main;
+		height: 240px;
+		margin-bottom: 10px;
+		background-repeat: no-repeat;
+		@include background-size(cover);
+		@include transition-duration(0.25s);
+		color: $white;
+		cursor: pointer;
+
+		&::before {
+			content: "\00a0";
+			background-color: $black-transparent-light;
+			width: $size__site-main;
+			height: 240px;
+			position: absolute;
+			z-index: 0;
+			@include transition-duration(0.25s);
+		}
+
+		.entry-header {
+			width: 300px;
+			position: relative;
+			z-index: 1;
+			padding: 30px 0 0 50px;
+			
+			.entry-meta.location {
+				visibility: hidden;
+				font: $font-size-1 $bold;
+			}
+
+			h2.entry-title {
+				font: $font_size-4 $light;
+				text-transform: uppercase;
+				line-height: 1.2em;
+				letter-spacing: 0.05em;
+
+				a {
+					color: $white;
+					text-decoration: none;
+					pointer-events: none;
+				}
+			}
+		}
+
+		.entry-content {
+			display: none;
+			width: 50%;
+			position: relative;
+			z-index: 1;
+			padding-left: 50px;
+
+			a.read-more {
+				color: $white-transparent;
+				&:hover {
+					color: $white;
+				}
+			}
+		}
+
+		.entry-footer {
+			display: none;
+			position: relative;
+			z-index: 1;
+			padding-left: 50px;
+			padding-top: 20px;
+
+			.button {
+				font: $font-size-1 $regular;
+				border: 1px solid $white;
+				padding: 10px 20px;
+				color: $white;
+				text-decoration: none;
+				text-transform: uppercase;
+				letter-spacing: 0.25em;
+
+				&:hover {
+					background: $white-transparent-light;
+				}
+			}
+
+			.post-edit-link {
+				display: block;
+				color: $white;
+			}
+
+		}
+
+
+
+		&:hover {
+			width: 100%;
+			@include transition-duration(0.25s);
+
+			&::before { 
+				width: 100%;
+				@include transition-duration(0.25s);
+			}
+		}
+
+
+		&.expanded {
+			width: 100%;
+			height: 500px;
+			cursor: auto;
+
+			&::before {
+				width: 100%;
+				height: 500px;
+				background-color: $black-transparent-opaque;
+			}
+
+			.entry-header {
+				.entry-meta.location {
+					visibility: visible;
+				}
+
+				h2.entry-title {
+					font-family: $regular;
+
+					a {
+						pointer-events: auto;
+						@include transition-duration(.25s);
+
+						&:hover {
+							color: $white-transparent;
+							@include transition-duration(.25s);
+						}
+					}
+				}
+			}
+
+			.entry-content {
+				display: block;
+			}
+
+			.entry-footer {
+				display: block;
+			}
+
+		}
+		
+
+	}
+
+
+}

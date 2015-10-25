@@ -42,7 +42,7 @@
 		$args = array(
 			'theme_location' => 'sites_menu',
 			'container' => 'div',
-			'container_class' => 'menu-{menu-slug}-container',
+			'container_class' => 'menu-sites',
 			'menu_class' => 'menu',
 			'echo' => true,
 			'fallback_cb' => false,

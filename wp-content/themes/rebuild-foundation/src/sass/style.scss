@@ -50,7 +50,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Layout
 --------------------------------------------------------------*/
 @import "layout/layout";
-@import "layout/sidebar-content";
+@import "layout/temporarily-hidden";
 
 /*--------------------------------------------------------------
 # Normalize
@@ -111,3 +111,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Media
 --------------------------------------------------------------*/
 @import "media/media";
+
+/*--------------------------------------------------------------
+# Templates
+--------------------------------------------------------------*/
+@import "templates/sites-listing";
+@import "templates/events-listing";
+@import "templates/events";

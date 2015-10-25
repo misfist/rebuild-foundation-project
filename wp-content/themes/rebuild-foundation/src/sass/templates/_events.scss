@@ -1,0 +1,61 @@
+.single-rebuild_event {
+
+	#main {
+		width: $size__event-listings-column;
+		left: $size__event-years-column;
+		position: relative;
+	}
+
+	article {
+		width: 90%;
+		margin-top: 75px;
+		border: 1px solid $black-transparent;
+		padding: 30px 0;
+
+		header {
+			padding-bottom: 30px;
+		}
+
+		h2.site-name {
+			@include inblock(35%);
+			padding: 0 0 0 5%;
+			font: $font_size-2 $regular;
+
+
+		}
+
+		h1.entry-title {
+			@include inblock(55%);
+			margin-left: -4px;
+			padding: 0 5% 0 5%;
+			font: $font_size-3 $bold;
+		}
+
+		h3.event-date {
+			@include inblock(10%);
+			margin-left: -4px;
+			padding: 0 0 0 0;
+			font: $font_size-2 $bold;
+		}
+
+		.single-image {
+			@include inblock(35%);
+			padding: 0 2.5% 0 5%;
+		}
+
+		#details {
+			@include inblock(65%);
+			margin-left: -4px;
+			padding: 0 5% 0 5%;
+		}
+
+		.event-date, .event-time,.entry-meta {
+			font: 15px $mono;
+			padding-bottom: 5px;
+		}
+	}
+
+	.post-navigation {
+		width: 90%;
+	}
+}

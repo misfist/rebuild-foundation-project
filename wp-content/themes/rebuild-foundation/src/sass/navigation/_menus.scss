@@ -50,15 +50,20 @@
 	}
 	li {
 		position: relative;
+		text-transform: uppercase;
+		padding-bottom: 20px;
 
 		&:hover > a,
 		&.focus > a {
+			@include transition-duration(0.25s);
 		}
 	}
 	a {
 		display: block;
 		text-decoration: none;
-		color: $black;
+		font: $font_size-1 $bold;
+		@include transition-duration(0.25s);
+		letter-spacing: 0.05em;
 	}
 
 	.current_page_item > a,
@@ -66,6 +71,9 @@
 	.current_page_ancestor > a {
 	}
 }
+
+
+
 
 /* Small menu. */
 .menu-toggle,
