@@ -158,7 +158,7 @@
 }
 
 $font__main: "Akkurat-Regular", sans-serif;
-$font__code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+$font__code: "Akkuratmono-Regular", Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 $font__pre: "Courier 10 Pitch", Courier, monospace;
 $font__line-height-body: 1.5;
 $font__line-height-pre: 1.6;
@@ -177,6 +177,7 @@ $font_size-8: 62px;
 
 // Font Weights
 
+$mono: "Akkuratmono-Regular";
 $light: "Akkurat-Light";
 $light-i: "Akkurat-Lightitalic";;
 $regular: "Akkurat-Regular";
