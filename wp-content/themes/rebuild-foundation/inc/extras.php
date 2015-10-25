@@ -123,11 +123,3 @@ function rebuild_custom_excerpt_more( $more ) {
 add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
 
 
-//apply_filters( 'jetpack_sharing_display_text', $text, $this, $id, $args );
-
-function jptweak_remove_share() {
-  // $text = apply_filters( 'jetpack_sharing_display_text', $text, $this, $id, $args );
-    remove_filter( 'jetpack_sharing_display_text', 'sharing_display', 19 );
-}
- 
-add_action( 'loop_start', 'jptweak_remove_share' );
