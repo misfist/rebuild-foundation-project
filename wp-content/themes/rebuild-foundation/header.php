@@ -32,25 +32,28 @@
 				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 			<?php endif; ?>
 			<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+
+			<?php
+			/**
+			* Displays a navigation menu
+			* @param array $args Arguments
+			*/
+			$args = array(
+				'theme_location' => 'sites_menu',
+				'container' => 'div',
+				'container_class' => 'menu-sites',
+				'menu_class' => 'menu',
+				'echo' => true,
+				'fallback_cb' => false,
+				'items_wrap' => '<ul id = "%1$s" class = "%2$s">%3$s</ul>',
+				'depth' => 0,
+			);
+		
+			wp_nav_menu( $args ); ?>
+			
 		</div><!-- .site-branding -->
 
-		<?php
-		/**
-		* Displays a navigation menu
-		* @param array $args Arguments
-		*/
-		$args = array(
-			'theme_location' => 'sites_menu',
-			'container' => 'div',
-			'container_class' => 'menu-sites',
-			'menu_class' => 'menu',
-			'echo' => true,
-			'fallback_cb' => false,
-			'items_wrap' => '<ul id = "%1$s" class = "%2$s">%3$s</ul>',
-			'depth' => 0,
-		);
-	
-		wp_nav_menu( $args ); ?>
+		
 	    <nav id="site-navigation" class="main-navigation" role="navigation">
        		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'rebuild-foundation' ); ?></button>
         <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>

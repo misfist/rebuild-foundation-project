@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
 	$('article').click(function() {
-		$(this).toggleClass('expanded');
+		$(this).addClass('expanded');
+		$(this).siblings().removeClass('expanded');
 	});
 
 });
