@@ -213,7 +213,7 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
             $year = ( isset( $event_year ) ) ? absint( $event_year ) : date( 'Y' );
 
-            if( $dates[$year] ) {
+            if( isset( $dates[$year] ) ) {
 
               asort( $dates[$year] );
 
