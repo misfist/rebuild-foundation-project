@@ -54,12 +54,17 @@ update_option('image_default_link_type','none');
  * Always Show Kitchen Sink in WYSIWYG Editor
  */
 
-function unhide_kitchensink( $args ) {
-    $args['wordpress_adv_hidden'] = false;
-    return $args;
+if(! function_exists( 'unhide_kitchensink' ) ) {
+
+  function unhide_kitchensink( $args ) {
+      $args['wordpress_adv_hidden'] = false;
+      return $args;
+  }
+
+  add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
+
 }
 
-add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
 
 
 /**
@@ -78,6 +83,83 @@ if( !function_exists( 'rebuild_foundation_register_menus' ) ) {
   }
 
   add_action( 'init', 'rebuild_foundation_register_menus' );
+}
+
+/**
+ * Footer widgets - adds footer widget area
+ */
+
+if ( ! function_exists( 'rebuild_foundation_register_widget_area' ) ) {
+
+  // Register Sidebars
+  function rebuild_foundation_register_widget_area() {
+
+    $args = array(
+      'id'            => 'footer-widget',
+      'class'         => 'site-info',
+      'name'          => __( 'Footer', 'rebuild-foundation' ),
+      'before_widget' => '<div id="%1$s" class="widget %2$s">',
+      'after_widget'  => '</div>',
+    );
+    register_sidebar( $args );
+
+  }
+
+  add_action( 'widgets_init', 'rebuild_foundation_register_widget_area' );
+
+
+
+}
+
+// Enable shortcodes in widget
+add_filter( 'widget_text', 'do_shortcode' );
+
+/**
+ * Current year shortcode
+ */
+
+if(! function_exists( 'rebuild_current_year' ) ) {
+
+  function rebuild_current_year() {
+
+    return date( 'Y' );
+
+  }
+
+  add_shortcode( 'year', 'rebuild_current_year' );
+
+}
+
+/**
+ * Site name shortcode
+ */
+
+if(! function_exists( 'rebuild_site_name' ) ) {
+
+  function rebuild_site_name() {
+
+    return get_bloginfo( 'name' );
+
+  }
+
+  add_shortcode( 'sitename', 'rebuild_site_name' );
+
+}
+
+/**
+ * Site link shortcode
+ */
+
+if(! function_exists( 'rebuild_site_link' ) ) {
+
+  function rebuild_site_link() {
+
+    return '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo( 'name' ) . '</a>';
+
+  }
+
+  add_shortcode( 'sitelink', 'rebuild_site_link' );
+
 }
 
 
