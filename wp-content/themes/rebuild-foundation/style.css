@@ -138,7 +138,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   top: 0;
   left: 0;
   padding: 25px 0 0 55px;
-  z-index: 4; }
+  z-index: 5; }
   #masthead .site-branding {
     position: fixed;
     left: 0;
@@ -196,7 +196,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     margin-right: -5px;
     font: 13px "Akkuratmono-Regular"; }
 
-.site-filter, .rebuild_site-filter {
+.post-type-archive-rebuild_site .site-filter, .post-type-archive-rebuild_site .rebuild_site-filter {
   display: none; }
 
 /*--------------------------------------------------------------
@@ -386,7 +386,7 @@ button,
 input,
 select,
 textarea {
-  color: #404040;
+  color: black;
   font-family: "Akkurat-Regular", sans-serif;
   font-size: 16px;
   font-size: 1rem;
@@ -724,44 +724,54 @@ a {
   position: initial; }
 
 /*--------------------------------------------------------------
-## Events Filters
+## Filters
 --------------------------------------------------------------*/
-.event-year-filter {
+.event-year-filter, .rebuild_exhibition-filter {
   width: 150px;
   position: fixed;
   left: 220px;
   margin: 0;
   padding: 0;
   list-style-type: none; }
-  .event-year-filter li {
+  .event-year-filter li, .rebuild_exhibition-filter li {
     font-size: 16px; }
-    .event-year-filter li a {
+    .event-year-filter li a, .rebuild_exhibition-filter li a {
       text-decoration: none; }
 
-.rebuild_event-filter {
+.site-filter, .rebuild_event-filter, .event-month-filter {
   list-style-type: none;
   position: fixed;
   width: calc(100% - 220px - 150px);
   left: calc(220px + 150px);
-  margin: 0 0 30px 0;
-  padding: 40px 0 10px 0;
   background-color: #E9E6DF;
   top: 0;
-  z-index: 3; }
-  .rebuild_event-filter li {
-    font: 13px "Akkuratmono-Regular";
+  padding: 0;
+  margin: 0; }
+
+.site-filter {
+  padding-top: 40px;
+  height: 65px;
+  z-index: 4;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
+  .site-filter li {
+    font: 13px "Akkurat-Regular";
     float: left;
-    padding-right: 50px; }
+    padding-right: 25px; }
+
+.rebuild_event-filter {
+  padding-top: 75px;
+  height: 100px;
+  padding-bottom: 20px;
+  z-index: 3;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
+  .rebuild_event-filter li {
+    font: 13px "Akkurat-Regular";
+    float: left;
+    padding-right: 25px; }
 
 .event-month-filter {
-  list-style-type: none;
-  position: fixed;
-  width: calc(100% - 150px);
-  left: calc(220px + 150px);
-  top: 0;
-  background-color: #E9E6DF;
-  margin: 0;
-  padding: 100px 0 10px 0;
+  padding-top: 115px;
+  padding-bottom: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   z-index: 2; }
   .event-month-filter li {
@@ -994,7 +1004,13 @@ ul.social-links {
     ul.social-links li a {
       display: block;
       width: 30px;
-      height: 30px; }
+      height: 30px;
+      opacity: 1;
+      -webkit-transition-duration: 0.25s;
+      -moz-transition-duration: 0.25s;
+      -ms-transition-duration: 0.25s;
+      -o-transition-duration: 0.25s;
+      transition-duration: 0.25s; }
       ul.social-links li a.social-instagram {
         background-image: url("img/sm-icon_instagram.svg"); }
       ul.social-links li a.social-flickr {
@@ -1005,142 +1021,17 @@ ul.social-links {
         background-image: url("img/sm-icon_twitter.svg"); }
       ul.social-links li a.social-facebook {
         background-image: url("img/sm-icon_facebook.svg"); }
-
-/*--------------------------------------------------------------
-# Templates
---------------------------------------------------------------*/
-.post-type-archive-rebuild_site article {
-  width: calc(100% - 150px);
-  height: 240px;
-  margin-bottom: 10px;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  -webkit-transition-duration: 0.25s;
-  -moz-transition-duration: 0.25s;
-  -ms-transition-duration: 0.25s;
-  -o-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  color: white;
-  cursor: pointer; }
-  .post-type-archive-rebuild_site article::before {
-    content: "\00a0";
-    background-color: rgba(0, 0, 0, 0.25);
-    width: calc(100% - 150px);
-    height: 240px;
-    position: absolute;
-    z-index: 0;
-    -webkit-transition-duration: 0.25s;
-    -moz-transition-duration: 0.25s;
-    -ms-transition-duration: 0.25s;
-    -o-transition-duration: 0.25s;
-    transition-duration: 0.25s; }
-  .post-type-archive-rebuild_site article .entry-header {
-    position: relative;
-    z-index: 1;
-    padding: 40px 0 0 50px; }
-    .post-type-archive-rebuild_site article .entry-header .entry-meta.location {
-      visibility: hidden;
-      font: 13px "Akkuratmono-Regular"; }
-    .post-type-archive-rebuild_site article .entry-header h2.entry-title {
-      width: 250px;
-      font: 25px "Akkurat-Light";
-      text-transform: uppercase;
-      line-height: 1.2em;
-      letter-spacing: 0.05em; }
-      .post-type-archive-rebuild_site article .entry-header h2.entry-title a {
-        color: white;
-        text-decoration: none;
-        pointer-events: none; }
-  .post-type-archive-rebuild_site article .entry-content {
-    display: none;
-    width: 50%;
-    position: relative;
-    z-index: 1;
-    padding-left: 50px; }
-    .post-type-archive-rebuild_site article .entry-content a.read-more {
-      color: rgba(255, 255, 255, 0.5); }
-      .post-type-archive-rebuild_site article .entry-content a.read-more:hover {
-        color: white; }
-  .post-type-archive-rebuild_site article .entry-footer {
-    display: none;
-    position: relative;
-    z-index: 1;
-    padding-left: 50px;
-    padding-top: 20px; }
-    .post-type-archive-rebuild_site article .entry-footer .button {
-      font: 13px "Akkuratmono-Regular";
-      border: 1px solid white;
-      padding: 10px 20px;
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.25em; }
-      .post-type-archive-rebuild_site article .entry-footer .button:hover {
-        background: rgba(255, 255, 255, 0.25); }
-    .post-type-archive-rebuild_site article .entry-footer .post-edit-link {
-      display: block;
-      color: white; }
-  .post-type-archive-rebuild_site article .close-site {
-    display: none;
-    position: absolute;
-    width: 65px;
-    height: 65px;
-    background: url("img/close.svg");
-    background-repeat: no-repeat;
-    right: 20px;
-    margin-top: 20px; }
-  .post-type-archive-rebuild_site article:hover {
-    width: 100%;
-    -webkit-transition-duration: 0.25s;
-    -moz-transition-duration: 0.25s;
-    -ms-transition-duration: 0.25s;
-    -o-transition-duration: 0.25s;
-    transition-duration: 0.25s; }
-    .post-type-archive-rebuild_site article:hover::before {
-      width: 100%;
-      -webkit-transition-duration: 0.25s;
-      -moz-transition-duration: 0.25s;
-      -ms-transition-duration: 0.25s;
-      -o-transition-duration: 0.25s;
-      transition-duration: 0.25s; }
-  .post-type-archive-rebuild_site article.expanded {
-    width: 100%;
-    height: 500px;
-    cursor: auto; }
-    .post-type-archive-rebuild_site article.expanded::before {
-      width: 100%;
-      height: 500px;
-      background-color: rgba(0, 0, 0, 0.75); }
-    .post-type-archive-rebuild_site article.expanded .entry-header .entry-meta.location {
-      visibility: visible; }
-    .post-type-archive-rebuild_site article.expanded .entry-header h2.entry-title {
-      font-family: "Akkurat-Regular"; }
-      .post-type-archive-rebuild_site article.expanded .entry-header h2.entry-title a {
-        pointer-events: auto;
+      ul.social-links li a:hover {
+        opacity: 0.25;
         -webkit-transition-duration: 0.25s;
         -moz-transition-duration: 0.25s;
         -ms-transition-duration: 0.25s;
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
-        .post-type-archive-rebuild_site article.expanded .entry-header h2.entry-title a:hover {
-          color: rgba(255, 255, 255, 0.5);
-          -webkit-transition-duration: 0.25s;
-          -moz-transition-duration: 0.25s;
-          -ms-transition-duration: 0.25s;
-          -o-transition-duration: 0.25s;
-          transition-duration: 0.25s; }
-    .post-type-archive-rebuild_site article.expanded .entry-content {
-      display: block; }
-    .post-type-archive-rebuild_site article.expanded .entry-footer {
-      display: block; }
-    .post-type-archive-rebuild_site article.expanded .close-site {
-      display: block;
-      cursor: pointer;
-      z-index: 5; }
 
+/*--------------------------------------------------------------
+# Templates
+--------------------------------------------------------------*/
 .post-type-archive-rebuild_event {
   padding-top: 50px; }
   .post-type-archive-rebuild_event .posts-list {
@@ -1290,5 +1181,194 @@ ul.social-links {
     margin-top: 35px; }
 .single-rebuild_event .post-navigation {
   width: 90%; }
+
+.post-type-archive-rebuild_exhibition .posts-list {
+  width: calc(100% - 150px);
+  position: relative;
+  left: 150px;
+  margin-top: 120px; }
+.post-type-archive-rebuild_exhibition article {
+  width: calc(100% - 150px);
+  margin-bottom: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid black; }
+  .post-type-archive-rebuild_exhibition article .col-1 {
+    display: inline-block;
+    vertical-align: top;
+    width: 35%; }
+  .post-type-archive-rebuild_exhibition article .col-2 {
+    display: inline-block;
+    vertical-align: top;
+    width: 55%;
+    margin-left: 5%; }
+  .post-type-archive-rebuild_exhibition article .site-info {
+    margin: -60% 0 0 40%; }
+  .post-type-archive-rebuild_exhibition article .entry-meta.location {
+    margin-left: 40%; }
+    .post-type-archive-rebuild_exhibition article .entry-meta.location a {
+      font: 20px "Akkurat-Bold";
+      color: black;
+      text-transform: uppercase; }
+  .post-type-archive-rebuild_exhibition article .featured-image {
+    width: 65%; }
+  .post-type-archive-rebuild_exhibition article .site-info::before {
+    position: relative;
+    display: block;
+    width: 100%; }
+  .post-type-archive-rebuild_exhibition article .entry-header .entry-title {
+    font: 40px "Akkurat-Bold";
+    margin-top: 0; }
+  .post-type-archive-rebuild_exhibition article .entry-header .entry-meta {
+    font: 16px "Akkuratmono-Regular"; }
+  .post-type-archive-rebuild_exhibition article .read-more {
+    font-family: "Akkuratmono-Regular";
+    color: black;
+    padding-left: 20px; }
+  .post-type-archive-rebuild_exhibition article .button.btn {
+    font: 16px "Akkurat-Bold"; }
+  .post-type-archive-rebuild_exhibition article.rebuild_site_category-dorchester-art-housing-collaborative .site-info::before {
+    content: url("img/graphic_da-hc.svg"); }
+  .post-type-archive-rebuild_exhibition article.rebuild_site_category-dorchester-art-housing-collaborative .entry-title a, .post-type-archive-rebuild_exhibition article.rebuild_site_category-dorchester-art-housing-collaborative .button.btn {
+    color: #ff674d; }
+  .post-type-archive-rebuild_exhibition article.rebuild_site_category-black-cinema-house .site-info::before {
+    content: url("img/graphic_bch.svg"); }
+  .post-type-archive-rebuild_exhibition article.rebuild_site_category-black-cinema-house .entry-title a, .post-type-archive-rebuild_exhibition article.rebuild_site_category-black-cinema-house .button.btn {
+    color: #ffb111; }
+  .post-type-archive-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .site-info::before {
+    content: url("img/graphic_siab.svg"); }
+  .post-type-archive-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .entry-title a, .post-type-archive-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .button.btn {
+    color: #6490e8; }
+
+.post-type-archive-rebuild_site article {
+  width: calc(100% - 150px);
+  height: 240px;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -ms-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  color: white;
+  cursor: pointer; }
+  .post-type-archive-rebuild_site article::before {
+    content: "\00a0";
+    background-color: rgba(0, 0, 0, 0.25);
+    width: calc(100% - 150px);
+    height: 240px;
+    position: absolute;
+    z-index: 0;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -ms-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s; }
+  .post-type-archive-rebuild_site article .entry-header {
+    position: relative;
+    z-index: 1;
+    padding: 40px 0 0 50px; }
+    .post-type-archive-rebuild_site article .entry-header .entry-meta.location {
+      visibility: hidden;
+      font: 13px "Akkuratmono-Regular"; }
+    .post-type-archive-rebuild_site article .entry-header h2.entry-title {
+      width: 250px;
+      font: 25px "Akkurat-Light";
+      text-transform: uppercase;
+      line-height: 1.2em;
+      letter-spacing: 0.05em; }
+      .post-type-archive-rebuild_site article .entry-header h2.entry-title a {
+        color: white;
+        text-decoration: none;
+        pointer-events: none; }
+  .post-type-archive-rebuild_site article .entry-content {
+    display: none;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    padding-left: 50px; }
+    .post-type-archive-rebuild_site article .entry-content a.read-more {
+      color: rgba(255, 255, 255, 0.5); }
+      .post-type-archive-rebuild_site article .entry-content a.read-more:hover {
+        color: white; }
+  .post-type-archive-rebuild_site article .entry-footer {
+    display: none;
+    position: relative;
+    z-index: 1;
+    padding-left: 50px;
+    padding-top: 20px; }
+    .post-type-archive-rebuild_site article .entry-footer .button {
+      font: 13px "Akkuratmono-Regular";
+      border: 1px solid white;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.25em; }
+      .post-type-archive-rebuild_site article .entry-footer .button:hover {
+        background: rgba(255, 255, 255, 0.25); }
+    .post-type-archive-rebuild_site article .entry-footer .post-edit-link {
+      display: block;
+      color: white; }
+  .post-type-archive-rebuild_site article .close-site {
+    display: none;
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: url("img/close.svg");
+    background-repeat: no-repeat;
+    right: 20px;
+    margin-top: 20px; }
+  .post-type-archive-rebuild_site article:hover {
+    width: 100%;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -ms-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s; }
+    .post-type-archive-rebuild_site article:hover::before {
+      width: 100%;
+      -webkit-transition-duration: 0.25s;
+      -moz-transition-duration: 0.25s;
+      -ms-transition-duration: 0.25s;
+      -o-transition-duration: 0.25s;
+      transition-duration: 0.25s; }
+  .post-type-archive-rebuild_site article.expanded {
+    width: 100%;
+    height: 500px;
+    cursor: auto; }
+    .post-type-archive-rebuild_site article.expanded::before {
+      width: 100%;
+      height: 500px;
+      background-color: rgba(0, 0, 0, 0.75); }
+    .post-type-archive-rebuild_site article.expanded .entry-header .entry-meta.location {
+      visibility: visible; }
+    .post-type-archive-rebuild_site article.expanded .entry-header h2.entry-title {
+      font-family: "Akkurat-Regular"; }
+      .post-type-archive-rebuild_site article.expanded .entry-header h2.entry-title a {
+        pointer-events: auto;
+        -webkit-transition-duration: 0.25s;
+        -moz-transition-duration: 0.25s;
+        -ms-transition-duration: 0.25s;
+        -o-transition-duration: 0.25s;
+        transition-duration: 0.25s; }
+        .post-type-archive-rebuild_site article.expanded .entry-header h2.entry-title a:hover {
+          color: rgba(255, 255, 255, 0.5);
+          -webkit-transition-duration: 0.25s;
+          -moz-transition-duration: 0.25s;
+          -ms-transition-duration: 0.25s;
+          -o-transition-duration: 0.25s;
+          transition-duration: 0.25s; }
+    .post-type-archive-rebuild_site article.expanded .entry-content {
+      display: block; }
+    .post-type-archive-rebuild_site article.expanded .entry-footer {
+      display: block; }
+    .post-type-archive-rebuild_site article.expanded .close-site {
+      display: block;
+      cursor: pointer;
+      z-index: 5; }
 
 /*# sourceMappingURL=style.css.map */

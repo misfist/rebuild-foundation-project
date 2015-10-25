@@ -1,5 +1,7 @@
 // This file is for temporarily hiding elements 
 
-.site-filter, .rebuild_site-filter {
-	display: none;
+.post-type-archive-rebuild_site {
+	.site-filter, .rebuild_site-filter {
+		display: none;
+	}
 }
