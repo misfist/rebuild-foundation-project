@@ -151,10 +151,10 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-/**
- * Load filters.
- */
-require_once get_template_directory() . '/inc/filters.php';
+// /**
+//  * Load filters.
+//  */
+// require_once get_template_directory() . '/inc/filters.php';
 
 /**
  * Load filters.
