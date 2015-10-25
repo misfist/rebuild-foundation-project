@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'event' ); ?>>
     <header class="entry-header">
         
         <h2 class="site-name"><?php rebuild_get_site_category_content(); ?></h2>
@@ -23,15 +23,16 @@
 
     <div class="entry-content">
 
-        <?php if( has_post_thumbnail() ) { ?>
+        <?php if( has_post_thumbnail( ) ) :?>
 
-        <div class="gallery single-image">
+            <figure class="entry-thumbnail">
+                <?php the_post_thumbnail(''); ?>
+                <?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+                    <figcaption class="caption"><?php echo $caption; ?></figcaption>
+                <?php endif; ?>
+            </figure>
 
-            <div class="site-image"><?php the_post_thumbnail( 'full' ); ?></div>
-            
-        </div>
-
-        <?php }?>
+        <?php endif; ?>
 
         <div id="details">
             <div class="event-date"><time datetime="<?php echo ( $date ) ? date( 'Y-m-d', strtotime( $date ) ) : ''; ?>"><?php echo ( $date ) ? date( 'l, F d, Y', strtotime( $date ) ) : ''; ?></time></div>
@@ -47,8 +48,8 @@
                 <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
             </div>
 
-            <div class="entry-meta">
-                
+            <div class="entry-meta tags">
+                <?php ( function_exists( 'rebuild_foundation_entry_footer' ) ) ? rebuild_foundation_entry_footer() : '' ; ?>
             </div>
 
             <div class="description">
