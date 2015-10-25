@@ -21,17 +21,17 @@
 		}
 
 		.entry-header {
-			width: 300px;
 			position: relative;
 			z-index: 1;
-			padding: 30px 0 0 50px;
+			padding: 40px 0 0 50px;
 			
 			.entry-meta.location {
 				visibility: hidden;
-				font: $font-size-1 $bold;
+				font: $font-size-1 $mono;
 			}
 
 			h2.entry-title {
+				width: 250px;
 				font: $font_size-4 $light;
 				text-transform: uppercase;
 				line-height: 1.2em;
@@ -68,7 +68,7 @@
 			padding-top: 20px;
 
 			.button {
-				font: $font-size-1 $regular;
+				font: $font-size-1 $mono;
 				border: 1px solid $white;
 				padding: 10px 20px;
 				color: $white;
@@ -85,9 +85,18 @@
 				display: block;
 				color: $white;
 			}
-
 		}
 
+		.close-site {
+			display: none;
+			position: absolute;
+			width: 65px;
+			height: 65px;
+			background: url('img/close.svg');
+			background-repeat: no-repeat;
+			right: 20px;
+			margin-top: 20px;
+		}
 
 
 		&:hover {
@@ -138,6 +147,12 @@
 
 			.entry-footer {
 				display: block;
+			}
+
+			.close-site {
+				display: block;
+				cursor: pointer;
+				z-index: 5;
 			}
 
 		}
