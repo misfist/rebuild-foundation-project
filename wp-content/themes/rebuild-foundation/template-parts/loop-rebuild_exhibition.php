@@ -15,7 +15,7 @@ $end_date = get_field( 'end_date' )
 ?>
 
 
-<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo isset( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo isset( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>">
+<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo isset( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo isset( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( 'exhibition' ); ?>>
     <header class="entry-header">
 
         <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>

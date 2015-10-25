@@ -13,7 +13,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'exhibition' ); ?>>
     <header class="entry-header">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
@@ -58,13 +58,14 @@
                 <?php endforeach; ?>
             </div>
 
-        <?php elseif( has_post_thumbnail() ): ?>
+        <?php elseif( has_post_thumbnail( ) ) :?>
 
-            <div class="gallery single-image">
-
-                <div class="site-image"><?php the_post_thumbnail( 'full' ); ?></div>
-            
-            </div>
+            <figure class="entry-thumbnail">
+                <?php the_post_thumbnail(''); ?>
+                <?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+                    <figcaption class="caption"><?php echo $caption; ?></figcaption>
+                <?php endif; ?>
+            </figure>
 
         <?php endif; ?>
 

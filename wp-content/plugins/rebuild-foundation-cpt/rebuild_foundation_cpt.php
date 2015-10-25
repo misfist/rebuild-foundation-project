@@ -32,9 +32,26 @@ include_once( 'inc/rebuild-event-category-taxonomy.php' );
 include_once( 'inc/rebuild-event-tag-taxonomy.php' );
 include_once( 'inc/rebuild-exhibition-category-taxonomy.php' );
 include_once( 'inc/rebuild-rewrite-rules.php' );
-//include_once( 'inc/rebuild-location-relationships.php' );
 include_once( 'inc/rebuild-custom-fields.php' );
 include_once( 'inc/rebuild-custom-columns.php' );
+include_once( 'inc/rebuild-pre-get-query.php' );
+include_once( 'inc/rebuild-filters.php' );
+
+
+function rebuild_plugin_activation() {
+
+    // Then flush them
+    flush_rewrite_rules();
+
+}
+register_activation_hook( __FILE__, 'rebuild_plugin_activation');
+ 
+ 
+function rebuild_plugin_deactivation() {
+ 
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'rebuild_plugin_deactivation');
 
 
 ?>

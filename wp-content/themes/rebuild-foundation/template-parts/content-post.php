@@ -9,16 +9,35 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'post' ); ?>>
 	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php rebuild_foundation_posted_on(); ?>
+		<div class="entry-meta site-name">			
+
+			<?php rebuild_get_site_category_content(); ?>
+
 		</div><!-- .entry-meta -->
-		<?php endif; ?>
+
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<time datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date( 'M d' ); ?></time>
+		</div><!-- .entry-meta -->
+		
 	</header><!-- .entry-header -->
+
+	<div class="featured-image">
+		<?php if( has_post_thumbnail( ) ) :?>
+
+			<figure class="entry-thumbnail">
+				<?php the_post_thumbnail(''); ?>
+				<?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+				    <figcaption class="caption"><?php echo $caption; ?></figcaption>
+				<?php endif; ?>
+			</figure>
+
+		<?php endif; ?>
+	</div>
 
 	<div class="entry-content">
 		<?php

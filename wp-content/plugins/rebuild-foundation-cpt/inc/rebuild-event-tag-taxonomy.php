@@ -47,7 +47,7 @@ if ( ! function_exists( 'rebuild_event_tag' ) ) {
             'show_admin_column'          => true,
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
-            'query_var'                  => 'event-tag',
+            'query_var'                  => 'event_tag',
             'rewrite'                    => $rewrite,
         );
         register_taxonomy( 'rebuild_event_tag', array( 'rebuild_event' ), $args );

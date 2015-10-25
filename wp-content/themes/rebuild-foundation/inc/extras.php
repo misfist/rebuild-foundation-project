@@ -20,15 +20,16 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
  */
 
 if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
+
   function rebuild_foundation_body_classes( $classes ) {
 
     // Adds 'class-name' to the $classes array
-    // global $post;
+    global $post;
     
-    // $post_slug_class = $post->post_name;
-    // $post_type = $post->post_type;
-    // $classes[] = 'type-' . $post_type;
-    // $classes[] = $post_slug_class . ' post-' . $post_slug_class;
+    $post_slug_class = ( isset( $post->post_name ) ) ? $post->post_name : '';
+    $post_type = ( isset( $post->post_type ) ) ? $post->post_type : '';
+    $classes[] = 'type-' . $post_type;
+    $classes[] = $post_slug_class . ' post-' . $post_slug_class;
 
   	// Adds a class of group-blog to blogs with more than 1 published author.
   	if ( is_multi_author() ) {
@@ -38,6 +39,7 @@ if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
   	return $classes;
   }
   add_filter( 'body_class', 'rebuild_foundation_body_classes' );
+  
 }
 
 
@@ -76,81 +78,6 @@ if( !function_exists( 'rebuild_foundation_register_menus' ) ) {
   }
 
   add_action( 'init', 'rebuild_foundation_register_menus' );
-}
-
-
-/**
- * Site images - attach images for gallery to rebuild_sites content type
- */
-
-// check for plugin using plugin name
-if ( is_plugin_active( 'attachments/index.php' ) ) {
-  //plugin is activated
-
-  function rebuild_foundation_site_attachments( $attachments ) {
-    $fields         = array(
-      array(
-        'name'      => 'title',                         // unique field name
-        'type'      => 'text',                          // registered field type
-        'label'     => __( 'Title', 'rebuild-foundation' ),    // label to display
-        'default'   => 'title',                         // default value upon selection
-      ),
-      array(
-        'name'      => 'caption',                       // unique field name
-        'type'      => 'textarea',                      // registered field type
-        'label'     => __( 'Caption', 'rebuild-foundation' ),  // label to display
-        'default'   => 'caption',                       // default value upon selection
-      ),
-    );
-
-    $args = array(
-
-      // title of the meta box (string)
-      'label'         => 'Gallery Images',
-
-      // all post types to utilize (string|array)
-      'post_type'     => array( 'rebuild_sites' ),
-
-      // meta box position (string) (normal, side or advanced)
-      'position'      => 'normal',
-
-      // meta box priority (string) (high, default, low, core)
-      'priority'      => 'high',
-
-      // allowed file type(s) (array) (image|video|text|audio|application)
-      'filetype'      => 'image',
-
-      // include a note within the meta box (string)
-      'note'          => 'Attach images',
-
-      // by default new Attachments will be appended to the list
-      // but you can have then prepend if you set this to false
-      'append'        => true,
-
-      // text for 'Attach' button in meta box (string)
-      'button_text'   => __( 'Attach image', 'rebuild-foundation' ),
-
-      // text for modal 'Attach' button (string)
-      'modal_text'    => __( 'Attach', 'rebuild-foundation' ),
-
-      // which tab should be the default in the modal (string) (browse|upload)
-      'router'        => 'browse',
-
-      // whether Attachments should set 'Uploaded to' (if not already set)
-      'post_parent'   => false,
-
-      // fields array
-      'fields'        => $fields,
-
-    );
-
-    $attachments->register( 'rebuild_foundation_site_attachments', $args ); // unique instance name
-
-    add_filter( 'attachments_settings_screen', '__return_false' ); // disable the Settings screen
-  }
-
-  add_action( 'attachments_register', 'rebuild_foundation_site_attachments' );
-
 }
 
 
@@ -194,4 +121,5 @@ function rebuild_custom_excerpt_more( $more ) {
 }
 
 add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
+
 
