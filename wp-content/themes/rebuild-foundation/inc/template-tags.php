@@ -41,7 +41,171 @@ if ( ! function_exists( 'rebuild_foundation_posted_on' ) ) :
     }
 endif;
 
-// ?post_type=rebuild_exhibitions
+/**
+ * Get the pretty link 
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_pretty_link' ) ) {
+
+    function rebuild_get_pretty_link( $post_type ) {
+
+        $post_type_obj = get_post_type_object( $post_type );
+
+        $post_type_slug = ( 'post' == $post_type ) ? 'blog' : $post_type_obj->rewrite['slug'] . 's' ;
+
+        return '/' . $post_type_slug;
+
+    } 
+
+}
+
+
+/**
+ * Get site link
+ * Returns link to site page
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_site_link' ) ) {
+
+    function rebuild_get_site_link() {
+
+        $site_name = get_rebuild_site_name();
+        $site_slug = get_rebuild_site_slug();
+
+        if( $site_name && $site_slug ) {
+
+            return '<a href="' . esc_url( home_url( '/site/' . $site_slug ) ) . '">' . $site_name . '</a>';
+
+        }
+
+        return;
+
+    } 
+
+}
+
+
+/**
+ * Get site category link
+ * Renders link to site_category content relative to current content
+ * Uses `add_query_arg` to render link
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_site_category_content' ) ) {
+
+    function rebuild_get_site_category_content() {
+
+        $site_name = get_rebuild_site_name();
+        $site_slug = get_rebuild_site_slug();
+
+        if( $site_name && $site_slug ) {
+
+            $post_type = get_post_type();
+            $post_type_obj = get_post_type_object( $post_type );
+            $post_type_name = $post_type_obj->labels->name;
+
+            $pretty_link = esc_url( rebuild_get_pretty_link( $post_type ) );
+
+            if( $post_type_obj->has_archive ) {
+                
+                // https://developer.wordpress.org/reference/functions/add_query_arg/
+
+                $link = '<div class="meta site-cat-link"><label>All</label> <a href="' . esc_url( add_query_arg( 'site_category', $site_slug, site_url( $post_type_obj->has_archive ) ) ) . '">' . $site_name . ' ' . $post_type_name . '</a></div>';
+
+            } else {
+
+                $link = '<div class="meta site-cat-link"><label>All</label> <a href="' . esc_url( add_query_arg( 'site_category', $site_slug, $pretty_link ) ) . '">' . $site_name . ' ' . $post_type_name . '</a></div>';
+
+            }
+
+            echo $link;
+
+        }
+
+        return;
+
+    } 
+
+}
+
+
+/**
+ * Prints HTML with site category link for current content item
+ */
+
+if(! function_exists( 'rebuild_foundation_site_cat_link' ) ) {
+
+    function rebuild_foundation_site_cat_link() {
+        
+        global $wp;
+
+        $site_category =  wp_get_post_terms( get_the_ID(), 'rebuild_site_category', array( 'fields' => 'all' ) );
+
+        if ( is_wp_error( $site_category ) ) {
+            continue;
+        }
+
+        $term_link = get_term_link( $site_category[0]->term_id, 'rebuild_site_category' );
+
+        $post_type_obj = get_post_type_object( get_post_type( get_the_ID() ) );
+
+        $post_type_slug = rebuild_get_pretty_link( get_post_type( get_the_ID() ) );
+
+        // Tip on how to get current url
+        // https://kovshenin.com/2012/current-url-in-wordpress/
+        printf( '<div class="meta site-cat-link"><label>Other</label> <a href="' . esc_url( home_url( $post_type_slug . '/site/' . $site_category[0]->slug ) ) . '">' . $site_category[0]->name . ' ' . $post_type_obj->labels->name . '</a></div>' );
+
+    }
+
+}
+
+
+/**
+ * Prints HTML with site link associated with current category (via 'rebuild_site_category')
+ */
+
+if(! function_exists( 'rebuild_foundation_site_link' ) ) {
+
+    function rebuild_foundation_site_link() {
+
+        // Get the current site category
+        $site_category =  wp_get_post_terms( get_the_ID(), 'rebuild_site_category', array( 'fields' => 'slugs' ) );
+
+        if ( is_wp_error( $site_category ) ) {
+            continue;
+        }
+
+        wp_reset_postdata();
+
+        $the_site_args = array(
+            'post_type' => 'rebuild_site',
+            'numberposts' => 1,
+            'tax_query' => array(
+                'taxonomy' => 'rebuild_site_category',
+                'field'    => 'slug',
+                'terms'    => $site_category[0],
+            ),
+        );
+
+        $the_site = get_posts( $the_site_args );
+
+        if( count( $the_site ) > 0 ) {
+
+            $name = get_field( 'short_name', $the_site[0]->ID );
+
+            $site_name = ( $name ) ? $name : $the_site[0]->post_title;
+
+            printf( '<div class="meta site-link">' . __( '<label>View</label> ', 'rebuild-foundation' ) . '<a href="' . esc_url( home_url( '/site/' . $the_site[0]->post_name ) ) . '">' . $site_name . '</a></div>' );
+
+        }
+
+    }
+
+}
+
 
 if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
     /**
@@ -49,43 +213,102 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
      */
     function rebuild_foundation_entry_footer() {
 
-        if( function_exists( 'rebuild_foundation_get_site_link' ) ) {
-            $site_link = rebuild_foundation_get_site_link();
-        }
+        // Posts, Events, Exhibitions, Sites
 
-        if( isset( $site_link ) ) {
+        // Archives
+        // Posts, Events, Exhibitions
+        if( is_post_type_archive( array( 'post', 'rebuild_event', 'rebuild_exhibition' ) ) ) {
 
-            printf( '<span class="meta site-links">' . esc_html__( 'Site %1$s', 'rebuild-foundation' ) . '</span>', $site_link ); // WPCS: XSS OK
+            if( function_exists( 'rebuild_get_site_category_content' ) ) {
 
-        }
+                rebuild_get_site_category_content();
 
-        if ( 'event' === get_post_type() ) { 
-            /* translators: used between list items, there is a space after the comma */
-            $eventcat_list =  get_the_term_list( get_the_ID(), 'event-categories', '', ', ' );
-            if ( $eventcat_list ) {
-                printf( '<span class="meta eventcat-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</span>', $eventcat_list ); // WPCS: XSS OK.
             }
 
-         } else {
+            if( function_exists( 'rebuild_get_site_link' ) ) {
 
-            /* translators: used between list items, there is a space after the comma */
-            $categories_list = get_the_category_list( esc_html__( ', ', 'rebuild-foundation' ) );
-            if ( has_category() ) {
+                rebuild_get_site_link();
 
-                if( 'rebuild_exhibitions' === get_post_type() ) {
-                    printf( '<span class="meta category-links">' . esc_html__( 'Category %1$s', 'rebuild-foundation' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-                } else {
-                    printf( '<span class="meta category-links">' . esc_html__( 'Category %1$s', 'rebuild-foundation' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-                }
             }
 
-            /* translators: used between list items, there is a space after the comma */
+        }
+
+        // Posts/Blog
+        // category, post_tag
+        if( is_post_type_archive( 'post' ) ) {
+
             $tags_list = get_the_tag_list( '', esc_html__( ', ', 'rebuild-foundation' ) );
             if ( $tags_list ) {
                 printf( '<span class="meta tags-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
             }
-            
-         }
+
+        }
+
+        // Sites
+        // No links
+
+        // Single
+
+        // Events
+        if ( is_singular( 'rebuild_event' ) ) { 
+
+            $eventcat_list =  get_the_term_list( get_the_ID(), 'rebuild_event_category', '', ', ' );
+
+            $eventtag_list =  get_the_term_list( get_the_ID(), 'rebuild_event_tag', '', ', ' );
+
+            if ( $eventcat_list ) {
+                printf( '<div class="meta eventcat-links">' . esc_html__( 'Posted in %1$s', 'rebuild-foundation' ) . '</div>', $eventcat_list ); // WPCS: XSS OK.
+            }
+
+            if ( $eventtag_list ) {
+                printf( '<div class="meta eventtag-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</div>', $eventtag_list ); // WPCS: XSS OK.
+            }
+
+        }
+
+
+        // Posts, Events, Exhibitions
+        if( is_singular( array( 'post', 'rebuild_event', 'rebuild_exhibition' ) ) ) {
+
+             if( function_exists( 'rebuild_get_site_category_content' ) ) {
+
+                rebuild_get_site_category_content();
+
+            }
+
+            if( function_exists( 'rebuild_get_site_link' ) ) {
+
+                rebuild_get_site_link();
+
+            }
+
+
+        }
+
+        // Sites
+        // site_category for 'post_type' = 'rebuild_site'
+        if( is_singular( 'rebuild_site' ) ) {
+
+             if( function_exists( 'rebuild_get_site_category_content' ) ) {
+
+                rebuild_get_site_category_content();
+
+            }
+
+        }
+        
+
+        // Posts/Blog
+        // category, post_tag, site_category for 'post_type' = 'post'
+
+        // Events
+        // event_category, event_tag, site_category for 'post_type' = 'rebuild_event'
+
+        // Exhibitions
+        // exhibition_category, site_category for 'post_type' = 'rebuild_exhibition'
+
+        // Sites
+        // site_category for 'post_type' = 'rebuild_site'
 
 
         if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
@@ -293,7 +516,7 @@ if(! function_exists( 'rebuild_get_site_link' ) ) {
 
         if( $site_name && $site_slug ) {
 
-            return $site_link = '<a href="/site/' . $site_slug . '">' . $site_name . '</a>';
+            return '<a href="/site/' . $site_slug . '">' . $site_name . '</a>';
 
         }
 
