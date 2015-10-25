@@ -24,11 +24,15 @@ if(! function_exists( 'rebuild_events_get_posts_query' ) ) {
     if( is_post_type_archive( 'rebuild_event' ) && $query->is_main_query() ) {
 
         // Check if get_query_var( 'event_year' ) is passed & is valid, otherwise set to current year
-        $year = ( !empty( get_query_var( 'event_year' ) ) ) ? absint( get_query_var( 'event_year' ) ) : date( 'Y' );
+        $event_year = get_query_var( 'event_year' );
+
+        $year = ( isset( $event_year ) ) ? absint( get_query_var( 'event_year' ) ) : date( 'Y' );
 
         // Check if get_query_var( 'event_month' ) is passed & is valid, otherwise set to blank
-        $event_month = ( !empty( get_query_var( 'event_month' ) ) && 
-            in_array( get_query_var( 'event_month' ), range( 1, 12 ) ) ) ? zeroise( get_query_var( 'event_month' ), 2 ) : '';
+
+        $month = get_query_var( 'event_month' );
+        $event_month = ( ( isset( $month ) ) && 
+            in_array( $month, range( 1, 12 ) ) ) ? zeroise( $month, 2 ) : '';
 
         // If neither $event_year or $event_month, return
         if( !isset( $event_year ) && !isset( $event_month ) ) {
