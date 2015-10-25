@@ -22,6 +22,8 @@
  * Domain Path:       /languages
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 // Include files
 include_once( 'inc/rebuild-site-cpt.php' );
 include_once( 'inc/rebuild-event-cpt.php' );
