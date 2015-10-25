@@ -38,9 +38,10 @@
 			font: $font_size-2 $bold;
 		}
 
-		.single-image {
+		.entry-thumbnail {
 			@include inblock(35%);
 			padding: 0 2.5% 0 5%;
+			margin: 0;
 		}
 
 		#details {
@@ -50,8 +51,16 @@
 		}
 
 		.event-date, .event-time,.entry-meta {
-			font: 15px $mono;
+			font: 14px $mono;
 			padding-bottom: 5px;
+		}
+
+		.entry-meta {
+			margin-top: 20px;
+		}
+
+		.description {
+			margin-top: 35px;
 		}
 	}
 

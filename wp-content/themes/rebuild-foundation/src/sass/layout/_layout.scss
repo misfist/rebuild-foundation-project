@@ -5,7 +5,7 @@
 	top: 0;
 	left: 0;
 	padding: 25px 0 0 55px;
-	z-index: 3;
+	z-index: 4;
 
 	.site-branding {
 		position: fixed;
@@ -30,7 +30,7 @@
 		&:hover {
 			bottom: 0;
 			width: 400px;
-			background: $black-transparent-dark;
+			background: $black-transparent-opaque;
 			@include box-shadow(0 0 12px #000000);
 			z-index: 5;
 			@include transition-duration(0.25s);

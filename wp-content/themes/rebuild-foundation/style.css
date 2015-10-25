@@ -138,7 +138,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   top: 0;
   left: 0;
   padding: 25px 0 0 55px;
-  z-index: 3; }
+  z-index: 4; }
   #masthead .site-branding {
     position: fixed;
     left: 0;
@@ -159,7 +159,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     #masthead .site-branding:hover {
       bottom: 0;
       width: 400px;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.75);
       -webkit-box-shadow: 0 0 12px #000000;
       -moz-box-shadow: 0 0 12px #000000;
       box-shadow: 0 0 12px #000000;
@@ -690,6 +690,53 @@ a {
   position: initial; }
 
 /*--------------------------------------------------------------
+## Events Filters
+--------------------------------------------------------------*/
+.event-year-filter {
+  width: 100px;
+  position: fixed;
+  left: 220px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+  .event-year-filter li {
+    font-size: 16px; }
+    .event-year-filter li a {
+      text-decoration: none; }
+
+.rebuild_event-filter {
+  list-style-type: none;
+  position: fixed;
+  width: calc(100% - 100px);
+  margin: 0 0 30px 0;
+  padding: 40px 0 10px 0;
+  background-color: #E9E6DF;
+  margin-left: 100px;
+  top: 0;
+  z-index: 3; }
+  .rebuild_event-filter li {
+    font: 13px "Akkuratmono-Regular";
+    float: left;
+    padding-right: 50px; }
+
+.event-month-filter {
+  list-style-type: none;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 100px);
+  background-color: #E9E6DF;
+  margin-left: 100px;
+  padding: 100px 0 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  z-index: 2; }
+  .event-month-filter li {
+    font: 20px "Akkurat-Regular";
+    display: inline-block;
+    vertical-align: top;
+    width: 8%;
+    margin-right: -4px; }
+
+/*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers. */
@@ -1034,31 +1081,13 @@ object {
       cursor: pointer;
       z-index: 5; }
 
-.event-year-filter {
-  width: 100px;
-  position: fixed;
-  left: 220px;
-  margin: 0;
-  padding: 0;
-  list-style-type: none; }
-  .event-year-filter li {
-    font-size: 16px; }
-    .event-year-filter li a {
-      text-decoration: none; }
-
-.rebuild_event-filter {
-  list-style-type: none;
-  margin: 0 0 30px 0;
-  padding: 0;
-  left: 100px;
-  position: relative; }
-
 .post-type-archive-rebuild_event {
   padding-top: 50px; }
   .post-type-archive-rebuild_event .posts-list {
     width: calc(100% - 100px);
     position: relative;
-    left: 100px; }
+    left: 100px;
+    margin-top: 120px; }
   .post-type-archive-rebuild_event article {
     border: 1px solid rgba(0, 0, 0, 0.25);
     width: 90%;
@@ -1073,7 +1102,7 @@ object {
       display: inline-block;
       vertical-align: top;
       width: 30%;
-      padding: 50px 30px 0 70px;
+      padding: 40px 30px 0 40px;
       text-transform: uppercase; }
       .post-type-archive-rebuild_event article .site-name a {
         font: 25px "Akkurat-Light";
@@ -1110,7 +1139,7 @@ object {
         margin-left: 12%; }
     .post-type-archive-rebuild_event article:hover {
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.25);
+      background-color: rgba(0, 0, 0, 0.5);
       -webkit-transition-duration: 0.5s;
       -moz-transition-duration: 0.5s;
       -ms-transition-duration: 0.5s;
@@ -1180,11 +1209,12 @@ object {
     margin-left: -4px;
     padding: 0 0 0 0;
     font: 16px "Akkurat-Bold"; }
-  .single-rebuild_event article .single-image {
+  .single-rebuild_event article .entry-thumbnail {
     display: inline-block;
     vertical-align: top;
     width: 35%;
-    padding: 0 2.5% 0 5%; }
+    padding: 0 2.5% 0 5%;
+    margin: 0; }
   .single-rebuild_event article #details {
     display: inline-block;
     vertical-align: top;
@@ -1192,8 +1222,12 @@ object {
     margin-left: -4px;
     padding: 0 5% 0 5%; }
   .single-rebuild_event article .event-date, .single-rebuild_event article .event-time, .single-rebuild_event article .entry-meta {
-    font: 15px "Akkuratmono-Regular";
+    font: 14px "Akkuratmono-Regular";
     padding-bottom: 5px; }
+  .single-rebuild_event article .entry-meta {
+    margin-top: 20px; }
+  .single-rebuild_event article .description {
+    margin-top: 35px; }
 .single-rebuild_event .post-navigation {
   width: 90%; }
 
