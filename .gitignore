@@ -20,4 +20,4 @@
 !wp-content/
 wp-content/*
 !wp-content/plugins/
-!wp-content/themes/
+!wp-content/themes/.DS_Store
