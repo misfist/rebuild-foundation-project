@@ -209,7 +209,9 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
             $long_months = array();
 
-            $year = ( !empty( get_query_var( 'event_year' ) ) ) ? absint( get_query_var( 'event_year' ) ) : date( 'Y' );
+            $event_year = get_query_var( 'event_year' );
+
+            $year = ( isset( $event_year ) ) ? absint( $event_year ) : date( 'Y' );
 
             if( $dates[$year] ) {
 
