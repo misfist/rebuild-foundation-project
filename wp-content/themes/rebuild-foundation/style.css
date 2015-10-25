@@ -184,11 +184,17 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   left: 220px; }
 
 .site-footer {
-  border-top: 1px solid black;
+  position: relative;
   padding: 15px 0;
   margin-top: 100px;
-  width: calc(100% - 220px);
-  margin-left: 220px; }
+  width: calc(100% - 220px - 150px);
+  left: 220px; }
+  .site-footer .widget_text {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    margin-right: -5px;
+    font: 13px "Akkuratmono-Regular"; }
 
 .site-filter, .rebuild_site-filter {
   display: none; }
@@ -548,6 +554,34 @@ textarea {
   padding-left: 3px;
   width: 100%; }
 
+::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.5); }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(0, 0, 0, 0.5); }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(0, 0, 0, 0.5); }
+
+:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5); }
+
+input.search-field {
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  background-image: url("img/search.svg");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 25px 25px; }
+
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
@@ -693,7 +727,7 @@ a {
 ## Events Filters
 --------------------------------------------------------------*/
 .event-year-filter {
-  width: 100px;
+  width: 150px;
   position: fixed;
   left: 220px;
   margin: 0;
@@ -707,11 +741,11 @@ a {
 .rebuild_event-filter {
   list-style-type: none;
   position: fixed;
-  width: calc(100% - 100px);
+  width: calc(100% - 220px - 150px);
+  left: calc(220px + 150px);
   margin: 0 0 30px 0;
   padding: 40px 0 10px 0;
   background-color: #E9E6DF;
-  margin-left: 100px;
   top: 0;
   z-index: 3; }
   .rebuild_event-filter li {
@@ -722,10 +756,11 @@ a {
 .event-month-filter {
   list-style-type: none;
   position: fixed;
+  width: calc(100% - 150px);
+  left: calc(220px + 150px);
   top: 0;
-  width: calc(100% - 100px);
   background-color: #E9E6DF;
-  margin-left: 100px;
+  margin: 0;
   padding: 100px 0 10px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   z-index: 2; }
@@ -947,10 +982,35 @@ object {
   display: block; }
 
 /*--------------------------------------------------------------
+## Social Media
+--------------------------------------------------------------*/
+ul.social-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+  ul.social-links li {
+    float: right;
+    padding-left: 20px; }
+    ul.social-links li a {
+      display: block;
+      width: 30px;
+      height: 30px; }
+      ul.social-links li a.social-instagram {
+        background-image: url("img/sm-icon_instagram.svg"); }
+      ul.social-links li a.social-flickr {
+        background-image: url("img/sm-icon_flickr.svg"); }
+      ul.social-links li a.social-vimeo {
+        background-image: url("img/sm-icon_vimeo.svg"); }
+      ul.social-links li a.social-twitter {
+        background-image: url("img/sm-icon_twitter.svg"); }
+      ul.social-links li a.social-facebook {
+        background-image: url("img/sm-icon_facebook.svg"); }
+
+/*--------------------------------------------------------------
 # Templates
 --------------------------------------------------------------*/
 .post-type-archive-rebuild_site article {
-  width: calc(100% - 220px);
+  width: calc(100% - 150px);
   height: 240px;
   margin-bottom: 10px;
   background-repeat: no-repeat;
@@ -968,7 +1028,7 @@ object {
   .post-type-archive-rebuild_site article::before {
     content: "\00a0";
     background-color: rgba(0, 0, 0, 0.25);
-    width: calc(100% - 220px);
+    width: calc(100% - 150px);
     height: 240px;
     position: absolute;
     z-index: 0;
@@ -1084,13 +1144,13 @@ object {
 .post-type-archive-rebuild_event {
   padding-top: 50px; }
   .post-type-archive-rebuild_event .posts-list {
-    width: calc(100% - 100px);
+    width: calc(100% - 150px);
     position: relative;
-    left: 100px;
+    left: 150px;
     margin-top: 120px; }
   .post-type-archive-rebuild_event article {
     border: 1px solid rgba(0, 0, 0, 0.25);
-    width: 90%;
+    width: calc(100% - 150px);
     margin-bottom: 5px;
     min-height: 200px;
     -webkit-transition-duration: 0.5s;
@@ -1179,11 +1239,11 @@ object {
         color: #E9E6DF; }
 
 .single-rebuild_event #main {
-  width: calc(100% - 100px);
-  left: 100px;
+  width: calc(100% - 150px);
+  left: 150px;
   position: relative; }
 .single-rebuild_event article {
-  width: 90%;
+  width: calc(100% - 150px);
   margin-top: 75px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   padding: 30px 0; }

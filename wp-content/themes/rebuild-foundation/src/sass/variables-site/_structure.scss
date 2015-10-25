@@ -1,6 +1,23 @@
 
-$size__site-sidebar: 220px;
-$size__site-main: calc(100% - #{$size__site-sidebar});
+// Widths
 
-$size__event-years-column: 100px;
-$size__event-listings-column: calc(100% - #{$size__event-years-column});
+$size__navigation: 220px;
+$size__subnavigation: 150px;
+
+$size__left-margin: 55px;
+$size__right-margin: $size__subnavigation;
+
+$size__site-main-full: calc(100% - #{$size__navigation});
+$size__site-main-flush: calc(100% - #{$size__navigation} - #{$size__subnavigation});
+$size__site-main-center: calc(100% - #{$size__navigation} - #{$size__subnavigation} - #{$size__right-margin});
+
+$size__site-main-nested: calc(100% - #{$size__subnavigation});
+
+
+// Alignments
+
+$align__site-1: $size__left-margin;
+$align__site-2: $size__navigation;
+$align__site-3: $size__subnavigation;
+$align__site-4: calc(#{$size__navigation} + #{$size__subnavigation});
+

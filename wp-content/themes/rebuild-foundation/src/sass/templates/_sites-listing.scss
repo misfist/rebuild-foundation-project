@@ -1,7 +1,7 @@
 .post-type-archive-rebuild_site {
 
 	article {
-		width: $size__site-main;
+		width: $size__site-main-nested;
 		height: 240px;
 		margin-bottom: 10px;
 		background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 		&::before {
 			content: "\00a0";
 			background-color: $black-transparent-light;
-			width: $size__site-main;
+			width: $size__site-main-nested;
 			height: 240px;
 			position: absolute;
 			z-index: 0;

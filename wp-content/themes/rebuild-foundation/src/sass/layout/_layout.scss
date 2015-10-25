@@ -1,10 +1,10 @@
 #masthead {
-	width: $size__site-sidebar;
+	width: $size__navigation;
 	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding: 25px 0 0 55px;
+	padding: 25px 0 0 $size__left-margin;
 	z-index: 4;
 
 	.site-branding {
@@ -52,16 +52,25 @@
 }
 
 #primary {
-	width: $size__site-main;
+	width: $size__site-main-full;
 	position: relative;
 	top: 0;
-	left: $size__site-sidebar;
+	left: $align__site-2;
 }
 
 .site-footer {
-	border-top: 1px solid $black;
+	position: relative;
 	padding: 15px 0;
 	margin-top: 100px;
-	width: $size__site-main;
-	margin-left: $size__site-sidebar;
+	width: $size__site-main-flush;
+	left: $align__site-2;
+
+	.site-info {
+	}
+
+	.widget_text {
+		@include inblock(50%);
+		margin-right: -5px;
+		font: $font_size-1 $mono;
+	}
 }

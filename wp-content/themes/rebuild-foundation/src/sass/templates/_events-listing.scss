@@ -2,15 +2,15 @@
 	padding-top: 50px;
 
 	.posts-list {
-		width: $size__event-listings-column;
+		width: $size__site-main-nested;
 		position: relative;
-		left: $size__event-years-column;
+		left: $align__site-3;
 		margin-top: 120px;
 	}
 
 	article {
 		border: 1px solid $black-transparent-light;
-		width: 90%;
+		width: $size__site-main-nested;
 		margin-bottom: 5px;
 		min-height: 200px;
 		@include transition-duration(0.5s);

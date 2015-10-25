@@ -25,3 +25,19 @@ textarea {
 	padding-left: 3px;
 	width: 100%;
 }
+
+::-webkit-input-placeholder {
+   color: $black-transparent;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: $black-transparent;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $black-transparent;  
+}
+
+:-ms-input-placeholder {  
+   color: $black-transparent;  
+}

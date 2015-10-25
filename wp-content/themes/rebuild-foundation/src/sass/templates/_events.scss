@@ -1,13 +1,13 @@
 .single-rebuild_event {
 
 	#main {
-		width: $size__event-listings-column;
-		left: $size__event-years-column;
+		width: $size__site-main-nested;
+		left: $align__site-3;
 		position: relative;
 	}
 
 	article {
-		width: 90%;
+		width: $size__site-main-nested;
 		margin-top: 75px;
 		border: 1px solid $black-transparent-light;
 		padding: 30px 0;
