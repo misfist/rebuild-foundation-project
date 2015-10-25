@@ -78,7 +78,7 @@ if(! function_exists( 'rebuild_events_get_posts_query' ) ) {
 
   }
 
-  add_action( 'pre_get_posts', 'rebuild_events_get_posts_query' );
+  //add_action( 'pre_get_posts', 'rebuild_events_get_posts_query' );
 
 }
 
