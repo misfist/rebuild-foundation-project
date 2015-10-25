@@ -44,57 +44,59 @@
             <?php the_content(); ?>
         </div>
 
-        <!-- //// Gallery -->
-        <?php 
-        $images = get_field( 'post_gallery' );
+        <div class="content-side">
+            <!-- //// Gallery -->
+            <?php 
+            $images = get_field( 'post_gallery' );
 
-        if( $images ): ?>
-            <div class="gallery">
-                <?php foreach( $images as $image ): ?>
-                    <div class="site-slide">
-                        <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
-                        <p><?php echo $image['caption']; ?></p>
-                    </div>
-                <?php endforeach; ?>
+            if( $images ): ?>
+                <div class="gallery">
+                    <?php foreach( $images as $image ): ?>
+                        <div class="site-slide">
+                            <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
+                            <p><?php echo $image['caption']; ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+            <?php elseif( has_post_thumbnail( ) ) :?>
+
+                <figure class="entry-thumbnail">
+                    <?php the_post_thumbnail(''); ?>
+                    <?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+                        <figcaption class="caption"><?php echo $caption; ?></figcaption>
+                    <?php endif; ?>
+                </figure>
+
+            <?php endif; ?>
+
+            <div id="details">
+
+                <h4><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
+
+                <div class="entry-meta location">
+                    <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
+                </div>
+
+                <h4><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
+
+                <div class="entry-meta address">
+                    <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+                </div>
+
+                <div class="entry-meta hours">
+                    <?php the_field( 'hours' ); ?>
+                </div>
+                
             </div>
 
-        <?php elseif( has_post_thumbnail( ) ) :?>
-
-            <figure class="entry-thumbnail">
-                <?php the_post_thumbnail(''); ?>
-                <?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
-                    <figcaption class="caption"><?php echo $caption; ?></figcaption>
-                <?php endif; ?>
-            </figure>
-
-        <?php endif; ?>
-
-        <div id="details">
-
-            <h4><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
-
-            <div class="entry-meta location">
-                <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
-            </div>
-
-            <h4><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
-
-            <div class="entry-meta address">
-                <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
-            </div>
-
-            <div class="entry-meta hours">
-                <?php the_field( 'hours' ); ?>
-            </div>
-            
+            <?php
+                wp_link_pages( array(
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
+                    'after'  => '</div>',
+                ) );
+            ?>
         </div>
-
-        <?php
-            wp_link_pages( array(
-                'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
-                'after'  => '</div>',
-            ) );
-        ?>
     </div><!-- .entry-content -->
 
     <footer class="entry-footer">
