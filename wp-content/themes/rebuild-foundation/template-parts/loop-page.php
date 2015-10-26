@@ -41,3 +41,17 @@
 		<?php rebuild_foundation_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
+
+<div class="featured-image">
+	<?php if( has_post_thumbnail( ) ) :?>
+
+		<figure class="entry-thumbnail">
+			<?php the_post_thumbnail(''); ?>
+			<?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+			    <figcaption class="caption"><?php echo $caption; ?></figcaption>
+			<?php endif; ?>
+		</figure>
+
+	<?php endif; ?>
+</div>
+

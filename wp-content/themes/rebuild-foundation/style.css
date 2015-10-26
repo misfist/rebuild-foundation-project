@@ -202,6 +202,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .single-rebuild_site .gallery {
   display: none; }
 
+.post-filter {
+  display: none; }
+
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -396,8 +399,26 @@ textarea {
   line-height: 1.5; }
 
 h1, h2, h3, h4, h5, h6 {
-  clear: both;
-  font-family: "Akkurat-Bold"; }
+  font-family: "Akkurat-Bold";
+  margin: 1.5em 0 0.5em; }
+
+h1 {
+  font-size: 40px; }
+
+h2 {
+  font-size: 32px; }
+
+h3 {
+  font-size: 25px; }
+
+h4 {
+  font-size: 20px; }
+
+h5 {
+  font-size: 16px; }
+
+h6 {
+  font-size: 13px; }
 
 p {
   margin-bottom: 1.5em; }
@@ -406,7 +427,9 @@ dfn, cite, em, i {
   font-style: italic; }
 
 blockquote {
-  margin: 0 1.5em; }
+  padding: 0 1.5em;
+  margin: 0;
+  border-left: 2px solid black; }
 
 address {
   margin: 0 0 1.5em; }
@@ -466,10 +489,14 @@ hr {
   margin-bottom: 1.5em; }
 
 ul, ol {
-  margin: 0 0 1.5em 3em; }
+  margin: 0 0 1.5em 0;
+  padding: 0 0 0 1.5em; }
 
 ul {
   list-style: disc; }
+
+li {
+  padding: 0.5em 0 0.5em 0.5em; }
 
 ol {
   list-style: decimal; }
@@ -602,6 +629,13 @@ a {
     outline: thin dotted; }
   a:hover, a:active {
     outline: 0; }
+
+.entry-content a {
+  color: black;
+  border-bottom: 3px solid white; }
+  .entry-content a:hover {
+    text-decoration: none;
+    background-color: white; }
 
 /*--------------------------------------------------------------
 ## Menus
@@ -753,7 +787,7 @@ a {
 
 .site-filter {
   padding-top: 40px;
-  height: 65px;
+  height: 70px;
   z-index: 4;
   border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
   .site-filter li {
@@ -763,7 +797,7 @@ a {
 
 .rebuild_event-filter {
   padding-top: 75px;
-  height: 100px;
+  height: 105px;
   padding-bottom: 20px;
   z-index: 3;
   border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
@@ -960,8 +994,10 @@ object {
   .wp-caption .wp-caption-text {
     margin: 0.8075em 0; }
 
-.wp-caption-text {
-  text-align: center; }
+figcaption {
+  text-align: left;
+  font: 14px "Akkurat-Bold";
+  width: 66%; }
 
 /*--------------------------------------------------------------
 ## Galleries
@@ -993,6 +1029,31 @@ object {
 
 .gallery-caption {
   display: block; }
+
+/*--------------------------------------------------------------
+## Images
+--------------------------------------------------------------*/
+img.alignnone, figure.alignnone {
+  max-width: 100%;
+  padding: 1.5em 0;
+  margin: 0; }
+
+img.aligncenter, figure.aligncenter {
+  max-width: 100%;
+  padding: 1.5em 0;
+  margin: 0; }
+
+img.alignleft, figure.alignleft {
+  max-width: 50%;
+  float: left;
+  margin: 0 0 0 -100px;
+  padding: 0 2em 2em 0; }
+
+img.alignright, figure.alignright {
+  max-width: 50%;
+  float: right;
+  margin: 0 -100px 0 0;
+  padding: 0 0 2em 2em; }
 
 /*--------------------------------------------------------------
 ## Social Media
@@ -1592,5 +1653,78 @@ article.rebuild_exhibition {
           margin-top: 0; }
 .single-rebuild_site .post-navigation {
   width: calc(100% - 100px); }
+
+.page-template-default #main, .single-post #main {
+  position: relative;
+  width: calc(100% - 100px);
+  padding-left: 100px; }
+.page-template-default article, .single-post article {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+  padding-right: 5%;
+  margin-top: 50px; }
+  .page-template-default article .entry-header, .single-post article .entry-header {
+    margin: 0 0 0 -100px; }
+    .page-template-default article .entry-header .entry-title, .single-post article .entry-header .entry-title {
+      margin: 0; }
+      .page-template-default article .entry-header .entry-title a, .single-post article .entry-header .entry-title a {
+        color: black;
+        font-size: 40px; }
+  .page-template-default article .entry-content, .single-post article .entry-content {
+    margin-top: 0; }
+.page-template-default .featured-image, .single-post .featured-image {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin-left: -5px; }
+  .page-template-default .featured-image figure, .single-post .featured-image figure {
+    margin: 0; }
+
+.blog {
+  width: calc(100% - 100px);
+  padding-left: 100px; }
+  .blog #main {
+    margin-top: 100px; }
+  .blog article {
+    padding: 20px 0;
+    border-bottom: 1px solid white; }
+  .blog .entry-header {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    padding-right: 5%; }
+    .blog .entry-header .site-name {
+      display: inline-block;
+      vertical-align: top;
+      width: 40%;
+      padding-right: 5%;
+      font: 13px "Akkurat-Bold"; }
+    .blog .entry-header .entry-title {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+      margin-left: -5px;
+      margin-top: -6px;
+      line-height: 1.1em;
+      padding-right: 5%; }
+      .blog .entry-header .entry-title a {
+        font: 25px "Akkurat-Regular";
+        color: black; }
+    .blog .entry-header .entry-date {
+      display: inline-block;
+      vertical-align: top;
+      width: 10%;
+      margin-left: -5px;
+      text-align: center; }
+  .blog .entry-content {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+    margin-left: -5px;
+    padding-right: 5%;
+    margin-top: 0; }
+    .blog .entry-content p {
+      margin-top: 0; }
 
 /*# sourceMappingURL=style.css.map */

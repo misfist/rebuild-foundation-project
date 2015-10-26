@@ -11,6 +11,8 @@
 	}
 }
 
-.wp-caption-text {
-	text-align: center;
+figcaption {
+	text-align: left;
+	font: 14px $bold;
+	width: 66%;
 }

@@ -18,3 +18,13 @@ a {
 		outline: 0;
 	}
 }
+
+.entry-content a {
+	color: $black;
+	border-bottom: 3px solid $white;
+
+	&:hover {
+		text-decoration: none;
+		background-color: $white;
+	}
+}
