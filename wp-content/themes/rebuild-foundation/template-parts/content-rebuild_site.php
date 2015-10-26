@@ -24,7 +24,8 @@ $site_tax = array(
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'site' ); ?>>
-    <header class="entry-header">
+
+    <header class="entry-header site-header">
 
         <div class="entry-meta location">
             <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
@@ -34,7 +35,9 @@ $site_tax = array(
 
     </header><!-- .entry-header -->
 
-    <div class="entry-content">
+    <div class="site-image" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)"></div>
+
+    <div class="entry-content site-content">
 
         <section class="main-content">
 

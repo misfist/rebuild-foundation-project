@@ -17,29 +17,9 @@ $end_date = get_field( 'end_date' )
 
 <article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo isset( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo isset( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( 'exhibition' ); ?>>
 
+    
+
     <div class="col-1">
-        <div id="details">
-
-            <?php if( has_post_thumbnail() ) { ?>
-
-            <div class="single-image featured-image">
-
-                <div class="exhibition-image"><?php the_post_thumbnail( 'large' ); ?></div>
-                
-            </div>
-
-            <?php }?>
-
-            <h4 class="site-info"><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
-
-            <div class="entry-meta location">
-                <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="col-2">
         <header class="entry-header">
 
             <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
@@ -90,5 +70,27 @@ $end_date = get_field( 'end_date' )
             <a href="<?php esc_url( get_permalink() ); ?>" class="button btn">View</a>
 
         </footer><!-- .entry-footer -->
+    </div>
+
+    <div class="col-2">
+        <div id="details">
+
+            <?php if( has_post_thumbnail() ) { ?>
+
+            <div class="single-image featured-image">
+
+                <div class="exhibition-image"><?php the_post_thumbnail( 'large' ); ?></div>
+                
+            </div>
+
+            <?php }?>
+
+            <h4 class="site-info"><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
+
+            <div class="entry-meta location">
+                <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
+            </div>
+            
+        </div>
     </div>
 </article><!-- #post-## -->

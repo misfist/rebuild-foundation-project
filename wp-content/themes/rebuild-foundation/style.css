@@ -199,6 +199,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .post-type-archive-rebuild_site .site-filter, .post-type-archive-rebuild_site .rebuild_site-filter {
   display: none; }
 
+.single-rebuild_site .gallery {
+  display: none; }
+
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -1187,50 +1190,52 @@ ul.social-links {
   position: relative;
   left: 100px;
   margin-top: 120px; }
-.post-type-archive-rebuild_exhibition article {
+
+article.rebuild_exhibition {
   width: calc(100% - 100px);
   margin-bottom: 60px;
   padding-bottom: 60px;
   border-bottom: 1px solid black; }
-  .post-type-archive-rebuild_exhibition article .col-1 {
+  article.rebuild_exhibition .col-1 {
     display: inline-block;
     vertical-align: top;
-    width: 35%; }
-  .post-type-archive-rebuild_exhibition article .col-2 {
+    width: 60%; }
+  article.rebuild_exhibition .col-2 {
     display: inline-block;
     vertical-align: top;
-    width: 55%;
+    width: 30%;
     margin-left: 5%; }
-  .post-type-archive-rebuild_exhibition article .site-info {
-    margin: -60% 0 0 40%; }
-  .post-type-archive-rebuild_exhibition article .entry-meta.location {
-    margin-left: 40%; }
-  .post-type-archive-rebuild_exhibition article .featured-image {
-    width: 65%; }
-  .post-type-archive-rebuild_exhibition article .entry-header .entry-title {
+  article.rebuild_exhibition .site-info {
+    margin: -60% 0 0 0;
+    width: 60%; }
+  article.rebuild_exhibition .entry-meta.location {
+    width: 60%; }
+  article.rebuild_exhibition .featured-image {
+    width: 65%;
+    margin-left: 10%; }
+  article.rebuild_exhibition .entry-header .entry-title {
     font: 40px "Akkurat-Bold";
     margin-top: 0; }
-    .post-type-archive-rebuild_exhibition article .entry-header .entry-title a:hover {
+    article.rebuild_exhibition .entry-header .entry-title a:hover {
       color: black; }
-  .post-type-archive-rebuild_exhibition article .entry-header .entry-meta {
+  article.rebuild_exhibition .entry-header .entry-meta {
     font: 16px "Akkuratmono-Regular"; }
-  .post-type-archive-rebuild_exhibition article .read-more {
-    font-family: "Akkuratmono-Regular";
-    color: black;
-    padding-left: 20px; }
-  .post-type-archive-rebuild_exhibition article .button.btn {
+  article.rebuild_exhibition .read-more {
+    font-family: "Akkurat-Bold";
+    color: black; }
+  article.rebuild_exhibition .button.btn {
     font: 16px "Akkurat-Bold"; }
-  .post-type-archive-rebuild_exhibition article.rebuild_site_category-dorchester-art-housing-collaborative .site-info::before {
+  article.rebuild_exhibition.rebuild_site_category-dorchester-art-housing-collaborative .site-info::before {
     content: url("img/graphic_da-hc.svg"); }
-  .post-type-archive-rebuild_exhibition article.rebuild_site_category-dorchester-art-housing-collaborative .entry-title a, .post-type-archive-rebuild_exhibition article.rebuild_site_category-dorchester-art-housing-collaborative .button.btn {
+  article.rebuild_exhibition.rebuild_site_category-dorchester-art-housing-collaborative .entry-title a, article.rebuild_exhibition.rebuild_site_category-dorchester-art-housing-collaborative .button.btn {
     color: #ff674d; }
-  .post-type-archive-rebuild_exhibition article.rebuild_site_category-black-cinema-house .site-info::before {
+  article.rebuild_exhibition.rebuild_site_category-black-cinema-house .site-info::before {
     content: url("img/graphic_bch.svg"); }
-  .post-type-archive-rebuild_exhibition article.rebuild_site_category-black-cinema-house .entry-title a, .post-type-archive-rebuild_exhibition article.rebuild_site_category-black-cinema-house .button.btn {
+  article.rebuild_exhibition.rebuild_site_category-black-cinema-house .entry-title a, article.rebuild_exhibition.rebuild_site_category-black-cinema-house .button.btn {
     color: #ffb111; }
-  .post-type-archive-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .site-info::before {
+  article.rebuild_exhibition.rebuild_site_category-stony-island-arts-bank .site-info::before {
     content: url("img/graphic_siab.svg"); }
-  .post-type-archive-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .entry-title a, .post-type-archive-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .button.btn {
+  article.rebuild_exhibition.rebuild_site_category-stony-island-arts-bank .entry-title a, article.rebuild_exhibition.rebuild_site_category-stony-island-arts-bank .button.btn {
     color: #6490e8; }
 
 .entry-meta.location a {
@@ -1426,5 +1431,166 @@ ul.social-links {
       display: block;
       cursor: pointer;
       z-index: 5; }
+
+.single-rebuild_site article.rebuild_site {
+  margin-top: 50px; }
+  .single-rebuild_site article.rebuild_site header.site-header {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    vertical-align: bottom;
+    padding-right: 5%;
+    position: relative;
+    z-index: 1; }
+    .single-rebuild_site article.rebuild_site header.site-header .entry-meta.location {
+      font: 14px "Akkuratmono-Regular"; }
+    .single-rebuild_site article.rebuild_site header.site-header .entry-title {
+      margin: 20px 0 0 0;
+      line-height: 1.2em;
+      text-transform: uppercase;
+      font-size: 25px; }
+  .single-rebuild_site article.rebuild_site .site-image {
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+    height: 450px;
+    vertical-align: bottom;
+    margin-left: -5px;
+    background-size: cover;
+    background-repeat: no-repeat; }
+    .single-rebuild_site article.rebuild_site .site-image::after {
+      position: absolute;
+      display: block;
+      width: 40%;
+      z-index: 0;
+      left: 100px;
+      top: 100px; }
+  .single-rebuild_site article.rebuild_site .main-content {
+    padding: 0 0 0 30%;
+    position: relative;
+    z-index: 1; }
+    .single-rebuild_site article.rebuild_site .main-content .description {
+      display: inline-block;
+      vertical-align: top;
+      width: 65%; }
+    .single-rebuild_site article.rebuild_site .main-content #details {
+      display: inline-block;
+      vertical-align: top;
+      width: 35%;
+      margin-left: -5px;
+      padding: 0 5%; }
+  .single-rebuild_site article.rebuild_site.rebuild_site_category-dorchester-art-housing-collaborative .site-image::after {
+    content: url("img/graphic_da-hc.svg"); }
+  .single-rebuild_site article.rebuild_site.rebuild_site_category-black-cinema-house .site-image::after {
+    content: url("img/graphic_bch.svg"); }
+  .single-rebuild_site article.rebuild_site.rebuild_site_category-stony-island-arts-bank .site-image::after {
+    content: url("img/graphic_siab.svg"); }
+  .single-rebuild_site article.rebuild_site .exhibitions article {
+    border: none; }
+  .single-rebuild_site article.rebuild_site .exhibitions .entry-title {
+    font-size: 32px; }
+  .single-rebuild_site article.rebuild_site .exhibitions .entry-content {
+    margin-top: 0; }
+  .single-rebuild_site article.rebuild_site .events {
+    width: calc(100% - 100px); }
+    .single-rebuild_site article.rebuild_site .events h2 {
+      font-size: 16px;
+      margin-bottom: 20px; }
+    .single-rebuild_site article.rebuild_site .events .upcoming-events {
+      display: inline-block;
+      vertical-align: top;
+      width: 66%; }
+      .single-rebuild_site article.rebuild_site .events .upcoming-events article {
+        width: 85%;
+        -webkit-transition-duration: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -ms-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        background-size: cover; }
+        .single-rebuild_site article.rebuild_site .events .upcoming-events article .event-info {
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 30px; }
+          .single-rebuild_site article.rebuild_site .events .upcoming-events article .event-info .entry-title a {
+            font: 20px "Akkurat-Regular";
+            color: #E9E6DF; }
+            .single-rebuild_site article.rebuild_site .events .upcoming-events article .event-info .entry-title a:hover {
+              color: rgba(255, 255, 255, 0.5); }
+          .single-rebuild_site article.rebuild_site .events .upcoming-events article .event-info .event-date {
+            color: #E9E6DF; }
+        .single-rebuild_site article.rebuild_site .events .upcoming-events article:hover {
+          width: 90%;
+          -webkit-transition-duration: 0.5s;
+          -moz-transition-duration: 0.5s;
+          -ms-transition-duration: 0.5s;
+          -o-transition-duration: 0.5s;
+          transition-duration: 0.5s; }
+          .single-rebuild_site article.rebuild_site .events .upcoming-events article:hover .event-info {
+            background-color: rgba(0, 0, 0, 0.75); }
+    .single-rebuild_site article.rebuild_site .events .past-events {
+      display: inline-block;
+      vertical-align: top;
+      width: 33%;
+      margin-left: -5px; }
+      .single-rebuild_site article.rebuild_site .events .past-events article .event-date {
+        display: inline-block;
+        vertical-align: top;
+        width: 20%;
+        font: 20px "Akkurat-Light";
+        border-top: 1px solid rgba(0, 0, 0, 0.25);
+        margin-right: 5%;
+        padding: 5px;
+        text-align: center; }
+      .single-rebuild_site article.rebuild_site .events .past-events article .event-title {
+        display: inline-block;
+        vertical-align: top;
+        width: 75%;
+        margin-left: -5px;
+        margin-top: 0;
+        border-top: 1px solid white;
+        line-height: 1.2em;
+        padding: 10px 5px; }
+        .single-rebuild_site article.rebuild_site .events .past-events article .event-title a {
+          font: 16px "Akkurat-Bold";
+          color: black; }
+  .single-rebuild_site article.rebuild_site .posts {
+    width: calc(100% - 100px);
+    margin-top: 60px;
+    padding-right: 25%; }
+    .single-rebuild_site article.rebuild_site .posts h2 {
+      font-size: 16px;
+      margin-top: 0;
+      border-bottom: 1px solid black; }
+    .single-rebuild_site article.rebuild_site .posts article {
+      border-bottom: 1px solid white;
+      padding: 20px 0; }
+      .single-rebuild_site article.rebuild_site .posts article .entry-header {
+        display: inline-block;
+        vertical-align: top;
+        width: 40%; }
+        .single-rebuild_site article.rebuild_site .posts article .entry-header .entry-title {
+          display: inline-block;
+          vertical-align: top;
+          width: 60%;
+          border: none;
+          padding-right: 5%; }
+          .single-rebuild_site article.rebuild_site .posts article .entry-header .entry-title a {
+            font: 25px "Akkurat-Regular";
+            color: black; }
+        .single-rebuild_site article.rebuild_site .posts article .entry-header .entry-meta {
+          display: inline-block;
+          vertical-align: top;
+          width: 40%;
+          margin-left: -5px; }
+      .single-rebuild_site article.rebuild_site .posts article .entry-content {
+        display: inline-block;
+        vertical-align: top;
+        width: 60%;
+        margin-left: -5px;
+        margin-top: 0; }
+        .single-rebuild_site article.rebuild_site .posts article .entry-content p {
+          margin-top: 0; }
+.single-rebuild_site .post-navigation {
+  width: calc(100% - 100px); }
 
 /*# sourceMappingURL=style.css.map */
