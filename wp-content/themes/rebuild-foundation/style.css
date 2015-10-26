@@ -671,7 +671,8 @@ a {
   .main-navigation li {
     position: relative;
     text-transform: uppercase;
-    padding-bottom: 20px; }
+    padding-bottom: 20px;
+    padding-left: 0; }
     .main-navigation li:hover > a, .main-navigation li.focus > a {
       -webkit-transition-duration: 0.25s;
       -moz-transition-duration: 0.25s;
@@ -693,36 +694,38 @@ a {
   display: none; }
   .menu-sites #menu-sites-list {
     list-style-type: none;
-    padding: 10px 0 50px 6px; }
-    .menu-sites #menu-sites-list li a {
-      display: block;
-      min-width: 300px;
-      height: 80px;
-      background-repeat: no-repeat;
-      text-indent: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      margin-bottom: 35px;
-      opacity: 0.5;
-      -webkit-transition-duration: 0.25s;
-      -moz-transition-duration: 0.25s;
-      -ms-transition-duration: 0.25s;
-      -o-transition-duration: 0.25s;
-      transition-duration: 0.25s; }
-      .menu-sites #menu-sites-list li a:hover {
-        opacity: 1;
+    padding: 10px 0 50px 55px; }
+    .menu-sites #menu-sites-list li {
+      padding: 0; }
+      .menu-sites #menu-sites-list li a {
+        display: block;
+        min-width: 300px;
+        height: 80px;
+        background-repeat: no-repeat;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 35px;
+        opacity: 0.5;
         -webkit-transition-duration: 0.25s;
         -moz-transition-duration: 0.25s;
         -ms-transition-duration: 0.25s;
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
-    .menu-sites #menu-sites-list li#menu-item-509 a {
+        .menu-sites #menu-sites-list li a:hover {
+          opacity: 1;
+          -webkit-transition-duration: 0.25s;
+          -moz-transition-duration: 0.25s;
+          -ms-transition-duration: 0.25s;
+          -o-transition-duration: 0.25s;
+          transition-duration: 0.25s; }
+    .menu-sites #menu-sites-list li#menu-item-509 a, .menu-sites #menu-sites-list li#menu-item-494 a {
       background-image: url("img/logo_siab.svg"); }
-    .menu-sites #menu-sites-list li#menu-item-510 a {
+    .menu-sites #menu-sites-list li#menu-item-510 a, .menu-sites #menu-sites-list li#menu-item-495 a {
       background-image: url("img/logo_archive_house.svg"); }
-    .menu-sites #menu-sites-list li#menu-item-511 a {
+    .menu-sites #menu-sites-list li#menu-item-511 a, .menu-sites #menu-sites-list li#menu-item-496 a {
       background-image: url("img/logo_da_hc.svg"); }
-    .menu-sites #menu-sites-list li#menu-item-512 a {
+    .menu-sites #menu-sites-list li#menu-item-512 a, .menu-sites #menu-sites-list li#menu-item-497 a {
       background-image: url("img/logo_bch.svg"); }
 
 .site-branding:hover .menu-sites {
@@ -1663,7 +1666,7 @@ article.rebuild_exhibition {
   vertical-align: top;
   width: 70%;
   padding-right: 5%;
-  margin-top: 50px; }
+  margin-top: 40px; }
   .page-template-default article .entry-header, .single-post article .entry-header {
     margin: 0 0 0 -100px; }
     .page-template-default article .entry-header .entry-title, .single-post article .entry-header .entry-title {

@@ -53,6 +53,7 @@
 		position: relative;
 		text-transform: uppercase;
 		padding-bottom: 20px;
+		padding-left: 0;
 
 		&:hover > a,
 		&.focus > a {
@@ -79,9 +80,10 @@
 
 	#menu-sites-list {
 		list-style-type: none;
-		padding: 10px 0 50px 6px;
+		padding: 10px 0 50px 55px;
 
 		li {
+			padding: 0;
 			a {
 				display: block;
 				min-width: 300px;
@@ -101,19 +103,19 @@
 			}
 		}
 
-		li#menu-item-509 a {
+		li#menu-item-509 a, li#menu-item-494 a  {
 			background-image: url('img/logo_siab.svg');
 		}
 
-		li#menu-item-510 a {
+		li#menu-item-510 a, li#menu-item-495 a  {
 			background-image: url('img/logo_archive_house.svg');
 		}
 
-		li#menu-item-511 a {
+		li#menu-item-511 a, li#menu-item-496 a  {
 			background-image: url('img/logo_da_hc.svg');
 		}
 
-		li#menu-item-512 a {
+		li#menu-item-512 a, li#menu-item-497 a  {
 			background-image: url('img/logo_bch.svg');
 		}
 	}
