@@ -132,12 +132,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Layout
 --------------------------------------------------------------*/
 #masthead {
-  width: 220px;
+  width: 180px;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  padding: 25px 0 0 55px;
+  padding: 25px 0 0 45px;
   z-index: 5; }
   #masthead .site-branding {
     position: fixed;
@@ -152,7 +152,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
       background-repeat: no-repeat;
       background-position: 0;
       background-size: contain;
-      margin: 40px 0 0 55px;
+      margin: 40px 0 0 45px;
       text-indent: 100%;
       white-space: nowrap;
       overflow: hidden; }
@@ -178,17 +178,17 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
           opacity: 1; }
 
 #primary {
-  width: calc(100% - 220px);
+  width: calc(100% - 180px);
   position: relative;
   top: 0;
-  left: 220px; }
+  left: 180px; }
 
 .site-footer {
   position: relative;
   padding: 15px 0;
   margin-top: 100px;
-  width: calc(100% - 220px - 100px);
-  left: 220px; }
+  width: calc(100% - 180px - 160px);
+  left: 180px; }
   .site-footer .widget_text {
     display: inline-block;
     vertical-align: top;
@@ -694,7 +694,7 @@ a {
   display: none; }
   .menu-sites #menu-sites-list {
     list-style-type: none;
-    padding: 10px 0 50px 55px; }
+    padding: 10px 0 50px 45px; }
     .menu-sites #menu-sites-list li {
       padding: 0; }
       .menu-sites #menu-sites-list li a {
@@ -767,9 +767,9 @@ a {
 ## Filters
 --------------------------------------------------------------*/
 .event-year-filter, .rebuild_exhibition-filter {
-  width: 100px;
+  width: 160px;
   position: fixed;
-  left: 220px;
+  left: 180px;
   margin: 0;
   padding: 0;
   list-style-type: none; }
@@ -781,8 +781,8 @@ a {
 .site-filter, .rebuild_event-filter, .event-month-filter {
   list-style-type: none;
   position: fixed;
-  width: calc(100% - 220px - 100px);
-  left: calc(220px + 100px);
+  width: calc(100% - 180px - 160px);
+  left: calc(180px + 160px);
   background-color: #E9E6DF;
   top: 0;
   padding: 0;
@@ -1049,13 +1049,13 @@ img.aligncenter, figure.aligncenter {
 img.alignleft, figure.alignleft {
   max-width: 50%;
   float: left;
-  margin: 0 0 0 -100px;
+  margin: 0 0 0 -160px;
   padding: 0 2em 2em 0; }
 
 img.alignright, figure.alignright {
   max-width: 50%;
   float: right;
-  margin: 0 -100px 0 0;
+  margin: 0 -160px 0 0;
   padding: 0 0 2em 2em; }
 
 /*--------------------------------------------------------------
@@ -1102,13 +1102,13 @@ ul.social-links {
 .post-type-archive-rebuild_event {
   padding-top: 50px; }
   .post-type-archive-rebuild_event .posts-list {
-    width: calc(100% - 100px);
+    width: calc(100% - 160px);
     position: relative;
-    left: 100px;
+    left: 160px;
     margin-top: 120px; }
   .post-type-archive-rebuild_event article {
     border: 1px solid rgba(0, 0, 0, 0.25);
-    width: calc(100% - 100px);
+    width: calc(100% - 160px);
     margin-bottom: 5px;
     min-height: 200px;
     -webkit-transition-duration: 0.5s;
@@ -1197,11 +1197,11 @@ ul.social-links {
         color: #E9E6DF; }
 
 .single-rebuild_event #main {
-  width: calc(100% - 100px);
-  left: 100px;
+  width: calc(100% - 160px);
+  left: 160px;
   position: relative; }
 .single-rebuild_event article {
-  width: calc(100% - 100px);
+  width: calc(100% - 160px);
   margin-top: 75px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   padding: 30px 0; }
@@ -1247,16 +1247,16 @@ ul.social-links {
   .single-rebuild_event article .description {
     margin-top: 35px; }
 .single-rebuild_event .post-navigation {
-  width: calc(100% - 100px); }
+  width: calc(100% - 160px); }
 
 .post-type-archive-rebuild_exhibition .posts-list {
-  width: calc(100% - 100px);
+  width: calc(100% - 160px);
   position: relative;
-  left: 100px;
+  left: 160px;
   margin-top: 120px; }
 
 article.rebuild_exhibition {
-  width: calc(100% - 100px);
+  width: calc(100% - 160px);
   margin-bottom: 60px;
   padding-bottom: 60px;
   border-bottom: 1px solid black; }
@@ -1271,7 +1271,8 @@ article.rebuild_exhibition {
     margin-left: 5%; }
   article.rebuild_exhibition .site-info {
     margin: -60% 0 0 0;
-    width: 60%; }
+    width: 60%;
+    font-size: 16px; }
   article.rebuild_exhibition .entry-meta.location {
     width: 60%; }
   article.rebuild_exhibition .featured-image {
@@ -1313,11 +1314,11 @@ article.rebuild_exhibition {
   width: 100%; }
 
 .single-rebuild_exhibition #main {
-  width: calc(100% - 100px);
-  left: 100px;
+  width: calc(100% - 160px);
+  left: 160px;
   position: relative; }
 .single-rebuild_exhibition article {
-  width: calc(100% - 100px);
+  width: calc(100% - 160px);
   margin-top: 75px; }
   .single-rebuild_exhibition article .entry-header .entry-title {
     font-size: 40px; }
@@ -1362,10 +1363,10 @@ article.rebuild_exhibition {
   .single-rebuild_exhibition article.rebuild_site_category-stony-island-arts-bank .entry-title {
     color: #6490e8; }
 .single-rebuild_exhibition .post-navigation {
-  width: calc(100% - 100px); }
+  width: calc(100% - 160px); }
 
 .post-type-archive-rebuild_site article {
-  width: calc(100% - 100px);
+  width: calc(100% - 160px);
   height: 240px;
   margin-bottom: 10px;
   background-repeat: no-repeat;
@@ -1383,7 +1384,7 @@ article.rebuild_exhibition {
   .post-type-archive-rebuild_site article::before {
     content: "\00a0";
     background-color: rgba(0, 0, 0, 0.25);
-    width: calc(100% - 100px);
+    width: calc(100% - 160px);
     height: 240px;
     position: absolute;
     z-index: 0;
@@ -1527,7 +1528,7 @@ article.rebuild_exhibition {
       display: block;
       width: 40%;
       z-index: 0;
-      left: 100px;
+      left: 160px;
       top: 100px; }
   .single-rebuild_site article.rebuild_site .main-content {
     padding: 0 0 0 30%;
@@ -1556,7 +1557,7 @@ article.rebuild_exhibition {
   .single-rebuild_site article.rebuild_site .exhibitions .entry-content {
     margin-top: 0; }
   .single-rebuild_site article.rebuild_site .events {
-    width: calc(100% - 100px); }
+    width: calc(100% - 160px); }
     .single-rebuild_site article.rebuild_site .events h2 {
       font-size: 16px;
       margin-bottom: 20px; }
@@ -1618,7 +1619,7 @@ article.rebuild_exhibition {
           font: 16px "Akkurat-Bold";
           color: black; }
   .single-rebuild_site article.rebuild_site .posts {
-    width: calc(100% - 100px);
+    width: calc(100% - 160px);
     margin-top: 60px;
     padding-right: 25%; }
     .single-rebuild_site article.rebuild_site .posts h2 {
@@ -1655,12 +1656,12 @@ article.rebuild_exhibition {
         .single-rebuild_site article.rebuild_site .posts article .entry-content p {
           margin-top: 0; }
 .single-rebuild_site .post-navigation {
-  width: calc(100% - 100px); }
+  width: calc(100% - 160px); }
 
 .page-template-default #main, .single-post #main {
   position: relative;
-  width: calc(100% - 100px);
-  padding-left: 100px; }
+  width: calc(100% - 160px);
+  padding-left: 160px; }
 .page-template-default article, .single-post article {
   display: inline-block;
   vertical-align: top;
@@ -1668,7 +1669,7 @@ article.rebuild_exhibition {
   padding-right: 5%;
   margin-top: 40px; }
   .page-template-default article .entry-header, .single-post article .entry-header {
-    margin: 0 0 0 -100px; }
+    margin: 0 0 0 -160px; }
     .page-template-default article .entry-header .entry-title, .single-post article .entry-header .entry-title {
       margin: 0; }
       .page-template-default article .entry-header .entry-title a, .single-post article .entry-header .entry-title a {
@@ -1685,8 +1686,8 @@ article.rebuild_exhibition {
     margin: 0; }
 
 .blog {
-  width: calc(100% - 100px);
-  padding-left: 100px; }
+  width: calc(100% - 160px);
+  padding-left: 160px; }
   .blog #main {
     margin-top: 100px; }
   .blog article {
