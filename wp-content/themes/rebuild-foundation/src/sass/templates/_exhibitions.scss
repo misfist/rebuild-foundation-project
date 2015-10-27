@@ -1,0 +1,116 @@
+.entry-meta.location {
+	a {
+		font: $font_size-3 $bold;
+		color: $black;
+		text-transform: uppercase;
+	}
+}
+
+.site-info::before, #details::before {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+
+
+.single-rebuild_exhibition {
+
+	#main {
+		width: $size__site-main-nested;
+		left: $align__site-3;
+		position: relative;
+	}
+
+	article {
+		width: $size__site-main-nested;
+		margin-top: 75px;
+
+		.entry-header {
+
+			.entry-title {
+				font-size: $font_size-6;
+			}
+			
+			.entry-meta {
+				font: $font_size-2 $mono;
+			}
+		}
+
+		.description {
+			@include inblock(60%);
+			padding-right: 5%;
+		}
+
+		.content-side {
+			@include inblock(40%);
+			margin-left: -5px;
+			padding-left: 5%;
+
+			figure {
+				margin: 0 0 0 20%;
+				width: 80%;
+			}
+		}
+
+		#details {
+			width: 75%;
+			margin: -70% 0 0 5%;
+
+			h4 {
+				margin: 25px 0 5px;
+			}
+
+			.address, .hours {
+				font: 14px $mono;
+			}
+		}
+
+		.entry-footer {
+			border-top: 1px dotted $black-transparent;
+			width: 60%;
+			padding-top: 15px;
+			margin-top: 30px;
+		}
+
+		&.rebuild_site_category-dorchester-art-housing-collaborative {
+			
+			#details::before {
+				content: url('img/graphic_da-hc.svg');
+			}
+
+			.entry-title {
+				color: $color__da-hc;
+			}
+			
+		}
+
+		&.rebuild_site_category-black-cinema-house {
+			
+			#details::before {
+				content: url('img/graphic_bch.svg');
+			}
+
+			.entry-title {
+				color: $color__bch;
+			}
+
+		}
+
+		&.rebuild_site_category-stony-island-arts-bank {
+			
+			#details::before {
+				content: url('img/graphic_siab.svg');
+			}
+
+			.entry-title {
+				color: $color__siab;
+			}
+			
+		}
+	}
+
+	.post-navigation {
+		width: $size__site-main-nested;
+	}
+}
