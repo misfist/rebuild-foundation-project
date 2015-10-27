@@ -33,7 +33,7 @@ if(! function_exists( 'rebuild_ical_rewrite_template' ) ) {
             return;
      
         // include custom template
-        include REBUILD_CPT_PLUGIN_DIR . '/templates/ical-template.php';
+        include REBUILD_CPT_PLUGIN_DIR . 'templates/ical-template.php';
         exit;
 
     }
