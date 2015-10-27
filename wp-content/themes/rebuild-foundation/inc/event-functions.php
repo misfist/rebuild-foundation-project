@@ -17,7 +17,7 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
 
     }
 
-    if( 'rebuild_event' == get_query_var( 'post_type' ) ) {
+    if( 'event' == get_query_var( 'post_type' ) ) {
 
       $query_year = get_query_var( 'event_year' );
       $query_month = get_query_var( 'event_month' );
