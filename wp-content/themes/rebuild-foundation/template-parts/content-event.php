@@ -45,7 +45,7 @@
             </div>
 
             <div class="event-export">
-                <a href="ical" class="ical">.ical</a>
+                <a href="ical" class="ical"><?php _e( '.ical', 'rebuild-foundation' ) ?></a>
             </div>
 
             <div class="entry-meta location">
