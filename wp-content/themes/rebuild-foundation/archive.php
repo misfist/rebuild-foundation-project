@@ -22,9 +22,9 @@ get_header(); ?>
 
         <?php rebuild_taxonomy_filter(); ?>
 
-        <?php ( 'rebuild_event' == get_post_type() ) ?rebuild_event_year_filter() : ''; ?>
+        <?php ( 'event' == get_post_type() ) ?rebuild_event_year_filter() : ''; ?>
 
-        <?php ( 'rebuild_event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
+        <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
 
         <?php if ( have_posts() ) : ?>
 
