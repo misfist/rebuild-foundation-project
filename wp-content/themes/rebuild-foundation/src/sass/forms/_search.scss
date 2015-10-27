@@ -1,0 +1,11 @@
+input.search-field {
+	border: none;
+	@include border-radius(0);
+	width: 100%;
+	background-color: transparent;
+	border-bottom: 1px solid $black-transparent;
+	background-image: url('img/search.svg');
+	background-repeat: no-repeat;
+	background-position: top right;
+	background-size: 25px 25px;
+}
