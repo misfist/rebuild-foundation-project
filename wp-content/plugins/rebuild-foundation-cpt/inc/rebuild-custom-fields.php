@@ -47,7 +47,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_location',
+                    'value' => 'location',
                 ),
             ),
         ),
@@ -78,7 +78,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'class' => '',
                     'id' => '',
                 ),
-                'taxonomy' => 'rebuild_site_category',
+                'taxonomy' => 'site_category',
                 'field_type' => 'select',
                 'allow_null' => 1,
                 'add_term' => 0,
@@ -100,21 +100,21 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_site',
+                    'value' => 'site',
                 ),
             ),
             array(
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_event',
+                    'value' => 'event',
                 ),
             ),
             array(
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_exhibition',
+                    'value' => 'exhibition',
                 ),
             ),
         ),
@@ -170,7 +170,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'id' => '',
                 ),
                 'post_type' => array(
-                    0 => 'rebuild_location',
+                    0 => 'location',
                 ),
                 'taxonomy' => array(
                 ),
@@ -302,7 +302,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_event',
+                    'value' => 'event',
                 ),
             ),
         ),
@@ -349,7 +349,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'class' => '',
                     'id' => '',
                 ),
-                'taxonomy' => 'rebuild_exhibition_category',
+                'taxonomy' => 'exhibition_category',
                 'field_type' => 'select',
                 'allow_null' => 0,
                 'add_term' => 0,
@@ -451,7 +451,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'id' => '',
                 ),
                 'post_type' => array(
-                    0 => 'rebuild_location',
+                    0 => 'location',
                 ),
                 'taxonomy' => array(
                 ),
@@ -528,7 +528,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_exhibition',
+                    'value' => 'exhibition',
                 ),
             ),
         ),
@@ -613,7 +613,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'id' => '',
                 ),
                 'post_type' => array(
-                    0 => 'rebuild_location',
+                    0 => 'location',
                 ),
                 'taxonomy' => array(
                 ),
@@ -690,7 +690,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'rebuild_site',
+                    'value' => 'site',
                 ),
             ),
         ),

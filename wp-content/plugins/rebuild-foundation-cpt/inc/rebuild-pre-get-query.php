@@ -21,7 +21,7 @@ if(! function_exists( 'rebuild_events_get_posts_query' ) ) {
       
     }
 
-    if( is_post_type_archive( 'rebuild_event' ) && $query->is_main_query() ) {
+    if( is_post_type_archive( 'event' ) && $query->is_main_query() ) {
 
         // Check if get_query_var( 'event_year' ) is passed & is valid, otherwise set to current year
         $event_year = get_query_var( 'event_year' );

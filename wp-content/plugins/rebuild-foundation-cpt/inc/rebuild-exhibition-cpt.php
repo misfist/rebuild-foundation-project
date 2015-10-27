@@ -10,6 +10,11 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
+/*
+ * Exhibition Custom Post Type
+ *
+ */
+
 if ( ! function_exists('rebuild_exhibition_cpt') ) {
 
     // Register Custom Post Type
@@ -42,7 +47,7 @@ if ( ! function_exists('rebuild_exhibition_cpt') ) {
             'label'               => __( 'Exhibition', 'rebuild_cpt' ),
             'labels'              => $labels,
             'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', ),
-            'taxonomies'          => array( 'rebuild_site_category', 'rebuild_exhibition_category' ),
+            'taxonomies'          => array( 'site_category', 'exhibition_category' ),
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
@@ -59,10 +64,64 @@ if ( ! function_exists('rebuild_exhibition_cpt') ) {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( 'rebuild_exhibition', $args );
+        register_post_type( 'exhibition', $args );
 
     }
     add_action( 'init', 'rebuild_exhibition_cpt', 0 );
+
+}
+
+/*
+ * Exhibition Category
+ *
+ */
+
+
+if ( ! function_exists( 'rebuild_exhibition_category' ) ) {
+
+    // Register Custom Taxonomy
+    function rebuild_exhibition_category() {
+
+        $labels = array(
+            'name'                       => _x( 'Exhibition Categories', 'Taxonomy General Name', 'rebuild_cpt' ),
+            'singular_name'              => _x( 'Exhibition Category', 'Taxonomy Singular Name', 'rebuild_cpt' ),
+            'menu_name'                  => __( 'Exhibition Categories', 'rebuild_cpt' ),
+            'all_items'                  => __( 'All Exhibition Categories', 'rebuild_cpt' ),
+            'parent_item'                => __( 'Parent Exhibition Category', 'rebuild_cpt' ),
+            'parent_item_colon'          => __( 'Parent Exhibition Category:', 'rebuild_cpt' ),
+            'new_item_name'              => __( 'New Exhibition Category Name', 'rebuild_cpt' ),
+            'add_new_item'               => __( 'Add New Exhibition Category', 'rebuild_cpt' ),
+            'edit_item'                  => __( 'Edit Exhibition Category', 'rebuild_cpt' ),
+            'update_item'                => __( 'Update Exhibition Category', 'rebuild_cpt' ),
+            'view_item'                  => __( 'View Exhibition Category', 'rebuild_cpt' ),
+            'separate_items_with_commas' => __( 'Separate exhibition categories with commas', 'rebuild_cpt' ),
+            'add_or_remove_items'        => __( 'Add or remove exhibition categories', 'rebuild_cpt' ),
+            'choose_from_most_used'      => __( 'Choose from the most used', 'rebuild_cpt' ),
+            'popular_items'              => __( 'Popular Exhibition Categories', 'rebuild_cpt' ),
+            'search_items'               => __( 'Search Exhibition Categories', 'rebuild_cpt' ),
+            'not_found'                  => __( 'Not Found', 'rebuild_cpt' ),
+        );
+        $rewrite = array(
+            'slug'                       => 'exhibition-category',
+            'with_front'                 => true,
+            'hierarchical'               => false,
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => true,
+            'public'                     => true,
+            'show_ui'                    => false,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => true,
+            'show_tagcloud'              => true,
+            'query_var'                  => 'exhibition_category',
+            'rewrite'                    => $rewrite,
+        );
+        register_taxonomy( 'exhibition_category', array( 'exhibition' ), $args );
+
+    }
+
+    add_action( 'init', 'rebuild_exhibition_category', 0 );
 
 }
 

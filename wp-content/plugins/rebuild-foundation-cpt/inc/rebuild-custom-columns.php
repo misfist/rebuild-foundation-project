@@ -16,6 +16,11 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
 
         function rebuild_custom_columns() {
 
+            /*
+             * Post Columns
+             *
+             */
+
             ac_register_columns( 'post', array(
                 'column-postid' => array(
                     'column-name' => 'column-postid',
@@ -56,7 +61,7 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'label' => 'Taxonomy',
                     'width' => '',
                     'width_unit' => '%',
-                    'taxonomy' => 'rebuild_site_category',
+                    'taxonomy' => 'site_category',
                     'filter' => 'on',
                     'sort' => 'on',
                     'edit' => 'off',
@@ -108,6 +113,11 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
+            /*
+             * Page Columns
+             *
+             */
+
             ac_register_columns( 'page', array(
                 'column-postid' => array(
                     'column-name' => 'column-postid',
@@ -150,7 +160,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'rebuild_site', array(
+            /*
+             * Site Columns
+             *
+             */
+
+            ac_register_columns( 'site', array(
                 'column-postid' => array(
                     'column-name' => 'column-postid',
                     'type' => 'column-postid',
@@ -209,7 +224,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'rebuild_event', array(
+            /*
+             * Event Columns
+             *
+             */
+
+            ac_register_columns( 'event', array(
                 'column-postid' => array(
                     'column-name' => 'column-postid',
                     'type' => 'column-postid',
@@ -250,7 +270,7 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'label' => 'Site',
                     'width' => '',
                     'width_unit' => '%',
-                    'taxonomy' => 'rebuild_site_category',
+                    'taxonomy' => 'site_category',
                     'filter' => 'on',
                     'sort' => 'on',
                     'edit' => 'off',
@@ -301,7 +321,7 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'label' => 'Categories',
                     'width' => '',
                     'width_unit' => '%',
-                    'taxonomy' => 'rebuild_event_category',
+                    'taxonomy' => 'event_category',
                     'filter' => 'on',
                     'sort' => 'on',
                     'edit' => 'off',
@@ -314,7 +334,7 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'label' => 'Tags',
                     'width' => '',
                     'width_unit' => '%',
-                    'taxonomy' => 'rebuild_event_tag',
+                    'taxonomy' => 'event_tag',
                     'filter' => 'off',
                     'sort' => 'on',
                     'edit' => 'off',
@@ -322,7 +342,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'rebuild_exhibition', array(
+            /*
+             * Exhibition Columns
+             *
+             */
+
+            ac_register_columns( 'exhibition', array(
                 'column-postid' => array(
                     'column-name' => 'column-postid',
                     'type' => 'column-postid',
@@ -363,7 +388,7 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'label' => 'Site',
                     'width' => '',
                     'width_unit' => '%',
-                    'taxonomy' => 'rebuild_site_category',
+                    'taxonomy' => 'site_category',
                     'filter' => 'on',
                     'sort' => 'on',
                     'edit' => 'off',
@@ -376,7 +401,7 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'label' => 'Scope',
                     'width' => '',
                     'width_unit' => '%',
-                    'taxonomy' => 'rebuild_exhibition_category',
+                    'taxonomy' => 'exhibition_category',
                     'filter' => 'on',
                     'sort' => 'on',
                     'edit' => 'off',
@@ -437,7 +462,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'rebuild_location', array(
+            /*
+             * Location Columns
+             *
+             */
+
+            ac_register_columns( 'location', array(
                 'column-postid' => array(
                     'column-name' => 'column-postid',
                     'type' => 'column-postid',
@@ -473,6 +503,11 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                     'date_format' => 'm/d/Y'
                 )
             ) );
+
+            /*
+             * Category Columns
+             *
+             */
 
             ac_register_columns( 'wp-taxonomy_category', array(
                 'column-termid' => array(
@@ -520,7 +555,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'wp-taxonomy_rebuild_site_category', array(
+            /*
+             * Site Category Columns
+             *
+             */
+
+            ac_register_columns( 'wp-taxonomy_site_category', array(
                 'column-termid' => array(
                     'column-name' => 'column-termid',
                     'type' => 'column-termid',
@@ -566,7 +606,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'wp-taxonomy_rebuild_event_category', array(
+            /*
+             * Event Category Columns
+             *
+             */
+
+            ac_register_columns( 'wp-taxonomy_event_category', array(
                 'column-termid' => array(
                     'column-name' => 'column-termid',
                     'type' => 'column-termid',
@@ -612,7 +657,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'wp-taxonomy_rebuild_event_tag', array(
+            /*
+             * Event Tag Columns
+             *
+             */
+
+            ac_register_columns( 'wp-taxonomy_event_tag', array(
                 'column-termid' => array(
                     'column-name' => 'column-termid',
                     'type' => 'column-termid',
@@ -658,7 +708,12 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
-            ac_register_columns( 'wp-taxonomy_rebuild_exhibition_category', array(
+            /*
+             * Exhibition Category Columns
+             *
+             */
+
+            ac_register_columns( 'wp-taxonomy_exhibition_category', array(
                 'column-termid' => array(
                     'column-name' => 'column-termid',
                     'type' => 'column-termid',

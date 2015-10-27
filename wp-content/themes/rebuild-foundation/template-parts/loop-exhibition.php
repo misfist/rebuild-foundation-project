@@ -10,14 +10,12 @@
 ?>
 
 <?php
-$start_date = get_field( 'start_date' );
-$end_date = get_field( 'end_date' )
+    $start_date = get_field( 'start_date' );
+    $end_date = get_field( 'end_date' )
 ?>
 
 
-<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo isset( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo isset( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( 'exhibition' ); ?>>
-
-    
+<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo ( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo ( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( 'exhibition' ); ?>>
 
     <div class="col-1">
         <header class="entry-header">
@@ -25,11 +23,6 @@ $end_date = get_field( 'end_date' )
             <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
             <div class="entry-meta scope">
-                
-                <?php
-                $start_date = get_field( 'start_date' );
-                $end_date = get_field( 'end_date' )
-                ?>
 
                 <?php
                 if( get_field( 'ad_hoc_date' ) ) : ?>
@@ -66,8 +59,6 @@ $end_date = get_field( 'end_date' )
         </div><!-- .entry-content -->
 
         <footer class="entry-footer">
-            
-            <a href="<?php esc_url( get_permalink() ); ?>" class="button btn">View</a>
 
         </footer><!-- .entry-footer -->
     </div>

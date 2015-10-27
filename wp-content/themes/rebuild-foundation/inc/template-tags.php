@@ -142,13 +142,13 @@ if(! function_exists( 'rebuild_foundation_site_cat_link' ) ) {
         
         global $wp;
 
-        $site_category =  wp_get_post_terms( get_the_ID(), 'rebuild_site_category', array( 'fields' => 'all' ) );
+        $site_category =  wp_get_post_terms( get_the_ID(), 'site_category', array( 'fields' => 'all' ) );
 
         if ( is_wp_error( $site_category ) ) {
             continue;
         }
 
-        $term_link = get_term_link( $site_category[0]->term_id, 'rebuild_site_category' );
+        $term_link = get_term_link( $site_category[0]->term_id, 'site_category' );
 
         $post_type_obj = get_post_type_object( get_post_type( get_the_ID() ) );
 
@@ -156,7 +156,7 @@ if(! function_exists( 'rebuild_foundation_site_cat_link' ) ) {
 
         // Tip on how to get current url
         // https://kovshenin.com/2012/current-url-in-wordpress/
-        printf( '<div class="meta site-cat-link"><label>Other</label> <a href="' . esc_url( home_url( $post_type_slug . '/site/' . $site_category[0]->slug ) ) . '">' . $site_category[0]->name . ' ' . $post_type_obj->labels->name . '</a></div>' );
+        printf( '<div class="meta site-cat-link"><label>Other</label> <a href="' . esc_url( home_url( $post_type_slug . '/site/' . $site_category[0]->slug ) ) . '">' . $site_category[0]->name . ' <span class="post-type ' . $site_category[0]->slug . '">' . $post_type_obj->labels->name . '</span></a></div>' );
 
     }
 
@@ -172,7 +172,7 @@ if(! function_exists( 'rebuild_foundation_site_link' ) ) {
     function rebuild_foundation_site_link() {
 
         // Get the current site category
-        $site_category =  wp_get_post_terms( get_the_ID(), 'rebuild_site_category', array( 'fields' => 'slugs' ) );
+        $site_category =  wp_get_post_terms( get_the_ID(), 'site_category', array( 'fields' => 'slugs' ) );
 
         if ( is_wp_error( $site_category ) ) {
             continue;
@@ -181,10 +181,10 @@ if(! function_exists( 'rebuild_foundation_site_link' ) ) {
         wp_reset_postdata();
 
         $the_site_args = array(
-            'post_type' => 'rebuild_site',
+            'post_type' => 'site',
             'numberposts' => 1,
             'tax_query' => array(
-                'taxonomy' => 'rebuild_site_category',
+                'taxonomy' => 'site_category',
                 'field'    => 'slug',
                 'terms'    => $site_category[0],
             ),
@@ -217,7 +217,7 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
 
         // Archives
         // Posts, Events, Exhibitions
-        if( is_post_type_archive( array( 'post', 'rebuild_event', 'rebuild_exhibition' ) ) ) {
+        if( is_post_type_archive( array( 'post', 'event', 'exhibition' ) ) ) {
 
             if( function_exists( 'rebuild_get_site_category_content' ) ) {
 
@@ -250,11 +250,11 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
         // Single
 
         // Events
-        if ( is_singular( 'rebuild_event' ) ) { 
+        if ( is_singular( 'event' ) ) { 
 
-            $eventcat_list =  get_the_term_list( get_the_ID(), 'rebuild_event_category', '', ', ' );
+            $eventcat_list =  get_the_term_list( get_the_ID(), 'event_category', '', ', ' );
 
-            $eventtag_list =  get_the_term_list( get_the_ID(), 'rebuild_event_tag', '', ', ' );
+            $eventtag_list =  get_the_term_list( get_the_ID(), 'event_tag', '', ', ' );
 
             if ( $eventcat_list ) {
                 printf( '<div class="meta eventcat-links">' . esc_html__( 'Posted in %1$s', 'rebuild-foundation' ) . '</div>', $eventcat_list ); // WPCS: XSS OK.
@@ -268,7 +268,7 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
 
 
         // Posts, Events, Exhibitions
-        if( is_singular( array( 'post', 'rebuild_event', 'rebuild_exhibition' ) ) ) {
+        if( is_singular( array( 'post', 'event', 'exhibition' ) ) ) {
 
              if( function_exists( 'rebuild_get_site_category_content' ) ) {
 
@@ -287,7 +287,7 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
 
         // Sites
         // site_category for 'post_type' = 'rebuild_site'
-        if( is_singular( 'rebuild_site' ) ) {
+        if( is_singular( 'site' ) ) {
 
              if( function_exists( 'rebuild_get_site_category_content' ) ) {
 
@@ -338,7 +338,7 @@ endif;
 function rebuild_foundation_categorized_blog() {
     if ( false === ( $all_the_cool_cats = get_transient( 'rebuild_foundation_categories' ) ) ) {
 
-        wp_get_post_terms( 'rebuild_sites_category', array( 
+        wp_get_post_terms( 'sites_category', array( 
             'fields' => 'ids',
             'hide_empty' => 1,
             // We only need to know if there is more than one category.
@@ -404,7 +404,7 @@ if(! function_exists( 'rebuild_get_site_category' ) ) {
 
     function rebuild_get_site_category() {
 
-        $site_cats = get_the_terms( get_the_ID(), 'rebuild_site_category' );
+        $site_cats = get_the_terms( get_the_ID(), 'site_category' );
 
         if( !empty( $site_cats ) ) {
 
@@ -429,21 +429,21 @@ if(! function_exists( 'get_rebuild_site_slug' ) ) {
 
     function get_rebuild_site_slug() {
 
-        if( 'rebuild_site' == get_post_type() ) {
+        if( 'site' == get_post_type() ) {
 
             $slug = basename( get_permalink( get_the_ID() ) );
 
             
         } else {
 
-            $site_cats = get_the_terms( get_the_ID(), 'rebuild_site_category' );
+            $site_cats = get_the_terms( get_the_ID(), 'site_category' );
 
             // Get site category slug - it should match site post slug
             $site_cat_slug = ( !empty( $site_cats ) ) ? $site_cats[0]->slug : '';
 
             // Get site associated with that category
             // https://codex.wordpress.org/Function_Reference/get_page_by_path
-            $site = get_page_by_path( $site_cat_slug, OBJECT, 'rebuild_site' );
+            $site = get_page_by_path( $site_cat_slug, OBJECT, 'site' );
 
             $slug = ( !empty( $site ) ) ? $site->post_name : '';
 
@@ -466,14 +466,14 @@ if(! function_exists( 'get_rebuild_site_name' ) ) {
 
     function get_rebuild_site_name() {
 
-        if( 'rebuild_site' == get_post_type() ) {
+        if( 'site' == get_post_type() ) {
 
             $site_short_name = get_post_meta( get_the_ID(), 'short_name', true );
             return ( $site_short_name ) ? $site_short_name : get_the_title( get_the_ID() );
 
         } else {
 
-            $site_cats = get_the_terms( get_the_ID(), 'rebuild_site_category' );
+            $site_cats = get_the_terms( get_the_ID(), 'site_category' );
 
             // If there is a site category associated with content
             if( !empty( $site_cats ) ) {
@@ -483,7 +483,7 @@ if(! function_exists( 'get_rebuild_site_name' ) ) {
 
                 // Get site associated with that category
                 // https://codex.wordpress.org/Function_Reference/get_page_by_path
-                $site = get_page_by_path( $site_slug, OBJECT, 'rebuild_site' );
+                $site = get_page_by_path( $site_slug, OBJECT, 'site' );
 
                 $site_short_name = get_post_meta( $site->ID, 'short_name', true );
 

@@ -1,12 +1,12 @@
 // This file is for temporarily hiding elements 
 
-.post-type-archive-rebuild_site {
-	.site-filter, .rebuild_site-filter {
+.post-type-archive-site {
+	.site-filter{
 		display: none;
 	}
 }
 
-.single-rebuild_site {
+.single-site {
 	.gallery {
 		display: none;
 	}

@@ -16,7 +16,7 @@ if(! function_exists( 'rebuild_site_category_filter' ) ) {
 
     function rebuild_site_category_filter() {
 
-        $sites = get_terms( 'rebuild_site_category' );
+        $sites = get_terms( 'site_category' );
     
         if( count( $sites ) > 0 ) {
 
@@ -70,16 +70,16 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
             switch( $post_type ) {
 
-                case 'rebuild_exhibition':
-                    $taxonomy = 'rebuild_exhibition_category';
+                case 'exhibition':
+                    $taxonomy = 'exhibition_category';
                     $query_var = get_taxonomy( $taxonomy )->query_var;
                     break;
-                case 'rebuild_event':
-                    $taxonomy = 'rebuild_event_category';
+                case 'event':
+                    $taxonomy = 'event_category';
                     $query_var = get_taxonomy( $taxonomy )->query_var;
                     break;
-                case 'rebuild_site':
-                    $taxonomy = 'rebuild_site_category';
+                case 'site':
+                    $taxonomy = 'site_category';
                     $query_var = get_taxonomy( $taxonomy )->query_var;
                     break;
                 default: 
@@ -109,14 +109,14 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
                           )
                       );
 
-                    // If query vars for rebuild_site_category set, add to tax query
+                    // If query vars for site_category set, add to tax query
 
                     $site_category = get_query_var( 'site_category' );
 
                     if( $site_category ) {
                         
                         $term_args['tax_query'][][1] = array(
-                            'taxonomy' => 'rebuild_site_category',
+                            'taxonomy' => 'site_category',
                             'field' => 'slug',
                             'terms' => $site_category
                         );
@@ -263,7 +263,7 @@ if(! function_exists( 'rebuild_get_dates' ) ) {
 
   function rebuild_get_dates() {
 
-    $post_type = 'rebuild_event';
+    $post_type = 'event';
     $args = array(
         'post_type' => $post_type,
     );
@@ -464,20 +464,11 @@ if(! function_exists( 'events_for_months' ) ) {
     );
 
     $args = array(
-      'post_type' => 'rebuild_event',
+      'post_type' => 'event',
       'meta_query' => $meta_query
     );
 
     $posts = get_posts( $args );
-
-    // echo '<pre>';
-    // var_dump( $args );
-    // echo '</pre>';
-
-
-    // echo '<pre>';
-    // var_dump( $posts );
-    // echo '</pre>';
 
     return ( count( $posts ) > 0 );
 

@@ -10,6 +10,12 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
+
+/*
+ * Location Custom Post Type
+ *
+ */
+
 if ( ! function_exists('rebuild_location_cpt') ) {
 
     // Register Custom Post Type
@@ -42,7 +48,7 @@ if ( ! function_exists('rebuild_location_cpt') ) {
             'label'               => __( 'Location', 'rebuild_cpt' ),
             'labels'              => $labels,
             'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', ),
-            'taxonomies'          => array( 'rebuild_site_category' ),
+            'taxonomies'          => array( 'site_category' ),
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
@@ -59,7 +65,7 @@ if ( ! function_exists('rebuild_location_cpt') ) {
             'rewrite'             => $rewrite,
             'capability_type'     => 'page',
         );
-        register_post_type( 'rebuild_location', $args );
+        register_post_type( 'location', $args );
 
     }
     add_action( 'init', 'rebuild_location_cpt', 0 );

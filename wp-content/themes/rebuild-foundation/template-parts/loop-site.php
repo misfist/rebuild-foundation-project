@@ -9,8 +9,6 @@
 
 ?>
 
-<?php ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'site' ); ?> style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
 	<a class="close-site"></a>
 	<header class="entry-header">
@@ -49,8 +47,7 @@
 
 	<footer class="entry-footer">
 		
-		<a href="<?php esc_url( get_permalink() ); ?>" class="button btn">View</a>
-
 		<?php rebuild_foundation_entry_footer(); ?>
+        
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

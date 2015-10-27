@@ -32,7 +32,7 @@ if(! function_exists( 'rebuild_add_rewrite_rules' ) ) {
         add_rewrite_rule('^events/site/([^/]*)/tag/([^/]*)/?','index.php?event_tag=$matches[2]&site_category=$matches[1]','top');
 
         // e.g. http://rebuild.com/events/site/{site}
-        add_rewrite_rule('^events/site/([^/]*)/?','index.php?post_type=rebuild_event&site_category=$matches[1]','top');
+        add_rewrite_rule('^events/site/([^/]*)/?','index.php?post_type=event&site_category=$matches[1]','top');
 
         // e.g. http://rebuild.com/events/type/{cat}
         add_rewrite_rule('^events/type/([^/]*)/?','index.php?event_category=$matches[1]','top');
