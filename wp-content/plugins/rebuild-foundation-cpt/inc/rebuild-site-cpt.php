@@ -16,7 +16,7 @@
  *
  */
 
-if ( ! function_exists('rebuild_site_cpt') ) {
+if ( ! function_exists( 'rebuild_site_cpt' ) ) {
 
     // Register Custom Post Type
     function rebuild_site_cpt() {
