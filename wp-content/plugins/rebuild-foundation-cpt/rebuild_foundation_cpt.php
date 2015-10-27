@@ -24,20 +24,33 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+/* ---------------------------------- *
+ * Constants
+ * ---------------------------------- */
+
+if ( !defined( 'REBUILD_CPT_PLUGIN_DIR' ) ) {
+    define( 'REBUILD_CPT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+if ( !defined( 'REBUILD_CPT_PLUGIN_URL' ) ) {
+    define( 'REBUILD_CPT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
 // Include files
-include_once( 'inc/rebuild-site-cpt.php' );
-include_once( 'inc/rebuild-event-cpt.php' );
-include_once( 'inc/rebuild-exhibition-cpt.php' );
-include_once( 'inc/rebuild-location-cpt.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-site-cpt.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-event-cpt.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-exhibition-cpt.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-location-cpt.php' );
 // include_once( 'inc/rebuild-site-category-taxonomy.php' );
 // include_once( 'inc/rebuild-event-category-taxonomy.php' );
 // include_once( 'inc/rebuild-event-tag-taxonomy.php' );
 // include_once( 'inc/rebuild-exhibition-category-taxonomy.php' );
-include_once( 'inc/rebuild-rewrite-rules.php' );
-include_once( 'inc/rebuild-custom-fields.php' );
-include_once( 'inc/rebuild-custom-columns.php' );
-include_once( 'inc/rebuild-pre-get-query.php' );
-include_once( 'inc/rebuild-filters.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-rewrite-rules.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-custom-fields.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-custom-columns.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-pre-get-query.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-filters.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/ical.php' );
 
 
 function rebuild_plugin_activation() {
