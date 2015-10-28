@@ -113,14 +113,23 @@ if ( ! function_exists( 'rebuild_foundation_register_widget_area' ) ) {
   // Register Sidebars
   function rebuild_foundation_register_widget_area() {
 
-    $args = array(
+    $submenu_args = array(
+      'id'            => 'submenu-widget',
+      'class'         => 'submenu',
+      'name'          => __( 'Submenu', 'rebuild-foundation' ),
+      'before_widget' => '<div id="%1$s" class="widget %2$s">',
+      'after_widget'  => '</div>',
+    );
+
+    $footer_args = array(
       'id'            => 'footer-widget',
       'class'         => 'site-info',
       'name'          => __( 'Footer', 'rebuild-foundation' ),
       'before_widget' => '<div id="%1$s" class="widget %2$s">',
       'after_widget'  => '</div>',
     );
-    register_sidebar( $args );
+    register_sidebar( $submenu_args );
+    register_sidebar( $footer_args );
 
   }
 
