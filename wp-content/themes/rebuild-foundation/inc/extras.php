@@ -171,3 +171,54 @@ function rebuild_custom_excerpt_more( $more ) {
 add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
 
 
+/**
+ * Change share title
+ * Modify the text uses in the share title
+ */
+
+if(! function_exists( 'jetpack_developer_custom_sharing_title' ) ) {
+
+  function jetpack_developer_custom_sharing_title( $title, $this, $id, $args ) {
+    switch ( true ) {
+      case ( 'sharing-twitter-650' == $id ):
+        $title = 'Share on Twitter';
+        break;
+      case ( 'sharing-facebook-650' == $id ):
+        $title = 'Share on Facebook';
+        break;
+      default:
+        $title = $title;
+    }
+    return $title;
+  }
+
+  add_filter( 'jetpack_sharing_display_title', 'jetpack_developer_custom_sharing_title', 20, 4 );
+
+}
+
+/**
+ * Change share link text
+ * Modify the text uses in share links
+ */
+
+if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
+
+  function jetpack_developer_custom_sharing_text( $text, $this, $id, $args ) {
+
+    switch ( true ) {
+      case ( 'sharing-twitter-650' == $id ):
+        $text = 'Share on Twitter';
+        break;
+      case ( 'sharing-facebook-650' == $id ):
+        $text = 'Share on Facebook';
+        break;
+      default:
+        $text = $text;
+    }
+    return $text;
+  }
+  add_filter( 'jetpack_sharing_display_text', 'jetpack_developer_custom_sharing_text', 20, 4 );
+
+}
+
+
