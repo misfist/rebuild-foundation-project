@@ -25,6 +25,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         $event_description = rebuild_truncate_text( $post->post_content, 100 );
 
         $event_meta = get_post_meta( get_the_ID() );
+        $event_url = get_permalink( $post->ID );
 
         $start_time = date( 'H:i:s', $meta['start_time'][0] );
         $end_time = date( 'H:i:s', $meta['end_time'][0] );
@@ -50,8 +51,10 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
             'text' => urlencode( $event_title ),
             'details' => urlencode( $description ),
             'dates' => urlencode( rebuild_date_to_cal( $start ) ) . "/" . urlencode( rebuild_date_to_cal( $end ) ),
+            'czt' => urlencode( 'America/Chicago' ),
             'location' => urlencode( $event_location ),
             'sprop' => urlencode( $site_url ),
+            'src' => urlencode( $event_url ),
         );
 
         $full_link = $url;
