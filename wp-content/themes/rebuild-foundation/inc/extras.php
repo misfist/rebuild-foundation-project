@@ -206,17 +206,18 @@ if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
   function jetpack_developer_custom_sharing_text( $text, $this, $id, $args ) {
 
     switch ( true ) {
-      case ( 'sharing-twitter-650' == $id ):
-        $text = 'Share on Twitter';
+      case ( 'sharing-twitter-650' == $id || 'sharing-twitter-499' == $id ):
+        $text = '<i class="twitter"></i>Twitter';
         break;
-      case ( 'sharing-facebook-650' == $id ):
-        $text = 'Share on Facebook';
+      case ( 'sharing-facebook-650' == $id || 'sharing-facebook-499' == $id ):
+        $text = '<i class="facebook"></i>Facebook';
         break;
       default:
         $text = $text;
     }
     return $text;
   }
+  
   add_filter( 'jetpack_sharing_display_text', 'jetpack_developer_custom_sharing_text', 20, 4 );
 
 }
