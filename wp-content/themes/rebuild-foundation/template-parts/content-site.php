@@ -15,7 +15,7 @@ $site_cat = rebuild_get_site_category();
 
 $site_tax = array(
     array(
-        'taxonomy' => 'rebuild_site_category',
+        'taxonomy' => 'site_category',
         'field'    => 'slug',
         'terms'    => $site_cat
     ),
@@ -88,11 +88,9 @@ $site_tax = array(
 
         <!-- //// Exhibitions Section -->
         <section class="exhibitions">
-            
-            <h2><?php _e( 'Exhibitions', 'rebuild-foundation' ); ?></h2>
 
             <?php
-            $exhibition_post_type = 'rebuild_exhibition';
+            $exhibition_post_type = 'exhibition';
             $today = date( 'Ymd' );
             $current = 'current';
             $future = 'future';
@@ -100,7 +98,7 @@ $site_tax = array(
             $exhibition_tax = array(
                 $site_tax,
                 array(
-                    'taxonomy' => 'rebuild_exhibition_category',
+                    'taxonomy' => 'exhibition_category',
                     'field'    => 'slug',
                     'terms'    => $current
                 ),
@@ -114,13 +112,17 @@ $site_tax = array(
 
             $exhibitions = new WP_Query( $exhibitions_query ); ?>
 
-            <?php if ( $exhibitions->have_posts() ) : while ( $exhibitions->have_posts() ) : $exhibitions->the_post(); ?>
+            <?php if ( $exhibitions->have_posts() ) : ?>
 
-                <?php get_template_part( 'template-parts/loop', $exhibition_post_type ); ?>
+               <h2><?php _e( 'Exhibitions', 'rebuild-foundation' ); ?></h2>
 
-            <?php endwhile; else: ?>
+               <?php while ( $exhibitions->have_posts() ) : $exhibitions->the_post(); ?>
 
-                <?php get_template_part( 'template-parts/loop', 'none' ); ?>
+                    <?php get_template_part( 'template-parts/loop', $exhibition_post_type ); ?>
+
+                <?php endwhile; else: ?>
+
+                    <?php get_template_part( 'template-parts/loop', 'none' ); ?>
 
             <?php endif; ?>
 
@@ -132,12 +134,11 @@ $site_tax = array(
         <section class="events">
 
             <?php
-            $event_post_type = 'rebuild_event';
+            $event_post_type = 'event';
             $today = date( 'Ymd' );
             ?>
             
             <div class="upcoming-events">
-                <h2><?php _e( 'Upcoming Events', 'rebuild-foundation' ); ?></h2>
                 <?php
                 $future_scope = array(
                     array(
@@ -153,19 +154,25 @@ $site_tax = array(
                 // WP_Query arguments
                 $future_event_args = array (
                     'post_type' => $event_post_type,
+                    'orderby' => 'meta_value',
+                    'meta_key' => 'start_date',
                     'tax_query' => $site_tax,
-                    'meta_query' => $future_scope
+                    'meta_query' => $future_scope,
                 );
 
                 $future_event_query = new WP_Query( $future_event_args ); ?>
 
-                <?php if ( $future_event_query->have_posts() ) : while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
+                <?php if ( $future_event_query->have_posts() ) : ?>
 
-                    <?php get_template_part( 'template-parts/loop', 'site-event-future' ); ?>
+                    <h2><?php _e( 'Upcoming Events', 'rebuild-foundation' ); ?></h2>
 
-                <?php endwhile; else: ?>
+                    <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
 
-                    <?php get_template_part( 'template-parts/loop', 'none' ); ?>
+                        <?php get_template_part( 'template-parts/loop', 'site-event-future' ); ?>
+
+                    <?php endwhile; else: ?>
+
+                        <?php get_template_part( 'template-parts/loop', 'none' ); ?>
 
                 <?php endif; ?>
 
@@ -174,9 +181,6 @@ $site_tax = array(
             </div>
 
             <div class="past-events">
-                <h2><?php _e( 'Past Events', 'rebuild-foundation' ); ?></h2>
-                <?php // past_scope => end_date < today ?>
-
                 <?php
                 $past_scope = array(
                     array(
@@ -193,18 +197,25 @@ $site_tax = array(
                 $future_event_args = array (
                     'post_type' => $event_post_type,
                     'tax_query' => $site_tax,
-                    'meta_query' => $past_scope
+                    'meta_query' => $past_scope,
+                    'order' => 'ASC',
+                    'orderby' => 'meta_value',
+                    'meta_key' => 'start_date'
                 );
 
                 $future_event_query = new WP_Query( $future_event_args ); ?>
 
-                <?php if ( $future_event_query->have_posts() ) : while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
+                <?php if ( $future_event_query->have_posts() ) : ?>
 
-                    <?php get_template_part( 'template-parts/loop', 'site-event-past' ); ?>
+                    <h2><?php _e( 'Past Events', 'rebuild-foundation' ); ?></h2>
 
-                <?php endwhile; else: ?>
+                    <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
 
-                    <?php get_template_part( 'template-parts/loop', 'none' ); ?>
+                        <?php get_template_part( 'template-parts/loop', 'site-event-past' ); ?>
+
+                    <?php endwhile; else: ?>
+
+                        <?php get_template_part( 'template-parts/loop', 'none' ); ?>
 
                 <?php endif; ?>
 
@@ -220,8 +231,7 @@ $site_tax = array(
 
             <section class="posts">
                 
-                <h2><?php _e( 'Recent Blog Posts', 'rebuild-foundation' ); ?></h2>
-                <?php 
+                 <?php 
                 // WP_Query arguments
                 $blog_post_type = 'post';
                 $blog_args = array (
@@ -231,13 +241,17 @@ $site_tax = array(
 
                 $blog_query = new WP_Query( $blog_args ); ?>
 
-                <?php if ( $blog_query->have_posts() ) : while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+                <?php if ( $blog_query->have_posts() ) : ?>
 
-                    <?php get_template_part( 'template-parts/loop-site', $blog_post_type ); ?>
+                   <h2><?php _e( 'Recent Blog Posts', 'rebuild-foundation' ); ?></h2>
 
-                <?php endwhile; else: ?>
+                    <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
 
-                    <?php get_template_part( 'template-parts/loop', 'none' ); ?>
+                        <?php get_template_part( 'template-parts/loop-site', $blog_post_type ); ?>
+
+                    <?php endwhile; else: ?>
+
+                        <?php get_template_part( 'template-parts/loop', 'none' ); ?>
 
                 <?php endif; ?>
 
