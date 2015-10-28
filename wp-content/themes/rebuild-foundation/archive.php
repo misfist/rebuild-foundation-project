@@ -12,6 +12,8 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <header class="entry-header">
 
+            <?php if( 'site' != get_post_type() ) : ?>
+
             <div class="filters">
                 <?php rebuild_site_category_filter(); ?>
 
@@ -19,6 +21,8 @@ get_header(); ?>
 
                 <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
             </div>
+
+            <?php endif; ?>
 
         </header><!-- .entry-header -->
 
