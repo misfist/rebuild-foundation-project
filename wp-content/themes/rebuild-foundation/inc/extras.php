@@ -68,6 +68,21 @@ if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
 
 update_option('image_default_link_type','none');
 
+add_image_size( 'exhibition-thumbnail', 325, 325, array( 'center', 'top' ) );
+
+if(! function_exists( 'rebuild_foundation_image_sizes' ) ) {
+
+  function rebuild_foundation_image_sizes( $sizes ) {
+      return array_merge( $sizes, array(
+          'exhibition-thumbnail' => __( 'Exhibition Thumbnail' ),
+      ) );
+  }
+
+  add_filter( 'image_size_names_choose', 'rebuild_foundation_image_sizes' );
+
+}
+
+
 
 /**
  * Always Show Kitchen Sink in WYSIWYG Editor
