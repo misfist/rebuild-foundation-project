@@ -12,6 +12,25 @@
  */
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
+if( !function_exists( 'rebuild_foundation_enqueue_scripts' ) ) {
+
+  function rebuild_foundation_enqueue_scripts() {
+
+    if( is_admin() ) {
+      return;
+    }
+
+    if( 'event' == get_post_type() || 'exhibition' == get_post_type() ) {
+
+      wp_enqueue_script( 'rebuild-foundation-filters', get_stylesheet_directory_uri() . '/assets/js/filters.js', array( 'jquery' ), '', true );
+
+    }
+
+  }
+
+  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_scripts' );
+}
+
 /**
  * Adds custom classes to the array of body classes.
  *
