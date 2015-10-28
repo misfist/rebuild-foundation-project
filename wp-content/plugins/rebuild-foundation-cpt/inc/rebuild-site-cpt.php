@@ -130,5 +130,25 @@ if ( ! function_exists( 'rebuild_site_category' ) ) {
 
 }
 
+/**
+ * Hide site_category metabox from content edit screen
+ * We're using ACF to select site_category so we can limit to 1 selection
+ */
+
+if( ( ! function_exists( 'rebuild_foundation_remove_custom_taxonomy' ) ) && is_admin() ) {
+
+  function rebuild_foundation_remove_custom_taxonomy() {
+
+    remove_meta_box( 'site_categorydiv', 'post', 'side' );
+    remove_meta_box( 'site_categorydiv', 'site', 'side' );
+    remove_meta_box( 'site_categorydiv', 'event', 'side' );
+    remove_meta_box( 'site_categorydiv', 'exhibition', 'side' );
+          
+  }
+
+  add_action( 'admin_menu', 'rebuild_foundation_remove_custom_taxonomy' );
+
+}
+
 
 ?>
