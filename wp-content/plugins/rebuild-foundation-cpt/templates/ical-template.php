@@ -97,8 +97,8 @@ $ical .= 'END:VTIMEZONE' . "\r\n";
 $ical .= 'END:VCALENDAR' . "\r\n";
 
 //set correct content-type-header
-header('Content-type: text/calendar; charset=utf-8');
-header('Content-Disposition: attachment; filename=' . $filename);
+header( 'Content-type: text/calendar; charset=utf-8' );
+header( 'Content-Disposition: attachment; filename=' . $filename );
 
 echo $ical;
 
