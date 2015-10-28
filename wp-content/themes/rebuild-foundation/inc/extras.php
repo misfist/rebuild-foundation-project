@@ -68,6 +68,12 @@ if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
 
 update_option('image_default_link_type','none');
 
+
+/**
+ * Custom Image - add custom image size and display in media browser
+ * https://developer.wordpress.org/reference/functions/add_image_size/
+ */
+
 add_image_size( 'exhibition-thumbnail', 325, 325, array( 'center', 'top' ) );
 
 if(! function_exists( 'rebuild_foundation_image_sizes' ) ) {
@@ -98,7 +104,6 @@ if(! function_exists( 'unhide_kitchensink' ) ) {
   add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
 
 }
-
 
 
 /**
