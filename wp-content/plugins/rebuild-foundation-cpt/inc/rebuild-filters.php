@@ -16,7 +16,9 @@ if(! function_exists( 'rebuild_site_category_filter' ) ) {
 
     function rebuild_site_category_filter() {
 
-        $sites = get_terms( 'site_category' );
+        $taxonomy = 'site_category';
+
+        $sites = get_terms( $taxonomy );
     
         if( count( $sites ) > 0 ) {
 
@@ -27,7 +29,7 @@ if(! function_exists( 'rebuild_site_category_filter' ) ) {
 
             foreach( $sites as $site ) {
 
-                echo '<li data-target-site="' . $site->slug . '">';
+                echo '<li data-' . $taxonomy . '="' . $site->slug . '" data-target-site="' . $site->slug . '">';
 
                 if( $post_type && $post_type_obj->has_archive ) {
 
@@ -126,7 +128,7 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
                     if( $terms_with_posts ) {
 
-                        echo '<li data-target-term="' . $term->slug . '">';
+                        echo '<li data-' . $taxonomy . '="' . $term->slug . '" data-target-term="' . $term->slug . '">';
 
                         echo '<a href="' . esc_url( add_query_arg( $query_var, $term->slug ) ) . '">' . $term->name . '</a>';
 
@@ -211,7 +213,7 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
             $event_year = get_query_var( 'event_year' );
 
-            $year = ( isset( $event_year ) ) ? absint( $event_year ) : date( 'Y' );
+            $year = ( $event_year ) ? absint( $event_year ) : date( 'Y' );
 
             if( array_key_exists( $year, $dates ) ) {
 
