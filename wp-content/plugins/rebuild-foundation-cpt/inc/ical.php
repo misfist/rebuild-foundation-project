@@ -10,6 +10,12 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
+
+/*
+ * Add Endpoint for ical
+ * https://make.wordpress.org/plugins/2012/06/07/rewrite-endpoints-api/
+ */
+
 if(! function_exists( 'rebuild_ical_endpoint' ) ) {
 
     function rebuild_ical_endpoint() {
@@ -21,6 +27,12 @@ if(! function_exists( 'rebuild_ical_endpoint' ) ) {
     add_action( 'init', 'rebuild_ical_endpoint' );
 
 }
+
+
+/*
+ * Redirect to ical Template
+ * When the endpoint is accessed, the ical template is called
+ */
 
 if(! function_exists( 'rebuild_ical_rewrite_template' ) ) {
 

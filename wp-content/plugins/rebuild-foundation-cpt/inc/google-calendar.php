@@ -10,7 +10,11 @@
  * @package   Rebuild_Foundation_Custom_Post_Types
  */
 
-
+/*
+ * Google Calendar Link
+ * Generates a link with variables used by Google Calendar
+ * http://exhibita.com/blog/create-google-calendar-entry-with-a-link/
+ */
 
 if(! function_exists( 'rebuild_google_calendar_link' ) ) {
 
@@ -68,6 +72,10 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
     }
 }
 
+/*
+ * iCal Formatted Date
+ * Helper Function to create ical formatted date
+ */
 
 if(! function_exists( 'rebuild_date_to_cal' ) ) {
 
@@ -77,7 +85,11 @@ if(! function_exists( 'rebuild_date_to_cal' ) ) {
 
 }
 
-// Original PHP code by Chirp Internet: www.chirp.com.au
+/*
+ * Truncate Text
+ * Helper Function to truncate text
+ */
+
 if(! function_exists( 'rebuild_truncate_text' ) ) {
 
     function rebuild_truncate_text( $string, $limit, $break = '.', $pad = '...' ) {
