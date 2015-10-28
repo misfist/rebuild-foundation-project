@@ -179,12 +179,27 @@ add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
 if(! function_exists( 'jetpack_developer_custom_sharing_title' ) ) {
 
   function jetpack_developer_custom_sharing_title( $title, $this, $id, $args ) {
+
+    if( $id ) {
+      $id = explode( '-', $id );
+      $id = $id[0] . '-' . $id[1];
+    }
+
     switch ( true ) {
-      case ( 'sharing-twitter-650' == $id ):
+      case ( 'sharing-twitter' == $id ):
         $title = 'Share on Twitter';
         break;
-      case ( 'sharing-facebook-650' == $id ):
+      case ( 'sharing-facebook' == $id ):
         $title = 'Share on Facebook';
+        break;
+      case ( 'sharing-linkedin' == $id ):
+        $text = 'Share on LinkedIn';
+        break;
+      case ( 'sharing-pinterest' == $id ):
+        $text = 'Share on Pinterest';
+        break;
+      case ( 'sharing-linkedin' == $id ):
+        $text = 'Share on LinkedIn';
         break;
       default:
         $title = $title;
@@ -205,12 +220,26 @@ if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
 
   function jetpack_developer_custom_sharing_text( $text, $this, $id, $args ) {
 
+    if( $id ) {
+      $id = explode( '-', $id );
+      $id = $id[0] . '-' . $id[1];
+    }
+
     switch ( true ) {
-      case ( 'sharing-twitter-650' == $id || 'sharing-twitter-499' == $id ):
+      case ( 'sharing-twitter' == $id ):
         $text = '<i class="twitter"></i>Twitter';
         break;
-      case ( 'sharing-facebook-650' == $id || 'sharing-facebook-499' == $id ):
+      case ( 'sharing-facebook' == $id ):
         $text = '<i class="facebook"></i>Facebook';
+        break;
+      case ( 'sharing-linkedin' == $id ):
+        $text = '<i class="linkedin"></i>LinkedIn';
+        break;
+      case ( 'sharing-pinterest' == $id ):
+        $text = '<i class="pinterest"></i>Pinterest';
+        break;
+      case ( 'sharing-linkedin' == $id ):
+        $text = '<i class="linkedin"></i>LinkedIn';
         break;
       default:
         $text = $text;
