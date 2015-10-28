@@ -34,11 +34,9 @@ $end_date = $meta['end_date'][0];
 $start = strtotime( $start_date . ' ' . $start_time );
 $end = strtotime( $end_date . ' ' . $end_time );
 
-$location_name = $meta['location_name'][0];
-$location_address = $meta['location_address'][0];
-$location_address = unserialize( $location_address );
-$address = $location_address['address'];
-$event_location = $location_name . ', ' . $address;
+$location_name = rebuild_get_location_name( $event_id );
+$location_address = rebuild_convert_location_to_string( $event_id );
+$event_location = $location_name . ', ' . $location_address;
 
 //  - Read up on RFC 5545, the iCalendar specification. There is a lot of helpful info in there, such as formatting rules. There are also many more options to set, including alarms, invitees, busy status, etc.
 // https://www.ietf.org/rfc/rfc5545.txt
