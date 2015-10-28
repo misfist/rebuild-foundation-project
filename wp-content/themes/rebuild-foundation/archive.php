@@ -10,21 +10,23 @@
 get_header(); ?>
 
     <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
+        <header class="entry-header">
 
-        <?php
+            <div class="filters">
+                <?php rebuild_site_category_filter(); ?>
 
-        global $wp_query;
+                <?php rebuild_taxonomy_filter(); ?>
 
-        ?>
+                <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
+            </div>
 
-        <?php rebuild_site_category_filter(); ?>
-
-        <?php rebuild_taxonomy_filter(); ?>
+        </header><!-- .entry-header -->
 
         <?php ( 'event' == get_post_type() ) ?rebuild_event_year_filter() : ''; ?>
 
-        <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
+        <main id="main" class="site-main" role="main">
+
+        <?php global $wp_query; ?>
 
         <?php if ( have_posts() ) : ?>
 
