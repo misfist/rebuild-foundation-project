@@ -39,4 +39,7 @@ jQuery( document ).ready( function( $ ) {
 
     $( 'li[data-event_category=' + queryVars.event_category + ']' ).addClass( 'active' );
 
+    $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );
+
+
 } );
