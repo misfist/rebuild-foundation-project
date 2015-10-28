@@ -456,50 +456,7 @@ if(! function_exists( 'get_rebuild_site_slug' ) ) {
 }
 
 
-/**
- * Get site name
- * Retrieves the short name `short_name` or `post_title` of the site
- * @return string
- */
 
-if(! function_exists( 'get_rebuild_site_name' ) ) {
-
-    function get_rebuild_site_name() {
-
-        if( 'site' == get_post_type() ) {
-
-            $site_short_name = get_post_meta( get_the_ID(), 'short_name', true );
-            return ( $site_short_name ) ? $site_short_name : get_the_title( get_the_ID() );
-
-        } else {
-
-            $site_cats = get_the_terms( get_the_ID(), 'site_category' );
-
-            // If there is a site category associated with content
-            if( !empty( $site_cats ) ) {
-
-                // Get site category slug - matches site post slug
-                $site_slug = $site_cats[0]->slug;
-
-                // Get site associated with that category
-                // https://codex.wordpress.org/Function_Reference/get_page_by_path
-                $site = get_page_by_path( $site_slug, OBJECT, 'site' );
-
-                $site_short_name = get_post_meta( $site->ID, 'short_name', true );
-
-                // If it has short name field return that
-                // Else return the_title
-                return ( $site_short_name ) ? $site_short_name : get_the_title( $site->ID );
-
-            }
-
-            return;
-
-        }
-
-    }
-
-}
 
 /**
  * Get site link
@@ -567,47 +524,21 @@ if(! function_exists( 'rebuild_get_site_category_content' ) ) {
 
 }
 
-
 /**
- * Get location information
- * Retrieves the address associated with the content
- * @return array
+ * Display Formatted Address
+ * Renders formatted address
+ * @return string
  */
 
-if(! function_exists( 'rebuild_get_location_fields' ) ) {
 
-    function rebuild_get_location_fields() {
-
-        if( function_exists( 'get_field' ) ) {
-
-            $location_id = get_field( 'location' );
-
-            $location_address = get_field( 'location_address', $location_id );
-
-            if( $location_address ) {
-                // make an array
-                $location = [];
-                
-                $address = $location_address['address'];
-                $address_fields = explode( ', ' , $address );
-                $location['address1'] = $address_fields[0];
-                $location['address2'] = $address_fields[1] . ', ' . $address_fields[2];
-
-                return $location;  
-
-            } 
-
-            return;
-
-        }
-    }
-}
 
 if(! function_exists( 'rebuild_formatted_address' ) ) {
 
     function rebuild_formatted_address() {
 
-        $location = rebuild_get_location_fields();
+        $post_id = get_the_id();
+
+        $location = rebuild_get_location_fields( $post_id );
 
         if( $location && is_array( $location ) ) {
 
