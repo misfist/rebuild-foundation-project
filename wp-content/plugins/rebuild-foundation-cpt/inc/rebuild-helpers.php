@@ -136,4 +136,232 @@ if(! function_exists( 'get_rebuild_site_name' ) ) {
 }
 
 
+
+/**
+ * Helpers
+ */
+
+/**
+ * Get all the event start_dates
+ * @return array of dates
+ */
+
+if(! function_exists( 'rebuild_get_dates' ) ) {
+
+  function rebuild_get_dates() {
+
+    $post_type = 'event';
+    $args = array(
+        'post_type' => $post_type,
+    );
+
+    $events = get_posts( $args );
+    $dates = [];
+
+    if( count( $events ) > 0 ) {
+
+      foreach( $events as $event ) {
+
+        if( get_post_meta( $event->ID, 'start_date', true ) ) {
+
+          array_push( $dates , get_post_meta( $event->ID, 'start_date', true ) );
+
+        }
+
+      }
+
+    }
+
+    return $dates;
+
+  }
+
+}
+
+
+/**
+ * Get all the event years
+ * @return array of year integers
+ */
+
+if(! function_exists( 'rebuild_get_event_years' ) ) {
+
+  function rebuild_get_event_years() {
+
+    if( function_exists( 'rebuild_get_dates' ) ) {
+
+      $dates = rebuild_get_dates();
+
+      return array_unique( array_map( 'convert_date_to_year', $dates ) );
+
+    }
+
+  }
+
+}
+
+
+/**
+ * Get dates by year
+ * @return array
+ */
+
+if(! function_exists( 'get_dates_by_year' ) ) {
+
+  function get_dates_by_year() {
+
+    $years = get_unique_years();
+    $dates = rebuild_get_dates();
+    $date_array = [];
+
+    rsort( $date_array );
+
+    for ( $i = 0; $i < count( $years ); $i++ ) {
+
+      for ( $j = 0; $j < count( $dates ); $j++ ) {
+        
+        if ( is_date_in_year( $dates[$j], $years[$i] ) ) {
+
+          $date_array[$years[$i]][] =  date( 'm', strtotime( $dates[$j] ) );
+
+        }
+
+      }
+
+      $date_array[$years[$i]] = array_unique( $date_array[$years[$i]] );
+    
+    }
+
+    return $date_array;
+
+  }
+
+}
+
+
+/**
+ * Get unique years
+ * @return array
+ */
+
+if(! function_exists( 'get_unique_years' ) ) {
+
+  function get_unique_years() {
+
+    $dates = rebuild_get_dates();
+
+    $years = array_unique( array_map( 'convert_date_to_year', $dates ) );
+
+    rsort( $years );
+
+    return $years;
+
+  }
+
+}
+
+
+/**
+ * Convert date to year
+ * @return integer
+ */
+
+if(! function_exists( 'convert_date_to_year' ) ) {
+
+  function convert_date_to_year( $date ) {
+
+    return date( 'Y', strtotime( $date ) );
+
+  }
+
+}
+
+
+/**
+ * Convert date to month
+ * @return integer
+ */
+
+if(! function_exists( 'convert_date_to_month' ) ) {
+
+  function convert_date_to_month( $date ) {
+
+    return date( 'm', strtotime( $date ) );
+
+  }
+
+}
+
+
+/**
+ * Convert date to month
+ * @return string
+ */
+
+if(! function_exists( 'convert_date_to_month_string' ) ) {
+
+  function convert_date_to_month_string( $date ) {
+
+    return date( 'M', strtotime( $date ) );
+
+  }
+
+}
+
+
+/**
+ * Date in year
+ * @return boolean
+ */
+
+if(! function_exists( 'is_date_in_year' ) ) {
+
+  function is_date_in_year( $date, $year ) {
+
+    return $date >= date( 'Ymd', strtotime( $year . '01' . '01' ) ) && $date <= date( 'Ymd', strtotime( $year . '12' . '31' ) );
+
+  }
+
+}
+
+
+/**
+ * Posts Exist for Month
+ * @return boolean
+ */
+
+if(! function_exists( 'events_for_months' ) ) {
+
+  function events_for_months( $year, $month ) {
+
+    $meta_query = array(
+        'relation' => 'AND',
+        array(
+            'key'     => 'start_date',
+            'compare' => '>=',
+            'value'   => "{$year}{$month}01",
+            'type'    => 'NUMERIC',
+        ),
+        array(
+            'key'     => 'end_date',
+            'compare' => '<=',
+            'value'   => "{$year}{$month}31", // Doesn't matter if there aren't 31 days in this month, will still work,
+            'type'    => 'NUMERIC',
+        )
+    );
+
+    $args = array(
+      'post_type' => 'event',
+      'meta_query' => $meta_query
+    );
+
+    $posts = get_posts( $args );
+
+    return ( count( $posts ) > 0 );
+
+  }
+
+}
+
+
 ?>

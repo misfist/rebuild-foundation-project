@@ -1,34 +1,96 @@
-Pea Starter Theme
+Rebuild Foundation Theme
 ===
 
 Customized starter theme built using `underscores`.
 
-
-Getting Started
+Template Structure
 ---------------
 
-1. Generate new custom underscores.me theme.
+Custom post type (site, event, exhibition) listing pages are rendered by archive.php, which calls a partial template (loop-{post_type}) to render each list item.
 
-If you want to keep it simple, head over to http://underscores.me and generate your `_s` based theme from there. You just input the name of the theme you want to create, click the "Generate" button, and you get your ready-to-awesomize starter theme.
+Single custom post type (site, event, exhibition) pages are rendered by single.php, which calls a partial template (content-{post_type}) to render the content area.
 
-OR
+The home page template (page-home.php) renders each custom field associated with the front page. If additional custom fields are added and contain content, they will be rendered.
 
-* Search for: `'_s'` and replace with: `'megatherium'`
-* Search for: `_s_` and replace with: `megatherium_`
-* Search for: `Text Domain: _s` and replace with: `Text Domain: megatherium` in style.css.
-* Search for: <code>&nbsp;_s</code> and replace with: <code>&nbsp;Megatherium</code>
-* Search for: `_s-` and replace with: `megatherium-`
 
-Then, update the stylesheet header in `style.css` and the links in `footer.php` with your own information. Next, update or delete this readme.
+Functions
+---------------
 
-2. Replace those in the custom underscores.me theme with the following from this theme:
+functions.php has not been modified except to add calls to files in /inc. 
 
-.bowerrc
-.gitignore
-composer.json
-gulpfile.js
-inc
-    extras.php
-package.json
-README.md
-src
+/inc/extras.php contains functions that call WP actions and filters to modify content display.
+
+/inc/filters.php contains various filters that are displayed on archive pages to filter post items. 
+
+/inc/helpers.php contains functions that helper functions that are generally only used by other functions.
+
+/inc/template-tags.php contains tags that can be used to display content such as taxonomy links, custom field filters, etc. In general, it contains only functions that render content ( echo or printf );
+
+
+Core Dependencies
+---------------
+* Custom plugin for Sites (rebuild-foundation-cpt) [https://github.com/misfist/rebuild-foundation-project](https://github.com/misfist/rebuild-foundation-project)
+* Custom plugin for other custom functions (rebuild-foundation-custom) [https://github.com/misfist/rebuild-foundation-project](https://github.com/misfist/rebuild-foundation-project)
+* Advanced Custom Fields [https://github.com/elliotcondon/acf](https://github.com/elliotcondon/acf)
+
+File Structure
+---------------
+
+rebuild-foundation
+    - 404.php
+    - archive.php
+    - assets
+        - css
+        - img
+        - js
+    - comments.php
+    - fonts
+    - footer.php
+    - functions.php
+    - header.php
+    - img
+    - inc
+        - custom-header.php
+        - customizer.php
+        - event-functions.php
+        - extras.php
+        - filters.php
+        - jetpack.php
+        - template-tags.php
+    - index.php
+    - languages
+    - package.json
+    - page-home-template.php
+    - page-home.php
+    - page.php
+    - README.md
+    - rtl.css
+    - screenshot.png
+    - search.php
+    - sidebar.php
+    - single.php
+    - src
+        - img
+        - js
+        - sass
+    - style.css
+    - style.css.map
+    - template-parts
+        - content-event.php
+        - content-exhibition.php
+        - content-home.php
+        - content-none.php
+        - content-page.php
+        - content-post.php
+        - content-search.php
+        - content-single.php
+        - content-site.php
+        - content.php
+        - loop-event.php
+        - loop-exhibition.php
+        - loop-page.php
+        - loop-post.php
+        - loop-site-event-future.php
+        - loop-site-event-past.php
+        - loop-site-post.php
+        - loop-site.php
