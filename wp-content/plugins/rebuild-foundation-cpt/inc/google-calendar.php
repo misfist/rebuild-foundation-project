@@ -28,7 +28,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         $event_title = $post->post_title;
         $event_description = rebuild_truncate_text( $post->post_content, 100 );
 
-        $event_meta = get_post_meta( get_the_ID() );
+        $event_meta = get_post_meta( $post->ID );
         $event_url = get_permalink( $post->ID );
 
         $start_time = date( 'H:i:s', $meta['start_time'][0] );
