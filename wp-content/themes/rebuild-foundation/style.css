@@ -196,7 +196,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     margin-right: -5px;
     font: 13px "Akkuratmono-Regular"; }
 
-.post-type-archive-site .site-filter, .post-type-archive-site .site-filter {
+.post-type-archive-site .site-filter {
   display: none; }
 
 .single-site .gallery {
@@ -778,48 +778,35 @@ a {
     .event-year-filter li a, .exhibition-filter li a {
       text-decoration: none; }
 
-.site-filter, .event-filter, .event-month-filter {
-  list-style-type: none;
+.filters {
   position: fixed;
   width: calc(100% - 180px - 160px);
   left: calc(180px + 160px);
   background-color: #E9E6DF;
   top: 0;
-  padding: 0;
-  margin: 0; }
-
-.site-filter {
-  padding-top: 40px;
-  height: 70px;
+  padding: 12px 0 0 0;
+  margin: 0 0 0 0;
   z-index: 4;
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
-  .site-filter li {
-    font: 13px "Akkurat-Regular";
-    float: left;
-    padding-right: 25px; }
-
-.event-filter {
-  padding-top: 75px;
-  height: 105px;
-  padding-bottom: 20px;
-  z-index: 3;
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
-  .event-filter li {
-    font: 13px "Akkurat-Regular";
-    float: left;
-    padding-right: 25px; }
-
-.event-month-filter {
-  padding-top: 115px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  z-index: 2; }
-  .event-month-filter li {
-    font: 20px "Akkurat-Regular";
-    display: inline-block;
-    vertical-align: top;
-    width: 8%;
-    margin-right: -4px; }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+  .filters ul {
+    list-style-type: none;
+    padding: 0 0 0 0;
+    margin: 0 0 20px 0; }
+    .filters ul li {
+      font: 13px "Akkurat-Regular";
+      padding-right: 25px;
+      display: inline-block;
+      padding: 0 20px 0 0; }
+  .filters ul.event-month-filter {
+    width: calc(100% - 160px);
+    margin-bottom: 10px; }
+    .filters ul.event-month-filter li {
+      font: 20px "Akkurat-Regular";
+      display: inline-block;
+      vertical-align: top;
+      width: 8%;
+      margin-right: -4px;
+      padding-top: 0px; }
 
 /*--------------------------------------------------------------
 # Accessibility

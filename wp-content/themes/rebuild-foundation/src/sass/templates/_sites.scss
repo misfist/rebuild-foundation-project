@@ -1,6 +1,6 @@
-.single-rebuild_site {
+.single-site {
 
-	article.rebuild_site {
+	article.site {
 		margin-top: 50px;
 
 		header.site-header {
@@ -56,7 +56,7 @@
 			}
 		}
 
-		&.rebuild_site_category-dorchester-art-housing-collaborative {
+		&.site_category-dorchester-art-housing-collaborative {
 			
 			.site-image::after {
 				content: url('img/graphic_da-hc.svg');
@@ -64,7 +64,7 @@
 
 		}
 
-		&.rebuild_site_category-black-cinema-house {
+		&.site_category-black-cinema-house {
 			
 			.site-image::after {
 				content: url('img/graphic_bch.svg');
@@ -72,7 +72,7 @@
 
 		}
 
-		&.rebuild_site_category-stony-island-arts-bank {
+		&.site_category-stony-island-arts-bank {
 			
 			.site-image::after {
 				content: url('img/graphic_siab.svg');

@@ -1,5 +1,5 @@
 
-.post-type-archive-rebuild_exhibition {
+.post-type-archive-exhibition {
 
 	.posts-list {
 		width: $size__site-main-nested;
@@ -12,7 +12,7 @@
 }
 
 
-article.rebuild_exhibition {
+article.exhibition {
 		width: $size__site-main-nested;
 	margin-bottom: 60px;
 	padding-bottom: 60px;
@@ -70,7 +70,7 @@ article.rebuild_exhibition {
 
 	}
 
-	&.rebuild_site_category-dorchester-art-housing-collaborative {
+	&.site_category-dorchester-art-housing-collaborative {
 		
 		.site-info::before {
 			content: url('img/graphic_da-hc.svg');
@@ -82,7 +82,7 @@ article.rebuild_exhibition {
 		
 	}
 
-	&.rebuild_site_category-black-cinema-house {
+	&.site_category-black-cinema-house {
 		
 		.site-info::before {
 			content: url('img/graphic_bch.svg');
@@ -94,7 +94,7 @@ article.rebuild_exhibition {
 
 	}
 
-	&.rebuild_site_category-stony-island-arts-bank {
+	&.site_category-stony-island-arts-bank {
 		
 		.site-info::before {
 			content: url('img/graphic_siab.svg');

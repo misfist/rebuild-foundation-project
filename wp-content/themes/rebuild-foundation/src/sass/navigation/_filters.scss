@@ -1,4 +1,4 @@
-.event-year-filter, .rebuild_exhibition-filter {
+.event-year-filter, .exhibition-filter {
 	width: $size__subnavigation;
 	position: fixed;
 	left: $size__navigation;
@@ -15,54 +15,43 @@
 }
 
 
-.site-filter, .rebuild_event-filter, .event-month-filter {
-	list-style-type: none;
+.filters {
 	position: fixed;
 	width: $size__site-main-flush;
 	left: $align__site-4;
 	background-color: $warm-gray;
 	top: 0;
-	padding: 0;
-	margin: 0;
-
-}
-
-.site-filter {
-	padding-top: 40px;
-	height: 70px;
+	padding: 12px 0 0 0;
+	margin: 0 0 0 0;
 	z-index: 4;
-	border-bottom: 1px dotted $black-transparent-light;
-
-	li {
-		font: $font_size-1 $regular;
-		float: left;
-		padding-right: 25px;
-	}
-}
-
-.rebuild_event-filter {
-	padding-top: 75px;
-	height: 105px;
-	padding-bottom: 20px;
-	z-index: 3;
-	border-bottom: 1px dotted $black-transparent-light;
-
-	li {
-		font: $font_size-1 $regular;
-		float: left;
-		padding-right: 25px;
-	}
-}
-
-.event-month-filter {
-	padding-top: 115px;
-	padding-bottom: 15px;
 	border-bottom: 1px solid $black-transparent-light;
-	z-index: 2;
 
-	li {
-		font: $font_size-3 $regular;
-		@include inblock(8%);
-		margin-right: -4px;
+	ul {
+		list-style-type: none;
+		padding: 0 0 0 0;
+		margin: 0 0 20px 0;
+
+
+		li {
+			font: $font_size-1 $regular;
+			padding-right: 25px;
+			display: inline-block;
+			padding: 0 20px 0 0;
+		}
+
 	}
-}	
+
+	ul.event-month-filter {
+		width: $size__site-main-nested;
+		margin-bottom: 10px;
+
+		li {
+			font: $font_size-3 $regular;
+			@include inblock(8%);
+			margin-right: -4px;
+			padding-top: 0px;
+		}
+	}	
+
+
+}
