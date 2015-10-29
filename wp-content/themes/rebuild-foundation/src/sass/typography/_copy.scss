@@ -16,6 +16,11 @@ address {
 	margin: 0 0 1.5em;
 }
 
+span.address {
+	display: block;
+	white-space: nowrap;
+}
+
 pre {
 	background: $color__background-pre;
 	font-family: $font__pre;

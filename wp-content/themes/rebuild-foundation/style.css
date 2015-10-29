@@ -434,6 +434,10 @@ blockquote {
 address {
   margin: 0 0 1.5em; }
 
+span.address {
+  display: block;
+  white-space: nowrap; }
+
 pre {
   background: #eee;
   font-family: "Courier 10 Pitch", Courier, monospace;
@@ -1536,9 +1540,9 @@ article.exhibition {
       position: absolute;
       display: block;
       width: 40%;
-      z-index: 0;
-      left: 160px;
-      top: 100px; }
+      max-width: 330px;
+      margin: 200px 0 0 -160px;
+      z-index: 0; }
   .single-site article.site .main-content {
     padding: 0 0 0 30%;
     position: relative;
@@ -1591,12 +1595,14 @@ article.exhibition {
         background-size: cover; }
         .single-site article.site .events .upcoming-events article .event-info {
           background-color: rgba(0, 0, 0, 0.5);
-          padding: 30px; }
-          .single-site article.site .events .upcoming-events article .event-info .entry-title a {
-            font: 20px "Akkurat-Regular";
-            color: #E9E6DF; }
-            .single-site article.site .events .upcoming-events article .event-info .entry-title a:hover {
-              color: rgba(255, 255, 255, 0.5); }
+          padding: 15px 30px; }
+          .single-site article.site .events .upcoming-events article .event-info .entry-title {
+            line-height: 1.2em; }
+            .single-site article.site .events .upcoming-events article .event-info .entry-title a {
+              font: 20px "Akkurat-Regular";
+              color: #E9E6DF; }
+              .single-site article.site .events .upcoming-events article .event-info .entry-title a:hover {
+                color: rgba(255, 255, 255, 0.5); }
           .single-site article.site .events .upcoming-events article .event-info .event-date {
             color: #E9E6DF; }
         .single-site article.site .events .upcoming-events article:hover {
@@ -1712,6 +1718,8 @@ article.exhibition {
   .blog article {
     padding: 20px 0;
     border-bottom: 1px solid white; }
+    .blog article:last-of-type {
+      border-bottom: 1px solid black; }
   .blog .entry-header {
     display: inline-block;
     vertical-align: top;

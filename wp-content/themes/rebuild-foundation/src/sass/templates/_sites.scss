@@ -34,9 +34,9 @@
 				position: absolute;
 				display: block;
 				width: 40%;
+				max-width: 330px;
+				margin: 200px 0 0 -160px;
 				z-index: 0;
-				left: $align__site-3;
-				top: 100px;
 			}
 		}
 
@@ -121,9 +121,11 @@
 
 					.event-info {
 						background-color: $black-transparent;
-						padding: 30px; 
+						padding: 15px 30px; 
 
 						.entry-title {
+							line-height: 1.2em;
+
 							a {
 								font: $font_size-3 $regular;
 								color: $warm-gray;
