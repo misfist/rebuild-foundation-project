@@ -158,6 +158,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
+ * Load helpers.
+ */
+require_once get_template_directory() . '/inc/helpers.php';
+
+/**
  * Load filters.
  */
 require_once get_template_directory() . '/inc/filters.php';
