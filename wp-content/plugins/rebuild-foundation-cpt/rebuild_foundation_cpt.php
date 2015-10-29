@@ -12,7 +12,7 @@
  * @wordpress-plugin
  * Plugin Name:       Rebuild Foundation Custom Post Types
  * Plugin URI:        
- * Description:       Adds custom post types and taxonomy for sites, events, exhibitions and locations
+ * Description:       Adds custom post types and taxonomy for sites, events, exhibitions and locations.
  * Version:           1.0.0
  * Author:            Pea
  * Author URI:        http://misfist.com
