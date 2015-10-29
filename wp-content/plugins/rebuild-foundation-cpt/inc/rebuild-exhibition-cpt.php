@@ -72,8 +72,8 @@ if ( ! function_exists('rebuild_exhibition_cpt') ) {
 }
 
 /*
- * Exhibition Category
- *
+ * Exhibition Scope
+ * Used to organize into time periods 
  */
 
 
@@ -83,26 +83,26 @@ if ( ! function_exists( 'rebuild_exhibition_category' ) ) {
     function rebuild_exhibition_category() {
 
         $labels = array(
-            'name'                       => _x( 'Exhibition Categories', 'Taxonomy General Name', 'rebuild_cpt' ),
-            'singular_name'              => _x( 'Exhibition Category', 'Taxonomy Singular Name', 'rebuild_cpt' ),
-            'menu_name'                  => __( 'Exhibition Categories', 'rebuild_cpt' ),
-            'all_items'                  => __( 'All Exhibition Categories', 'rebuild_cpt' ),
-            'parent_item'                => __( 'Parent Exhibition Category', 'rebuild_cpt' ),
-            'parent_item_colon'          => __( 'Parent Exhibition Category:', 'rebuild_cpt' ),
-            'new_item_name'              => __( 'New Exhibition Category Name', 'rebuild_cpt' ),
-            'add_new_item'               => __( 'Add New Exhibition Category', 'rebuild_cpt' ),
-            'edit_item'                  => __( 'Edit Exhibition Category', 'rebuild_cpt' ),
-            'update_item'                => __( 'Update Exhibition Category', 'rebuild_cpt' ),
-            'view_item'                  => __( 'View Exhibition Category', 'rebuild_cpt' ),
-            'separate_items_with_commas' => __( 'Separate exhibition categories with commas', 'rebuild_cpt' ),
-            'add_or_remove_items'        => __( 'Add or remove exhibition categories', 'rebuild_cpt' ),
+            'name'                       => _x( 'Exhibition Scopes', 'Taxonomy General Name', 'rebuild_cpt' ),
+            'singular_name'              => _x( 'Exhibition Scope', 'Taxonomy Singular Name', 'rebuild_cpt' ),
+            'menu_name'                  => __( 'Exhibition Scopes', 'rebuild_cpt' ),
+            'all_items'                  => __( 'All Exhibition Scopes', 'rebuild_cpt' ),
+            'parent_item'                => __( 'Parent Exhibition Scope', 'rebuild_cpt' ),
+            'parent_item_colon'          => __( 'Parent Exhibition Scope:', 'rebuild_cpt' ),
+            'new_item_name'              => __( 'New Exhibition Scope Name', 'rebuild_cpt' ),
+            'add_new_item'               => __( 'Add New Exhibition Scope', 'rebuild_cpt' ),
+            'edit_item'                  => __( 'Edit Exhibition Scope', 'rebuild_cpt' ),
+            'update_item'                => __( 'Update Exhibition Scope', 'rebuild_cpt' ),
+            'view_item'                  => __( 'View Exhibition Scope', 'rebuild_cpt' ),
+            'separate_items_with_commas' => __( 'Separate exhibition scopes with commas', 'rebuild_cpt' ),
+            'add_or_remove_items'        => __( 'Add or remove exhibition scopes', 'rebuild_cpt' ),
             'choose_from_most_used'      => __( 'Choose from the most used', 'rebuild_cpt' ),
-            'popular_items'              => __( 'Popular Exhibition Categories', 'rebuild_cpt' ),
-            'search_items'               => __( 'Search Exhibition Categories', 'rebuild_cpt' ),
+            'popular_items'              => __( 'Popular Exhibition Scopes', 'rebuild_cpt' ),
+            'search_items'               => __( 'Search Exhibition Scopes', 'rebuild_cpt' ),
             'not_found'                  => __( 'Not Found', 'rebuild_cpt' ),
         );
         $rewrite = array(
-            'slug'                       => 'exhibition-category',
+            'slug'                       => 'exhibition-scope',
             'with_front'                 => true,
             'hierarchical'               => false,
         );
@@ -110,7 +110,7 @@ if ( ! function_exists( 'rebuild_exhibition_category' ) ) {
             'labels'                     => $labels,
             'hierarchical'               => true,
             'public'                     => true,
-            'show_ui'                    => false,
+            'show_ui'                    => true,
             'show_admin_column'          => true,
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
@@ -124,5 +124,23 @@ if ( ! function_exists( 'rebuild_exhibition_category' ) ) {
     add_action( 'init', 'rebuild_exhibition_category', 0 );
 
 }
+
+/**
+ * Hide exhibition_category metabox from content edit screen
+ * We're using ACF to select exhibition_category so we can limit to 1 selection
+ */
+
+if( ( ! function_exists( 'rebuild_foundation_remove_exhibition_category' ) ) && is_admin() ) {
+
+  function rebuild_foundation_remove_exhibition_category() {
+
+    remove_meta_box( 'exhibition_categorydiv', 'exhibition', 'side' );
+          
+  }
+
+  add_action( 'admin_menu', 'rebuild_foundation_remove_exhibition_category' );
+
+}
+
 
 ?>
