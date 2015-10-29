@@ -5,13 +5,13 @@
 		width: $size__site-main-nested;
 		position: relative;
 		left: $align__site-3;
-		margin-top: 120px;
+		margin-top: 100px;
 	}
 
 	article {
 		border: 1px solid $black-transparent-light;
 		width: $size__site-main-nested;
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 		min-height: 200px;
 		@include transition-duration(0.5s);
 

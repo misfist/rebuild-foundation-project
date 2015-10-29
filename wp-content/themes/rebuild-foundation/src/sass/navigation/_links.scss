@@ -19,12 +19,36 @@ a {
 	}
 }
 
-.entry-content a {
-	color: $black;
-	border-bottom: 3px solid $white;
+.entry-content {
 
-	&:hover {
-		text-decoration: none;
-		background-color: $white;
+	a {
+		color: $black;
+		border-bottom: 3px solid $white;
+
+		&:hover {
+			text-decoration: none;
+			background-color: $white;
+		}
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+		a { 
+			border-bottom: none;
+
+			&:hover {
+				background-color: transparent;
+			}		
+		}
+	}
+
+	.entry-meta {
+		a {
+			border-bottom: none;
+
+			&:hover {
+				text-decoration: none;
+				background-color: transparent;
+			}
+		}
 	}
 }

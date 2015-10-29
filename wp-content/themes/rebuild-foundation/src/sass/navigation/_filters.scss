@@ -1,20 +1,3 @@
-.event-year-filter, .exhibition-filter {
-	width: $size__subnavigation;
-	position: fixed;
-	left: $size__navigation;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-
-	li {
-		font-size: $font_size-2;
-		a {
-			text-decoration: none;
-		}
-	}
-}
-
-
 .filters {
 	position: fixed;
 	width: $size__site-main-flush;
@@ -37,6 +20,11 @@
 			padding-right: 25px;
 			display: inline-block;
 			padding: 0 20px 0 0;
+
+			&.active a {
+				font-family: $bold;
+				color: $black;
+			}
 		}
 
 	}
@@ -55,3 +43,52 @@
 
 
 }
+
+.blog ul.site-filter {
+	@extend .filters;
+
+	list-style-type: none;
+	padding: 12px 0 20px 0;
+	margin: 0 0 20px 0;
+
+
+	li {
+		font: $font_size-1 $regular;
+		padding-right: 25px;
+		display: inline-block;
+		padding: 0 20px 0 0;
+	}
+
+}
+
+
+ul.event-year-filter, ul.exhibition-filter {
+	width: $size__subnavigation;
+	position: fixed;
+	left: $size__navigation;
+	top: 200px;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	
+	li {
+		font-size: $font_size-2;
+		display: block;
+		padding:  0 0 15px 0;
+		
+		a {
+			text-decoration: none;
+			font: $font_size-1 $bold;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+		}
+
+		&.active {
+			a {
+				font: $font_size-3 $bold;
+				color: $black;
+			}
+		}
+	}
+}
+

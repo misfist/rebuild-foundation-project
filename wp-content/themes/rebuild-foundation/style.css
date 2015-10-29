@@ -636,6 +636,15 @@ a {
   .entry-content a:hover {
     text-decoration: none;
     background-color: white; }
+.entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a {
+  border-bottom: none; }
+  .entry-content h1 a:hover, .entry-content h2 a:hover, .entry-content h3 a:hover, .entry-content h4 a:hover, .entry-content h5 a:hover, .entry-content h6 a:hover {
+    background-color: transparent; }
+.entry-content .entry-meta a {
+  border-bottom: none; }
+  .entry-content .entry-meta a:hover {
+    text-decoration: none;
+    background-color: transparent; }
 
 /*--------------------------------------------------------------
 ## Menus
@@ -651,23 +660,6 @@ a {
     list-style: none;
     margin: 0;
     padding-left: 0; }
-    .main-navigation ul ul {
-      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-      float: left;
-      position: absolute;
-      top: 1.5em;
-      left: -999em;
-      z-index: 99999; }
-      .main-navigation ul ul ul {
-        left: -999em;
-        top: 0; }
-      .main-navigation ul ul li:hover > ul, .main-navigation ul ul li.focus > ul {
-        left: 100%; }
-      .main-navigation ul ul a {
-        width: 200px; }
-    .main-navigation ul li:hover > ul,
-    .main-navigation ul li.focus > ul {
-      left: auto; }
   .main-navigation li {
     position: relative;
     text-transform: uppercase;
@@ -689,6 +681,11 @@ a {
     -o-transition-duration: 0.25s;
     transition-duration: 0.25s;
     letter-spacing: 0.05em; }
+  .main-navigation .current_page_item > a,
+  .main-navigation .current-menu-item > a,
+  .main-navigation .current_page_ancestor > a {
+    font-family: "Akkurat-Bold";
+    color: black; }
 
 .menu-sites {
   display: none; }
@@ -766,19 +763,7 @@ a {
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
-.event-year-filter, .exhibition-filter {
-  width: 160px;
-  position: fixed;
-  left: 180px;
-  margin: 0;
-  padding: 0;
-  list-style-type: none; }
-  .event-year-filter li, .exhibition-filter li {
-    font-size: 16px; }
-    .event-year-filter li a, .exhibition-filter li a {
-      text-decoration: none; }
-
-.filters {
+.filters, .blog ul.site-filter {
   position: fixed;
   width: calc(100% - 180px - 160px);
   left: calc(180px + 160px);
@@ -788,25 +773,59 @@ a {
   margin: 0 0 0 0;
   z-index: 4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-  .filters ul {
+  .filters ul, .blog ul.site-filter ul {
     list-style-type: none;
     padding: 0 0 0 0;
     margin: 0 0 20px 0; }
-    .filters ul li {
+    .filters ul li, .blog ul.site-filter ul li {
       font: 13px "Akkurat-Regular";
       padding-right: 25px;
       display: inline-block;
       padding: 0 20px 0 0; }
-  .filters ul.event-month-filter {
+      .filters ul li.active a, .blog ul.site-filter ul li.active a {
+        font-family: "Akkurat-Bold";
+        color: black; }
+  .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter {
     width: calc(100% - 160px);
     margin-bottom: 10px; }
-    .filters ul.event-month-filter li {
+    .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li {
       font: 20px "Akkurat-Regular";
       display: inline-block;
       vertical-align: top;
       width: 8%;
       margin-right: -4px;
       padding-top: 0px; }
+
+.blog ul.site-filter {
+  list-style-type: none;
+  padding: 12px 0 20px 0;
+  margin: 0 0 20px 0; }
+  .blog ul.site-filter li {
+    font: 13px "Akkurat-Regular";
+    padding-right: 25px;
+    display: inline-block;
+    padding: 0 20px 0 0; }
+
+ul.event-year-filter, ul.exhibition-filter, .page-sub-menu ul {
+  width: 160px;
+  position: fixed;
+  left: 180px;
+  top: 200px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+  ul.event-year-filter li, ul.exhibition-filter li, .page-sub-menu ul li {
+    font-size: 16px;
+    display: block;
+    padding: 0 0 15px 0; }
+    ul.event-year-filter li a, ul.exhibition-filter li a, .page-sub-menu ul li a {
+      text-decoration: none;
+      font: 13px "Akkurat-Bold";
+      letter-spacing: 0.05em;
+      text-transform: uppercase; }
+    ul.event-year-filter li.active a, ul.exhibition-filter li.active a, .page-sub-menu ul li.active a {
+      font: 20px "Akkurat-Bold";
+      color: black; }
 
 /*--------------------------------------------------------------
 # Accessibility
@@ -1092,11 +1111,11 @@ ul.social-links {
     width: calc(100% - 160px);
     position: relative;
     left: 160px;
-    margin-top: 120px; }
+    margin-top: 100px; }
   .post-type-archive-event article {
     border: 1px solid rgba(0, 0, 0, 0.25);
     width: calc(100% - 160px);
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     min-height: 200px;
     -webkit-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
@@ -1273,21 +1292,24 @@ article.exhibition {
   article.exhibition .entry-header .entry-meta {
     font: 16px "Akkuratmono-Regular"; }
   article.exhibition .read-more {
-    font-family: "Akkurat-Bold";
-    color: black; }
-  article.exhibition .button.btn {
-    font: 16px "Akkurat-Bold"; }
+    font: 16px "Akkurat-Bold";
+    display: block;
+    margin-top: 20px;
+    border: none; }
+    article.exhibition .read-more:hover {
+      color: black;
+      background-color: transparent; }
   article.exhibition.site_category-dorchester-art-housing-collaborative .site-info::before {
     content: url("img/graphic_da-hc.svg"); }
-  article.exhibition.site_category-dorchester-art-housing-collaborative .entry-title a, article.exhibition.site_category-dorchester-art-housing-collaborative .button.btn {
+  article.exhibition.site_category-dorchester-art-housing-collaborative .entry-title a, article.exhibition.site_category-dorchester-art-housing-collaborative .read-more {
     color: #ff674d; }
   article.exhibition.site_category-black-cinema-house .site-info::before {
     content: url("img/graphic_bch.svg"); }
-  article.exhibition.site_category-black-cinema-house .entry-title a, article.exhibition.site_category-black-cinema-house .button.btn {
+  article.exhibition.site_category-black-cinema-house .entry-title a, article.exhibition.site_category-black-cinema-house .read-more {
     color: #ffb111; }
   article.exhibition.site_category-stony-island-arts-bank .site-info::before {
     content: url("img/graphic_siab.svg"); }
-  article.exhibition.site_category-stony-island-arts-bank .entry-title a, article.exhibition.site_category-stony-island-arts-bank .button.btn {
+  article.exhibition.site_category-stony-island-arts-bank .entry-title a, article.exhibition.site_category-stony-island-arts-bank .read-more {
     color: #6490e8; }
 
 .entry-meta.location a {
@@ -1537,14 +1559,21 @@ article.exhibition {
     content: url("img/graphic_bch.svg"); }
   .single-site article.site.site_category-stony-island-arts-bank .site-image::after {
     content: url("img/graphic_siab.svg"); }
-  .single-site article.site .exhibitions article {
-    border: none; }
-  .single-site article.site .exhibitions .entry-title {
-    font-size: 32px; }
-  .single-site article.site .exhibitions .entry-content {
-    margin-top: 0; }
+  .single-site article.site .exhibitions {
+    margin-left: 160px;
+    margin-top: 100px; }
+    .single-site article.site .exhibitions h2 {
+      font-size: 16px; }
+    .single-site article.site .exhibitions article.exhibition {
+      border: none;
+      width: 100%; }
+    .single-site article.site .exhibitions .entry-title {
+      font-size: 32px; }
+    .single-site article.site .exhibitions .entry-content {
+      margin-top: 0; }
   .single-site article.site .events {
-    width: calc(100% - 160px); }
+    width: calc(100% - 160px);
+    margin-left: 100px; }
     .single-site article.site .events h2 {
       font-size: 16px;
       margin-bottom: 20px; }
@@ -1608,7 +1637,8 @@ article.exhibition {
   .single-site article.site .posts {
     width: calc(100% - 160px);
     margin-top: 60px;
-    padding-right: 25%; }
+    padding-right: 25%;
+    margin-left: 100px; }
     .single-site article.site .posts h2 {
       font-size: 16px;
       margin-top: 0;
@@ -1642,8 +1672,10 @@ article.exhibition {
         margin-top: 0; }
         .single-site article.site .posts article .entry-content p {
           margin-top: 0; }
+      .single-site article.site .posts article:last-child {
+        border-bottom: 1px solid black; }
 .single-site .post-navigation {
-  width: calc(100% - 160px); }
+  display: none; }
 
 .page-template-default #main, .single-post #main {
   position: relative;

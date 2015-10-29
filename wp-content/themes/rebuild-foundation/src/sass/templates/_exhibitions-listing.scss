@@ -60,14 +60,16 @@ article.exhibition {
 	}
 
 
-	.read-more {
-		font-family: $bold;
-		color: $black;
-	}
-
-	.button.btn {
+	.read-more  {
 		font: $font_size-2 $bold;
+		display: block;
+		margin-top: 20px;
+		border: none;
 
+		&:hover {
+			color: $black;
+			background-color: transparent;
+		}
 	}
 
 	&.site_category-dorchester-art-housing-collaborative {
@@ -76,7 +78,7 @@ article.exhibition {
 			content: url('img/graphic_da-hc.svg');
 		}
 
-		.entry-title a, .button.btn  {
+		.entry-title a, .read-more  {
 			color: $color__da-hc;
 		}
 		
@@ -88,7 +90,7 @@ article.exhibition {
 			content: url('img/graphic_bch.svg');
 		}
 
-		.entry-title a, .button.btn {
+		.entry-title a, .read-more {
 			color: $color__bch;
 		}
 
@@ -100,7 +102,7 @@ article.exhibition {
 			content: url('img/graphic_siab.svg');
 		}
 
-		.entry-title a, .button.btn {
+		.entry-title a, .read-more {
 			color: $color__siab;
 		}
 		
