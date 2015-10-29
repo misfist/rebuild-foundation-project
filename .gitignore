@@ -68,6 +68,7 @@ Thumbs.db
 *.o
 *.so
 *.sass-cache
+*.scssc
 
 # ignore packaged files
 *.7z
