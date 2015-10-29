@@ -189,12 +189,12 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 'media_upload' => 1,
             ),
         ),
-        'location' =>  array(
-             array(
-                 array(
-                    'param' => 'page',
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_type',
                     'operator' => '==',
-                    'value' => '271',
+                    'value' => 'front_page',
                 ),
             ),
         ),
