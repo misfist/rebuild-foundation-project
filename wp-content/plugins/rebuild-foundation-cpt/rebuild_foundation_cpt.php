@@ -45,7 +45,6 @@ include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-rewrite-rules.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-custom-fields.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-custom-columns.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-pre-get-query.php' );
-include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-filters.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-helpers.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/ical.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/google-calendar.php' );

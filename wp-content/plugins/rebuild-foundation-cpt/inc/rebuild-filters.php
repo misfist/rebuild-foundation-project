@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Rebuild Foundation Custom Columns
+ * Rebuild Foundation Custom Columns - NOT USED
  *
  * @author    Pea
  * @license   GPL-2.0+
