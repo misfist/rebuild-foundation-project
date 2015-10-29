@@ -63,8 +63,9 @@
             <?php elseif( has_post_thumbnail( ) ) :?>
 
                 <figure class="entry-thumbnail">
-                    <?php the_post_thumbnail(''); ?>
-                    <?php if ( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+                    <?php the_post_thumbnail( ); ?>
+                    <?php $caption = rebuild_get_the_feature_caption(); ?>
+                    <?php if ( $caption ) : ?>
                         <figcaption class="caption"><?php echo $caption; ?></figcaption>
                     <?php endif; ?>
                 </figure>

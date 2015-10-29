@@ -7,10 +7,101 @@
  * @package RebuildFoundation
  */
 
-if ( ! function_exists( 'rebuild_foundation_posted_on' ) ) :
 /**
+ * Content Footer
+ * Prints HTML with meta information for the categories, tags and comments.
+ */
+
+if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
+    function rebuild_foundation_entry_footer() {
+
+        // Archives
+        if( is_post_type_archive( array( 'post', 'event', 'exhibition' ) ) ) {
+
+            if( function_exists( 'rebuild_get_site_category_content' ) ) {
+
+                rebuild_get_site_category_content();
+
+            }
+
+            if( function_exists( 'rebuild_get_site_link' ) ) {
+
+                rebuild_get_site_link();
+
+            }
+
+        }
+
+        // category, post_tag
+        if( is_post_type_archive( 'post' ) ) {
+
+            $tags_list = get_the_tag_list( '', esc_html__( ', ', 'rebuild-foundation' ) );
+            if ( $tags_list ) {
+                printf( '<span class="meta tags-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+            }
+
+        }
+
+        // Event
+        if ( is_singular( 'event' ) ) { 
+
+            $eventcat_list =  get_the_term_list( get_the_ID(), 'event_category', '', ', ' );
+
+            $eventtag_list =  get_the_term_list( get_the_ID(), 'event_tag', '', ', ' );
+
+            if ( $eventcat_list ) {
+                printf( '<div class="meta eventcat-links">' . esc_html__( 'Posted in %1$s', 'rebuild-foundation' ) . '</div>', $eventcat_list ); // WPCS: XSS OK.
+            }
+
+            if ( $eventtag_list ) {
+                printf( '<div class="meta eventtag-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</div>', $eventtag_list ); // WPCS: XSS OK.
+            }
+
+        }
+
+        // Posts, Events, Exhibitions
+        if( is_singular( array( 'post', 'event', 'exhibition' ) ) ) {
+
+             if( function_exists( 'rebuild_get_site_category_content' ) ) {
+
+                rebuild_get_site_category_content();
+
+            }
+
+            if( function_exists( 'rebuild_get_site_link' ) ) {
+
+                rebuild_get_site_link();
+
+            }
+
+        }
+
+        
+        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+            echo '<span class="comments-link">';
+            comments_popup_link( esc_html__( 'Leave a comment', 'rebuild-foundation' ), esc_html__( '1 Comment', 'rebuild-foundation' ), esc_html__( '% Comments', 'rebuild-foundation' ) );
+            echo '</span>';
+        }
+
+        edit_post_link(
+            sprintf(
+                /* translators: %s: Name of current post */
+                esc_html__( 'Edit %s', 'rebuild-foundation' ),
+                the_title( '<span class="screen-reader-text">"', '"</span>', false )
+            ),
+            '<span class="edit-link">',
+            '</span>'
+        );
+    }
+endif;
+
+/**
+ * Byline
  * Prints HTML with meta information for the current post-date/time and author.
  */
+
+if ( ! function_exists( 'rebuild_foundation_posted_on' ) ) :
+
     function rebuild_foundation_posted_on() {
         $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
         if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
@@ -162,103 +253,6 @@ if(! function_exists( 'rebuild_get_site_category_content' ) ) {
 // }
 
 
-if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
-    /**
-     * Prints HTML with meta information for the categories, tags and comments.
-     */
-    function rebuild_foundation_entry_footer() {
-
-        // Archives
-        if( is_post_type_archive( array( 'post', 'event', 'exhibition' ) ) ) {
-
-            if( function_exists( 'rebuild_get_site_category_content' ) ) {
-
-                rebuild_get_site_category_content();
-
-            }
-
-            if( function_exists( 'rebuild_get_site_link' ) ) {
-
-                rebuild_get_site_link();
-
-            }
-
-        }
-
-        // category, post_tag
-        if( is_post_type_archive( 'post' ) ) {
-
-            $tags_list = get_the_tag_list( '', esc_html__( ', ', 'rebuild-foundation' ) );
-            if ( $tags_list ) {
-                printf( '<span class="meta tags-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
-            }
-
-        }
-
-        // Event
-        if ( is_singular( 'event' ) ) { 
-
-            $eventcat_list =  get_the_term_list( get_the_ID(), 'event_category', '', ', ' );
-
-            $eventtag_list =  get_the_term_list( get_the_ID(), 'event_tag', '', ', ' );
-
-            if ( $eventcat_list ) {
-                printf( '<div class="meta eventcat-links">' . esc_html__( 'Posted in %1$s', 'rebuild-foundation' ) . '</div>', $eventcat_list ); // WPCS: XSS OK.
-            }
-
-            if ( $eventtag_list ) {
-                printf( '<div class="meta eventtag-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</div>', $eventtag_list ); // WPCS: XSS OK.
-            }
-
-        }
-
-        // Posts, Events, Exhibitions
-        if( is_singular( array( 'post', 'event', 'exhibition' ) ) ) {
-
-             if( function_exists( 'rebuild_get_site_category_content' ) ) {
-
-                rebuild_get_site_category_content();
-
-            }
-
-            if( function_exists( 'rebuild_get_site_link' ) ) {
-
-                rebuild_get_site_link();
-
-            }
-
-        }
-
-        // site_category for 'post_type' = 'site'
-        if( is_singular( 'site' ) ) {
-
-             if( function_exists( 'rebuild_get_site_category_content' ) ) {
-
-                rebuild_get_site_category_content();
-
-            }
-
-        }
-        
-        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-            echo '<span class="comments-link">';
-            comments_popup_link( esc_html__( 'Leave a comment', 'rebuild-foundation' ), esc_html__( '1 Comment', 'rebuild-foundation' ), esc_html__( '% Comments', 'rebuild-foundation' ) );
-            echo '</span>';
-        }
-
-        edit_post_link(
-            sprintf(
-                /* translators: %s: Name of current post */
-                esc_html__( 'Edit %s', 'rebuild-foundation' ),
-                the_title( '<span class="screen-reader-text">"', '"</span>', false )
-            ),
-            '<span class="edit-link">',
-            '</span>'
-        );
-    }
-endif;
-
-
 /**
  * Display Formatted Address
  * Renders formatted address
@@ -283,6 +277,32 @@ if(! function_exists( 'rebuild_formatted_address' ) ) {
 
     }
 
+}
+
+/**
+ * Image Caption
+ * If caption exists, returns caption
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_the_feature_caption' ) ) {
+
+    function rebuild_get_the_feature_caption() {
+
+      global $post;
+
+      $thumbnail_id    = get_post_thumbnail_id( $post->ID );
+      $thumbnail_image = get_posts( array( 
+        'p' => $thumbnail_id, 
+        'post_type' => 'attachment' ) );
+
+      if ( $thumbnail_image && isset( $thumbnail_image[0] ) ) {
+        return $thumbnail_image[0]->post_excerpt;
+      }
+
+      return;
+
+    }
 }
 
 
