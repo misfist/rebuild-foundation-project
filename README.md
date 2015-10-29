@@ -16,4 +16,4 @@ Content Management
 ---------------
 * Adding/managing Rebuild Sites
 * Associating Content
-* Adding Events and Exhibitions
+* Adding Sites, Events, Locations and Exhibitions
