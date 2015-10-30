@@ -705,19 +705,21 @@ a {
   left: 180px;
   top: 200px;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  z-index: 1; }
   .page-sub-menu ul {
     list-style-type: none;
     margin: 0;
-    padding: 0; }
+    padding: 0 40px 0 0; }
     .page-sub-menu ul li {
       font-size: 16px;
       display: block;
-      padding: 0 0 15px 0; }
+      padding: 0 0 15px 0;
+      line-height: 1.1em; }
       .page-sub-menu ul li a {
         text-decoration: none;
         font: 13px "Akkurat-Bold"; }
-      .page-sub-menu ul li.active a {
+      .page-sub-menu ul li.widget_subpages_current_page a {
         font: 16px "Akkurat-Bold";
         color: black; }
 
