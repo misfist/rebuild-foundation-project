@@ -15,7 +15,7 @@
 
 		.site-title {
 			display: block;
-			width: 275px;
+			width: 100px;
 			height: 80px;
 			background-image: url('img/logo-foundation_a.svg');
 			background-repeat: no-repeat;
@@ -44,7 +44,7 @@
 			@include transition-duration(0.25s);
 
 			.site-title {
-
+				width: 275px;
 				background-image: url('img/logo-foundation_b.svg');
 				opacity: 0.3;
 

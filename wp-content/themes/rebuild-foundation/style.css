@@ -146,7 +146,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     overflow-y: scroll; }
     #masthead .site-branding .site-title {
       display: block;
-      width: 275px;
+      width: 100px;
       height: 80px;
       background-image: url("img/logo-foundation_a.svg");
       background-repeat: no-repeat;
@@ -176,6 +176,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
       -o-transition-duration: 0.25s;
       transition-duration: 0.25s; }
       #masthead .site-branding:hover .site-title {
+        width: 275px;
         background-image: url("img/logo-foundation_b.svg");
         opacity: 0.3; }
         #masthead .site-branding:hover .site-title a {
