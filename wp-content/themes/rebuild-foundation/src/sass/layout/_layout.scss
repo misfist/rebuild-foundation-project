@@ -65,12 +65,19 @@
 	width: $size__site-main-flush;
 	left: $align__site-2;
 
-	.site-info {
+	.widget_search {
+		margin-bottom: 15px;
 	}
 
 	.widget_text {
-		@include inblock(50%);
-		margin-right: -5px;
 		font: $font_size-1 $mono;
+		padding-top: 10px;
+		@include inblock(250px);
+		padding-top: 0;
+	}
+
+	div:nth-child(2) {
+		@include inblock(calc(100% - 250px));
+		padding-top: 15px;
 	}
 }

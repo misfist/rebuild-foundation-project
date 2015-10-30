@@ -189,12 +189,20 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   margin-top: 100px;
   width: calc(100% - 180px - 160px);
   left: 180px; }
+  .site-footer .widget_search {
+    margin-bottom: 15px; }
   .site-footer .widget_text {
+    font: 13px "Akkuratmono-Regular";
+    padding-top: 10px;
     display: inline-block;
     vertical-align: top;
-    width: 50%;
-    margin-right: -5px;
-    font: 13px "Akkuratmono-Regular"; }
+    width: 250px;
+    padding-top: 0; }
+  .site-footer div:nth-child(2) {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 250px);
+    padding-top: 15px; }
 
 .post-type-archive-site .site-filter {
   display: none; }
@@ -691,6 +699,28 @@ a {
     font-family: "Akkurat-Bold";
     color: black; }
 
+.page-sub-menu {
+  width: 160px;
+  position: fixed;
+  left: 180px;
+  top: 200px;
+  margin: 0;
+  padding: 0; }
+  .page-sub-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .page-sub-menu ul li {
+      font-size: 16px;
+      display: block;
+      padding: 0 0 15px 0; }
+      .page-sub-menu ul li a {
+        text-decoration: none;
+        font: 13px "Akkurat-Bold"; }
+      .page-sub-menu ul li.active a {
+        font: 16px "Akkurat-Bold";
+        color: black; }
+
 .menu-sites {
   display: none; }
   .menu-sites #menu-sites-list {
@@ -810,7 +840,7 @@ a {
     display: inline-block;
     padding: 0 20px 0 0; }
 
-ul.event-year-filter, ul.exhibition-filter, .page-sub-menu ul {
+ul.event-year-filter, ul.exhibition-filter {
   width: 160px;
   position: fixed;
   left: 180px;
@@ -818,16 +848,16 @@ ul.event-year-filter, ul.exhibition-filter, .page-sub-menu ul {
   margin: 0;
   padding: 0;
   list-style-type: none; }
-  ul.event-year-filter li, ul.exhibition-filter li, .page-sub-menu ul li {
+  ul.event-year-filter li, ul.exhibition-filter li {
     font-size: 16px;
     display: block;
     padding: 0 0 15px 0; }
-    ul.event-year-filter li a, ul.exhibition-filter li a, .page-sub-menu ul li a {
+    ul.event-year-filter li a, ul.exhibition-filter li a {
       text-decoration: none;
       font: 13px "Akkurat-Bold";
       letter-spacing: 0.05em;
       text-transform: uppercase; }
-    ul.event-year-filter li.active a, ul.exhibition-filter li.active a, .page-sub-menu ul li.active a {
+    ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
       font: 20px "Akkurat-Bold";
       color: black; }
 

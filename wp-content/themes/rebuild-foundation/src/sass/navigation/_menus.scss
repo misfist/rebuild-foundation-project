@@ -42,8 +42,36 @@
 
 
 .page-sub-menu {
+	width: $size__subnavigation;
+	position: fixed;
+	left: $size__navigation;
+	top: 200px;
+	margin: 0;
+	padding: 0;
+
 	ul {
-		@extend .exhibition-filter;
+
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			font-size: $font_size-2;
+			display: block;
+			padding:  0 0 15px 0;
+			
+			a {
+				text-decoration: none;
+				font: $font_size-1 $bold;
+			}
+
+			&.active {
+				a {
+					font: $font_size-2 $bold;
+					color: $black;
+				}
+			}
+		}
 	}
 }
 
