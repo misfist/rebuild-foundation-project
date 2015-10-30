@@ -49,7 +49,7 @@
 	margin: 0;
 	padding: 0;
 	z-index: 1;
-	
+
 	ul {
 
 		list-style-type: none;
@@ -69,7 +69,7 @@
 
 			&.widget_subpages_current_page {
 				a {
-					font: $font_size-2 $bold;
+					font: $font_size-1 $bold;
 					color: $black;
 				}
 			}
@@ -86,41 +86,62 @@
 		padding: 10px 0 50px $size__left-margin;
 
 		li {
-			padding: 0;
+			display: block;
+			width: 275px;
+			height: 80px;
+			background-image: url('img/logo.svg');
+			background-repeat: no-repeat;
+			background-position: 0;
+			background-size: contain;
+			padding-left: 115px;
+			padding-top: 0;
+			margin: 0 0 40px 0;
+			line-height: 80px;
+			opacity: 0.3;
+			@include transition-duration(.25s);
+			
 			a {
-				display: block;
-				min-width: 300px;
-				height: 80px;
-				background-repeat: no-repeat;
-				text-indent: 100%;
-			    white-space: nowrap;
-			    overflow: hidden;
-			    margin-bottom: 35px;
-			    opacity: 0.5;
-			    @include transition-duration(0.25s);
-
-			    &:hover {
-			    	opacity: 1;
-			    	@include transition-duration(0.25s);
-			    }
+				font: $font_size-3 $regular;
+				color: $white;
+				text-transform: uppercase;
+				letter-spacing: .025em;
+				display: inline-block;
+				vertical-align: middle;
 			}
+
+
+			&:hover {
+				opacity: 1;
+				@include transition-duration(.25s);
+			}
+
+			&.current-menu-item {
+				opacity: 1;
+			}
+
+			&.stony-island-arts-bank {
+				background-image: url('img/logo-siab_b.svg');
+			}
+
+			&.archive-house  {
+				background-image: url('img/logo-ah_b.svg');
+			}
+
+			&.listening-house  {
+				background-image: url('img/logo-lh_b.svg');
+			}
+
+			&.dorchester-art-housing-collaborative {
+				background-image: url('img/logo-da-hc_b.svg');
+			}
+
+			&.black-cinema-house {
+				background-image: url('img/logo-bch_b.svg');
+			}
+
 		}
 
-		li#menu-item-509 a, li#menu-item-494 a  {
-			background-image: url('img/logo_siab.svg');
-		}
 
-		li#menu-item-510 a, li#menu-item-495 a  {
-			background-image: url('img/logo_archive_house.svg');
-		}
-
-		li#menu-item-511 a, li#menu-item-496 a  {
-			background-image: url('img/logo_da_hc.svg');
-		}
-
-		li#menu-item-512 a, li#menu-item-497 a  {
-			background-image: url('img/logo_bch.svg');
-		}
 	}
 }
 

@@ -144,22 +144,28 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     left: 0;
     top: 0;
     overflow-y: scroll; }
-    #masthead .site-branding .site-title a {
+    #masthead .site-branding .site-title {
       display: block;
-      width: 90px;
+      width: 275px;
       height: 80px;
-      background-image: url("img/logo.svg");
+      background-image: url("img/logo-foundation_a.svg");
       background-repeat: no-repeat;
       background-position: 0;
       background-size: contain;
       margin: 40px 0 0 45px;
-      text-indent: 100%;
-      white-space: nowrap;
-      overflow: hidden; }
+      padding-left: 115px;
+      padding-top: 0;
+      line-height: 80px; }
+      #masthead .site-branding .site-title a {
+        font: 20px "Akkurat-Regular";
+        text-transform: uppercase;
+        display: none;
+        letter-spacing: .025em;
+        vertical-align: middle; }
     #masthead .site-branding:hover {
       bottom: 0;
       width: 400px;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.85);
       -webkit-box-shadow: 0 0 12px #000000;
       -moz-box-shadow: 0 0 12px #000000;
       box-shadow: 0 0 12px #000000;
@@ -169,12 +175,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
       -ms-transition-duration: 0.25s;
       -o-transition-duration: 0.25s;
       transition-duration: 0.25s; }
-      #masthead .site-branding:hover .site-title a {
-        width: 300px;
-        height: 80px;
-        background-image: url("img/logo-white.svg");
-        opacity: 0.5; }
-        #masthead .site-branding:hover .site-title a:hover {
+      #masthead .site-branding:hover .site-title {
+        background-image: url("img/logo-foundation_b.svg");
+        opacity: 0.3; }
+        #masthead .site-branding:hover .site-title a {
+          display: inline-block;
+          color: white; }
+        #masthead .site-branding:hover .site-title:hover {
           opacity: 1; }
 
 #primary {
@@ -720,7 +727,7 @@ a {
         text-decoration: none;
         font: 13px "Akkurat-Bold"; }
       .page-sub-menu ul li.widget_subpages_current_page a {
-        font: 16px "Akkurat-Bold";
+        font: 13px "Akkurat-Bold";
         color: black; }
 
 .menu-sites {
@@ -729,37 +736,49 @@ a {
     list-style-type: none;
     padding: 10px 0 50px 45px; }
     .menu-sites #menu-sites-list li {
-      padding: 0; }
+      display: block;
+      width: 275px;
+      height: 80px;
+      background-image: url("img/logo.svg");
+      background-repeat: no-repeat;
+      background-position: 0;
+      background-size: contain;
+      padding-left: 115px;
+      padding-top: 0;
+      margin: 0 0 40px 0;
+      line-height: 80px;
+      opacity: 0.3;
+      -webkit-transition-duration: 0.25s;
+      -moz-transition-duration: 0.25s;
+      -ms-transition-duration: 0.25s;
+      -o-transition-duration: 0.25s;
+      transition-duration: 0.25s; }
       .menu-sites #menu-sites-list li a {
-        display: block;
-        min-width: 300px;
-        height: 80px;
-        background-repeat: no-repeat;
-        text-indent: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        margin-bottom: 35px;
-        opacity: 0.5;
+        font: 20px "Akkurat-Regular";
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: .025em;
+        display: inline-block;
+        vertical-align: middle; }
+      .menu-sites #menu-sites-list li:hover {
+        opacity: 1;
         -webkit-transition-duration: 0.25s;
         -moz-transition-duration: 0.25s;
         -ms-transition-duration: 0.25s;
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
-        .menu-sites #menu-sites-list li a:hover {
-          opacity: 1;
-          -webkit-transition-duration: 0.25s;
-          -moz-transition-duration: 0.25s;
-          -ms-transition-duration: 0.25s;
-          -o-transition-duration: 0.25s;
-          transition-duration: 0.25s; }
-    .menu-sites #menu-sites-list li#menu-item-509 a, .menu-sites #menu-sites-list li#menu-item-494 a {
-      background-image: url("img/logo_siab.svg"); }
-    .menu-sites #menu-sites-list li#menu-item-510 a, .menu-sites #menu-sites-list li#menu-item-495 a {
-      background-image: url("img/logo_archive_house.svg"); }
-    .menu-sites #menu-sites-list li#menu-item-511 a, .menu-sites #menu-sites-list li#menu-item-496 a {
-      background-image: url("img/logo_da_hc.svg"); }
-    .menu-sites #menu-sites-list li#menu-item-512 a, .menu-sites #menu-sites-list li#menu-item-497 a {
-      background-image: url("img/logo_bch.svg"); }
+      .menu-sites #menu-sites-list li.current-menu-item {
+        opacity: 1; }
+      .menu-sites #menu-sites-list li.stony-island-arts-bank {
+        background-image: url("img/logo-siab_b.svg"); }
+      .menu-sites #menu-sites-list li.archive-house {
+        background-image: url("img/logo-ah_b.svg"); }
+      .menu-sites #menu-sites-list li.listening-house {
+        background-image: url("img/logo-lh_b.svg"); }
+      .menu-sites #menu-sites-list li.dorchester-art-housing-collaborative {
+        background-image: url("img/logo-da-hc_b.svg"); }
+      .menu-sites #menu-sites-list li.black-cinema-house {
+        background-image: url("img/logo-bch_b.svg"); }
 
 .site-branding:hover .menu-sites {
   display: block; }
@@ -1347,6 +1366,14 @@ article.exhibition {
     content: url("img/graphic_siab.svg"); }
   article.exhibition.site_category-stony-island-arts-bank .entry-title a, article.exhibition.site_category-stony-island-arts-bank .read-more {
     color: #6490e8; }
+  article.exhibition.site_category-listening-house .site-info::before {
+    content: url("img/graphic_lh.svg"); }
+  article.exhibition.site_category-listening-house .entry-title a, article.exhibition.site_category-listening-house .read-more {
+    color: #c2907f; }
+  article.exhibition.site_category-archive-house .site-info::before {
+    content: url("img/graphic_ah.svg"); }
+  article.exhibition.site_category-archive-house .entry-title a, article.exhibition.site_category-archive-house .read-more {
+    color: #c2907f; }
 
 .entry-meta.location a {
   font: 20px "Akkurat-Bold";
@@ -1389,7 +1416,8 @@ article.exhibition {
     .single-exhibition article #details h4 {
       margin: 25px 0 5px; }
     .single-exhibition article #details .address, .single-exhibition article #details .hours {
-      font: 14px "Akkuratmono-Regular"; }
+      font: 14px "Akkuratmono-Regular";
+      white-space: nowrap; }
   .single-exhibition article .entry-footer {
     border-top: 1px dotted rgba(0, 0, 0, 0.5);
     width: 60%;
@@ -1407,6 +1435,14 @@ article.exhibition {
     content: url("img/graphic_siab.svg"); }
   .single-exhibition article.site_category-stony-island-arts-bank .entry-title {
     color: #6490e8; }
+  .single-exhibition article.site_category-listening-house #details::before {
+    content: url("img/graphic_lh.svg"); }
+  .single-exhibition article.site_category-listening-house .entry-title {
+    color: #c2907f; }
+  .single-exhibition article.site_category-archive-house #details::before {
+    content: url("img/graphic_ah.svg"); }
+  .single-exhibition article.site_category-archive-house .entry-title {
+    color: #c2907f; }
 .single-exhibition .post-navigation {
   width: calc(100% - 160px); }
 
@@ -1462,25 +1498,25 @@ article.exhibition {
     z-index: 1;
     padding-left: 50px; }
     .post-type-archive-site article .entry-content a.read-more {
-      color: rgba(255, 255, 255, 0.5); }
+      font: 13px "Akkuratmono-Regular";
+      border: 1px solid white;
+      padding: 10px 0;
+      margin: 40px 0 0 0;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      display: block;
+      width: 160px;
+      text-align: center; }
       .post-type-archive-site article .entry-content a.read-more:hover {
-        color: white; }
+        background: rgba(255, 255, 255, 0.25); }
   .post-type-archive-site article .entry-footer {
     display: none;
     position: relative;
     z-index: 1;
     padding-left: 50px;
     padding-top: 20px; }
-    .post-type-archive-site article .entry-footer .button {
-      font: 13px "Akkuratmono-Regular";
-      border: 1px solid white;
-      padding: 10px 20px;
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.25em; }
-      .post-type-archive-site article .entry-footer .button:hover {
-        background: rgba(255, 255, 255, 0.25); }
     .post-type-archive-site article .entry-footer .post-edit-link {
       display: block;
       color: white; }
@@ -1542,6 +1578,31 @@ article.exhibition {
       cursor: pointer;
       z-index: 5; }
 
+.stony-island-arts-bank #masthead .site-branding .site-title {
+  background-image: url("img/logo-siab_a.svg"); }
+.stony-island-arts-bank #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.dorchester-art-housing-collaborative #masthead .site-branding .site-title {
+  background-image: url("img/logo-da-hc_a.svg"); }
+.dorchester-art-housing-collaborative #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.archive-house #masthead .site-branding .site-title {
+  background-image: url("img/logo-ah_a.svg"); }
+.archive-house #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.listening-house #masthead .site-branding .site-title {
+  background-image: url("img/logo-lh_a.svg"); }
+.listening-house #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.black-cinema-house #masthead .site-branding .site-title {
+  background-image: url("img/logo-bch_a.svg"); }
+.black-cinema-house #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
 .single-site article.site {
   margin-top: 50px; }
   .single-site article.site header.site-header {
@@ -1573,7 +1634,7 @@ article.exhibition {
       display: block;
       width: 40%;
       max-width: 330px;
-      margin: 200px 0 0 -160px;
+      margin: 200px 0 0 -200px;
       z-index: 0; }
   .single-site article.site .main-content {
     padding: 0 0 0 30%;
@@ -1595,6 +1656,10 @@ article.exhibition {
     content: url("img/graphic_bch.svg"); }
   .single-site article.site.site_category-stony-island-arts-bank .site-image::after {
     content: url("img/graphic_siab.svg"); }
+  .single-site article.site.site_category-listening-house .site-image::after {
+    content: url("img/graphic_lh.svg"); }
+  .single-site article.site.site_category-archive-house .site-image::after {
+    content: url("img/graphic_ah.svg"); }
   .single-site article.site .exhibitions {
     margin-left: 160px;
     margin-top: 100px; }
@@ -1726,7 +1791,7 @@ article.exhibition {
   padding-right: 5%;
   margin-top: 40px; }
   .page-template-default article .entry-header, .single-post article .entry-header {
-    margin: 0 0 0 -160px; }
+    margin: 0 0 0 0; }
     .page-template-default article .entry-header .entry-title, .single-post article .entry-header .entry-title {
       margin: 0; }
       .page-template-default article .entry-header .entry-title a, .single-post article .entry-header .entry-title a {

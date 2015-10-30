@@ -53,9 +53,20 @@
 			padding-left: 50px;
 
 			a.read-more {
-				color: $white-transparent;
+				font: $font-size-1 $mono;
+				border: 1px solid $white;
+				padding: 10px 0;
+				margin: 40px 0 0 0;
+				color: $white;
+				text-decoration: none;
+				text-transform: uppercase;
+				letter-spacing: 0.25em;
+				display: block;
+				width: 160px;
+				text-align: center;
+
 				&:hover {
-					color: $white;
+					background: $white-transparent-light;
 				}
 			}
 		}
@@ -66,20 +77,6 @@
 			z-index: 1;
 			padding-left: 50px;
 			padding-top: 20px;
-
-			.button {
-				font: $font-size-1 $mono;
-				border: 1px solid $white;
-				padding: 10px 20px;
-				color: $white;
-				text-decoration: none;
-				text-transform: uppercase;
-				letter-spacing: 0.25em;
-
-				&:hover {
-					background: $white-transparent-light;
-				}
-			}
 
 			.post-edit-link {
 				display: block;

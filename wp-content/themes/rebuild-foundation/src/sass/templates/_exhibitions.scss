@@ -63,6 +63,7 @@
 
 			.address, .hours {
 				font: 14px $mono;
+				white-space: nowrap;
 			}
 		}
 
@@ -105,6 +106,30 @@
 
 			.entry-title {
 				color: $color__siab;
+			}
+			
+		}
+
+		&.site_category-listening-house {
+	
+			#details::before {
+				content: url('img/graphic_lh.svg');
+			}
+
+			.entry-title {
+				color: $color__dorchester;
+			}
+			
+		}
+
+		&.site_category-archive-house {
+			
+			#details::before {
+				content: url('img/graphic_ah.svg');
+			}
+
+			.entry-title {
+				color: $color__dorchester;
 			}
 			
 		}

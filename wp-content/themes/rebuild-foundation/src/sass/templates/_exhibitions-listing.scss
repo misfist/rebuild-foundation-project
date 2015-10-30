@@ -108,4 +108,28 @@ article.exhibition {
 		
 	}
 
+	&.site_category-listening-house {
+		
+		.site-info::before {
+			content: url('img/graphic_lh.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__dorchester;
+		}
+		
+	}
+
+	&.site_category-archive-house {
+		
+		.site-info::before {
+			content: url('img/graphic_ah.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__dorchester;
+		}
+		
+	}
+
 }
