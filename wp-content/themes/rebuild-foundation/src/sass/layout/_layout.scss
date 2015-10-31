@@ -4,7 +4,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding: 25px 0 0 $size__left-margin;
+	padding: $size__left-margin 0 0 $size__left-margin;
 	z-index: 5;
 
 	.site-branding {
@@ -21,7 +21,7 @@
 			background-repeat: no-repeat;
 			background-position: 0;
 			background-size: contain;
-			margin: 40px 0 0 $size__left-margin;
+			margin: $size__left-margin 0 0 $size__left-margin;
 			padding-left: 115px;
 			padding-top: 0;
 			line-height: 80px;

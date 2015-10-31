@@ -132,12 +132,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Layout
 --------------------------------------------------------------*/
 #masthead {
-  width: 180px;
+  width: 220px;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  padding: 25px 0 0 45px;
+  padding: 60px 0 0 60px;
   z-index: 5; }
   #masthead .site-branding {
     position: fixed;
@@ -152,7 +152,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
       background-repeat: no-repeat;
       background-position: 0;
       background-size: contain;
-      margin: 40px 0 0 45px;
+      margin: 60px 0 0 60px;
       padding-left: 115px;
       padding-top: 0;
       line-height: 80px; }
@@ -186,17 +186,17 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
           opacity: 1; }
 
 #primary {
-  width: calc(100% - 180px);
+  width: calc(100% - 220px);
   position: relative;
   top: 0;
-  left: 180px; }
+  left: 220px; }
 
 .site-footer {
   position: relative;
   padding: 15px 0;
   margin-top: 100px;
-  width: calc(100% - 180px - 160px);
-  left: 180px; }
+  width: calc(100% - 220px - 160px);
+  left: 220px; }
   .site-footer .widget_search {
     margin-bottom: 15px; }
   .site-footer .widget_text {
@@ -691,6 +691,14 @@ a {
       -ms-transition-duration: 0.25s;
       -o-transition-duration: 0.25s;
       transition-duration: 0.25s; }
+    .main-navigation li.menu-break {
+      margin-top: 20px; }
+      .main-navigation li.menu-break::before {
+        content: "\00a0";
+        border-top: 2px solid rgba(0, 0, 0, 0.5);
+        width: 20px;
+        position: absolute;
+        margin-top: -15px; }
   .main-navigation a {
     display: block;
     text-decoration: none;
@@ -710,7 +718,7 @@ a {
 .page-sub-menu {
   width: 160px;
   position: fixed;
-  left: 180px;
+  left: 220px;
   top: 200px;
   margin: 0;
   padding: 0;
@@ -735,7 +743,7 @@ a {
   display: none; }
   .menu-sites #menu-sites-list {
     list-style-type: none;
-    padding: 10px 0 50px 45px; }
+    padding: 10px 0 50px 60px; }
     .menu-sites #menu-sites-list li {
       display: block;
       width: 275px;
@@ -821,8 +829,8 @@ a {
 --------------------------------------------------------------*/
 .filters, .blog ul.site-filter {
   position: fixed;
-  width: calc(100% - 180px - 160px);
-  left: calc(180px + 160px);
+  width: calc(100% - 220px - 160px);
+  left: calc(220px + 160px);
   background-color: #E9E6DF;
   top: 0;
   padding: 12px 0 0 0;
@@ -865,7 +873,7 @@ a {
 ul.event-year-filter, ul.exhibition-filter {
   width: 160px;
   position: fixed;
-  left: 180px;
+  left: 220px;
   top: 200px;
   margin: 0;
   padding: 0;
@@ -1855,5 +1863,123 @@ article.exhibition {
     margin-top: 0; }
     .blog .entry-content p {
       margin-top: 0; }
+
+.home #primary #main {
+  width: 100%;
+  padding-left: 0; }
+.home img.alignright, .home figure.alignright {
+  max-width: 50%;
+  float: right;
+  margin: 0 0 75px 0;
+  padding: 0 0 2em 4em; }
+.home img.alignleft, .home figure.alignleft {
+  max-width: 50%;
+  float: left;
+  margin: 0 0 75px 0;
+  padding: 0 4em 2em 0; }
+.home section {
+  margin-bottom: 50px;
+  clear: both; }
+  .home section p, .home section li {
+    font: 16px "Akkurat-Bold";
+    letter-spacing: 0.05em; }
+  .home section h2 {
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    padding-top: 63.54%;
+    background-position: center center;
+    display: block;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 75px; }
+.home section#mission h2 {
+  background-image: url("img/home-mission.jpg"); }
+.home section#mission h3 {
+  font: 32px "Akkurat-Regular";
+  text-transform: uppercase;
+  margin: 0 8.83%;
+  padding-right: 4%;
+  width: 41.667%; }
+.home section#mission p {
+  margin: 30px 8.83%;
+  padding-right: 4%;
+  width: 41.667%; }
+  .home section#mission p::before {
+    content: "\00a0";
+    border-top: 2px solid black;
+    width: 20px;
+    position: absolute;
+    margin-top: -15px; }
+.home section#how h2 {
+  background-image: url("img/home-how.jpg"); }
+.home section#how ol {
+  margin-left: 4%; }
+  .home section#how ol::before {
+    content: "\00a0";
+    border-top: 2px solid black;
+    width: 20px;
+    position: absolute;
+    margin-top: -15px; }
+  .home section#how ol li {
+    width: 20%;
+    float: left;
+    margin: 0 6% 20px 0;
+    padding-left: 0; }
+    .home section#how ol li:first-child {
+      margin-right: 24%; }
+.home section#theory h2 {
+  background-image: url("img/home-theory.jpg"); }
+.home section#theory p {
+  font: 32px "Akkurat-Regular";
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  margin-top: 0; }
+  .home section#theory p::before {
+    content: "\00a0";
+    border-top: 2px solid black;
+    width: 20px;
+    position: absolute;
+    margin-top: -15px; }
+.home section#theory ol {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  margin-left: 10%; }
+.home section#values h2 {
+  background-image: url("img/home-values.jpg"); }
+.home section#values ol::before {
+  content: "\00a0";
+  border-top: 2px solid black;
+  width: 20px;
+  position: absolute;
+  margin-top: -15px; }
+.home section#values ol li {
+  float: left;
+  margin-right: 50px;
+  padding-left: 0; }
+.home section#values img {
+  width: 50%;
+  margin: 0 auto; }
+.home section#partners h2 {
+  background-image: url("img/home-partners.jpg"); }
+.home section#partners ol {
+  margin-left: 8.83%;
+  width: 41.667%;
+  margin-top: 30px; }
+  .home section#partners ol::before {
+    content: "\00a0";
+    border-top: 2px solid black;
+    width: 20px;
+    position: absolute;
+    margin-top: -15px; }
+  .home section#partners ol li {
+    padding-left: 0; }
+.home .site-footer {
+  margin-top: 0; }
 
 /*# sourceMappingURL=style.css.map */

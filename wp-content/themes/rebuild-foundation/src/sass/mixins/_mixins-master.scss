@@ -29,6 +29,14 @@
 	width: $width;
 }
 
+@mixin rule($thickness, $color) {
+	content: "\00a0";
+	border-top: $thickness solid $color;
+	width: 20px;
+	position: absolute;
+	margin-top: -15px;
+}
+
 @mixin background-size($size) {
   -webkit-background-size: $size;
 	 -moz-background-size: $size;

@@ -22,6 +22,14 @@
 		&.focus > a {
 			@include transition-duration(0.25s);
 		}
+
+		&.menu-break {
+			margin-top: 20px;
+
+			&::before {
+				@include rule(2px, $black-transparent);
+			}
+		}
 	}
 
 	a {
