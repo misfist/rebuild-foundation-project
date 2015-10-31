@@ -220,8 +220,6 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
               $months = $dates[$year];
 
-              //var_dump( $months );
-
               echo '<ul class="event-month-filter">';
 
               foreach( $months as $month ) {
