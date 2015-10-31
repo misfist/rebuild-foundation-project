@@ -26,7 +26,7 @@ get_header(); ?>
 
         </header><!-- .entry-header -->
 
-        <?php ( 'event' == get_post_type() ) ?rebuild_event_year_filter() : ''; ?>
+        <?php ( 'event' == get_post_type() ) ? rebuild_event_year_filter() : ''; ?>
 
         <main id="main" class="site-main" role="main">
 

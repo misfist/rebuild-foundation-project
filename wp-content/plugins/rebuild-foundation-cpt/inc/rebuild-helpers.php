@@ -343,7 +343,7 @@ if(! function_exists( 'events_for_months' ) ) {
             'type'    => 'NUMERIC',
         ),
         array(
-            'key'     => 'end_date',
+            'key'     => 'start_date',
             'compare' => '<=',
             'value'   => "{$year}{$month}31", // Doesn't matter if there aren't 31 days in this month, will still work,
             'type'    => 'NUMERIC',

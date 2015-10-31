@@ -212,11 +212,15 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
             $year = ( $event_year ) ? absint( $event_year ) : date( 'Y' );
 
+            // echo $year;
+
             if( array_key_exists( $year, $dates ) ) {
 
               asort( $dates[$year] );
 
               $months = $dates[$year];
+
+              //var_dump( $months );
 
               echo '<ul class="event-month-filter">';
 
@@ -226,8 +230,7 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
                   echo '<li data-target-month="' . $month . '" data-event_month="' . $month . '">';
                   echo '<a href="' . esc_url( add_query_arg( 'event_month', $month ) ) . '">';
-                  echo strftime( '%b', mktime( 0, 0, 0, $month ) );
-                  echo '</a>';
+                  echo date( 'M', mktime( 0, 0, 0, $month, 10 ) );
                   echo '</li>';
 
                 }
