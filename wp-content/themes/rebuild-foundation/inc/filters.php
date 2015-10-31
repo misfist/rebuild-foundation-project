@@ -229,6 +229,7 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
                   echo '<li data-target-month="' . $month . '" data-event_month="' . $month . '">';
                   echo '<a href="' . esc_url( add_query_arg( 'event_month', $month ) ) . '">';
                   echo date( 'M', mktime( 0, 0, 0, $month, 10 ) );
+                  echo '</a>';
                   echo '</li>';
 
                 }
