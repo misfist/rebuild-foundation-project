@@ -1,0 +1,39 @@
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+	}
+
+	.single-post & {
+		border-top: 1px solid $black-transparent;
+		padding-top: 15px;
+	}
+
+	& .nav-previous {
+		float: left;
+		width: 45%;
+		min-height: 30px;
+		background-image: url('img/arrow-left.svg');
+		background-repeat: no-repeat;
+		background-size: 30px 30px;
+		margin-left: -40px;
+		padding-left: 40px;
+		padding-top: 3px;
+	}
+
+	& .nav-next {
+		float: right;
+		width: 45%;
+		min-height: 30px;
+		background-image: url('img/arrow-right.svg');
+		background-repeat: no-repeat;
+		background-size: 30px 30px;
+		background-position: right top;
+		margin-right: -40px;
+		padding-right: 40px;
+		padding-top: 3px;
+		text-align: right;
+	}
+}

@@ -51,9 +51,9 @@
 
 .page-sub-menu {
 	width: $size__subnavigation;
-	position: fixed;
-	left: $size__navigation;
-	top: 200px;
+	position: absolute;
+	left: 0;
+	top: 125px;
 	margin: 0;
 	padding: 0;
 	z-index: 1;
@@ -171,27 +171,6 @@
 	}
 	.main-navigation ul {
 		display: block;
-	}
-}
-
-.comment-navigation,
-.posts-navigation,
-.post-navigation {
-
-	.site-main & {
-		margin: 0 0 1.5em;
-		overflow: hidden;
-	}
-
-	& .nav-previous {
-		float: left;
-		width: 50%;
-	}
-
-	& .nav-next {
-		float: right;
-		text-align: right;
-		width: 50%;
 	}
 }
 

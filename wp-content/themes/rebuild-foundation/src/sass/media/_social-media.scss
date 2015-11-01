@@ -43,12 +43,15 @@ ul.social-links {
 }
 
 .sharedaddy {
+	margin-top: 50px;
+
 	.sd-title {
 		text-transform: uppercase;
-		margin: 11px 30px;
+		margin: 3px 30px 0 0;
 		font-size: $font_size-2;
 		letter-spacing: 0.05em;
 		opacity: 0.3;
+		float: left;
 	}
 
 	ul {

@@ -717,9 +717,9 @@ a {
 
 .page-sub-menu {
   width: 160px;
-  position: fixed;
-  left: 220px;
-  top: 200px;
+  position: absolute;
+  left: 0;
+  top: 125px;
   margin: 0;
   padding: 0;
   z-index: 1; }
@@ -803,23 +803,6 @@ a {
 
   .main-navigation ul {
     display: block; } }
-.site-main .comment-navigation, .site-main
-.posts-navigation, .site-main
-.post-navigation {
-  margin: 0 0 1.5em;
-  overflow: hidden; }
-.comment-navigation .nav-previous,
-.posts-navigation .nav-previous,
-.post-navigation .nav-previous {
-  float: left;
-  width: 50%; }
-.comment-navigation .nav-next,
-.posts-navigation .nav-next,
-.post-navigation .nav-next {
-  float: right;
-  text-align: right;
-  width: 50%; }
-
 #secondary .main-navigation li {
   float: initial;
   position: initial; }
@@ -890,6 +873,45 @@ ul.event-year-filter, ul.exhibition-filter {
     ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
       font: 20px "Akkurat-Bold";
       color: black; }
+
+/*--------------------------------------------------------------
+## Post Navigation
+--------------------------------------------------------------*/
+.site-main .comment-navigation, .site-main
+.posts-navigation, .site-main
+.post-navigation {
+  margin: 0 0 1.5em; }
+.single-post .comment-navigation, .single-post
+.posts-navigation, .single-post
+.post-navigation {
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding-top: 15px; }
+.comment-navigation .nav-previous,
+.posts-navigation .nav-previous,
+.post-navigation .nav-previous {
+  float: left;
+  width: 45%;
+  min-height: 30px;
+  background-image: url("img/arrow-left.svg");
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  margin-left: -40px;
+  padding-left: 40px;
+  padding-top: 3px; }
+.comment-navigation .nav-next,
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
+  float: right;
+  width: 45%;
+  min-height: 30px;
+  background-image: url("img/arrow-right.svg");
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-position: right top;
+  margin-right: -40px;
+  padding-right: 40px;
+  padding-top: 3px;
+  text-align: right; }
 
 /*--------------------------------------------------------------
 # Accessibility
@@ -1166,39 +1188,42 @@ ul.social-links {
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
 
-.sharedaddy .sd-title {
-  text-transform: uppercase;
-  margin: 11px 30px;
-  font-size: 16px;
-  letter-spacing: 0.05em;
-  opacity: 0.3; }
-.sharedaddy ul {
-  list-style-type: none;
-  padding: 0; }
-  .sharedaddy ul li {
-    float: left;
-    margin-right: 30px;
-    padding-left: 0;
-    padding-top: 0; }
-    .sharedaddy ul li a {
-      display: block;
-      min-width: 25px;
-      height: 25px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      border: none;
-      opacity: 0.3;
-      padding-top: 3px;
-      font-family: "Akkurat-Bold"; }
-      .sharedaddy ul li a:hover {
-        background-color: transparent;
-        opacity: 1; }
-      .sharedaddy ul li a span {
-        padding-left: 40px; }
-    .sharedaddy ul li.share-facebook a {
-      background-image: url("img/sm-icon_facebook.svg"); }
-    .sharedaddy ul li.share-twitter a {
-      background-image: url("img/sm-icon_twitter.svg"); }
+.sharedaddy {
+  margin-top: 50px; }
+  .sharedaddy .sd-title {
+    text-transform: uppercase;
+    margin: 3px 30px 0 0;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    opacity: 0.3;
+    float: left; }
+  .sharedaddy ul {
+    list-style-type: none;
+    padding: 0; }
+    .sharedaddy ul li {
+      float: left;
+      margin-right: 30px;
+      padding-left: 0;
+      padding-top: 0; }
+      .sharedaddy ul li a {
+        display: block;
+        min-width: 25px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        border: none;
+        opacity: 0.3;
+        padding-top: 3px;
+        font-family: "Akkurat-Bold"; }
+        .sharedaddy ul li a:hover {
+          background-color: transparent;
+          opacity: 1; }
+        .sharedaddy ul li a span {
+          padding-left: 40px; }
+      .sharedaddy ul li.share-facebook a {
+        background-image: url("img/sm-icon_facebook.svg"); }
+      .sharedaddy ul li.share-twitter a {
+        background-image: url("img/sm-icon_twitter.svg"); }
 
 /*--------------------------------------------------------------
 # Templates
@@ -1309,12 +1334,14 @@ ul.social-links {
   width: 100%;
   left: 0; }
 .single-event .sharedaddy {
+  margin-top: -5px;
   float: right; }
   .single-event .sharedaddy .sd-title {
     display: none; }
   .single-event .sharedaddy ul li {
     float: none;
-    margin-right: 0; }
+    margin-right: 0;
+    margin-bottom: 15px; }
     .single-event .sharedaddy ul li a span {
       display: none; }
 .single-event article {
