@@ -1178,6 +1178,8 @@ ul.social-links {
     border: none; }
     .sharedaddy ul li a span {
       display: none; }
+    .sharedaddy ul li a:hover {
+      background-color: transparent; }
   .sharedaddy ul li.share-facebook a {
     background-image: url("img/sm-icon_facebook.svg"); }
   .sharedaddy ul li.share-twitter a {

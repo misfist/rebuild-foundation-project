@@ -59,6 +59,11 @@ ul.social-links {
 				span {
 					display: none;
 				}
+
+				&:hover {
+					background-color: transparent;
+					
+				}
 			}
 
 			&.share-facebook a {
