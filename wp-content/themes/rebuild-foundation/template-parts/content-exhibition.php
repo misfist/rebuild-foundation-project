@@ -43,6 +43,7 @@
 
         <div class="description">
             <?php the_content(); ?>
+            <?php get_template_part( 'template-parts/social-media' ); ?>
         </div>
 
         <div class="content-side">

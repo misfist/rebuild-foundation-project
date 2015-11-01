@@ -1293,6 +1293,8 @@ ul.social-links {
   position: relative;
   width: 100%;
   left: 0; }
+.single-event .sharedaddy {
+  float: right; }
 .single-event article {
   width: calc(100% - 160px);
   margin-top: 30px;
