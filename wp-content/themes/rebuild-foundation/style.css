@@ -416,10 +416,11 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Akkurat-Bold";
-  margin: 1.5em 0 0.5em; }
+  margin: 1.5em 0 0.5em;
+  line-height: 1.2em; }
 
 h1 {
-  font-size: 40px; }
+  font-size: 50px; }
 
 h2 {
   font-size: 32px; }
@@ -480,6 +481,22 @@ mark, ins {
 
 big {
   font-size: 125%; }
+
+.edit-link a.post-edit-link, .entry-content .edit-link a.post-edit-link {
+  background-color: black;
+  display: inline-block;
+  min-width: 25px;
+  min-height: 25px;
+  background-image: url("img/edit.svg");
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: 3px center;
+  padding: 5px 10px 5px 35px;
+  margin-top: 15px;
+  color: #E9E6DF; }
+  .edit-link a.post-edit-link:hover, .entry-content .edit-link a.post-edit-link:hover {
+    color: #E9E6DF;
+    background-color: rgba(0, 0, 0, 0.5); }
 
 /*--------------------------------------------------------------
 # Elements
@@ -630,7 +647,8 @@ input.search-field {
   background-image: url("img/search.svg");
   background-repeat: no-repeat;
   background-position: top right;
-  background-size: 25px 25px; }
+  background-size: 25px 25px;
+  padding-left: 0; }
 
 /*--------------------------------------------------------------
 # Navigation
@@ -650,19 +668,21 @@ a {
   a:hover, a:active {
     outline: 0; }
 
-.entry-content a {
+.entry-content a, .entry-header a {
   color: black;
   border-bottom: 3px solid white; }
-  .entry-content a:hover {
+  .entry-content a:hover, .entry-header a:hover {
     text-decoration: none;
     background-color: white; }
-.entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a {
+.entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a, .entry-header h1 a, .entry-header h2 a, .entry-header h3 a, .entry-header h4 a, .entry-header h5 a, .entry-header h6 a {
+  border-bottom: none;
+  color: black; }
+  .entry-content h1 a:hover, .entry-content h2 a:hover, .entry-content h3 a:hover, .entry-content h4 a:hover, .entry-content h5 a:hover, .entry-content h6 a:hover, .entry-header h1 a:hover, .entry-header h2 a:hover, .entry-header h3 a:hover, .entry-header h4 a:hover, .entry-header h5 a:hover, .entry-header h6 a:hover {
+    background-color: transparent;
+    color: white; }
+.entry-content .entry-meta a, .entry-header .entry-meta a {
   border-bottom: none; }
-  .entry-content h1 a:hover, .entry-content h2 a:hover, .entry-content h3 a:hover, .entry-content h4 a:hover, .entry-content h5 a:hover, .entry-content h6 a:hover {
-    background-color: transparent; }
-.entry-content .entry-meta a {
-  border-bottom: none; }
-  .entry-content .entry-meta a:hover {
+  .entry-content .entry-meta a:hover, .entry-header .entry-meta a:hover {
     text-decoration: none;
     background-color: transparent; }
 
@@ -881,8 +901,10 @@ ul.event-year-filter, ul.exhibition-filter {
 .posts-navigation, .site-main
 .post-navigation {
   margin: 0 0 1.5em; }
-.single-post .comment-navigation, .single-post
+.single-post .comment-navigation, .search-results .comment-navigation, .single-post
+.posts-navigation, .search-results
 .posts-navigation, .single-post
+.post-navigation, .search-results
 .post-navigation {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   padding-top: 15px; }
@@ -1383,7 +1405,7 @@ ul.social-links {
     width: 65%;
     margin-left: -4px;
     padding: 0 5% 0 5%; }
-  .single-event article .event-date, .single-event article .event-time, .single-event article .entry-meta {
+  .single-event article .event-date, .single-event article .event-time, .single-event article .meta {
     font: 14px "Akkuratmono-Regular";
     padding-bottom: 5px; }
   .single-event article .entry-meta {
@@ -1600,9 +1622,8 @@ article.exhibition {
     z-index: 1;
     padding-left: 50px;
     padding-top: 20px; }
-    .post-type-archive-site article .entry-footer .post-edit-link {
-      display: block;
-      color: white; }
+    .post-type-archive-site article .entry-footer a.post-edit-link:hover {
+      background-color: rgba(255, 255, 255, 0.5); }
   .post-type-archive-site article .close-site {
     display: none;
     position: absolute;
@@ -1863,30 +1884,37 @@ article.exhibition {
 .single-site .post-navigation {
   display: none; }
 
+.page-template-default #primary > header, .single-post #primary > header {
+  position: relative;
+  width: calc(100% - 220px);
+  padding-left: 160px; }
+  .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
+    margin: 0;
+    padding: 50px 0 0 0; }
 .page-template-default #main, .single-post #main {
   position: relative;
-  width: calc(100% - 160px);
+  width: calc(100% - 220px);
   padding-left: 160px; }
 .page-template-default article, .single-post article {
-  display: inline-block;
-  vertical-align: top;
-  width: 70%;
   padding-right: 5%;
-  margin-top: 40px; }
+  margin-top: 0; }
   .page-template-default article .entry-header, .single-post article .entry-header {
-    margin: 0 0 0 0; }
+    margin: 0 0 0 0;
+    padding: 50px 0 0 0; }
     .page-template-default article .entry-header .entry-title, .single-post article .entry-header .entry-title {
       margin: 0; }
       .page-template-default article .entry-header .entry-title a, .single-post article .entry-header .entry-title a {
         color: black;
         font-size: 40px; }
+    .page-template-default article .entry-header .entry-meta, .single-post article .entry-header .entry-meta {
+      font: 16px "Akkuratmono-Regular";
+      padding: 1em 0 0.5em 0; }
   .page-template-default article .entry-content, .single-post article .entry-content {
     margin-top: 0; }
 .page-template-default .featured-image, .single-post .featured-image {
-  display: inline-block;
-  vertical-align: top;
   width: 30%;
-  margin-left: -5px; }
+  float: right;
+  margin: 0 60px 3em 3em; }
   .page-template-default .featured-image figure, .single-post .featured-image figure {
     margin: 0; }
 
@@ -1937,6 +1965,49 @@ article.exhibition {
     margin-top: 0; }
     .blog .entry-content p {
       margin-top: 0; }
+
+.search-results .page-header {
+  position: fixed;
+  background-color: #E9E6DF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  width: calc(100% - 220px - 160px);
+  left: calc(220px + 160px);
+  z-index: 2;
+  top: 0;
+  padding: 65px 0 10px 0; }
+  .search-results .page-header h1 {
+    font: 20px "Akkuratmono-Regular"; }
+.search-results article {
+  width: calc(100% - 220px - 160px);
+  position: relative;
+  left: 160px;
+  border-top: 1px solid white;
+  padding-bottom: 25px; }
+  .search-results article:first-of-type {
+    margin-top: 150px;
+    border: none; }
+  .search-results article .entry-title {
+    line-height: 1.2em; }
+  .search-results article .comments-link {
+    display: block; }
+  .search-results article a.read-more {
+    font: 16px "Akkurat-Bold";
+    color: black; }
+    .search-results article a.read-more:hover {
+      text-decoration: underline; }
+.search-results .posts-navigation {
+  width: calc(100% - 220px - 160px);
+  position: relative;
+  left: 160px; }
+
+.error404 #main {
+  width: calc(100% - 220px - 160px);
+  position: relative;
+  left: 160px; }
+.error404 .site-footer {
+  width: calc(100% - 220px - 160px - 160px);
+  position: relative;
+  left: calc(220px + 160px); }
 
 .home #primary #main {
   width: 100%;

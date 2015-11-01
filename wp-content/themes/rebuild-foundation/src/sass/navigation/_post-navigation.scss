@@ -6,7 +6,7 @@
 		margin: 0 0 1.5em;
 	}
 
-	.single-post & {
+	.single-post &, .search-results & {
 		border-top: 1px solid $black-transparent;
 		padding-top: 15px;
 	}

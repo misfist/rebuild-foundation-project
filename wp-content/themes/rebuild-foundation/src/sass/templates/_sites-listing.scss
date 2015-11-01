@@ -78,9 +78,8 @@
 			padding-left: 50px;
 			padding-top: 20px;
 
-			.post-edit-link {
-				display: block;
-				color: $white;
+			a.post-edit-link:hover {
+				background-color: $white-transparent;
 			}
 		}
 

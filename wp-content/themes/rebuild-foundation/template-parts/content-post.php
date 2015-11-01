@@ -9,7 +9,9 @@
 
 ?>
 
+
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'post' ); ?>>
+
 	<header class="entry-header">
 
 		<div class="entry-meta site-name">			
@@ -49,17 +51,3 @@
 		<?php rebuild_foundation_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
-
-<div class="featured-image">
-	<?php if( has_post_thumbnail( ) ) :?>
-
-        <figure class="entry-thumbnail">
-            <?php the_post_thumbnail( ); ?>
-            <?php $caption = rebuild_get_the_feature_caption(); ?>
-            <?php if ( $caption ) : ?>
-                <figcaption class="caption"><?php echo $caption; ?></figcaption>
-            <?php endif; ?>
-        </figure>
-
-	<?php endif; ?>
-</div>

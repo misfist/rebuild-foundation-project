@@ -50,3 +50,23 @@ mark, ins {
 big {
 	font-size: 125%;
 }
+
+.edit-link a.post-edit-link, .entry-content .edit-link a.post-edit-link {
+	background-color: $black; 
+	display: inline-block;
+	min-width: 25px;
+	min-height: 25px;
+	background-image: url('img/edit.svg');
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+	background-position: 3px center;
+	padding: 5px 10px 5px 35px;
+	margin-top: 15px;
+	color: $warm-gray;
+
+	&:hover {
+		color: $warm-gray;
+		background-color: $black-transparent;
+	}
+
+}

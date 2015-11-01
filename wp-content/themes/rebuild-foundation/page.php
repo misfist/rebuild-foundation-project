@@ -15,6 +15,20 @@
 get_header(); ?>
 
     <div id="primary" class="content-area">
+        <div class="featured-image">
+            <?php if( has_post_thumbnail( ) ) :?>
+
+                <figure class="entry-thumbnail">
+                    <?php the_post_thumbnail(); ?>
+                    <?php $caption = rebuild_get_the_feature_caption(); ?>
+                    <?php if ( $caption ) : ?>
+                        <figcaption class="caption"><?php echo $caption; ?></figcaption>
+                    <?php endif; ?>
+                </figure>
+
+            <?php endif; ?>
+        </div>
+        
         <header class="entry-header">
 
             <h1 class="entry-title page-title"><?php the_title( ); ?></h1>

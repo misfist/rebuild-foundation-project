@@ -1,19 +1,32 @@
 
 .page-template-default, .single-post {
 
+	
+
+	#primary > header {
+		position: relative;
+		width: $size__site-main-full;	
+		padding-left: $align__site-3;
+
+		.entry-title {
+			margin: 0;
+			padding: 50px 0 0 0;
+		}
+	}
+
 	#main {
 		position: relative;
-		width: $size__site-main-nested;	
+		width: $size__site-main-full;	
 		padding-left: $align__site-3;
 	}
 
 	article {
-		@include inblock(70%);
 		padding-right: 5%;
-		margin-top: 40px;
+		margin-top: 0;
 
 		.entry-header {
 			margin: 0 0 0 0;
+			padding: 50px 0 0 0;
 
 			.entry-title {
 				margin: 0;
@@ -23,6 +36,11 @@
 					font-size: $font_size-6;
 				}
 			}
+
+			.entry-meta {
+				font: $font_size-2 $mono;
+				padding: 1em 0 0.5em 0;
+			}
 		}
 
 		.entry-content {
@@ -31,8 +49,9 @@
 	}
 
 	.featured-image {
-		@include inblock(30%);
-		margin-left: -5px;
+		width: 30%;
+		float: right;
+		margin: 0 $size__left-margin 3em 3em;
 
 		figure {
 			margin: 0;
@@ -100,8 +119,73 @@
 		}
 
 	}
+}
 
+.search-results {
+	.page-header {
+		position: fixed;
+		background-color: $warm-gray;
+		border-bottom: 1px solid $black-transparent;
+		width: $size__site-main-flush;	
+		left: $align__site-4;
+		z-index: 2;
+		top: 0;
+		padding: 65px 0 10px 0;
 
+		h1 {
+			font: $font_size-3 $mono;
+		}
+	}
+
+	article {
+		width: $size__site-main-flush;	
+		position: relative;
+		left: $align__site-3;
+		border-top: 1px solid $white;
+		padding-bottom: 25px;
+
+		&:first-of-type {
+			margin-top: 150px;
+			border: none;
+		}
+
+		.entry-title {
+			line-height: 1.2em;
+		}
+
+		.comments-link {
+			display: block;
+		}
+
+		a.read-more {
+			font: $font_size-2 $bold;
+			color: $black;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.posts-navigation {
+		width: $size__site-main-flush;	
+		position: relative;
+		left: $align__site-3;
+	}
+}
+
+.error404 {
+	#main {
+		width: $size__site-main-flush;	
+		position: relative;
+		left: $align__site-3;
+	}
+
+	.site-footer {
+		width: $size__site-main-center;	
+		position: relative;
+		left: $align__site-4;
+	}
 
 
 }
