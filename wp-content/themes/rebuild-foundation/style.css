@@ -1171,10 +1171,11 @@ ul.social-links {
   padding: 0; }
   .sharedaddy ul li {
     float: left;
-    margin-right: 40px; }
+    margin-right: 40px;
+    padding-left: 0; }
     .sharedaddy ul li a {
       display: block;
-      width: 25px;
+      min-width: 25px;
       height: 25px;
       background-size: contain;
       background-repeat: no-repeat;
