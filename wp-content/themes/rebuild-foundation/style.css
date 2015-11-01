@@ -1166,13 +1166,20 @@ ul.social-links {
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
 
+.sharedaddy .sd-title {
+  text-transform: uppercase;
+  margin: 11px 30px;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  opacity: 0.3; }
 .sharedaddy ul {
   list-style-type: none;
   padding: 0; }
   .sharedaddy ul li {
     float: left;
-    margin-right: 40px;
-    padding-left: 0; }
+    margin-right: 30px;
+    padding-left: 0;
+    padding-top: 0; }
     .sharedaddy ul li a {
       display: block;
       min-width: 25px;
@@ -1180,7 +1187,7 @@ ul.social-links {
       background-size: contain;
       background-repeat: no-repeat;
       border: none;
-      opacity: 0.5;
+      opacity: 0.3;
       padding-top: 3px;
       font-family: "Akkurat-Bold"; }
       .sharedaddy ul li a:hover {
@@ -1303,6 +1310,8 @@ ul.social-links {
   left: 0; }
 .single-event .sharedaddy {
   float: right; }
+  .single-event .sharedaddy .sd-title {
+    display: none; }
   .single-event .sharedaddy ul li {
     float: none;
     margin-right: 0; }
