@@ -271,10 +271,6 @@ a:hover {
 abbr[title] {
   border-bottom: 1px dotted; }
 
-b,
-strong {
-  font-weight: bold; }
-
 dfn {
   font-style: italic; }
 
@@ -441,7 +437,14 @@ p {
   margin-bottom: 1.5em; }
 
 dfn, cite, em, i {
-  font-style: italic; }
+  font-family: "Akkurat-Italic"; }
+  dfn b, dfn strong, cite b, cite strong, em b, em strong, i b, i strong {
+    font-family: "Akkurat-Bolditalic"; }
+
+b, strong {
+  font-family: "Akkurat-Bold"; }
+  b dfn, b cite, b em, b i, strong dfn, strong cite, strong em, strong i {
+    font-family: "Akkurat-Bolditalic"; }
 
 blockquote {
   padding: 0 1.5em;
@@ -668,23 +671,30 @@ a {
   a:hover, a:active {
     outline: 0; }
 
-.entry-content a, .entry-header a {
+.entry-content a {
   color: black;
   border-bottom: 3px solid white; }
-  .entry-content a:hover, .entry-header a:hover {
+  .entry-content a:hover {
     text-decoration: none;
     background-color: white; }
-.entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a, .entry-header h1 a, .entry-header h2 a, .entry-header h3 a, .entry-header h4 a, .entry-header h5 a, .entry-header h6 a {
+.entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a {
   border-bottom: none;
   color: black; }
-  .entry-content h1 a:hover, .entry-content h2 a:hover, .entry-content h3 a:hover, .entry-content h4 a:hover, .entry-content h5 a:hover, .entry-content h6 a:hover, .entry-header h1 a:hover, .entry-header h2 a:hover, .entry-header h3 a:hover, .entry-header h4 a:hover, .entry-header h5 a:hover, .entry-header h6 a:hover {
+  .entry-content h1 a:hover, .entry-content h2 a:hover, .entry-content h3 a:hover, .entry-content h4 a:hover, .entry-content h5 a:hover, .entry-content h6 a:hover {
     background-color: transparent;
     color: white; }
-.entry-content .entry-meta a, .entry-header .entry-meta a {
+.entry-content .entry-meta a {
   border-bottom: none; }
-  .entry-content .entry-meta a:hover, .entry-header .entry-meta a:hover {
+  .entry-content .entry-meta a:hover {
     text-decoration: none;
     background-color: transparent; }
+
+.entry-header h1 a, .entry-header h2 a, .entry-header h3 a, .entry-header h4 a, .entry-header h5 a, .entry-header h6 a {
+  border-bottom: none;
+  color: black; }
+  .entry-header h1 a:hover, .entry-header h2 a:hover, .entry-header h3 a:hover, .entry-header h4 a:hover, .entry-header h5 a:hover, .entry-header h6 a:hover {
+    background-color: transparent;
+    color: white; }
 
 /*--------------------------------------------------------------
 ## Menus

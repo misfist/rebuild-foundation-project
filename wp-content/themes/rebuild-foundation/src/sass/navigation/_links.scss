@@ -19,7 +19,7 @@ a {
 	}
 }
 
-.entry-content, .entry-header {
+.entry-content {
 
 	a {
 		color: $black;
@@ -51,6 +51,21 @@ a {
 				text-decoration: none;
 				background-color: transparent;
 			}
+		}
+	}
+}
+
+.entry-header {
+
+	h1,h2,h3,h4,h5,h6 {
+		a { 
+			border-bottom: none;
+			color: $black;
+
+			&:hover {
+				background-color: transparent;
+				color: $white;
+			}		
 		}
 	}
 }

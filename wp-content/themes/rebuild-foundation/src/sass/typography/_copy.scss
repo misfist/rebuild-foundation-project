@@ -3,7 +3,19 @@ p {
 }
 
 dfn, cite, em, i {
-	font-style: italic;
+	font-family: $regular-i;
+
+	b, strong {
+		font-family: $bold-i;
+	}
+}
+
+b, strong {
+	font-family: $bold;
+
+	dfn, cite, em, i {
+		font-family: $bold-i;
+	}
 }
 
 blockquote {
