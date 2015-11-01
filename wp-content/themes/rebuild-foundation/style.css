@@ -1169,21 +1169,28 @@ ul.social-links {
 .sharedaddy ul {
   list-style-type: none;
   padding: 0; }
-  .sharedaddy ul li a {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: none; }
-    .sharedaddy ul li a span {
-      display: none; }
-    .sharedaddy ul li a:hover {
-      background-color: transparent; }
-  .sharedaddy ul li.share-facebook a {
-    background-image: url("img/sm-icon_facebook.svg"); }
-  .sharedaddy ul li.share-twitter a {
-    background-image: url("img/sm-icon_twitter.svg"); }
+  .sharedaddy ul li {
+    float: left;
+    margin-right: 40px; }
+    .sharedaddy ul li a {
+      display: block;
+      width: 25px;
+      height: 25px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      border: none;
+      opacity: 0.5;
+      padding-top: 3px;
+      font-family: "Akkurat-Bold"; }
+      .sharedaddy ul li a:hover {
+        background-color: transparent;
+        opacity: 1; }
+      .sharedaddy ul li a span {
+        padding-left: 40px; }
+    .sharedaddy ul li.share-facebook a {
+      background-image: url("img/sm-icon_facebook.svg"); }
+    .sharedaddy ul li.share-twitter a {
+      background-image: url("img/sm-icon_twitter.svg"); }
 
 /*--------------------------------------------------------------
 # Templates
@@ -1295,6 +1302,11 @@ ul.social-links {
   left: 0; }
 .single-event .sharedaddy {
   float: right; }
+  .single-event .sharedaddy ul li {
+    float: none;
+    margin-right: 0; }
+    .single-event .sharedaddy ul li a span {
+      display: none; }
 .single-event article {
   width: calc(100% - 160px);
   margin-top: 30px;

@@ -48,21 +48,28 @@ ul.social-links {
 		padding: 0;
 
 		li {
+			float: left;
+			margin-right: 40px;
+
 			a {
 				display: block;
-				width: 30px;
-				height: 30px;
+				width: 25px;
+				height: 25px;
 				background-size: contain;
 				background-repeat: no-repeat;
 				border: none;
+				opacity: 0.5;
+				padding-top: 3px;
+				font-family: $bold;
 
-				span {
-					display: none;
-				}
 
 				&:hover {
 					background-color: transparent;
-					
+					opacity: 1;
+				}
+
+				span {
+					padding-left: 40px;
 				}
 			}
 
