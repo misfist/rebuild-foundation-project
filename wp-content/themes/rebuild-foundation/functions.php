@@ -111,6 +111,19 @@ function rebuild_foundation_widgets_init() {
 add_action( 'widgets_init', 'rebuild_foundation_widgets_init' );
 
 /**
+ * Allow custom placement of share icons
+ */
+function jptweak_remove_share() {
+    remove_filter( 'the_content', 'sharing_display',19 );
+    remove_filter( 'the_excerpt', 'sharing_display',19 );
+    if ( class_exists( 'Jetpack_Likes' ) ) {
+        remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
+    }
+}
+ 
+add_action( 'loop_start', 'jptweak_remove_share' );
+
+/**
  * Enqueue scripts and styles.
  */
 function rebuild_foundation_scripts() {
@@ -171,6 +184,4 @@ require_once get_template_directory() . '/inc/filters.php';
  * Load filters.
  */
 require_once get_template_directory() . '/inc/event-functions.php';
-
-
 

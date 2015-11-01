@@ -48,6 +48,15 @@
         <?php endif; ?>
 
         <div id="details">
+            <?php if ( function_exists( 'sharing_display' ) ) {
+                sharing_display( '', true );
+            }
+             
+            if ( class_exists( 'Jetpack_Likes' ) ) {
+                $custom_likes = new Jetpack_Likes;
+                echo $custom_likes->post_likes( '' );
+            } ?>
+
             <div class="event-date"><time datetime="<?php echo ( $date ) ? date( 'Y-m-d', strtotime( $date ) ) : ''; ?>"><?php echo ( $date ) ? date( 'l, F d, Y', strtotime( $date ) ) : ''; ?></time></div>
 
             <div class="event-time">

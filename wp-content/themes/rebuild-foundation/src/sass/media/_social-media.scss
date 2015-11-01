@@ -49,6 +49,7 @@ ul.social-links {
 
 		li {
 			a {
+				display: block;
 				width: 30px;
 				height: 30px;
 				background-size: contain;
@@ -60,7 +61,7 @@ ul.social-links {
 				}
 			}
 
-			&.sharefacebook a {
+			&.share-facebook a {
 				background-image: url('img/sm-icon_facebook.svg');
 			}
 

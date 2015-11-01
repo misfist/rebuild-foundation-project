@@ -1170,6 +1170,7 @@ ul.social-links {
   list-style-type: none;
   padding: 0; }
   .sharedaddy ul li a {
+    display: block;
     width: 30px;
     height: 30px;
     background-size: contain;
@@ -1177,7 +1178,7 @@ ul.social-links {
     border: none; }
     .sharedaddy ul li a span {
       display: none; }
-  .sharedaddy ul li.sharefacebook a {
+  .sharedaddy ul li.share-facebook a {
     background-image: url("img/sm-icon_facebook.svg"); }
   .sharedaddy ul li.share-twitter a {
     background-image: url("img/sm-icon_twitter.svg"); }
