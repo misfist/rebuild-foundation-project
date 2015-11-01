@@ -14,13 +14,10 @@
 		}
 	}
 
-	#main {
+	article {
 		position: relative;
 		width: $size__site-main-full;	
 		padding-left: $align__site-3;
-	}
-
-	article {
 		padding-right: 5%;
 		margin-top: 0;
 
@@ -56,6 +53,16 @@
 		figure {
 			margin: 0;
 		}
+	}
+
+	.post-navigation, #comments {
+		position: relative;
+		width: $size__site-main-flush;	
+		left: $align__site-3;
+	}
+
+	#comments {
+		margin-top: 75px;
 	}
 
 }

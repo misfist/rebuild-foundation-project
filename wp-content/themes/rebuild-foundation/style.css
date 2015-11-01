@@ -1891,11 +1891,10 @@ article.exhibition {
   .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
     margin: 0;
     padding: 50px 0 0 0; }
-.page-template-default #main, .single-post #main {
+.page-template-default article, .single-post article {
   position: relative;
   width: calc(100% - 220px);
-  padding-left: 160px; }
-.page-template-default article, .single-post article {
+  padding-left: 160px;
   padding-right: 5%;
   margin-top: 0; }
   .page-template-default article .entry-header, .single-post article .entry-header {
@@ -1917,6 +1916,12 @@ article.exhibition {
   margin: 0 60px 3em 3em; }
   .page-template-default .featured-image figure, .single-post .featured-image figure {
     margin: 0; }
+.page-template-default .post-navigation, .page-template-default #comments, .single-post .post-navigation, .single-post #comments {
+  position: relative;
+  width: calc(100% - 220px - 160px);
+  left: 160px; }
+.page-template-default #comments, .single-post #comments {
+  margin-top: 75px; }
 
 .blog {
   width: calc(100% - 160px);
