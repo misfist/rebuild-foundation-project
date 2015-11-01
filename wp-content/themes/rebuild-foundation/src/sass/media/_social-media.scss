@@ -41,3 +41,32 @@ ul.social-links {
 		}
 	}
 }
+
+.sharedaddy {
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			a {
+				width: 30px;
+				height: 30px;
+				background-size: contain;
+				background-repeat: no-repeat;
+				border: none;
+
+				span {
+					display: none;
+				}
+			}
+
+			&.sharefacebook a {
+				background-image: url('img/sm-icon_facebook.svg');
+			}
+
+			&.share-twitter a {
+				background-image: url('img/sm-icon_twitter.svg');
+			}
+		}
+	}
+}

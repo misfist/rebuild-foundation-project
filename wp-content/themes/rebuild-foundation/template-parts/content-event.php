@@ -9,7 +9,19 @@
 
 ?>
 
+<div class="filters">
+    <?php rebuild_site_category_filter(); ?>
+
+    <?php rebuild_taxonomy_filter(); ?>
+
+    <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
+</div>
+
+<?php ( 'event' == get_post_type() ) ? rebuild_event_year_filter() : ''; ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'event' ); ?>>
+
+
     <header class="entry-header">
         
         <h2 class="site-name"><?php rebuild_get_site_category_content(); ?></h2>
