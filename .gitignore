@@ -54,6 +54,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 *.komodoproject
+codekit-config.json
 
 # ignore log files and databases
 *.log
