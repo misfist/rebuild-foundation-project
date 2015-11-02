@@ -65,6 +65,16 @@
 		margin-top: 75px;
 	}
 
+	.meta a {
+		label {
+			text-transform: lowercase;
+		}
+	}
+
+	.entry-footer {
+
+	}
+
 }
 
 .blog {
@@ -92,6 +102,12 @@
 			@include inblock(40%);
 			padding-right: 5%;
 			font: $font_size-1 $bold;
+
+			.meta a {
+				label {
+					text-transform: lowercase;
+				}
+			}
 
 		}
 

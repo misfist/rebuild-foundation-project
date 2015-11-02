@@ -159,11 +159,11 @@ if(! function_exists( 'rebuild_get_site_category_content' ) ) {
                 
                 // https://developer.wordpress.org/reference/functions/add_query_arg/
 
-                $link = '<div class="meta site-cat-link"><label>All</label> <a href="' . esc_url( add_query_arg( 'site_category', $site_slug, site_url( $post_type_obj->has_archive ) ) ) . '">' . $site_name . ' ' . $post_type_name . '</a></div>';
+                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, site_url( $post_type_obj->has_archive ) ) ) . '"><label>all</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
 
             } else {
 
-                $link = '<div class="meta site-cat-link"><label>All</label> <a href="' . esc_url( add_query_arg( 'site_category', $site_slug, $pretty_link ) ) . '">' . $site_name . ' ' . $post_type_name . '</a></div>';
+                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, $pretty_link ) ) . '"><label>all</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
 
             }
 

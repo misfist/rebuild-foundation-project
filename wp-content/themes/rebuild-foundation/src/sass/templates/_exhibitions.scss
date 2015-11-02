@@ -72,6 +72,15 @@
 			width: 60%;
 			padding-top: 15px;
 			margin-top: 30px;
+
+			.meta a {
+				
+				label {
+					text-transform: lowercase;
+				}
+				
+			}
+
 		}
 
 		&.site_category-dorchester-art-housing-collaborative {

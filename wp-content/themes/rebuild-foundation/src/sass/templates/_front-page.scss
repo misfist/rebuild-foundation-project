@@ -66,7 +66,7 @@
 			width: 41.667%;
 
 			&::before {
-				@include rule(2px, $black);
+				@include rule(3px, $black);
 			}
 		}
 
@@ -83,7 +83,7 @@
 			margin-left: 4%;
 
 			&::before {
-				@include rule(2px, $black);
+				@include rule(3px, $black);
 			}
 
 			li {
@@ -113,7 +113,7 @@
 			margin-top: 0;
 
 			&::before {
-				@include rule(2px, $black);
+				@include rule(3px, $black);
 			}
 		}
 
@@ -133,7 +133,7 @@
 		ol {
 
 			&::before {
-				@include rule(2px, $black);
+				@include rule(3px, $black);
 			}
 
 			li {
@@ -161,7 +161,7 @@
 			margin-top: 30px;
 
 			&::before {
-				@include rule(2px, $black);
+				@include rule(3px, $black);
 			}
 
 			li {

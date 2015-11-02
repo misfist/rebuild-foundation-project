@@ -1,4 +1,4 @@
-.stony-island-arts-bank #masthead .site-branding {
+.single-site.stony-island-arts-bank #masthead .site-branding {
 
 	.site-title {
 		background-image: url('img/logo-siab_a.svg');
@@ -10,7 +10,7 @@
 
 }
 
-.dorchester-art-housing-collaborative #masthead .site-branding {
+.single-site.dorchester-art-housing-collaborative #masthead .site-branding {
 
 	.site-title {
 		background-image: url('img/logo-da-hc_a.svg');
@@ -22,7 +22,7 @@
 
 }
 
-.archive-house #masthead .site-branding {
+.single-site.archive-house #masthead .site-branding {
 
 	.site-title {
 		background-image: url('img/logo-ah_a.svg');
@@ -35,7 +35,7 @@
 }
 
 
-.listening-house #masthead .site-branding {
+.single-site.listening-house #masthead .site-branding {
 
 	.site-title {
 		background-image: url('img/logo-lh_a.svg');
@@ -48,7 +48,7 @@
 }
 
 
-.black-cinema-house #masthead .site-branding {
+.single-site.black-cinema-house #masthead .site-branding {
 
 	.site-title {
 		background-image: url('img/logo-bch_a.svg');
@@ -265,10 +265,10 @@
 		}
 
 		.posts {
-			width: $size__site-main-nested;
+			width: $size__site-main-flush;
 			margin-top: 60px;
-			padding-right: 25%;
-			margin-left: 100px;
+			position: relative;
+			left: $align__site-3;
 
 			h2 {
 				font-size: $font_size-2;
@@ -314,14 +314,16 @@
 				}
 
 				&:last-child {
-					border-bottom: 1px solid $black;
+					border-bottom: none;
 				}
 			}
 		}
 	}
 
 	.post-navigation {
-		display: none;
+		width: $size__site-main-flush;
+		position: relative;
+		left: $align__site-3;
 	}
 		
 }
