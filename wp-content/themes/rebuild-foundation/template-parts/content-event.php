@@ -35,17 +35,7 @@
 
     <div class="entry-content">
 
-        <?php if( has_post_thumbnail( ) ) :?>
-
-            <figure class="entry-thumbnail">
-                <?php the_post_thumbnail( ); ?>
-                <?php $caption = rebuild_get_the_feature_caption(); ?>
-                <?php if ( $caption ) : ?>
-                    <figcaption class="caption"><?php echo $caption; ?></figcaption>
-                <?php endif; ?>
-            </figure>
-
-        <?php endif; ?>
+        <?php get_template_part( 'template-parts/gallery' ); ?>
 
         <div id="details">
             <?php get_template_part( 'template-parts/social-media' ); ?>

@@ -43,35 +43,13 @@
 
         <div class="description">
             <?php the_content(); ?>
+
             <?php get_template_part( 'template-parts/social-media' ); ?>
         </div>
 
         <div class="content-side">
-            <!-- //// Gallery -->
-            <?php 
-            $images = get_field( 'post_gallery' );
-
-            if( $images ): ?>
-                <div class="gallery">
-                    <?php foreach( $images as $image ): ?>
-                        <div class="site-slide">
-                            <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
-                            <p><?php echo $image['caption']; ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-            <?php elseif( has_post_thumbnail( ) ) :?>
-
-                <figure class="entry-thumbnail">
-                    <?php the_post_thumbnail( ); ?>
-                    <?php $caption = rebuild_get_the_feature_caption(); ?>
-                    <?php if ( $caption ) : ?>
-                        <figcaption class="caption"><?php echo $caption; ?></figcaption>
-                    <?php endif; ?>
-                </figure>
-
-            <?php endif; ?>
+            
+            <?php get_template_part( 'template-parts/gallery' ); ?>
 
             <div id="details">
 

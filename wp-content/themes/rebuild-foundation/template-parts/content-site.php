@@ -41,39 +41,7 @@ $site_tax = array(
 
         <section class="main-content">
 
-            <!-- //// Gallery or Image-->
-            <?php 
-            $images = get_field( 'post_gallery' );
-
-            if( $images ): ?>
-            
-                <div class="gallery">
-                    <?php foreach( $images as $image ): ?>
-
-                        <div class="site-slide">
-
-                            <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
-
-                            <p><?php echo $image['caption']; ?></p>
-
-                        </div>
-
-                    <?php endforeach; ?>
-                </div>
-
-            <?php elseif( has_post_thumbnail() ): ?>
-
-                 <div class="gallery single-image">
-
-                    <figure class="entry-thumbnail site-image">
-
-                        <?php the_post_thumbnail( 'full' ); ?>
-     
-                    </figure>
-
-                </div>
-
-            <?php endif; ?>
+            <?php get_template_part( 'template-parts/gallery' ); ?>
 
             <div class="description">
                 <?php the_content(); ?>
