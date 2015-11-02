@@ -21,3 +21,11 @@ $align__site-2: $size__navigation;
 $align__site-3: $size__subnavigation;
 $align__site-4: calc(#{$size__navigation} + #{$size__subnavigation});
 
+
+// Mobile 
+
+$size__mobile-margins: 80px;
+$size__mobile-margins-right: 30px;
+$size__mobile-main: calc(100% - #{$size__mobile-margins});
+$size__mobile-main-nested: calc(100% - #{$size__mobile-margins-right});
+$size__mobile-main-center: calc(100% - #{$size__mobile-margins} - #{$size__mobile-margins-right});

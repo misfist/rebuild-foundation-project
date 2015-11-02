@@ -164,3 +164,12 @@
 	-webkit-align-items: $alignment;
 			align-items: $alignment;
 }
+
+// For Mobile
+
+@mixin clear-inblock() {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
