@@ -212,12 +212,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     width: calc(100% - 250px);
     padding-top: 15px; }
 
-.post-type-archive-site .site-filter {
-  display: none; }
-
-.single-site .gallery {
-  display: none; }
-
 .post-filter {
   display: none; }
 
@@ -395,6 +389,9 @@ table {
 td,
 th {
   padding: 0; }
+
+a label {
+  cursor: pointer; }
 
 /*--------------------------------------------------------------
 # Typography
@@ -749,7 +746,7 @@ a {
   width: 160px;
   position: absolute;
   left: 0;
-  top: 125px;
+  top: 200px;
   margin: 0;
   padding: 0;
   z-index: 1; }
@@ -911,10 +908,12 @@ ul.event-year-filter, ul.exhibition-filter {
 .posts-navigation, .site-main
 .post-navigation {
   margin: 0 0 1.5em; }
-.single-post .comment-navigation, .search-results .comment-navigation, .single-post
+.single-post .comment-navigation, .search-results .comment-navigation, .single-site .comment-navigation, .single-post
 .posts-navigation, .search-results
+.posts-navigation, .single-site
 .posts-navigation, .single-post
 .post-navigation, .search-results
+.post-navigation, .single-site
 .post-navigation {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   padding-top: 15px; }
@@ -1282,11 +1281,16 @@ ul.social-links {
       vertical-align: top;
       width: 30%;
       padding: 40px 30px 0 40px;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      letter-spacing: 0.1em; }
       .post-type-archive-event article .site-name a {
         font: 25px "Akkurat-Light";
         text-decoration: none;
         color: black; }
+        .post-type-archive-event article .site-name a label {
+          font: 16px "Akkurat-Regular";
+          letter-spacing: 0.1em;
+          padding-left: 2px; }
     .post-type-archive-event article .event-title {
       display: inline-block;
       vertical-align: top;
@@ -1380,7 +1384,7 @@ ul.social-links {
   width: calc(100% - 160px);
   margin-top: 30px;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  padding: 30px 0; }
+  padding: 50px 0 30px; }
   .single-event article header {
     padding-bottom: 30px; }
   .single-event article h2.site-name {
@@ -1388,12 +1392,17 @@ ul.social-links {
     vertical-align: top;
     width: 35%;
     padding: 0 0 0 5%;
-    font: 16px "Akkurat-Regular"; }
+    margin-top: 0; }
+    .single-event article h2.site-name .meta a {
+      font: 16px "Akkurat-Regular"; }
+      .single-event article h2.site-name .meta a label {
+        text-transform: lowercase; }
   .single-event article h1.entry-title {
     display: inline-block;
     vertical-align: top;
     width: 55%;
     margin-left: -4px;
+    margin-top: 0;
     padding: 0 5% 0 5%;
     font: 20px "Akkurat-Bold"; }
   .single-event article h3.event-date {
@@ -1401,6 +1410,7 @@ ul.social-links {
     vertical-align: top;
     width: 10%;
     margin-left: -4px;
+    margin-top: 5px;
     padding: 0 0 0 0;
     font: 16px "Akkurat-Bold"; }
   .single-event article .entry-thumbnail {
@@ -1538,6 +1548,8 @@ article.exhibition {
     width: 60%;
     padding-top: 15px;
     margin-top: 30px; }
+    .single-exhibition article .entry-footer .meta a label {
+      text-transform: lowercase; }
   .single-exhibition article.site_category-dorchester-art-housing-collaborative #details::before {
     content: url("img/graphic_da-hc.svg"); }
   .single-exhibition article.site_category-dorchester-art-housing-collaborative .entry-title {
@@ -1692,29 +1704,29 @@ article.exhibition {
       cursor: pointer;
       z-index: 5; }
 
-.stony-island-arts-bank #masthead .site-branding .site-title {
+.single-site.stony-island-arts-bank #masthead .site-branding .site-title {
   background-image: url("img/logo-siab_a.svg"); }
-.stony-island-arts-bank #masthead .site-branding:hover .site-title {
+.single-site.stony-island-arts-bank #masthead .site-branding:hover .site-title {
   background-image: url("img/logo-foundation_b.svg"); }
 
-.dorchester-art-housing-collaborative #masthead .site-branding .site-title {
+.single-site.dorchester-art-housing-collaborative #masthead .site-branding .site-title {
   background-image: url("img/logo-da-hc_a.svg"); }
-.dorchester-art-housing-collaborative #masthead .site-branding:hover .site-title {
+.single-site.dorchester-art-housing-collaborative #masthead .site-branding:hover .site-title {
   background-image: url("img/logo-foundation_b.svg"); }
 
-.archive-house #masthead .site-branding .site-title {
+.single-site.archive-house #masthead .site-branding .site-title {
   background-image: url("img/logo-ah_a.svg"); }
-.archive-house #masthead .site-branding:hover .site-title {
+.single-site.archive-house #masthead .site-branding:hover .site-title {
   background-image: url("img/logo-foundation_b.svg"); }
 
-.listening-house #masthead .site-branding .site-title {
+.single-site.listening-house #masthead .site-branding .site-title {
   background-image: url("img/logo-lh_a.svg"); }
-.listening-house #masthead .site-branding:hover .site-title {
+.single-site.listening-house #masthead .site-branding:hover .site-title {
   background-image: url("img/logo-foundation_b.svg"); }
 
-.black-cinema-house #masthead .site-branding .site-title {
+.single-site.black-cinema-house #masthead .site-branding .site-title {
   background-image: url("img/logo-bch_a.svg"); }
-.black-cinema-house #masthead .site-branding:hover .site-title {
+.single-site.black-cinema-house #masthead .site-branding:hover .site-title {
   background-image: url("img/logo-foundation_b.svg"); }
 
 .single-site article.site {
@@ -1852,10 +1864,10 @@ article.exhibition {
           font: 16px "Akkurat-Bold";
           color: black; }
   .single-site article.site .posts {
-    width: calc(100% - 160px);
+    width: calc(100% - 220px - 160px);
     margin-top: 60px;
-    padding-right: 25%;
-    margin-left: 100px; }
+    position: relative;
+    left: 160px; }
     .single-site article.site .posts h2 {
       font-size: 16px;
       margin-top: 0;
@@ -1890,9 +1902,11 @@ article.exhibition {
         .single-site article.site .posts article .entry-content p {
           margin-top: 0; }
       .single-site article.site .posts article:last-child {
-        border-bottom: 1px solid black; }
+        border-bottom: none; }
 .single-site .post-navigation {
-  display: none; }
+  width: calc(100% - 220px - 160px);
+  position: relative;
+  left: 160px; }
 
 .page-template-default #primary > header, .single-post #primary > header {
   position: relative;
@@ -1932,6 +1946,8 @@ article.exhibition {
   left: 160px; }
 .page-template-default #comments, .single-post #comments {
   margin-top: 75px; }
+.page-template-default .meta a label, .single-post .meta a label {
+  text-transform: lowercase; }
 
 .blog {
   width: calc(100% - 160px);
@@ -1954,6 +1970,8 @@ article.exhibition {
       width: 40%;
       padding-right: 5%;
       font: 13px "Akkurat-Bold"; }
+      .blog .entry-header .site-name .meta a label {
+        text-transform: lowercase; }
     .blog .entry-header .entry-title {
       display: inline-block;
       vertical-align: top;
@@ -2069,7 +2087,7 @@ article.exhibition {
   width: 41.667%; }
   .home section#mission p::before {
     content: "\00a0";
-    border-top: 2px solid black;
+    border-top: 3px solid black;
     width: 20px;
     position: absolute;
     margin-top: -15px; }
@@ -2079,7 +2097,7 @@ article.exhibition {
   margin-left: 4%; }
   .home section#how ol::before {
     content: "\00a0";
-    border-top: 2px solid black;
+    border-top: 3px solid black;
     width: 20px;
     position: absolute;
     margin-top: -15px; }
@@ -2101,7 +2119,7 @@ article.exhibition {
   margin-top: 0; }
   .home section#theory p::before {
     content: "\00a0";
-    border-top: 2px solid black;
+    border-top: 3px solid black;
     width: 20px;
     position: absolute;
     margin-top: -15px; }
@@ -2114,7 +2132,7 @@ article.exhibition {
   background-image: url("img/home-values.jpg"); }
 .home section#values ol::before {
   content: "\00a0";
-  border-top: 2px solid black;
+  border-top: 3px solid black;
   width: 20px;
   position: absolute;
   margin-top: -15px; }
@@ -2133,7 +2151,7 @@ article.exhibition {
   margin-top: 30px; }
   .home section#partners ol::before {
     content: "\00a0";
-    border-top: 2px solid black;
+    border-top: 3px solid black;
     width: 20px;
     position: absolute;
     margin-top: -15px; }

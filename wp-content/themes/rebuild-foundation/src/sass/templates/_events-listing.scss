@@ -19,12 +19,18 @@
 			@include inblock(30%);
 			padding: 40px 30px 0 40px;
 			text-transform: uppercase;
-
+			letter-spacing: 0.1em;
 
 			a {
 				font: $font-size-4 $light;
 				text-decoration: none;
 				color: $black;
+
+				label {
+					font: $font-size-2 $regular;
+					letter-spacing: 0.1em;
+					padding-left: 2px;
+				}
 			}
 		}
 

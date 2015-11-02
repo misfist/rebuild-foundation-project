@@ -231,7 +231,7 @@ $site_tax = array(
 
                         <?php get_template_part( 'template-parts/loop', 'none' ); ?>
 
-                <?php endif; ?>
+                <?php endif; ?><?php rebuild_get_site_category_content(); ?>
 
                 <?php wp_reset_postdata(); ?>
 

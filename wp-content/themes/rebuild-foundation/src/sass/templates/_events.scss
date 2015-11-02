@@ -35,7 +35,7 @@
 		width: $size__site-main-nested;
 		margin-top: 30px;
 		border: 1px solid $black-transparent-light;
-		padding: 30px 0;
+		padding: 50px 0 30px;
 
 		header {
 			padding-bottom: 30px;
@@ -44,14 +44,22 @@
 		h2.site-name {
 			@include inblock(35%);
 			padding: 0 0 0 5%;
-			font: $font_size-2 $regular;
+			margin-top: 0;
 
+			.meta a {
+				font: $font_size-2 $regular;
+
+				label {
+					text-transform: lowercase;
+				}
+			}
 
 		}
 
 		h1.entry-title {
 			@include inblock(55%);
 			margin-left: -4px;
+			margin-top: 0;
 			padding: 0 5% 0 5%;
 			font: $font_size-3 $bold;
 		}
@@ -59,6 +67,7 @@
 		h3.event-date {
 			@include inblock(10%);
 			margin-left: -4px;
+			margin-top: 5px;
 			padding: 0 0 0 0;
 			font: $font_size-2 $bold;
 		}

@@ -45,7 +45,7 @@
             <div class="event-time">
                 <?php $start_time = get_field( 'start_time' ); ?>
                 <?php $end_time = get_field( 'end_time' ); ?>
-                <time class="start-time"><?php echo ( $start_time ) ? date( 'g:ia', strtotime( $start_time ) ) : ''; ?></time>
+                <time class="start-time"><?php echo ( $start_time ) ? date( 'g:ia', strtotime( $start_time ) ) : ''; ?></time> – 
                 <time class="end-time"><?php echo ( $end_time ) ? date( 'g:ia', strtotime( $end_time ) ) : ''; ?></time>
             </div>
 
