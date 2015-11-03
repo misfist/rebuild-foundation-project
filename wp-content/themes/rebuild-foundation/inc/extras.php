@@ -43,7 +43,7 @@ if( !function_exists( 'rebuild_foundation_enqueue_slider_script' ) ) {
 
       wp_enqueue_script( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.min.js' , array( 'jquery' ), false, true );
 
-      wp_enqueue_style( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.min.css' );
+      wp_enqueue_style( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.css' );
 
       wp_enqueue_style( 'slick-carousel-theme', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick-theme.css' );
 

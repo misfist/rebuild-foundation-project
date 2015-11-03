@@ -117,7 +117,6 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
         'event_year' => __( 'Some string to translate', 'plugin-domain' ),
         'event_month' => '10'
       );
-      wp_localize_script( 'some_handle', 'object_name', $translation_array );
 
     }
  
