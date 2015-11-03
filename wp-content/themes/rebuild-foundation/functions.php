@@ -129,6 +129,9 @@ add_action( 'loop_start', 'jptweak_remove_share' );
 function rebuild_foundation_scripts() {
 	wp_enqueue_style( 'rebuild-foundation-style', get_stylesheet_uri() );
 
+	wp_enqueue_style( 'rebuild-foundation-style-mobile', get_template_directory_uri() . '/mobile.css', array(), false, 'screen and (min-width: 200px) and (max-width: 860px)' );
+	wp_enqueue_style( 'rebuild-foundation-style-mobile-device', get_template_directory_uri() . '/mobile.css', array(), false, 'screen and (min-device-width: 200px) and (max-device-width: 860px)' );
+	
 	wp_enqueue_script( 'rebuild-foundation-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'rebuild-foundation-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );

@@ -1,0 +1,562 @@
+/* Completed */
+@font-face {
+  font-family: "Akkurat-Light";
+  src: url("fonts/lineto-akkurat-light.eot");
+  src: url("fonts/lineto-akkurat-light.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkurat-light.woff") format("woff"), url("fonts/lineto-akkurat-light.ttf") format("truetype"), url("fonts/lineto-akkurat-light.svg#lineto-akkurat-light") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Regular";
+  src: url("fonts/lineto-akkurat-regular.eot");
+  src: url("fonts/lineto-akkurat-regular.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkurat-regular.woff") format("woff"), url("fonts/lineto-akkurat-regular.ttf") format("truetype"), url("fonts/lineto-akkurat-regular.svg#lineto-akkurat-regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Lightitalic";
+  src: url("fonts/lineto-akkurat-lightitalic.eot");
+  src: url("fonts/lineto-akkurat-lightitalic.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkurat-lightitalic.woff") format("woff"), url("fonts/lineto-akkurat-lightitalic.ttf") format("truetype"), url("fonts/lineto-akkurat-lightitalic.svg#lineto-akkurat-lightitalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Italic";
+  src: url("fonts/lineto-akkurat-italic.eot");
+  src: url("fonts/lineto-akkurat-italic.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkurat-italic.woff") format("woff"), url("fonts/lineto-akkurat-italic.ttf") format("truetype"), url("fonts/lineto-akkurat-italic.svg#lineto-akkurat-italic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Bold";
+  src: url("fonts/lineto-akkurat-bold.eot");
+  src: url("fonts/lineto-akkurat-bold.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkurat-bold.woff") format("woff"), url("fonts/lineto-akkurat-bold.ttf") format("truetype"), url("fonts/lineto-akkurat-bold.svg#lineto-akkurat-bold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Bolditalic";
+  src: url("fonts/lineto-akkurat-bolditalic.eot");
+  src: url("fonts/lineto-akkurat-bolditalic.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkurat-bolditalic.woff") format("woff"), url("fonts/lineto-akkurat-bolditalic.ttf") format("truetype"), url("fonts/lineto-akkurat-bolditalic.svg#lineto-akkurat-bolditalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkuratmono-Regular";
+  src: url("fonts/lineto-akkuratmono-regular.eot");
+  src: url("fonts/lineto-akkuratmono-regular.eot?#iefix") format("embedded-opentype"), url("fonts/lineto-akkuratmono-regular.woff") format("woff"), url("fonts/lineto-akkuratmono-regular.ttf") format("truetype"), url("fonts/lineto-akkuratmono-regular.svg#lineto-akkuratmono-regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/* Subsetted */
+@font-face {
+  font-family: "Akkurat-Light-S";
+  src: url("fonts_subsetted/lineto-akkurat-light.eot");
+  src: url("fonts_subsetted/lineto-akkurat-light.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkurat-light.woff") format("woff"), url("fonts_subsetted/lineto-akkurat-light.ttf") format("truetype"), url("fonts_subsetted/lineto-akkurat-light.svg#lineto-akkurat-light") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Regular-S";
+  src: url("fonts_subsetted/lineto-akkurat-regular.eot");
+  src: url("fonts_subsetted/lineto-akkurat-regular.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkurat-regular.woff") format("woff"), url("fonts_subsetted/lineto-akkurat-regular.ttf") format("truetype"), url("fonts_subsetted/lineto-akkurat-regular.svg#lineto-akkurat-regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Lightitalic-S";
+  src: url("fonts_subsetted/lineto-akkurat-lightitalic.eot");
+  src: url("fonts_subsetted/lineto-akkurat-lightitalic.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkurat-lightitalic.woff") format("woff"), url("fonts_subsetted/lineto-akkurat-lightitalic.ttf") format("truetype"), url("fonts_subsetted/lineto-akkurat-lightitalic.svg#lineto-akkurat-lightitalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Italic-S";
+  src: url("fonts_subsetted/lineto-akkurat-italic.eot");
+  src: url("fonts_subsetted/lineto-akkurat-italic.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkurat-italic.woff") format("woff"), url("fonts_subsetted/lineto-akkurat-italic.ttf") format("truetype"), url("fonts_subsetted/lineto-akkurat-italic.svg#lineto-akkurat-italic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Bold-S";
+  src: url("fonts_subsetted/lineto-akkurat-bold.eot");
+  src: url("fonts_subsetted/lineto-akkurat-bold.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkurat-bold.woff") format("woff"), url("fonts_subsetted/lineto-akkurat-bold.ttf") format("truetype"), url("fonts_subsetted/lineto-akkurat-bold.svg#lineto-akkurat-bold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkurat-Bolditalic-S";
+  src: url("fonts_subsetted/lineto-akkurat-bolditalic.eot");
+  src: url("fonts_subsetted/lineto-akkurat-bolditalic.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkurat-bolditalic.woff") format("woff"), url("fonts_subsetted/lineto-akkurat-bolditalic.ttf") format("truetype"), url("fonts_subsetted/lineto-akkurat-bolditalic.svg#lineto-akkurat-bolditalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Akkuratmono-Regular-S";
+  src: url("fonts_subsetted/lineto-akkuratmono-regular.eot");
+  src: url("fonts_subsetted/lineto-akkuratmono-regular.eot?#iefix") format("embedded-opentype"), url("fonts_subsetted/lineto-akkuratmono-regular.woff") format("woff"), url("fonts_subsetted/lineto-akkuratmono-regular.ttf") format("truetype"), url("fonts_subsetted/lineto-akkuratmono-regular.svg#lineto-akkuratmono-regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+#masthead {
+  width: 0;
+  padding: 0; }
+  #masthead .site-branding {
+    display: none; }
+
+#primary {
+  width: calc(100% - 80px);
+  left: 80px; }
+
+.site-footer {
+  width: calc(100% - 80px);
+  left: 80px;
+  padding-right: 30px; }
+  .site-footer .widget_text {
+    display: block; }
+    .site-footer .widget_text .social-links {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      -moz-justify-content: space-between;
+      justify-content: space-between; }
+      .site-footer .widget_text .social-links li {
+        float: none;
+        padding-left: 0; }
+  .site-footer div:nth-child(2) {
+    display: block;
+    width: 100%; }
+
+#site-navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 80px;
+  z-index: 0;
+  padding: 20px 0 0 20px; }
+  #site-navigation button.menu-toggle {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    border: none;
+    text-shadow: none;
+    z-index: 10;
+    background-color: transparent;
+    background-image: url("img/menu_button.svg");
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -ms-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s; }
+  #site-navigation .sub-menu {
+    display: block;
+    padding-left: 5%;
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    margin: 10px 0 0 0; }
+    #site-navigation .sub-menu li {
+      padding: 12px 0; }
+  #site-navigation.toggled {
+    width: 70%;
+    bottom: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+    padding: 50px 40px 0 50px;
+    z-index: 10;
+    background-color: rgba(233, 230, 223, 0.95); }
+    #site-navigation.toggled button.menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: calc(30% + 20px);
+      background-image: url("img/menu_button-close.svg"); }
+    #site-navigation.toggled .menu-main-menu-container::before {
+      content: url("img/logo-foundation_a.svg");
+      display: block;
+      width: 100px;
+      height: 80px;
+      background-repeat: no-repeat;
+      background-position: 0;
+      background-size: contain; }
+    #site-navigation.toggled .menu-main-menu-container #primary-menu {
+      margin-top: 50px; }
+
+.page-sub-menu {
+  position: relative;
+  top: 0;
+  width: 100%;
+  margin: 30px 0 20px 0; }
+
+ul.event-year-filter {
+  left: 25px;
+  top: 100px; }
+  ul.event-year-filter li.active a {
+    font-size: 13px; }
+
+.filters, .blog ul.site-filter {
+  position: relative;
+  width: 100%;
+  left: 0; }
+  .filters ul li, .blog ul.site-filter ul li {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding: 4px 0;
+    font-size: 15px; }
+  .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter {
+    width: 100%; }
+    .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li {
+      width: 16%; }
+  .filters ul.exhibition-filter, .blog ul.site-filter ul.exhibition-filter {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0; }
+    .filters ul.exhibition-filter li, .blog ul.site-filter ul.exhibition-filter li {
+      display: inline-block;
+      vertical-align: top;
+      width: 33%; }
+
+.post-navigation .nav-previous, .post-navigation .nav-next {
+  width: 100%;
+  margin-bottom: 20px; }
+
+.post-type-archive-site article {
+  width: calc(100% - 30px); }
+  .post-type-archive-site article::before {
+    width: calc(100% - 30px); }
+  .post-type-archive-site article .entry-header h2.entry-title {
+    width: 90%; }
+  .post-type-archive-site article .entry-content {
+    width: 90%; }
+  .post-type-archive-site article .close-site {
+    width: 45px;
+    height: 45px;
+    right: 10px;
+    margin-top: 10px; }
+  .post-type-archive-site article.expanded {
+    height: 700px; }
+    .post-type-archive-site article.expanded::before {
+      height: 700px; }
+
+.single-site article.site {
+  margin-top: 25px; }
+  .single-site article.site header.site-header {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    width: calc(100% - 30px); }
+  .single-site article.site .site-image {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 300px;
+    margin-top: 30px; }
+    .single-site article.site .site-image::after {
+      width: 70%;
+      right: 0;
+      margin-top: 75px; }
+  .single-site article.site .main-content {
+    padding-left: 0;
+    width: calc(100% - 30px); }
+    .single-site article.site .main-content .description {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+    .single-site article.site .main-content #details {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+  .single-site article.site .exhibitions {
+    width: calc(100% - 30px);
+    margin-left: 0; }
+  .single-site article.site .events {
+    width: 100%;
+    margin-left: 0; }
+    .single-site article.site .events .upcoming-events {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+      .single-site article.site .events .upcoming-events article {
+        width: calc(100% - 30px); }
+        .single-site article.site .events .upcoming-events article:hover {
+          width: 100%; }
+    .single-site article.site .events .past-events {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      margin-top: 30px; }
+  .single-site article.site .posts {
+    width: calc(100% - 30px);
+    left: 0; }
+    .single-site article.site .posts article .entry-header {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+      .single-site article.site .posts article .entry-header .entry-title {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0; }
+      .single-site article.site .posts article .entry-header .entry-meta {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        margin: 10px 0; }
+    .single-site article.site .posts article .entry-content {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+.single-site .post-navigation {
+  width: calc(100% - 30px);
+  left: 0; }
+
+.post-type-archive-event {
+  padding-top: 10px; }
+  .post-type-archive-event .posts-list {
+    width: 100%;
+    left: 0;
+    margin-top: 30px; }
+    .post-type-archive-event .posts-list article {
+      width: calc(100% - 30px);
+      min-height: 150px; }
+      .post-type-archive-event .posts-list article:hover {
+        width: 100%; }
+        .post-type-archive-event .posts-list article:hover .event-date::before {
+          background-color: transparent; }
+      .post-type-archive-event .posts-list article .site-name {
+        display: block;
+        width: 100%;
+        padding: 20px 20px;
+        line-height: 1.1em; }
+        .post-type-archive-event .posts-list article .site-name a {
+          font: 13px "Akkurat-Regular"; }
+          .post-type-archive-event .posts-list article .site-name a label {
+            font-size: 13px;
+            padding-left: 0; }
+      .post-type-archive-event .posts-list article .event-title {
+        margin-left: 0;
+        padding-left: 20px;
+        width: 75%;
+        margin-top: 0;
+        padding-bottom: 30px; }
+        .post-type-archive-event .posts-list article .event-title a {
+          font: 20px "Akkurat-Bold"; }
+      .post-type-archive-event .posts-list article .event-date {
+        width: 20%;
+        min-height: auto;
+        background-image: none !important; }
+        .post-type-archive-event .posts-list article .event-date::before {
+          background-color: transparent;
+          display: none; }
+        .post-type-archive-event .posts-list article .event-date time {
+          margin: 0; }
+
+.single-event #main {
+  width: 100%;
+  left: 0; }
+.single-event article {
+  width: calc(100% - 30px);
+  padding: 15px; }
+  .single-event article h2.site-name, .single-event article h1.entry-title, .single-event article h3.event-date {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding: 5px 0; }
+  .single-event article .entry-thumbnail {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    max-width: 100%; }
+  .single-event article .entry-content {
+    margin-top: 0; }
+  .single-event article #details {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px; }
+.single-event .post-navigation {
+  width: calc(100% - 30px); }
+
+article.exhibition {
+  width: 100%; }
+  article.exhibition .col-1 {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0; }
+  article.exhibition .col-2 {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 25px; }
+
+.post-type-archive-exhibition .posts-list {
+  width: calc(100% - 30px);
+  left: 0;
+  margin-top: 30px; }
+
+.single-exhibition #main {
+  width: calc(100% - 30px);
+  left: 0; }
+.single-exhibition article {
+  margin-top: 30px; }
+  .single-exhibition article #details .hours {
+    white-space: normal; }
+  .single-exhibition article .description {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0; }
+  .single-exhibition article .content-side {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-width: 400px;
+    margin-top: 60px; }
+  .single-exhibition article .entry-footer {
+    width: 100%; }
+.single-exhibition .post-navigation {
+  width: 100%; }
+
+.home #primary {
+  width: 100%;
+  left: 0; }
+.home section h2 {
+  font: 20px "Akkurat-Regular";
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  height: auto;
+  padding: 500px 40px 40px 80px;
+  white-space: normal;
+  text-indent: 0;
+  color: white;
+  overflow: visible;
+  margin-bottom: 60px; }
+.home section img {
+  display: none; }
+.home section#mission h3, .home section#mission p, .home section#mission ol, .home section#how h3, .home section#how p, .home section#how ol, .home section#theory h3, .home section#theory p, .home section#theory ol, .home section#values h3, .home section#values p, .home section#values ol, .home section#partners h3, .home section#partners p, .home section#partners ol {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-right: 30px;
+  padding-left: 80px; }
+.home section#mission p, .home section#how p, .home section#theory p, .home section#values p, .home section#partners p {
+  margin-top: 30px; }
+.home section#mission ol, .home section#how ol, .home section#theory ol, .home section#values ol, .home section#partners ol {
+  margin-top: 30px;
+  margin-left: 30px; }
+  .home section#mission ol li, .home section#how ol li, .home section#theory ol li, .home section#values ol li, .home section#partners ol li {
+    display: list-item;
+    float: none;
+    width: 100%;
+    padding-right: 30px;
+    margin-bottom: 20px; }
+.home section#mission h3 {
+  font-size: 25px; }
+.home section#theory p {
+  font-size: 25px;
+  letter-spacing: 0; }
+
+img.alignleft, figure.alignleft {
+  max-width: 100%;
+  float: none;
+  margin: 0;
+  padding: 1.5em 0; }
+
+img.alignright, figure.alignright {
+  max-width: 100%;
+  float: none;
+  margin: 0;
+  padding: 1.5em 0; }
+
+.page-template-default .featured-image, .single-post .featured-image {
+  float: none;
+  width: calc(100% - 30px);
+  margin: 0; }
+.page-template-default #primary > header, .single-post #primary > header {
+  width: calc(100% - 30px);
+  padding: 0; }
+.page-template-default #primary article, .single-post #primary article {
+  width: calc(100% - 30px);
+  padding: 0; }
+.page-template-default .post-navigation, .single-post .post-navigation {
+  width: calc(100% - 30px);
+  left: 0; }
+
+.blog {
+  width: 100%;
+  padding-left: 0; }
+  .blog #main {
+    margin-top: 10px;
+    width: calc(100% - 30px); }
+  .blog article {
+    padding: 10px 0; }
+    .blog article .entry-header {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+      .blog article .entry-header .entry-title {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0; }
+      .blog article .entry-header .entry-meta {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        margin: 20px 0;
+        text-align: left; }
+    .blog article .entry-content {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+
+.search-results .page-header {
+  position: relative;
+  width: 100%;
+  left: 0;
+  padding: 15px  0 8px 0; }
+  .search-results .page-header h1 {
+    font-size: 16px; }
+.search-results article {
+  width: calc(100% - 30px);
+  left: 0;
+  margin-bottom: 0; }
+  .search-results article:first-of-type {
+    margin-top: 30px; }
+.search-results .posts-navigation {
+  width: calc(100% - 30px);
+  left: 0; }
+
+.error404 #main {
+  width: calc(100% - 30px);
+  left: 0; }
+  .error404 #main h1 {
+    margin-top: 15px; }
+.error404 .site-footer {
+  width: calc(100% - 80px - 30px);
+  left: 80px;
+  margin-top: 10px; }
+
+/*# sourceMappingURL=mobile.css.map */
