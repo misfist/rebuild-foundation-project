@@ -50,6 +50,7 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
               $query->set( 'meta_query', $vars );
 
               break;
+
           // Year queried
           case ( 4 == strlen( $year_var ) && is_numeric( $year_var ) ):
               $vars[] = array(
@@ -68,6 +69,7 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
               $query->set( 'meta_query', $vars );
 
               break;
+
           // Month queried
           case ( is_numeric( $month_var ) && $month_var > 0 ):
               $year = date( 'Y' );
@@ -86,13 +88,36 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
               );
 
               $query->set( 'meta_query', $vars );
-
-
               break;
+
           // No date queried
           default:
-            return $query;
+            // return current year and month
+            $year = date( 'Y' );
+            $month = date( 'm' );
+            $days_in_month = cal_days_in_month( CAL_GREGORIAN, $month, $year );
+            $vars[] = array(
+                'key'       => 'start_date',
+                'value'     => date( 'Ymd', strtotime( $year. $month . '01' ) ),
+                'compare'   => '>=',
+                'type'      => 'NUMERIC'
+            );
+            $vars[] = array(
+                'key'       => 'start_date',
+                'value'     => date( 'Ymd', strtotime( $year . $month . $days_in_month ) ),
+                'compare'   => '<',
+                'type'      => 'NUMERIC'
+            );
+
+            $query->set( 'meta_query', $vars );
       }
+
+      // Localize the script with new data
+      $event_dates = array(
+        'event_year' => __( 'Some string to translate', 'plugin-domain' ),
+        'event_month' => '10'
+      );
+      wp_localize_script( 'some_handle', 'object_name', $translation_array );
 
     }
  
