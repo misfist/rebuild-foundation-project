@@ -130,6 +130,7 @@ function rebuild_foundation_scripts() {
 	wp_enqueue_style( 'rebuild-foundation-style', get_stylesheet_uri() );
 
 	wp_enqueue_style( 'rebuild-foundation-style-mobile', get_template_directory_uri() . '/mobile.css', array(), false, 'screen and (min-width: 200px) and (max-width: 860px)' );
+
 	wp_enqueue_style( 'rebuild-foundation-style-mobile-device', get_template_directory_uri() . '/mobile.css', array(), false, 'screen and (min-device-width: 200px) and (max-device-width: 860px)' );
 	
 	wp_enqueue_script( 'rebuild-foundation-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20120206', true );
@@ -139,10 +140,6 @@ function rebuild_foundation_scripts() {
 	wp_deregister_script( 'jquery' );
 
 	wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-1.11.3.min.js', array(), false, true );
-
-	wp_enqueue_script( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.min.js' , array( 'jquery' ), false, true );
-
-	wp_enqueue_style( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.css' );
 
 	wp_enqueue_script( 'rebuild-foundation-toggle-elements', get_template_directory_uri() . '/assets/js/toggle.js', array(), false, true );
 

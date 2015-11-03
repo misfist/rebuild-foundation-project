@@ -1,4 +1,5 @@
 <!-- //// Gallery or Image-->
+
 <?php 
 $images = get_field( 'post_gallery' );
 
@@ -26,7 +27,9 @@ if( $images ): ?>
 
             <?php the_post_thumbnail( 'full' ); ?>
 
-            <figcaption><?php echo $image['caption']; ?></figcaption>
+            <?php $caption = rebuild_get_the_feature_caption(); ?>
+
+            <figcaption><?php echo ( $caption ) ? $caption : ''; ?></figcaption>
 
         </figure>
 

@@ -12,9 +12,9 @@
  */
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-if( !function_exists( 'rebuild_foundation_enqueue_scripts' ) ) {
+if( !function_exists( 'rebuild_foundation_enqueue_filter_scripts' ) ) {
 
-  function rebuild_foundation_enqueue_scripts() {
+  function rebuild_foundation_enqueue_filter_scripts() {
 
     if( is_admin() ) {
       return;
@@ -22,13 +22,39 @@ if( !function_exists( 'rebuild_foundation_enqueue_scripts' ) ) {
 
     if( 'event' == get_post_type() || 'exhibition' == get_post_type() ) {
 
-      wp_enqueue_script( 'rebuild-foundation-filters', get_stylesheet_directory_uri() . '/assets/js/filters.js', array( 'jquery' ), '', true );
+      wp_enqueue_script( 'rebuild-foundation-filters', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/filters.min.js', array( 'jquery' ), '', true );
 
     }
 
   }
 
-  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_scripts' );
+  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_filter_scripts' );
+}
+
+if( !function_exists( 'rebuild_foundation_enqueue_slider_script' ) ) {
+
+  function rebuild_foundation_enqueue_slider_script() {
+
+    if( is_admin() ) {
+      return;
+    }
+
+    if( is_singular( array( 'site', 'event', 'exhibition' ) ) ) {
+
+      wp_enqueue_script( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.min.js' , array( 'jquery' ), false, true );
+
+      wp_enqueue_style( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.min.css' );
+
+      wp_enqueue_style( 'slick-carousel-theme', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick-theme.css' );
+
+      // To make changes, edit source and compile
+      wp_enqueue_script( 'rebuild-foundation-slider', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/sliderInit.min.js', array( 'jquery' ), '', true );
+
+    }
+
+  }
+
+  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_slider_script' );
 }
 
 /**
@@ -279,5 +305,3 @@ if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
   add_filter( 'jetpack_sharing_display_text', 'jetpack_developer_custom_sharing_text', 20, 4 );
 
 }
-
-
