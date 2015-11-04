@@ -1,79 +1,13 @@
-.single-site.stony-island-arts-bank #masthead .site-branding {
-
-	.site-title {
-		background-image: url('img/logo-siab_a.svg');
-	}
-
-	&:hover .site-title {
-		background-image: url('img/logo-foundation_b.svg');
-	}
-
-}
-
-.single-site.dorchester-art-housing-collaborative #masthead .site-branding {
-
-	.site-title {
-		background-image: url('img/logo-da-hc_a.svg');
-	}
-
-	&:hover .site-title {
-		background-image: url('img/logo-foundation_b.svg');
-	}
-
-}
-
-.single-site.archive-house #masthead .site-branding {
-
-	.site-title {
-		background-image: url('img/logo-ah_a.svg');
-	}
-
-	&:hover .site-title {
-		background-image: url('img/logo-foundation_b.svg');
-	}
-
-}
-
-
-.single-site.listening-house #masthead .site-branding {
-
-	.site-title {
-		background-image: url('img/logo-lh_a.svg');
-	}
-
-	&:hover .site-title {
-		background-image: url('img/logo-foundation_b.svg');
-	}
-
-}
-
-
-.single-site.black-cinema-house #masthead .site-branding {
-
-	.site-title {
-		background-image: url('img/logo-bch_a.svg');
-	}
-
-	&:hover .site-title {
-		background-image: url('img/logo-foundation_b.svg');
-	}
-
-}
-
-
-
-
 .single-site {
 
 	article.site {
-		margin-top: 50px;
 
 		header.site-header {
 			@include inblock (30%);
 			vertical-align: bottom;
 			padding-right: 5%;
 			position: relative;
-			z-index: 1;
+			z-index: 2;
 
 			.entry-meta.location {
 				font: 14px $mono;
@@ -87,22 +21,63 @@
 			}
 		}
 
-		.site-image {
+		.gallery {
 			@include inblock (70%);
-			height: 450px;
 			vertical-align: bottom;
 			margin-left: -5px;
-			background-size: cover;
-			background-repeat: no-repeat;
+			margin-bottom: 0;
 
-			&::after {
+			&::before {
 				position: absolute;
 				display: block;
 				width: 40%;
 				max-width: 330px;
-				margin: 200px 0 0 -200px;
-				z-index: 0;
+				margin: 300px 0 0 -100px;
+				z-index: 1;
 			}
+		}
+
+		.single-image {
+			@include inblock (70%);
+			vertical-align: bottom;
+			margin: 60px 0 0 -5px;
+
+			figure {
+				width: 100%;
+				height: 450px;
+				background-size: cover;
+				background-repeat: no-repeat;
+				margin: 0;
+
+				figcaption {
+					width: 100%;
+					font: $font_size-1 $mono;
+					margin-top: -30px;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					padding: 0 100px 10px 0;
+
+					&:hover {
+						background-color: $warm-gray;
+						overflow: visible;
+						white-space: normal;
+					}
+				}
+			}
+
+			&::before {
+				position: absolute;
+				display: block;
+				width: 40%;
+				max-width: 330px;
+				margin: 250px 0 0 -150px;
+				z-index: 1;
+			}
+		}
+
+		#no-results {
+			display: none;
 		}
 
 		.main-content {
@@ -111,11 +86,15 @@
 			z-index: 1;
 
 			.description {
-				@include inblock(65%);
+				@include inblock(60%);
+
+				p {
+					margin-top: 0;
+				}
 			}
 
 			#details {
-				@include inblock(35%);
+				@include inblock(40%);
 				margin-left: -5px;
 				padding: 0 5%;
 			}
@@ -123,7 +102,7 @@
 
 		&.site_category-dorchester-art-housing-collaborative {
 			
-			.site-image::after {
+			.gallery::before {
 				content: url('img/graphic_da-hc.svg');
 			}
 
@@ -131,7 +110,7 @@
 
 		&.site_category-black-cinema-house {
 			
-			.site-image::after {
+			.gallery::before {
 				content: url('img/graphic_bch.svg');
 			}
 
@@ -139,7 +118,7 @@
 
 		&.site_category-stony-island-arts-bank {
 			
-			.site-image::after {
+			.gallery::before {
 				content: url('img/graphic_siab.svg');
 			}
 
@@ -147,7 +126,7 @@
 
 		&.site_category-listening-house {
 			
-			.site-image::after {
+			.gallery::before {
 				content: url('img/graphic_lh.svg');
 			}
 
@@ -155,14 +134,14 @@
 
 		&.site_category-archive-house {
 			
-			.site-image::after {
+			.gallery::before {
 				content: url('img/graphic_ah.svg');
 			}
 
 		}
 
 		.exhibitions {
-			margin-left: $align__site-3;
+			margin-left: 100px;
 			margin-top: 100px;
 
 			h2 {
@@ -172,6 +151,11 @@
 			article.exhibition {
 				border: none;
 				width: 100%;
+				margin-bottom: 0;
+
+				.single-image {
+					margin: 0 0 0 10%;
+				}
 			}
 
 			.entry-title {
@@ -265,10 +249,11 @@
 		}
 
 		.posts {
-			width: $size__site-main-flush;
+			width: $size__site-main-nested;
 			margin-top: 60px;
 			position: relative;
-			left: $align__site-3;
+			left: 0;
+			margin-left: 100px;
 
 			h2 {
 				font-size: $font_size-2;
@@ -291,7 +276,7 @@
 
 						a {
 							font: $font_size-4 $regular;
-							color: $black;
+							@include heading-link();
 						}
 					}
 
@@ -321,9 +306,42 @@
 	}
 
 	.post-navigation {
-		width: $size__site-main-flush;
+		width: $size__site-main-nested;
 		position: relative;
-		left: $align__site-3;
+		left: 100px;
+		margin-top: 100px;
 	}
 		
+}
+
+@media (max-width: 1200px) {
+	.single-site {
+		article.site {
+			.main-content {
+				.description {
+					width: 75%;
+				}
+
+				#details {
+					@include clear-inblock();
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.single-site {
+		article.site {
+			.exhibitions, .events, .posts {
+				margin-left: 0;
+				width: $size__site-main-center-2;
+			}
+		}
+
+		.post-navigation {
+			left: 0;
+			width: $size__site-main-center-2;		
+		}
+	}
 }

@@ -24,13 +24,15 @@ blockquote {
 	border-left: 2px solid $black;
 }
 
+
 address {
 	margin: 0 0 1.5em;
 }
 
 span.address {
 	display: block;
-	white-space: nowrap;
+	font: 14px $mono;
+	padding-bottom: 5px;
 }
 
 pre {

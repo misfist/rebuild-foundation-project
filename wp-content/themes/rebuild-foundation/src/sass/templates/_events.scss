@@ -72,27 +72,75 @@
 			font: $font_size-2 $bold;
 		}
 
-		.entry-thumbnail {
+		.single-image {
 			@include inblock(35%);
 			padding: 0 2.5% 0 5%;
 			margin: 0;
+
+			.entry-thumbnail {
+				margin: 0;
+			}
+		}
+
+		.gallery-static {
+			@include inblock(35%);
+			padding: 0 2.5% 0 5%;
+			margin: 0;
+
+			figure {
+				margin: 0 0 40px 0;
+			}
 		}
 
 		#details {
 			@include inblock(65%);
 			margin-left: -4px;
 			padding: 0 5% 0 5%;
+
+			.event-date, .event-time, .event-export, .location {
+				font: 14px $mono;
+				padding-bottom: 6px;
+			}
+
+			.event-date {
+				&::before {
+					@include rule(2px, $black);
+				}
+			}
+
+			.entry-meta {
+				margin-top: 40px;
+
+				&::before {
+					@include rule(2px, $black);
+				}
+			}
+
+			.location {
+
+				span {
+					padding-bottom: 6px;
+				}
+
+				.google-map-link {
+					a {
+						font: 14px $mono;
+						@include text-link();
+					}
+				}
+			}
+
+			.meta {
+				font: 14px $mono;
+				padding-bottom: 6px;
+
+				a {
+					@include text-link();
+				}
+			}
+
 		}
 
-		.event-date, .event-time, .meta {
-			font: 14px $mono;
-			padding-bottom: 5px;
-
-		}
-
-		.entry-meta {
-			margin-top: 20px;
-		}
 
 		.description {
 			margin-top: 35px;
@@ -101,5 +149,29 @@
 
 	.post-navigation {
 		width: $size__site-main-nested;
+	}
+}
+
+
+@media (max-width: 1200px) {
+	.single-event {
+		article {
+			width: $size__site-main-center-2;
+		}
+
+		.post-navigation {
+			width: $size__site-main-center-2;
+		}
+	}	
+}
+
+
+
+@media (max-width: 1024px) {
+	.single-event {
+		#main {
+			left: 0;
+			width: 100%;
+		}
 	}
 }

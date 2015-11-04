@@ -3,7 +3,7 @@
 	display: block;
 	float: left;
 	width: 100%;
-	margin-top: 150px;
+	margin-top: 100px;
 
 	ul {
 		display: none;
@@ -15,7 +15,7 @@
 	li {
 		position: relative;
 		text-transform: uppercase;
-		padding-bottom: 20px;
+		padding-bottom: 15px;
 		padding-left: 0;
 
 		&:hover > a,
@@ -24,10 +24,11 @@
 		}
 
 		&.menu-break {
-			margin-top: 20px;
+			margin-top: 50px;
 
 			&::before {
 				@include rule(2px, $black-transparent);
+				margin-top: -25px;
 			}
 		}
 	}
@@ -187,4 +188,14 @@
 		}
 
 	}
+}
+
+@media (max-width: 1024px) {
+	.page-sub-menu {
+		position: relative;
+		top: 0;
+		width: 100%;
+		margin: 30px 0 20px 0;
+	}
+
 }

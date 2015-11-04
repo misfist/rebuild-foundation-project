@@ -165,6 +165,24 @@
 			align-items: $alignment;
 }
 
+// Links 
+
+@mixin text-link() {
+	border-bottom: 2px solid $white;
+
+	&:hover {
+		background-color: $white;
+	}
+}
+
+@mixin heading-link() {
+	color: $black;
+
+	&:hover {
+		color: $black-transparent-light;
+	}
+}
+
 // For Mobile
 
 @mixin clear-inblock() {

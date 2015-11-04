@@ -50,14 +50,13 @@
             </div>
 
             <div class="event-export">
-                <a href="ical" class="ical"><?php _e( '.ical', 'rebuild-foundation' ) ?></a> 
+                <a href="ical" class="ical"><?php _e( '.ical', 'rebuild-foundation' ) ?></a> | 
                 <a href="<?php echo generate_calendar_button(); ?>" class="google-calendar" target="_blank"><?php _e( 'Google Calendar', 'rebuild-foundation' ) ?></a>
-
-                <?php rebuild_google_map_link(); ?>
             </div>
 
             <div class="entry-meta location">
                 <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+                <?php rebuild_google_map_link(); ?>
             </div>
 
             <div class="entry-meta tags">

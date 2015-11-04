@@ -12,6 +12,7 @@ $size__site-main-flush: calc(100% - #{$size__navigation} - #{$size__subnavigatio
 $size__site-main-center: calc(100% - #{$size__navigation} - #{$size__subnavigation} - #{$size__right-margin});
 
 $size__site-main-nested: calc(100% - #{$size__subnavigation});
+$size__site-main-center-2: calc(100% - #{$size__left-margin});
 
 
 // Alignments

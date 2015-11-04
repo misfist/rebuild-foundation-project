@@ -44,3 +44,84 @@
 .gallery-caption {
 	display: block;
 }
+
+#site-gallery {
+
+	.slick-list {
+		padding-top: 60px;
+	}
+
+	figure.slide-item {	
+		width: 100%;
+		height: 450px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		margin: 0;
+	}
+
+	figcaption {
+		width: 100%;
+		font: $font_size-1 $mono;
+		margin-top: -30px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		padding: 0 100px 10px 0;
+
+		&:hover {
+			background-color: $warm-gray;
+			overflow: visible;
+			white-space: normal;
+		}
+	}
+
+
+}
+
+
+button.slick-arrow {
+	width: 30px;
+	height: 30px;
+	z-index: 2;
+	background-color: $white-transparent-light;
+	background-repeat: no-repeat;
+	@include border-radius(0);
+	@include box-shadow(none);
+	@include background-size(75%);
+	background-position: center center;
+
+	&.slick-prev {
+		margin-left: 25px;
+		background-image: url('img/slick-arrow-left.svg');
+
+		&::before {
+			display: none;
+		}
+
+		&:hover {
+			background-color: $white-transparent;
+			@include background-size(75%);
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+	}
+
+	&.slick-next {
+		margin-right: 25px;
+		background-image: url('img/slick-arrow-right.svg');
+
+		&::before {
+			display: none;
+		}
+
+		&:hover {
+			background-color: $white-transparent;
+			@include background-size(75%);
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+
+	}
+
+
+}

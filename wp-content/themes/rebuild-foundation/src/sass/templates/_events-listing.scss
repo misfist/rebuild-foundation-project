@@ -16,18 +16,18 @@
 		@include transition-duration(0.5s);
 
 		.site-name {
-			@include inblock(30%);
+			@include inblock(35%);
 			padding: 40px 30px 0 40px;
 			text-transform: uppercase;
 			letter-spacing: 0.1em;
 
 			a {
-				font: $font-size-4 $light;
+				font: $font_size-4 $light;
 				text-decoration: none;
 				color: $black;
 
 				label {
-					font: $font-size-2 $regular;
+					font: $font_size-2 $regular;
 					letter-spacing: 0.1em;
 					padding-left: 2px;
 				}
@@ -35,10 +35,11 @@
 		}
 
 		.event-title {
-			@include inblock(40%);
+			@include inblock(45%);
 			margin-left: -4px;
 			margin-top: 50px;
 			padding-right: 40px;
+			padding-left: 30px;
 			font: $font-size-2 $bold;
 
 			a {
@@ -48,7 +49,7 @@
 		}
 
 		.event-date {
-			@include inblock(30%);
+			@include inblock(20%);
 			margin-left: -4px;
 			min-height: 200px;
 
@@ -63,9 +64,11 @@
 
 			time {
 				font: $font-size-2 $bold;
-				position: absolute;
-				margin-top: -150px;
-				margin-left: 12%;
+				position: relative;
+				margin: -150px auto 0 auto;
+				z-index: 1;
+				display: block;
+				width: 55px;
 			}
 		}
 
@@ -84,17 +87,23 @@
 				}
 			}
 
-			.event-title a {
-				color: $warm-gray;
-				@include transition-duration(0.25s);
+			.event-title {
+				width: 35%;
 
-				&:hover {
-					color: $black;
+				a {
+					color: $warm-gray;
 					@include transition-duration(0.25s);
+
+					&:hover {
+						color: $black;
+						@include transition-duration(0.25s);
+					}
 				}
 			}
 
 			.event-date {
+				width: 30%;
+
 				&::before {
 					background-color: $black-transparent-light;
 				}
@@ -104,6 +113,39 @@
 				}
 			}
 		}
+
+		&#no-results {
+			border: none;
+			margin-top: 145px;
+
+			.no-posts {
+				font: $font_size-4 $regular;
+			}
+
+			&:hover {
+				width: $size__site-main-nested;
+				background-color: transparent;
+			}
+		}
 	}
 
+}
+
+@media (max-width: 1200px) {
+	.post-type-archive-event {
+		article {
+			width: $size__site-main-center-2;
+		}
+	}	
+}
+
+
+@media (max-width: 1024px) {
+	.post-type-archive-event {
+		.posts-list {
+			left: 0;
+			width: 100%;
+			margin-top: 50px;
+		}
+	}
 }

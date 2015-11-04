@@ -1,8 +1,12 @@
 .entry-meta.location {
 	a {
-		font: $font_size-3 $bold;
+		font: $font_size-4 $bold;
 		color: $black;
 		text-transform: uppercase;
+
+		&:hover {
+			color: $black-transparent-light;
+		}
 	}
 }
 
@@ -17,8 +21,8 @@
 .single-exhibition {
 
 	#main {
-		width: $size__site-main-nested;
-		left: $align__site-3;
+		width: 100%;
+		left: 0;
 		position: relative;
 	}
 
@@ -38,14 +42,15 @@
 		}
 
 		.description {
-			@include inblock(60%);
+			@include inblock(55%);
 			padding-right: 5%;
 		}
 
 		.content-side {
-			@include inblock(40%);
+			@include inblock(45%);
 			margin-left: -5px;
-			padding-left: 5%;
+			margin-top: -100px;
+			padding-left: 0;
 
 			figure {
 				margin: 0 0 0 20%;
@@ -69,9 +74,10 @@
 
 		.entry-footer {
 			border-top: 1px dotted $black-transparent;
-			width: 60%;
+			width: 100%;
 			padding-top: 15px;
 			margin-top: 30px;
+			clear: both;
 
 			.meta a {
 				
@@ -146,5 +152,16 @@
 
 	.post-navigation {
 		width: $size__site-main-nested;
+	}
+}
+
+@media (max-width: 1200px) {
+	.single-exhibition  {
+		#main {
+			width: 100%;
+			position: relative;
+			left: 0;
+			margin-top: 60px;
+		}
 	}
 }
