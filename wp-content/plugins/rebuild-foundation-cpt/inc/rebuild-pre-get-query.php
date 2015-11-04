@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Rebuild Foundation Custom Columns
+ * Rebuild Foundation Custom Columns - MOVED to theme
  *
  * @author    Pea
  * @license   GPL-2.0+
@@ -25,14 +25,12 @@ if(! function_exists( 'rebuild_events_get_posts_query' ) ) {
 
         // Check if get_query_var( 'event_year' ) is passed & is valid, otherwise set to current year
         $event_year = get_query_var( 'event_year' );
-
         $year = ( isset( $event_year ) ) ? absint( get_query_var( 'event_year' ) ) : date( 'Y' );
 
-        // Check if get_query_var( 'event_month' ) is passed & is valid, otherwise set to blank
-
+        // Check if get_query_var( 'event_month' ) is passed & is valid, otherwise set to current month
         $month = get_query_var( 'event_month' );
         $event_month = ( ( isset( $month ) ) && 
-            in_array( $month, range( 1, 12 ) ) ) ? zeroise( $month, 2 ) : '';
+            in_array( $month, range( 1, 12 ) ) ) ? zeroise( $month, 2 ) : date( 'm' );
 
         // If neither $event_year or $event_month, return
         if( !isset( $event_year ) && !isset( $event_month ) ) {
@@ -40,7 +38,7 @@ if(! function_exists( 'rebuild_events_get_posts_query' ) ) {
             return;
         }
 
-        // If you click year only, you should see full year select
+        // If you click year only, you should see 
         // e.g. {$year}0101 - {$year}1231
 
         // If you click month only, you should see current month of current year
@@ -54,7 +52,6 @@ if(! function_exists( 'rebuild_events_get_posts_query' ) ) {
 
         $start_month = ( $event_month ) ? $event_month : zeroise( 1, 2 );
         $end_month =  ( $event_month ) ? $event_month : zeroise( 12, 2 );
-
 
         $meta_query = array(
             'relation' => 'AND',
