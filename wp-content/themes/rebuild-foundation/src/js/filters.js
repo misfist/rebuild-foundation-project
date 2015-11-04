@@ -26,20 +26,83 @@ jQuery( document ).ready( function( $ ) {
         return vars;
     }
 
-    if( queryVars.event_year ) {
-        $( 'li[data-event_year=' + queryVars.event_year + ']' ).addClass( 'active' );
-    } else {
+    if( 'archive' == pageInfo.pageType || 'tax' == pageInfo.pageType ) {
+
+        // console.log( 'Here is an archive' );
+
         var defaultYear = new Date().getFullYear();
-        $( 'li[data-event_year=' + defaultYear + ']' ).addClass( 'active' );
+        var defaultMonth = new Date().getMonth() + 1;
+
+        // console.log( typeof queryVars.event_year );
+        // console.log( typeof queryVars.event_month );
+
+        switch ( true ) {
+
+            // Year and month
+            case ( typeof queryVars.event_year != 'undefined' ) && ( typeof queryVars.event_month != 'undefined' ):
+
+                // year = year & month = month
+                // console.log( 'Year and month' );
+                $( 'li[data-event_year=' + queryVars.event_year + ']' ).addClass( 'active' );
+                $( 'li[data-event_month=' + queryVars.event_month + ']' ).addClass( 'active' );
+                
+                break;
+
+            //Year, but no month
+            case ( ( typeof queryVars.event_year != 'undefined' ) && ( typeof queryVars.event_month == 'undefined' ) ):
+                console.log( 'Year, but no month' );
+
+                // If year = defaultYear
+                if( queryVars.event_year == defaultYear ) {
+                    // year = year & month = defaultMonth
+                    // console.log( 'Current year' );
+                    $( 'li[data-event_year=' + defaultYear + ']' ).addClass( 'active' );
+                    $( 'li[data-event_month=' + defaultMonth + ']' ).addClass( 'active' );
+                } else { 
+                    // year = year & month = null
+                    // console.log( 'Different year' );
+                    $( 'li[data-event_year=' + queryVars.event_year + ']' ).addClass( 'active' );
+                }
+
+                break;
+
+            // No year, but month
+            case ( typeof queryVars.event_year == 'undefined' ) && ( typeof queryVars.event_month != 'undefined' ):
+
+                // year = defaultYear & month = month
+                // console.log( 'No year, but month' );
+                $( 'li[data-event_year=' + defaultYear + ']' ).addClass( 'active' );
+                $( 'li[data-event_month=' + queryVars.event_month + ']' ).addClass( 'active' );
+
+                break;
+
+            // Default: No year, no month
+            default :
+
+                // Default: No year, no month
+                console.log( 'Default: No year, no month' );
+
+        }
+
+        $( 'li[data-site_category=' + queryVars.site_category + ']' ).addClass( 'active' );
+
+        $( 'li[data-event_category=' + queryVars.event_category + ']' ).addClass( 'active' );
+
+        $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );
+
+    } else if( 'single' == pageInfo.pageType ){
+
+        // console.log( 'Here is a single page' );
+
+        var date = new Date( pageInfo.startDate );
+        var eventYear = date.getFullYear();
+        var eventMonth = ( ( date.getMonth() + 1 ) < 10 ? '0' : '' ) + ( date.getMonth() + 1 );
+
+        // console.log( eventMonth );
+
+        $( 'li[data-event_year=' + eventYear + ']' ).addClass( 'active' );
+        $( 'li[data-event_month=' + eventMonth + ']' ).addClass( 'active' );
+
     }
-
-    $( 'li[data-event_month=' + queryVars.event_month + ']' ).addClass( 'active' );
-
-    $( 'li[data-site_category=' + queryVars.site_category + ']' ).addClass( 'active' );
-
-    $( 'li[data-event_category=' + queryVars.event_category + ']' ).addClass( 'active' );
-
-    $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );
-
 
 } );
