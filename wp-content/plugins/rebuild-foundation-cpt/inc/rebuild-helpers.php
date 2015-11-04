@@ -76,6 +76,13 @@ if(! function_exists( 'rebuild_get_location_fields' ) ) {
 }
 
 
+/**
+ * Convert Location to String
+ * Retrieves the address associated with the content and converts to string
+ * @return string
+ */
+
+
 if(! function_exists( 'rebuild_convert_location_to_string' ) ) {
 
   function rebuild_convert_location_to_string( $id ) {
@@ -83,6 +90,28 @@ if(! function_exists( 'rebuild_convert_location_to_string' ) ) {
     $address_array = rebuild_get_location_fields( $id );
 
     return implode( ', ', $address_array );
+
+  }
+
+}
+
+
+/**
+ * Convert Location to URL Encoded String
+ * Retrieves the address associated with the content and converts to urlencoded string
+ * @return urlencoded string
+ */
+
+
+if(! function_exists( 'rebuild_urlencode_location' ) ) {
+
+  function rebuild_urlencode_location( $id ) {
+
+    $address_array = rebuild_get_location_fields( $id );
+
+    $address_string = implode( '+', $address_array );
+
+    return urlencode( $address_string );
 
   }
 
