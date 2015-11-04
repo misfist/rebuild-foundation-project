@@ -65,6 +65,8 @@
                     <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
                 </div>
 
+                <?php rebuild_google_map_link(); ?>
+
                 <div class="entry-meta hours">
                     <?php the_field( 'hours' ); ?>
                 </div>
