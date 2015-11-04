@@ -45,7 +45,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         $site_name = get_bloginfo( 'name' );
         $site_url = get_bloginfo( 'url' );
 
-        $url = 'http://www.google.com/calendar/event?action=TEMPLATE';
+        $url = 'https://www.google.com/calendar/event?action=TEMPLATE';
 
         $description = rebuild_truncate_text( $event_description, 200 );
 
