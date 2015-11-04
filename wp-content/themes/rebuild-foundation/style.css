@@ -1659,8 +1659,7 @@ ul.social-links {
 @media (max-width: 1024px) {
   .single-event #main {
     left: 0;
-    width: 100%;
-    margin-top: 10px; } }
+    width: 100%; } }
 .post-type-archive-exhibition .posts-list {
   width: calc(100% - 160px);
   position: relative;
