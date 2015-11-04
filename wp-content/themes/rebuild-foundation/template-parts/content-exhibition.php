@@ -45,7 +45,12 @@
             <?php the_content(); ?>
 
             <?php get_template_part( 'template-parts/social-media' ); ?>
+            <footer class="entry-footer">
+                <?php rebuild_foundation_entry_footer(); ?>
+            </footer><!-- .entry-footer -->
         </div>
+
+
 
         <div class="content-side">
             
@@ -59,7 +64,7 @@
                     <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
                 </div>
 
-                <h4><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
+                <h4 class="hours-location"><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
 
                 <div class="entry-meta address">
                     <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
@@ -82,8 +87,5 @@
         </div>
     </div><!-- .entry-content -->
 
-    <footer class="entry-footer">
-        <?php rebuild_foundation_entry_footer(); ?>
-    </footer><!-- .entry-footer -->
 </article><!-- #post-## -->
 

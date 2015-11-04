@@ -5,12 +5,10 @@ $images = get_field( 'post_gallery' );
 
 if( $images ): ?>
 
-    <div class="gallery-static">
+    <div class="gallery" id="site-gallery">
         <?php foreach( $images as $image ): ?>
 
-            <figure>
-
-                <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
+            <figure class="slide-item" style="background-image: url('<?php echo $image['sizes']['large']; ?>')">
 
                 <figcaption><?php echo $image['caption']; ?></figcaption>
 
@@ -23,9 +21,7 @@ if( $images ): ?>
 
      <div class="single-image">
 
-        <figure class="entry-thumbnail">
-
-            <?php the_post_thumbnail( 'full' ); ?>
+        <figure class="entry-thumbnail" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
 
             <?php $caption = rebuild_get_the_feature_caption(); ?>
 

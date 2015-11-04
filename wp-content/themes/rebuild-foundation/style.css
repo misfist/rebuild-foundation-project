@@ -185,6 +185,31 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
         #masthead .site-branding:hover .site-title:hover {
           opacity: 1; }
 
+.site-stony-island-arts-bank #masthead .site-branding .site-title {
+  background-image: url("img/logo-siab_a.svg"); }
+.site-stony-island-arts-bank #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.site-dorchester-art-housing-collaborative #masthead .site-branding .site-title {
+  background-image: url("img/logo-da-hc_a.svg"); }
+.site-dorchester-art-housing-collaborative #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.site-archive-house #masthead .site-branding .site-title {
+  background-image: url("img/logo-ah_a.svg"); }
+.site-archive-house #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.site-listening-house #masthead .site-branding .site-title {
+  background-image: url("img/logo-lh_a.svg"); }
+.site-listening-house #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
+.site-black-cinema-house #masthead .site-branding .site-title {
+  background-image: url("img/logo-bch_a.svg"); }
+.site-black-cinema-house #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
 #primary {
   width: calc(100% - 220px);
   position: relative;
@@ -430,6 +455,11 @@ h5 {
 h6 {
   font-size: 13px; }
 
+h4.hours-location {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 12px; }
+
 p {
   margin-bottom: 1.5em; }
 
@@ -453,7 +483,8 @@ address {
 
 span.address {
   display: block;
-  white-space: nowrap; }
+  font: 14px "Akkuratmono-Regular";
+  padding-bottom: 5px; }
 
 pre {
   background: #eee;
@@ -670,9 +701,8 @@ a {
 
 .entry-content a {
   color: black;
-  border-bottom: 3px solid white; }
+  border-bottom: 2px solid white; }
   .entry-content a:hover {
-    text-decoration: none;
     background-color: white; }
 .entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a {
   border-bottom: none;
@@ -693,6 +723,12 @@ a {
     background-color: transparent;
     color: white; }
 
+.google-map-link {
+  margin-top: 10px; }
+  .google-map-link a {
+    font-size: 16px;
+    text-transform: uppercase; }
+
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
@@ -701,7 +737,7 @@ a {
   display: block;
   float: left;
   width: 100%;
-  margin-top: 150px; }
+  margin-top: 100px; }
   .main-navigation ul {
     display: none;
     list-style: none;
@@ -710,7 +746,7 @@ a {
   .main-navigation li {
     position: relative;
     text-transform: uppercase;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     padding-left: 0; }
     .main-navigation li:hover > a, .main-navigation li.focus > a {
       -webkit-transition-duration: 0.25s;
@@ -719,13 +755,14 @@ a {
       -o-transition-duration: 0.25s;
       transition-duration: 0.25s; }
     .main-navigation li.menu-break {
-      margin-top: 20px; }
+      margin-top: 50px; }
       .main-navigation li.menu-break::before {
         content: "\00a0";
         border-top: 2px solid rgba(0, 0, 0, 0.5);
         width: 20px;
         position: absolute;
-        margin-top: -15px; }
+        margin-top: -15px;
+        margin-top: -25px; }
   .main-navigation a {
     display: block;
     text-decoration: none;
@@ -836,6 +873,12 @@ a {
   float: initial;
   position: initial; }
 
+@media (max-width: 1024px) {
+  .page-sub-menu {
+    position: relative;
+    top: 0;
+    width: 100%;
+    margin: 30px 0 20px 0; } }
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
@@ -903,6 +946,51 @@ ul.event-year-filter, ul.exhibition-filter {
       font: 20px "Akkurat-Bold";
       color: black; }
 
+@media (max-width: 1024px) {
+  .filters, .blog ul.site-filter, .blog ul.site-filter {
+    position: relative;
+    width: 100%;
+    left: 0;
+    border: none; }
+    .filters ul li, .blog ul.site-filter ul li, .blog ul.site-filter ul li {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      padding: 4px 0;
+      font-size: 15px; }
+    .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .blog ul.site-filter ul.event-month-filter {
+      width: 100%; }
+      .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li {
+        width: 16%; }
+    .filters .site-filter, .blog ul.site-filter .site-filter, .filters .event-filter, .blog ul.site-filter .event-filter, .blog ul.site-filter .site-filter, .blog ul.site-filter .event-filter {
+      display: inline-block;
+      vertical-align: top;
+      width: 40%;
+      margin-right: 5%; }
+
+  ul.exhibition-filter, ul.event-year-filter {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+
+  ul.exhibition-filter li {
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+    padding-bottom: 15px; }
+
+  ul.event-year-filter {
+    margin-top: 20px; }
+    ul.event-year-filter li {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      padding-right: 20px; }
+      ul.event-year-filter li.active a {
+        font-size: 16px; } }
 /*--------------------------------------------------------------
 ## Post Navigation
 --------------------------------------------------------------*/
@@ -1158,6 +1246,72 @@ figcaption {
 .gallery-caption {
   display: block; }
 
+#site-gallery .slick-list {
+  padding-top: 60px; }
+#site-gallery figure.slide-item {
+  width: 100%;
+  height: 450px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0; }
+#site-gallery figcaption {
+  width: 100%;
+  font: 13px "Akkuratmono-Regular";
+  margin-top: -30px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 100px 10px 0; }
+  #site-gallery figcaption:hover {
+    background-color: #e9e6df;
+    overflow: visible;
+    white-space: normal; }
+
+button.slick-arrow {
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.25);
+  background-repeat: no-repeat;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-background-size: 75%;
+  -moz-background-size: 75%;
+  -o-background-size: 75%;
+  background-size: 75%;
+  background-position: center center; }
+  button.slick-arrow.slick-prev {
+    margin-left: 25px;
+    background-image: url("img/slick-arrow-left.svg"); }
+    button.slick-arrow.slick-prev::before {
+      display: none; }
+    button.slick-arrow.slick-prev:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+      -webkit-background-size: 75%;
+      -moz-background-size: 75%;
+      -o-background-size: 75%;
+      background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: center center; }
+  button.slick-arrow.slick-next {
+    margin-right: 25px;
+    background-image: url("img/slick-arrow-right.svg"); }
+    button.slick-arrow.slick-next::before {
+      display: none; }
+    button.slick-arrow.slick-next:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+      -webkit-background-size: 75%;
+      -moz-background-size: 75%;
+      -o-background-size: 75%;
+      background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: center center; }
+
 /*--------------------------------------------------------------
 ## Images
 --------------------------------------------------------------*/
@@ -1281,7 +1435,7 @@ ul.social-links {
     .post-type-archive-event article .site-name {
       display: inline-block;
       vertical-align: top;
-      width: 30%;
+      width: 35%;
       padding: 40px 30px 0 40px;
       text-transform: uppercase;
       letter-spacing: 0.1em; }
@@ -1296,10 +1450,11 @@ ul.social-links {
     .post-type-archive-event article .event-title {
       display: inline-block;
       vertical-align: top;
-      width: 40%;
+      width: 45%;
       margin-left: -4px;
       margin-top: 50px;
       padding-right: 40px;
+      padding-left: 30px;
       font: 16px "Akkurat-Bold"; }
       .post-type-archive-event article .event-title a {
         color: black;
@@ -1307,7 +1462,7 @@ ul.social-links {
     .post-type-archive-event article .event-date {
       display: inline-block;
       vertical-align: top;
-      width: 30%;
+      width: 20%;
       margin-left: -4px;
       min-height: 200px; }
       .post-type-archive-event article .event-date::before {
@@ -1319,9 +1474,11 @@ ul.social-links {
         background-color: #e9e6df; }
       .post-type-archive-event article .event-date time {
         font: 16px "Akkurat-Bold";
-        position: absolute;
-        margin-top: -150px;
-        margin-left: 12%; }
+        position: relative;
+        margin: -150px auto 0 auto;
+        z-index: 1;
+        display: block;
+        width: 55px; }
     .post-type-archive-event article:hover {
       width: 100%;
       background-color: rgba(0, 0, 0, 0.5);
@@ -1344,25 +1501,45 @@ ul.social-links {
           -ms-transition-duration: 0.25s;
           -o-transition-duration: 0.25s;
           transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .event-title a {
-        color: #e9e6df;
-        -webkit-transition-duration: 0.25s;
-        -moz-transition-duration: 0.25s;
-        -ms-transition-duration: 0.25s;
-        -o-transition-duration: 0.25s;
-        transition-duration: 0.25s; }
-        .post-type-archive-event article:hover .event-title a:hover {
-          color: black;
+      .post-type-archive-event article:hover .event-title {
+        width: 35%; }
+        .post-type-archive-event article:hover .event-title a {
+          color: #e9e6df;
           -webkit-transition-duration: 0.25s;
           -moz-transition-duration: 0.25s;
           -ms-transition-duration: 0.25s;
           -o-transition-duration: 0.25s;
           transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .event-date::before {
-        background-color: rgba(0, 0, 0, 0.25); }
-      .post-type-archive-event article:hover .event-date time {
-        color: #e9e6df; }
+          .post-type-archive-event article:hover .event-title a:hover {
+            color: black;
+            -webkit-transition-duration: 0.25s;
+            -moz-transition-duration: 0.25s;
+            -ms-transition-duration: 0.25s;
+            -o-transition-duration: 0.25s;
+            transition-duration: 0.25s; }
+      .post-type-archive-event article:hover .event-date {
+        width: 30%; }
+        .post-type-archive-event article:hover .event-date::before {
+          background-color: rgba(0, 0, 0, 0.25); }
+        .post-type-archive-event article:hover .event-date time {
+          color: #e9e6df; }
+    .post-type-archive-event article#no-results {
+      border: none;
+      margin-top: 145px; }
+      .post-type-archive-event article#no-results .no-posts {
+        font: 25px "Akkurat-Regular"; }
+      .post-type-archive-event article#no-results:hover {
+        width: calc(100% - 160px);
+        background-color: transparent; }
 
+@media (max-width: 1200px) {
+  .post-type-archive-event article {
+    width: calc(100% - 60px); } }
+@media (max-width: 1024px) {
+  .post-type-archive-event .posts-list {
+    left: 0;
+    width: 100%;
+    margin-top: 50px; } }
 .single-event #main {
   width: calc(100% - 160px);
   left: 160px;
@@ -1415,28 +1592,74 @@ ul.social-links {
     margin-top: 5px;
     padding: 0 0 0 0;
     font: 16px "Akkurat-Bold"; }
-  .single-event article .entry-thumbnail {
+  .single-event article .single-image {
     display: inline-block;
     vertical-align: top;
     width: 35%;
     padding: 0 2.5% 0 5%;
     margin: 0; }
+    .single-event article .single-image .entry-thumbnail {
+      margin: 0; }
+  .single-event article .gallery-static {
+    display: inline-block;
+    vertical-align: top;
+    width: 35%;
+    padding: 0 2.5% 0 5%;
+    margin: 0; }
+    .single-event article .gallery-static figure {
+      margin: 0 0 40px 0; }
   .single-event article #details {
     display: inline-block;
     vertical-align: top;
     width: 65%;
     margin-left: -4px;
     padding: 0 5% 0 5%; }
-  .single-event article .event-date, .single-event article .event-time, .single-event article .meta {
-    font: 14px "Akkuratmono-Regular";
-    padding-bottom: 5px; }
-  .single-event article .entry-meta {
-    margin-top: 20px; }
+    .single-event article #details .event-date, .single-event article #details .event-time, .single-event article #details .event-export, .single-event article #details .location {
+      font: 14px "Akkuratmono-Regular";
+      padding-bottom: 6px; }
+    .single-event article #details .event-date::before {
+      content: "\00a0";
+      border-top: 2px solid black;
+      width: 20px;
+      position: absolute;
+      margin-top: -15px; }
+    .single-event article #details .entry-meta {
+      margin-top: 40px; }
+      .single-event article #details .entry-meta::before {
+        content: "\00a0";
+        border-top: 2px solid black;
+        width: 20px;
+        position: absolute;
+        margin-top: -15px; }
+    .single-event article #details .location span {
+      padding-bottom: 6px; }
+    .single-event article #details .location .google-map-link a {
+      font: 14px "Akkuratmono-Regular";
+      border-bottom: 2px solid white; }
+      .single-event article #details .location .google-map-link a:hover {
+        background-color: white; }
+    .single-event article #details .meta {
+      font: 14px "Akkuratmono-Regular";
+      padding-bottom: 6px; }
+      .single-event article #details .meta a {
+        border-bottom: 2px solid white; }
+        .single-event article #details .meta a:hover {
+          background-color: white; }
   .single-event article .description {
     margin-top: 35px; }
 .single-event .post-navigation {
   width: calc(100% - 160px); }
 
+@media (max-width: 1200px) {
+  .single-event article {
+    width: calc(100% - 60px); }
+  .single-event .post-navigation {
+    width: calc(100% - 60px); } }
+@media (max-width: 1024px) {
+  .single-event #main {
+    left: 0;
+    width: 100%;
+    margin-top: 10px; } }
 .post-type-archive-exhibition .posts-list {
   width: calc(100% - 160px);
   position: relative;
@@ -1444,10 +1667,10 @@ ul.social-links {
   margin-top: 120px; }
 
 article.exhibition {
-  width: calc(100% - 160px);
+  width: calc(100% - 60px);
   margin-bottom: 60px;
   padding-bottom: 60px;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid white; }
   article.exhibition .col-1 {
     display: inline-block;
     vertical-align: top;
@@ -1458,19 +1681,17 @@ article.exhibition {
     width: 30%;
     margin-left: 5%; }
   article.exhibition .site-info {
-    margin: -60% 0 0 0;
+    margin: -60% 0 6px 0;
     width: 60%;
     font-size: 16px; }
   article.exhibition .entry-meta.location {
-    width: 60%; }
+    width: 70%; }
   article.exhibition .featured-image {
     width: 65%;
     margin-left: 10%; }
   article.exhibition .entry-header .entry-title {
     font: 40px "Akkurat-Bold";
     margin-top: 0; }
-    article.exhibition .entry-header .entry-title a:hover {
-      color: black; }
   article.exhibition .entry-header .entry-meta {
     font: 16px "Akkuratmono-Regular"; }
   article.exhibition .read-more {
@@ -1478,34 +1699,54 @@ article.exhibition {
     display: block;
     margin-top: 20px;
     border: none; }
-    article.exhibition .read-more:hover {
-      color: black;
-      background-color: transparent; }
   article.exhibition.site_category-dorchester-art-housing-collaborative .site-info::before {
     content: url("img/graphic_da-hc.svg"); }
   article.exhibition.site_category-dorchester-art-housing-collaborative .entry-title a, article.exhibition.site_category-dorchester-art-housing-collaborative .read-more {
     color: #ff674d; }
+    article.exhibition.site_category-dorchester-art-housing-collaborative .entry-title a:hover, article.exhibition.site_category-dorchester-art-housing-collaborative .read-more:hover {
+      color: black;
+      background-color: transparent; }
   article.exhibition.site_category-black-cinema-house .site-info::before {
     content: url("img/graphic_bch.svg"); }
   article.exhibition.site_category-black-cinema-house .entry-title a, article.exhibition.site_category-black-cinema-house .read-more {
     color: #ffb111; }
+    article.exhibition.site_category-black-cinema-house .entry-title a:hover, article.exhibition.site_category-black-cinema-house .read-more:hover {
+      color: black;
+      background-color: transparent; }
   article.exhibition.site_category-stony-island-arts-bank .site-info::before {
     content: url("img/graphic_siab.svg"); }
   article.exhibition.site_category-stony-island-arts-bank .entry-title a, article.exhibition.site_category-stony-island-arts-bank .read-more {
     color: #6490e8; }
+    article.exhibition.site_category-stony-island-arts-bank .entry-title a:hover, article.exhibition.site_category-stony-island-arts-bank .read-more:hover {
+      color: black;
+      background-color: transparent; }
   article.exhibition.site_category-listening-house .site-info::before {
     content: url("img/graphic_lh.svg"); }
   article.exhibition.site_category-listening-house .entry-title a, article.exhibition.site_category-listening-house .read-more {
     color: #c2907f; }
+    article.exhibition.site_category-listening-house .entry-title a:hover, article.exhibition.site_category-listening-house .read-more:hover {
+      color: black;
+      background-color: transparent; }
   article.exhibition.site_category-archive-house .site-info::before {
     content: url("img/graphic_ah.svg"); }
   article.exhibition.site_category-archive-house .entry-title a, article.exhibition.site_category-archive-house .read-more {
     color: #c2907f; }
+    article.exhibition.site_category-archive-house .entry-title a:hover, article.exhibition.site_category-archive-house .read-more:hover {
+      color: black;
+      background-color: transparent; }
 
+@media (max-width: 1024px) {
+  .post-type-archive-exhibition .posts-list {
+    width: 100%;
+    position: relative;
+    left: 0;
+    margin-top: 60px; } }
 .entry-meta.location a {
-  font: 20px "Akkurat-Bold";
+  font: 25px "Akkurat-Bold";
   color: black;
   text-transform: uppercase; }
+  .entry-meta.location a:hover {
+    color: rgba(0, 0, 0, 0.25); }
 
 .site-info::before, #details::before {
   position: relative;
@@ -1513,8 +1754,8 @@ article.exhibition {
   width: 100%; }
 
 .single-exhibition #main {
-  width: calc(100% - 160px);
-  left: 160px;
+  width: 100%;
+  left: 0;
   position: relative; }
 .single-exhibition article {
   width: calc(100% - 160px);
@@ -1526,14 +1767,15 @@ article.exhibition {
   .single-exhibition article .description {
     display: inline-block;
     vertical-align: top;
-    width: 60%;
+    width: 55%;
     padding-right: 5%; }
   .single-exhibition article .content-side {
     display: inline-block;
     vertical-align: top;
-    width: 40%;
+    width: 45%;
     margin-left: -5px;
-    padding-left: 5%; }
+    margin-top: -100px;
+    padding-left: 0; }
     .single-exhibition article .content-side figure {
       margin: 0 0 0 20%;
       width: 80%; }
@@ -1547,7 +1789,7 @@ article.exhibition {
       white-space: nowrap; }
   .single-exhibition article .entry-footer {
     border-top: 1px dotted rgba(0, 0, 0, 0.5);
-    width: 60%;
+    width: 100%;
     padding-top: 15px;
     margin-top: 30px; }
     .single-exhibition article .entry-footer .meta a label {
@@ -1575,6 +1817,12 @@ article.exhibition {
 .single-exhibition .post-navigation {
   width: calc(100% - 160px); }
 
+@media (max-width: 1200px) {
+  .single-exhibition #main {
+    width: 100%;
+    position: relative;
+    left: 0;
+    margin-top: 60px; } }
 .post-type-archive-site article {
   width: calc(100% - 160px);
   height: 240px;
@@ -1706,210 +1954,241 @@ article.exhibition {
       cursor: pointer;
       z-index: 5; }
 
-.single-site.stony-island-arts-bank #masthead .site-branding .site-title {
-  background-image: url("img/logo-siab_a.svg"); }
-.single-site.stony-island-arts-bank #masthead .site-branding:hover .site-title {
-  background-image: url("img/logo-foundation_b.svg"); }
-
-.single-site.dorchester-art-housing-collaborative #masthead .site-branding .site-title {
-  background-image: url("img/logo-da-hc_a.svg"); }
-.single-site.dorchester-art-housing-collaborative #masthead .site-branding:hover .site-title {
-  background-image: url("img/logo-foundation_b.svg"); }
-
-.single-site.archive-house #masthead .site-branding .site-title {
-  background-image: url("img/logo-ah_a.svg"); }
-.single-site.archive-house #masthead .site-branding:hover .site-title {
-  background-image: url("img/logo-foundation_b.svg"); }
-
-.single-site.listening-house #masthead .site-branding .site-title {
-  background-image: url("img/logo-lh_a.svg"); }
-.single-site.listening-house #masthead .site-branding:hover .site-title {
-  background-image: url("img/logo-foundation_b.svg"); }
-
-.single-site.black-cinema-house #masthead .site-branding .site-title {
-  background-image: url("img/logo-bch_a.svg"); }
-.single-site.black-cinema-house #masthead .site-branding:hover .site-title {
-  background-image: url("img/logo-foundation_b.svg"); }
-
-.single-site article.site {
-  margin-top: 50px; }
-  .single-site article.site header.site-header {
-    display: inline-block;
-    vertical-align: top;
-    width: 30%;
-    vertical-align: bottom;
-    padding-right: 5%;
-    position: relative;
+@media (max-width: 1024px) {
+  .post-type-archive-site article {
+    width: calc(100% - 60px); } }
+.single-site article.site header.site-header {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  vertical-align: bottom;
+  padding-right: 5%;
+  position: relative;
+  z-index: 2; }
+  .single-site article.site header.site-header .entry-meta.location {
+    font: 14px "Akkuratmono-Regular"; }
+  .single-site article.site header.site-header .entry-title {
+    margin: 20px 0 0 0;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    font-size: 25px; }
+.single-site article.site .gallery {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+  vertical-align: bottom;
+  margin-left: -5px;
+  margin-bottom: 0; }
+  .single-site article.site .gallery::before {
+    position: absolute;
+    display: block;
+    width: 40%;
+    max-width: 330px;
+    margin: 300px 0 0 -100px;
     z-index: 1; }
-    .single-site article.site header.site-header .entry-meta.location {
-      font: 14px "Akkuratmono-Regular"; }
-    .single-site article.site header.site-header .entry-title {
-      margin: 20px 0 0 0;
-      line-height: 1.2em;
-      text-transform: uppercase;
-      font-size: 25px; }
-  .single-site article.site .site-image {
-    display: inline-block;
-    vertical-align: top;
-    width: 70%;
+.single-site article.site .single-image {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+  vertical-align: bottom;
+  margin: 60px 0 0 -5px; }
+  .single-site article.site .single-image figure {
+    width: 100%;
     height: 450px;
-    vertical-align: bottom;
-    margin-left: -5px;
     background-size: cover;
-    background-repeat: no-repeat; }
-    .single-site article.site .site-image::after {
-      position: absolute;
-      display: block;
-      width: 40%;
-      max-width: 330px;
-      margin: 200px 0 0 -200px;
-      z-index: 0; }
-  .single-site article.site .main-content {
-    padding: 0 0 0 30%;
-    position: relative;
+    background-repeat: no-repeat;
+    margin: 0; }
+    .single-site article.site .single-image figure figcaption {
+      width: 100%;
+      font: 13px "Akkuratmono-Regular";
+      margin-top: -30px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 100px 10px 0; }
+      .single-site article.site .single-image figure figcaption:hover {
+        background-color: #e9e6df;
+        overflow: visible;
+        white-space: normal; }
+  .single-site article.site .single-image::before {
+    position: absolute;
+    display: block;
+    width: 40%;
+    max-width: 330px;
+    margin: 250px 0 0 -150px;
     z-index: 1; }
-    .single-site article.site .main-content .description {
-      display: inline-block;
-      vertical-align: top;
-      width: 65%; }
-    .single-site article.site .main-content #details {
-      display: inline-block;
-      vertical-align: top;
-      width: 35%;
-      margin-left: -5px;
-      padding: 0 5%; }
-  .single-site article.site.site_category-dorchester-art-housing-collaborative .site-image::after {
-    content: url("img/graphic_da-hc.svg"); }
-  .single-site article.site.site_category-black-cinema-house .site-image::after {
-    content: url("img/graphic_bch.svg"); }
-  .single-site article.site.site_category-stony-island-arts-bank .site-image::after {
-    content: url("img/graphic_siab.svg"); }
-  .single-site article.site.site_category-listening-house .site-image::after {
-    content: url("img/graphic_lh.svg"); }
-  .single-site article.site.site_category-archive-house .site-image::after {
-    content: url("img/graphic_ah.svg"); }
-  .single-site article.site .exhibitions {
-    margin-left: 160px;
-    margin-top: 100px; }
-    .single-site article.site .exhibitions h2 {
-      font-size: 16px; }
-    .single-site article.site .exhibitions article.exhibition {
-      border: none;
-      width: 100%; }
-    .single-site article.site .exhibitions .entry-title {
-      font-size: 32px; }
-    .single-site article.site .exhibitions .entry-content {
+.single-site article.site #no-results {
+  display: none; }
+.single-site article.site .main-content {
+  padding: 0 0 0 30%;
+  position: relative;
+  z-index: 1; }
+  .single-site article.site .main-content .description {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%; }
+    .single-site article.site .main-content .description p {
       margin-top: 0; }
-  .single-site article.site .events {
-    width: calc(100% - 160px);
-    margin-left: 100px; }
-    .single-site article.site .events h2 {
-      font-size: 16px;
-      margin-bottom: 20px; }
-    .single-site article.site .events .upcoming-events {
-      display: inline-block;
-      vertical-align: top;
-      width: 66%; }
-      .single-site article.site .events .upcoming-events article {
-        width: 85%;
+  .single-site article.site .main-content #details {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    margin-left: -5px;
+    padding: 0 5%; }
+.single-site article.site.site_category-dorchester-art-housing-collaborative .gallery::before {
+  content: url("img/graphic_da-hc.svg"); }
+.single-site article.site.site_category-black-cinema-house .gallery::before {
+  content: url("img/graphic_bch.svg"); }
+.single-site article.site.site_category-stony-island-arts-bank .gallery::before {
+  content: url("img/graphic_siab.svg"); }
+.single-site article.site.site_category-listening-house .gallery::before {
+  content: url("img/graphic_lh.svg"); }
+.single-site article.site.site_category-archive-house .gallery::before {
+  content: url("img/graphic_ah.svg"); }
+.single-site article.site .exhibitions {
+  margin-left: 100px;
+  margin-top: 100px; }
+  .single-site article.site .exhibitions h2 {
+    font-size: 16px; }
+  .single-site article.site .exhibitions article.exhibition {
+    border: none;
+    width: 100%;
+    margin-bottom: 0; }
+    .single-site article.site .exhibitions article.exhibition .single-image {
+      margin: 0 0 0 10%; }
+  .single-site article.site .exhibitions .entry-title {
+    font-size: 32px; }
+  .single-site article.site .exhibitions .entry-content {
+    margin-top: 0; }
+.single-site article.site .events {
+  width: calc(100% - 160px);
+  margin-left: 100px; }
+  .single-site article.site .events h2 {
+    font-size: 16px;
+    margin-bottom: 20px; }
+  .single-site article.site .events .upcoming-events {
+    display: inline-block;
+    vertical-align: top;
+    width: 66%; }
+    .single-site article.site .events .upcoming-events article {
+      width: 85%;
+      -webkit-transition-duration: 0.5s;
+      -moz-transition-duration: 0.5s;
+      -ms-transition-duration: 0.5s;
+      -o-transition-duration: 0.5s;
+      transition-duration: 0.5s;
+      background-size: cover; }
+      .single-site article.site .events .upcoming-events article .event-info {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px 30px; }
+        .single-site article.site .events .upcoming-events article .event-info .entry-title {
+          line-height: 1.2em; }
+          .single-site article.site .events .upcoming-events article .event-info .entry-title a {
+            font: 20px "Akkurat-Regular";
+            color: #e9e6df; }
+            .single-site article.site .events .upcoming-events article .event-info .entry-title a:hover {
+              color: rgba(255, 255, 255, 0.5); }
+        .single-site article.site .events .upcoming-events article .event-info .event-date {
+          color: #e9e6df; }
+      .single-site article.site .events .upcoming-events article:hover {
+        width: 90%;
         -webkit-transition-duration: 0.5s;
         -moz-transition-duration: 0.5s;
         -ms-transition-duration: 0.5s;
         -o-transition-duration: 0.5s;
-        transition-duration: 0.5s;
-        background-size: cover; }
-        .single-site article.site .events .upcoming-events article .event-info {
-          background-color: rgba(0, 0, 0, 0.5);
-          padding: 15px 30px; }
-          .single-site article.site .events .upcoming-events article .event-info .entry-title {
-            line-height: 1.2em; }
-            .single-site article.site .events .upcoming-events article .event-info .entry-title a {
-              font: 20px "Akkurat-Regular";
-              color: #e9e6df; }
-              .single-site article.site .events .upcoming-events article .event-info .entry-title a:hover {
-                color: rgba(255, 255, 255, 0.5); }
-          .single-site article.site .events .upcoming-events article .event-info .event-date {
-            color: #e9e6df; }
-        .single-site article.site .events .upcoming-events article:hover {
-          width: 90%;
-          -webkit-transition-duration: 0.5s;
-          -moz-transition-duration: 0.5s;
-          -ms-transition-duration: 0.5s;
-          -o-transition-duration: 0.5s;
-          transition-duration: 0.5s; }
-          .single-site article.site .events .upcoming-events article:hover .event-info {
-            background-color: rgba(0, 0, 0, 0.75); }
-    .single-site article.site .events .past-events {
+        transition-duration: 0.5s; }
+        .single-site article.site .events .upcoming-events article:hover .event-info {
+          background-color: rgba(0, 0, 0, 0.75); }
+  .single-site article.site .events .past-events {
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+    margin-left: -5px; }
+    .single-site article.site .events .past-events article .event-date {
       display: inline-block;
       vertical-align: top;
-      width: 33%;
-      margin-left: -5px; }
-      .single-site article.site .events .past-events article .event-date {
-        display: inline-block;
-        vertical-align: top;
-        width: 20%;
-        font: 20px "Akkurat-Light";
-        border-top: 1px solid rgba(0, 0, 0, 0.25);
-        margin-right: 5%;
-        padding: 5px;
-        text-align: center; }
-      .single-site article.site .events .past-events article .event-title {
-        display: inline-block;
-        vertical-align: top;
-        width: 75%;
-        margin-left: -5px;
-        margin-top: 0;
-        border-top: 1px solid white;
-        line-height: 1.2em;
-        padding: 10px 5px; }
-        .single-site article.site .events .past-events article .event-title a {
-          font: 16px "Akkurat-Bold";
-          color: black; }
-  .single-site article.site .posts {
-    width: calc(100% - 220px - 160px);
-    margin-top: 60px;
-    position: relative;
-    left: 160px; }
-    .single-site article.site .posts h2 {
-      font-size: 16px;
+      width: 20%;
+      font: 20px "Akkurat-Light";
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      margin-right: 5%;
+      padding: 5px;
+      text-align: center; }
+    .single-site article.site .events .past-events article .event-title {
+      display: inline-block;
+      vertical-align: top;
+      width: 75%;
+      margin-left: -5px;
       margin-top: 0;
-      border-bottom: 1px solid black; }
-    .single-site article.site .posts article {
-      border-bottom: 1px solid white;
-      padding: 20px 0; }
-      .single-site article.site .posts article .entry-header {
-        display: inline-block;
-        vertical-align: top;
-        width: 40%; }
-        .single-site article.site .posts article .entry-header .entry-title {
-          display: inline-block;
-          vertical-align: top;
-          width: 60%;
-          border: none;
-          padding-right: 5%; }
-          .single-site article.site .posts article .entry-header .entry-title a {
-            font: 25px "Akkurat-Regular";
-            color: black; }
-        .single-site article.site .posts article .entry-header .entry-meta {
-          display: inline-block;
-          vertical-align: top;
-          width: 40%;
-          margin-left: -5px; }
-      .single-site article.site .posts article .entry-content {
+      border-top: 1px solid white;
+      line-height: 1.2em;
+      padding: 10px 5px; }
+      .single-site article.site .events .past-events article .event-title a {
+        font: 16px "Akkurat-Bold";
+        color: black; }
+.single-site article.site .posts {
+  width: calc(100% - 160px);
+  margin-top: 60px;
+  position: relative;
+  left: 0;
+  margin-left: 100px; }
+  .single-site article.site .posts h2 {
+    font-size: 16px;
+    margin-top: 0;
+    border-bottom: 1px solid black; }
+  .single-site article.site .posts article {
+    border-bottom: 1px solid white;
+    padding: 20px 0; }
+    .single-site article.site .posts article .entry-header {
+      display: inline-block;
+      vertical-align: top;
+      width: 40%; }
+      .single-site article.site .posts article .entry-header .entry-title {
         display: inline-block;
         vertical-align: top;
         width: 60%;
-        margin-left: -5px;
+        border: none;
+        padding-right: 5%; }
+        .single-site article.site .posts article .entry-header .entry-title a {
+          font: 25px "Akkurat-Regular";
+          color: black; }
+          .single-site article.site .posts article .entry-header .entry-title a:hover {
+            color: rgba(0, 0, 0, 0.25); }
+      .single-site article.site .posts article .entry-header .entry-meta {
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+        margin-left: -5px; }
+    .single-site article.site .posts article .entry-content {
+      display: inline-block;
+      vertical-align: top;
+      width: 60%;
+      margin-left: -5px;
+      margin-top: 0; }
+      .single-site article.site .posts article .entry-content p {
         margin-top: 0; }
-        .single-site article.site .posts article .entry-content p {
-          margin-top: 0; }
-      .single-site article.site .posts article:last-child {
-        border-bottom: none; }
+    .single-site article.site .posts article:last-child {
+      border-bottom: none; }
 .single-site .post-navigation {
-  width: calc(100% - 220px - 160px);
+  width: calc(100% - 160px);
   position: relative;
-  left: 160px; }
+  left: 100px;
+  margin-top: 100px; }
 
+@media (max-width: 1200px) {
+  .single-site article.site .main-content .description {
+    width: 75%; }
+  .single-site article.site .main-content #details {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0; } }
+@media (max-width: 1024px) {
+  .single-site article.site .exhibitions, .single-site article.site .events, .single-site article.site .posts {
+    margin-left: 0;
+    width: calc(100% - 60px); }
+  .single-site .post-navigation {
+    left: 0;
+    width: calc(100% - 60px); } }
 .page-template-default #primary > header, .single-post #primary > header {
   position: relative;
   width: calc(100% - 220px);
@@ -1952,7 +2231,7 @@ article.exhibition {
   text-transform: lowercase; }
 
 .blog {
-  width: calc(100% - 160px);
+  width: calc(100% - 60px);
   padding-left: 160px; }
   .blog #main {
     margin-top: 100px; }
@@ -1985,6 +2264,8 @@ article.exhibition {
       .blog .entry-header .entry-title a {
         font: 25px "Akkurat-Regular";
         color: black; }
+        .blog .entry-header .entry-title a:hover {
+          color: rgba(0, 0, 0, 0.25); }
     .blog .entry-header .entry-date {
       display: inline-block;
       vertical-align: top;
@@ -2044,6 +2325,52 @@ article.exhibition {
   position: relative;
   left: calc(220px + 160px); }
 
+@media (max-width: 1200px) {
+  .blog #primary {
+    left: 60px;
+    width: calc(100% - 60px); }
+  .blog ul.site-filter {
+    left: 220px;
+    width: calc(100% - 220px); } }
+@media (max-width: 1024px) {
+  .page-template-default #primary > header, .single-post #primary > header {
+    padding-left: 0; }
+  .page-template-default article, .single-post article {
+    padding-left: 0; }
+
+  .blog #primary {
+    width: 100%; }
+  .blog #main {
+    margin-top: 45px; }
+  .blog article {
+    width: calc(100% - 60px);
+    padding: 10px 0; }
+    .blog article .entry-header {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+      .blog article .entry-header .entry-title {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0; }
+      .blog article .entry-header .entry-meta {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        margin: 20px 0;
+        text-align: left; }
+    .blog article .entry-content {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0; }
+  .blog ul.site-filter {
+    width: 100%;
+    left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5); } }
 .home #primary #main {
   width: 100%;
   padding-left: 0; }

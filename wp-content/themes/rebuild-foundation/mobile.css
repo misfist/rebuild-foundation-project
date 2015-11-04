@@ -116,6 +116,9 @@
     display: block;
     width: 100%; }
 
+.home #site-navigation button.menu-toggle {
+  background-image: url("img/menu_button_b.svg"); }
+
 #site-navigation {
   position: fixed;
   left: 0;
@@ -133,7 +136,7 @@
     text-shadow: none;
     z-index: 10;
     background-color: transparent;
-    background-image: url("img/menu_button.svg");
+    background-image: url("img/menu_button_a.svg");
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -181,42 +184,22 @@
     #site-navigation.toggled .menu-main-menu-container #primary-menu {
       margin-top: 50px; }
 
-.page-sub-menu {
-  position: relative;
-  top: 0;
-  width: 100%;
-  margin: 30px 0 20px 0; }
-
 ul.event-year-filter {
+  position: fixed;
   left: 25px;
-  top: 100px; }
-  ul.event-year-filter li.active a {
-    font-size: 13px; }
+  top: 100px;
+  border: none; }
+  ul.event-year-filter li {
+    display: block; }
+    ul.event-year-filter li.active a {
+      font-size: 13px; }
 
-.filters, .blog ul.site-filter {
-  position: relative;
+.filters .site-filter, .filters .event-filter, .blog ul.site-filter .site-filter, .blog ul.site-filter .event-filter {
+  display: block;
   width: 100%;
-  left: 0; }
-  .filters ul li, .blog ul.site-filter ul li {
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    padding: 4px 0;
-    font-size: 15px; }
-  .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter {
-    width: 100%; }
-    .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li {
-      width: 16%; }
-  .filters ul.exhibition-filter, .blog ul.site-filter ul.exhibition-filter {
-    position: relative;
-    width: 100%;
-    top: 0;
-    left: 0; }
-    .filters ul.exhibition-filter li, .blog ul.site-filter ul.exhibition-filter li {
-      display: inline-block;
-      vertical-align: top;
-      width: 33%; }
+  padding: 0;
+  margin: 0;
+  margin-bottom: 25px; }
 
 .post-navigation .nav-previous, .post-navigation .nav-next {
   width: 100%;
@@ -248,17 +231,20 @@ ul.event-year-filter {
     padding: 0;
     margin: 0;
     width: calc(100% - 30px); }
-  .single-site article.site .site-image {
+  .single-site article.site #site-gallery, .single-site article.site .single-image {
     display: block;
     width: 100%;
     padding: 0;
     margin: 0;
     height: 300px;
-    margin-top: 30px; }
-    .single-site article.site .site-image::after {
-      width: 70%;
+    margin-top: 0;
+    margin-bottom: 100px; }
+    .single-site article.site #site-gallery .slide-item, .single-site article.site .single-image .slide-item {
+      height: 300px; }
+    .single-site article.site #site-gallery::before, .single-site article.site .single-image::before {
+      width: 50%;
       right: 0;
-      margin-top: 75px; }
+      margin-top: 250px; }
   .single-site article.site .main-content {
     padding-left: 0;
     width: calc(100% - 30px); }
@@ -275,6 +261,8 @@ ul.event-year-filter {
   .single-site article.site .exhibitions {
     width: calc(100% - 30px);
     margin-left: 0; }
+    .single-site article.site .exhibitions article.exhibition .single-image {
+      width: 75%; }
   .single-site article.site .events {
     width: 100%;
     margin-left: 0; }
@@ -374,13 +362,14 @@ ul.event-year-filter {
     padding: 0;
     margin: 0;
     padding: 5px 0; }
-  .single-event article .entry-thumbnail {
+  .single-event article .gallery-static, .single-event article .single-image {
     display: block;
     width: 100%;
     padding: 0;
     margin: 0;
     width: auto;
-    max-width: 100%; }
+    max-width: 400px;
+    margin-bottom: 70px; }
   .single-event article .entry-content {
     margin-top: 0; }
   .single-event article #details {
@@ -439,11 +428,11 @@ article.exhibition {
   width: 100%;
   left: 0; }
 .home section h2 {
-  font: 20px "Akkurat-Regular";
+  font: 25px "Akkurat-Regular";
   text-transform: uppercase;
   letter-spacing: 0.05em;
   height: auto;
-  padding: 500px 40px 40px 80px;
+  padding: 600px 40px 20px 80px;
   white-space: normal;
   text-indent: 0;
   color: white;
@@ -469,11 +458,29 @@ article.exhibition {
     width: 100%;
     padding-right: 30px;
     margin-bottom: 20px; }
+.home section#mission h2 {
+  background-image: url("img/home-mission-m.jpg"); }
+  .home section#mission h2::before {
+    content: url("img/logo-foundation_b.svg");
+    position: absolute;
+    display: block;
+    width: 150px;
+    top: 200px;
+    left: 0;
+    margin: 0 0 0 calc(50% - 75px); }
 .home section#mission h3 {
   font-size: 25px; }
+.home section#how h2 {
+  background-image: url("img/home-how-m.jpg"); }
+.home section#theory h2 {
+  background-image: url("img/home-theory-m.jpg"); }
 .home section#theory p {
   font-size: 25px;
   letter-spacing: 0; }
+.home section#values h2 {
+  background-image: url("img/home-values-m.jpg"); }
+.home section#partners h2 {
+  background-image: url("img/home-partners-m.jpg"); }
 
 img.alignleft, figure.alignleft {
   max-width: 100%;
@@ -490,7 +497,8 @@ img.alignright, figure.alignright {
 .page-template-default .featured-image, .single-post .featured-image {
   float: none;
   width: calc(100% - 30px);
-  margin: 0; }
+  max-width: 350px;
+  margin: 25px 0 0 0; }
 .page-template-default #primary > header, .single-post #primary > header {
   width: calc(100% - 30px);
   padding: 0; }
@@ -504,6 +512,9 @@ img.alignright, figure.alignright {
 .blog {
   width: 100%;
   padding-left: 0; }
+  .blog #primary {
+    width: calc(100% - 80px - 30px);
+    left: 80px; }
   .blog #main {
     margin-top: 10px;
     width: calc(100% - 30px); }

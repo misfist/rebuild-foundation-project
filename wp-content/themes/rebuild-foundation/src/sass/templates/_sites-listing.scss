@@ -152,9 +152,14 @@
 			}
 
 		}
-		
-
 	}
+}
 
 
+@media (max-width: 1024px) {
+	.post-type-archive-site {
+		article {
+			width: $size__site-main-center-2;
+		}
+	}
 }

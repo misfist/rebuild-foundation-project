@@ -13,10 +13,10 @@
 
 
 article.exhibition {
-	width: $size__site-main-nested;
+	width: $size__site-main-center-2;
 	margin-bottom: 60px;
 	padding-bottom: 60px;
-	border-bottom: 1px solid $black;
+	border-bottom: 1px solid $white;
 
 	.col-1 {
 		@include inblock(60%);
@@ -29,13 +29,13 @@ article.exhibition {
 	}
 
 	.site-info {
-		margin: -60% 0 0 0;
+		margin: -60% 0 6px 0;
 		width: 60%;
 		font-size: $font_size-2;
 	}
 
 	.entry-meta.location {
-		width: 60%;
+		width: 70%;
 	}
 
 	.featured-image {
@@ -47,10 +47,6 @@ article.exhibition {
 		.entry-title {
 			font: $font_size-6 $bold;
 			margin-top: 0;
-
-			a:hover {
-				color: $black;
-			}
 		}
 
 		.entry-meta {
@@ -66,10 +62,7 @@ article.exhibition {
 		margin-top: 20px;
 		border: none;
 
-		&:hover {
-			color: $black;
-			background-color: transparent;
-		}
+		
 	}
 
 	&.site_category-dorchester-art-housing-collaborative {
@@ -80,6 +73,11 @@ article.exhibition {
 
 		.entry-title a, .read-more  {
 			color: $color__da-hc;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}
 		}
 		
 	}
@@ -92,6 +90,11 @@ article.exhibition {
 
 		.entry-title a, .read-more {
 			color: $color__bch;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}	
 		}
 
 	}
@@ -104,6 +107,11 @@ article.exhibition {
 
 		.entry-title a, .read-more {
 			color: $color__siab;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}	
 		}
 		
 	}
@@ -116,6 +124,11 @@ article.exhibition {
 
 		.entry-title a, .read-more {
 			color: $color__dorchester;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}	
 		}
 		
 	}
@@ -128,8 +141,25 @@ article.exhibition {
 
 		.entry-title a, .read-more {
 			color: $color__dorchester;
+			
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}				
 		}
 		
 	}
 
+}
+
+
+@media (max-width: 1024px) {
+	.post-type-archive-exhibition {
+		.posts-list {
+			width: 100%;
+			position: relative;
+			left: 0;
+			margin-top: 60px;
+		}
+	}
 }

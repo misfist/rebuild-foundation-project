@@ -47,6 +47,10 @@
 
 // Menus
 
+.home #site-navigation button.menu-toggle {
+	background-image: url("img/menu_button_b.svg");
+}
+
 #site-navigation {
 
 		position: fixed;
@@ -66,7 +70,7 @@
 		text-shadow: none;
 		z-index: 10;
 		background-color: transparent;
-		background-image: url("img/menu_button.svg");
+		background-image: url("img/menu_button_a.svg");
 		@include box-shadow(none);
 		@include background-size(contain);
 		@include border-radius(0);
@@ -122,20 +126,18 @@
 	}
 }
 
-.page-sub-menu {
-	position: relative;
-	top: 0;
-	width: 100%;
-	margin: 30px 0 20px 0;
-}
+
 
 // Filters
 
 ul.event-year-filter {
+	position: fixed;
 	left: 25px;
 	top: 100px;
+	border: none;
 
 	li {
+		display: block;
 		
 		&.active {
 
@@ -146,38 +148,14 @@ ul.event-year-filter {
 	}
 }
 
-
 .filters, .blog ul.site-filter {
-	position: relative;
-	width: 100%;
-	left: 0;
 
-	ul li {
+	.site-filter, .event-filter {
 		@include clear-inblock();
-		padding: 4px 0;
-		font-size: 15px;
+		margin-bottom: 25px;
 	}
-
-	ul.event-month-filter {
-		width: 100%;
-
-		li {
-			width: 16%;
-		}
-	}
-
-	ul.exhibition-filter {
-	position: relative;
-	width: 100%;
-	top: 0;
-	left: 0;
-
-		li {
-			@include inblock(33%);
-		}
-	}
-
 }
+
 
 
 // Post Navigation
@@ -236,15 +214,24 @@ ul.event-year-filter {
 			width: $size__mobile-main-nested;
 		}
 
-		.site-image {
+		#site-gallery, .single-image {
 			@include clear-inblock();
 			height: 300px;
-			margin-top: 30px;
+			margin-top: 0;
+			margin-bottom: 100px;
 
-			&::after {
-				width: 70%;
+			.slide-item {
+				height: 300px;
+			}
+
+			&::before {
+				width: 50%;
 				right: 0;
-				margin-top: 75px;
+				margin-top: 250px;
+			}
+
+			figcaption {
+
 			}
 		}
 
@@ -264,6 +251,13 @@ ul.event-year-filter {
 		.exhibitions {
 			width: $size__mobile-main-nested;
 			margin-left: 0;
+
+			article.exhibition {
+
+				.single-image {
+					width: 75%;
+				}
+			}
 		}
 
 		.events {
@@ -410,10 +404,11 @@ ul.event-year-filter {
 			padding: 5px 0;
 		}
 
-		.entry-thumbnail {
+		.gallery-static, .single-image {
 			@include clear-inblock();
 			width: auto;
-			max-width: 100%;
+			max-width: 400px;
+			margin-bottom: 70px;
 		}
 
 		.entry-content {
@@ -507,16 +502,17 @@ article.exhibition {
 	section {
 
 		h2 {
-			font: $font_size-3 $regular;
+			font: $font_size-4 $regular;
 			text-transform: uppercase;
 			letter-spacing: 0.05em;
 			height: auto;
-			padding: 500px 40px 40px $size__mobile-margins;
+			padding: 600px 40px 20px $size__mobile-margins;
 			white-space: normal;
 			text-indent: 0;
 			color: $white;
 			overflow: visible;
 			margin-bottom: 60px;
+
 		}
 
 		img {
@@ -549,17 +545,56 @@ article.exhibition {
 		}
 
 		&#mission {
+			h2 {
+				background-image: url('img/home-mission-m.jpg');
+
+				&::before {
+					content: url('img/logo-foundation_b.svg');
+					position: absolute;
+					display: block;
+					width: 150px;
+					top: 200px;
+					left: 0;
+					margin: 0 0 0 calc(50% - 75px);
+				}
+			}
+
 			h3 {
 				font-size: $font_size-4;
 			}
 		}
 
+		&#how {
+			h2 {
+				background-image: url('img/home-how-m.jpg');
+			}
+		}
+
 		&#theory {
+			h2 {
+				background-image: url('img/home-theory-m.jpg');
+			}
+
 			p {
 				font-size: $font_size-4;
 				letter-spacing: 0;
 			}
 		}
+
+		&#values {
+			h2 {
+				background-image: url('img/home-values-m.jpg');
+			}
+		}
+
+		&#partners {
+			h2 {
+				background-image: url('img/home-partners-m.jpg');
+			}
+		}
+	}
+
+	.site-footer {
 	}
 }
 // Standard
@@ -585,7 +620,8 @@ img.alignright, figure.alignright{
 	.featured-image {
 		float: none;
 		width: $size__mobile-main-nested;
-		margin: 0;
+		max-width: 350px;
+		margin: 25px 0 0 0;
 	}
 
 	#primary {
@@ -611,11 +647,15 @@ img.alignright, figure.alignright{
 	width: 100%;
 	padding-left: 0;
 
+	#primary {
+		width: $size__mobile-main-center;
+		left: $size__mobile-margins;
+	}
+
 	#main {
 		margin-top: 10px;
 		width: $size__mobile-main-nested;
 	}
-
 
 	article {
 		padding: 10px 0;

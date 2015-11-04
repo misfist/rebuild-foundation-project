@@ -23,12 +23,7 @@ a {
 
 	a {
 		color: $black;
-		border-bottom: 3px solid $white;
-
-		&:hover {
-			text-decoration: none;
-			background-color: $white;
-		}
+		@include text-link();
 	}
 
 	h1,h2,h3,h4,h5,h6 {
@@ -69,3 +64,13 @@ a {
 		}
 	}
 }
+
+.google-map-link {
+	margin-top: 10px;
+
+	a {
+		font-size: $font_size-2;
+		text-transform: uppercase;
+	}
+}
+

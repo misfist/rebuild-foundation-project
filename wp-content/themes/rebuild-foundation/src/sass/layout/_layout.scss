@@ -61,6 +61,82 @@
 	}
 }
 
+.site-stony-island-arts-bank {
+
+	#masthead .site-branding {
+
+		.site-title {
+			background-image: url('img/logo-siab_a.svg');
+		}
+
+		&:hover .site-title {
+			background-image: url('img/logo-foundation_b.svg');
+		}
+
+	}
+}
+
+.site-dorchester-art-housing-collaborative {
+
+	#masthead .site-branding {
+
+		.site-title {
+			background-image: url('img/logo-da-hc_a.svg');
+		}
+
+		&:hover .site-title {
+			background-image: url('img/logo-foundation_b.svg');
+		}
+
+	}
+}
+
+.site-archive-house {
+
+	#masthead .site-branding {
+
+		.site-title {
+			background-image: url('img/logo-ah_a.svg');
+		}
+
+		&:hover .site-title {
+			background-image: url('img/logo-foundation_b.svg');
+		}
+
+	}
+}
+
+
+.site-listening-house {
+
+	#masthead .site-branding {
+
+		.site-title {
+			background-image: url('img/logo-lh_a.svg');
+		}
+
+		&:hover .site-title {
+			background-image: url('img/logo-foundation_b.svg');
+		}
+
+	}
+}
+
+.site-black-cinema-house {
+
+	#masthead .site-branding {
+
+		.site-title {
+			background-image: url('img/logo-bch_a.svg');
+		}
+
+		&:hover .site-title {
+			background-image: url('img/logo-foundation_b.svg');
+		}
+
+	}
+}
+
 #primary {
 	width: $size__site-main-full;
 	position: relative;
