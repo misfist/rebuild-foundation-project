@@ -13,7 +13,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'exhibition' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?>>
 
     <header class="entry-header">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
@@ -64,18 +64,30 @@
                     <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>
                 </div>
 
-                <h4 class="hours-location"><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
+                <?php if( get_field( 'location' ) || get_field( 'hours' ) ) : ?>
 
-                <div class="entry-meta address">
-                    <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
-                </div>
+                    <h4 class="hours-location"><?php _e( 'Hours & Location', 'rebuild-foundation' ); ?></h4>
 
-                <?php rebuild_google_map_link(); ?>
+                    <?php if( get_field( 'location' ) ) : ?>
 
-                <div class="entry-meta hours">
-                    <?php the_field( 'hours' ); ?>
-                </div>
-                
+                        <div class="entry-meta location">
+                            <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+                        </div>
+
+                        <?php rebuild_google_map_link(); ?>
+
+                    <?php endif; ?>
+
+                    <?php if( get_field( 'hours' ) ) : ?>
+
+                        <div class="entry-meta hours">
+                            <?php the_field( 'hours' ); ?>
+                        </div>
+
+                    <?php endif; ?>
+
+                <?php endif; ?>
+
             </div>
 
             <?php

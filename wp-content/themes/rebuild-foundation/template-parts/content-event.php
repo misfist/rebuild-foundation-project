@@ -14,12 +14,12 @@
 
     <?php rebuild_taxonomy_filter(); ?>
 
-    <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
+    <?php rebuild_event_month_filter(); ?>
 </div>
 
-<?php ( 'event' == get_post_type() ) ? rebuild_event_year_filter() : ''; ?>
+<?php rebuild_event_year_filter(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'event' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?>>
 
 
     <header class="entry-header">
@@ -54,10 +54,15 @@
                 <a href="<?php echo generate_calendar_button(); ?>" class="google-calendar" target="_blank"><?php _e( 'Google Calendar', 'rebuild-foundation' ) ?></a>
             </div>
 
-            <div class="entry-meta location">
-                <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+            <?php if( get_field( 'location' ) ) : ?>
+
+                <div class="entry-meta location">
+                    <?php ( function_exists( 'rebuild_formatted_address' ) ) ? rebuild_formatted_address() : ''; ?>
+                </div>
+
                 <?php rebuild_google_map_link(); ?>
-            </div>
+
+            <?php endif; ?>
 
             <div class="entry-meta tags">
                 <?php ( function_exists( 'rebuild_foundation_entry_footer' ) ) ? rebuild_foundation_entry_footer() : '' ; ?>
