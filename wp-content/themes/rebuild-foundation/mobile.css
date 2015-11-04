@@ -317,7 +317,7 @@ ul.event-year-filter {
     margin-top: 30px; }
     .post-type-archive-event .posts-list article {
       width: calc(100% - 30px);
-      min-height: 150px; }
+      min-height: auto; }
       .post-type-archive-event .posts-list article:hover {
         width: 100%; }
         .post-type-archive-event .posts-list article:hover .event-date::before {

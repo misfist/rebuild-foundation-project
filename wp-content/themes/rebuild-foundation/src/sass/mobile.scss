@@ -327,7 +327,7 @@ ul.event-year-filter {
 
 		article {
 			width: $size__mobile-main-nested;
-			min-height: 150px;
+			min-height: auto;
 
 			&:hover {
 				width: 100%;
