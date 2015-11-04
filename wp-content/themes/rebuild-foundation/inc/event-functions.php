@@ -7,15 +7,15 @@
  * @package RebuildFoundation
  */
 
-if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
+/**
+ * Event Meta Query Vars
+ * Gets the date query vars based on conditions
+ * @return array
+ */
 
-  function rebuild_events_pre_query_filter( $query ) {
+if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
 
-    if( is_admin() || ! $query->is_main_query() ) {
-
-      return;
-
-    }
+  function rebuild_events_meta_query_vars() {
 
     if( 'event' == get_query_var( 'post_type' ) ) {
 
@@ -24,10 +24,6 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
 
       $year_var = ( is_numeric( $query_year ) && $query_year > 0 ) ? $query_year : '';
       $month_var = ( is_numeric( $query_month ) && $query_month > 0 ) ? sprintf( "%02d", $query_month ) : '';
-
-      $query->set( 'orderby', 'meta_value_num' );
-      $query->set( 'meta_key', 'start_date' );
-      $query->set( 'order', 'ASC' );
 
       switch( true ) {
 
@@ -47,11 +43,28 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
                   'type'      => 'NUMERIC'
               );
 
-              $query->set( 'meta_query', $vars );
+              break;
+
+          // Year queried & this year
+          case ( 4 == strlen( $year_var ) && is_numeric( $year_var ) && date( 'Y' ) == $year_var ):
+              $month = date( 'm' );
+              $days_in_month = cal_days_in_month( CAL_GREGORIAN, $month, $year_var );
+              $vars[] = array(
+                  'key'       => 'start_date',
+                  'value'     => date( 'Ymd', strtotime( $year_var . $month . '01' ) ),
+                  'compare'   => '>=',
+                  'type'      => 'NUMERIC'
+              );
+              $vars[] = array(
+                  'key'       => 'start_date',
+                  'value'     => date( 'Ymd', strtotime( $year_var . $month . $days_in_month ) ),
+                  'compare'   => '<',
+                  'type'      => 'NUMERIC'
+              );
 
               break;
 
-          // Year queried
+          // Year queried & not this year
           case ( 4 == strlen( $year_var ) && is_numeric( $year_var ) ):
               $vars[] = array(
                   'key'       => 'start_date',
@@ -65,8 +78,6 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
                   'compare'   => '<',
                   'type'      => 'NUMERIC'
               );
-
-              $query->set( 'meta_query', $vars );
 
               break;
 
@@ -87,12 +98,10 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
                   'type'      => 'NUMERIC'
               );
 
-              $query->set( 'meta_query', $vars );
               break;
 
           // No date queried
           default:
-            // return current year and month
             $year = date( 'Y' );
             $month = date( 'm' );
             $days_in_month = cal_days_in_month( CAL_GREGORIAN, $month, $year );
@@ -109,16 +118,45 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
                 'type'      => 'NUMERIC'
             );
 
-            $query->set( 'meta_query', $vars );
       }
 
-      // Localize the script with new data
-      $event_dates = array(
-        'event_year' => __( 'Some string to translate', 'plugin-domain' ),
-        'event_month' => '10'
-      );
+      return $vars;
 
     }
+
+  }
+
+}
+
+/**
+ * Pre-get query filter
+ * Sets events query based on selected filters
+ * @return array
+ */
+
+if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
+
+  function rebuild_events_pre_query_filter( $query ) {
+
+    if( is_admin() || ! $query->is_main_query() ) {
+
+      return;
+
+    }
+
+    if( is_post_type_archive( 'event' ) ) {
+
+      $query->set( 'orderby', 'meta_value_num' );
+      $query->set( 'meta_key', 'start_date' );
+      $query->set( 'order', 'ASC' );
+
+      $vars = rebuild_events_meta_query_vars();
+
+      $query->set( 'meta_query', $vars );
+
+    }
+
+    return $query;
  
   }
 
