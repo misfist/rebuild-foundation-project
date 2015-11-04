@@ -109,6 +109,10 @@ if(! function_exists( 'rebuild_urlencode_location' ) ) {
 
     $address_array = rebuild_get_location_fields( $id );
 
+    if( !isset( $address_array ) ) {
+      return;
+    }
+      
     $address_string = implode( '+', $address_array );
 
     return urlencode( $address_string );
