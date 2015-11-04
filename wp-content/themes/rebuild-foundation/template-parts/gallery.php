@@ -12,7 +12,7 @@ if( $images ): ?>
 
                 <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
 
-                <figcaption><?php echo $image['caption']; ?></figcaption>
+                <?php echo ( $image['caption'] ) ? '<figcaption>' . $image['caption'] . '</figcaption>' : '' ?>
 
             </figure>
 
@@ -29,7 +29,7 @@ if( $images ): ?>
 
             <?php $caption = rebuild_get_the_feature_caption(); ?>
 
-            <figcaption><?php echo ( $caption ) ? $caption : ''; ?></figcaption>
+            <?php echo ( $caption ) ? '<figcaption>' . $caption . '</figcaption>' : ''; ?>
 
         </figure>
 

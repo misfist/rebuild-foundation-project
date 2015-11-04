@@ -10,7 +10,7 @@ if( $images ): ?>
 
             <figure class="slide-item" style="background-image: url('<?php echo $image['sizes']['large']; ?>')">
 
-                <figcaption><?php echo $image['caption']; ?></figcaption>
+                <?php echo ( $image['caption'] ) ? '<figcaption>' . $image['caption'] . '</figcaption>' : '' ?>
 
             </figure>
 
@@ -25,7 +25,7 @@ if( $images ): ?>
 
             <?php $caption = rebuild_get_the_feature_caption(); ?>
 
-            <figcaption><?php echo ( $caption ) ? $caption : ''; ?></figcaption>
+            <?php echo ( $caption ) ? '<figcaption>' . $caption . '</figcaption>' : ''; ?>
 
         </figure>
 
