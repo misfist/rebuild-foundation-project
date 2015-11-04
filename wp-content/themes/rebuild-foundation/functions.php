@@ -141,7 +141,7 @@ function rebuild_foundation_scripts() {
 
 	wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-1.11.3.min.js', array(), false, true );
 
-	wp_enqueue_script( 'rebuild-foundation-toggle-elements', get_template_directory_uri() . '/assets/js/toggle.js', array(), false, true );
+	wp_enqueue_script( 'rebuild-foundation-toggle-elements', get_template_directory_uri() . '/assets/js/toggle.min.js', array('jquery'), false, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

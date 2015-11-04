@@ -1,8 +1,10 @@
-$(document).ready(function () {
+jQuery( document ).ready( function( $ ) {
 
-	$('article').click(function() {
-		$(this).addClass('expanded');
-		$(this).siblings().removeClass('expanded');
-	});
+    $( 'article' ).click( function( event ) {
 
-});
+        $( this ).toggleClass( 'expanded' );
+        $( this ).siblings().removeClass( 'expanded' );
+
+    } );
+
+} );
