@@ -111,6 +111,7 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
                     // If query vars for site_category set, add to tax query
 
                     $site_category = get_query_var( 'site_category' );
+                    $date_query = rebuild_events_meta_query_vars();
 
                     if( $site_category ) {
                         
@@ -119,6 +120,13 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
                             'field' => 'slug',
                             'terms' => $site_category
                         );
+
+                    }
+
+                    if( $date_query ) {
+
+                       $term_args['meta_query'] = $date_query;
+
                     }
 
                     $terms_with_posts = get_posts( $term_args );
@@ -174,7 +182,7 @@ if(! function_exists( 'rebuild_event_year_filter' ) ) {
               );
 
               echo '<li data-target-year="' . $year . '" data-event_year="' . $year . '">';
-              echo '<a href="' . esc_url( add_query_arg( $url ) ) . '">';
+              echo '<a href="' . esc_url( add_query_arg( $url, home_url( '/events' ) ) ) . '">';
               echo $year;
               echo '</a>';
               echo '</li>';
@@ -208,11 +216,25 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
             $long_months = array();
 
-            $event_year = get_query_var( 'event_year' );
+            $post_type = rebuild_get_page_type();
 
-            $year = ( $event_year ) ? absint( $event_year ) : date( 'Y' );
+            // If not an archive page or single page, bail
+            if( 'archive' != $post_type && 'single' != $post_type && 'tax' != $post_type  ) {
+              return;
+            }
 
-            // echo $year;
+            // If this is an archive, year is query_var or current year
+            if( 'archive' == $post_type ) {
+
+              $event_year = get_query_var( 'event_year' );
+              $year = ( $event_year ) ? absint( $event_year ) : date( 'Y' );
+
+            } else { // Otherwise, this is a single event, so year is the year of the current event
+
+              $fields = get_fields( get_the_ID() );
+              $year = ( isset( $fields['start_date'] ) ) ? date( 'Y', strtotime( $fields['start_date'] ) ) : date( 'Y' );
+
+            } 
 
             if( array_key_exists( $year, $dates ) ) {
 
@@ -226,8 +248,10 @@ if(! function_exists( 'rebuild_event_month_filter' ) ) {
 
                 if( events_for_months( $year, $month ) ) {
 
+                  $query_arg = ( 'single' == $post_type ) ?  add_query_arg( 'event_month', $month, home_url( 'events' ) ) : add_query_arg( 'event_month', $month );
+
                   echo '<li data-target-month="' . $month . '" data-event_month="' . $month . '">';
-                  echo '<a href="' . esc_url( add_query_arg( 'event_month', $month ) ) . '">';
+                  echo '<a href="' . esc_url( $query_arg ) . '">';
                   echo date( 'M', mktime( 0, 0, 0, $month, 10 ) );
                   echo '</a>';
                   echo '</li>';
