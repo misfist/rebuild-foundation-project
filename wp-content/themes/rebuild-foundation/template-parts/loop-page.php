@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'page' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?>>
 
 	<div class="entry-content">
 		<?php

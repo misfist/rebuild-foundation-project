@@ -23,7 +23,7 @@
 	<?php endif; ?>
 </div>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'post' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?>>
 
 	<header class="entry-header">
 

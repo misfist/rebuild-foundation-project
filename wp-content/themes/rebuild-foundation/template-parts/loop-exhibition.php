@@ -15,7 +15,7 @@
 ?>
 
 
-<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo ( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo ( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( 'exhibition' ); ?>>
+<article id="exhibition-<?php the_ID(); ?>" data-start-date="<?php echo ( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo ( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( get_post_type() ); ?>>
 
     <div class="col-1">
         <header class="entry-header">

@@ -16,7 +16,7 @@
 
 ?>
 
-<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( 'event' ); ?>>
+<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( get_post_type() ); ?>>
 	
 	<div class="site-name"><?php rebuild_get_site_category_content(); ?></div>
 

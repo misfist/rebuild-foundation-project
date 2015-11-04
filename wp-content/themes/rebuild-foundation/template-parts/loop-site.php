@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'site' ); ?> style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
+<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?> style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
 	<a class="close-site"></a>
 	<header class="entry-header">
 

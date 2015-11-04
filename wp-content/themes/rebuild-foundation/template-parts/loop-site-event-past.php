@@ -14,7 +14,7 @@
     $end_date = get_field( 'end_date' );
 ?>
 
-<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( 'event' ); ?>>
+<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( get_post_type() ); ?>>
 
 	<div class="entry-meta event-date">
         <time datetime="<?php echo date( 'Y-m-d', strtotime( $start_date ) ); ?>"><?php echo date( 'M j', strtotime( $start_date ) ); ?></time>
