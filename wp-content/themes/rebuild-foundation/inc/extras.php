@@ -99,18 +99,23 @@ if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
     
     $post_slug_class = ( isset( $post->post_name ) ) ? $post->post_name : '';
     $post_type = ( isset( $post->post_type ) ) ? $post->post_type : '';
-    $site = rebuild_get_site_category();
-    $classes[] = ( $site ) ? 'site-' . $site : '';
-    $classes[] = 'type-' . $post_type;
-    $classes[] = $post_slug_class . ' post-' . $post_slug_class;
 
-  	// Adds a class of group-blog to blogs with more than 1 published author.
-  	if ( is_multi_author() ) {
-  		$classes[] = 'group-blog';
-  	}
+    // Don't show on archive pages
+    if( !is_post_type_archive( ) ) {
+      $site = rebuild_get_site_category();
+      $classes[] = ( $site ) ? 'site-' . $site : '';
+      $classes[] = $post_slug_class . ' post-' . $post_slug_class;
+    }
+
+    // If the site_category query_var is set, add the site_category
+    $site_category = get_query_var( 'site_category' );
+    $classes[] = ( $site_category ) ? 'site-' . $site_category : '';
+
+    $classes[] = 'type-' . $post_type;
 
   	return $classes;
   }
+
   add_filter( 'body_class', 'rebuild_foundation_body_classes' );
   
 }
