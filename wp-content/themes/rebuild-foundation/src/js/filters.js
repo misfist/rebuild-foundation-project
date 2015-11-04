@@ -52,16 +52,17 @@ jQuery( document ).ready( function( $ ) {
             case ( ( typeof queryVars.event_year != 'undefined' ) && ( typeof queryVars.event_month == 'undefined' ) ):
                 console.log( 'Year, but no month' );
 
-                // If year = defaultYear
-                if( queryVars.event_year == defaultYear ) {
+                if( queryVars.event_year != defaultYear ) {
+                    // year = year & month = null
+                    // console.log( 'Different year' );
+                    $( 'li[data-event_year=' + queryVars.event_year + ']' ).addClass( 'active' );
+                    // $( 'li[data-event_year=' + defaultYear + ']' ).addClass( 'active' );
+                    // $( 'li[data-event_month=' + defaultMonth + ']' ).addClass( 'active' );
+                } else { 
                     // year = year & month = defaultMonth
                     // console.log( 'Current year' );
                     $( 'li[data-event_year=' + defaultYear + ']' ).addClass( 'active' );
                     $( 'li[data-event_month=' + defaultMonth + ']' ).addClass( 'active' );
-                } else { 
-                    // year = year & month = null
-                    // console.log( 'Different year' );
-                    $( 'li[data-event_year=' + queryVars.event_year + ']' ).addClass( 'active' );
                 }
 
                 break;
@@ -81,6 +82,8 @@ jQuery( document ).ready( function( $ ) {
 
                 // Default: No year, no month
                 console.log( 'Default: No year, no month' );
+                $( 'li[data-event_year=' + defaultYear + ']' ).addClass( 'active' );
+                $( 'li[data-event_month=' + defaultMonth + ']' ).addClass( 'active' );
 
         }
 
