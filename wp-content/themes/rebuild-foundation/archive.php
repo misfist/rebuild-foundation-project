@@ -14,30 +14,29 @@ get_header(); ?>
 
             <?php if( 'site' != get_post_type() ) : ?>
 
-            <div class="filters">
-                <?php rebuild_site_category_filter(); ?>
+                <div class="filters">
+                    <?php rebuild_site_category_filter(); ?>
 
-                <?php rebuild_taxonomy_filter(); ?>
+                    <?php rebuild_taxonomy_filter(); ?>
 
-                <?php ( 'event' == get_post_type() ) ? rebuild_event_month_filter() : '' ?>
-            </div>
+                    <?php ( is_post_type_archive( 'event' ) ) ? rebuild_event_month_filter() : '' ?>
+                </div>
 
             <?php endif; ?>
 
         </header><!-- .entry-header -->
 
-        <?php ( 'event' == get_post_type() ) ? rebuild_event_year_filter() : ''; ?>
+        <?php ( is_post_type_archive( 'event' ) ) ? rebuild_event_year_filter() : ''; ?>
 
         <main id="main" class="site-main" role="main">
 
         <?php global $wp_query; ?>
 
-        <?php if ( have_posts() ) : ?>
-
             <div class="posts-list">
 
-            <?php while ( have_posts() ) : the_post(); ?>
+            <?php if ( have_posts() ) : ?>
 
+                <?php while ( have_posts() ) : the_post(); ?>
 
                 <?php
 
@@ -49,13 +48,13 @@ get_header(); ?>
                     get_template_part( 'template-parts/loop', get_post_type() );
                 ?>
 
-            <?php endwhile; ?>
+                <?php endwhile; ?>
 
             <?php the_posts_navigation(); ?>
 
             <?php else : ?>
 
-                <?php get_template_part( 'template-parts/content', 'none' ); ?>
+                <?php get_template_part( 'template-parts/loop', 'none' ); ?>
 
             <?php endif; ?>
 
