@@ -179,81 +179,6 @@ if(! function_exists( 'rebuild_get_site_category_content' ) ) {
 
 
 /**
- * Prints HTML with site category link for current content item
- */
-
-// if(! function_exists( 'rebuild_foundation_site_cat_link' ) ) {
-
-//     function rebuild_foundation_site_cat_link() {
-        
-//         global $wp;
-
-//         $site_category =  wp_get_post_terms( get_the_ID(), 'site_category', array( 'fields' => 'all' ) );
-
-//         if ( is_wp_error( $site_category ) ) {
-//             continue;
-//         }
-
-//         $term_link = get_term_link( $site_category[0]->term_id, 'site_category' );
-
-//         $post_type_obj = get_post_type_object( get_post_type( get_the_ID() ) );
-
-//         $post_type_slug = rebuild_get_pretty_link( get_post_type( get_the_ID() ) );
-
-//         // Tip on how to get current url
-//         // https://kovshenin.com/2012/current-url-in-wordpress/
-//         printf( '<div class="meta site-cat-link"><label>Other</label> <a href="' . esc_url( home_url( $post_type_slug . '/site/' . $site_category[0]->slug ) ) . '">' . $site_category[0]->name . ' <span class="post-type ' . $site_category[0]->slug . '">' . $post_type_obj->labels->name . '</span></a></div>' );
-
-//     }
-
-// }
-
-
-/**
- * Prints HTML with site link associated with current category (via 'site_category')
- */
-
-// if(! function_exists( 'rebuild_foundation_site_link' ) ) {
-
-//     function rebuild_foundation_site_link() {
-
-//         // Get the current site category
-//         $site_category =  wp_get_post_terms( get_the_ID(), 'site_category', array( 'fields' => 'slugs' ) );
-
-//         if ( is_wp_error( $site_category ) ) {
-//             continue;
-//         }
-
-//         wp_reset_postdata();
-
-//         $the_site_args = array(
-//             'post_type' => 'site',
-//             'numberposts' => 1,
-//             'tax_query' => array(
-//                 'taxonomy' => 'site_category',
-//                 'field'    => 'slug',
-//                 'terms'    => $site_category[0],
-//             ),
-//         );
-
-//         $the_site = get_posts( $the_site_args );
-
-//         if( count( $the_site ) > 0 ) {
-
-//             $name = get_field( 'short_name', $the_site[0]->ID );
-
-//             $site_name = ( $name ) ? $name : $the_site[0]->post_title;
-
-//             printf( '<div class="meta site-link">' . __( '<label>View</label> ', 'rebuild-foundation' ) . '<a href="' . esc_url( home_url( '/site/' . $the_site[0]->post_name ) ) . '">' . $site_name . '</a></div>' );
-
-//         }
-
-//     }
-
-// }
-
-
-/**
  * Display Formatted Address
  * Renders formatted address
  * @return print string
@@ -304,5 +229,37 @@ if(! function_exists( 'rebuild_get_the_feature_caption' ) ) {
 
     }
 }
+
+
+/**
+ * Google Map Link
+ * If location exists make google map link
+ * e.g. https://maps.google.com?q=760+West+Genesee+Street+Syracuse+NY+13204
+ * @return echo url string
+ */
+
+if(! function_exists( 'rebuild_google_map_link' ) ) {
+
+    function rebuild_google_map_link() {
+
+        $address = rebuild_urlencode_location( get_the_ID() );
+
+        $google_url = 'https://maps.google.com?q=';
+
+        echo '<div class="google-map-link">';
+
+        echo '<a href="' . esc_url( 'https://maps.google.com?q=' . $address ) . '" target="_blank">';
+
+        echo __( 'map', 'rebuild-foundation' );
+
+        echo '</a>';
+
+        echo '</div>';
+
+    }
+
+}
+
+
 
 
