@@ -12,28 +12,54 @@
  */
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-if( !function_exists( 'rebuild_foundation_enqueue_filter_scripts' ) ) {
+/**
+ * Enqueue and localize filter script
+ */
 
-  function rebuild_foundation_enqueue_filter_scripts() {
+if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
+
+  function rebuild_foundation_enqueue_filter_script() {
 
     if( is_admin() ) {
       return;
     }
 
+    global $post;
+
+    wp_enqueue_script( 'rebuild-foundation-filters', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/filters.min.js', array( 'jquery' ), '', true );
+
+    $post_type = get_post_type();
+    $page_type = rebuild_get_page_type();
+    $site = rebuild_get_site_category();
+
+    // Localize the script with new data
+    $post_info = array(
+      'postType' => ( $post_type ) ? $post_type : '',
+      'site' => $site,
+      'pageType' => $page_type,
+    );
+
     if( 'event' == get_post_type() || 'exhibition' == get_post_type() ) {
 
-      wp_enqueue_script( 'rebuild-foundation-filters', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/filters.min.js', array( 'jquery' ), '', true );
-
+      $fields = get_fields( $post->ID );
+      $post_info['startDate'] = ( $fields['start_date'] ) ? date( 'Y-m-d', strtotime( $fields['start_date'] ) ) : '';
     }
+
+    wp_localize_script( 'rebuild-foundation-filters', 'pageInfo', $post_info );
 
   }
 
-  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_filter_scripts' );
+  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_filter_script' );
 }
 
-if( !function_exists( 'rebuild_foundation_enqueue_slider_script' ) ) {
 
-  function rebuild_foundation_enqueue_slider_script() {
+/**
+ * Enqueue slider scripts
+ */
+
+if( !function_exists( 'rebuild_foundation_enqueue_slider_scripts' ) ) {
+
+  function rebuild_foundation_enqueue_slider_scripts() {
 
     if( is_admin() ) {
       return;
@@ -54,12 +80,12 @@ if( !function_exists( 'rebuild_foundation_enqueue_slider_script' ) ) {
 
   }
 
-  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_slider_script' );
+  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_slider_scripts' );
 }
 
 /**
  * Adds custom classes to the array of body classes.
- *
+ *  
  * @param array $classes Classes for the body element.
  * @return array
  */
@@ -73,6 +99,8 @@ if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
     
     $post_slug_class = ( isset( $post->post_name ) ) ? $post->post_name : '';
     $post_type = ( isset( $post->post_type ) ) ? $post->post_type : '';
+    $site = rebuild_get_site_category();
+    $classes[] = ( $site ) ? 'site-' . $site : '';
     $classes[] = 'type-' . $post_type;
     $classes[] = $post_slug_class . ' post-' . $post_slug_class;
 
