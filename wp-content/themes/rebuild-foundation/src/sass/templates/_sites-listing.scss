@@ -47,7 +47,7 @@
 
 		.entry-content {
 			display: none;
-			width: 50%;
+			width: 70%;
 			position: relative;
 			z-index: 1;
 			padding-left: 50px;
@@ -92,6 +92,11 @@
 			background-repeat: no-repeat;
 			right: 20px;
 			margin-top: 20px;
+			opacity: 1;
+
+			&:hover {
+				opacity: 0.5;
+			}
 		}
 
 

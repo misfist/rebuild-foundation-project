@@ -673,17 +673,17 @@ img.alignright, figure.alignright{
 	padding-left: 0;
 
 	#primary {
-		width: $size__mobile-main-center;
+		width: $size__mobile-main;
 		left: $size__mobile-margins;
 	}
 
 	#main {
 		margin-top: 10px;
-		width: $size__mobile-main-nested;
 	}
 
 	article {
 		padding: 10px 0;
+		width: $size__mobile-main-nested;
 
 		.entry-header {
 			@include clear-inblock();

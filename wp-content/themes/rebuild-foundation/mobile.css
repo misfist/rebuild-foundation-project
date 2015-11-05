@@ -528,13 +528,13 @@ img.alignright, figure.alignright {
   width: 100%;
   padding-left: 0; }
   .blog #primary {
-    width: calc(100% - 80px - 30px);
+    width: calc(100% - 80px);
     left: 80px; }
   .blog #main {
-    margin-top: 10px;
-    width: calc(100% - 30px); }
+    margin-top: 10px; }
   .blog article {
-    padding: 10px 0; }
+    padding: 10px 0;
+    width: calc(100% - 30px); }
     .blog article .entry-header {
       display: block;
       width: 100%;

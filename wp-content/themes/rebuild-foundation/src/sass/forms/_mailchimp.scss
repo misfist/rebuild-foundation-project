@@ -1,0 +1,33 @@
+.entry-content .mc4wp-form {
+
+	margin-top: 50px;
+
+	label {
+		font: $font_size-2 $bold;
+	}
+
+	input[type="text"], input[type="email"] {
+		border: none;
+		padding: 6px 10px;
+	}
+
+	.subscription-submit {
+		margin-top: 40px;
+	}
+
+	input[type="submit"] {
+		border: none;
+		background-color: $black;
+		color: $white;
+		font: $font_size-2 $regular;
+		padding-bottom: 10px;
+		min-width: 200px;
+		width: 50%;
+		text-shadow: none;
+		@include box-shadow(none);
+
+		&:hover {
+			background-color: $black-transparent-light;
+		}
+	}
+}

@@ -46,6 +46,8 @@
 
 .blog ul.site-filter {
 	@extend .filters;
+	width: $size__site-main-full;	
+	left: $align__site-2;
 
 	list-style-type: none;
 	padding: 12px 0 20px 0;
@@ -109,6 +111,7 @@ ul.event-year-filter, ul.exhibition-filter {
 		width: 100%;
 		left: 0;
 		border: none;
+
 		ul li {
 			@include clear-inblock();
 			padding: 4px 0;
