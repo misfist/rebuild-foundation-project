@@ -71,6 +71,10 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
                 case 'exhibition':
                     $taxonomy = 'exhibition_category';
+                    $sort = array(
+                      'orderby' => 'id',
+                      'order' => 'DESC'
+                    );
                     $query_var = get_taxonomy( $taxonomy )->query_var;
                     break;
                 case 'event':
@@ -88,7 +92,8 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
             }
 
-            $terms = get_terms( $taxonomy );
+            // Add sorting if $sort is set
+            $terms = ( isset( $sort ) ) ? get_terms( $taxonomy, $sort ) : get_terms( $taxonomy );
 
             if( count( $terms ) > 0 ) {
 
