@@ -35,32 +35,14 @@ if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
     // Localize the script with new data
     $post_info = array(
       'postType' => ( $post_type ) ? $post_type : '',
+      'site' => $site,
       'pageType' => $page_type,
     );
 
-    // Localize start and end dates if single event or exhibiton
-    if( is_singular( array( 'event', 'exhibition' ) ) ) {
+    if( 'event' == get_post_type() || 'exhibition' == get_post_type() ) {
 
       $fields = get_fields( $post->ID );
       $post_info['startDate'] = ( $fields['start_date'] ) ? date( 'Y-m-d', strtotime( $fields['start_date'] ) ) : '';
-    }
-
-    $site_var = get_query_var( 'site_category' );
-
-    // Localize site name if single or site_category `query_var` is set
-    if( is_singular() || $site_var ) {
-
-      $post_info['site'] = $site;
-
-    }
-
-    // Localize scope if exhibition_category `query_var` is set
-    $exhibition_scope = get_query_var( 'exhibition_category' );
-
-    if( $exhibition_scope ) {
-
-      $post_info['scope'] = $exhibition_scope;
-
     }
 
     wp_localize_script( 'rebuild-foundation-filters', 'pageInfo', $post_info );
@@ -119,7 +101,7 @@ if( !function_exists( 'rebuild_foundation_body_classes' ) ) {
     $post_type = ( isset( $post->post_type ) ) ? $post->post_type : '';
 
     // Don't show on archive pages
-    if( !is_post_type_archive() && !is_tax() ) {
+    if( !is_post_type_archive( ) ) {
       $site = rebuild_get_site_category();
       $classes[] = ( $site ) ? 'site-' . $site : '';
       $classes[] = $post_slug_class . ' post-' . $post_slug_class;

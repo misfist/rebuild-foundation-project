@@ -185,12 +185,7 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/filters.php';
 
 /**
- * Load event functions.
+ * Load filters.
  */
 require_once get_template_directory() . '/inc/event-functions.php';
-
-/**
- * Load exhibition functions.
- */
-require_once get_template_directory() . '/inc/exhibition-functions.php';
 
