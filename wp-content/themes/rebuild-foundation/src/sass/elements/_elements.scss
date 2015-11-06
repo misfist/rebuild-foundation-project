@@ -22,10 +22,8 @@ blockquote, q {
 }
 
 hr {
-	background-color: $color__background-hr;
-	border: 0;
-	height: 1px;
-	margin-bottom: 1.5em;
+	border-top: 1px solid $black-transparent;
+	margin: 3em 0 1.5em 0;
 }
 
 @import "lists";
