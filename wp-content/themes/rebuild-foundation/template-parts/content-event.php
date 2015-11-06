@@ -35,7 +35,7 @@
 
     <div class="entry-content">
 
-        <?php get_template_part( 'template-parts/gallery' ); ?>
+        <?php get_template_part( 'template-parts/gallery-static' ); ?>
 
         <div id="details">
             <?php get_template_part( 'template-parts/social-media' ); ?>
