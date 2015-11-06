@@ -10,11 +10,9 @@
 ?>
 
 <div class="filters">
-    <?php rebuild_site_category_filter(); ?>
-
-    <?php rebuild_taxonomy_filter(); ?>
 
     <?php rebuild_event_month_filter(); ?>
+    
 </div>
 
 <?php rebuild_event_year_filter(); ?>

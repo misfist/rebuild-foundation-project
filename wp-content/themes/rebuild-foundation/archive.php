@@ -12,21 +12,28 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <header class="entry-header">
 
-            <?php if( 'site' != get_post_type() ) : ?>
+            <div class="filters">
+                
+                <?php if( is_post_type_archive( 'exhibition' ) ) : ?>
 
-                <div class="filters">
-                    <?php rebuild_site_category_filter(); ?>
+                    <?php rebuild_exhibition_filter(); ?>
 
-                    <?php rebuild_taxonomy_filter(); ?>
+                <?php endif; ?>
 
-                    <?php ( is_post_type_archive( 'event' ) ) ? rebuild_event_month_filter() : '' ?>
-                </div>
+                <?php if( is_post_type_archive( 'event' ) ) : ?>
 
-            <?php endif; ?>
+                    <?php rebuild_event_month_filter(); ?>
+
+                <?php endif; ?>
+            </div>
 
         </header><!-- .entry-header -->
 
-        <?php ( is_post_type_archive( 'event' ) ) ? rebuild_event_year_filter() : ''; ?>
+        <?php if( is_post_type_archive( 'event' ) ) : ?>
+
+            <?php rebuild_event_year_filter(); ?>
+
+        <?php endif; ?>
 
         <main id="main" class="site-main" role="main">
 
