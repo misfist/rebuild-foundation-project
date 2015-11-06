@@ -1277,7 +1277,7 @@ figcaption {
     padding-top: 10px; }
   .gallery button.slick-arrow {
     background-color: transparent;
-    top: 25%;
+    top: 50%;
     width: 30px;
     height: 30px;
     z-index: 1;
@@ -2049,7 +2049,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   vertical-align: bottom;
   padding-right: 5%;
   position: relative;
-  z-index: 2; }
+  z-index: 3; }
   .single-site article.site header.site-header .entry-meta.location {
     font: 14px "Akkuratmono-Regular"; }
   .single-site article.site header.site-header .entry-title {
@@ -2109,7 +2109,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .single-site article.site .main-content {
   padding: 0 0 0 30%;
   position: relative;
-  z-index: 1; }
+  z-index: 3; }
   .single-site article.site .main-content .description {
     display: inline-block;
     vertical-align: top;
