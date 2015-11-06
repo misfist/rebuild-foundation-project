@@ -147,6 +147,7 @@ $site_tax = array(
                 // WP_Query arguments
                 $future_event_args = array (
                     'post_type' => $event_post_type,
+                    'posts_per_page' => 4,
                     'orderby' => 'meta_value',
                     'meta_key' => 'start_date',
                     'tax_query' => $site_tax,
@@ -169,6 +170,8 @@ $site_tax = array(
 
                 <?php endif; ?>
 
+                <?php rebuild_get_site_category_content(); ?>
+
                 <?php wp_reset_postdata(); ?>
 
             </div>
@@ -189,6 +192,7 @@ $site_tax = array(
                 // WP_Query arguments
                 $future_event_args = array (
                     'post_type' => $event_post_type,
+                    'posts_per_page' => 4,
                     'tax_query' => $site_tax,
                     'meta_query' => $past_scope,
                     'order' => 'ASC',
