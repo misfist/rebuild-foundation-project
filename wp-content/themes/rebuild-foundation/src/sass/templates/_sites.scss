@@ -30,9 +30,9 @@
 			&::before {
 				position: absolute;
 				display: block;
-				width: 40%;
+				width: 50%;
 				max-width: 400px;
-				margin: 200px 0 0 -200px;
+				margin: 200px 0 0 -20%;
 				z-index: 1;
 			}
 		}
@@ -69,7 +69,7 @@
 			&::before {
 				position: absolute;
 				display: block;
-				width: 40%;
+				width: 50%;
 				max-width: 400px;
 				margin: 200px 0 0 -200px;
 				z-index: 1;
@@ -128,6 +128,7 @@
 			
 			.gallery::before {
 				content: url('img/graphic_lh.svg');
+
 			}
 
 		}
@@ -136,6 +137,7 @@
 			
 			.gallery::before {
 				content: url('img/graphic_ah.svg');
+				margin: 200px 0 0 -28%;
 			}
 
 		}
