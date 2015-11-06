@@ -267,7 +267,7 @@ $site_tax = array(
     </div><!-- .entry-content -->
 
     <footer class="entry-footer">
-        <?php rebuild_foundation_entry_footer(); ?>
+
     </footer><!-- .entry-footer -->
 </article><!-- #post-## -->
 
