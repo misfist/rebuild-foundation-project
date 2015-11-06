@@ -35,15 +35,20 @@ get_header(); ?>
 
         </header><!-- .entry-header -->
 
-        <div class="page-sub-menu">
-            <?php if ( is_active_sidebar( 'submenu-widget' ) ) {
-                dynamic_sidebar( 'submenu-widget' ); 
-            }
-            ?>
-        </div>
+        <nav class="page-sub-menu" role="navigation">
+
+            <a href="#main" class="skip">Skip to content</a>
+            <?php wp_nav_menu( array( 
+                'theme_location' => 'primary', 
+                'menu_id' => 'sub-pages',
+                'container_class' => '',
+                'container' => '',
+                'fallback_cb' => false
+                ) ); ?>
+
+        </nav>
         
         <main id="main" class="site-main" role="main">
-
 
             <div class="posts-list">
 
