@@ -22,7 +22,7 @@
 
     <?php the_title( sprintf( '<h3 class="entry-title event-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
 
-    <div class="entry-meta event-date"  style="background-image: url( <?php echo $featured_image[0]; ?> )">
+    <div class="entry-meta event-date"  style="background-image: url( <?php echo ( $featured_image ) ? $featured_image[0] : ''; ?> )">
         <time datetime="<?php echo date( 'Y-m-d', strtotime( $start_date ) ); ?>"><?php echo date( 'M j', strtotime( $start_date ) ); ?></time>
     </div><!-- .entry-meta -->
     
