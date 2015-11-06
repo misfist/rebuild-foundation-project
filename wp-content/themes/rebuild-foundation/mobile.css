@@ -349,7 +349,7 @@ ul.event-year-filter {
         margin-top: 0;
         padding-bottom: 30px; }
         .post-type-archive-event .posts-list article .event-title a {
-          font: 20px "Akkurat-Bold"; }
+          font: normal 20px "Akkurat-Bold"; }
       .post-type-archive-event .posts-list article .event-date {
         width: 20%;
         min-height: auto;

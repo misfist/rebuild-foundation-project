@@ -435,6 +435,8 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Akkurat-Bold";
+  font-weight: normal;
+  font-style: normal;
   margin: 1.5em 0 0.5em;
   line-height: 1.2em; }
 
@@ -465,14 +467,22 @@ p {
   margin-bottom: 1.5em; }
 
 dfn, cite, em, i {
-  font-family: "Akkurat-Italic"; }
+  font-family: "Akkurat-Italic";
+  font-weight: normal;
+  font-style: normal; }
   dfn b, dfn strong, cite b, cite strong, em b, em strong, i b, i strong {
-    font-family: "Akkurat-Bolditalic"; }
+    font-family: "Akkurat-Bolditalic";
+    font-weight: normal;
+    font-style: normal; }
 
 b, strong {
-  font-family: "Akkurat-Bold"; }
+  font-family: "Akkurat-Bold";
+  font-weight: normal;
+  font-style: normal; }
   b dfn, b cite, b em, b i, strong dfn, strong cite, strong em, strong i {
-    font-family: "Akkurat-Bolditalic"; }
+    font-family: "Akkurat-Bolditalic";
+    font-weight: normal;
+    font-style: normal; }
 
 blockquote {
   padding: 0 1.5em;
@@ -683,7 +693,7 @@ input.search-field {
 .entry-content .mc4wp-form {
   margin-top: 50px; }
   .entry-content .mc4wp-form label {
-    font: 16px "Akkurat-Bold"; }
+    font: normal 16px "Akkurat-Bold"; }
   .entry-content .mc4wp-form input[type="text"], .entry-content .mc4wp-form input[type="email"] {
     border: none;
     padding: 6px 10px; }
@@ -789,7 +799,7 @@ a {
   .main-navigation a {
     display: block;
     text-decoration: none;
-    font: 13px "Akkurat-Bold";
+    font: normal 13px "Akkurat-Bold";
     -webkit-transition-duration: 0.25s;
     -moz-transition-duration: 0.25s;
     -ms-transition-duration: 0.25s;
@@ -800,7 +810,8 @@ a {
   .main-navigation .current-menu-item > a,
   .main-navigation .current_page_ancestor > a {
     font-family: "Akkurat-Bold";
-    color: black; }
+    color: black;
+    font-weight: normal; }
   .main-navigation .sub-menu {
     display: none; }
 
@@ -921,7 +932,8 @@ a {
       padding: 0 20px 0 0; }
       .filters ul li.active a, .blog ul.site-filter ul li.active a, .category ul.site-filter ul li.active a, .tag ul.site-filter ul li.active a {
         font-family: "Akkurat-Bold";
-        color: black; }
+        color: black;
+        font-weight: normal; }
   .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter {
     width: calc(100% - 160px);
     margin-bottom: 10px; }
@@ -959,11 +971,11 @@ ul.event-year-filter, ul.exhibition-filter {
     padding: 0 0 15px 0; }
     ul.event-year-filter li a, ul.exhibition-filter li a {
       text-decoration: none;
-      font: 13px "Akkurat-Bold";
+      font: normal 13px "Akkurat-Bold";
       letter-spacing: 0.05em;
       text-transform: uppercase; }
     ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
-      font: 20px "Akkurat-Bold";
+      font: normal 20px "Akkurat-Bold";
       color: black; }
 
 @media (max-width: 1024px) {
@@ -1232,7 +1244,7 @@ object {
 
 figcaption {
   text-align: left;
-  font: 14px "Akkurat-Bold";
+  font: normal 14px "Akkurat-Bold";
   width: 66%; }
 
 /*--------------------------------------------------------------
@@ -1275,6 +1287,8 @@ figcaption {
     margin: 0 auto; }
   .gallery figure.slide-item figcaption {
     padding-top: 10px; }
+  .gallery figure.slide-item:focus {
+    outline: 0; }
   .gallery button.slick-arrow {
     background-color: transparent;
     top: 50%;
@@ -1445,7 +1459,8 @@ ul.social-links {
         border: none;
         opacity: 0.3;
         padding-top: 3px;
-        font-family: "Akkurat-Bold"; }
+        font-family: "Akkurat-Bold";
+        font-weight: normal; }
         .sharedaddy ul li a:hover {
           background-color: transparent;
           opacity: 1; }
@@ -1499,7 +1514,7 @@ ul.social-links {
       margin-top: 50px;
       padding-right: 40px;
       padding-left: 30px;
-      font: 16px "Akkurat-Bold"; }
+      font: normal 16px "Akkurat-Bold"; }
       .post-type-archive-event article .event-title a, .tax-event_category article .event-title a, .tax-event_tag article .event-title a {
         color: black;
         text-decoration: none; }
@@ -1517,7 +1532,7 @@ ul.social-links {
         height: 200px;
         background-color: #e9e6df; }
       .post-type-archive-event article .event-date time, .tax-event_category article .event-date time, .tax-event_tag article .event-date time {
-        font: 16px "Akkurat-Bold";
+        font: normal 16px "Akkurat-Bold";
         position: relative;
         margin: -150px auto 0 auto;
         z-index: 1;
@@ -1635,7 +1650,7 @@ ul.social-links {
     margin-left: -4px;
     margin-top: 0;
     padding: 0 5% 0 5%;
-    font: 20px "Akkurat-Bold"; }
+    font: normal 20px "Akkurat-Bold"; }
   .single-event article h3.event-date {
     display: inline-block;
     vertical-align: top;
@@ -1643,7 +1658,7 @@ ul.social-links {
     margin-left: -4px;
     margin-top: 5px;
     padding: 0 0 0 0;
-    font: 16px "Akkurat-Bold"; }
+    font: normal 16px "Akkurat-Bold"; }
   .single-event article .single-image {
     display: inline-block;
     vertical-align: top;
@@ -1746,12 +1761,12 @@ article.exhibition {
     width: 65%;
     margin-left: 10%; }
   article.exhibition .entry-header .entry-title {
-    font: 40px "Akkurat-Bold";
+    font: normal 40px "Akkurat-Bold";
     margin-top: 0; }
   article.exhibition .entry-header .entry-meta {
     font: 16px "Akkuratmono-Regular"; }
   article.exhibition .read-more {
-    font: 16px "Akkurat-Bold";
+    font: normal 16px "Akkurat-Bold";
     display: block;
     margin-top: 20px;
     border: none; }
@@ -1798,7 +1813,7 @@ article.exhibition {
     left: 0;
     margin-top: 60px; } }
 .entry-meta.location a {
-  font: 25px "Akkurat-Bold";
+  font: normal 25px "Akkurat-Bold";
   color: black;
   text-transform: uppercase; }
   .entry-meta.location a:hover {
@@ -2213,7 +2228,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
       line-height: 1em;
       padding: 10px 5px; }
       .single-site article.site .events .past-events article .event-title a {
-        font: 16px "Akkurat-Bold";
+        font: normal 16px "Akkurat-Bold";
         color: black; }
         .single-site article.site .events .past-events article .event-title a:hover {
           color: rgba(0, 0, 0, 0.25); }
@@ -2356,7 +2371,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
     vertical-align: top;
     width: 40%;
     padding-right: 5%;
-    font: 13px "Akkurat-Bold"; }
+    font: normal 13px "Akkurat-Bold"; }
     .blog .entry-header .site-name .meta a label, .category .entry-header .site-name .meta a label, .tag .entry-header .site-name .meta a label {
       text-transform: lowercase; }
   .blog .entry-header .entry-title, .category .entry-header .entry-title, .tag .entry-header .entry-title {
@@ -2413,7 +2428,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .search-results article .comments-link {
     display: block; }
   .search-results article a.read-more {
-    font: 16px "Akkurat-Bold";
+    font: normal 16px "Akkurat-Bold";
     color: black; }
     .search-results article a.read-more:hover {
       text-decoration: underline; }
@@ -2496,7 +2511,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   margin-bottom: 50px;
   clear: both; }
   .home section p, .home section li {
-    font: 16px "Akkurat-Bold";
+    font: normal 16px "Akkurat-Bold";
     letter-spacing: 0.05em; }
   .home section h2 {
     background-size: cover;

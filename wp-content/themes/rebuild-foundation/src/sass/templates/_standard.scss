@@ -124,7 +124,7 @@
 		.site-name {
 			@include inblock(40%);
 			padding-right: 5%;
-			font: $font_size-1 $bold;
+			font: normal $font_size-1 $bold;
 
 			.meta a {
 				label {
@@ -204,7 +204,7 @@
 		}
 
 		a.read-more {
-			font: $font_size-2 $bold;
+			font: normal $font_size-2 $bold;
 			color: $black;
 
 			&:hover {

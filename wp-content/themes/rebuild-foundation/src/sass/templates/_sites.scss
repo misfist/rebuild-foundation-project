@@ -246,7 +246,7 @@
 						padding: 10px 5px;
 
 						a {
-							font: $font_size-2 $bold;
+							font: normal $font_size-2 $bold;
 							@include heading-link();
 						}
 					}

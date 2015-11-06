@@ -36,7 +36,7 @@
 	a {
 		display: block;
 		text-decoration: none;
-		font: $font_size-1 $bold;
+		font: normal $font_size-1 $bold;
 		@include transition-duration(0.25s);
 		letter-spacing: 0.05em;
 	}
@@ -46,6 +46,7 @@
 	.current_page_ancestor > a {
 		font-family: $bold;
 		color: $black;
+		font-weight: normal;
 	}
 
 

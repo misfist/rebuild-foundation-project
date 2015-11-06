@@ -24,6 +24,7 @@
 			&.active a {
 				font-family: $bold;
 				color: $black;
+				font-weight: normal;
 			}
 		}
 
@@ -81,14 +82,14 @@ ul.event-year-filter, ul.exhibition-filter {
 		
 		a {
 			text-decoration: none;
-			font: $font_size-1 $bold;
+			font: normal $font_size-1 $bold;
 			letter-spacing: 0.05em;
 			text-transform: uppercase;
 		}
 
 		&.active {
 			a {
-				font: $font_size-3 $bold;
+				font: normal $font_size-3 $bold;
 				color: $black;
 			}
 		}

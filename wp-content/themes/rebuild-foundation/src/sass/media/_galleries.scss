@@ -65,6 +65,10 @@
 		figcaption {
 			padding-top: 10px;
 		}
+
+		&:focus {
+			outline: 0;
+		}
 	}
 
 	button.slick-arrow {
