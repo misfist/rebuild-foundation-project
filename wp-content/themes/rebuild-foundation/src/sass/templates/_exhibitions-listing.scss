@@ -18,6 +18,10 @@ article.exhibition {
 	padding-bottom: 60px;
 	border-bottom: 1px solid $white;
 
+	&:last-child {
+		border: none;
+	}
+
 	.col-1 {
 		@include inblock(60%);
 		

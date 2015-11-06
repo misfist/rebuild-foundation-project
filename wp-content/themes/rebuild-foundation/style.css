@@ -811,9 +811,15 @@ a {
   width: 160px;
   position: fixed;
   left: 220px;
-  top: 210px;
+  top: 208px;
   margin: 0;
   padding: 0 40px 0 0; }
+  .page-template-default .main-navigation .current-menu-item .sub-menu::before, .page-template-default .main-navigation .current-menu-ancestor .sub-menu::before {
+    content: "\00a0";
+    border-top: 2px solid rgba(0, 0, 0, 0.5);
+    width: 20px;
+    position: absolute;
+    margin-top: -15px; }
 
 .menu-sites {
   display: none; }
@@ -890,7 +896,9 @@ a {
     left: 0;
     top: 0;
     width: 100%;
-    margin: 30px 0 20px 0; } }
+    margin: 30px 0 20px 0; }
+    .page-template-default .main-navigation .current-menu-item .sub-menu::before, .page-template-default .main-navigation .current-menu-ancestor .sub-menu::before {
+      display: none; } }
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
@@ -1261,11 +1269,12 @@ figcaption {
   display: block; }
 
 .gallery {
-  margin-top: 50px; }
-  .gallery figure.slide-item {
-    margin: 0; }
-    .gallery figure.slide-item figcaption {
-      padding-top: 10px; }
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-left: 1px solid rgba(0, 0, 0, 0.25);
+  border-right: 1px solid rgba(0, 0, 0, 0.25); }
+  .gallery figure.slide-item figcaption {
+    padding-top: 10px; }
   .gallery button.slick-arrow {
     background-color: transparent;
     top: 25%;
@@ -1315,7 +1324,8 @@ figcaption {
         background-position: center center; }
 
 #site-gallery {
-  margin-top: 0; }
+  margin-top: 0;
+  border: none; }
   #site-gallery .slick-list {
     padding-top: 60px; }
   #site-gallery figure.slide-item {
@@ -1715,6 +1725,8 @@ article.exhibition {
   margin-bottom: 60px;
   padding-bottom: 60px;
   border-bottom: 1px solid white; }
+  article.exhibition:last-child {
+    border: none; }
   article.exhibition .col-1 {
     display: inline-block;
     vertical-align: top;
@@ -1791,6 +1803,21 @@ article.exhibition {
   text-transform: uppercase; }
   .entry-meta.location a:hover {
     color: rgba(0, 0, 0, 0.25); }
+
+article.site_category-dorchester-art-housing-collaborative .entry-meta.location a:hover {
+  color: #ff674d; }
+
+article.site_category-stony-island-arts-bank .entry-meta.location a:hover {
+  color: #6490e8; }
+
+article.site_category-black-cinema-house .entry-meta.location a:hover {
+  color: #ffb111; }
+
+article.site_category-archive-house .entry-meta.location a:hover {
+  color: #c2907f; }
+
+article.site_category-listening-house .entry-meta.location a:hover {
+  color: #c2907f; }
 
 .site-info::before, #details::before {
   position: relative;

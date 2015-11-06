@@ -10,6 +10,39 @@
 	}
 }
 
+article.site_category-dorchester-art-housing-collaborative {
+	.entry-meta.location a:hover {
+		color: $color__da-hc;
+	}
+}
+
+article.site_category-stony-island-arts-bank  {
+	.entry-meta.location a:hover {
+		color: $color__siab;
+	}
+}
+
+article.site_category-black-cinema-house  {
+	.entry-meta.location a:hover {
+		color: $color__bch;		
+	}
+}
+
+article.site_category-archive-house {
+	.entry-meta.location a:hover {
+		color: $color__dorchester;		
+	}
+}
+
+article.site_category-listening-house   {
+	.entry-meta.location a:hover {
+		color: $color__dorchester;
+	}
+}
+
+
+
+
 .site-info::before, #details::before {
 	position: relative;
 	display: block;

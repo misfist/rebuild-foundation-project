@@ -52,9 +52,11 @@
 
 .gallery {
 	margin-top: 50px;
+	margin-bottom: 50px;
+	border-left: 1px solid $black-transparent-light;
+	border-right: 1px solid $black-transparent-light;
 
 	figure.slide-item {
-		margin: 0;
 
 		figcaption {
 			padding-top: 10px;
@@ -112,6 +114,7 @@
 
 #site-gallery {
 	margin-top: 0;
+	border: none;
 
 	.slick-list {
 		padding-top: 60px;

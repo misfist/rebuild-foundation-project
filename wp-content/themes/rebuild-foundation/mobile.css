@@ -512,15 +512,19 @@ img.alignright, figure.alignright {
   float: none;
   width: calc(100% - 30px);
   max-width: 350px;
-  margin: 25px 0 0 0; }
+  margin: 0 0 40px 0; }
 .page-template-default #primary > header, .single-post #primary > header {
   width: calc(100% - 30px);
   padding: 0; }
+  .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
+    padding-top: 0; }
 .page-template-default #primary article, .single-post #primary article {
   width: calc(100% - 30px);
   padding: 0; }
   .page-template-default #primary article .entry-header, .single-post #primary article .entry-header {
     padding-top: 0; }
+    .page-template-default #primary article .entry-header .entry-title, .single-post #primary article .entry-header .entry-title {
+      padding-top: 0; }
     .page-template-default #primary article .entry-header .entry-meta, .single-post #primary article .entry-header .entry-meta {
       padding-top: 0; }
 .page-template-default .post-navigation, .single-post .post-navigation {

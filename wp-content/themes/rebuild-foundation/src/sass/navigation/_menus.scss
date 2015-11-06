@@ -65,9 +65,13 @@
 				width: $size__subnavigation;
 				position: fixed;
 				left: $align__site-2;
-				top: 210px;
+				top: 208px;
 				margin: 0;
 				padding: 0 40px 0 0;
+
+				&::before {
+					@include rule(2px, $black-transparent);
+				}
 			}
 		}
 	}
@@ -183,6 +187,10 @@
 					top: 0;
 					width: 100%;
 					margin: 30px 0 20px 0;
+
+					&::before {
+						display: none;
+					}
 				}
 			}
 		}
