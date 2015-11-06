@@ -100,8 +100,10 @@
 
 		#details {
 			@include inblock(65%);
-			margin-left: -4px;
+			margin-left: 35%;
 			padding: 0 5% 0 5%;
+
+			
 
 			.event-date, .event-time, .event-export, .location {
 				font: 14px $mono;
@@ -124,7 +126,7 @@
 
 			.location {
 				padding-bottom: 0;
-				
+
 				span {
 					padding-bottom: 6px;
 				}
@@ -148,6 +150,14 @@
 				}
 			}
 
+		}
+
+		.single-image ~ #details {
+			margin-left: -4px;
+		}
+
+		.gallery-static ~ #details {
+			margin-left: -4px;
 		}
 
 

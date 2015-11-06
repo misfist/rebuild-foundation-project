@@ -1669,7 +1669,7 @@ ul.social-links {
     display: inline-block;
     vertical-align: top;
     width: 65%;
-    margin-left: -4px;
+    margin-left: 35%;
     padding: 0 5% 0 5%; }
     .single-event article #details .event-date, .single-event article #details .event-time, .single-event article #details .event-export, .single-event article #details .location {
       font: 14px "Akkuratmono-Regular";
@@ -1701,6 +1701,10 @@ ul.social-links {
         border-bottom: 2px solid white; }
         .single-event article #details .meta a:hover {
           background-color: white; }
+  .single-event article .single-image ~ #details {
+    margin-left: -4px; }
+  .single-event article .gallery-static ~ #details {
+    margin-left: -4px; }
   .single-event article .description {
     margin-top: 35px; }
 .single-event .post-navigation {
