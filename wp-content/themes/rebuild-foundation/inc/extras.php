@@ -83,7 +83,7 @@ if( !function_exists( 'rebuild_foundation_enqueue_slider_scripts' ) ) {
       return;
     }
 
-    if( is_singular( array( 'site', 'event', 'exhibition' ) ) ) {
+    if( is_singular( array( 'site', 'event', 'exhibition', 'post', 'page' ) ) ) {
 
       wp_enqueue_script( 'slick-carousel', trailingslashit( get_template_directory_uri() ) . 'assets/vendor/slick/slick.min.js' , array( 'jquery' ), false, true );
 
