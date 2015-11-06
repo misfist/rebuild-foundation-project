@@ -148,7 +148,7 @@ ul.event-year-filter {
 	}
 }
 
-.filters, .blog ul.site-filter {
+.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
 	margin-top: 5px;
 
 	.site-filter, .event-filter {
@@ -673,7 +673,7 @@ img.alignright, figure.alignright{
 	}
 }
 
-.blog {
+.blog, .category, .tag {
 	width: 100%;
 	padding-left: 0;
 

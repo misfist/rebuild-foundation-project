@@ -894,7 +894,7 @@ a {
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
-.filters, .blog ul.site-filter {
+.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
   position: fixed;
   width: calc(100% - 220px - 160px);
   left: calc(220px + 160px);
@@ -904,22 +904,22 @@ a {
   margin: 0 0 0 0;
   z-index: 4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-  .filters ul, .blog ul.site-filter ul {
+  .filters ul, .blog ul.site-filter ul, .category ul.site-filter ul, .tag ul.site-filter ul {
     list-style-type: none;
     padding: 0 0 0 0;
     margin: 0 0 20px 0; }
-    .filters ul li, .blog ul.site-filter ul li {
+    .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
       font: 13px "Akkurat-Regular";
       padding-right: 25px;
       display: inline-block;
       padding: 0 20px 0 0; }
-      .filters ul li.active a, .blog ul.site-filter ul li.active a {
+      .filters ul li.active a, .blog ul.site-filter ul li.active a, .category ul.site-filter ul li.active a, .tag ul.site-filter ul li.active a {
         font-family: "Akkurat-Bold";
         color: black; }
-  .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter {
+  .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter {
     width: calc(100% - 160px);
     margin-bottom: 10px; }
-    .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li {
+    .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .category ul.site-filter ul.event-month-filter li, .tag ul.site-filter ul.event-month-filter li {
       font: 20px "Akkurat-Regular";
       display: inline-block;
       vertical-align: top;
@@ -927,13 +927,13 @@ a {
       margin-right: -4px;
       padding-top: 0px; }
 
-.blog ul.site-filter {
+.blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
   width: calc(100% - 220px);
   left: 220px;
   list-style-type: none;
   padding: 12px 0 20px 0;
   margin: 0 0 20px 0; }
-  .blog ul.site-filter li {
+  .blog ul.site-filter li, .category ul.site-filter li, .tag ul.site-filter li {
     font: 13px "Akkurat-Regular";
     padding-right: 25px;
     display: inline-block;
@@ -961,23 +961,23 @@ ul.event-year-filter, ul.exhibition-filter {
       color: black; }
 
 @media (max-width: 1024px) {
-  .filters, .blog ul.site-filter, .blog ul.site-filter {
+  .filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
     position: relative;
     width: 100%;
     left: 0;
     border: none; }
-    .filters ul li, .blog ul.site-filter ul li, .blog ul.site-filter ul li {
+    .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
       display: block;
       width: 100%;
       padding: 0;
       margin: 0;
       padding: 4px 0;
       font-size: 15px; }
-    .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .blog ul.site-filter ul.event-month-filter {
+    .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter {
       width: 100%; }
-      .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li {
+      .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .category ul.site-filter ul.event-month-filter li, .tag ul.site-filter ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .category ul.site-filter ul.event-month-filter li, .tag ul.site-filter ul.event-month-filter li {
         width: 16%; }
-    .filters .site-filter, .blog ul.site-filter .site-filter, .filters .event-filter, .blog ul.site-filter .event-filter, .blog ul.site-filter .site-filter, .blog ul.site-filter .event-filter {
+    .filters .site-filter, .blog ul.site-filter .site-filter, .category ul.site-filter .site-filter, .tag ul.site-filter .site-filter, .filters .event-filter, .blog ul.site-filter .event-filter, .category ul.site-filter .event-filter, .tag ul.site-filter .event-filter, .blog ul.site-filter .site-filter, .blog ul.site-filter .event-filter, .category ul.site-filter .site-filter, .category ul.site-filter .event-filter, .tag ul.site-filter .site-filter, .tag ul.site-filter .event-filter {
       display: inline-block;
       vertical-align: top;
       width: 40%;
@@ -1271,7 +1271,7 @@ figcaption {
     top: 25%;
     width: 30px;
     height: 30px;
-    z-index: 2;
+    z-index: 1;
     background-repeat: no-repeat;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -1323,7 +1323,8 @@ figcaption {
     height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 0; }
+    margin: 0;
+    background-position: center center; }
   #site-gallery figcaption {
     width: 100%;
     font: 13px "Akkuratmono-Regular";
@@ -1448,14 +1449,14 @@ ul.social-links {
 /*--------------------------------------------------------------
 # Templates
 --------------------------------------------------------------*/
-.post-type-archive-event {
+.post-type-archive-event, .tax-event_category, .tax-event_tag {
   padding-top: 50px; }
-  .post-type-archive-event .posts-list {
+  .post-type-archive-event .posts-list, .tax-event_category .posts-list, .tax-event_tag .posts-list {
     width: calc(100% - 160px);
     position: relative;
     left: 160px;
     margin-top: 100px; }
-  .post-type-archive-event article {
+  .post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
     border: 1px solid rgba(0, 0, 0, 0.25);
     width: calc(100% - 160px);
     margin-bottom: 10px;
@@ -1465,22 +1466,22 @@ ul.social-links {
     -ms-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
     transition-duration: 0.5s; }
-    .post-type-archive-event article .site-name {
+    .post-type-archive-event article .site-name, .tax-event_category article .site-name, .tax-event_tag article .site-name {
       display: inline-block;
       vertical-align: top;
       width: 35%;
       padding: 40px 30px 0 40px;
       text-transform: uppercase;
       letter-spacing: 0.1em; }
-      .post-type-archive-event article .site-name a {
+      .post-type-archive-event article .site-name a, .tax-event_category article .site-name a, .tax-event_tag article .site-name a {
         font: 25px "Akkurat-Light";
         text-decoration: none;
         color: black; }
-        .post-type-archive-event article .site-name a label {
+        .post-type-archive-event article .site-name a label, .tax-event_category article .site-name a label, .tax-event_tag article .site-name a label {
           font: 16px "Akkurat-Regular";
           letter-spacing: 0.1em;
           padding-left: 2px; }
-    .post-type-archive-event article .event-title {
+    .post-type-archive-event article .event-title, .tax-event_category article .event-title, .tax-event_tag article .event-title {
       display: inline-block;
       vertical-align: top;
       width: 45%;
@@ -1489,30 +1490,30 @@ ul.social-links {
       padding-right: 40px;
       padding-left: 30px;
       font: 16px "Akkurat-Bold"; }
-      .post-type-archive-event article .event-title a {
+      .post-type-archive-event article .event-title a, .tax-event_category article .event-title a, .tax-event_tag article .event-title a {
         color: black;
         text-decoration: none; }
-    .post-type-archive-event article .event-date {
+    .post-type-archive-event article .event-date, .tax-event_category article .event-date, .tax-event_tag article .event-date {
       display: inline-block;
       vertical-align: top;
       width: 20%;
       margin-left: -4px;
       min-height: 200px; }
-      .post-type-archive-event article .event-date::before {
+      .post-type-archive-event article .event-date::before, .tax-event_category article .event-date::before, .tax-event_tag article .event-date::before {
         content: "\00a0";
         position: relative;
         display: block;
         width: 100%;
         height: 200px;
         background-color: #e9e6df; }
-      .post-type-archive-event article .event-date time {
+      .post-type-archive-event article .event-date time, .tax-event_category article .event-date time, .tax-event_tag article .event-date time {
         font: 16px "Akkurat-Bold";
         position: relative;
         margin: -150px auto 0 auto;
         z-index: 1;
         display: block;
         width: 55px; }
-    .post-type-archive-event article:hover {
+    .post-type-archive-event article:hover, .tax-event_category article:hover, .tax-event_tag article:hover {
       width: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       -webkit-transition-duration: 0.5s;
@@ -1520,60 +1521,60 @@ ul.social-links {
       -ms-transition-duration: 0.5s;
       -o-transition-duration: 0.5s;
       transition-duration: 0.5s; }
-      .post-type-archive-event article:hover .site-name a {
+      .post-type-archive-event article:hover .site-name a, .tax-event_category article:hover .site-name a, .tax-event_tag article:hover .site-name a {
         color: #e9e6df;
         -webkit-transition-duration: 0.25s;
         -moz-transition-duration: 0.25s;
         -ms-transition-duration: 0.25s;
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
-        .post-type-archive-event article:hover .site-name a:hover {
+        .post-type-archive-event article:hover .site-name a:hover, .tax-event_category article:hover .site-name a:hover, .tax-event_tag article:hover .site-name a:hover {
           color: black;
           -webkit-transition-duration: 0.25s;
           -moz-transition-duration: 0.25s;
           -ms-transition-duration: 0.25s;
           -o-transition-duration: 0.25s;
           transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .event-title {
+      .post-type-archive-event article:hover .event-title, .tax-event_category article:hover .event-title, .tax-event_tag article:hover .event-title {
         width: 35%; }
-        .post-type-archive-event article:hover .event-title a {
+        .post-type-archive-event article:hover .event-title a, .tax-event_category article:hover .event-title a, .tax-event_tag article:hover .event-title a {
           color: #e9e6df;
           -webkit-transition-duration: 0.25s;
           -moz-transition-duration: 0.25s;
           -ms-transition-duration: 0.25s;
           -o-transition-duration: 0.25s;
           transition-duration: 0.25s; }
-          .post-type-archive-event article:hover .event-title a:hover {
+          .post-type-archive-event article:hover .event-title a:hover, .tax-event_category article:hover .event-title a:hover, .tax-event_tag article:hover .event-title a:hover {
             color: black;
             -webkit-transition-duration: 0.25s;
             -moz-transition-duration: 0.25s;
             -ms-transition-duration: 0.25s;
             -o-transition-duration: 0.25s;
             transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .event-date {
+      .post-type-archive-event article:hover .event-date, .tax-event_category article:hover .event-date, .tax-event_tag article:hover .event-date {
         width: 30%;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; }
-        .post-type-archive-event article:hover .event-date::before {
+        .post-type-archive-event article:hover .event-date::before, .tax-event_category article:hover .event-date::before, .tax-event_tag article:hover .event-date::before {
           background-color: rgba(0, 0, 0, 0.25); }
-        .post-type-archive-event article:hover .event-date time {
+        .post-type-archive-event article:hover .event-date time, .tax-event_category article:hover .event-date time, .tax-event_tag article:hover .event-date time {
           color: #e9e6df; }
-    .post-type-archive-event article#no-results {
+    .post-type-archive-event article#no-results, .tax-event_category article#no-results, .tax-event_tag article#no-results {
       border: none;
       margin-top: 145px; }
-      .post-type-archive-event article#no-results .no-posts {
+      .post-type-archive-event article#no-results .no-posts, .tax-event_category article#no-results .no-posts, .tax-event_tag article#no-results .no-posts {
         font: 25px "Akkurat-Regular"; }
-      .post-type-archive-event article#no-results:hover {
+      .post-type-archive-event article#no-results:hover, .tax-event_category article#no-results:hover, .tax-event_tag article#no-results:hover {
         width: calc(100% - 160px);
         background-color: transparent; }
 
 @media (max-width: 1200px) {
-  .post-type-archive-event article {
+  .post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
     width: calc(100% - 60px); } }
 @media (max-width: 1024px) {
-  .post-type-archive-event .posts-list {
+  .post-type-archive-event .posts-list, .tax-event_category .posts-list, .tax-event_tag .posts-list {
     left: 0;
     width: 100%;
     margin-top: 50px; } }
@@ -1581,7 +1582,7 @@ ul.social-links {
   width: calc(100% - 160px);
   left: 160px;
   position: relative; }
-.single-event .filters, .single-event .blog ul.site-filter, .blog .single-event ul.site-filter {
+.single-event .filters, .single-event .blog ul.site-filter, .blog .single-event ul.site-filter, .single-event .category ul.site-filter, .category .single-event ul.site-filter, .single-event .tag ul.site-filter, .tag .single-event ul.site-filter {
   position: relative;
   width: 100%;
   left: 0; }
@@ -2042,7 +2043,8 @@ article.exhibition {
     width: 50%;
     max-width: 400px;
     margin: 200px 0 0 -20%;
-    z-index: 1; }
+    z-index: 2;
+    pointer-events: none; }
 .single-site article.site .single-image {
   display: inline-block;
   vertical-align: top;
@@ -2072,8 +2074,9 @@ article.exhibition {
     display: block;
     width: 50%;
     max-width: 400px;
-    margin: 200px 0 0 -200px;
-    z-index: 1; }
+    margin: 200px 0 0 -20%;
+    z-index: 2;
+    pointer-events: none; }
 .single-site article.site #no-results {
   display: none; }
 .single-site article.site .main-content {
@@ -2305,31 +2308,31 @@ article.exhibition {
   margin: 0 -160px 0 0;
   max-width: 70%; }
 
-.blog #primary {
+.blog #primary, .category #primary, .tag #primary {
   width: calc(100% - 220px);
   left: 220px; }
-.blog #main {
+.blog #main, .category #main, .tag #main {
   margin-top: 100px;
   width: calc(100% - 160px); }
-.blog article {
+.blog article, .category article, .tag article {
   padding: 20px 0;
   border-bottom: 1px solid white; }
-  .blog article:last-of-type {
+  .blog article:last-of-type, .category article:last-of-type, .tag article:last-of-type {
     border-bottom: 1px solid black; }
-.blog .entry-header {
+.blog .entry-header, .category .entry-header, .tag .entry-header {
   display: inline-block;
   vertical-align: top;
   width: 40%;
   padding-right: 5%; }
-  .blog .entry-header .site-name {
+  .blog .entry-header .site-name, .category .entry-header .site-name, .tag .entry-header .site-name {
     display: inline-block;
     vertical-align: top;
     width: 40%;
     padding-right: 5%;
     font: 13px "Akkurat-Bold"; }
-    .blog .entry-header .site-name .meta a label {
+    .blog .entry-header .site-name .meta a label, .category .entry-header .site-name .meta a label, .tag .entry-header .site-name .meta a label {
       text-transform: lowercase; }
-  .blog .entry-header .entry-title {
+  .blog .entry-header .entry-title, .category .entry-header .entry-title, .tag .entry-header .entry-title {
     display: inline-block;
     vertical-align: top;
     width: 50%;
@@ -2337,25 +2340,25 @@ article.exhibition {
     margin-top: -6px;
     line-height: 1.1em;
     padding-right: 5%; }
-    .blog .entry-header .entry-title a {
+    .blog .entry-header .entry-title a, .category .entry-header .entry-title a, .tag .entry-header .entry-title a {
       font: 25px "Akkurat-Regular";
       color: black; }
-      .blog .entry-header .entry-title a:hover {
+      .blog .entry-header .entry-title a:hover, .category .entry-header .entry-title a:hover, .tag .entry-header .entry-title a:hover {
         color: rgba(0, 0, 0, 0.25); }
-  .blog .entry-header .entry-date {
+  .blog .entry-header .entry-date, .category .entry-header .entry-date, .tag .entry-header .entry-date {
     display: inline-block;
     vertical-align: top;
     width: 10%;
     margin-left: -5px;
     text-align: center; }
-.blog .entry-content {
+.blog .entry-content, .category .entry-content, .tag .entry-content {
   display: inline-block;
   vertical-align: top;
   width: 60%;
   margin-left: -5px;
   padding-right: 5%;
   margin-top: 0; }
-  .blog .entry-content p {
+  .blog .entry-content p, .category .entry-content p, .tag .entry-content p {
     margin-top: 0; }
 
 .search-results .page-header {
@@ -2400,6 +2403,9 @@ article.exhibition {
   width: calc(100% - 220px - 160px - 160px);
   position: relative;
   left: calc(220px + 160px); }
+
+#comments {
+  display: none; }
 
 @media (max-width: 1200px) {
   .blog #primary {

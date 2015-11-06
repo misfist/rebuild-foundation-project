@@ -1,4 +1,4 @@
-.post-type-archive-event {
+.post-type-archive-event, .tax-event_category, .tax-event_tag {
 	padding-top: 50px;
 
 	.posts-list {
@@ -133,7 +133,7 @@
 }
 
 @media (max-width: 1200px) {
-	.post-type-archive-event {
+	.post-type-archive-event, .tax-event_category, .tax-event_tag {
 		article {
 			width: $size__site-main-center-2;
 		}
@@ -142,7 +142,7 @@
 
 
 @media (max-width: 1024px) {
-	.post-type-archive-event {
+	.post-type-archive-event, .tax-event_category, .tax-event_tag {
 		.posts-list {
 			left: 0;
 			width: 100%;

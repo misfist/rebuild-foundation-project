@@ -96,7 +96,7 @@
 	}
 }
 
-.blog {
+.blog, .category, .tag {
 
 	#primary {
 		width: $size__site-main-full;	
@@ -234,6 +234,10 @@
 	}
 
 
+}
+
+#comments {
+	display: none;
 }
 
 @media (max-width: 1200px) {
