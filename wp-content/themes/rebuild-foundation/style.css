@@ -1273,6 +1273,8 @@ figcaption {
   margin-bottom: 50px;
   border-left: 1px solid rgba(0, 0, 0, 0.25);
   border-right: 1px solid rgba(0, 0, 0, 0.25); }
+  .gallery figure.slide-item img {
+    margin: 0 auto; }
   .gallery figure.slide-item figcaption {
     padding-top: 10px; }
   .gallery button.slick-arrow {
@@ -1465,7 +1467,7 @@ ul.social-links {
     width: calc(100% - 160px);
     position: relative;
     left: 160px;
-    margin-top: 100px; }
+    margin-top: 142px; }
   .post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
     border: 1px solid rgba(0, 0, 0, 0.25);
     width: calc(100% - 160px);
@@ -1609,7 +1611,7 @@ ul.social-links {
       display: none; }
 .single-event article {
   width: calc(100% - 160px);
-  margin-top: 30px;
+  margin-top: 52px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   padding: 50px 0 30px; }
   .single-event article header {
