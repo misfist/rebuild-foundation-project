@@ -160,6 +160,86 @@ if(! function_exists( 'rebuild_taxonomy_filter' ) ) {
 
 }
 
+/**
+ * Exhibition Scope Filter
+ * Renders exhibition_category links, excludes empty
+ * @return echo string
+ */
+
+if(! function_exists( 'rebuild_exhibition_filter' ) ) {
+
+  function rebuild_exhibition_filter() {
+
+    $post_type = 'exhibition';
+    $taxonomy = 'exhibition_category';
+    $query_var = get_query_var( 'site_category' );
+
+    $sort = array(
+      'orderby' => 'id',
+      'order' => 'DESC'
+    );
+
+    $terms = get_terms( $taxonomy, $sort );
+
+    if( count( $terms ) > 0 ) {
+
+      echo '<ul class="' . $post_type . '-filter">';
+
+      foreach( $terms as $term ) { 
+
+        // Set flag
+        $has_posts = true;
+
+        // If a site_category is also set
+        if( $query_var ) {
+          // Test if there are posts for exhibition_category and site_category
+          $args = array(
+              'post_type' => 'exhibition',
+              'tax_query' => array(
+                  'relation' => 'AND',
+                  array(
+                      'taxonomy' => $taxonomy,
+                      'field' => 'slug',
+                      'terms' => $term->slug,
+                  ),
+                  array(
+                      'taxonomy' => 'site_category',
+                      'field' => 'slug',
+                      'terms' => $query_var,
+                  )
+              )
+          );
+
+          $posts = get_posts( $args );
+
+          // Set flag to false if there are no posts for both taxonomies
+          $has_posts = (! $posts ) ? false : true ;
+
+        }
+
+        // If flag set to true
+        if( $has_posts ) {
+
+          echo '<li data-' . $taxonomy . '="' . $term->slug . '" data-target-term="' . $term->slug . '">';
+
+          echo '<a href="' . esc_url( add_query_arg( $taxonomy, $term->slug ) ) . '">' . $term->name . '</a>';
+
+          echo '</li>';
+
+        }
+
+      }
+
+      echo '</ul>';
+
+    }
+
+    return;
+
+  }
+
+}
+
 
 /**
  * Year Filter
