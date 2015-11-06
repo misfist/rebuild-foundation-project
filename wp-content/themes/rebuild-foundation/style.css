@@ -2051,8 +2051,8 @@ article.exhibition {
     position: absolute;
     display: block;
     width: 40%;
-    max-width: 330px;
-    margin: 300px 0 0 -100px;
+    max-width: 400px;
+    margin: 200px 0 0 -200px;
     z-index: 1; }
 .single-site article.site .single-image {
   display: inline-block;
@@ -2082,8 +2082,8 @@ article.exhibition {
     position: absolute;
     display: block;
     width: 40%;
-    max-width: 330px;
-    margin: 250px 0 0 -150px;
+    max-width: 400px;
+    margin: 200px 0 0 -200px;
     z-index: 1; }
 .single-site article.site #no-results {
   display: none; }
