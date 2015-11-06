@@ -89,7 +89,7 @@ if(! function_exists( 'rebuild_convert_location_to_string' ) ) {
 
     $address_array = rebuild_get_location_fields( $id );
 
-    return implode( ', ', $address_array );
+    return ( is_array( $address_array ) ) ? implode( ', ', $address_array ) : '';
 
   }
 
@@ -186,9 +186,11 @@ if(! function_exists( 'rebuild_get_dates' ) ) {
     $post_type = 'event';
     $args = array(
         'post_type' => $post_type,
+        'posts_per_page' => -1
     );
 
     $events = get_posts( $args );
+
     $dates = [];
 
     if( count( $events ) > 0 ) {
@@ -385,7 +387,8 @@ if(! function_exists( 'events_for_months' ) ) {
 
     $args = array(
       'post_type' => 'event',
-      'meta_query' => $meta_query
+      'meta_query' => $meta_query,
+      'posts_per_page' => -1
     );
 
     $posts = get_posts( $args );
