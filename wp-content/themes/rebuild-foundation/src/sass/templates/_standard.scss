@@ -83,7 +83,20 @@
 
 }
 
-.blog {
+
+.single-post {
+	img.alignleft, figure.alignleft {
+		margin: 0 0 0 (-$size__subnavigation);
+		max-width: 70%;
+	}
+
+	img.alignright, figure.alignright{
+		margin: 0 (-$size__subnavigation) 0 0;
+		max-width: 70%;
+	}
+}
+
+.blog, .category, .tag {
 
 	#primary {
 		width: $size__site-main-full;	
@@ -111,7 +124,7 @@
 		.site-name {
 			@include inblock(40%);
 			padding-right: 5%;
-			font: $font_size-1 $bold;
+			font: normal $font_size-1 $bold;
 
 			.meta a {
 				label {
@@ -191,7 +204,7 @@
 		}
 
 		a.read-more {
-			font: $font_size-2 $bold;
+			font: normal $font_size-2 $bold;
 			color: $black;
 
 			&:hover {
@@ -221,6 +234,10 @@
 	}
 
 
+}
+
+#comments {
+	display: none;
 }
 
 @media (max-width: 1200px) {

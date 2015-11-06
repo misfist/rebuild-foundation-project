@@ -24,6 +24,7 @@
 			&.active a {
 				font-family: $bold;
 				color: $black;
+				font-weight: normal;
 			}
 		}
 
@@ -44,25 +45,26 @@
 
 }
 
-.blog ul.site-filter {
-	@extend .filters;
-	width: $size__site-main-full;	
-	left: $align__site-2;
+.blog, .category, .tag {
+	ul.site-filter {
+		@extend .filters;
+		width: $size__site-main-full;	
+		left: $align__site-2;
 
-	list-style-type: none;
-	padding: 12px 0 20px 0;
-	margin: 0 0 20px 0;
+		list-style-type: none;
+		padding: 12px 0 20px 0;
+		margin: 0 0 20px 0;
 
 
-	li {
-		font: $font_size-1 $regular;
-		padding-right: 25px;
-		display: inline-block;
-		padding: 0 20px 0 0;
+		li {
+			font: $font_size-1 $regular;
+			padding-right: 25px;
+			display: inline-block;
+			padding: 0 20px 0 0;
+		}
+
 	}
-
 }
-
 
 ul.event-year-filter, ul.exhibition-filter {
 	width: $size__subnavigation;
@@ -80,14 +82,14 @@ ul.event-year-filter, ul.exhibition-filter {
 		
 		a {
 			text-decoration: none;
-			font: $font_size-1 $bold;
+			font: normal $font_size-1 $bold;
 			letter-spacing: 0.05em;
 			text-transform: uppercase;
 		}
 
 		&.active {
 			a {
-				font: $font_size-3 $bold;
+				font: normal $font_size-3 $bold;
 				color: $black;
 			}
 		}
@@ -106,7 +108,7 @@ ul.event-year-filter, ul.exhibition-filter {
 @media (max-width: 1024px) {
 
 
-	.filters, .blog ul.site-filter {
+	.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
 		position: relative;
 		width: 100%;
 		left: 0;

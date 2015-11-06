@@ -36,7 +36,7 @@
 	a {
 		display: block;
 		text-decoration: none;
-		font: $font_size-1 $bold;
+		font: normal $font_size-1 $bold;
 		@include transition-duration(0.25s);
 		letter-spacing: 0.05em;
 	}
@@ -46,50 +46,37 @@
 	.current_page_ancestor > a {
 		font-family: $bold;
 		color: $black;
+		font-weight: normal;
 	}
+
+
 
 	.sub-menu {
 		display: none;
 	}
+
+	
 }
 
+.page-template-default {
+	.main-navigation {
+		.current-menu-item, .current-menu-ancestor {
+			.sub-menu {
+				display: block;
+				width: $size__subnavigation;
+				position: fixed;
+				left: $align__site-2;
+				top: 208px;
+				margin: 0;
+				padding: 0 40px 0 0;
 
-.page-sub-menu {
-	width: $size__subnavigation;
-	position: absolute;
-	left: 0;
-	top: 200px;
-	margin: 0;
-	padding: 0;
-	z-index: 1;
-
-	ul {
-
-		list-style-type: none;
-		margin: 0;
-		padding: 0 40px 0 0;
-
-		li {
-			font-size: $font_size-2;
-			display: block;
-			padding:  0 0 15px 0;
-			line-height: 1.1em;
-			
-			a {
-				text-decoration: none;
-				font: $font_size-1 $bold;
-			}
-
-			&.widget_subpages_current_page {
-				a {
-					font: $font_size-1 $bold;
-					color: $black;
+				&::before {
+					@include rule(2px, $black-transparent);
 				}
 			}
 		}
 	}
 }
-
 
 .menu-sites {
 	display:none;
@@ -192,11 +179,21 @@
 }
 
 @media (max-width: 1024px) {
-	.page-sub-menu {
-		position: relative;
-		top: 0;
-		width: 100%;
-		margin: 30px 0 20px 0;
-	}
+	.page-template-default {
+		.main-navigation {
+			.current-menu-item, .current-menu-ancestor {
+				.sub-menu {
+					position: relative;
+					left: 0;
+					top: 0;
+					width: 100%;
+					margin: 30px 0 20px 0;
 
+					&::before {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }

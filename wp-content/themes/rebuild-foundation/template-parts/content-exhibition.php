@@ -44,7 +44,7 @@
         <div class="description">
             <?php the_content(); ?>
 
-            <?php get_template_part( 'template-parts/gallery-carousel' ); ?>
+            <?php get_template_part( 'template-parts/gallery' ); ?>
 
             <?php get_template_part( 'template-parts/social-media' ); ?>
             <footer class="entry-footer">

@@ -4,17 +4,25 @@ p {
 
 dfn, cite, em, i {
 	font-family: $regular-i;
+	font-weight: normal;
+	font-style: normal;
 
 	b, strong {
 		font-family: $bold-i;
+		font-weight: normal;
+		font-style: normal;
 	}
 }
 
 b, strong {
 	font-family: $bold;
+	font-weight: normal;
+	font-style: normal;
 
 	dfn, cite, em, i {
 		font-family: $bold-i;
+		font-weight: normal;
+		font-style: normal;
 	}
 }
 

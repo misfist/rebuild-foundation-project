@@ -1,11 +1,11 @@
-.post-type-archive-event {
+.post-type-archive-event, .tax-event_category, .tax-event_tag {
 	padding-top: 50px;
 
 	.posts-list {
 		width: $size__site-main-nested;
 		position: relative;
 		left: $align__site-3;
-		margin-top: 100px;
+		margin-top: 142px;
 	}
 
 	article {
@@ -40,7 +40,8 @@
 			margin-top: 50px;
 			padding-right: 40px;
 			padding-left: 30px;
-			font: $font-size-2 $bold;
+			font: normal $font-size-2 $bold;
+
 
 			a {
 				color: $black;
@@ -63,7 +64,7 @@
 			}
 
 			time {
-				font: $font-size-2 $bold;
+				font: normal $font-size-2 $bold;
 				position: relative;
 				margin: -150px auto 0 auto;
 				z-index: 1;
@@ -133,7 +134,7 @@
 }
 
 @media (max-width: 1200px) {
-	.post-type-archive-event {
+	.post-type-archive-event, .tax-event_category, .tax-event_tag {
 		article {
 			width: $size__site-main-center-2;
 		}
@@ -142,7 +143,7 @@
 
 
 @media (max-width: 1024px) {
-	.post-type-archive-event {
+	.post-type-archive-event, .tax-event_category, .tax-event_tag {
 		.posts-list {
 			left: 0;
 			width: 100%;

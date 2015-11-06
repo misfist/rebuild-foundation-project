@@ -148,7 +148,7 @@ ul.event-year-filter {
 	}
 }
 
-.filters, .blog ul.site-filter {
+.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
 	margin-top: 5px;
 
 	.site-filter, .event-filter {
@@ -380,7 +380,7 @@ ul.event-year-filter {
 				padding-bottom: 30px;
 
 				a {
-					font: $font_size-3 $bold;
+					font: normal $font_size-3 $bold;
 				}
 			}
 
@@ -643,7 +643,7 @@ img.alignright, figure.alignright{
 		float: none;
 		width: $size__mobile-main-nested;
 		max-width: 350px;
-		margin: 25px 0 0 0;
+		margin: 0 0 40px 0;
 	}
 
 	#primary {
@@ -651,6 +651,10 @@ img.alignright, figure.alignright{
 		& > header {
 			width: $size__mobile-main-nested;
 			padding: 0;
+
+			.entry-title {
+				padding-top: 0;
+			}
 		}
 
 		article {
@@ -659,6 +663,10 @@ img.alignright, figure.alignright{
 
 			.entry-header {
 				padding-top: 0;
+
+				.entry-title {
+					padding-top: 0;
+				}
 
 				.entry-meta {
 					padding-top: 0;
@@ -673,7 +681,7 @@ img.alignright, figure.alignright{
 	}
 }
 
-.blog {
+.blog, .category, .tag {
 	width: 100%;
 	padding-left: 0;
 

@@ -48,54 +48,81 @@
 
 
 
-button.slick-arrow {
-	width: 30px;
-	height: 30px;
-	z-index: 2;
-	background-color: $white-transparent-light;
-	background-repeat: no-repeat;
-	@include border-radius(0);
-	@include box-shadow(none);
-	@include background-size(75%);
-	background-position: center center;
 
-	&.slick-prev {
-		margin-left: 25px;
-		background-image: url('img/slick-arrow-left.svg');
 
-		&::before {
-			display: none;
+.gallery {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border-left: 1px solid $black-transparent-light;
+	border-right: 1px solid $black-transparent-light;
+
+	figure.slide-item {
+
+		img {
+			margin: 0 auto;
 		}
 
-		&:hover {
-			background-color: $white-transparent;
-			@include background-size(75%);
-			background-repeat: no-repeat;
-			background-position: center center;
+		figcaption {
+			padding-top: 10px;
+		}
+
+		&:focus {
+			outline: 0;
 		}
 	}
 
-	&.slick-next {
-		margin-right: 25px;
-		background-image: url('img/slick-arrow-right.svg');
+	button.slick-arrow {
+		background-color: transparent;
+		top: 50%;
+		width: 30px;
+		height: 30px;
+		z-index: 1;
+		background-repeat: no-repeat;
+		@include border-radius(0);
+		@include box-shadow(none);
+		@include background-size(75%);
+		background-position: center center;
 
-		&::before {
-			display: none;
+		&.slick-prev {
+			margin-left: -10px;
+			background-image: url('img/slick-arrow-left.svg');
+
+			&::before {
+				display: none;
+			}
+
+			&:hover {
+				background-color: transparent;
+				opacity: 0.5;
+				@include background-size(75%);
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
 		}
 
-		&:hover {
-			background-color: $white-transparent;
-			@include background-size(75%);
-			background-repeat: no-repeat;
-			background-position: center center;
-		}
+		&.slick-next {
+			margin-right: -10px;
+			background-image: url('img/slick-arrow-right.svg');
 
+			&::before {
+				display: none;
+			}
+
+			&:hover {
+				background-color: transparent;
+				opacity: 0.5;
+				@include background-size(75%);
+				background-repeat: no-repeat;
+				background-position: center center;
+			}
+
+		}
 	}
-
-
 }
 
 #site-gallery {
+	margin-top: 0;
+	border: none;
 
 	.slick-list {
 		padding-top: 60px;
@@ -107,6 +134,7 @@ button.slick-arrow {
 		background-size: cover;
 		background-repeat: no-repeat;
 		margin: 0;
+		background-position: center center;
 	}
 
 	figcaption {
@@ -125,41 +153,17 @@ button.slick-arrow {
 		}
 	}
 
-}
-
-
-.gallery.default-carousel {
-	margin-top: 50px;
-
-	figure.slide-item {
-		margin: 0;
-
-		figcaption {
-			padding-top: 10px;
-		}
-	}
-
 	button.slick-arrow {
-		background-color: transparent;
-		top: 25%;
+		background-color: $white-transparent;
+		top: 50%;
+		
 
 		&.slick-prev {
-			margin-left: -10px;
-
-			&:hover {
-				background-color: transparent;
-				opacity: 0.5;
-			}
+			margin-left: 25px;
 		}
 
 		&.slick-next {
-			margin-right: -10px;
-
-			&:hover {
-				background-color: transparent;
-				opacity: 0.5;
-			}
-
+			margin-right: 25px;
 		}
 	}
 }
