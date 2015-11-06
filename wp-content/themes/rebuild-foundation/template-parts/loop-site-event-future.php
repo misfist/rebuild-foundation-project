@@ -16,7 +16,7 @@
 
 ?>
 
-<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( get_post_type() ); ?>  style="background-image: url( <?php echo $featured_image[0]; ?> )">
+<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( get_post_type() ); ?>  style="background-image: url( <?php echo ( $featured_image ) ? $featured_image[0] : ''; ?> )">
 	<div class="event-info">
 
 	    <div class="entry-meta event-date">
