@@ -805,14 +805,15 @@ a {
     color: black; }
   .main-navigation .sub-menu {
     display: none; }
-  .main-navigation .current-menu-item .sub-menu, .main-navigation .current-menu-ancestor .sub-menu {
-    display: block;
-    width: 160px;
-    position: fixed;
-    left: 220px;
-    top: 210px;
-    margin: 0;
-    padding: 0 40px 0 0; }
+
+.page-template-default .main-navigation .current-menu-item .sub-menu, .page-template-default .main-navigation .current-menu-ancestor .sub-menu {
+  display: block;
+  width: 160px;
+  position: fixed;
+  left: 220px;
+  top: 210px;
+  margin: 0;
+  padding: 0 40px 0 0; }
 
 .menu-sites {
   display: none; }
@@ -884,7 +885,7 @@ a {
   position: initial; }
 
 @media (max-width: 1024px) {
-  .main-navigation .current-menu-item .sub-menu, .main-navigation .current-menu-ancestor .sub-menu {
+  .page-template-default .main-navigation .current-menu-item .sub-menu, .page-template-default .main-navigation .current-menu-ancestor .sub-menu {
     position: relative;
     left: 0;
     top: 0;
