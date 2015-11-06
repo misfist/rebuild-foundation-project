@@ -35,20 +35,12 @@ get_header(); ?>
 
         </header><!-- .entry-header -->
 
-        <nav class="page-sub-menu" role="navigation">
-
-            <a href="#main" class="skip">Skip to content</a>
-            <?php wp_nav_menu( array( 
-                'theme_location' => 'primary', 
-                'menu_id' => 'sub-pages',
-                'container_class' => '',
-                'container' => '',
-                'fallback_cb' => false
-                ) ); ?>
-
+        <nav class="page-sub-menu">
+  
         </nav>
         
         <main id="main" class="site-main" role="main">
+
 
             <div class="posts-list">
 
