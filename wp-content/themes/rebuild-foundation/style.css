@@ -1567,7 +1567,11 @@ ul.social-links {
             -o-transition-duration: 0.25s;
             transition-duration: 0.25s; }
       .post-type-archive-event article:hover .event-date {
-        width: 30%; }
+        width: 30%;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; }
         .post-type-archive-event article:hover .event-date::before {
           background-color: rgba(0, 0, 0, 0.25); }
         .post-type-archive-event article:hover .event-date time {

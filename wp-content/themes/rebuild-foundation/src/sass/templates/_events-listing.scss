@@ -103,6 +103,7 @@
 
 			.event-date {
 				width: 30%;
+				@include background-size(cover);
 
 				&::before {
 					background-color: $black-transparent-light;
