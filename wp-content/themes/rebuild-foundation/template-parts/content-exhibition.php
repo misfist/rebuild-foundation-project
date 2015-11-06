@@ -44,6 +44,8 @@
         <div class="description">
             <?php the_content(); ?>
 
+            <?php get_template_part( 'template-parts/gallery-carousel' ); ?>
+
             <?php get_template_part( 'template-parts/social-media' ); ?>
             <footer class="entry-footer">
                 <?php rebuild_foundation_entry_footer(); ?>
@@ -54,7 +56,23 @@
 
         <div class="content-side">
             
-            <?php get_template_part( 'template-parts/gallery' ); ?>
+            <?php if( has_post_thumbnail() ): ?>
+
+                 <div class="single-image">
+
+                    <figure class="entry-thumbnail">
+
+                        <?php the_post_thumbnail( 'full' ); ?>
+
+                        <?php $caption = rebuild_get_the_feature_caption(); ?>
+
+                        <?php echo ( $caption ) ? '<figcaption>' . $caption . '</figcaption>' : ''; ?>
+
+                    </figure>
+
+                </div>
+
+            <?php endif; ?>
 
             <div id="details">
 

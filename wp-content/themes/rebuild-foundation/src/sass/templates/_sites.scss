@@ -180,9 +180,10 @@
 				@include inblock(66%);
 
 				article {
-					width: 85%;
+					width: 90%;
 					@include transition-duration(0.5s);
 					background-size: cover;
+					margin: 0 0 10px 0;
 
 					.event-info {
 						background-color: $black-transparent;
@@ -190,6 +191,7 @@
 
 						.entry-title {
 							line-height: 1.2em;
+							margin-top: 10px;
 
 							a {
 								font: $font_size-3 $regular;
@@ -207,7 +209,7 @@
 					}
 
 					&:hover {
-						width: 90%;
+						width: 95%;
 						@include transition-duration(0.5s);
 
 						.event-info {
@@ -227,7 +229,7 @@
 						font: $font_size-3 $light;
 						border-top: 1px solid $black-transparent-light;
 						margin-right: 5%;
-						padding: 5px;
+						padding: 15px 0 0 0;
 						text-align: center;
 					}
 
@@ -236,12 +238,12 @@
 						margin-left: -5px;
 						margin-top: 0;
 						border-top: 1px solid $white;
-						line-height: 1.2em;
+						line-height: 1em;
 						padding: 10px 5px;
 
 						a {
 							font: $font_size-2 $bold;
-							color: $black;
+							@include heading-link();
 						}
 					}
 				}
@@ -283,6 +285,7 @@
 					.entry-meta {
 						@include inblock(40%);
 						margin-left: -5px;
+						text-align: center;
 					}
 
 
@@ -302,6 +305,11 @@
 					border-bottom: none;
 				}
 			}
+		}
+
+		.entry-footer {
+			margin-left: 100px;
+			width: $size__site-main-nested;
 		}
 	}
 

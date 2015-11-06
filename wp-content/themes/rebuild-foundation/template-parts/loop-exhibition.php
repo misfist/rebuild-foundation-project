@@ -70,7 +70,7 @@
 
             <div class="single-image featured-image">
 
-                <div class="exhibition-image"><?php the_post_thumbnail( 'large' ); ?></div>
+                <div class="exhibition-image"><?php the_post_thumbnail( 'exhibition-thumbnail' ); ?></div>
                 
             </div>
 

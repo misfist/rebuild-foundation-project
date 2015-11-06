@@ -233,7 +233,7 @@ ul.event-year-filter {
 			&::before {
 				width: 50%;
 				right: 0;
-				margin-top: 250px;
+				margin-top: -100px;
 			}
 
 			figcaption {
@@ -480,6 +480,11 @@ article.exhibition {
 
 	article {
 		margin-top: 0;
+		padding-left: 0;
+
+		.entry-header {
+			width: 100%;
+		}
 
 		#details {
 			.hours {

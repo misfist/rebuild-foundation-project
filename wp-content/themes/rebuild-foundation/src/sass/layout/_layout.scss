@@ -22,7 +22,7 @@
 			background-position: 0;
 			background-size: contain;
 			margin: $size__left-margin 0 0 $size__left-margin;
-			padding-left: 115px;
+			padding-left: 0;
 			padding-top: 0;
 			line-height: 80px;
 
@@ -32,6 +32,7 @@
 				display: none;
 				letter-spacing: .025em;
 				vertical-align: middle;
+				padding: 15px 0 15px 115px;
 			}
 		}
 

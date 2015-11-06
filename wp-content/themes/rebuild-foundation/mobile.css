@@ -248,7 +248,7 @@ ul.event-year-filter {
     .single-site article.site #site-gallery::before, .single-site article.site .single-image::before {
       width: 50%;
       right: 0;
-      margin-top: 250px; }
+      margin-top: -100px; }
   .single-site article.site .single-image {
     margin-bottom: 50px; }
     .single-site article.site .single-image figure {
@@ -415,7 +415,10 @@ article.exhibition {
   left: 0;
   margin-top: 15px; }
 .single-exhibition article {
-  margin-top: 0; }
+  margin-top: 0;
+  padding-left: 0; }
+  .single-exhibition article .entry-header {
+    width: 100%; }
   .single-exhibition article #details .hours {
     white-space: normal; }
   .single-exhibition article .description {

@@ -45,15 +45,21 @@
 			@include inblock(35%);
 			padding: 0 0 0 5%;
 			margin-top: 0;
+			line-height: 16px;
 
-			.meta a {
-				font: $font_size-2 $regular;
 
-				label {
-					text-transform: lowercase;
+			.meta {
+
+
+				a {
+					font: $font_size-2 $regular;
+					@include heading-link();
+
+					label {
+						text-transform: lowercase;
+					}
 				}
 			}
-
 		}
 
 		h1.entry-title {
@@ -109,7 +115,7 @@
 			}
 
 			.entry-meta {
-				margin-top: 40px;
+				margin-top: 50px;
 
 				&::before {
 					@include rule(2px, $black);
@@ -117,16 +123,19 @@
 			}
 
 			.location {
-
+				padding-bottom: 0;
+				
 				span {
 					padding-bottom: 6px;
 				}
 
-				.google-map-link {
-					a {
-						font: 14px $mono;
-						@include text-link();
-					}
+				
+			}
+
+			.google-map-link {
+				margin-top: 0;
+
+				a {
 				}
 			}
 
