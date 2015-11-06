@@ -34,13 +34,6 @@ get_header(); ?>
             <h1 class="entry-title page-title"><?php the_title( ); ?></h1>
 
         </header><!-- .entry-header -->
-
-        <div class="page-sub-menu">
-            <?php if ( is_active_sidebar( 'submenu-widget' ) ) {
-                dynamic_sidebar( 'submenu-widget' ); 
-            }
-            ?>
-        </div>
         
         <main id="main" class="site-main" role="main">
 

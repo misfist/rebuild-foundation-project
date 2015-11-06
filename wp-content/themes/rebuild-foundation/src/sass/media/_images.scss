@@ -13,13 +13,13 @@ img.aligncenter, figure.aligncenter {
 img.alignleft, figure.alignleft {
 	max-width: 50%;
 	float: left;
-	margin: 0 0 0 (-$size__subnavigation);
+	margin: 0;
 	padding: 0 2em 2em 0;
 }
 
 img.alignright, figure.alignright{
 	max-width: 50%;
 	float: right;
-	margin: 0 (-$size__subnavigation) 0 0;
+	margin: 0;
 	padding: 0 0 2em 2em;
 }

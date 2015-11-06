@@ -805,30 +805,14 @@ a {
     color: black; }
   .main-navigation .sub-menu {
     display: none; }
-
-.page-sub-menu {
-  width: 160px;
-  position: absolute;
-  left: 0;
-  top: 200px;
-  margin: 0;
-  padding: 0;
-  z-index: 1; }
-  .page-sub-menu ul {
-    list-style-type: none;
+  .main-navigation .current-menu-item .sub-menu, .main-navigation .current-menu-ancestor .sub-menu {
+    display: block;
+    width: 160px;
+    position: fixed;
+    left: 220px;
+    top: 210px;
     margin: 0;
     padding: 0 40px 0 0; }
-    .page-sub-menu ul li {
-      font-size: 16px;
-      display: block;
-      padding: 0 0 15px 0;
-      line-height: 1.1em; }
-      .page-sub-menu ul li a {
-        text-decoration: none;
-        font: 13px "Akkurat-Bold"; }
-      .page-sub-menu ul li.widget_subpages_current_page a {
-        font: 13px "Akkurat-Bold";
-        color: black; }
 
 .menu-sites {
   display: none; }
@@ -900,8 +884,9 @@ a {
   position: initial; }
 
 @media (max-width: 1024px) {
-  .page-sub-menu {
+  .main-navigation .current-menu-item .sub-menu, .main-navigation .current-menu-ancestor .sub-menu {
     position: relative;
+    left: 0;
     top: 0;
     width: 100%;
     margin: 30px 0 20px 0; } }
@@ -1376,13 +1361,13 @@ img.aligncenter, figure.aligncenter {
 img.alignleft, figure.alignleft {
   max-width: 50%;
   float: left;
-  margin: 0 0 0 -160px;
+  margin: 0;
   padding: 0 2em 2em 0; }
 
 img.alignright, figure.alignright {
   max-width: 50%;
   float: right;
-  margin: 0 -160px 0 0;
+  margin: 0;
   padding: 0 0 2em 2em; }
 
 /*--------------------------------------------------------------
@@ -2312,6 +2297,13 @@ article.exhibition {
   margin-top: 75px; }
 .page-template-default .meta a label, .single-post .meta a label {
   text-transform: lowercase; }
+
+.single-post img.alignleft, .single-post figure.alignleft {
+  margin: 0 0 0 -160px;
+  max-width: 70%; }
+.single-post img.alignright, .single-post figure.alignright {
+  margin: 0 -160px 0 0;
+  max-width: 70%; }
 
 .blog #primary {
   width: calc(100% - 220px);

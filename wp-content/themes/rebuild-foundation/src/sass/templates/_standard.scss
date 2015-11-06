@@ -83,6 +83,19 @@
 
 }
 
+
+.single-post {
+	img.alignleft, figure.alignleft {
+		margin: 0 0 0 (-$size__subnavigation);
+		max-width: 70%;
+	}
+
+	img.alignright, figure.alignright{
+		margin: 0 (-$size__subnavigation) 0 0;
+		max-width: 70%;
+	}
+}
+
 .blog {
 
 	#primary {
