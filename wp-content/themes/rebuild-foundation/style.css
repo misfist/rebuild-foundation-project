@@ -1283,11 +1283,13 @@ figcaption {
   margin-bottom: 50px;
   border-left: 1px solid rgba(0, 0, 0, 0.25);
   border-right: 1px solid rgba(0, 0, 0, 0.25); }
-  .gallery figure.slide-item img {
+  .gallery figure.slide-item img, .gallery p.slick-slide img {
     margin: 0 auto; }
-  .gallery figure.slide-item figcaption {
+    .gallery figure.slide-item img:focus, .gallery p.slick-slide img:focus {
+      outline: 0; }
+  .gallery figure.slide-item figcaption, .gallery p.slick-slide figcaption {
     padding-top: 10px; }
-  .gallery figure.slide-item:focus {
+  .gallery figure.slide-item:focus, .gallery p.slick-slide:focus {
     outline: 0; }
   .gallery button.slick-arrow {
     background-color: transparent;

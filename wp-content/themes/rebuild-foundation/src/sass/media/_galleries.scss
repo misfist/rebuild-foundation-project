@@ -56,10 +56,14 @@
 	border-left: 1px solid $black-transparent-light;
 	border-right: 1px solid $black-transparent-light;
 
-	figure.slide-item {
+	figure.slide-item, p.slick-slide {
 
 		img {
 			margin: 0 auto;
+
+			&:focus {
+				outline: 0;
+			}
 		}
 
 		figcaption {
