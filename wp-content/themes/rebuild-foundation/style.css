@@ -139,6 +139,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   left: 0;
   padding: 60px 0 0 60px;
   z-index: 5; }
+  #masthead ::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent; }
+  #masthead ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.25); }
   #masthead .site-branding {
     position: fixed;
     left: 0;
@@ -1690,6 +1695,8 @@ ul.social-links {
     margin: 0; }
     .single-event article .gallery-static figure {
       margin: 0 0 40px 0; }
+    .single-event article .gallery-static figcaption {
+      width: 90%; }
   .single-event article #details {
     display: inline-block;
     vertical-align: top;

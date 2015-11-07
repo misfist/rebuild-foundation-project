@@ -51,6 +51,12 @@
 	background-image: url("img/menu_button_b.svg");
 }
 
+#masthead {
+	& ::-webkit-scrollbar-thumb {
+		background-color: $black-transparent-light;
+	}
+}
+
 #site-navigation {
 
 		position: fixed;
@@ -75,19 +81,19 @@
 		@include background-size(contain);
 		@include border-radius(0);
 		@include transition-duration(0.25s);
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 
 
 	.sub-menu {
 		display: block;
-		padding-left: 5%;
+		padding-left: 15px;
 		border-left: 1px solid $black-transparent;
-		margin: 10px 0 0 0;
-
-		li {
-			padding: 12px 0;
-		}
+		margin: 10px 0 0 15px;
 
 	}
 
@@ -98,7 +104,7 @@
 		overflow-y: scroll;
 		padding: 50px 40px 0 50px;
 		z-index: 10;
-		background-color: $warm-gray-opaque;
+		background-color: $warm-gray;
 
 		button.menu-toggle {
 			position: fixed;
@@ -119,7 +125,17 @@
 			}
 
 			#primary-menu {
-				margin-top: 50px;
+				margin-top: 90px;
+				margin-bottom: 60px;
+
+				li {
+					padding: 10px 0;
+
+					&.menu-break {
+						margin-top: 75px;
+					}
+				}
+
 			}
 		}
 
@@ -650,6 +666,15 @@ img.alignright, figure.alignright{
 	float: none;
 	margin: 0;
 	padding: 1.5em 0;
+}
+
+.gallery {
+	figure.slick-slide {
+		img {
+			max-height: 250px;
+			margin: 0;
+		}
+	}
 }
 
 
