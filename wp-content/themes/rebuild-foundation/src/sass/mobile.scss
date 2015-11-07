@@ -556,16 +556,18 @@ article.exhibition {
 	section {
 
 		h2 {
-			font: $font_size-4 $regular;
+			font: normal $font_size-4 $mono;
 			text-transform: uppercase;
-			letter-spacing: 0.05em;
+			letter-spacing: 1em;
+			line-height: 2em;
 			height: auto;
-			padding: 600px 40px 20px $size__mobile-margins;
+			padding: 500px 40px 20px $size__mobile-margins;
 			white-space: normal;
 			text-indent: 0;
 			color: $white;
 			overflow: visible;
 			margin-bottom: 60px;
+			word-break: break-all;
 
 		}
 

@@ -458,16 +458,18 @@ article.exhibition {
   width: 100%;
   left: 0; }
 .home section h2 {
-  font: 25px "Akkurat-Regular";
+  font: normal 25px "Akkuratmono-Regular";
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 1em;
+  line-height: 2em;
   height: auto;
-  padding: 600px 40px 20px 80px;
+  padding: 500px 40px 20px 80px;
   white-space: normal;
   text-indent: 0;
   color: white;
   overflow: visible;
-  margin-bottom: 60px; }
+  margin-bottom: 60px;
+  word-break: break-all; }
 .home section img {
   display: none; }
 .home section#mission h3, .home section#mission p, .home section#mission ol, .home section#how h3, .home section#how p, .home section#how ol, .home section#theory h3, .home section#theory p, .home section#theory ol, .home section#values h3, .home section#values p, .home section#values ol, .home section#partners h3, .home section#partners p, .home section#partners ol {
