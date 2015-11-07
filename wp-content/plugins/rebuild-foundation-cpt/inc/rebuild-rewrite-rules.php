@@ -18,6 +18,10 @@ if(! function_exists( 'rebuild_add_rewrite_rules' ) ) {
         // e.g. http://rebuild.site/exhibitions/scope/current/
         add_rewrite_rule('^exhibitions/scope/([^/]*)/?','index.php?exhibition_category=$matches[1]','top');
 
+        // http://rebuild.com/exhibitions/site/{site-cat}/scope/{cat}
+        // e.g. http://rebuild.site/exhibitions/site/stony-island-arts-bank/scope/current/
+        add_rewrite_rule('^exhibitions/site/([^/]*)/?','index.php?site_category=$matches[1]&post_type=exhibition','top');
+
         //--- Events
         // e.g. http://rebuild.com/events/type/{cat}/site/{site}
         add_rewrite_rule('^events/type/([^/]*)/site/([^/]*)/?','index.php?event_category=$matches[1]&site_category=$matches[2]','top');
