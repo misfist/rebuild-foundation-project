@@ -32,16 +32,6 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
 
         }
 
-        // category, post_tag
-        if( is_post_type_archive( 'post' ) ) {
-
-            $tags_list = get_the_tag_list( '', esc_html__( ', ', 'rebuild-foundation' ) );
-            if ( $tags_list ) {
-                printf( '<span class="meta tags-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
-            }
-
-        }
-
         // Event
         if ( is_singular( 'event' ) ) { 
 
@@ -55,6 +45,22 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
 
             if ( $eventtag_list ) {
                 printf( '<div class="meta eventtag-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</div>', $eventtag_list ); // WPCS: XSS OK.
+            }
+
+        }
+
+        // Posts
+        if( is_singular( array( 'post' ) ) ) {
+
+            $categories_list = get_the_category_list( esc_html__( ', ', 'starter-theme' ) );
+            if ( $categories_list ) {
+                printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'rebuild-foundation' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+            }
+
+            /* translators: used between list items, there is a space after the comma */
+            $tags_list = get_the_tag_list( '', esc_html__( ', ', 'starter-theme' ) );
+            if ( $tags_list ) {
+                printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
             }
 
         }
@@ -76,7 +82,6 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
 
         }
 
-        
         if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
             echo '<span class="comments-link">';
             comments_popup_link( esc_html__( 'Leave a comment', 'rebuild-foundation' ), esc_html__( '1 Comment', 'rebuild-foundation' ), esc_html__( '% Comments', 'rebuild-foundation' ) );
@@ -134,40 +139,23 @@ endif;
 
 
 /**
- * Print site category link
+ * Print Site Category Link
  * Renders link to site_category content relative to current content
  * Uses `add_query_arg` to render link
- * @return print string
+ * @return echo string
  */
 
 if(! function_exists( 'rebuild_get_site_category_content' ) ) {
 
     function rebuild_get_site_category_content() {
 
-        $site_name = get_rebuild_site_name();
-        $site_slug = get_rebuild_site_slug();
+        $link = rebuild_get_site_category_content_link();
 
-        if( $site_name && $site_slug ) {
-
-            $post_type = get_post_type();
-            $post_type_obj = get_post_type_object( $post_type );
-            $post_type_name = $post_type_obj->labels->name;
-
-            $pretty_link = esc_url( rebuild_get_pretty_link( $post_type ) );
-
-            if( $post_type_obj->has_archive ) {
-                
-                // https://developer.wordpress.org/reference/functions/add_query_arg/
-
-                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, site_url( $post_type_obj->has_archive ) ) ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
-
-            } else {
-
-                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, $pretty_link ) ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
-
-            }
+        if( $link ) {
 
             echo $link;
+
+            return;
 
         }
 
@@ -255,6 +243,111 @@ if(! function_exists( 'rebuild_google_map_link' ) ) {
         echo '</a>';
 
         echo '</div>';
+
+    }
+
+}
+
+
+
+/**
+ * Event Context Links
+ * Outputs conditional context links on events page
+ * @return echo string
+ */
+
+if(! function_exists( 'rebuild_site_context_nav' ) ) {
+
+    function rebuild_site_context_nav() {
+
+        $site_query = get_query_var( 'site_category' );
+
+        $content = '<h1 class="page-title">';
+
+        switch ( true ) {
+
+            case ( $site_query ):
+            //
+                
+                $content .= get_rebuild_site_name() . ' ' . rebuild_get_post_type_name();
+
+                $content .= '</h1>';
+
+                $content .= rebuild_all_content_link();
+
+                break;
+
+            case ( is_category() || is_tag() ):
+            //
+                $content .= get_the_archive_title() . ' <label>' . rebuild_get_post_type_name() . '</label>';
+
+                $content .= '</h1>';
+
+                $content .= rebuild_all_content_link();
+
+                break;
+
+            default:
+
+                $content .= 'Rebuild <label>' . rebuild_get_post_type_name() . '</label>';
+
+                $content .= '</h1>';
+
+        }
+
+        echo $content;
+
+        return;
+
+    }
+
+}
+
+
+/**
+ * All Content
+ * Outputs link to all content
+ * @return echo string
+ */
+
+if(! function_exists( 'rebuild_all_content' ) ) {
+
+    function rebuild_all_content() {
+
+        $link = rebuild_all_content_link();
+
+        if( $link ) {
+
+            echo $link;
+
+            return;
+
+        }
+
+        return;
+
+    }
+
+}
+
+/**
+ * Taxonomy Name
+ * Outputs current taxonomy name
+ * @return echo string
+ */
+
+if(! function_exists( 'rebuild_print_taxonomy_name' ) ) {
+
+    function rebuild_print_taxonomy_name() {
+
+        $taxonomy = rebuild_get_taxonomy_name();
+
+        if( $taxonomy ) {
+            
+            echo $taxonomy;
+        }
+
+        return;
 
     }
 

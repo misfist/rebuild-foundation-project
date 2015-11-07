@@ -45,6 +45,49 @@ if(! function_exists( 'rebuild_get_site_link' ) ) {
 
 }
 
+/**
+ * Get Site Content Link
+ * Returns link to site content
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_site_category_content_link' ) ) {
+
+    function rebuild_get_site_category_content_link() {
+
+        $site_name = get_rebuild_site_name();
+        $site_slug = get_rebuild_site_slug();
+
+        if( $site_name && $site_slug ) {
+
+            $post_type = get_post_type();
+            $post_type_obj = get_post_type_object( $post_type );
+            $post_type_name = $post_type_obj->labels->name;
+
+            $pretty_link = esc_url( rebuild_get_pretty_link( $post_type ) );
+
+            if( $post_type_obj->has_archive ) {
+                
+                // https://developer.wordpress.org/reference/functions/add_query_arg/
+
+                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, site_url( $post_type_obj->has_archive ) ) ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
+
+            } else {
+
+                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, $pretty_link ) ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
+
+            }
+
+            return $link;
+
+        }
+
+        return;
+
+    } 
+
+}
+
 
 /**
  * Returns true if a blog has more than 1 category.
@@ -217,6 +260,111 @@ if(! function_exists( 'rebuild_get_page_type' ) ) {
         } 
 
         return $loop;
+    }
+
+}
+
+/**
+ * Post Type Name
+ * Returns post type name
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_post_type_name' ) ) {
+
+    function rebuild_get_post_type_name() {
+
+        $post_object = get_post_type_object( get_post_type() );
+        
+        if( count( $post_object ) > 0 ) {
+
+            return $post_object->labels->name;
+
+        }
+
+        return;
+
+    }
+
+}
+
+/**
+ * All Content Link
+ * Returns link to all content of the current type
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_all_content_link' ) ) {
+
+    function rebuild_all_content_link() {
+
+        $query_var = get_query_var( 'site_category' );
+
+        if( $query_var ) {
+
+            $content = '<a href="' . esc_url( remove_query_arg( 'site_category' ) ) . '">';
+            $content .= '<label>' . __( 'view all', 'rebuild-foundation' ) . '</label> Rebuild ';
+            $content .= rebuild_get_post_type_name();
+            $content .= '</a>';
+
+            return $content;
+
+        } elseif( is_tax( array( 'event_category', 'event_tag' ) ) || is_category() || is_tag() ) {
+
+            $post_object = get_post_type_object( get_post_type() );
+            $slug = $post_object->has_archive;
+
+            $content = '<a href="' . esc_url( home_url( $slug ) ) . '">';
+            $content .= '<label>' . __( 'view all', 'rebuild-foundation' ) . '</label> Rebuild ';
+            $content .= rebuild_get_post_type_name();
+            $content .= '</a>';
+
+            return $content;
+
+        }
+
+        return;
+
+    }
+}
+
+
+/**
+ * Taxonomy Name
+ * Gets current taxonomy name
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_taxonomy_name' ) ) {
+
+    function rebuild_get_taxonomy_name() {
+
+        $queried_object = get_queried_object();
+
+        if( count( $queried_object ) > 0 ) {
+
+            $taxonomy = $queried_object->taxonomy;
+
+            $tax = get_taxonomy( $taxonomy );
+
+            if( $tax ) {
+
+                $content = '<label for="taxonomy">';
+                $content .= $tax->labels->singular_name;
+                $content .= '</label>';
+
+                echo $content;
+
+                return;
+
+            }
+
+            return;
+
+        }
+
+        return;
+
     }
 
 }

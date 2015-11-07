@@ -12,6 +12,12 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <header class="entry-header">
 
+            <?php if( is_archive() && !is_post_type_archive( 'site' )  ) : ?>
+
+                <?php rebuild_site_context_nav(); ?>
+
+            <?php endif; ?>
+
             <div class="filters">
                 
                 <?php if( is_post_type_archive( 'exhibition' ) ) : ?>
