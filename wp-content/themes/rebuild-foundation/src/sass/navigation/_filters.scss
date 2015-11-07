@@ -53,12 +53,12 @@
 .blog, .category, .tag {
 	ul.site-filter {
 		position: fixed;
-		width: $size__site-main-flush;
-		left: $align__site-4;
+		width: $size__site-main-full;
+		left: $align__site-2;
 		background-color: $warm-gray;
 		top: 0;
 		height: auto;
-		padding: 55px 0 0 0;
+		padding: 55px 0 10px 0;
 		margin: 0;
 		z-index: 4;
 		border-bottom: 1px solid $black-transparent-light;	
@@ -152,6 +152,15 @@ ul.event-year-filter, ul.exhibition-filter {
 					font-size: $font_size-2;
 				}
 			}
+		}
+	}
+
+	.blog, .category, .tag {
+		ul.site-filter {
+			position: relative;
+			left: 0;
+			width: 100%;
+			padding-top: 0;
 		}
 	}
 

@@ -951,12 +951,12 @@ a {
 
 .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
   position: fixed;
-  width: calc(100% - 220px - 160px);
-  left: calc(220px + 160px);
+  width: calc(100% - 220px);
+  left: 220px;
   background-color: #e9e6df;
   top: 0;
   height: auto;
-  padding: 55px 0 0 0;
+  padding: 55px 0 10px 0;
   margin: 0;
   z-index: 4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
@@ -1021,7 +1021,13 @@ ul.event-year-filter, ul.exhibition-filter {
       width: auto;
       padding: 0 20px 10px 0; }
       ul.event-year-filter li.active a {
-        font-size: 16px; } }
+        font-size: 16px; }
+
+  .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
+    position: relative;
+    left: 0;
+    width: 100%;
+    padding-top: 0; } }
 /*--------------------------------------------------------------
 ## Post Navigation
 --------------------------------------------------------------*/
@@ -2356,7 +2362,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   width: calc(100% - 220px);
   left: 220px; }
 .blog #main, .category #main, .tag #main {
-  margin-top: 100px;
+  margin-top: 120px;
   width: calc(100% - 160px); }
 .blog article, .category article, .tag article {
   padding: 20px 0;
