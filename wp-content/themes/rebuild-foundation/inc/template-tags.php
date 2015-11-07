@@ -267,22 +267,17 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
         switch ( true ) {
 
             case ( $site_query ):
-            //
-                
+
                 $content .= get_rebuild_site_name() . ' ' . rebuild_get_post_type_name();
-
                 $content .= '</h1>';
-
                 $content .= rebuild_all_content_link();
 
                 break;
 
-            case ( is_category() || is_tag() ):
+            case ( is_category() || is_tag() || is_tax( array( 'event_category', 'event_tag' ) ) ):
             //
                 $content .= get_the_archive_title() . ' <label>' . rebuild_get_post_type_name() . '</label>';
-
                 $content .= '</h1>';
-
                 $content .= rebuild_all_content_link();
 
                 break;
@@ -290,7 +285,6 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
             default:
 
                 $content .= 'Rebuild <label>' . rebuild_get_post_type_name() . '</label>';
-
                 $content .= '</h1>';
 
         }
