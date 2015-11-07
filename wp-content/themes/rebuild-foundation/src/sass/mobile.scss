@@ -130,7 +130,7 @@
 
 // Filters
 
-ul.event-year-filter {
+ul.event-year-filter, .single-event ul.event-year-filter {
 	position: fixed;
 	left: 25px;
 	top: 100px;
@@ -138,6 +138,7 @@ ul.event-year-filter {
 
 	li {
 		display: block;
+		padding-bottom: 20px;
 		
 		&.active {
 

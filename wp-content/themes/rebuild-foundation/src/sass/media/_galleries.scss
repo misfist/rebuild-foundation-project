@@ -51,15 +51,18 @@
 
 
 .gallery {
-	margin-top: 50px;
+	margin-top: 20px;
 	margin-bottom: 50px;
 	border-left: 1px solid $black-transparent-light;
 	border-right: 1px solid $black-transparent-light;
 
-	figure.slide-item, p.slick-slide {
+	figure.slide-item, p.slick-slide, figure.slick-slide {
 
 		img {
 			margin: 0 auto;
+			max-height: 450px;
+			width: auto;
+
 
 			&:focus {
 				outline: 0;
@@ -67,7 +70,8 @@
 		}
 
 		figcaption {
-			padding-top: 10px;
+			padding-top: 20px;
+			width: 50%;
 		}
 
 		&:focus {

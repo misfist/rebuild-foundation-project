@@ -1019,9 +1019,13 @@ ul.event-year-filter, ul.exhibition-filter {
       display: inline-block;
       vertical-align: top;
       width: auto;
-      padding: 0 20px 10px 0; }
+      padding: 0 20px 0 0; }
       ul.event-year-filter li.active a {
         font-size: 16px; }
+
+  .single-event ul.event-year-filter {
+    position: absolute;
+    left: 0; }
 
   .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
     position: relative;
@@ -1284,17 +1288,20 @@ figcaption {
   display: block; }
 
 .gallery {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 50px;
   border-left: 1px solid rgba(0, 0, 0, 0.25);
   border-right: 1px solid rgba(0, 0, 0, 0.25); }
-  .gallery figure.slide-item img, .gallery p.slick-slide img {
-    margin: 0 auto; }
-    .gallery figure.slide-item img:focus, .gallery p.slick-slide img:focus {
+  .gallery figure.slide-item img, .gallery p.slick-slide img, .gallery figure.slick-slide img {
+    margin: 0 auto;
+    max-height: 450px;
+    width: auto; }
+    .gallery figure.slide-item img:focus, .gallery p.slick-slide img:focus, .gallery figure.slick-slide img:focus {
       outline: 0; }
-  .gallery figure.slide-item figcaption, .gallery p.slick-slide figcaption {
-    padding-top: 10px; }
-  .gallery figure.slide-item:focus, .gallery p.slick-slide:focus {
+  .gallery figure.slide-item figcaption, .gallery p.slick-slide figcaption, .gallery figure.slick-slide figcaption {
+    padding-top: 20px;
+    width: 50%; }
+  .gallery figure.slide-item:focus, .gallery p.slick-slide:focus, .gallery figure.slick-slide:focus {
     outline: 0; }
   .gallery p.slick-slide {
     padding: 0 25px; }
@@ -1772,7 +1779,8 @@ article.exhibition {
     font: normal 40px "Akkurat-Bold";
     margin-top: 0; }
   article.exhibition .entry-header .entry-meta {
-    font: 16px "Akkuratmono-Regular"; }
+    font: 16px "Akkuratmono-Regular";
+    margin-top: 30px; }
   article.exhibition .read-more {
     font: normal 16px "Akkurat-Bold";
     display: block;
@@ -2080,14 +2088,14 @@ article.site_category-listening-house .entry-meta.location a:hover {
     line-height: 1.2em;
     text-transform: uppercase;
     font-size: 25px; }
-.single-site article.site .gallery {
+.single-site article.site #site-gallery {
   display: inline-block;
   vertical-align: top;
   width: 70%;
   vertical-align: bottom;
   margin-left: -5px;
   margin-bottom: 0; }
-  .single-site article.site .gallery::before {
+  .single-site article.site #site-gallery::before {
     position: absolute;
     display: block;
     width: 50%;
@@ -2145,15 +2153,15 @@ article.site_category-listening-house .entry-meta.location a:hover {
     width: 40%;
     margin-left: -5px;
     padding: 0 5%; }
-.single-site article.site.site_category-dorchester-art-housing-collaborative .gallery::before {
+.single-site article.site.site_category-dorchester-art-housing-collaborative #site-gallery::before {
   content: url("img/graphic_da-hc.svg"); }
-.single-site article.site.site_category-black-cinema-house .gallery::before {
+.single-site article.site.site_category-black-cinema-house #site-gallery::before {
   content: url("img/graphic_bch.svg"); }
-.single-site article.site.site_category-stony-island-arts-bank .gallery::before {
+.single-site article.site.site_category-stony-island-arts-bank #site-gallery::before {
   content: url("img/graphic_siab.svg"); }
-.single-site article.site.site_category-listening-house .gallery::before {
+.single-site article.site.site_category-listening-house #site-gallery::before {
   content: url("img/graphic_lh.svg"); }
-.single-site article.site.site_category-archive-house .gallery::before {
+.single-site article.site.site_category-archive-house #site-gallery::before {
   content: url("img/graphic_ah.svg");
   margin: 200px 0 0 -28%; }
 .single-site article.site .exhibitions {
@@ -2173,7 +2181,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
     margin-top: 0; }
 .single-site article.site .events {
   width: calc(100% - 160px);
-  margin-left: 100px; }
+  margin-left: 100px;
+  margin-bottom: 100px; }
   .single-site article.site .events h2 {
     font-size: 16px;
     margin-bottom: 20px; }
@@ -2182,7 +2191,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
     vertical-align: top;
     width: 66%; }
     .single-site article.site .events .upcoming-events article {
-      width: 90%;
+      width: 85%;
       -webkit-transition-duration: 0.5s;
       -moz-transition-duration: 0.5s;
       -ms-transition-duration: 0.5s;
@@ -2212,6 +2221,11 @@ article.site_category-listening-house .entry-meta.location a:hover {
         transition-duration: 0.5s; }
         .single-site article.site .events .upcoming-events article:hover .event-info {
           background-color: rgba(0, 0, 0, 0.75); }
+    .single-site article.site .events .upcoming-events .site-cat-link {
+      margin-top: 20px; }
+      .single-site article.site .events .upcoming-events .site-cat-link a {
+        font-weight: normal;
+        font-family: "Akkurat-Bold"; }
   .single-site article.site .events .past-events {
     display: inline-block;
     vertical-align: top;
@@ -2282,8 +2296,13 @@ article.site_category-listening-house .entry-meta.location a:hover {
       margin-top: 0; }
       .single-site article.site .posts article .entry-content p {
         margin-top: 0; }
-    .single-site article.site .posts article:last-child {
-      border-bottom: none; }
+    .single-site article.site .posts article:last-of-type {
+      border-bottom: 1px solid black; }
+  .single-site article.site .posts .site-cat-link {
+    margin-top: 20px; }
+    .single-site article.site .posts .site-cat-link a {
+      font-weight: normal;
+      font-family: "Akkurat-Bold"; }
 .single-site article.site .entry-footer {
   margin-left: 100px;
   width: calc(100% - 160px); }
@@ -2300,7 +2319,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
     display: block;
     width: 100%;
     padding: 0;
-    margin: 0; } }
+    margin: 0;
+    margin-top: 2em; } }
 @media (max-width: 1024px) {
   .single-site article.site .exhibitions, .single-site article.site .events, .single-site article.site .posts {
     margin-left: 0;
@@ -2315,6 +2335,9 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
     margin: 0;
     padding: 50px 0 0 0; }
+.page-template-default img.alignright, .page-template-default figure.alignright, .single-post img.alignright, .single-post figure.alignright {
+  margin: 0 -160px 0 0;
+  max-width: 70%; }
 .page-template-default article, .single-post article {
   position: relative;
   width: calc(100% - 220px);
@@ -2353,9 +2376,6 @@ article.site_category-listening-house .entry-meta.location a:hover {
 
 .single-post img.alignleft, .single-post figure.alignleft {
   margin: 0 0 0 -160px;
-  max-width: 70%; }
-.single-post img.alignright, .single-post figure.alignright {
-  margin: 0 -160px 0 0;
   max-width: 70%; }
 
 .blog #primary, .category #primary, .tag #primary {

@@ -146,7 +146,7 @@ ul.event-year-filter, ul.exhibition-filter {
 
 		li {
 			@include inblock(auto);
-			padding: 0 20px 10px 0;
+			padding: 0 20px 0 0;
 
 			&.active {
 				a {
@@ -154,6 +154,11 @@ ul.event-year-filter, ul.exhibition-filter {
 				}
 			}
 		}
+	}
+
+	.single-event ul.event-year-filter  {
+		position: absolute;
+		left: 0;
 	}
 
 	.blog, .category, .tag {
