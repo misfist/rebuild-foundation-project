@@ -148,12 +148,12 @@ ul.event-year-filter {
 	}
 }
 
-.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
-	margin-top: 5px;
-
-	.site-filter, .event-filter {
-		@include clear-inblock();
-		margin-bottom: 25px;
+.post-type-archive-event, .single-event {
+	.filters {
+		position: relative;
+		width: 100%;
+		left: 0;
+		padding-top: 25px;
 	}
 }
 

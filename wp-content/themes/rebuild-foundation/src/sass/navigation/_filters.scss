@@ -37,7 +37,7 @@
 		border-bottom: 1px solid $black-transparent-light;	
 
 		ul.event-month-filter {
-			width: $size__site-main-nested;
+			width: 100%;
 			margin-bottom: 10px;
 
 			li {
@@ -112,42 +112,21 @@ ul.event-year-filter, ul.exhibition-filter {
 
 @media (max-width: 1024px) {
 
-
-	.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
-		position: relative;
-		width: 100%;
-		left: 0;
-		border: none;
-
-		ul li {
-			@include clear-inblock();
-			padding: 4px 0;
-			font-size: 15px;
-		}
-
-		ul.event-month-filter {
-			width: 100%;
-
-			li {
-				width: 16%;
-			}
-		}
-
-		.site-filter, .event-filter {
-			@include inblock(40%);
-			margin-right: 5%;
+	.post-type-archive-event, .single-event {
+		.filters {
+			width: $size__site-main-full;
+			left: $align__site-2;
 		}
 	}
 
 	ul.exhibition-filter, ul.event-year-filter {
-		position: relative;
 		width: 100%;
-		top: 0;
-		left: 0;
-		border-bottom: 1px solid $black-transparent;
+		top: 42px;
 	}
 
 	ul.exhibition-filter {
+		border-bottom: 1px solid $black-transparent-light;
+
 		li {
 			@include inblock(33%);
 			padding-bottom: 15px;
@@ -155,11 +134,10 @@ ul.event-year-filter, ul.exhibition-filter {
 	}
 
 	ul.event-year-filter {
-		margin-top: 20px;
 
 		li {
 			@include inblock(auto);
-			padding-right: 20px;
+			padding: 0 20px 10px 0;
 
 			&.active {
 				a {

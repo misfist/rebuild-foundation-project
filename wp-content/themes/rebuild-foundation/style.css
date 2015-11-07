@@ -939,7 +939,7 @@ a {
   z-index: 4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
   .post-type-archive-event .filters ul.event-month-filter, .post-type-archive-event .blog ul.site-filter ul.event-month-filter, .blog .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .category ul.site-filter ul.event-month-filter, .category .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .tag ul.site-filter ul.event-month-filter, .tag .post-type-archive-event ul.site-filter ul.event-month-filter, .single-event .filters ul.event-month-filter, .single-event .blog ul.site-filter ul.event-month-filter, .blog .single-event ul.site-filter ul.event-month-filter, .single-event .category ul.site-filter ul.event-month-filter, .category .single-event ul.site-filter ul.event-month-filter, .single-event .tag ul.site-filter ul.event-month-filter, .tag .single-event ul.site-filter ul.event-month-filter {
-    width: calc(100% - 160px);
+    width: 100%;
     margin-bottom: 10px; }
     .post-type-archive-event .filters ul.event-month-filter li, .post-type-archive-event .blog ul.site-filter ul.event-month-filter li, .blog .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .category ul.site-filter ul.event-month-filter li, .category .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .tag ul.site-filter ul.event-month-filter li, .tag .post-type-archive-event ul.site-filter ul.event-month-filter li, .single-event .filters ul.event-month-filter li, .single-event .blog ul.site-filter ul.event-month-filter li, .blog .single-event ul.site-filter ul.event-month-filter li, .single-event .category ul.site-filter ul.event-month-filter li, .category .single-event ul.site-filter ul.event-month-filter li, .single-event .tag ul.site-filter ul.event-month-filter li, .tag .single-event ul.site-filter ul.event-month-filter li {
       font: 20px "Akkurat-Regular";
@@ -983,50 +983,29 @@ ul.event-year-filter, ul.exhibition-filter {
       color: black; }
 
 @media (max-width: 1024px) {
-  .filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
-    position: relative;
-    width: 100%;
-    left: 0;
-    border: none; }
-    .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
-      display: block;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      padding: 4px 0;
-      font-size: 15px; }
-    .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter {
-      width: 100%; }
-      .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .category ul.site-filter ul.event-month-filter li, .tag ul.site-filter ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .category ul.site-filter ul.event-month-filter li, .tag ul.site-filter ul.event-month-filter li {
-        width: 16%; }
-    .filters .site-filter, .blog ul.site-filter .site-filter, .category ul.site-filter .site-filter, .tag ul.site-filter .site-filter, .filters .event-filter, .blog ul.site-filter .event-filter, .category ul.site-filter .event-filter, .tag ul.site-filter .event-filter, .blog ul.site-filter .site-filter, .blog ul.site-filter .event-filter, .category ul.site-filter .site-filter, .category ul.site-filter .event-filter, .tag ul.site-filter .site-filter, .tag ul.site-filter .event-filter {
-      display: inline-block;
-      vertical-align: top;
-      width: 40%;
-      margin-right: 5%; }
+  .post-type-archive-event .filters, .post-type-archive-event .blog ul.site-filter, .blog .post-type-archive-event ul.site-filter, .post-type-archive-event .category ul.site-filter, .category .post-type-archive-event ul.site-filter, .post-type-archive-event .tag ul.site-filter, .tag .post-type-archive-event ul.site-filter, .single-event .filters, .single-event .blog ul.site-filter, .blog .single-event ul.site-filter, .single-event .category ul.site-filter, .category .single-event ul.site-filter, .single-event .tag ul.site-filter, .tag .single-event ul.site-filter {
+    width: calc(100% - 220px);
+    left: 220px; }
 
   ul.exhibition-filter, ul.event-year-filter {
-    position: relative;
     width: 100%;
-    top: 0;
-    left: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+    top: 42px; }
 
-  ul.exhibition-filter li {
-    display: inline-block;
-    vertical-align: top;
-    width: 33%;
-    padding-bottom: 15px; }
-
-  ul.event-year-filter {
-    margin-top: 20px; }
-    ul.event-year-filter li {
+  ul.exhibition-filter {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+    ul.exhibition-filter li {
       display: inline-block;
       vertical-align: top;
-      width: auto;
-      padding-right: 20px; }
-      ul.event-year-filter li.active a {
-        font-size: 16px; } }
+      width: 33%;
+      padding-bottom: 15px; }
+
+  ul.event-year-filter li {
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    padding: 0 20px 10px 0; }
+    ul.event-year-filter li.active a {
+      font-size: 16px; } }
 /*--------------------------------------------------------------
 ## Post Navigation
 --------------------------------------------------------------*/
@@ -1609,8 +1588,7 @@ ul.social-links {
 @media (max-width: 1024px) {
   .post-type-archive-event .posts-list, .tax-event_category .posts-list, .tax-event_tag .posts-list {
     left: 0;
-    width: 100%;
-    margin-top: 50px; } }
+    width: 100%; } }
 .single-event #main {
   width: calc(100% - 160px);
   left: 160px;
