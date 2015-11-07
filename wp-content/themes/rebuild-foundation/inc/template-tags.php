@@ -275,8 +275,8 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
                 break;
 
             case ( is_category() || is_tag() || is_tax( array( 'event_category', 'event_tag' ) ) ):
-            //
-                $content .= get_the_archive_title() . ' <label>' . rebuild_get_post_type_name() . '</label>';
+
+                $content .= rebuild_get_taxonomy_name() . ': <label>' . get_the_archive_title() . '</label>';
                 $content .= '</h1>';
                 $content .= rebuild_all_content_link();
 

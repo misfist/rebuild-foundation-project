@@ -312,7 +312,8 @@ if(! function_exists( 'rebuild_all_content_link' ) ) {
         } elseif( is_tax( array( 'event_category', 'event_tag' ) ) || is_category() || is_tag() ) {
 
             $post_object = get_post_type_object( get_post_type() );
-            $slug = $post_object->has_archive;
+
+            $slug = ( $post_object->has_archive ) ? $post_object->has_archive : 'blog/';
 
             $content = '<a href="' . esc_url( home_url( $slug ) ) . '">';
             $content .= '<label>' . __( 'view all', 'rebuild-foundation' ) . '</label> Rebuild ';
@@ -349,13 +350,11 @@ if(! function_exists( 'rebuild_get_taxonomy_name' ) ) {
 
             if( $tax ) {
 
-                $content = '<label for="taxonomy">';
+                $content = '<label for="' . $tax->query_var . '">';
                 $content .= $tax->labels->singular_name;
                 $content .= '</label>';
 
-                echo $content;
-
-                return;
+                return $content;
 
             }
 
