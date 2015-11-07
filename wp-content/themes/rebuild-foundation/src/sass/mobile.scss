@@ -148,7 +148,7 @@ ul.event-year-filter {
 	}
 }
 
-.post-type-archive-event, .single-event, .post-type-archive-exhibition {
+.post-type-archive-event, .single-event {
 	.filters {
 		position: relative;
 		width: 100%;
@@ -162,6 +162,11 @@ ul.event-year-filter {
 				padding-top: 12px;
 			}
 		}
+	}
+
+	ul.exhibition-filter {
+		position: relative;
+		left: 0;
 	}
 }
 
@@ -473,7 +478,7 @@ article.exhibition {
 	.posts-list {
 		width: $size__mobile-main-nested;
 		left: 0;
-		margin-top: 30px;
+		margin-top: 75px;
 	}
 
 }

@@ -119,12 +119,10 @@ ul.event-year-filter, ul.exhibition-filter {
 		}
 	}
 
-
-
-
 	ul.exhibition-filter {
 		width: 100%;
 		top: 0;
+		background-color: $warm-gray;
 		padding-top: 22px;
 		border-bottom: 1px solid $black-transparent-light;
 		z-index: 1;

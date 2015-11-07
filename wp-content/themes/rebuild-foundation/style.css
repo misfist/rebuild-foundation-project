@@ -990,6 +990,7 @@ ul.event-year-filter, ul.exhibition-filter {
   ul.exhibition-filter {
     width: 100%;
     top: 0;
+    background-color: #e9e6df;
     padding-top: 22px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     z-index: 1; }

@@ -194,14 +194,17 @@ ul.event-year-filter {
     ul.event-year-filter li.active a {
       font-size: 13px; }
 
-.post-type-archive-event .filters, .single-event .filters, .post-type-archive-exhibition .filters {
+.post-type-archive-event .filters, .single-event .filters {
   position: relative;
   width: 100%;
   left: 0;
   padding-top: 10px; }
-  .post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li, .post-type-archive-exhibition .filters ul.event-month-filter li {
+  .post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li {
     width: 16.5%;
     padding-top: 12px; }
+.post-type-archive-event ul.exhibition-filter, .single-event ul.exhibition-filter {
+  position: relative;
+  left: 0; }
 
 .post-navigation .nav-previous, .post-navigation .nav-next {
   width: 100%;
@@ -409,7 +412,7 @@ article.exhibition {
 .post-type-archive-exhibition .posts-list {
   width: calc(100% - 30px);
   left: 0;
-  margin-top: 30px; }
+  margin-top: 75px; }
 
 .single-exhibition #main {
   width: calc(100% - 30px);
