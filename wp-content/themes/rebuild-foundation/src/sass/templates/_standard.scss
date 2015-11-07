@@ -1,8 +1,6 @@
 
 .page-template-default, .single-post {
 
-	
-
 	#primary > header {
 		position: relative;
 		width: $size__site-main-full;	
@@ -12,6 +10,11 @@
 			margin: 0;
 			padding: 50px 0 0 0;
 		}
+	}
+
+	img.alignright, figure.alignright{
+		margin: 0 (-$size__navigation) 0 0;
+		max-width: 80%;
 	}
 
 	article {
@@ -87,11 +90,6 @@
 .single-post {
 	img.alignleft, figure.alignleft {
 		margin: 0 0 0 (-$size__subnavigation);
-		max-width: 70%;
-	}
-
-	img.alignright, figure.alignright{
-		margin: 0 (-$size__subnavigation) 0 0;
 		max-width: 70%;
 	}
 }

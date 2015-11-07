@@ -7,11 +7,22 @@
 	padding: $size__left-margin 0 0 $size__left-margin;
 	z-index: 5;
 
+	& ::-webkit-scrollbar {
+		width: 6px;
+		background-color: transparent;
+	}
+
+	& ::-webkit-scrollbar-thumb {
+		background-color: $white-transparent-light;
+	}
+
 	.site-branding {
 		position: fixed;
 		left: 0;
 		top: 0;
 		overflow-y: scroll;
+
+		
 
 		.site-title {
 			display: block;

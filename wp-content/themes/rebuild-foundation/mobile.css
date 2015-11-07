@@ -119,6 +119,9 @@
 .home #site-navigation button.menu-toggle {
   background-image: url("img/menu_button_b.svg"); }
 
+#masthead ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.25); }
+
 #site-navigation {
   position: fixed;
   left: 0;
@@ -153,13 +156,13 @@
     -ms-transition-duration: 0.25s;
     -o-transition-duration: 0.25s;
     transition-duration: 0.25s; }
+    #site-navigation button.menu-toggle:focus {
+      outline: none; }
   #site-navigation .sub-menu {
     display: block;
-    padding-left: 5%;
+    padding-left: 15px;
     border-left: 1px solid rgba(0, 0, 0, 0.5);
-    margin: 10px 0 0 0; }
-    #site-navigation .sub-menu li {
-      padding: 12px 0; }
+    margin: 10px 0 0 15px; }
   #site-navigation.toggled {
     width: 70%;
     bottom: 0;
@@ -167,7 +170,7 @@
     overflow-y: scroll;
     padding: 50px 40px 0 50px;
     z-index: 10;
-    background-color: rgba(233, 230, 223, 0.95); }
+    background-color: #e9e6df; }
     #site-navigation.toggled button.menu-toggle {
       position: fixed;
       top: 20px;
@@ -182,16 +185,22 @@
       background-position: 0;
       background-size: contain; }
     #site-navigation.toggled .menu-main-menu-container #primary-menu {
-      margin-top: 50px; }
+      margin-top: 90px;
+      margin-bottom: 60px; }
+      #site-navigation.toggled .menu-main-menu-container #primary-menu li {
+        padding: 10px 0; }
+        #site-navigation.toggled .menu-main-menu-container #primary-menu li.menu-break {
+          margin-top: 75px; }
 
-ul.event-year-filter {
+ul.event-year-filter, .single-event ul.event-year-filter {
   position: fixed;
   left: 25px;
   top: 100px;
   border: none; }
-  ul.event-year-filter li {
-    display: block; }
-    ul.event-year-filter li.active a {
+  ul.event-year-filter li, .single-event ul.event-year-filter li {
+    display: block;
+    padding-bottom: 20px; }
+    ul.event-year-filter li.active a, .single-event ul.event-year-filter li.active a {
       font-size: 13px; }
 
 .post-type-archive-event .filters, .single-event .filters {
@@ -514,6 +523,10 @@ img.alignright, figure.alignright {
   float: none;
   margin: 0;
   padding: 1.5em 0; }
+
+.gallery figure.slick-slide img {
+  max-height: 250px;
+  margin: 0; }
 
 .page-template-default .featured-image, .single-post .featured-image {
   float: none;
