@@ -1,18 +1,9 @@
 .filters {
-	position: fixed;
-	width: $size__site-main-flush;
-	left: $align__site-4;
-	background-color: $warm-gray;
-	top: 0;
-	padding: 12px 0 0 0;
-	margin: 0 0 0 0;
-	z-index: 4;
-	border-bottom: 1px solid $black-transparent-light;
-
 	ul {
 		list-style-type: none;
-		padding: 0 0 0 0;
-		margin: 0 0 20px 0;
+		padding: 0;
+		margin: 0;
+		height: 0;
 
 
 		li {
@@ -27,22 +18,34 @@
 				font-weight: normal;
 			}
 		}
-
 	}
+}
 
-	ul.event-month-filter {
-		width: $size__site-main-nested;
-		margin-bottom: 10px;
+.post-type-archive-event {
+	.filters {
+		position: fixed;
+		width: $size__site-main-flush;
+		left: $align__site-4;
+		background-color: $warm-gray;
+		top: 0;
+		height: auto;
+		padding: 105px 0 0 0;
+		margin: 0;
+		z-index: 4;
+		border-bottom: 1px solid $black-transparent-light;	
 
-		li {
-			font: $font_size-3 $regular;
-			@include inblock(8%);
-			margin-right: -4px;
-			padding-top: 0px;
-		}
-	}	
+		ul.event-month-filter {
+			width: $size__site-main-nested;
+			margin-bottom: 10px;
 
-
+			li {
+				font: $font_size-3 $regular;
+				@include inblock(8%);
+				margin-right: -4px;
+				padding-top: 0px;
+			}
+		}	
+	}
 }
 
 .blog, .category, .tag {

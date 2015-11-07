@@ -911,33 +911,36 @@ a {
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
-.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
+.filters ul, .blog ul.site-filter ul, .category ul.site-filter ul, .tag ul.site-filter ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 0; }
+  .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
+    font: 13px "Akkurat-Regular";
+    padding-right: 25px;
+    display: inline-block;
+    padding: 0 20px 0 0; }
+    .filters ul li.active a, .blog ul.site-filter ul li.active a, .category ul.site-filter ul li.active a, .tag ul.site-filter ul li.active a {
+      font-family: "Akkurat-Bold";
+      color: black;
+      font-weight: normal; }
+
+.post-type-archive-event .filters, .post-type-archive-event .blog ul.site-filter, .blog .post-type-archive-event ul.site-filter, .post-type-archive-event .category ul.site-filter, .category .post-type-archive-event ul.site-filter, .post-type-archive-event .tag ul.site-filter, .tag .post-type-archive-event ul.site-filter {
   position: fixed;
   width: calc(100% - 220px - 160px);
   left: calc(220px + 160px);
   background-color: #e9e6df;
   top: 0;
-  padding: 12px 0 0 0;
-  margin: 0 0 0 0;
+  height: auto;
+  padding: 105px 0 0 0;
+  margin: 0;
   z-index: 4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-  .filters ul, .blog ul.site-filter ul, .category ul.site-filter ul, .tag ul.site-filter ul {
-    list-style-type: none;
-    padding: 0 0 0 0;
-    margin: 0 0 20px 0; }
-    .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
-      font: 13px "Akkurat-Regular";
-      padding-right: 25px;
-      display: inline-block;
-      padding: 0 20px 0 0; }
-      .filters ul li.active a, .blog ul.site-filter ul li.active a, .category ul.site-filter ul li.active a, .tag ul.site-filter ul li.active a {
-        font-family: "Akkurat-Bold";
-        color: black;
-        font-weight: normal; }
-  .filters ul.event-month-filter, .blog ul.site-filter ul.event-month-filter, .category ul.site-filter ul.event-month-filter, .tag ul.site-filter ul.event-month-filter {
+  .post-type-archive-event .filters ul.event-month-filter, .post-type-archive-event .blog ul.site-filter ul.event-month-filter, .blog .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .category ul.site-filter ul.event-month-filter, .category .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .tag ul.site-filter ul.event-month-filter, .tag .post-type-archive-event ul.site-filter ul.event-month-filter {
     width: calc(100% - 160px);
     margin-bottom: 10px; }
-    .filters ul.event-month-filter li, .blog ul.site-filter ul.event-month-filter li, .category ul.site-filter ul.event-month-filter li, .tag ul.site-filter ul.event-month-filter li {
+    .post-type-archive-event .filters ul.event-month-filter li, .post-type-archive-event .blog ul.site-filter ul.event-month-filter li, .blog .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .category ul.site-filter ul.event-month-filter li, .category .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .tag ul.site-filter ul.event-month-filter li, .tag .post-type-archive-event ul.site-filter ul.event-month-filter li {
       font: 20px "Akkurat-Regular";
       display: inline-block;
       vertical-align: top;
@@ -1291,6 +1294,8 @@ figcaption {
     padding-top: 10px; }
   .gallery figure.slide-item:focus, .gallery p.slick-slide:focus {
     outline: 0; }
+  .gallery p.slick-slide {
+    padding: 0 25px; }
   .gallery button.slick-arrow {
     background-color: transparent;
     top: 50%;
@@ -1735,7 +1740,7 @@ ul.social-links {
   width: calc(100% - 160px);
   position: relative;
   left: 160px;
-  margin-top: 120px; }
+  margin-top: 75px; }
 
 article.exhibition {
   width: calc(100% - 60px);
