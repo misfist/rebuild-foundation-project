@@ -202,7 +202,8 @@ ul.event-year-filter {
   .post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li {
     width: 16.5%;
     padding-top: 12px; }
-.post-type-archive-event ul.exhibition-filter, .single-event ul.exhibition-filter {
+
+ul.exhibition-filter {
   position: relative;
   left: 0; }
 
