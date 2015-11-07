@@ -911,22 +911,23 @@ a {
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
-.filters ul, .blog ul.site-filter ul, .category ul.site-filter ul, .tag ul.site-filter ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.filters, .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
   height: 0; }
-  .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
-    font: 13px "Akkurat-Regular";
-    padding-right: 25px;
-    display: inline-block;
-    padding: 0 20px 0 0; }
-    .filters ul li.active a, .blog ul.site-filter ul li.active a, .category ul.site-filter ul li.active a, .tag ul.site-filter ul li.active a {
-      font-family: "Akkurat-Bold";
-      color: black;
-      font-weight: normal; }
+  .filters ul, .blog ul.site-filter ul, .category ul.site-filter ul, .tag ul.site-filter ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+    .filters ul li, .blog ul.site-filter ul li, .category ul.site-filter ul li, .tag ul.site-filter ul li {
+      font: 13px "Akkurat-Regular";
+      padding-right: 25px;
+      display: inline-block;
+      padding: 0 20px 0 0; }
+      .filters ul li.active a, .blog ul.site-filter ul li.active a, .category ul.site-filter ul li.active a, .tag ul.site-filter ul li.active a {
+        font-family: "Akkurat-Bold";
+        color: black;
+        font-weight: normal; }
 
-.post-type-archive-event .filters, .post-type-archive-event .blog ul.site-filter, .blog .post-type-archive-event ul.site-filter, .post-type-archive-event .category ul.site-filter, .category .post-type-archive-event ul.site-filter, .post-type-archive-event .tag ul.site-filter, .tag .post-type-archive-event ul.site-filter {
+.post-type-archive-event .filters, .post-type-archive-event .blog ul.site-filter, .blog .post-type-archive-event ul.site-filter, .post-type-archive-event .category ul.site-filter, .category .post-type-archive-event ul.site-filter, .post-type-archive-event .tag ul.site-filter, .tag .post-type-archive-event ul.site-filter, .single-event .filters, .single-event .blog ul.site-filter, .blog .single-event ul.site-filter, .single-event .category ul.site-filter, .category .single-event ul.site-filter, .single-event .tag ul.site-filter, .tag .single-event ul.site-filter {
   position: fixed;
   width: calc(100% - 220px - 160px);
   left: calc(220px + 160px);
@@ -937,10 +938,10 @@ a {
   margin: 0;
   z-index: 4;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-  .post-type-archive-event .filters ul.event-month-filter, .post-type-archive-event .blog ul.site-filter ul.event-month-filter, .blog .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .category ul.site-filter ul.event-month-filter, .category .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .tag ul.site-filter ul.event-month-filter, .tag .post-type-archive-event ul.site-filter ul.event-month-filter {
+  .post-type-archive-event .filters ul.event-month-filter, .post-type-archive-event .blog ul.site-filter ul.event-month-filter, .blog .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .category ul.site-filter ul.event-month-filter, .category .post-type-archive-event ul.site-filter ul.event-month-filter, .post-type-archive-event .tag ul.site-filter ul.event-month-filter, .tag .post-type-archive-event ul.site-filter ul.event-month-filter, .single-event .filters ul.event-month-filter, .single-event .blog ul.site-filter ul.event-month-filter, .blog .single-event ul.site-filter ul.event-month-filter, .single-event .category ul.site-filter ul.event-month-filter, .category .single-event ul.site-filter ul.event-month-filter, .single-event .tag ul.site-filter ul.event-month-filter, .tag .single-event ul.site-filter ul.event-month-filter {
     width: calc(100% - 160px);
     margin-bottom: 10px; }
-    .post-type-archive-event .filters ul.event-month-filter li, .post-type-archive-event .blog ul.site-filter ul.event-month-filter li, .blog .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .category ul.site-filter ul.event-month-filter li, .category .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .tag ul.site-filter ul.event-month-filter li, .tag .post-type-archive-event ul.site-filter ul.event-month-filter li {
+    .post-type-archive-event .filters ul.event-month-filter li, .post-type-archive-event .blog ul.site-filter ul.event-month-filter li, .blog .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .category ul.site-filter ul.event-month-filter li, .category .post-type-archive-event ul.site-filter ul.event-month-filter li, .post-type-archive-event .tag ul.site-filter ul.event-month-filter li, .tag .post-type-archive-event ul.site-filter ul.event-month-filter li, .single-event .filters ul.event-month-filter li, .single-event .blog ul.site-filter ul.event-month-filter li, .blog .single-event ul.site-filter ul.event-month-filter li, .single-event .category ul.site-filter ul.event-month-filter li, .category .single-event ul.site-filter ul.event-month-filter li, .single-event .tag ul.site-filter ul.event-month-filter li, .tag .single-event ul.site-filter ul.event-month-filter li {
       font: 20px "Akkurat-Regular";
       display: inline-block;
       vertical-align: top;
@@ -1614,10 +1615,10 @@ ul.social-links {
   width: calc(100% - 160px);
   left: 160px;
   position: relative; }
-.single-event .filters, .single-event .blog ul.site-filter, .blog .single-event ul.site-filter, .single-event .category ul.site-filter, .category .single-event ul.site-filter, .single-event .tag ul.site-filter, .tag .single-event ul.site-filter {
-  position: relative;
-  width: 100%;
-  left: 0; }
+  .single-event #main .filters, .single-event #main .blog ul.site-filter, .blog .single-event #main ul.site-filter, .single-event #main .category ul.site-filter, .category .single-event #main ul.site-filter, .single-event #main .tag ul.site-filter, .tag .single-event #main ul.site-filter {
+    position: relative;
+    width: 100%;
+    left: 0; }
 .single-event .sharedaddy {
   margin-top: -5px;
   float: right; }

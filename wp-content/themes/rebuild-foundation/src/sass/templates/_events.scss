@@ -4,14 +4,17 @@
 		width: $size__site-main-nested;
 		left: $align__site-3;
 		position: relative;
+
+
+		.filters {
+			position: relative;
+			width: 100%;
+			left: 0;
+		}
+
 	}
 
-	.filters {
-		position: relative;
-		width: 100%;
-		left: 0;
-	}
-
+	
 	.sharedaddy {
 		margin-top: -5px;
 		float: right;
