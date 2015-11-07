@@ -79,9 +79,7 @@ $site_tax = array(
             
         </section>
 
-        <!-- //// Exhibitions Section -->
-        <section class="exhibitions">
-
+        
             <?php
             $exhibition_post_type = 'exhibition';
             $today = date( 'Ymd' );
@@ -107,154 +105,157 @@ $site_tax = array(
 
             <?php if ( $exhibitions->have_posts() ) : ?>
 
+            <!-- //// Exhibitions Section -->
+
+            <section class="exhibitions">
+
                <h2><?php _e( 'Exhibitions', 'rebuild-foundation' ); ?></h2>
 
                <?php while ( $exhibitions->have_posts() ) : $exhibitions->the_post(); ?>
 
                     <?php get_template_part( 'template-parts/loop', $exhibition_post_type ); ?>
 
-                <?php endwhile; else: ?>
 
-                    <?php get_template_part( 'template-parts/loop', 'none' ); ?>
+
+                <?php endwhile; ?>
+
+                <?php rebuild_get_site_category_content(); ?>
+
+            </section>
 
             <?php endif; ?>
 
             <?php wp_reset_postdata(); ?>
 
-        </section>
-
         <!-- //// Events Section -->
+
         <section class="events">
 
             <?php
             $event_post_type = 'event';
             $today = date( 'Ymd' );
+            $future_scope = array(
+                array(
+                    'key' => 'start_date',
+                    'value'=> $today,
+                    'compare'=> '>=',
+                    'type'=> 'date',
+                ),
+            );
             ?>
-            
+
+            <?php 
+            // WP_Query arguments
+            $future_event_args = array (
+                'post_type' => $event_post_type,
+                'posts_per_page' => 4,
+                'orderby' => 'meta_value',
+                'meta_key' => 'start_date',
+                'tax_query' => $site_tax,
+                'meta_query' => $future_scope,
+            );
+
+            $future_event_query = new WP_Query( $future_event_args ); ?>
+
+            <?php if ( $future_event_query->have_posts() ) : ?>
+
             <div class="upcoming-events">
-                <?php
-                $future_scope = array(
-                    array(
-                        'key' => 'start_date',
-                        'value'=> $today,
-                        'compare'=> '>=',
-                        'type'=> 'date',
-                    ),
-                );
-                ?>
 
-                <?php 
-                // WP_Query arguments
-                $future_event_args = array (
-                    'post_type' => $event_post_type,
-                    'posts_per_page' => 4,
-                    'orderby' => 'meta_value',
-                    'meta_key' => 'start_date',
-                    'tax_query' => $site_tax,
-                    'meta_query' => $future_scope,
-                );
+                <h2><?php _e( 'Upcoming Events', 'rebuild-foundation' ); ?></h2>
 
-                $future_event_query = new WP_Query( $future_event_args ); ?>
+                <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
 
-                <?php if ( $future_event_query->have_posts() ) : ?>
+                    <?php get_template_part( 'template-parts/loop', 'site-event-future' ); ?>
 
-                    <h2><?php _e( 'Upcoming Events', 'rebuild-foundation' ); ?></h2>
-
-                    <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
-
-                        <?php get_template_part( 'template-parts/loop', 'site-event-future' ); ?>
-
-                    <?php endwhile; else: ?>
-
-                        <?php get_template_part( 'template-parts/loop', 'none' ); ?>
-
-                <?php endif; ?>
-
+                <?php endwhile; ?>
+                
                 <?php rebuild_get_site_category_content(); ?>
 
-                <?php wp_reset_postdata(); ?>
-
             </div>
+
+            <?php endif; ?>
+
+            <?php wp_reset_postdata(); ?>
+
+    
+            <?php
+            $past_scope = array(
+                array(
+                    'key' => 'end_date',
+                    'value'=> $today,
+                    'compare'=> '<',
+                    'type'=> 'date',
+                ),
+            );
+            ?>
+
+            <?php 
+            // WP_Query arguments
+            $future_event_args = array (
+                'post_type' => $event_post_type,
+                'posts_per_page' => 4,
+                'tax_query' => $site_tax,
+                'meta_query' => $past_scope,
+                'order' => 'ASC',
+                'orderby' => 'meta_value',
+                'meta_key' => 'start_date'
+            );
+
+            $future_event_query = new WP_Query( $future_event_args ); ?>
+
+            <?php if ( $future_event_query->have_posts() ) : ?>
 
             <div class="past-events">
-                <?php
-                $past_scope = array(
-                    array(
-                        'key' => 'end_date',
-                        'value'=> $today,
-                        'compare'=> '<',
-                        'type'=> 'date',
-                    ),
-                );
-                ?>
 
-                <?php 
-                // WP_Query arguments
-                $future_event_args = array (
-                    'post_type' => $event_post_type,
-                    'posts_per_page' => 4,
-                    'tax_query' => $site_tax,
-                    'meta_query' => $past_scope,
-                    'order' => 'ASC',
-                    'orderby' => 'meta_value',
-                    'meta_key' => 'start_date'
-                );
+                <h2><?php _e( 'Past Events', 'rebuild-foundation' ); ?></h2>
 
-                $future_event_query = new WP_Query( $future_event_args ); ?>
+                <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
 
-                <?php if ( $future_event_query->have_posts() ) : ?>
+                    <?php get_template_part( 'template-parts/loop', 'site-event-past' ); ?>
 
-                    <h2><?php _e( 'Past Events', 'rebuild-foundation' ); ?></h2>
+                <?php endwhile; ?>
 
-                    <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
-
-                        <?php get_template_part( 'template-parts/loop', 'site-event-past' ); ?>
-
-                    <?php endwhile; else: ?>
-
-                        <?php get_template_part( 'template-parts/loop', 'none' ); ?>
-
-                <?php endif; ?>
-
-                <?php wp_reset_postdata(); ?>
-    
             </div>
 
+            <?php endif; ?>
+
+            <?php wp_reset_postdata(); ?>
+    
         </section>
 
         <!-- //// Blog Section - Only show if 'show_blog_posts' is true -->
 
         <?php if( get_field( 'show_blog_posts' ) ) : ?>
 
-            <section class="posts">
+            <?php 
+            // WP_Query arguments
+            $blog_post_type = 'post';
+            $blog_args = array (
+                'post_type' => $blog_post_type,
+                'tax_query' => $site_tax,
+            );
+
+            $blog_query = new WP_Query( $blog_args ); ?>
+
+            <?php if ( $blog_query->have_posts() ) : ?>
+
+           <section class="posts">
+
+               <h2><?php _e( 'Recent Blog Posts', 'rebuild-foundation' ); ?></h2>
+
+                <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+
+                    <?php get_template_part( 'template-parts/loop-site', $blog_post_type ); ?>
+
+                <?php endwhile; ?>
                 
-                 <?php 
-                // WP_Query arguments
-                $blog_post_type = 'post';
-                $blog_args = array (
-                    'post_type' => $blog_post_type,
-                    'tax_query' => $site_tax,
-                );
-
-                $blog_query = new WP_Query( $blog_args ); ?>
-
-                <?php if ( $blog_query->have_posts() ) : ?>
-
-                   <h2><?php _e( 'Recent Blog Posts', 'rebuild-foundation' ); ?></h2>
-
-                    <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
-
-                        <?php get_template_part( 'template-parts/loop-site', $blog_post_type ); ?>
-
-                    <?php endwhile; else: ?>
-
-                        <?php get_template_part( 'template-parts/loop', 'none' ); ?>
-
-                <?php endif; ?><?php rebuild_get_site_category_content(); ?>
-
-                <?php wp_reset_postdata(); ?>
+                <?php rebuild_get_site_category_content(); ?>
 
             </section>
+
+            <?php endif; ?>
+
+            <?php wp_reset_postdata(); ?>
 
         <?php endif; ?>
 
