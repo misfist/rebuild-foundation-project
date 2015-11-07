@@ -28,7 +28,9 @@
 
 		p, li {
 			font: normal $font_size-2 $bold;
-			letter-spacing: 0.05em;
+			letter-spacing: 0.025em;
+			line-height: 1.5em;
+			margin-bottom: 20px;
 		}
 
 		h2 {

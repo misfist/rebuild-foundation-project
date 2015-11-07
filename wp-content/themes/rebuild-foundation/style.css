@@ -2543,7 +2543,9 @@ article.site_category-listening-house .entry-meta.location a:hover {
   clear: both; }
   .home section p, .home section li {
     font: normal 16px "Akkurat-Bold";
-    letter-spacing: 0.05em; }
+    letter-spacing: 0.025em;
+    line-height: 1.5em;
+    margin-bottom: 20px; }
   .home section h2 {
     background-size: cover;
     width: 100%;
