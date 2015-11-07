@@ -42,7 +42,7 @@
 
 			li {
 				font: $font_size-3 $regular;
-				@include inblock(8%);
+				@include inblock(8.3%);
 				margin-right: -4px;
 				padding-top: 0px;
 			}
@@ -69,6 +69,7 @@
 			padding-right: 25px;
 			display: inline-block;
 			padding: 0 20px 0 0;
+
 		}
 
 	}
@@ -78,7 +79,7 @@ ul.event-year-filter, ul.exhibition-filter {
 	width: $size__subnavigation;
 	position: fixed;
 	left: $size__navigation;
-	top: 200px;
+	top: 185px;
 	margin: 0;
 	padding: 0;
 	list-style-type: none;

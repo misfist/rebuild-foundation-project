@@ -545,7 +545,7 @@ img.alignright, figure.alignright {
     width: calc(100% - 80px);
     left: 80px; }
   .blog #main, .category #main, .tag #main {
-    margin-top: 10px; }
+    margin-top: 15px; }
   .blog article, .category article, .tag article {
     padding: 10px 0;
     width: calc(100% - 30px); }

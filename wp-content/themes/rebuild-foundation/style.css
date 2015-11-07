@@ -945,7 +945,7 @@ a {
       font: 20px "Akkurat-Regular";
       display: inline-block;
       vertical-align: top;
-      width: 8%;
+      width: 8.3%;
       margin-right: -4px;
       padding-top: 0px; }
 
@@ -970,7 +970,7 @@ ul.event-year-filter, ul.exhibition-filter {
   width: 160px;
   position: fixed;
   left: 220px;
-  top: 200px;
+  top: 185px;
   margin: 0;
   padding: 0;
   list-style-type: none; }
@@ -2458,50 +2458,46 @@ article.site_category-listening-house .entry-meta.location a:hover {
   display: none; }
 
 @media (max-width: 1200px) {
-  .blog #primary {
-    left: 220px;
-    width: calc(100% - 60px); } }
-@media (max-width: 1024px) {
-  .page-template-default #primary > header, .single-post #primary > header {
-    padding-left: 0; }
-  .page-template-default article, .single-post article {
-    padding-left: 0; }
-
-  .blog #primary {
+  .blog #primary, .category #primary, .tag #primary {
     width: calc(100% - 220px);
     left: 220px; }
-  .blog #main {
+  .blog #main, .category #main, .tag #main {
     margin-top: 45px;
     width: 100%; }
-  .blog article {
+  .blog article, .category article, .tag article {
     padding: 10px 0;
     width: calc(100% - 160px); }
-    .blog article .entry-header {
+    .blog article .entry-header, .category article .entry-header, .tag article .entry-header {
       display: block;
       width: 100%;
       padding: 0;
       margin: 0; }
-      .blog article .entry-header .entry-title {
+      .blog article .entry-header .entry-title, .category article .entry-header .entry-title, .tag article .entry-header .entry-title {
         display: block;
         width: 100%;
         padding: 0;
         margin: 0; }
-      .blog article .entry-header .entry-meta {
+      .blog article .entry-header .entry-meta, .category article .entry-header .entry-meta, .tag article .entry-header .entry-meta {
         display: block;
         width: 100%;
         padding: 0;
         margin: 0;
         margin: 20px 0;
         text-align: left; }
-    .blog article .entry-content {
+    .blog article .entry-content, .category article .entry-content, .tag article .entry-content {
       display: block;
       width: 100%;
       padding: 0;
       margin: 0; }
-  .blog ul.site-filter {
+  .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
     width: 100%;
     left: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5); } }
+@media (max-width: 1024px) {
+  .page-template-default #primary > header, .single-post #primary > header {
+    padding-left: 0; }
+  .page-template-default article, .single-post article {
+    padding-left: 0; } }
 .home #primary #main {
   width: 100%;
   padding-left: 0; }
