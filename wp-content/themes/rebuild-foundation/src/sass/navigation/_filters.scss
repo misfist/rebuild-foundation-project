@@ -52,13 +52,16 @@
 
 .blog, .category, .tag {
 	ul.site-filter {
-		@extend .filters;
-		width: $size__site-main-full;	
-		left: $align__site-2;
-
-		list-style-type: none;
-		padding: 12px 0 20px 0;
-		margin: 0 0 20px 0;
+		position: fixed;
+		width: $size__site-main-flush;
+		left: $align__site-4;
+		background-color: $warm-gray;
+		top: 0;
+		height: auto;
+		padding: 55px 0 0 0;
+		margin: 0;
+		z-index: 4;
+		border-bottom: 1px solid $black-transparent-light;	
 
 
 		li {
@@ -120,22 +123,25 @@ ul.event-year-filter, ul.exhibition-filter {
 	}
 
 	ul.exhibition-filter {
-		width: 100%;
+		width: $size__site-main-full;
 		top: 0;
 		background-color: $warm-gray;
 		padding-top: 22px;
 		border-bottom: 1px solid $black-transparent-light;
 		z-index: 1;
+		padding-right: 55px;
+		@include flex();
+		@include justify-content(space-between);
 
 		li {
-			@include inblock(33%);
 			padding-bottom: 12px;
 		}
 	}
 
 	ul.event-year-filter {
 		width: 100%;
-		top: 42px;
+		top: 55px;
+		z-index: 4;
 
 		li {
 			@include inblock(auto);
