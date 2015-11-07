@@ -987,25 +987,28 @@ ul.event-year-filter, ul.exhibition-filter {
     width: calc(100% - 220px);
     left: 220px; }
 
-  ul.exhibition-filter, ul.event-year-filter {
-    width: 100%;
-    top: 42px; }
-
   ul.exhibition-filter {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+    width: 100%;
+    top: 0;
+    padding-top: 22px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    z-index: 1; }
     ul.exhibition-filter li {
       display: inline-block;
       vertical-align: top;
       width: 33%;
-      padding-bottom: 15px; }
+      padding-bottom: 12px; }
 
-  ul.event-year-filter li {
-    display: inline-block;
-    vertical-align: top;
-    width: auto;
-    padding: 0 20px 10px 0; }
-    ul.event-year-filter li.active a {
-      font-size: 16px; } }
+  ul.event-year-filter {
+    width: 100%;
+    top: 42px; }
+    ul.event-year-filter li {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      padding: 0 20px 10px 0; }
+      ul.event-year-filter li.active a {
+        font-size: 16px; } }
 /*--------------------------------------------------------------
 ## Post Navigation
 --------------------------------------------------------------*/
@@ -1797,7 +1800,7 @@ article.exhibition {
     width: 100%;
     position: relative;
     left: 0;
-    margin-top: 60px; } }
+    margin-top: 100px; } }
 .entry-meta.location a {
   font: normal 25px "Akkurat-Bold";
   color: black;
