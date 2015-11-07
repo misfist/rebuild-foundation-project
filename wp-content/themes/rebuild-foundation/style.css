@@ -2336,8 +2336,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
     margin: 0;
     padding: 50px 0 0 0; }
 .page-template-default img.alignright, .page-template-default figure.alignright, .single-post img.alignright, .single-post figure.alignright {
-  margin: 0 -160px 0 0;
-  max-width: 70%; }
+  margin: 0 -220px 0 0;
+  max-width: 80%; }
 .page-template-default article, .single-post article {
   position: relative;
   width: calc(100% - 220px);
