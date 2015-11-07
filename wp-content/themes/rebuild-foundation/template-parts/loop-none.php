@@ -16,7 +16,7 @@
     $post_type_label = $post_obj->labels->name;
 ?>
 
-<article id="no-results" data-year="" data-month=""  <?php post_class( $post_type ); ?>>
+<article id="no-results" <?php post_class( $post_type ); ?>>
 	
 	<div class="no-posts"><?php _e( 'No ' . $post_type_label, 'rebuild-foundation'); ?></div>
     
