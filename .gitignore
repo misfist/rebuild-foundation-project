@@ -64,6 +64,7 @@ wp-content/uploads/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
 
+<<<<<<< Updated upstream
 vendor/
 readme.html
 license.txt
@@ -80,3 +81,22 @@ wp-settings.php
 wp-signup.php
 wp-trackback.php
 xmlrpc.php
+=======
+
+/vendor/
+/readme.html
+/license.txt
+/index.hmtl
+/wp-active.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+>>>>>>> Stashed changes
