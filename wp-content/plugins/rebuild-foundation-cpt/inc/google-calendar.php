@@ -42,7 +42,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         $location_id = get_field( 'location', $event_id, false );
         $location_name = get_the_title( 369 );
         $location_address = rebuild_convert_location_to_string( $event_id );
-        $event_location = $location_name . ', ' . $location_address;
+        $event_location = 'test' . ', ' . $location_address;
         $site_name = get_bloginfo( 'name' );
         $site_url = get_bloginfo( 'url' );
 
