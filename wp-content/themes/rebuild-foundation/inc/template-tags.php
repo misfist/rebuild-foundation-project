@@ -141,15 +141,17 @@ endif;
 /**
  * Print Site Category Link
  * Renders link to site_category content relative to current content
- * Uses `add_query_arg` to render link
+* @input optionally supply $post_type argument
  * @return echo string
  */
 
 if(! function_exists( 'rebuild_get_site_category_content' ) ) {
 
-    function rebuild_get_site_category_content() {
+    function rebuild_get_site_category_content( $post_type = null ) {
 
-        $link = rebuild_get_site_category_content_link();
+        $post_type = ( $post_type ) ? $post_type : get_post_type();
+
+        $link = rebuild_get_site_category_content_link( $post_type );
 
         if( $link ) {
 

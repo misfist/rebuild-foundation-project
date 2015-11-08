@@ -7,7 +7,9 @@
 
 if(! function_exists( 'rebuild_get_pretty_link' ) ) {
 
-    function rebuild_get_pretty_link( $post_type ) {
+    function rebuild_get_pretty_link( $post_type = null ) {
+
+        $post_type = ( $post_type ) ? $post_type : get_post_type();
 
         $post_type_obj = get_post_type_object( $post_type );
 
@@ -47,20 +49,21 @@ if(! function_exists( 'rebuild_get_site_link' ) ) {
 
 /**
  * Get Site Content Link
- * Returns link to site content
+ * Returns link to site content, based on post_type
+ * @input optionally supply $post_type argument
  * @return string
  */
 
 if(! function_exists( 'rebuild_get_site_category_content_link' ) ) {
 
-    function rebuild_get_site_category_content_link() {
+    function rebuild_get_site_category_content_link( $post_type = null ) {
 
         $site_name = get_rebuild_site_name();
         $site_slug = get_rebuild_site_slug();
 
         if( $site_name && $site_slug ) {
 
-            $post_type = get_post_type();
+            $post_type = ( $post_type ) ? $post_type : get_post_type();
             $post_type_obj = get_post_type_object( $post_type );
             $post_type_name = $post_type_obj->labels->name;
 
@@ -264,9 +267,11 @@ if(! function_exists( 'rebuild_get_page_type' ) ) {
 
 if(! function_exists( 'rebuild_get_post_type_name' ) ) {
 
-    function rebuild_get_post_type_name() {
+    function rebuild_get_post_type_name( $post_type = null ) {
 
-        $post_object = get_post_type_object( get_post_type() );
+        $post_type = ( $post_type ) ? $post_type : get_post_type();
+
+        $post_object = get_post_type_object( $post_type );
         
         if( count( $post_object ) > 0 ) {
 
@@ -288,9 +293,11 @@ if(! function_exists( 'rebuild_get_post_type_name' ) ) {
 
 if(! function_exists( 'rebuild_all_content_url' ) ) {
 
-    function rebuild_all_content_url() {
+    function rebuild_all_content_url( $post_type = null ) {
 
-        $path = rebuild_get_pretty_link( get_post_type() );
+        $post_type = ( $post_type ) ? $post_type : get_post_type();
+
+        $path = rebuild_get_pretty_link( $post_type );
 
         return esc_url( home_url( $path ) );
 
@@ -305,11 +312,13 @@ if(! function_exists( 'rebuild_all_content_url' ) ) {
 
 if(! function_exists( 'rebuild_all_content_link' ) ) {
 
-    function rebuild_all_content_link() {
+    function rebuild_all_content_link( $post_type = null ) {
 
-        $url = rebuild_all_content_url();
+        $post_type = ( $post_type ) ? $post_type : get_post_type();
+        
+        $url = rebuild_all_content_url( $post_type );
 
-        $post_type_obj = get_post_type_object( get_post_type() );
+        $post_type_obj = get_post_type_object( $post_type );
 
         if( $url ) {
 
