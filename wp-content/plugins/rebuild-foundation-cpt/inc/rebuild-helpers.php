@@ -23,7 +23,9 @@ if(! function_exists( 'rebuild_get_location_name' ) ) {
 
         if( function_exists( 'get_field' ) ) {
 
-            $location_id = get_field( 'location', false, false );
+            $post_id = get_the_ID();
+
+            $location_id = get_field( 'location', $post_id, false );
 
             $location_name = get_field( 'location_name', $location_id );
 
