@@ -184,6 +184,8 @@ if(! function_exists( 'rebuild_formatted_address' ) ) {
 
             echo '<span class="address street">' . $location['address1'] . '</span> <span class="address city-state">' . $location['address2'] . '</span>';
 
+            return;
+
         }
 
         return;
@@ -234,15 +236,15 @@ if(! function_exists( 'rebuild_google_map_link' ) ) {
 
         $google_url = 'https://maps.google.com?q=';
 
-        echo '<div class="google-map-link">';
+        $content = '<div class="google-map-link">';
+        $content .= '<a href="' . esc_url( $google_url . $address ) . '" target="_blank">';
+        $content .=  __( 'map', 'rebuild-foundation' );
+        $content .= '</a>';
+        $content .= '</div>';
 
-        echo '<a href="' . esc_url( 'https://maps.google.com?q=' . $address ) . '" target="_blank">';
+        echo $content;
 
-        echo __( 'map', 'rebuild-foundation' );
-
-        echo '</a>';
-
-        echo '</div>';
+        return;
 
     }
 
@@ -339,6 +341,8 @@ if(! function_exists( 'rebuild_print_taxonomy_name' ) ) {
         if( $taxonomy ) {
             
             echo $taxonomy;
+
+            return;
         }
 
         return;
