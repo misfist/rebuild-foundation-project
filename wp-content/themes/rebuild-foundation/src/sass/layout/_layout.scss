@@ -20,9 +20,6 @@
 		position: fixed;
 		left: 0;
 		top: 0;
-		overflow-y: scroll;
-
-		
 
 		.site-title {
 			display: block;
@@ -54,6 +51,7 @@
 			@include box-shadow(0 0 12px #000000);
 			z-index: 5;
 			@include transition-duration(0.25s);
+			overflow-y: scroll;
 
 			.site-title {
 				width: 275px;

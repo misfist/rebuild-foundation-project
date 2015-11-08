@@ -10,14 +10,6 @@
 }
 
 
-.blog, .category, .tag {
-	#primary > .entry-header {
-		left: $align__site-2;
-		width: $size__site-main-full;
-	}
-}
-
-
 
 .context-header {
 	
@@ -62,9 +54,23 @@
 	}
 }
 
+.blog, .category, .tag {
+	#primary > .entry-header {
+		left: $align__site-2;
+		width: $size__site-main-full;
+		padding-right: 0;
+
+		.context-header {
+			border-bottom: 1px solid $black-transparent;
+		}
+	}
+}
+
+
 .tax-event_category, .tax-event_tag {
 	.context-header {
 		padding-top: 55px;
+		border-bottom: 1px solid $black-transparent;
 
 		h1.page-title {
 			font: $font_size-2 $regular;
@@ -76,6 +82,12 @@
 			}
 		}
 	}	
+}
+
+.post-type-archive-exhibition{
+	.context-header {
+		border-bottom: 1px solid $black-transparent;
+	}
 }
 
 
@@ -118,31 +130,6 @@
 }
 
 
-
-.blog, .category, .tag {
-	ul.site-filter {
-		position: fixed;
-		width: $size__site-main-full;
-		left: $align__site-2;
-		background-color: $warm-gray;
-		top: 0;
-		height: auto;
-		padding: 55px 0 10px 0;
-		margin: 0;
-		z-index: 4;
-		border-bottom: 1px solid $black-transparent-light;	
-
-
-		li {
-			font: $font_size-1 $regular;
-			padding-right: 25px;
-			display: inline-block;
-			padding: 0 20px 0 0;
-
-		}
-
-	}
-}
 
 ul.event-year-filter, ul.exhibition-filter {
 	width: $size__subnavigation;
@@ -284,15 +271,6 @@ ul.event-year-filter, ul.exhibition-filter {
 
 	.single-event ul.event-year-filter  {
 		margin-top: 45px;
-	}
-
-	.blog, .category, .tag {
-		ul.site-filter {
-			position: relative;
-			left: 0;
-			width: 100%;
-			padding-top: 0;
-		}
 	}
 
 }

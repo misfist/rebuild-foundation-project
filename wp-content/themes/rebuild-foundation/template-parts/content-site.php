@@ -109,7 +109,8 @@ $site_tax = array(
 
             <section class="exhibitions">
 
-               <h2><?php _e( 'Exhibitions', 'rebuild-foundation' ); ?></h2>
+               <h2><?php _e( 'Exhibitions', 'rebuild-foundation' ); ?></h2> | 
+               <?php rebuild_get_site_category_content(); ?>
 
                <?php while ( $exhibitions->have_posts() ) : $exhibitions->the_post(); ?>
 
@@ -119,7 +120,7 @@ $site_tax = array(
 
                 <?php endwhile; ?>
 
-                <?php rebuild_get_site_category_content(); ?>
+                
 
             </section>
 
@@ -161,7 +162,7 @@ $site_tax = array(
 
             <div class="upcoming-events">
 
-                <h2><?php _e( 'Upcoming Events', 'rebuild-foundation' ); ?></h2>
+                <h2><?php _e( 'Upcoming Events', 'rebuild-foundation' ); ?></h2> | <?php rebuild_get_site_category_content(); ?>
 
                 <?php while ( $future_event_query->have_posts() ) : $future_event_query->the_post(); ?>
 
@@ -169,7 +170,7 @@ $site_tax = array(
 
                 <?php endwhile; ?>
                 
-                <?php rebuild_get_site_category_content(); ?>
+                
 
             </div>
 
@@ -241,7 +242,7 @@ $site_tax = array(
 
            <section class="posts">
 
-               <h2><?php _e( 'Recent Blog Posts', 'rebuild-foundation' ); ?></h2>
+               <h2><?php _e( 'Recent Blog Posts', 'rebuild-foundation' ); ?></h2> | <?php rebuild_get_site_category_content(); ?>
 
                 <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
 
@@ -249,8 +250,6 @@ $site_tax = array(
 
                 <?php endwhile; ?>
                 
-                <?php rebuild_get_site_category_content(); ?>
-
             </section>
 
             <?php endif; ?>

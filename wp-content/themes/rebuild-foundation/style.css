@@ -147,8 +147,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   #masthead .site-branding {
     position: fixed;
     left: 0;
-    top: 0;
-    overflow-y: scroll; }
+    top: 0; }
     #masthead .site-branding .site-title {
       display: block;
       width: 100px;
@@ -180,7 +179,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
       -moz-transition-duration: 0.25s;
       -ms-transition-duration: 0.25s;
       -o-transition-duration: 0.25s;
-      transition-duration: 0.25s; }
+      transition-duration: 0.25s;
+      overflow-y: scroll; }
       #masthead .site-branding:hover .site-title {
         width: 275px;
         background-image: url("img/logo-foundation_b.svg");
@@ -694,6 +694,8 @@ input.search-field {
   background-position: top right;
   background-size: 25px 25px;
   padding-left: 0; }
+  input.search-field:focus {
+    outline: none; }
 
 .entry-content .mc4wp-form {
   margin-top: 50px; }
@@ -924,10 +926,6 @@ a {
   background-color: #e9e6df;
   z-index: 4; }
 
-.blog #primary > .entry-header, .category #primary > .entry-header, .tag #primary > .entry-header {
-  left: 220px;
-  width: calc(100% - 220px); }
-
 .context-header {
   padding: 50px 0 8px 0;
   border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
@@ -953,14 +951,25 @@ a {
     .context-header a:hover {
       color: black; }
 
+.blog #primary > .entry-header, .category #primary > .entry-header, .tag #primary > .entry-header {
+  left: 220px;
+  width: calc(100% - 220px);
+  padding-right: 0; }
+  .blog #primary > .entry-header .context-header, .category #primary > .entry-header .context-header, .tag #primary > .entry-header .context-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+
 .tax-event_category .context-header, .tax-event_tag .context-header {
-  padding-top: 55px; }
+  padding-top: 55px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
   .tax-event_category .context-header h1.page-title, .tax-event_tag .context-header h1.page-title {
     font: 16px "Akkurat-Regular";
     letter-spacing: 0.1em;
     line-height: 25px; }
     .tax-event_category .context-header h1.page-title label, .tax-event_tag .context-header h1.page-title label {
       padding-left: 0; }
+
+.post-type-archive-exhibition .context-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
 
 .filters ul {
   list-style-type: none;
@@ -987,23 +996,6 @@ a {
     width: 8.3%;
     margin-right: -4px;
     padding-top: 0px; }
-
-.blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
-  position: fixed;
-  width: calc(100% - 220px);
-  left: 220px;
-  background-color: #e9e6df;
-  top: 0;
-  height: auto;
-  padding: 55px 0 10px 0;
-  margin: 0;
-  z-index: 4;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-  .blog ul.site-filter li, .category ul.site-filter li, .tag ul.site-filter li {
-    font: 13px "Akkurat-Regular";
-    padding-right: 25px;
-    display: inline-block;
-    padding: 0 20px 0 0; }
 
 ul.event-year-filter, ul.exhibition-filter {
   width: 160px;
@@ -1083,13 +1075,7 @@ ul.event-year-filter, ul.exhibition-filter {
         font-size: 16px; }
 
   .single-event ul.event-year-filter {
-    margin-top: 45px; }
-
-  .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
-    position: relative;
-    left: 0;
-    width: 100%;
-    padding-top: 0; } }
+    margin-top: 45px; } }
 /*--------------------------------------------------------------
 ## Post Navigation
 --------------------------------------------------------------*/
@@ -2225,11 +2211,20 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .single-site article.site.site_category-archive-house #site-gallery::before {
   content: url("img/graphic_ah.svg");
   margin: 200px 0 0 -28%; }
+.single-site article.site section > h2, .single-site article.site .upcoming-events h2, .single-site article.site .past-events h2 {
+  display: inline-block;
+  margin-bottom: 20px;
+  font: normal 16px "Akkurat-Bold"; }
+.single-site article.site .site-cat-link {
+  display: inline-block; }
+  .single-site article.site .site-cat-link a {
+    border: none; }
+    .single-site article.site .site-cat-link a:hover {
+      background-color: transparent;
+      color: rgba(0, 0, 0, 0.5); }
 .single-site article.site .exhibitions {
   margin-left: 100px;
   margin-top: 100px; }
-  .single-site article.site .exhibitions h2 {
-    font-size: 16px; }
   .single-site article.site .exhibitions article.exhibition {
     border: none;
     width: 100%;
@@ -2244,9 +2239,6 @@ article.site_category-listening-house .entry-meta.location a:hover {
   width: calc(100% - 160px);
   margin-left: 100px;
   margin-bottom: 100px; }
-  .single-site article.site .events h2 {
-    font-size: 16px;
-    margin-bottom: 20px; }
   .single-site article.site .events .upcoming-events {
     display: inline-block;
     vertical-align: top;
@@ -2282,11 +2274,6 @@ article.site_category-listening-house .entry-meta.location a:hover {
         transition-duration: 0.5s; }
         .single-site article.site .events .upcoming-events article:hover .event-info {
           background-color: rgba(0, 0, 0, 0.75); }
-    .single-site article.site .events .upcoming-events .site-cat-link {
-      margin-top: 20px; }
-      .single-site article.site .events .upcoming-events .site-cat-link a {
-        font-weight: normal;
-        font-family: "Akkurat-Bold"; }
   .single-site article.site .events .past-events {
     display: inline-block;
     vertical-align: top;
@@ -2321,10 +2308,6 @@ article.site_category-listening-house .entry-meta.location a:hover {
   position: relative;
   left: 0;
   margin-left: 100px; }
-  .single-site article.site .posts h2 {
-    font-size: 16px;
-    margin-top: 0;
-    border-bottom: 1px solid black; }
   .single-site article.site .posts article {
     border-bottom: 1px solid white;
     padding: 20px 0; }
@@ -2357,13 +2340,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
       margin-top: 0; }
       .single-site article.site .posts article .entry-content p {
         margin-top: 0; }
-    .single-site article.site .posts article:last-of-type {
-      border-bottom: 1px solid black; }
-  .single-site article.site .posts .site-cat-link {
-    margin-top: 20px; }
-    .single-site article.site .posts .site-cat-link a {
-      font-weight: normal;
-      font-family: "Akkurat-Bold"; }
+    .single-site article.site .posts article:first-of-type {
+      border-top: 1px solid black; }
 .single-site article.site .entry-footer {
   margin-left: 100px;
   width: calc(100% - 160px); }
