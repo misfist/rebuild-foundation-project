@@ -9,13 +9,15 @@
 
 ?>
 
+<?php rebuild_event_year_filter(); ?>
+
 <div class="filters">
 
     <?php rebuild_event_month_filter(); ?>
     
 </div>
 
-<?php rebuild_event_year_filter(); ?>
+
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?>>
 

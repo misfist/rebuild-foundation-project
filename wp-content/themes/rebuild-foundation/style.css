@@ -138,7 +138,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   top: 0;
   left: 0;
   padding: 60px 0 0 60px;
-  z-index: 5; }
+  z-index: 6; }
   #masthead ::-webkit-scrollbar {
     width: 6px;
     background-color: transparent; }
@@ -916,43 +916,77 @@ a {
 /*--------------------------------------------------------------
 ## Filters
 --------------------------------------------------------------*/
-.filters {
-  height: 0; }
-  .filters ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0; }
-    .filters ul li {
-      font: 13px "Akkurat-Regular";
-      padding-right: 25px;
-      display: inline-block;
-      padding: 0 20px 0 0; }
-      .filters ul li.active a {
-        font-family: "Akkurat-Bold";
-        color: black;
-        font-weight: normal; }
-
-.post-type-archive-event .filters, .single-event .filters {
+.archive #primary > .entry-header {
   position: fixed;
-  width: calc(100% - 220px - 160px);
-  left: calc(220px + 160px);
-  background-color: #e9e6df;
   top: 0;
-  height: auto;
-  padding: 105px 0 0 0;
-  margin: 0;
-  z-index: 4;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
-  .post-type-archive-event .filters ul.event-month-filter, .single-event .filters ul.event-month-filter {
-    width: 100%;
-    margin-bottom: 10px; }
-    .post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li {
-      font: 20px "Akkurat-Regular";
-      display: inline-block;
-      vertical-align: top;
-      width: 8.3%;
-      margin-right: -4px;
-      padding-top: 0px; }
+  left: calc(220px + 160px);
+  width: calc(100% - 220px - 160px);
+  background-color: #e9e6df;
+  z-index: 4; }
+
+.blog #primary > .entry-header, .category #primary > .entry-header, .tag #primary > .entry-header {
+  left: 220px;
+  width: calc(100% - 220px); }
+
+.context-header {
+  padding: 50px 0 8px 0;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
+  .context-header h1.page-title {
+    font-size: 25px;
+    display: inline-block;
+    margin: 0;
+    padding: 0 30px 0 0;
+    text-transform: uppercase; }
+    .context-header h1.page-title label {
+      font: 16px "Akkurat-Regular";
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding-left: 2px; }
+      .context-header h1.page-title label.current-cat-tag {
+        font: normal 16px "Akkurat-Bold"; }
+  .context-header a {
+    display: inline-block;
+    font: 16px "Akkurat-Regular";
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(0, 0, 0, 0.25); }
+    .context-header a:hover {
+      color: black; }
+
+.tax-event_category .context-header, .tax-event_tag .context-header {
+  padding-top: 55px; }
+  .tax-event_category .context-header h1.page-title, .tax-event_tag .context-header h1.page-title {
+    font: 16px "Akkurat-Regular";
+    letter-spacing: 0.1em;
+    line-height: 25px; }
+    .tax-event_category .context-header h1.page-title label, .tax-event_tag .context-header h1.page-title label {
+      padding-left: 0; }
+
+.filters ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+  .filters ul li {
+    font: 13px "Akkurat-Regular";
+    padding-right: 25px;
+    display: inline-block;
+    padding: 0 20px 0 0; }
+    .filters ul li.active a {
+      font-family: "Akkurat-Bold";
+      color: black;
+      font-weight: normal; }
+
+.post-type-archive-event .filters ul.event-month-filter, .single-event .filters ul.event-month-filter {
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+  .post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li {
+    font: 20px "Akkurat-Regular";
+    display: inline-block;
+    vertical-align: top;
+    width: 8.3%;
+    margin-right: -4px;
+    padding-top: 0px; }
 
 .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
   position: fixed;
@@ -989,22 +1023,38 @@ ul.event-year-filter, ul.exhibition-filter {
       letter-spacing: 0.05em;
       text-transform: uppercase; }
     ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
-      font: normal 20px "Akkurat-Bold";
+      font: normal 16px "Akkurat-Bold";
       color: black; }
 
+.single-event .filters ul.event-month-filter li a {
+  color: rgba(0, 0, 0, 0.25); }
+  .single-event .filters ul.event-month-filter li a:hover {
+    color: black; }
+.single-event .filters ul.event-month-filter li.active a {
+  color: rgba(0, 0, 0, 0.5); }
+  .single-event .filters ul.event-month-filter li.active a:hover {
+    color: black; }
+.single-event ul.event-year-filter li a {
+  color: rgba(0, 0, 0, 0.25); }
+  .single-event ul.event-year-filter li a:hover {
+    color: black; }
+.single-event ul.event-year-filter li.active a {
+  color: rgba(0, 0, 0, 0.5); }
+  .single-event ul.event-year-filter li.active a:hover {
+    color: black; }
+
 @media (max-width: 1024px) {
-  .post-type-archive-event .filters, .single-event .filters {
-    width: calc(100% - 220px);
-    left: 220px; }
+  .archive #primary > .entry-header {
+    left: 220px;
+    width: calc(100% - 220px); }
 
   ul.exhibition-filter {
-    width: calc(100% - 220px);
+    position: relative;
+    width: 100%;
     top: 0;
-    background-color: #e9e6df;
-    padding-top: 22px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-    z-index: 1;
-    padding-right: 55px;
+    left: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 17px 55px 17px 0;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -1014,12 +1064,16 @@ ul.event-year-filter, ul.exhibition-filter {
     -moz-justify-content: space-between;
     justify-content: space-between; }
     ul.exhibition-filter li {
-      padding-bottom: 12px; }
+      padding-bottom: 0; }
 
   ul.event-year-filter {
+    position: relative;
     width: 100%;
-    top: 55px;
-    z-index: 4; }
+    top: 0;
+    left: 0;
+    z-index: 4;
+    padding: 12px 0;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
     ul.event-year-filter li {
       display: inline-block;
       vertical-align: top;
@@ -1029,8 +1083,7 @@ ul.event-year-filter, ul.exhibition-filter {
         font-size: 16px; }
 
   .single-event ul.event-year-filter {
-    position: absolute;
-    left: 0; }
+    margin-top: 45px; }
 
   .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
     position: relative;
@@ -1495,126 +1548,124 @@ ul.social-links {
 /*--------------------------------------------------------------
 # Templates
 --------------------------------------------------------------*/
-.post-type-archive-event, .tax-event_category, .tax-event_tag {
-  padding-top: 50px; }
-  .post-type-archive-event .posts-list, .tax-event_category .posts-list, .tax-event_tag .posts-list {
-    width: calc(100% - 160px);
-    position: relative;
-    left: 160px;
-    margin-top: 142px; }
-  .post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    width: calc(100% - 160px);
-    margin-bottom: 10px;
-    min-height: 200px;
+.post-type-archive-event .posts-list, .tax-event_category .posts-list, .tax-event_tag .posts-list {
+  width: calc(100% - 160px);
+  position: relative;
+  left: 160px;
+  margin-top: 188px; }
+.post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  width: calc(100% - 160px);
+  margin-bottom: 10px;
+  min-height: 200px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s; }
+  .post-type-archive-event article .site-name, .tax-event_category article .site-name, .tax-event_tag article .site-name {
+    display: inline-block;
+    vertical-align: top;
+    width: 35%;
+    padding: 40px 30px 0 40px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em; }
+    .post-type-archive-event article .site-name a, .tax-event_category article .site-name a, .tax-event_tag article .site-name a {
+      font: 25px "Akkurat-Light";
+      text-decoration: none;
+      color: black; }
+      .post-type-archive-event article .site-name a label, .tax-event_category article .site-name a label, .tax-event_tag article .site-name a label {
+        font: 16px "Akkurat-Regular";
+        letter-spacing: 0.1em;
+        padding-left: 2px; }
+  .post-type-archive-event article .event-title, .tax-event_category article .event-title, .tax-event_tag article .event-title {
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+    margin-left: -4px;
+    margin-top: 50px;
+    padding-right: 40px;
+    padding-left: 30px;
+    font: normal 16px "Akkurat-Bold"; }
+    .post-type-archive-event article .event-title a, .tax-event_category article .event-title a, .tax-event_tag article .event-title a {
+      color: black;
+      text-decoration: none; }
+  .post-type-archive-event article .event-date, .tax-event_category article .event-date, .tax-event_tag article .event-date {
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    margin-left: -4px;
+    min-height: 200px; }
+    .post-type-archive-event article .event-date::before, .tax-event_category article .event-date::before, .tax-event_tag article .event-date::before {
+      content: "\00a0";
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 200px;
+      background-color: #e9e6df; }
+    .post-type-archive-event article .event-date time, .tax-event_category article .event-date time, .tax-event_tag article .event-date time {
+      font: normal 16px "Akkurat-Bold";
+      position: relative;
+      margin: -150px auto 0 auto;
+      z-index: 1;
+      display: block;
+      width: 55px; }
+  .post-type-archive-event article:hover, .tax-event_category article:hover, .tax-event_tag article:hover {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     -webkit-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
     -ms-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
     transition-duration: 0.5s; }
-    .post-type-archive-event article .site-name, .tax-event_category article .site-name, .tax-event_tag article .site-name {
-      display: inline-block;
-      vertical-align: top;
-      width: 35%;
-      padding: 40px 30px 0 40px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em; }
-      .post-type-archive-event article .site-name a, .tax-event_category article .site-name a, .tax-event_tag article .site-name a {
-        font: 25px "Akkurat-Light";
-        text-decoration: none;
-        color: black; }
-        .post-type-archive-event article .site-name a label, .tax-event_category article .site-name a label, .tax-event_tag article .site-name a label {
-          font: 16px "Akkurat-Regular";
-          letter-spacing: 0.1em;
-          padding-left: 2px; }
-    .post-type-archive-event article .event-title, .tax-event_category article .event-title, .tax-event_tag article .event-title {
-      display: inline-block;
-      vertical-align: top;
-      width: 45%;
-      margin-left: -4px;
-      margin-top: 50px;
-      padding-right: 40px;
-      padding-left: 30px;
-      font: normal 16px "Akkurat-Bold"; }
-      .post-type-archive-event article .event-title a, .tax-event_category article .event-title a, .tax-event_tag article .event-title a {
+    .post-type-archive-event article:hover .site-name a, .tax-event_category article:hover .site-name a, .tax-event_tag article:hover .site-name a {
+      color: #e9e6df;
+      -webkit-transition-duration: 0.25s;
+      -moz-transition-duration: 0.25s;
+      -ms-transition-duration: 0.25s;
+      -o-transition-duration: 0.25s;
+      transition-duration: 0.25s; }
+      .post-type-archive-event article:hover .site-name a:hover, .tax-event_category article:hover .site-name a:hover, .tax-event_tag article:hover .site-name a:hover {
         color: black;
-        text-decoration: none; }
-    .post-type-archive-event article .event-date, .tax-event_category article .event-date, .tax-event_tag article .event-date {
-      display: inline-block;
-      vertical-align: top;
-      width: 20%;
-      margin-left: -4px;
-      min-height: 200px; }
-      .post-type-archive-event article .event-date::before, .tax-event_category article .event-date::before, .tax-event_tag article .event-date::before {
-        content: "\00a0";
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 200px;
-        background-color: #e9e6df; }
-      .post-type-archive-event article .event-date time, .tax-event_category article .event-date time, .tax-event_tag article .event-date time {
-        font: normal 16px "Akkurat-Bold";
-        position: relative;
-        margin: -150px auto 0 auto;
-        z-index: 1;
-        display: block;
-        width: 55px; }
-    .post-type-archive-event article:hover, .tax-event_category article:hover, .tax-event_tag article:hover {
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      -webkit-transition-duration: 0.5s;
-      -moz-transition-duration: 0.5s;
-      -ms-transition-duration: 0.5s;
-      -o-transition-duration: 0.5s;
-      transition-duration: 0.5s; }
-      .post-type-archive-event article:hover .site-name a, .tax-event_category article:hover .site-name a, .tax-event_tag article:hover .site-name a {
+        -webkit-transition-duration: 0.25s;
+        -moz-transition-duration: 0.25s;
+        -ms-transition-duration: 0.25s;
+        -o-transition-duration: 0.25s;
+        transition-duration: 0.25s; }
+    .post-type-archive-event article:hover .event-title, .tax-event_category article:hover .event-title, .tax-event_tag article:hover .event-title {
+      width: 35%; }
+      .post-type-archive-event article:hover .event-title a, .tax-event_category article:hover .event-title a, .tax-event_tag article:hover .event-title a {
         color: #e9e6df;
         -webkit-transition-duration: 0.25s;
         -moz-transition-duration: 0.25s;
         -ms-transition-duration: 0.25s;
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
-        .post-type-archive-event article:hover .site-name a:hover, .tax-event_category article:hover .site-name a:hover, .tax-event_tag article:hover .site-name a:hover {
+        .post-type-archive-event article:hover .event-title a:hover, .tax-event_category article:hover .event-title a:hover, .tax-event_tag article:hover .event-title a:hover {
           color: black;
           -webkit-transition-duration: 0.25s;
           -moz-transition-duration: 0.25s;
           -ms-transition-duration: 0.25s;
           -o-transition-duration: 0.25s;
           transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .event-title, .tax-event_category article:hover .event-title, .tax-event_tag article:hover .event-title {
-        width: 35%; }
-        .post-type-archive-event article:hover .event-title a, .tax-event_category article:hover .event-title a, .tax-event_tag article:hover .event-title a {
-          color: #e9e6df;
-          -webkit-transition-duration: 0.25s;
-          -moz-transition-duration: 0.25s;
-          -ms-transition-duration: 0.25s;
-          -o-transition-duration: 0.25s;
-          transition-duration: 0.25s; }
-          .post-type-archive-event article:hover .event-title a:hover, .tax-event_category article:hover .event-title a:hover, .tax-event_tag article:hover .event-title a:hover {
-            color: black;
-            -webkit-transition-duration: 0.25s;
-            -moz-transition-duration: 0.25s;
-            -ms-transition-duration: 0.25s;
-            -o-transition-duration: 0.25s;
-            transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .event-date, .tax-event_category article:hover .event-date, .tax-event_tag article:hover .event-date {
-        width: 30%;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover; }
-        .post-type-archive-event article:hover .event-date::before, .tax-event_category article:hover .event-date::before, .tax-event_tag article:hover .event-date::before {
-          background-color: rgba(0, 0, 0, 0.25); }
-        .post-type-archive-event article:hover .event-date time, .tax-event_category article:hover .event-date time, .tax-event_tag article:hover .event-date time {
-          color: #e9e6df; }
-    .post-type-archive-event article#no-results, .tax-event_category article#no-results, .tax-event_tag article#no-results {
-      border: none;
-      margin-top: 145px; }
-      .post-type-archive-event article#no-results .no-posts, .tax-event_category article#no-results .no-posts, .tax-event_tag article#no-results .no-posts {
-        font: 25px "Akkurat-Regular"; }
-      .post-type-archive-event article#no-results:hover, .tax-event_category article#no-results:hover, .tax-event_tag article#no-results:hover {
-        width: calc(100% - 160px);
-        background-color: transparent; }
+    .post-type-archive-event article:hover .event-date, .tax-event_category article:hover .event-date, .tax-event_tag article:hover .event-date {
+      width: 30%;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover; }
+      .post-type-archive-event article:hover .event-date::before, .tax-event_category article:hover .event-date::before, .tax-event_tag article:hover .event-date::before {
+        background-color: rgba(0, 0, 0, 0.25); }
+      .post-type-archive-event article:hover .event-date time, .tax-event_category article:hover .event-date time, .tax-event_tag article:hover .event-date time {
+        color: #e9e6df; }
+  .post-type-archive-event article#no-results, .tax-event_category article#no-results, .tax-event_tag article#no-results {
+    border: none;
+    margin-top: 145px; }
+    .post-type-archive-event article#no-results .no-posts, .tax-event_category article#no-results .no-posts, .tax-event_tag article#no-results .no-posts {
+      font: 25px "Akkurat-Regular"; }
+    .post-type-archive-event article#no-results:hover, .tax-event_category article#no-results:hover, .tax-event_tag article#no-results:hover {
+      width: calc(100% - 160px);
+      background-color: transparent; }
 
 @media (max-width: 1200px) {
   .post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
@@ -1630,7 +1681,8 @@ ul.social-links {
   .single-event #main .filters {
     position: relative;
     width: 100%;
-    left: 0; }
+    left: 0;
+    margin-top: 89px; }
 .single-event .sharedaddy {
   margin-top: -5px;
   float: right; }
@@ -1644,7 +1696,7 @@ ul.social-links {
       display: none; }
 .single-event article {
   width: calc(100% - 160px);
-  margin-top: 52px;
+  margin-top: 44px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   padding: 50px 0 30px; }
   .single-event article header {
@@ -1750,12 +1802,14 @@ ul.social-links {
 @media (max-width: 1024px) {
   .single-event #main {
     left: 0;
-    width: 100%; } }
+    width: 100%; }
+    .single-event #main .filters {
+      margin-top: 0; } }
 .post-type-archive-exhibition .posts-list {
   width: calc(100% - 160px);
   position: relative;
   left: 160px;
-  margin-top: 75px; }
+  margin-top: 165px; }
 
 article.exhibition {
   width: calc(100% - 60px);
@@ -1834,7 +1888,7 @@ article.exhibition {
     width: 100%;
     position: relative;
     left: 0;
-    margin-top: 100px; } }
+    margin-top: 192px; } }
 .entry-meta.location a {
   font: normal 25px "Akkurat-Bold";
   color: black;
@@ -2402,9 +2456,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   width: 40%;
   padding-right: 5%; }
   .blog .entry-header .site-name, .category .entry-header .site-name, .tag .entry-header .site-name {
-    display: inline-block;
-    vertical-align: top;
-    width: 40%;
+    display: none;
     padding-right: 5%;
     font: normal 13px "Akkurat-Bold"; }
     .blog .entry-header .site-name .meta a label, .category .entry-header .site-name .meta a label, .tag .entry-header .site-name .meta a label {
@@ -2412,8 +2464,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .blog .entry-header .entry-title, .category .entry-header .entry-title, .tag .entry-header .entry-title {
     display: inline-block;
     vertical-align: top;
-    width: 50%;
-    margin-left: -5px;
+    width: 80%;
+    margin-left: 0;
     margin-top: -6px;
     line-height: 1.1em;
     padding-right: 5%; }
@@ -2489,7 +2541,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
     width: calc(100% - 220px);
     left: 220px; }
   .blog #main, .category #main, .tag #main {
-    margin-top: 45px;
+    margin-top: 145px;
     width: 100%; }
   .blog article, .category article, .tag article {
     padding: 10px 0;
