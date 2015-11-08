@@ -62,7 +62,7 @@
 
                 <?php rebuild_google_map_link(); ?>
 
-                <?php the_field( 'location' ); ?>
+                <?php echo get_field( 'location', false, false ); ?>
 
             <?php endif; ?>
 
