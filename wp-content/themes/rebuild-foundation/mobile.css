@@ -537,6 +537,9 @@ img.alignright, figure.alignright {
   max-height: 250px;
   margin: 0; }
 
+input.search-field:focus {
+  width: 100%; }
+
 .page-template-default .featured-image, .single-post .featured-image {
   float: none;
   width: calc(100% - 30px);

@@ -695,11 +695,22 @@ input.search-field {
   background-position: calc(100% - 5px) center;
   background-size: 20px 20px;
   padding: 6px 0;
-  font: normal 14px "Akkuratmono-Regular"; }
+  font: normal 14px "Akkuratmono-Regular";
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s; }
   input.search-field:focus {
+    width: calc(100% + 180px - 60px - 10px);
     outline: none;
     background-color: white;
-    padding-left: 10px; }
+    padding-left: 10px;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s; }
 
 .entry-content .mc4wp-form {
   margin-top: 50px; }
