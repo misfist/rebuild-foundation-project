@@ -52,6 +52,8 @@ sitemap.xml.gz
 # ignore core WP files
 
 wp-config.php
+wp-admin/
+wp-includes/
 wp-content/advanced-cache.php
 wp-content/backup-db/
 wp-content/backups/
@@ -65,8 +67,8 @@ wp-content/plugins/hello.php
 vendor/
 readme.html
 license.txt
-index.hmtl
-wp-active.php
+index.php
+wp-activate.php
 wp-blog-header.php
 wp-comments-post.php
 wp-cron.php
