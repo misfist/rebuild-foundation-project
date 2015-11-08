@@ -55,7 +55,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
             'details' => urlencode( $description ),
             'dates' => urlencode( rebuild_date_to_cal( $start ) ) . "/" . urlencode( rebuild_date_to_cal( $end ) ),
             'czt' => urlencode( 'America/Chicago' ),
-            'location' => $event_location,
+            'location' => urlencode( $event_location ),
             'sprop' => 'website:' . urlencode( $event_url ),
         );
 

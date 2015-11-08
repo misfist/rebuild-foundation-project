@@ -113,6 +113,8 @@ if(! function_exists( 'rebuild_urlencode_location' ) ) {
 
       $location_name = rebuild_get_location_name();
 
+      var_dump($location_name);
+
       $address_string = implode( ',', $address_array );
 
       return urlencode( $location_name . ',' . $address_string );
