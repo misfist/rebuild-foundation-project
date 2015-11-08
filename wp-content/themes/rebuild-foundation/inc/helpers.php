@@ -11,7 +11,7 @@ if(! function_exists( 'rebuild_get_pretty_link' ) ) {
 
         $post_type_obj = get_post_type_object( $post_type );
 
-        $post_type_slug = ( 'post' == $post_type ) ? 'blog' : $post_type_obj->rewrite['slug'] . 's' ;
+        $post_type_slug = ( $post_type_obj->has_archive ) ? $post_type_obj->has_archive : 'blog' ;
 
         return '/' . $post_type_slug;
 
