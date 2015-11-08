@@ -232,9 +232,11 @@ if(! function_exists( 'rebuild_get_the_feature_caption' ) ) {
 
 if(! function_exists( 'rebuild_google_map_link' ) ) {
 
-    function rebuild_google_map_link() {
+    function rebuild_google_map_link( $id = null ) {
 
-        $address = rebuild_urlencode_location( get_the_ID() );
+        $id = ( $id ) ? $id : get_the_ID();
+
+        $address = rebuild_urlencode_location( $id );
 
         $google_url = 'https://maps.google.com?q=';
 
