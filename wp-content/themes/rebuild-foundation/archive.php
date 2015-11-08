@@ -10,7 +10,7 @@
 get_header(); ?>
 
     <div id="primary" class="content-area">
-        <header class="entry-header">
+        <header class="page-header">
 
             <?php if( is_archive() && !is_post_type_archive( 'site' )  ) : ?>
 

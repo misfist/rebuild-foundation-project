@@ -6,11 +6,14 @@ input.search-field {
 	border-bottom: 1px solid $black-transparent;
 	background-image: url('img/search.svg');
 	background-repeat: no-repeat;
-	background-position: top right;
-	background-size: 25px 25px;
-	padding-left: 0;
+	background-position: calc(100% - 5px) center;
+	background-size: 20px 20px;
+	padding: 6px 0;
+	font: normal 14px $mono;
 
 	&:focus {
 		outline: none;
+		background-color: $white;
+		padding-left: 10px;
 	}
 }

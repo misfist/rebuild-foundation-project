@@ -40,11 +40,11 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
             $eventtag_list =  get_the_term_list( get_the_ID(), 'event_tag', '', ', ' );
 
             if ( $eventcat_list ) {
-                printf( '<div class="meta eventcat-links">' . esc_html__( 'Posted in %1$s', 'rebuild-foundation' ) . '</div>', $eventcat_list ); // WPCS: XSS OK.
+                printf( '<div class="meta eventcat-links">' . esc_html__( 'Categories: %1$s', 'rebuild-foundation' ) . '</div>', $eventcat_list ); // WPCS: XSS OK.
             }
 
             if ( $eventtag_list ) {
-                printf( '<div class="meta eventtag-links">' . esc_html__( 'Tagged %1$s', 'rebuild-foundation' ) . '</div>', $eventtag_list ); // WPCS: XSS OK.
+                printf( '<div class="meta eventtag-links">' . esc_html__( 'Tags: %1$s', 'rebuild-foundation' ) . '</div>', $eventtag_list ); // WPCS: XSS OK.
             }
 
         }

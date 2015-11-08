@@ -9,6 +9,12 @@
 	input[type="text"], input[type="email"] {
 		border: none;
 		padding: 6px 10px;
+		border: 1px solid $white;
+
+		&:focus {
+			border: 1px solid $black-transparent;
+			outline: none;
+		}
 	}
 
 	.subscription-submit {
@@ -25,9 +31,11 @@
 		width: 50%;
 		text-shadow: none;
 		@include box-shadow(none);
+		@include transition-duration(0.25s);
 
 		&:hover {
 			background-color: $black-transparent-light;
+			@include transition-duration(0.25s);
 		}
 	}
 }

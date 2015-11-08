@@ -103,7 +103,7 @@
 
 	#main {
 		margin-top: 120px;
-		width: $size__site-main-nested;
+		width: $size__site-main-center-2;
 	}
 
 	article {
@@ -166,25 +166,15 @@
 }
 
 .search-results {
-	.page-header {
-		position: fixed;
-		background-color: $warm-gray;
-		border-bottom: 1px solid $black-transparent;
-		width: $size__site-main-flush;	
-		left: $align__site-4;
-		z-index: 2;
-		top: 0;
-		padding: 65px 0 10px 0;
 
-		h1 {
-			font: $font_size-3 $mono;
-		}
+	#main {
+		position: relative;
+		left: $align__site-3;
+		width: $size__site-main-nested;	
 	}
 
 	article {
-		width: $size__site-main-flush;	
-		position: relative;
-		left: $align__site-3;
+		width: $size__site-main-nested;
 		border-top: 1px solid $white;
 		padding-bottom: 25px;
 
@@ -201,37 +191,40 @@
 			display: block;
 		}
 
-		a.read-more {
-			font: normal $font_size-2 $bold;
-			color: $black;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
 	}
 
 	.posts-navigation {
-		width: $size__site-main-flush;	
+		width: $size__site-main-nested;	
 		position: relative;
-		left: $align__site-3;
+		left: 0;
 	}
 }
 
-.error404 {
-	#main {
-		width: $size__site-main-flush;	
+.error404, .search-no-results {
+	#primary {
+		width: $size__site-main-center;	
 		position: relative;
-		left: $align__site-3;
+		left: $align__site-4;
+	}
+
+	#main {
+		margin-top: 65px;
+
+		.page-content {
+			margin-top: 0;
+		}
+
+		h1, h2 {
+			margin-top: 0;
+		}
 	}
 
 	.site-footer {
 		width: $size__site-main-center;	
 		position: relative;
 		left: $align__site-4;
+		margin-top: 50px
 	}
-
-
 }
 
 #comments {
@@ -247,13 +240,11 @@
 		}
 
 		#main {
-			margin-top: 145px;
-			width: 100%;
+			margin-top: 165px;
 		}
 
 		article {
 			padding: 10px 0;
-			width: $size__site-main-nested;
 
 			.entry-header {
 				@include clear-inblock();
@@ -263,7 +254,6 @@
 				}
 
 				.entry-meta {
-					@include clear-inblock();
 					margin: 20px 0;
 					text-align: left;
 				}
@@ -279,6 +269,12 @@
 			width: 100%;
 			left: 0;
 			border-bottom: 1px solid $black-transparent;
+		}
+	}
+
+	.search-results {
+		article, .posts-navigation {
+			width: $size__site-main-center-2;	
 		}
 	}
 }
@@ -299,5 +295,27 @@
 		}
 	}
 
+	.search-results {
+		#main {
+			left: 0;
+			width: 100%;
+		}
+
+		article, .posts-navigation {
+			width: $size__site-main-center-2;
+		}
+	}
+
+	.error404, .search-no-results {
+		#primary {
+			width: $size__site-main-full-2;	
+			left: $align__site-2;
+		}
+
+		.site-footer {
+			width: $size__site-main-full-2;	
+			left: $align__site-2;
+		}
+	}
 	
 }

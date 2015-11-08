@@ -7,6 +7,7 @@ textarea {
 	color: $color__text-input;
 	border: 1px solid $color__border-input;
 	border-radius: 3px;
+	font: normal 15px $mono;
 
 	&:focus {
 		color: $color__text-input-focus;

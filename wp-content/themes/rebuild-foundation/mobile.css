@@ -192,15 +192,16 @@
         #site-navigation.toggled .menu-main-menu-container #primary-menu li.menu-break {
           margin-top: 75px; }
 
-.archive #primary > .entry-header {
+.archive #primary > .page-header, .blog #primary > .page-header, .search-results #primary > .page-header {
   width: 100%;
   left: 0;
-  position: relative; }
+  position: relative;
+  padding-top: 0; }
 
 .context-header {
   padding-top: 25px; }
 
-.tax-event_category .context-header, .tax-event_tag .context-header {
+.tax-event_category .context-header, .tax-event_tag .context-header, .search-results .context-header {
   padding-top: 25px; }
 
 ul.event-year-filter, .single-event ul.event-year-filter {
@@ -569,7 +570,7 @@ img.alignright, figure.alignright {
     margin-top: 15px; }
   .blog article, .category article, .tag article {
     padding: 10px 0;
-    width: calc(100% - 30px); }
+    width: 100%; }
     .blog article .entry-header, .category article .entry-header, .tag article .entry-header {
       display: block;
       width: 100%;
@@ -580,13 +581,6 @@ img.alignright, figure.alignright {
         width: 100%;
         padding: 0;
         margin: 0; }
-      .blog article .entry-header .entry-meta, .category article .entry-header .entry-meta, .tag article .entry-header .entry-meta {
-        display: block;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        margin: 20px 0;
-        text-align: left; }
     .blog article .entry-content, .category article .entry-content, .tag article .entry-content {
       display: block;
       width: 100%;
@@ -600,22 +594,23 @@ img.alignright, figure.alignright {
   padding: 15px  0 8px 0; }
   .search-results .page-header h1 {
     font-size: 16px; }
-.search-results article {
+.search-results #main {
   width: calc(100% - 30px);
-  left: 0;
+  left: 0; }
+.search-results article {
+  width: 100%;
   margin-bottom: 0; }
   .search-results article:first-of-type {
     margin-top: 30px; }
 .search-results .posts-navigation {
-  width: calc(100% - 30px);
-  left: 0; }
+  width: 100%; }
 
-.error404 #main {
-  width: calc(100% - 30px);
-  left: 0; }
-  .error404 #main h1 {
-    margin-top: 15px; }
-.error404 .site-footer {
+.error404 #primary, .search-no-results #primary {
+  width: calc(100% - 80px - 30px);
+  left: 80px; }
+.error404 #main, .search-no-results #main {
+  margin-top: 20px; }
+.error404 .site-footer, .search-no-results .site-footer {
   width: calc(100% - 80px - 30px);
   left: 80px;
   margin-top: 10px; }

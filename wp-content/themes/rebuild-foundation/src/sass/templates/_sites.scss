@@ -3,9 +3,9 @@
 	article.site {
 
 		header.site-header {
-			@include inblock (30%);
+			@include inblock (25%);
 			vertical-align: bottom;
-			padding-right: 5%;
+			padding-right: 30px;
 			position: relative;
 			z-index: 3;
 
@@ -22,7 +22,7 @@
 		}
 
 		#site-gallery {
-			@include inblock (70%);
+			@include inblock (75%);
 			vertical-align: bottom;
 			margin-left: -5px;
 			margin-bottom: 0;
@@ -39,7 +39,7 @@
 		}
 
 		.single-image {
-			@include inblock (70%);
+			@include inblock (75%);
 			vertical-align: bottom;
 			margin: 60px 0 0 -5px;
 
@@ -83,12 +83,12 @@
 		}
 
 		.main-content {
-			padding: 0 0 0 30%;
+			padding: 0 0 0 25%;
 			position: relative;
 			z-index: 3;
 
 			.description {
-				@include inblock(60%);
+				@include inblock(65%);
 
 				p {
 					margin-top: 0;
@@ -96,7 +96,7 @@
 			}
 
 			#details {
-				@include inblock(40%);
+				@include inblock(35%);
 				margin-left: -5px;
 				padding: 0 5%;
 			}
@@ -285,6 +285,8 @@
 						@include inblock(60%);
 						border: none;
 						padding-right: 5%;
+						line-height: 1em;
+						margin-top: -7px;
 
 						a {
 							font: $font_size-4 $regular;
@@ -338,7 +340,7 @@
 		article.site {
 			.main-content {
 				.description {
-					width: 75%;
+					width: 90%;
 				}
 
 				#details {
