@@ -287,6 +287,14 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
 
                 break;
 
+            case ( is_singular( 'event' ) ):
+
+                $content .= '<label class="all-entries">Rebuild ' . rebuild_get_post_type_name() . '</label>';
+                $content .= '</h1>';
+                $content .= rebuild_all_content_link() . '</div>';
+
+                break;
+
             default:
 
                 $content .= '<label class="all-entries">Rebuild ' . rebuild_get_post_type_name() . '</label>';
@@ -295,6 +303,38 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
         }
 
         echo $content;
+
+        return;
+
+    }
+
+}
+
+/**
+ * Event Count
+ * Outputs number of events of current query
+ * @return echo string
+ */
+
+if(! function_exists( 'rebuild_print_event_count' ) ) {
+
+    function rebuild_print_event_count() {
+
+        $count = rebuild_count_events();
+
+        if( $count ) {
+
+            $content = '<div class="event-count">';
+            $content .= $count . ' <label for="event-count">';
+            $content .= ( 1 == $count ) ? __( 'Event', 'rebuild-foundation' ) : __( 'Events', 'rebuild-foundation' );
+            $content .= '</label>';
+            $content .= '</div>';
+
+            echo $content;
+
+            return;
+
+        }
 
         return;
 
