@@ -111,15 +111,21 @@ if(! function_exists( 'rebuild_urlencode_location' ) ) {
 
     $address_array = rebuild_get_location_fields( $id );
 
-    if( isset( $address_array ) ) {
+    if( is_array( $address_array ) && count( $address_array ) > 0 ) {
 
-      $location_name = rebuild_get_location_name();
+      $location_id = get_field( 'location', $id, false );
 
-      var_dump($location_name);
+      $location_name = get_field( 'location_name', $location_id );
+
+      $name_array = array(
+        'name' => $location_name
+      );
+
+      $address_array = array_merge( $name_array , $address_array );
 
       $address_string = implode( ',', $address_array );
 
-      return urlencode( $location_name . ',' . $address_string );
+      return urlencode( $address_string );
     }
     
     return;

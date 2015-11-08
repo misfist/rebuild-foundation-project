@@ -238,6 +238,8 @@ if(! function_exists( 'rebuild_google_map_link' ) ) {
 
         $address = rebuild_urlencode_location( $id );
 
+        var_dump($address);
+
         $google_url = 'https://maps.google.com?q=';
 
         $content = '<div class="google-map-link">';
