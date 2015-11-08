@@ -11,7 +11,7 @@ if(! function_exists( 'rebuild_get_pretty_link' ) ) {
 
         $post_type_obj = get_post_type_object( $post_type );
 
-        $post_type_slug = ( 'post' == $post_type ) ? 'blog' : $post_type_obj->rewrite['slug'] . 's' ;
+        $post_type_slug = ( $post_type_obj->has_archive ) ? $post_type_obj->has_archive : 'blog' ;
 
         return '/' . $post_type_slug;
 
@@ -281,6 +281,23 @@ if(! function_exists( 'rebuild_get_post_type_name' ) ) {
 }
 
 /**
+ * All Content URL
+ * Returns URL to all content of the current type
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_all_content_url' ) ) {
+
+    function rebuild_all_content_url() {
+
+        $path = rebuild_get_pretty_link( get_post_type() );
+
+        return esc_url( home_url( $path ) );
+
+    }
+}
+
+/**
  * All Content Link
  * Returns link to all content of the current type
  * @return string
@@ -290,33 +307,24 @@ if(! function_exists( 'rebuild_all_content_link' ) ) {
 
     function rebuild_all_content_link() {
 
-        $query_var = get_query_var( 'site_category' );
+        $url = rebuild_all_content_url();
 
-        if( $query_var ) {
+        $post_type_obj = get_post_type_object( get_post_type() );
 
-            $content = '<a href="' . esc_url( remove_query_arg( 'site_category' ) ) . '">';
-            $content .= '<label>' . __( 'view all', 'rebuild-foundation' ) . '</label> Rebuild ';
-            $content .= rebuild_get_post_type_name();
-            $content .= '</a>';
+        if( $url ) {
 
-            return $content;
+            $link = '<a href="';
+            $link .= $url;
+            $link .= '">' . __( 'view all ' ) . 'Rebuild ';
+            $link .= '<label>';
+            $link .= ( $post_type_obj->labels->name ) ? $post_type_obj->labels->name : 'Posts' ;
+            $link .= '</label>';
+            $link .= '</a>';
 
-        } elseif( is_tax( array( 'event_category', 'event_tag' ) ) || is_category() || is_tag() ) {
+            return $link;
+       }
 
-            $post_object = get_post_type_object( get_post_type() );
-
-            $slug = ( $post_object->has_archive ) ? $post_object->has_archive : 'blog/';
-
-            $content = '<a href="' . esc_url( home_url( $slug ) ) . '">';
-            $content .= '<label>' . __( 'view all', 'rebuild-foundation' ) . '</label> Rebuild ';
-            $content .= rebuild_get_post_type_name();
-            $content .= '</a>';
-
-            return $content;
-
-        }
-
-        return;
+       return;
 
     }
 }

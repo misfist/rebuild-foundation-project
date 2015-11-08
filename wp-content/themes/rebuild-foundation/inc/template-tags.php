@@ -206,7 +206,7 @@ if(! function_exists( 'rebuild_get_the_feature_caption' ) ) {
 
       global $post;
 
-      $thumbnail_id    = get_post_thumbnail_id( $post->ID );
+      $thumbnail_id  = get_post_thumbnail_id( $post->ID );
       $thumbnail_image = get_posts( array( 
         'p' => $thumbnail_id, 
         'post_type' => 'attachment' ) );
@@ -249,7 +249,6 @@ if(! function_exists( 'rebuild_google_map_link' ) ) {
     }
 
 }
-
 
 
 /**
@@ -315,8 +314,6 @@ if(! function_exists( 'rebuild_all_content' ) ) {
         if( $link ) {
 
             echo $link;
-
-            return;
 
         }
 
