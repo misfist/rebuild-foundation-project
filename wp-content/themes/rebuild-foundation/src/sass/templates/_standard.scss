@@ -200,20 +200,31 @@
 	}
 }
 
-.error404 {
-	#main {
-		width: $size__site-main-flush;	
+.error404, .search-no-results {
+	#primary {
+		width: $size__site-main-center;	
 		position: relative;
-		left: $align__site-3;
+		left: $align__site-4;
+	}
+
+	#main {
+		margin-top: 65px;
+
+		.page-content {
+			margin-top: 0;
+		}
+
+		h1, h2 {
+			margin-top: 0;
+		}
 	}
 
 	.site-footer {
 		width: $size__site-main-center;	
 		position: relative;
 		left: $align__site-4;
+		margin-top: 50px
 	}
-
-
 }
 
 #comments {
@@ -292,6 +303,18 @@
 
 		article, .posts-navigation {
 			width: $size__site-main-center-2;
+		}
+	}
+
+	.error404, .search-no-results {
+		#primary {
+			width: $size__site-main-full-2;	
+			left: $align__site-2;
+		}
+
+		.site-footer {
+			width: $size__site-main-full-2;	
+			left: $align__site-2;
 		}
 	}
 	

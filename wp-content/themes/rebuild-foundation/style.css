@@ -646,7 +646,8 @@ input[type="search"],
 textarea {
   color: #666;
   border: 1px solid #ccc;
-  border-radius: 3px; }
+  border-radius: 3px;
+  font: normal 15px "Akkuratmono-Regular"; }
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="url"]:focus,
@@ -691,11 +692,14 @@ input.search-field {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   background-image: url("img/search.svg");
   background-repeat: no-repeat;
-  background-position: top right;
-  background-size: 25px 25px;
-  padding-left: 0; }
+  background-position: calc(100% - 5px) center;
+  background-size: 20px 20px;
+  padding: 6px 0;
+  font: normal 14px "Akkuratmono-Regular"; }
   input.search-field:focus {
-    outline: none; }
+    outline: none;
+    background-color: white;
+    padding-left: 10px; }
 
 .entry-content .mc4wp-form {
   margin-top: 50px; }
@@ -703,7 +707,11 @@ input.search-field {
     font: normal 16px "Akkurat-Bold"; }
   .entry-content .mc4wp-form input[type="text"], .entry-content .mc4wp-form input[type="email"] {
     border: none;
-    padding: 6px 10px; }
+    padding: 6px 10px;
+    border: 1px solid white; }
+    .entry-content .mc4wp-form input[type="text"]:focus, .entry-content .mc4wp-form input[type="email"]:focus {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      outline: none; }
   .entry-content .mc4wp-form .subscription-submit {
     margin-top: 40px; }
   .entry-content .mc4wp-form input[type="submit"] {
@@ -717,9 +725,19 @@ input.search-field {
     text-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none; }
+    box-shadow: none;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -ms-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s; }
     .entry-content .mc4wp-form input[type="submit"]:hover {
-      background-color: rgba(0, 0, 0, 0.25); }
+      background-color: rgba(0, 0, 0, 0.25);
+      -webkit-transition-duration: 0.25s;
+      -moz-transition-duration: 0.25s;
+      -ms-transition-duration: 0.25s;
+      -o-transition-duration: 0.25s;
+      transition-duration: 0.25s; }
 
 /*--------------------------------------------------------------
 # Navigation
@@ -2585,14 +2603,21 @@ article.site_category-listening-house .entry-meta.location a:hover {
   position: relative;
   left: 0; }
 
-.error404 #main {
-  width: calc(100% - 220px - 160px);
-  position: relative;
-  left: 160px; }
-.error404 .site-footer {
+.error404 #primary, .search-no-results #primary {
   width: calc(100% - 220px - 160px - 160px);
   position: relative;
   left: calc(220px + 160px); }
+.error404 #main, .search-no-results #main {
+  margin-top: 65px; }
+  .error404 #main .page-content, .search-no-results #main .page-content {
+    margin-top: 0; }
+  .error404 #main h1, .error404 #main h2, .search-no-results #main h1, .search-no-results #main h2 {
+    margin-top: 0; }
+.error404 .site-footer, .search-no-results .site-footer {
+  width: calc(100% - 220px - 160px - 160px);
+  position: relative;
+  left: calc(220px + 160px);
+  margin-top: 50px; }
 
 #comments {
   display: none; }
@@ -2640,7 +2665,14 @@ article.site_category-listening-house .entry-meta.location a:hover {
     left: 0;
     width: 100%; }
   .search-results article, .search-results .posts-navigation {
-    width: calc(100% - 60px); } }
+    width: calc(100% - 60px); }
+
+  .error404 #primary, .search-no-results #primary {
+    width: calc(100% - 220px - 60px);
+    left: 220px; }
+  .error404 .site-footer, .search-no-results .site-footer {
+    width: calc(100% - 220px - 60px);
+    left: 220px; } }
 .home #primary #main {
   width: 100%;
   padding-left: 0; }

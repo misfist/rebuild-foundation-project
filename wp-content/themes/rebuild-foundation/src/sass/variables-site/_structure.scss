@@ -8,6 +8,8 @@ $size__left-margin: 60px;
 $size__right-margin: $size__subnavigation;
 
 $size__site-main-full: calc(100% - #{$size__navigation});
+$size__site-main-full-2: calc(100% - #{$size__navigation} - #{$size__left-margin});
+
 $size__site-main-flush: calc(100% - #{$size__navigation} - #{$size__subnavigation});
 $size__site-main-center: calc(100% - #{$size__navigation} - #{$size__subnavigation} - #{$size__right-margin});
 

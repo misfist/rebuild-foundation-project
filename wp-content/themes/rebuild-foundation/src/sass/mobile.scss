@@ -807,14 +807,15 @@ img.alignright, figure.alignright{
 
 }
 
-.error404 {
-	#main {
-		width: $size__mobile-main-nested;
-		left: 0;
 
-		h1 {
-			margin-top: 15px;
-		}
+.error404, .search-no-results {
+	#primary {
+		width: $size__mobile-main-center;
+		left: $size__mobile-margins;
+	}
+
+	#main {
+		margin-top: 20px;
 	}
 
 	.site-footer {

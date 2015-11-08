@@ -605,12 +605,12 @@ img.alignright, figure.alignright {
 .search-results .posts-navigation {
   width: 100%; }
 
-.error404 #main {
-  width: calc(100% - 30px);
-  left: 0; }
-  .error404 #main h1 {
-    margin-top: 15px; }
-.error404 .site-footer {
+.error404 #primary, .search-no-results #primary {
+  width: calc(100% - 80px - 30px);
+  left: 80px; }
+.error404 #main, .search-no-results #main {
+  margin-top: 20px; }
+.error404 .site-footer, .search-no-results .site-footer {
   width: calc(100% - 80px - 30px);
   left: 80px;
   margin-top: 10px; }
