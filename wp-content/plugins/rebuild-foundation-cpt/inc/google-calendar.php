@@ -23,7 +23,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         global $post;
 
         // Event Values
-        $event_id = $post->ID;
+        $event_id = get_the_ID();
         $meta = get_post_meta( $event_id );
         $event_title = $post->post_title;
         $event_description = rebuild_truncate_text( $post->post_content, 100 );
@@ -39,8 +39,8 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         $start = strtotime( $start_date . ' ' . $start_time );
         $end = strtotime( $end_date . ' ' . $end_time );
 
-        $location_id = get_field( 'location', $event_id, false );
-        $location_name = get_the_title( $event_id );
+        $location_id = get_field( 'location', false, false );
+        $location_name = get_the_title( $location_id );
         $location_address = rebuild_convert_location_to_string( $event_id );
         $event_location = $location_name . ', ' . $location_address;
         $site_name = get_bloginfo( 'name' );

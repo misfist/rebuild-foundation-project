@@ -62,12 +62,6 @@
 
                 <?php rebuild_google_map_link(); ?>
 
-                <?php $location_id = get_field( 'location', false, false ); ?>
-
-                <?php $location_name = get_the_title( $location_id ); ?>
-
-                <?php echo $location_name; ?>
-
             <?php endif; ?>
 
             <div class="entry-meta tags">
