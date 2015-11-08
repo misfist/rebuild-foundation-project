@@ -115,13 +115,13 @@ if(! function_exists( 'rebuild_urlencode_location' ) ) {
 
       $location_id = get_field( 'location', $id, false );
 
-      $location_name = get_field( 'location_name', $location_id );
+      $location_name = get_the_title( $location_id );
 
       $name_array = array(
         'name' => $location_name
       );
 
-      var_dump($name_array);
+      var_dump( $name_array );
 
       $address_array = array_merge( $name_array , $address_array );
 
