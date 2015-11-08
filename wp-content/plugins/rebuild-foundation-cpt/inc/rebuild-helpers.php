@@ -121,11 +121,7 @@ if(! function_exists( 'rebuild_urlencode_location' ) ) {
         'name' => $location_name
       );
 
-      var_dump( $name_array );
-
       $address_array = array_merge( $name_array , $address_array );
-
-      var_dump( $address_array );
 
       $address_string = implode( ',', $address_array );
 
