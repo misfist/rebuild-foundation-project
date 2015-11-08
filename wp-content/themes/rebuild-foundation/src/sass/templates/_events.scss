@@ -36,7 +36,7 @@
 	}
 
 	article {
-		width: $size__site-main-nested;
+		width: $size__site-main-center-2;
 		margin-top: 44px;
 		border: 1px solid $black-transparent-light;
 		padding: 50px 0 30px;
@@ -175,23 +175,9 @@
 	}
 
 	.post-navigation {
-		width: $size__site-main-nested;
+		width: $size__site-main-center-2;
 	}
 }
-
-
-@media (max-width: 1200px) {
-	.single-event {
-		article {
-			width: $size__site-main-center-2;
-		}
-
-		.post-navigation {
-			width: $size__site-main-center-2;
-		}
-	}	
-}
-
 
 
 @media (max-width: 1024px) {

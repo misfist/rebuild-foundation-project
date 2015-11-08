@@ -183,6 +183,7 @@
 
 	&:hover {
 		color: $black-transparent-light;
+		background-color: transparent;
 		@include transition-duration(0.2s);
 	}
 }
