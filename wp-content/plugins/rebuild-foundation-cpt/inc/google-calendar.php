@@ -24,12 +24,12 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
 
         // Event Values
         $event_id = $post->ID;
-        $meta = get_post_meta( $post->ID );
+        $meta = get_post_meta( $event_id );
         $event_title = $post->post_title;
         $event_description = rebuild_truncate_text( $post->post_content, 100 );
 
-        $event_meta = get_post_meta( $post->ID );
-        $event_url = get_permalink( $post->ID );
+        $event_meta = get_post_meta( $event_id );
+        $event_url = get_permalink( $event_id );
 
         $start_time = date( 'H:i:s', $meta['start_time'][0] );
         $end_time = date( 'H:i:s', $meta['end_time'][0] );
@@ -55,8 +55,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
             'dates' => urlencode( rebuild_date_to_cal( $start ) ) . "/" . urlencode( rebuild_date_to_cal( $end ) ),
             'czt' => urlencode( 'America/Chicago' ),
             'location' => urlencode( $event_location ),
-            'src' => urlencode( $event_url ),
-            'sprop' => urlencode( $site_url ),
+            'sprop' => 'website:' . urlencode( $event_url ),
         );
 
         $full_link = $url;
@@ -64,8 +63,6 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         foreach ( $parts as $key => $value ) {
             $full_link .= "&" . $key . "=" . $value;
         }
-
-        $full_link .= "&sprop=name:" . urlencode( $site_name );
 
         return $full_link;
 
@@ -80,7 +77,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
 if(! function_exists( 'rebuild_date_to_cal' ) ) {
 
     function rebuild_date_to_cal( $timestamp ) {
-      return date( 'Ymd\THis\Z', $timestamp );
+      return date( 'Ymd\THis', $timestamp );
     }
 
 }
