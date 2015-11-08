@@ -263,30 +263,30 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
 
         $site_query = get_query_var( 'site_category' );
 
-        $content = '<h1 class="page-title">';
+        $content = '<div class="context-header"><h1 class="page-title">';
 
         switch ( true ) {
 
             case ( $site_query ):
 
-                $content .= get_rebuild_site_name() . ' ' . rebuild_get_post_type_name();
+                $content .= get_rebuild_site_name() . ' <label>' . rebuild_get_post_type_name() . '</label>';
                 $content .= '</h1>';
-                $content .= rebuild_all_content_link();
+                $content .= rebuild_all_content_link() . '</div>';
 
                 break;
 
             case ( is_category() || is_tag() || is_tax( array( 'event_category', 'event_tag' ) ) ):
 
-                $content .= rebuild_get_taxonomy_name() . ': <label>' . get_the_archive_title() . '</label>';
+                $content .= rebuild_get_taxonomy_name() . '<label class="current-cat-tag">: ' . get_the_archive_title() . '</label>';
                 $content .= '</h1>';
-                $content .= rebuild_all_content_link();
+                $content .= rebuild_all_content_link() . '</div>';
 
                 break;
 
             default:
 
-                $content .= 'Rebuild <label>' . rebuild_get_post_type_name() . '</label>';
-                $content .= '</h1>';
+                $content .= '<label class="all-entries">Rebuild ' . rebuild_get_post_type_name() . '</label>';
+                $content .= '</h1></div>';
 
         }
 

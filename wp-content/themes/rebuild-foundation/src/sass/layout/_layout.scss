@@ -5,7 +5,7 @@
 	top: 0;
 	left: 0;
 	padding: $size__left-margin 0 0 $size__left-margin;
-	z-index: 5;
+	z-index: 6;
 
 	& ::-webkit-scrollbar {
 		width: 6px;
@@ -20,9 +20,6 @@
 		position: fixed;
 		left: 0;
 		top: 0;
-		overflow-y: scroll;
-
-		
 
 		.site-title {
 			display: block;
@@ -54,6 +51,7 @@
 			@include box-shadow(0 0 12px #000000);
 			z-index: 5;
 			@include transition-duration(0.25s);
+			overflow-y: scroll;
 
 			.site-title {
 				width: 275px;

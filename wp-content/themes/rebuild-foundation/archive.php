@@ -18,6 +18,12 @@ get_header(); ?>
 
             <?php endif; ?>
 
+            <?php if( is_post_type_archive( 'event' ) ) : ?>
+
+                <?php rebuild_event_year_filter(); ?>
+
+            <?php endif; ?>
+
             <div class="filters">
                 
                 <?php if( is_post_type_archive( 'exhibition' ) ) : ?>
@@ -35,11 +41,7 @@ get_header(); ?>
 
         </header><!-- .entry-header -->
 
-        <?php if( is_post_type_archive( 'event' ) ) : ?>
-
-            <?php rebuild_event_year_filter(); ?>
-
-        <?php endif; ?>
+        
 
         <main id="main" class="site-main" role="main">
 

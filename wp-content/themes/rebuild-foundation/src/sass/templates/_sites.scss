@@ -144,13 +144,28 @@
 
 		}
 
+		section > h2, .upcoming-events h2, .past-events h2 {
+			display: inline-block;
+			margin-bottom: 20px;
+			font: normal $font_size-2 $bold;
+		}
+
+		.site-cat-link {
+			display: inline-block;
+			a {
+				border: none;
+				
+				&:hover {
+					background-color: transparent;
+					color: $black-transparent;
+				}
+			}
+		}
+
 		.exhibitions {
 			margin-left: 100px;
 			margin-top: 100px;
 
-			h2 {
-				font-size: $font_size-2;
-			}
 
 			article.exhibition {
 				border: none;
@@ -175,11 +190,6 @@
 			width: $size__site-main-nested;
 			margin-left: 100px;
 			margin-bottom: 100px;
-
-			h2 {
-				font-size: $font_size-2;
-				margin-bottom: 20px;
-			}
 
 			.upcoming-events {
 				@include inblock(66%);
@@ -223,14 +233,6 @@
 					}
 				}
 
-				.site-cat-link {
-					margin-top: 20px;
-
-					a {
-						font-weight: normal;
-						font-family: $bold;
-					}
-				}
 			}
 
 			.past-events {
@@ -271,12 +273,6 @@
 			left: 0;
 			margin-left: 100px;
 
-			h2 {
-				font-size: $font_size-2;
-				margin-top: 0;
-				border-bottom: 1px solid $black;
-			}
-
 			article {
 				border-bottom: 1px solid $white;
 				padding: 20px 0;
@@ -315,18 +311,10 @@
 					}
 				}
 
-				&:last-of-type {
-					border-bottom: 1px solid $black;
+				&:first-of-type {
+					border-top: 1px solid $black;
 				}
-			}
 
-			.site-cat-link {
-				margin-top: 20px;
-
-				a {
-					font-weight: normal;
-					font-family: $bold;
-				}
 			}
 		}
 

@@ -146,6 +146,24 @@
 
 // Filters
 
+.archive {
+	#primary > .entry-header {
+		width: 100%;
+		left: 0;
+		position: relative;
+	}
+}
+
+.context-header {
+	padding-top: 25px;
+}
+
+.tax-event_category, .tax-event_tag {
+	.context-header {
+		padding-top: 25px;
+	}
+}
+
 ul.event-year-filter, .single-event ul.event-year-filter {
 	position: fixed;
 	left: 25px;
@@ -167,11 +185,6 @@ ul.event-year-filter, .single-event ul.event-year-filter {
 
 .post-type-archive-event, .single-event {
 	.filters {
-		position: relative;
-		width: 100%;
-		left: 0;
-		padding-top: 10px;
-
 		ul.event-month-filter {
 
 			li {
@@ -364,7 +377,7 @@ ul.exhibition-filter {
 
 // Events Listing
 
-.post-type-archive-event {
+.post-type-archive-event, .tax-event_category, .tax-event_tag {
 	padding-top: 0;
 
 	.posts-list {
@@ -496,7 +509,7 @@ article.exhibition {
 	.posts-list {
 		width: $size__mobile-main-nested;
 		left: 0;
-		margin-top: 75px;
+		margin-top: 40px;
 	}
 
 }
