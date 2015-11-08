@@ -13,7 +13,7 @@ if(! function_exists( 'rebuild_get_pretty_link' ) ) {
 
         $post_type_obj = get_post_type_object( $post_type );
 
-        $post_type_slug = ( $post_type_obj->has_archive ) ? $post_type_obj->has_archive : 'blog' ;
+        $post_type_slug = ( isset( $post_type_obj->has_archive ) ) ? $post_type_obj->has_archive : 'blog' ;
 
         return '/' . $post_type_slug;
 
@@ -326,7 +326,7 @@ if(! function_exists( 'rebuild_all_content_link' ) ) {
             $link .= $url;
             $link .= '">' . __( 'view all ' ) . 'Rebuild ';
             $link .= '<label>';
-            $link .= ( $post_type_obj->labels->name ) ? $post_type_obj->labels->name : 'Posts' ;
+            $link .= ( isset( $post_type_obj->labels->name ) ) ? $post_type_obj->labels->name : 'Posts' ;
             $link .= '</label>';
             $link .= '</a>';
 
