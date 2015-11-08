@@ -19,7 +19,7 @@
 
 if(! function_exists( 'rebuild_get_location_name' ) ) {
 
-    function rebuild_get_location_name( $id ) {
+    function rebuild_get_location_name() {
 
         if( function_exists( 'get_field' ) ) {
 
@@ -29,7 +29,7 @@ if(! function_exists( 'rebuild_get_location_name' ) ) {
 
             if( $location_name ) {
               
-                return $location_name ;
+                return $location_name;
                  
             } 
 
@@ -109,13 +109,16 @@ if(! function_exists( 'rebuild_urlencode_location' ) ) {
 
     $address_array = rebuild_get_location_fields( $id );
 
-    if( !isset( $address_array ) ) {
-      return;
-    }
-      
-    $address_string = implode( '+', $address_array );
+    if( isset( $address_array ) ) {
 
-    return urlencode( $address_string );
+      $location_name = rebuild_get_location_name();
+
+      $address_string = implode( ',', $address_array );
+
+      return urlencode( $location_name . ',' . $address_string );
+    }
+    
+    return;
 
   }
 
@@ -380,7 +383,7 @@ if(! function_exists( 'events_for_months' ) ) {
         array(
             'key'     => 'start_date',
             'compare' => '<=',
-            'value'   => "{$year}{$month}31", // Doesn't matter if there aren't 31 days in this month, will still work,
+            'value'   => "{$year}{$month}31",
             'type'    => 'NUMERIC',
         )
     );
