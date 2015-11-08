@@ -250,6 +250,10 @@
 		left: $align__site-4;
 		margin-top: 50px
 	}
+
+	input.search-field:focus {
+		width: 100%;
+	}
 }
 
 #comments {
