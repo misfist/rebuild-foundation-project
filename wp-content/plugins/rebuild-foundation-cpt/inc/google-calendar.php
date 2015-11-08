@@ -39,7 +39,7 @@ if(! function_exists( 'rebuild_google_calendar_link' ) ) {
         $start = strtotime( $start_date . ' ' . $start_time );
         $end = strtotime( $end_date . ' ' . $end_time );
 
-        $location_id = get_field( 'location', false, false );
+        $location_id = get_field( 'location', $event_id, false );
         $location_name = get_the_title( $location_id );
         $location_address = rebuild_convert_location_to_string( $event_id );
         $event_location = $location_name . ', ' . $location_address;
