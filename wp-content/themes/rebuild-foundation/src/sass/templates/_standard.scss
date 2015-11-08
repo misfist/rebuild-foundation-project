@@ -14,14 +14,13 @@
 
 	img.alignright, figure.alignright{
 		margin: 0 (-$size__navigation) 0 0;
-		max-width: 80%;
+		max-width: 70%;
 	}
 
 	article {
 		position: relative;
 		width: $size__site-main-full;	
 		padding-left: $align__site-3;
-		padding-right: 5%;
 		margin-top: 0;
 
 		.entry-header {
@@ -29,7 +28,7 @@
 			padding: 50px 0 0 0;
 
 			.entry-title {
-				margin: 0;
+				margin: 0 0 0 -2px;
 
 				a {
 					color: $black;
@@ -38,8 +37,16 @@
 			}
 
 			.entry-meta {
+				padding: 2em 0 0.5em 0;
+			}
+
+			.site-name {
 				font: $font_size-2 $mono;
-				padding: 1em 0 0.5em 0;
+				padding-top: 0.5em;
+			}
+
+			.entry-meta time {
+				font: $font_size-3 $mono;
 			}
 		}
 
@@ -68,6 +75,7 @@
 		position: relative;
 		width: $size__site-main-flush;	
 		left: $align__site-3;
+		padding-right: 5%;
 	}
 
 	#comments {
@@ -91,6 +99,23 @@
 	img.alignleft, figure.alignleft {
 		margin: 0 0 0 (-$size__subnavigation);
 		max-width: 70%;
+	}
+
+	.entry-footer {
+		border-top: 1px solid $black-transparent;
+		padding-top: 25px;
+		margin-top: 40px;
+
+		span, .meta {
+			display: inline-block;
+		}
+
+		.meta {
+		}
+
+		.edit-link {
+			display: block;
+		}
 	}
 }
 
