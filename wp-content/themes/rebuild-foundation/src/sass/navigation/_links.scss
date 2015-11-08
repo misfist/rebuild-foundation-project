@@ -29,12 +29,7 @@ a {
 	h1,h2,h3,h4,h5,h6 {
 		a { 
 			border-bottom: none;
-			color: $black;
-
-			&:hover {
-				background-color: transparent;
-				color: $white;
-			}		
+			@include heading-link();
 		}
 	}
 
@@ -55,12 +50,7 @@ a {
 	h1,h2,h3,h4,h5,h6 {
 		a { 
 			border-bottom: none;
-			color: $black;
-
-			&:hover {
-				background-color: transparent;
-				color: $white;
-			}		
+			@include heading-link();
 		}
 	}
 }

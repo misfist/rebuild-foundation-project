@@ -94,6 +94,7 @@
 		@include box-shadow(none);
 		@include background-size(75%);
 		background-position: center center;
+		@include transition-duration(0.25s);
 
 		&.slick-prev {
 			margin-left: -10px;
@@ -105,10 +106,11 @@
 
 			&:hover {
 				background-color: transparent;
-				opacity: 0.5;
+				opacity: 0.25;
 				@include background-size(75%);
 				background-repeat: no-repeat;
 				background-position: center center;
+				@include transition-duration(0.25s);
 			}
 		}
 
@@ -122,10 +124,11 @@
 
 			&:hover {
 				background-color: transparent;
-				opacity: 0.5;
+				opacity: 0.25;
 				@include background-size(75%);
 				background-repeat: no-repeat;
 				background-position: center center;
+				@include transition-duration(0.25s);
 			}
 
 		}

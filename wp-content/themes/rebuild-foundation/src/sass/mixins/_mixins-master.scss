@@ -169,17 +169,21 @@
 
 @mixin text-link() {
 	border-bottom: 2px solid $white;
+	@include transition-duration(0.2s);
 
 	&:hover {
 		background-color: $white;
+		@include transition-duration(0.2s);
 	}
 }
 
 @mixin heading-link() {
 	color: $black;
+	@include transition-duration(0.2s);
 
 	&:hover {
 		color: $black-transparent-light;
+		@include transition-duration(0.2s);
 	}
 }
 
