@@ -62,8 +62,6 @@
 
                 <?php rebuild_google_map_link(); ?>
 
-                <?php echo 'test:' . rebuild_get_location_name(); ?>
-
             <?php endif; ?>
 
             <div class="entry-meta tags">
