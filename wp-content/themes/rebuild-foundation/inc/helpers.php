@@ -66,17 +66,9 @@ if(! function_exists( 'rebuild_get_site_category_content_link' ) ) {
 
             $pretty_link = esc_url( rebuild_get_pretty_link( $post_type ) );
 
-            if( $post_type_obj->has_archive ) {
-                
-                // https://developer.wordpress.org/reference/functions/add_query_arg/
+            $path = site_url( $pretty_link . '/site/' )  . $site_slug;
 
-                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, site_url( $post_type_obj->has_archive ) ) ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
-
-            } else {
-
-                $link = '<div class="meta site-cat-link"><a href="' . esc_url( add_query_arg( 'site_category', $site_slug, $pretty_link ) ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
-
-            }
+            $link = '<div class="meta site-cat-link"><a href="' . esc_url( $path ) . '"><label>' . __( 'all', 'rebuild-foundation' ) . '</label> ' . $site_name . ' <label>' . $post_type_name . '</label></a></div>';
 
             return $link;
 
