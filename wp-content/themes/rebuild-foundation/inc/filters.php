@@ -263,11 +263,12 @@ if(! function_exists( 'rebuild_event_year_filter' ) ) {
 
               $url = array(
                 'event_year' => $year,
-                'event_month' => null
               );
 
+              $path = ( is_singular( 'event' ) ) ? home_url( '/events/' ) : '' ;
+
               echo '<li data-target-year="' . $year . '" data-event_year="' . $year . '">';
-              echo '<a href="' . esc_url( add_query_arg( $url, home_url( '/events' ) ) ) . '">';
+              echo '<a href="' . esc_url( add_query_arg( $url, $path ) ) . '">';
               echo $year;
               echo '</a>';
               echo '</li>';
