@@ -19,11 +19,11 @@
 
 if(! function_exists( 'rebuild_get_location_name' ) ) {
 
-    function rebuild_get_location_name( $location_id = null ) {
+    function rebuild_get_location_name( ) {
 
         if( function_exists( 'get_field' ) ) {
 
-            $location_id = ( $location_id ) ? $location_id : get_field( 'location' );
+            $location_id = get_field( 'location' );
 
             $location_name = get_field( 'location_name', $location_id );
 
