@@ -18,7 +18,7 @@ get_header(); ?>
 
             <?php endif; ?>
 
-            <?php if( is_post_type_archive( 'event' ) ) : ?>
+            <?php if( is_post_type_archive( 'event' ) || is_tax( array( 'event_category', 'event_tag' ) ) ) : ?>
 
                 <?php rebuild_event_year_filter(); ?>
 
@@ -32,9 +32,11 @@ get_header(); ?>
 
                 <?php endif; ?>
 
-                <?php if( is_post_type_archive( 'event' ) ) : ?>
+                <?php if( is_post_type_archive( 'event' ) || is_tax( array( 'event_category', 'event_tag' ) )) : ?>
 
                     <?php rebuild_event_month_filter(); ?>
+
+                    <?php rebuild_print_event_count(); ?>
 
                 <?php endif; ?>
             </div>
