@@ -11,8 +11,26 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		
+		<header class="page-header">
+
+        <?php if( 'event' == get_post_type() ) : ?>
+
+            <?php rebuild_site_context_nav(); ?>
+
+        <?php rebuild_event_year_filter(); ?>
+
+		<div class="filters">
+
+		    <?php rebuild_event_month_filter(); ?>
+		    
+		</div>
+
+        <?php endif; ?>
+        </header>
+
+
 		<main id="main" class="site-main" role="main">
-		
+
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<?php get_template_part( 'template-parts/content', get_post_type() ); ?>
