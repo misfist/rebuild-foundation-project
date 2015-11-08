@@ -62,7 +62,7 @@
 
                 <?php rebuild_google_map_link(); ?>
 
-                <?php echo rebuild_get_location_name(); ?>
+                <?php echo 'test:' . rebuild_get_location_name(); ?>
 
             <?php endif; ?>
 
