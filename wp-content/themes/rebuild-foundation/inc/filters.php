@@ -217,12 +217,18 @@ if(! function_exists( 'rebuild_exhibition_filter' ) ) {
 
         }
 
+        $query_args = array(
+          $taxonomy => $term->slug
+        );
+
+        $path = ( is_singular( ) ) ? home_url( 'exhibitions' ) : '';
+
         // If flag set to true
         if( $has_posts ) {
 
           echo '<li data-' . $taxonomy . '="' . $term->slug . '" data-target-term="' . $term->slug . '">';
 
-          echo '<a href="' . esc_url( add_query_arg( $taxonomy, $term->slug ) ) . '">' . $term->name . '</a>';
+          echo '<a href="' . esc_url( add_query_arg( $query_args, $path ) ) . '">' . $term->name . '</a>';
 
           echo '</li>';
 

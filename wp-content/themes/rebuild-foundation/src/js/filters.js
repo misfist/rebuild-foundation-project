@@ -2,7 +2,7 @@
 
 jQuery( document ).ready( function( $ ) {
 
-    //console.log( 'filters.js loaded' );
+    console.log( 'filters.js loaded' );
 
     var queryVars = getUrlVars();
 
@@ -25,6 +25,8 @@ jQuery( document ).ready( function( $ ) {
 
         return vars;
     }
+
+
 
     if( 'archive' == pageInfo.pageType || 'tax' == pageInfo.pageType ) {
 
@@ -78,7 +80,7 @@ jQuery( document ).ready( function( $ ) {
         // If now query_var is set, set current to active
         if( typeof queryVars.exhibition_category != 'undefined' ) {
 
-            $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );
+            $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );            
 
         // Exhibitions default to current scope. 
         } else if( 'exhibition' == pageInfo.postType ) {
@@ -98,6 +100,13 @@ jQuery( document ).ready( function( $ ) {
         var date = new Date( pageInfo.startDate );
         var eventYear = date.getFullYear();
         var eventMonth = ( ( date.getMonth() + 1 ) < 10 ? '0' : '' ) + ( date.getMonth() + 1 );
+
+    console.log( pageInfo.exhibitionScope );
+
+        if ( typeof pageInfo.exhibitionScope != 'undefined' ) {
+
+            $( 'li[data-exhibition_category=' + pageInfo.exhibitionScope + ']' ).addClass( 'active' );
+        }
 
         $( 'li[data-event_year=' + eventYear + ']' ).addClass( 'active' );
         $( 'li[data-event_month=' + eventMonth + ']' ).addClass( 'active' );

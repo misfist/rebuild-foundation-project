@@ -43,6 +43,8 @@ if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
 
       $fields = get_fields( $post->ID );
       $post_info['startDate'] = ( $fields['start_date'] ) ? date( 'Y-m-d', strtotime( $fields['start_date'] ) ) : '';
+      $scope = wp_get_post_terms( $post->ID, 'exhibition_category', array( 'fields' => 'slugs' ) );
+      $post_info['exhibitionScope'] = ( count( $scope ) > 0 ) ? $scope[0] : '' ;
     }
 
     $site_var = get_query_var( 'site_category' );
@@ -59,7 +61,7 @@ if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
 
     if( $exhibition_scope ) {
 
-      $post_info['scope'] = $exhibition_scope;
+      $post_info['exhibitionScope'] = $exhibition_scope;
 
     }
 
