@@ -43,6 +43,10 @@ if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
 
       $fields = get_fields( $post->ID );
       $post_info['startDate'] = ( $fields['start_date'] ) ? date( 'Y-m-d', strtotime( $fields['start_date'] ) ) : '';
+      
+    }
+
+    if( is_singular( array( 'exhibition' ) ) ) {
       $scope = wp_get_post_terms( $post->ID, 'exhibition_category', array( 'fields' => 'slugs' ) );
       $post_info['exhibitionScope'] = ( count( $scope ) > 0 ) ? $scope[0] : '' ;
     }
