@@ -287,7 +287,7 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
 
                 break;
 
-            case ( is_singular( 'event' ) ):
+            case ( is_singular( ) ):
 
                 $content .= '<label class="all-entries">Rebuild ' . rebuild_get_post_type_name() . '</label>';
                 $content .= '</h1>';
