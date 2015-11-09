@@ -173,6 +173,7 @@
 				border: none;
 				width: 100%;
 				margin-bottom: 0;
+				padding-bottom: 0;
 
 				.single-image {
 					margin: 0 0 0 10%;
@@ -201,6 +202,7 @@
 					width: 85%;
 					@include transition-duration(0.5s);
 					background-size: cover;
+					background-position: center center;
 					margin: 0 0 10px 0;
 
 					.event-info {
@@ -213,7 +215,7 @@
 
 							a {
 								font: $font_size-3 $regular;
-								color: $warm-gray;
+								color: $white;
 
 								&:hover {
 									color: $white-transparent;

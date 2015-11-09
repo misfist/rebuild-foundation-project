@@ -94,6 +94,24 @@
   width: calc(100% - 80px);
   left: 80px; }
 
+h1 {
+  font-size: 32px; }
+
+h2 {
+  font-size: 25px; }
+
+h3 {
+  font-size: 20px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 13px; }
+
+h6 {
+  font-size: 13px; }
+
 .site-footer {
   width: calc(100% - 80px);
   left: 80px;
@@ -565,7 +583,7 @@ input.search-field:focus {
   margin: 0;
   padding: 1.5em 0; }
 .page-template-default #primary > header, .single-post #primary > header {
-  width: calc(100% - 30px);
+  width: 100%;
   padding: 0; }
   .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
     padding-top: 0; }
