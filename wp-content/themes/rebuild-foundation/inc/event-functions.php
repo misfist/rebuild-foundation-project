@@ -17,7 +17,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
 
   function rebuild_events_meta_query_vars() {
 
-    if( 'event' == get_query_var( 'post_type' ) ) {
+    if( 'event' == get_query_var( 'post_type' ) || is_tax( array( 'event_category', 'event_tag' ) ) ) {
 
       $query_year = get_query_var( 'event_year' );
       $query_month = get_query_var( 'event_month' );
@@ -144,7 +144,7 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
 
     }
 
-    if( is_post_type_archive( 'event' ) ) {
+    if( is_post_type_archive( 'event' ) || is_tax( array( 'event_category', 'event_tag' ) ) ) {
 
       $query->set( 'orderby', 'meta_value_num' );
       $query->set( 'meta_key', 'start_date' );
