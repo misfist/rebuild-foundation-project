@@ -207,14 +207,20 @@
 
 					.event-info {
 						background-color: $black-transparent;
-						padding: 15px 30px; 
+						padding: 30px 30px 20px; 
 
 						.entry-title {
 							line-height: 1.2em;
 							margin-top: 10px;
+							overflow: hidden;
+							width: 100%;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							font: normal $font_size-3 $light;
+							color: $white;
 
 							a {
-								font: $font_size-3 $regular;
+								font: normal $font_size-3 $light;
 								color: $white;
 
 								&:hover {
@@ -224,7 +230,7 @@
 						}
 
 						.event-date {
-							color: $warm-gray;
+							color: $white;
 						}
 					}
 

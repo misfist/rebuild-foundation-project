@@ -583,7 +583,7 @@ input.search-field:focus {
   margin: 0;
   padding: 1.5em 0; }
 .page-template-default #primary > header, .single-post #primary > header {
-  width: 100%;
+  width: calc(100% - 30px);
   padding: 0; }
   .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
     padding-top: 0; }
@@ -600,11 +600,15 @@ input.search-field:focus {
   width: calc(100% - 30px);
   left: 0; }
 
-.single-post #primary article .entry-header .entry-meta {
-  padding-top: 30px; }
-.single-post #primary article .entry-header .site-name {
-  padding-top: 0;
-  padding-bottom: 15px; }
+.single-post #primary > header {
+  width: 100%; }
+.single-post #primary article .entry-header {
+  width: calc(100% - 30px); }
+  .single-post #primary article .entry-header .entry-meta {
+    padding-top: 30px; }
+  .single-post #primary article .entry-header .site-name {
+    padding-top: 0;
+    padding-bottom: 15px; }
 .single-post #primary article .entry-content {
   padding-left: 0; }
 

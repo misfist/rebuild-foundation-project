@@ -761,7 +761,7 @@ input.search-field:focus {
 	#primary {
 
 		& > header {
-			width: 100%;
+			width: $size__mobile-main-nested;
 			padding: 0;
 
 			.entry-title {
@@ -796,8 +796,14 @@ input.search-field:focus {
 .single-post {
 
 	#primary {
+		& > header {
+			width: 100%;
+		}
+		
 		article {
 			.entry-header {
+				width: $size__mobile-main-nested;
+
 				.entry-meta {
 					padding-top: 30px;
 				}
