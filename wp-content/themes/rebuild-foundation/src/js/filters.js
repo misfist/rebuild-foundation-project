@@ -106,7 +106,6 @@ jQuery( document ).ready( function( $ ) {
         if ( typeof pageInfo.startDate!= 'undefined' && pageInfo.startDate != '' ) {
 
             var date = pageInfo.startDate.split( '-' );
-            console.log( eventYear, eventMonth );
             
         }
 
