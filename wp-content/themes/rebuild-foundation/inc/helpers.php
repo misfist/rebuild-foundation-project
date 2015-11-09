@@ -13,7 +13,15 @@ if(! function_exists( 'rebuild_get_pretty_link' ) ) {
 
         $post_type_obj = get_post_type_object( $post_type );
 
-        $post_type_slug = ( isset( $post_type_obj->has_archive ) ) ? $post_type_obj->has_archive : 'blog' ;
+        if( 'post' == $post_type ) {
+
+            $post_type_slug = 'blog';
+
+        } else {
+
+            $post_type_slug = ( isset( $post_type_obj->has_archive ) ) ? $post_type_obj->has_archive : '' ;
+
+        }
 
         return '/' . $post_type_slug;
 
