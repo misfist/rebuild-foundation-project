@@ -491,8 +491,8 @@ b, strong {
 
 blockquote {
   padding: 0 1.5em;
-  margin: 0;
-  border-left: 2px solid black; }
+  margin: 0 0 0 1em;
+  border-left: 1px solid rgba(0, 0, 0, 0.5); }
 
 address {
   margin: 0 0 1.5em; }
@@ -1012,11 +1012,11 @@ a {
     .context-header a:hover {
       color: black; }
 
-.blog #primary > .page-header, .category #primary > .page-header, .tag #primary > .page-header {
+.blog #primary > .page-header, .category #primary > .page-header, .tag #primary > .page-header, .tax-site_category #primary > .page-header {
   left: 220px;
   width: calc(100% - 220px);
   padding-right: 0; }
-  .blog #primary > .page-header .context-header, .category #primary > .page-header .context-header, .tag #primary > .page-header .context-header {
+  .blog #primary > .page-header .context-header, .category #primary > .page-header .context-header, .tag #primary > .page-header .context-header, .tax-site_category #primary > .page-header .context-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
 
 .tax-event_category .context-header, .tax-event_tag .context-header, .search-results .context-header {
@@ -2526,8 +2526,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .page-template-default .post-navigation, .page-template-default #comments, .single-post .post-navigation, .single-post #comments {
   position: relative;
   width: calc(100% - 220px - 180px);
-  left: 180px;
-  padding-right: 5%; }
+  left: 180px; }
 .page-template-default #comments, .single-post #comments {
   margin-top: 75px; }
 .page-template-default .meta a label, .single-post .meta a label {
@@ -2545,29 +2544,29 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .single-post .entry-footer .edit-link {
     display: block; }
 
-.blog #primary, .category #primary, .tag #primary {
+.blog #primary, .category #primary, .tag #primary, .tax-site_category #primary {
   width: calc(100% - 220px);
   left: 220px; }
-.blog #main, .category #main, .tag #main {
+.blog #main, .category #main, .tag #main, .tax-site_category #main {
   margin-top: 120px;
   width: calc(100% - 60px); }
-.blog article, .category article, .tag article {
+.blog article, .category article, .tag article, .tax-site_category article {
   padding: 20px 0;
   border-bottom: 1px solid white; }
-  .blog article:last-of-type, .category article:last-of-type, .tag article:last-of-type {
+  .blog article:last-of-type, .category article:last-of-type, .tag article:last-of-type, .tax-site_category article:last-of-type {
     border-bottom: 1px solid black; }
-.blog .entry-header, .category .entry-header, .tag .entry-header {
+.blog .entry-header, .category .entry-header, .tag .entry-header, .tax-site_category .entry-header {
   display: inline-block;
   vertical-align: top;
   width: 40%;
   padding-right: 5%; }
-  .blog .entry-header .site-name, .category .entry-header .site-name, .tag .entry-header .site-name {
+  .blog .entry-header .site-name, .category .entry-header .site-name, .tag .entry-header .site-name, .tax-site_category .entry-header .site-name {
     display: none;
     padding-right: 5%;
     font: normal 13px "Akkurat-Bold"; }
-    .blog .entry-header .site-name .meta a label, .category .entry-header .site-name .meta a label, .tag .entry-header .site-name .meta a label {
+    .blog .entry-header .site-name .meta a label, .category .entry-header .site-name .meta a label, .tag .entry-header .site-name .meta a label, .tax-site_category .entry-header .site-name .meta a label {
       text-transform: lowercase; }
-  .blog .entry-header .entry-title, .category .entry-header .entry-title, .tag .entry-header .entry-title {
+  .blog .entry-header .entry-title, .category .entry-header .entry-title, .tag .entry-header .entry-title, .tax-site_category .entry-header .entry-title {
     display: inline-block;
     vertical-align: top;
     width: 80%;
@@ -2575,7 +2574,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
     margin-top: -6px;
     line-height: 1.1em;
     padding-right: 5%; }
-    .blog .entry-header .entry-title a, .category .entry-header .entry-title a, .tag .entry-header .entry-title a {
+    .blog .entry-header .entry-title a, .category .entry-header .entry-title a, .tag .entry-header .entry-title a, .tax-site_category .entry-header .entry-title a {
       font: 25px "Akkurat-Regular";
       color: black;
       -webkit-transition-duration: 0.2s;
@@ -2583,7 +2582,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
       -ms-transition-duration: 0.2s;
       -o-transition-duration: 0.2s;
       transition-duration: 0.2s; }
-      .blog .entry-header .entry-title a:hover, .category .entry-header .entry-title a:hover, .tag .entry-header .entry-title a:hover {
+      .blog .entry-header .entry-title a:hover, .category .entry-header .entry-title a:hover, .tag .entry-header .entry-title a:hover, .tax-site_category .entry-header .entry-title a:hover {
         color: rgba(0, 0, 0, 0.25);
         background-color: transparent;
         -webkit-transition-duration: 0.2s;
@@ -2591,20 +2590,20 @@ article.site_category-listening-house .entry-meta.location a:hover {
         -ms-transition-duration: 0.2s;
         -o-transition-duration: 0.2s;
         transition-duration: 0.2s; }
-  .blog .entry-header .entry-date, .category .entry-header .entry-date, .tag .entry-header .entry-date {
+  .blog .entry-header .entry-date, .category .entry-header .entry-date, .tag .entry-header .entry-date, .tax-site_category .entry-header .entry-date {
     display: inline-block;
     vertical-align: top;
     width: 10%;
     margin-left: -5px;
     text-align: center; }
-.blog .entry-content, .category .entry-content, .tag .entry-content {
+.blog .entry-content, .category .entry-content, .tag .entry-content, .tax-site_category .entry-content {
   display: inline-block;
   vertical-align: top;
   width: 60%;
   margin-left: -5px;
   padding-right: 5%;
   margin-top: 0; }
-  .blog .entry-content p, .category .entry-content p, .tag .entry-content p {
+  .blog .entry-content p, .category .entry-content p, .tag .entry-content p, .tax-site_category .entry-content p {
     margin-top: 0; }
 
 .search-results #main {
@@ -2642,37 +2641,39 @@ article.site_category-listening-house .entry-meta.location a:hover {
   position: relative;
   left: calc(220px + 180px);
   margin-top: 50px; }
+.error404 input.search-field:focus, .search-no-results input.search-field:focus {
+  width: 100%; }
 
 #comments {
   display: none; }
 
 @media (max-width: 1200px) {
-  .blog #primary, .category #primary, .tag #primary {
+  .blog #primary, .category #primary, .tag #primary, .tax-site_category #primary {
     width: calc(100% - 220px);
     left: 220px; }
-  .blog #main, .category #main, .tag #main {
+  .blog #main, .category #main, .tag #main, .tax-site_category #main {
     margin-top: 165px; }
-  .blog article, .category article, .tag article {
+  .blog article, .category article, .tag article, .tax-site_category article {
     padding: 10px 0; }
-    .blog article .entry-header, .category article .entry-header, .tag article .entry-header {
+    .blog article .entry-header, .category article .entry-header, .tag article .entry-header, .tax-site_category article .entry-header {
       display: block;
       width: 100%;
       padding: 0;
       margin: 0; }
-      .blog article .entry-header .entry-title, .category article .entry-header .entry-title, .tag article .entry-header .entry-title {
+      .blog article .entry-header .entry-title, .category article .entry-header .entry-title, .tag article .entry-header .entry-title, .tax-site_category article .entry-header .entry-title {
         display: block;
         width: 100%;
         padding: 0;
         margin: 0; }
-      .blog article .entry-header .entry-meta, .category article .entry-header .entry-meta, .tag article .entry-header .entry-meta {
+      .blog article .entry-header .entry-meta, .category article .entry-header .entry-meta, .tag article .entry-header .entry-meta, .tax-site_category article .entry-header .entry-meta {
         margin: 20px 0;
         text-align: left; }
-    .blog article .entry-content, .category article .entry-content, .tag article .entry-content {
+    .blog article .entry-content, .category article .entry-content, .tag article .entry-content, .tax-site_category article .entry-content {
       display: block;
       width: 100%;
       padding: 0;
       margin: 0; }
-  .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter {
+  .blog ul.site-filter, .category ul.site-filter, .tag ul.site-filter, .tax-site_category ul.site-filter {
     width: 100%;
     left: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5); }

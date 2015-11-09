@@ -563,28 +563,28 @@ input.search-field:focus {
   width: calc(100% - 30px);
   left: 0; }
 
-.blog, .category, .tag {
+.blog, .category, .tag, .tax-site_category {
   width: 100%;
   padding-left: 0; }
-  .blog #primary, .category #primary, .tag #primary {
+  .blog #primary, .category #primary, .tag #primary, .tax-site_category #primary {
     width: calc(100% - 80px);
     left: 80px; }
-  .blog #main, .category #main, .tag #main {
+  .blog #main, .category #main, .tag #main, .tax-site_category #main {
     margin-top: 15px; }
-  .blog article, .category article, .tag article {
+  .blog article, .category article, .tag article, .tax-site_category article {
     padding: 10px 0;
     width: 100%; }
-    .blog article .entry-header, .category article .entry-header, .tag article .entry-header {
+    .blog article .entry-header, .category article .entry-header, .tag article .entry-header, .tax-site_category article .entry-header {
       display: block;
       width: 100%;
       padding: 0;
       margin: 0; }
-      .blog article .entry-header .entry-title, .category article .entry-header .entry-title, .tag article .entry-header .entry-title {
+      .blog article .entry-header .entry-title, .category article .entry-header .entry-title, .tag article .entry-header .entry-title, .tax-site_category article .entry-header .entry-title {
         display: block;
         width: 100%;
         padding: 0;
         margin: 0; }
-    .blog article .entry-content, .category article .entry-content, .tag article .entry-content {
+    .blog article .entry-content, .category article .entry-content, .tag article .entry-content, .tax-site_category article .entry-content {
       display: block;
       width: 100%;
       padding: 0;

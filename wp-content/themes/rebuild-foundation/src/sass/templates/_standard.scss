@@ -75,7 +75,6 @@
 		position: relative;
 		width: $size__site-main-flush;	
 		left: $align__site-3;
-		padding-right: 5%;
 	}
 
 	#comments {
@@ -119,7 +118,7 @@
 	}
 }
 
-.blog, .category, .tag {
+.blog, .category, .tag, .tax-site_category {
 
 	#primary {
 		width: $size__site-main-full;	
@@ -261,7 +260,7 @@
 }
 
 @media (max-width: 1200px) {
-	.blog, .category, .tag {
+	.blog, .category, .tag, .tax-site_category {
 		#primary {
 			width: $size__site-main-full;	
 			left: $align__site-2;
