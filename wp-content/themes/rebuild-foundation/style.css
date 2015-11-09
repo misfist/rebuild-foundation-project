@@ -444,6 +444,10 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   margin: 1.5em 0 0.5em;
   line-height: 1.2em; }
+  h1 dfn, h1 cite, h1 em, h1 i, h2 dfn, h2 cite, h2 em, h2 i, h3 dfn, h3 cite, h3 em, h3 i, h4 dfn, h4 cite, h4 em, h4 i, h5 dfn, h5 cite, h5 em, h5 i, h6 dfn, h6 cite, h6 em, h6 i {
+    font-family: "Akkurat-Bolditalic";
+    font-weight: normal;
+    font-style: normal; }
 
 h1 {
   font-size: 50px; }
@@ -2149,7 +2153,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
       color: #c2907f; }
   .single-exhibition .post-navigation {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
-    width: calc(100% - 180px); }
+    width: calc(100% - 180px);
+    margin-left: 60px; }
 
 @media (max-width: 1024px) {
   .single-exhibition article {
