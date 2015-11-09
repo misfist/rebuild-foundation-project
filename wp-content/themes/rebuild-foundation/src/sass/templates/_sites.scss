@@ -163,7 +163,7 @@
 		}
 
 		.exhibitions {
-			margin-left: 100px;
+			margin-left: $size__left-margin;
 			margin-top: 100px;
 
 
@@ -188,7 +188,7 @@
 
 		.events {
 			width: $size__site-main-nested;
-			margin-left: 100px;
+			margin-left: $size__left-margin;
 			margin-bottom: 100px;
 
 			.upcoming-events {
@@ -271,7 +271,7 @@
 			margin-top: 60px;
 			position: relative;
 			left: 0;
-			margin-left: 100px;
+			margin-left: $size__left-margin;
 
 			article {
 				border-bottom: 1px solid $white;
@@ -321,7 +321,7 @@
 		}
 
 		.entry-footer {
-			margin-left: 100px;
+			margin-left: $size__left-margin;
 			width: $size__site-main-nested;
 		}
 	}
@@ -329,7 +329,7 @@
 	.post-navigation {
 		width: $size__site-main-nested;
 		position: relative;
-		left: 100px;
+		left: $size__left-margin;
 		margin-top: 100px;
 	}
 		

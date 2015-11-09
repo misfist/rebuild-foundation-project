@@ -289,7 +289,7 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
 
             case ( is_singular( ) ):
 
-                $content .= '<label class="all-entries">Rebuild ' . rebuild_get_post_type_name() . '</label>';
+                $content .= '<label class="all-entries">' . rebuild_get_post_type_name() . '</label>';
                 $content .= '</h1>';
                 $content .= rebuild_all_content_link() . '</div>';
 
@@ -297,7 +297,7 @@ if(! function_exists( 'rebuild_site_context_nav' ) ) {
 
             default:
 
-                $content .= '<label class="all-entries">Rebuild ' . rebuild_get_post_type_name() . '</label>';
+                $content .= '<label class="all-entries">' . rebuild_get_post_type_name() . '</label>';
                 $content .= '</h1></div>';
 
         }

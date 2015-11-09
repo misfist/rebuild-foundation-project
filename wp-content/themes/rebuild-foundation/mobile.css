@@ -213,13 +213,22 @@ ul.event-year-filter, .single-event ul.event-year-filter {
     display: block;
     padding-bottom: 20px; }
     ul.event-year-filter li.active a, .single-event ul.event-year-filter li.active a {
-      font-size: 13px; }
+      font: 13px "Akkurat-Regular"; }
 
-.post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li {
-  width: 16.5%;
-  padding-top: 12px; }
+.filters {
+  padding-top: 5px; }
+  .filters ul.event-month-filter {
+    width: calc(100% - 30px); }
+    .filters ul.event-month-filter li {
+      width: 16.5%;
+      padding-top: 12px; }
+  .filters .event-count {
+    width: 30px;
+    font: normal 16px "Akkurat-Regular"; }
+    .filters .event-count label {
+      display: none; }
 
-ul.exhibition-filter {
+ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
   position: relative;
   width: 100%;
   left: 0;
@@ -545,6 +554,16 @@ input.search-field:focus {
   width: calc(100% - 30px);
   max-width: 350px;
   margin: 0 0 40px 0; }
+.page-template-default img.alignleft, .page-template-default figure.alignleft, .single-post img.alignleft, .single-post figure.alignleft {
+  max-width: 100%;
+  float: none;
+  margin: 0;
+  padding: 1.5em 0; }
+.page-template-default img.alignright, .page-template-default figure.alignright, .single-post img.alignright, .single-post figure.alignright {
+  max-width: 100%;
+  float: none;
+  margin: 0;
+  padding: 1.5em 0; }
 .page-template-default #primary > header, .single-post #primary > header {
   width: calc(100% - 30px);
   padding: 0; }
@@ -562,6 +581,14 @@ input.search-field:focus {
 .page-template-default .post-navigation, .single-post .post-navigation {
   width: calc(100% - 30px);
   left: 0; }
+
+.single-post #primary article .entry-header .entry-meta {
+  padding-top: 30px; }
+.single-post #primary article .entry-header .site-name {
+  padding-top: 0;
+  padding-bottom: 15px; }
+.single-post #primary article .entry-content {
+  padding-left: 0; }
 
 .blog, .category, .tag, .tax-site_category {
   width: 100%;

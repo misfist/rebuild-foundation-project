@@ -6,13 +6,19 @@
 		width: $size__site-main-flush;
 		background-color: $warm-gray;
 		z-index: 4;
+		border-bottom: 1px solid $black-transparent;
+	}
+}
+
+.post-type-archive-site {
+	#primary > .page-header {
+		display: none;
 	}
 }
 
 
-
 .context-header {
-	
+
 	padding: 50px 0 8px 0;
 	border-bottom: 1px dotted $black-transparent-light;
 
@@ -23,6 +29,7 @@
 		margin: 0;
 		padding: 0 30px 0 0;
 		text-transform: uppercase;
+		line-height: 1em;
 		
 
 		label {
@@ -58,14 +65,22 @@
 	}
 }
 
+
+
 .blog, .category, .tag, .tax-site_category {
 	#primary > .page-header {
 		left: $align__site-2;
 		width: $size__site-main-full;
 		padding-right: 0;
+		margin-left: $size__left-margin;
 
 		.context-header {
-			border-bottom: 1px solid $black-transparent;
+			border: none;
+
+		}
+
+		.filters {
+			padding: 0;
 		}
 	}
 }
@@ -74,7 +89,6 @@
 .tax-event_category, .tax-event_tag, .search-results {
 	.context-header {
 		padding-top: 55px;
-		border-bottom: 1px solid $black-transparent;
 
 		h1.page-title {
 			font: $font_size-2 $regular;
@@ -88,50 +102,56 @@
 	}	
 }
 
-.post-type-archive-exhibition{
-	.context-header {
-		border-bottom: 1px solid $black-transparent;
-	}
-}
 
 
-.filters {
+.filters {	
+	padding: 20px 0 8px 0;
+
 	ul {
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
+	}
+
+	ul.event-month-filter {
+		@include inblock($size__site-main-nested);
 
 		li {
-			font: $font_size-1 $regular;
-			padding-right: 25px;
-			display: inline-block;
-			padding: 0 20px 0 0;
+			font: $font_size-2 $regular;
+			@include inblock(8.3%);
+			vertical-align: bottom;
+			margin-right: -4px;
+			padding: 0;
+			line-height: 20px;
 
-			&.active a {
-				font-family: $bold;
-				color: $black;
-				font-weight: normal;
+			&.active {
+				font: normal $font_size-4 $regular;
+				line-height: 24px;
+				margin-left: -5px;
+				margin-right: 1px;
+
+				a {
+					color: $black;	
+				}
 			}
+		}
+	}	
+
+	.event-count {
+		@include inblock($size__right-margin);
+		vertical-align: bottom;
+		margin-left: -4px;
+		font: normal $font_size-5 $light;
+		line-height: 19px;
+
+		label {
+			font: $font_size-2 $regular;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
 		}
 	}
 }
 
-.post-type-archive-event, .single-event {
-	.filters {	
-		ul.event-month-filter {
-			width: 100%;
-			padding: 15px 0;
-			border-bottom: 1px solid $black-transparent;
-
-			li {
-				font: $font_size-3 $regular;
-				@include inblock(8.3%);
-				margin-right: -4px;
-				padding-top: 0px;
-			}
-		}	
-	}
-}
 
 
 
@@ -145,20 +165,22 @@ ul.event-year-filter, ul.exhibition-filter {
 	list-style-type: none;
 	
 	li {
-		font-size: $font_size-2;
 		display: block;
 		padding:  0 0 15px 0;
+		line-height: 20px;
+		font: normal $font_size-1 $bold;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
 		
 		a {
-			text-decoration: none;
-			font: normal $font_size-1 $bold;
-			letter-spacing: 0.05em;
-			text-transform: uppercase;
 		}
 
 		&.active {
+			margin-left: -1px;
+			line-height: 24px;
+			font: normal $font_size-4 $regular;
+
 			a {
-				font: normal $font_size-2 $bold;
 				color: $black;
 			}
 		}
@@ -166,8 +188,18 @@ ul.event-year-filter, ul.exhibition-filter {
 }
 
 .single-event {
+	#primary > .page-header {
+		position: relative;
+		width: $size__site-main-nested;
+		left: $align__site-3;
+		border-bottom: 1px solid $black-transparent;
+	}
+
+
 	.filters {	
 		ul.event-month-filter{
+			width: $size__site-main-center-2;
+
 			li {
 				a {
 					color: $black-transparent-light;
@@ -210,8 +242,76 @@ ul.event-year-filter, ul.exhibition-filter {
 	}
 }
 
+.post-type-archive-exhibition{
+	.context-header {
+		border: none;
+	}
+	.filters {
+		padding: 0;
+	}
+}
+
+.single-exhibition {
+	#primary > .page-header {
+		margin-left: $size__left-margin;
+		border-bottom: 1px solid $black-transparent;
+	}
 
 
+	ul.exhibition-filter {
+		position: relative;
+		width: 100%;
+		top: 0;
+		left: 0;
+		padding-right: $size__left-margin;
+		@include flex();
+		@include justify-content(space-between);
+		li {
+			padding-bottom: 0;
+		}
+	}
+
+	.context-header {
+		border-bottom: 1px dotted $black-transparent-light;
+	}
+
+	.filters {
+		padding: 20px 0 8px 0;
+
+		ul.exhibition-filter {
+			li {
+				padding-top: 5px;
+
+				a {
+
+				}
+
+				&.active {
+					line-height: 25px;
+					padding-top: 0;
+				}
+			}
+		}
+	}
+}
+
+.single-post {
+	#primary > .page-header {
+		border-bottom: 1px solid $black-transparent;
+	}
+
+	.context-header {
+		border: none;
+	}
+}
+
+@media (max-width: 1200px) {
+	.blog, .category, .tag, .tax-site_category {
+		#primary > .page-header {
+			margin-left: 0;
+		}
+	}
+}
 
 
 @media (max-width: 1024px) {
@@ -223,8 +323,16 @@ ul.event-year-filter, ul.exhibition-filter {
 		}
 	}
 
-	.post-type-archive-event, .single-event {
-		.filters {
+	.single-event {
+		#primary > .page-header {
+			left: 0;
+			width: 100%;
+		}
+	}
+
+	.single-exhibition {
+		#primary > .page-header {
+			margin-left: 0;
 		}
 	}
 
@@ -233,8 +341,7 @@ ul.event-year-filter, ul.exhibition-filter {
 		width: 100%;
 		top: 0;
 		left: 0;
-		border-bottom: 1px solid $black-transparent;
-		padding: 17px 55px 17px 0;
+		padding-right: $size__left-margin;
 		@include flex();
 		@include justify-content(space-between);
 
@@ -255,6 +362,8 @@ ul.event-year-filter, ul.exhibition-filter {
 		li {
 			@include inblock(auto);
 			padding: 0 20px 0 0;
+			vertical-align: bottom;
+			line-height: 24px;
 
 			&.active {
 				a {
@@ -265,9 +374,33 @@ ul.event-year-filter, ul.exhibition-filter {
 	}
 
 	.single-event ul.event-year-filter  {
-		margin-top: 45px;
+
 	}
 
+	.post-type-archive-exhibition{
+		.context-header {
+			border-bottom: 1px dotted $black-transparent-light;
+		}
+
+		.filters {
+			padding: 20px 0 8px 0;
+
+			ul.exhibition-filter {
+				li {
+					padding-top: 5px;
+
+					a {
+
+					}
+
+					&.active {
+						line-height: 25px;
+						padding-top: 0;
+					}
+				}
+			}
+		}
+	}
 }
 
 

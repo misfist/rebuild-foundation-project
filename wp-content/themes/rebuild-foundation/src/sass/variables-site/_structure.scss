@@ -6,6 +6,8 @@ $size__subnavigation: 180px;
 
 $size__left-margin: 60px;
 $size__right-margin: $size__subnavigation;
+$size__left-margin-2: calc(#{$size__subnavigation} - #{$size__left-margin});
+$size__left-margin-2-neg: calc(#{$size__left-margin} - #{$size__subnavigation});
 
 $size__site-main-full: calc(100% - #{$size__navigation});
 $size__site-main-full-2: calc(100% - #{$size__navigation} - #{$size__left-margin});

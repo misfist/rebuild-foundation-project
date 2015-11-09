@@ -983,7 +983,11 @@ a {
   left: calc(220px + 180px);
   width: calc(100% - 220px - 180px);
   background-color: #e9e6df;
-  z-index: 4; }
+  z-index: 4;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+
+.post-type-archive-site #primary > .page-header {
+  display: none; }
 
 .context-header {
   padding: 50px 0 8px 0;
@@ -993,7 +997,8 @@ a {
     display: inline-block;
     margin: 0;
     padding: 0 30px 0 0;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    line-height: 1em; }
     .context-header h1.page-title label {
       font: 16px "Akkurat-Regular";
       text-transform: uppercase;
@@ -1015,13 +1020,15 @@ a {
 .blog #primary > .page-header, .category #primary > .page-header, .tag #primary > .page-header, .tax-site_category #primary > .page-header {
   left: 220px;
   width: calc(100% - 220px);
-  padding-right: 0; }
+  padding-right: 0;
+  margin-left: 60px; }
   .blog #primary > .page-header .context-header, .category #primary > .page-header .context-header, .tag #primary > .page-header .context-header, .tax-site_category #primary > .page-header .context-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+    border: none; }
+  .blog #primary > .page-header .filters, .category #primary > .page-header .filters, .tag #primary > .page-header .filters, .tax-site_category #primary > .page-header .filters {
+    padding: 0; }
 
 .tax-event_category .context-header, .tax-event_tag .context-header, .search-results .context-header {
-  padding-top: 55px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+  padding-top: 55px; }
   .tax-event_category .context-header h1.page-title, .tax-event_tag .context-header h1.page-title, .search-results .context-header h1.page-title {
     font: 16px "Akkurat-Regular";
     letter-spacing: 0.1em;
@@ -1029,34 +1036,44 @@ a {
     .tax-event_category .context-header h1.page-title label, .tax-event_tag .context-header h1.page-title label, .search-results .context-header h1.page-title label {
       padding-left: 0; }
 
-.post-type-archive-exhibition .context-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
-
-.filters ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0; }
-  .filters ul li {
-    font: 13px "Akkurat-Regular";
-    padding-right: 25px;
-    display: inline-block;
-    padding: 0 20px 0 0; }
-    .filters ul li.active a {
-      font-family: "Akkurat-Bold";
-      color: black;
-      font-weight: normal; }
-
-.post-type-archive-event .filters ul.event-month-filter, .single-event .filters ul.event-month-filter {
-  width: 100%;
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
-  .post-type-archive-event .filters ul.event-month-filter li, .single-event .filters ul.event-month-filter li {
-    font: 20px "Akkurat-Regular";
+.filters {
+  padding: 20px 0 8px 0; }
+  .filters ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+  .filters ul.event-month-filter {
     display: inline-block;
     vertical-align: top;
-    width: 8.3%;
-    margin-right: -4px;
-    padding-top: 0px; }
+    width: calc(100% - 180px); }
+    .filters ul.event-month-filter li {
+      font: 16px "Akkurat-Regular";
+      display: inline-block;
+      vertical-align: top;
+      width: 8.3%;
+      vertical-align: bottom;
+      margin-right: -4px;
+      padding: 0;
+      line-height: 20px; }
+      .filters ul.event-month-filter li.active {
+        font: normal 25px "Akkurat-Regular";
+        line-height: 24px;
+        margin-left: -5px;
+        margin-right: 1px; }
+        .filters ul.event-month-filter li.active a {
+          color: black; }
+  .filters .event-count {
+    display: inline-block;
+    vertical-align: top;
+    width: 180px;
+    vertical-align: bottom;
+    margin-left: -4px;
+    font: normal 32px "Akkurat-Light";
+    line-height: 19px; }
+    .filters .event-count label {
+      font: 16px "Akkurat-Regular";
+      text-transform: uppercase;
+      letter-spacing: 0.1em; }
 
 ul.event-year-filter, ul.exhibition-filter {
   width: 180px;
@@ -1067,26 +1084,34 @@ ul.event-year-filter, ul.exhibition-filter {
   padding: 0;
   list-style-type: none; }
   ul.event-year-filter li, ul.exhibition-filter li {
-    font-size: 16px;
     display: block;
-    padding: 0 0 15px 0; }
-    ul.event-year-filter li a, ul.exhibition-filter li a {
-      text-decoration: none;
-      font: normal 13px "Akkurat-Bold";
-      letter-spacing: 0.05em;
-      text-transform: uppercase; }
-    ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
-      font: normal 16px "Akkurat-Bold";
-      color: black; }
+    padding: 0 0 15px 0;
+    line-height: 20px;
+    font: normal 13px "Akkurat-Bold";
+    letter-spacing: 0.05em;
+    text-transform: uppercase; }
+    ul.event-year-filter li.active, ul.exhibition-filter li.active {
+      margin-left: -1px;
+      line-height: 24px;
+      font: normal 25px "Akkurat-Regular"; }
+      ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
+        color: black; }
 
-.single-event .filters ul.event-month-filter li a {
-  color: rgba(0, 0, 0, 0.25); }
-  .single-event .filters ul.event-month-filter li a:hover {
-    color: black; }
-.single-event .filters ul.event-month-filter li.active a {
-  color: rgba(0, 0, 0, 0.5); }
-  .single-event .filters ul.event-month-filter li.active a:hover {
-    color: black; }
+.single-event #primary > .page-header {
+  position: relative;
+  width: calc(100% - 180px);
+  left: 180px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+.single-event .filters ul.event-month-filter {
+  width: calc(100% - 60px); }
+  .single-event .filters ul.event-month-filter li a {
+    color: rgba(0, 0, 0, 0.25); }
+    .single-event .filters ul.event-month-filter li a:hover {
+      color: black; }
+  .single-event .filters ul.event-month-filter li.active a {
+    color: rgba(0, 0, 0, 0.5); }
+    .single-event .filters ul.event-month-filter li.active a:hover {
+      color: black; }
 .single-event ul.event-year-filter li a {
   color: rgba(0, 0, 0, 0.25); }
   .single-event ul.event-year-filter li a:hover {
@@ -1096,18 +1121,66 @@ ul.event-year-filter, ul.exhibition-filter {
   .single-event ul.event-year-filter li.active a:hover {
     color: black; }
 
+.post-type-archive-exhibition .context-header {
+  border: none; }
+.post-type-archive-exhibition .filters {
+  padding: 0; }
+
+.single-exhibition #primary > .page-header {
+  margin-left: 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+.single-exhibition ul.exhibition-filter {
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-right: 60px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  justify-content: space-between; }
+  .single-exhibition ul.exhibition-filter li {
+    padding-bottom: 0; }
+.single-exhibition .context-header {
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
+.single-exhibition .filters {
+  padding: 20px 0 8px 0; }
+  .single-exhibition .filters ul.exhibition-filter li {
+    padding-top: 5px; }
+    .single-exhibition .filters ul.exhibition-filter li.active {
+      line-height: 25px;
+      padding-top: 0; }
+
+.single-post #primary > .page-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+.single-post .context-header {
+  border: none; }
+
+@media (max-width: 1200px) {
+  .blog #primary > .page-header, .category #primary > .page-header, .tag #primary > .page-header, .tax-site_category #primary > .page-header {
+    margin-left: 0; } }
 @media (max-width: 1024px) {
   .archive #primary > .page-header, .blog #primary > .page-header, .search-results #primary > .page-header {
     left: 220px;
     width: calc(100% - 220px); }
+
+  .single-event #primary > .page-header {
+    left: 0;
+    width: 100%; }
+
+  .single-exhibition #primary > .page-header {
+    margin-left: 0; }
 
   ul.exhibition-filter {
     position: relative;
     width: 100%;
     top: 0;
     left: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    padding: 17px 55px 17px 0;
+    padding-right: 60px;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -1131,12 +1204,21 @@ ul.event-year-filter, ul.exhibition-filter {
       display: inline-block;
       vertical-align: top;
       width: auto;
-      padding: 0 20px 0 0; }
+      padding: 0 20px 0 0;
+      vertical-align: bottom;
+      line-height: 24px; }
       ul.event-year-filter li.active a {
         font-size: 16px; }
 
-  .single-event ul.event-year-filter {
-    margin-top: 45px; } }
+  .post-type-archive-exhibition .context-header {
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
+  .post-type-archive-exhibition .filters {
+    padding: 20px 0 8px 0; }
+    .post-type-archive-exhibition .filters ul.exhibition-filter li {
+      padding-top: 5px; }
+      .post-type-archive-exhibition .filters ul.exhibition-filter li.active {
+        line-height: 25px;
+        padding-top: 0; } }
 /*--------------------------------------------------------------
 ## Post Navigation
 --------------------------------------------------------------*/
@@ -1887,7 +1969,7 @@ ul.social-links {
   width: calc(100% - 180px);
   position: relative;
   left: 180px;
-  margin-top: 165px; }
+  margin-top: 125px; }
 
 article.exhibition {
   width: calc(100% - 60px);
@@ -1910,10 +1992,11 @@ article.exhibition {
     width: 60%;
     font-size: 16px; }
   article.exhibition .entry-meta.location {
-    width: 70%; }
+    width: 100%; }
   article.exhibition .featured-image {
     width: 65%;
-    margin-left: 10%; }
+    margin-left: 10%;
+    margin-top: 20px; }
   article.exhibition .entry-header .entry-title {
     font: normal 40px "Akkurat-Bold";
     margin-top: 0; }
@@ -2002,9 +2085,9 @@ article.site_category-listening-house .entry-meta.location a:hover {
     position: relative; }
   .single-exhibition article {
     width: 100%;
-    margin-top: 75px;
+    margin-top: 40px;
     border: none;
-    padding-left: 50px; }
+    padding-left: 60px; }
     .single-exhibition article .entry-header {
       width: 55%; }
       .single-exhibition article .entry-header .entry-title {
@@ -2035,8 +2118,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
       .single-exhibition article #details h4 {
         margin: 25px 0 5px; }
       .single-exhibition article #details .address, .single-exhibition article #details .hours {
-        font: 14px "Akkuratmono-Regular";
-        white-space: nowrap; }
+        font: 14px "Akkuratmono-Regular"; }
     .single-exhibition article .entry-footer {
       border-top: 1px dotted rgba(0, 0, 0, 0.5);
       width: 100%;
@@ -2069,12 +2151,9 @@ article.site_category-listening-house .entry-meta.location a:hover {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     width: calc(100% - 180px); }
 
-@media (max-width: 1200px) {
-  .single-exhibition #main {
-    width: 100%;
-    position: relative;
-    left: 0;
-    margin-top: 60px; } }
+@media (max-width: 1024px) {
+  .single-exhibition article {
+    padding-left: 0; } }
 .post-type-archive-site article {
   width: calc(100% - 180px);
   height: 240px;
@@ -2315,7 +2394,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
       background-color: transparent;
       color: rgba(0, 0, 0, 0.5); }
 .single-site article.site .exhibitions {
-  margin-left: 100px;
+  margin-left: 60px;
   margin-top: 100px; }
   .single-site article.site .exhibitions article.exhibition {
     border: none;
@@ -2329,7 +2408,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
     margin-top: 0; }
 .single-site article.site .events {
   width: calc(100% - 180px);
-  margin-left: 100px;
+  margin-left: 60px;
   margin-bottom: 100px; }
   .single-site article.site .events .upcoming-events {
     display: inline-block;
@@ -2410,7 +2489,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   margin-top: 60px;
   position: relative;
   left: 0;
-  margin-left: 100px; }
+  margin-left: 60px; }
   .single-site article.site .posts article {
     border-bottom: 1px solid white;
     padding: 20px 0; }
@@ -2459,12 +2538,12 @@ article.site_category-listening-house .entry-meta.location a:hover {
     .single-site article.site .posts article:first-of-type {
       border-top: 1px solid black; }
 .single-site article.site .entry-footer {
-  margin-left: 100px;
+  margin-left: 60px;
   width: calc(100% - 180px); }
 .single-site .post-navigation {
   width: calc(100% - 180px);
   position: relative;
-  left: 100px;
+  left: 60px;
   margin-top: 100px; }
 
 @media (max-width: 1200px) {
@@ -2483,19 +2562,17 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .single-site .post-navigation {
     left: 0;
     width: calc(100% - 60px); } }
-.page-template-default #primary > header, .single-post #primary > header {
-  position: relative;
-  width: calc(100% - 220px);
-  padding-left: 180px; }
-  .page-template-default #primary > header .entry-title, .single-post #primary > header .entry-title {
-    margin: 0;
-    padding: 50px 0 0 0; }
 .page-template-default img.alignright, .page-template-default figure.alignright, .single-post img.alignright, .single-post figure.alignright {
   margin: 0 -220px 0 0;
   max-width: 70%; }
+.page-template-default .entry-header, .single-post .entry-header {
+  padding-left: 180px;
+  margin-top: 45px; }
+  .page-template-default .entry-header .entry-title, .single-post .entry-header .entry-title {
+    margin: 0 0 0 -2px; }
 .page-template-default article, .single-post article {
   position: relative;
-  width: calc(100% - 220px);
+  width: calc(100% - 180px);
   padding-left: 180px;
   margin-top: 0; }
   .page-template-default article .entry-header, .single-post article .entry-header {
@@ -2523,18 +2600,24 @@ article.site_category-listening-house .entry-meta.location a:hover {
   margin: 0 60px 3em 3em; }
   .page-template-default .featured-image figure, .single-post .featured-image figure {
     margin: 0; }
-.page-template-default .post-navigation, .page-template-default #comments, .single-post .post-navigation, .single-post #comments {
-  position: relative;
-  width: calc(100% - 220px - 180px);
-  left: 180px; }
 .page-template-default #comments, .single-post #comments {
   margin-top: 75px; }
 .page-template-default .meta a label, .single-post .meta a label {
   text-transform: lowercase; }
 
+.single-post #primary {
+  padding-left: 60px; }
 .single-post img.alignleft, .single-post figure.alignleft {
-  margin: 0 0 0 -180px;
+  margin: 0 0 0 calc(60px - 180px);
   max-width: 70%; }
+.single-post article {
+  padding-left: 0; }
+  .single-post article .entry-header {
+    padding-top: 20px; }
+    .single-post article .entry-header .entry-meta {
+      padding-top: 1em; }
+  .single-post article .entry-content {
+    padding-left: calc(180px - 60px); }
 .single-post .entry-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   padding-top: 25px;
@@ -2543,16 +2626,21 @@ article.site_category-listening-house .entry-meta.location a:hover {
     display: inline-block; }
   .single-post .entry-footer .edit-link {
     display: block; }
+.single-post .post-navigation, .single-post #comments {
+  position: relative;
+  width: calc(100% - 180px);
+  left: 0; }
 
 .blog #primary, .category #primary, .tag #primary, .tax-site_category #primary {
   width: calc(100% - 220px);
   left: 220px; }
 .blog #main, .category #main, .tag #main, .tax-site_category #main {
-  margin-top: 120px;
+  margin-top: 165px;
   width: calc(100% - 60px); }
 .blog article, .category article, .tag article, .tax-site_category article {
   padding: 20px 0;
-  border-bottom: 1px solid white; }
+  border-bottom: 1px solid white;
+  margin-left: 60px; }
   .blog article:last-of-type, .category article:last-of-type, .tag article:last-of-type, .tax-site_category article:last-of-type {
     border-bottom: 1px solid black; }
 .blog .entry-header, .category .entry-header, .tag .entry-header, .tax-site_category .entry-header {
@@ -2651,10 +2739,9 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .blog #primary, .category #primary, .tag #primary, .tax-site_category #primary {
     width: calc(100% - 220px);
     left: 220px; }
-  .blog #main, .category #main, .tag #main, .tax-site_category #main {
-    margin-top: 165px; }
   .blog article, .category article, .tag article, .tax-site_category article {
-    padding: 10px 0; }
+    padding: 10px 0;
+    margin-left: 0; }
     .blog article .entry-header, .category article .entry-header, .tag article .entry-header, .tax-site_category article .entry-header {
       display: block;
       width: 100%;
@@ -2681,9 +2768,12 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .search-results article, .search-results .posts-navigation {
     width: calc(100% - 60px); } }
 @media (max-width: 1024px) {
-  .page-template-default #primary > header, .single-post #primary > header {
+  .page-template-default .entry-header {
     padding-left: 0; }
-  .page-template-default article, .single-post article {
+  .page-template-default article {
+    padding-left: 0; }
+
+  .single-post #primary {
     padding-left: 0; }
 
   .search-results #main {
