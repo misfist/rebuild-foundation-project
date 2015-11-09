@@ -13,21 +13,25 @@ get_header(); ?>
 		
 		<header class="page-header">
 
-        <?php if( 'event' == get_post_type() ) : ?>
+	        <?php if( is_singular( array( 'event', 'exhibition', 'post' ) ) ) : ?>
 
-            <?php rebuild_site_context_nav(); ?>
+	            <?php rebuild_site_context_nav(); ?>
 
-        <?php rebuild_event_year_filter(); ?>
+	        <?php endif; ?>
 
-		<div class="filters">
+			<?php if( is_singular( array( 'event' ) ) ) : ?>
 
-		    <?php rebuild_event_month_filter(); ?>
-		    
-		</div>
+		        <?php rebuild_event_year_filter(); ?>
 
-        <?php endif; ?>
+				<div class="filters">
+
+				    <?php rebuild_event_month_filter(); ?>
+				    
+				</div>
+
+	        <?php endif; ?>
+
         </header>
-
 
 		<main id="main" class="site-main" role="main">
 
