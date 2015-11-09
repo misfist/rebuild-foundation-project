@@ -16,6 +16,29 @@
 	left: $size__mobile-margins;
 }
 
+h1 {
+	font-size: $font-size-5;
+}
+
+h2 {
+	font-size: $font-size-4;
+}
+
+h3 {
+	font-size: $font-size-3;	
+}
+
+h4 {
+	font-size: $font-size-2;	
+}
+
+h5 {
+	font-size: $font-size-1;	
+}
+
+h6 {
+	font-size: $font-size-1;
+}
 
 // Site Footer
 
@@ -161,8 +184,6 @@
 }
 
 .tax-event_category, .tax-event_tag, .search-results {
-
-
 	.context-header {
 		padding-top: 25px;
 	}
@@ -181,25 +202,38 @@ ul.event-year-filter, .single-event ul.event-year-filter {
 		&.active {
 
 			a {
-				font-size: $font_size-1;
+				font: $font_size-1 $regular;
 			}
 		}
 	}
 }
 
-.post-type-archive-event, .single-event {
-	.filters {
-		ul.event-month-filter {
 
-			li {
-				width: 16.5%;
-				padding-top: 12px;
-			}
+.filters {
+	padding-top: 5px;
+
+	ul.event-month-filter {
+
+		width: $size__mobile-main-nested;
+
+		li {
+			width: 16.5%;
+			padding-top: 12px;
+		}
+	}
+
+	.event-count {
+		width: $size__mobile-margins-right;
+		font: normal $font_size-2 $regular;
+
+		label {
+			display: none;
 		}
 	}
 }
 
-ul.exhibition-filter {
+
+ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 	position: relative;
 	width: 100%;
 	left: 0;
@@ -702,11 +736,26 @@ input.search-field:focus {
 
 .page-template-default, .single-post {
 
+
 	.featured-image {
 		float: none;
 		width: $size__mobile-main-nested;
 		max-width: 350px;
 		margin: 0 0 40px 0;
+	}
+
+	img.alignleft, figure.alignleft {
+		max-width: 100%;
+		float: none;
+		margin: 0;
+		padding: 1.5em 0;
+	}
+
+	img.alignright, figure.alignright{
+		max-width: 100%;
+		float: none;
+		margin: 0;
+		padding: 1.5em 0;
 	}
 
 	#primary {
@@ -744,7 +793,35 @@ input.search-field:focus {
 	}
 }
 
-.blog, .category, .tag {
+.single-post {
+
+	#primary {
+		& > header {
+			width: 100%;
+		}
+		
+		article {
+			.entry-header {
+				width: $size__mobile-main-nested;
+
+				.entry-meta {
+					padding-top: 30px;
+				}
+
+				.site-name {
+					padding-top: 0;
+					padding-bottom: 15px;
+				}
+			}
+
+			.entry-content {
+				padding-left: 0;
+			}
+		}
+	}
+}
+
+.blog, .category, .tag, .tax-site_category {
 	width: 100%;
 	padding-left: 0;
 

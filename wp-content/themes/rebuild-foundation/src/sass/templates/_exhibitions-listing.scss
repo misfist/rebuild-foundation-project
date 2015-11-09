@@ -5,7 +5,7 @@
 		width: $size__site-main-nested;
 		position: relative;
 		left: $align__site-3;
-		margin-top: 165px;
+		margin-top: 125px;
 	}
 
 
@@ -14,8 +14,8 @@
 
 article.exhibition {
 	width: $size__site-main-center-2;
-	margin-bottom: 60px;
-	padding-bottom: 60px;
+	margin-bottom: 35px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid $white;
 
 	&:last-child {
@@ -39,12 +39,13 @@ article.exhibition {
 	}
 
 	.entry-meta.location {
-		width: 70%;
+		width: 100%;
 	}
 
 	.featured-image {
 		width: 65%;
 		margin-left: 10%;
+		margin-top: 20px;
 	}
 
 	.entry-header {
@@ -55,9 +56,13 @@ article.exhibition {
 
 		.entry-meta {
 			font: $font_size-2 $mono;
-			margin-top: 30px;
+			margin-top: 15px;
 		}
 
+	}
+
+	.entry-content {
+		margin-top: 10px;
 	}
 
 

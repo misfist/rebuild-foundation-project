@@ -1,25 +1,25 @@
 
 .page-template-default, .single-post {
 
-	#primary > header {
-		position: relative;
-		width: $size__site-main-full;	
-		padding-left: $align__site-3;
-
-		.entry-title {
-			margin: 0;
-			padding: 50px 0 0 0;
-		}
-	}
 
 	img.alignright, figure.alignright{
 		margin: 0 (-$size__navigation) 0 0;
 		max-width: 70%;
 	}
 
+	.entry-header {
+		width: $size__site-main-nested;
+		padding-left: $align__site-3;
+
+		.entry-title {
+			margin: 0 0 0 -2px;
+			padding-top: 75px;
+		}
+	}
+
 	article {
 		position: relative;
-		width: $size__site-main-full;	
+		width: $size__site-main-nested;	
 		padding-left: $align__site-3;
 		margin-top: 0;
 
@@ -51,7 +51,7 @@
 		}
 
 		.entry-content {
-			margin-top: 30px;
+			margin-top: 45px;
 
 			h1, h2, h3, h4, h5, h6, p {
 				&:first-child {
@@ -71,12 +71,6 @@
 		}
 	}
 
-	.post-navigation, #comments {
-		position: relative;
-		width: $size__site-main-flush;	
-		left: $align__site-3;
-		padding-right: 5%;
-	}
 
 	#comments {
 		margin-top: 75px;
@@ -96,9 +90,35 @@
 
 
 .single-post {
+
+	#primary {
+		padding-left: $size__left-margin;
+	}
+
 	img.alignleft, figure.alignleft {
-		margin: 0 0 0 (-$size__subnavigation);
+		margin: 0 0 0 $size__left-margin-2-neg;
 		max-width: 70%;
+	}
+
+	article {
+		padding-left: 0;
+
+		.entry-header {
+			padding-top: 20px;
+			width: 100%;
+
+			.entry-title {
+				padding-top: 5px;
+			}
+
+			.entry-meta {
+				padding-top: 1em;
+			}
+		}
+
+		.entry-content {
+			padding-left: $size__left-margin-2;
+		}
 	}
 
 	.entry-footer {
@@ -117,9 +137,15 @@
 			display: block;
 		}
 	}
+
+	.post-navigation, #comments {
+		position: relative;
+		width: $size__site-main-nested;	
+		left: 0;
+	}
 }
 
-.blog, .category, .tag {
+.blog, .category, .tag, .tax-site_category {
 
 	#primary {
 		width: $size__site-main-full;	
@@ -127,13 +153,14 @@
 	}
 
 	#main {
-		margin-top: 120px;
+		margin-top: 165px;
 		width: $size__site-main-center-2;
 	}
 
 	article {
 		padding: 20px 0;
 		border-bottom: 1px solid $white;
+		margin-left: $size__left-margin;
 
 		&:last-of-type {
 			border-bottom: 1px solid $black;
@@ -261,19 +288,15 @@
 }
 
 @media (max-width: 1200px) {
-	.blog, .category, .tag {
+	.blog, .category, .tag, .tax-site_category {
 		#primary {
 			width: $size__site-main-full;	
 			left: $align__site-2;
-
-		}
-
-		#main {
-			margin-top: 165px;
 		}
 
 		article {
 			padding: 10px 0;
+			margin-left: 0;
 
 			.entry-header {
 				@include clear-inblock();
@@ -310,16 +333,19 @@
 
 
 @media (max-width: 1024px) {
-	.page-template-default, .single-post {
+	.page-template-default{
 
-		#primary > header {	
-			padding-left: 0;
-
-			.entry-title {
-			}
+		.entry-header {
+			padding-left: 0;	
 		}
 
 		article {
+			padding-left: 0;
+		}
+	}
+
+	.single-post {
+		#primary {
 			padding-left: 0;
 		}
 	}

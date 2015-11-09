@@ -65,9 +65,9 @@ article.site_category-listening-house   {
 
 	article {
 		width: 100%;
-		margin-top: 75px;
+		margin-top: 40px;
 		border: none;
-		padding-left: 50px;
+		padding-left: $size__left-margin;
 
 		.entry-header {
 			width: 55%;
@@ -77,9 +77,13 @@ article.site_category-listening-house   {
 			}
 			
 			.entry-meta {
-				font: $font_size-2 $mono;
-				margin-top: 30px;
+				font: $font_size-3 $mono;
+				margin-top: 35px;
 			}
+		}
+
+		.entry-content {
+			margin-top: 20px;
 		}
 
 		.description {
@@ -113,7 +117,6 @@ article.site_category-listening-house   {
 
 			.address, .hours {
 				font: 14px $mono;
-				white-space: nowrap;
 			}
 		}
 
@@ -198,16 +201,15 @@ article.site_category-listening-house   {
 	.post-navigation {
 		border-top: 1px solid $black-transparent;
 		width: $size__site-main-nested;
+		margin-left: $size__left-margin;
 	}
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
 	.single-exhibition  {
-		#main {
-			width: 100%;
-			position: relative;
-			left: 0;
-			margin-top: 60px;
+
+		article {
+			padding-left: 0;
 		}
 	}
 }

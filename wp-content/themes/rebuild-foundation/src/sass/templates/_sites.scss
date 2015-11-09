@@ -84,6 +84,7 @@
 
 		.main-content {
 			padding: 0 0 0 25%;
+			margin-bottom: 50px;
 			position: relative;
 			z-index: 3;
 
@@ -163,14 +164,16 @@
 		}
 
 		.exhibitions {
-			margin-left: 100px;
-			margin-top: 100px;
+			margin-left: $size__left-margin;
+			margin-top: 50px;
+			margin-bottom: 50px;
 
 
 			article.exhibition {
 				border: none;
 				width: 100%;
 				margin-bottom: 0;
+				padding-bottom: 0;
 
 				.single-image {
 					margin: 0 0 0 10%;
@@ -188,8 +191,9 @@
 
 		.events {
 			width: $size__site-main-nested;
-			margin-left: 100px;
-			margin-bottom: 100px;
+			margin-left: $size__left-margin;
+			margin-top: 50px;
+			margin-bottom: 50px;
 
 			.upcoming-events {
 				@include inblock(66%);
@@ -198,19 +202,26 @@
 					width: 85%;
 					@include transition-duration(0.5s);
 					background-size: cover;
+					background-position: center center;
 					margin: 0 0 10px 0;
 
 					.event-info {
 						background-color: $black-transparent;
-						padding: 15px 30px; 
+						padding: 30px 30px 20px; 
 
 						.entry-title {
 							line-height: 1.2em;
 							margin-top: 10px;
+							overflow: hidden;
+							width: 100%;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							font: normal $font_size-3 $light;
+							color: $white;
 
 							a {
-								font: $font_size-3 $regular;
-								color: $warm-gray;
+								font: normal $font_size-3 $light;
+								color: $white;
 
 								&:hover {
 									color: $white-transparent;
@@ -219,7 +230,7 @@
 						}
 
 						.event-date {
-							color: $warm-gray;
+							color: $white;
 						}
 					}
 
@@ -236,7 +247,7 @@
 			}
 
 			.past-events {
-				@include inblock(33%);
+				@include inblock(75%);
 				margin-left: -5px;
 
 				article {
@@ -246,7 +257,6 @@
 						border-top: 1px solid $black-transparent-light;
 						margin-right: 5%;
 						padding: 15px 0 0 0;
-						text-align: center;
 					}
 
 					.event-title {
@@ -264,6 +274,16 @@
 					}
 				}
 			}
+
+			.upcoming-events ~ .past-events {
+				width: 33%;
+
+				article {
+					.event-date {
+						text-align: left;
+					}
+				}
+			}
 		}
 
 		.posts {
@@ -271,7 +291,7 @@
 			margin-top: 60px;
 			position: relative;
 			left: 0;
-			margin-left: 100px;
+			margin-left: $size__left-margin;
 
 			article {
 				border-bottom: 1px solid $white;
@@ -321,7 +341,7 @@
 		}
 
 		.entry-footer {
-			margin-left: 100px;
+			margin-left: $size__left-margin;
 			width: $size__site-main-nested;
 		}
 	}
@@ -329,7 +349,7 @@
 	.post-navigation {
 		width: $size__site-main-nested;
 		position: relative;
-		left: 100px;
+		left: $size__left-margin;
 		margin-top: 100px;
 	}
 		
