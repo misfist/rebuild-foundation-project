@@ -77,9 +77,13 @@ article.site_category-listening-house   {
 			}
 			
 			.entry-meta {
-				font: $font_size-2 $mono;
-				margin-top: 30px;
+				font: $font_size-3 $mono;
+				margin-top: 35px;
 			}
+		}
+
+		.entry-content {
+			margin-top: 20px;
 		}
 
 		.description {
