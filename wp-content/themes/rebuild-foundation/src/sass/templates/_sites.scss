@@ -84,6 +84,7 @@
 
 		.main-content {
 			padding: 0 0 0 25%;
+			margin-bottom: 50px;
 			position: relative;
 			z-index: 3;
 
@@ -164,7 +165,8 @@
 
 		.exhibitions {
 			margin-left: $size__left-margin;
-			margin-top: 100px;
+			margin-top: 50px;
+			margin-bottom: 50px;
 
 
 			article.exhibition {
@@ -189,7 +191,8 @@
 		.events {
 			width: $size__site-main-nested;
 			margin-left: $size__left-margin;
-			margin-bottom: 100px;
+			margin-top: 50px;
+			margin-bottom: 50px;
 
 			.upcoming-events {
 				@include inblock(66%);
@@ -236,7 +239,7 @@
 			}
 
 			.past-events {
-				@include inblock(33%);
+				@include inblock(75%);
 				margin-left: -5px;
 
 				article {
@@ -246,7 +249,6 @@
 						border-top: 1px solid $black-transparent-light;
 						margin-right: 5%;
 						padding: 15px 0 0 0;
-						text-align: center;
 					}
 
 					.event-title {
@@ -261,6 +263,16 @@
 							font: normal $font_size-2 $bold;
 							@include heading-link();
 						}
+					}
+				}
+			}
+
+			.upcoming-events ~ .past-events {
+				width: 33%;
+
+				article {
+					.event-date {
+						text-align: left;
 					}
 				}
 			}

@@ -2155,7 +2155,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .single-exhibition article {
     padding-left: 0; } }
 .post-type-archive-site article {
-  width: calc(100% - 180px);
+  width: calc(100% - 60px);
   height: 240px;
   margin-bottom: 10px;
   background-repeat: no-repeat;
@@ -2173,7 +2173,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .post-type-archive-site article::before {
     content: "\00a0";
     background-color: rgba(0, 0, 0, 0.25);
-    width: calc(100% - 180px);
+    width: calc(100% - 60px);
     height: 240px;
     position: absolute;
     z-index: 0;
@@ -2357,6 +2357,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   display: none; }
 .single-site article.site .main-content {
   padding: 0 0 0 25%;
+  margin-bottom: 50px;
   position: relative;
   z-index: 3; }
   .single-site article.site .main-content .description {
@@ -2395,7 +2396,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
       color: rgba(0, 0, 0, 0.5); }
 .single-site article.site .exhibitions {
   margin-left: 60px;
-  margin-top: 100px; }
+  margin-top: 50px;
+  margin-bottom: 50px; }
   .single-site article.site .exhibitions article.exhibition {
     border: none;
     width: 100%;
@@ -2409,7 +2411,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .single-site article.site .events {
   width: calc(100% - 180px);
   margin-left: 60px;
-  margin-bottom: 100px; }
+  margin-top: 50px;
+  margin-bottom: 50px; }
   .single-site article.site .events .upcoming-events {
     display: inline-block;
     vertical-align: top;
@@ -2448,7 +2451,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .single-site article.site .events .past-events {
     display: inline-block;
     vertical-align: top;
-    width: 33%;
+    width: 75%;
     margin-left: -5px; }
     .single-site article.site .events .past-events article .event-date {
       display: inline-block;
@@ -2457,8 +2460,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
       font: 20px "Akkurat-Light";
       border-top: 1px solid rgba(0, 0, 0, 0.25);
       margin-right: 5%;
-      padding: 15px 0 0 0;
-      text-align: center; }
+      padding: 15px 0 0 0; }
     .single-site article.site .events .past-events article .event-title {
       display: inline-block;
       vertical-align: top;
@@ -2484,6 +2486,10 @@ article.site_category-listening-house .entry-meta.location a:hover {
           -ms-transition-duration: 0.2s;
           -o-transition-duration: 0.2s;
           transition-duration: 0.2s; }
+  .single-site article.site .events .upcoming-events ~ .past-events {
+    width: 33%; }
+    .single-site article.site .events .upcoming-events ~ .past-events article .event-date {
+      text-align: left; }
 .single-site article.site .posts {
   width: calc(100% - 180px);
   margin-top: 60px;
@@ -2566,10 +2572,10 @@ article.site_category-listening-house .entry-meta.location a:hover {
   margin: 0 -220px 0 0;
   max-width: 70%; }
 .page-template-default .entry-header, .single-post .entry-header {
-  padding-left: 180px;
-  margin-top: 45px; }
+  padding-left: 180px; }
   .page-template-default .entry-header .entry-title, .single-post .entry-header .entry-title {
-    margin: 0 0 0 -2px; }
+    margin: 0 0 0 -2px;
+    padding-top: 45px; }
 .page-template-default article, .single-post article {
   position: relative;
   width: calc(100% - 180px);
