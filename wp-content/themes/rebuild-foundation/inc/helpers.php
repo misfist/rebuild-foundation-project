@@ -270,18 +270,27 @@ if(! function_exists( 'rebuild_get_page_type' ) ) {
 /**
  * Post Type Name
  * Returns post type name
- * @return string
+ * @input optional post_type string
+ * @input optional boolean for plural/singular
+ * @return string of post_type label ( plural or singular )
  */
 
 if(! function_exists( 'rebuild_get_post_type_name' ) ) {
 
-    function rebuild_get_post_type_name( $post_type = null ) {
+    function rebuild_get_post_type_name( $post_type = null, $singular = false ) {
 
         $post_type = ( $post_type ) ? $post_type : get_post_type();
 
         $post_object = get_post_type_object( $post_type );
         
         if( count( $post_object ) > 0 ) {
+
+            // If true passed as second argument, return the singular name
+            if( $singular ) {
+
+                return $post_object->labels->singular_name;
+
+            }
 
             return $post_object->labels->name;
 
