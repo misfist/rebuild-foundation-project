@@ -252,35 +252,55 @@ add_action( 'after_switch_theme', 'flush_rewrite_rules' );
  * Remove archive title prefix - e.g. Archive, Category, etc from archive heading
  */
 
-function rebuild_foundation_remove_archive_title_prefix( $title ) {
+if(! function_exists( 'rebuild_foundation_remove_archive_title_prefix' ) ) {
 
-  if ( is_category() || is_tag() || is_tax() ) {
+  function rebuild_foundation_remove_archive_title_prefix( $title ) {
 
-    $title = single_cat_title( '', false );
+    if ( is_category() || is_tag() || is_tax() ) {
 
-  } elseif ( is_post_type_archive() ) {
+      $title = single_cat_title( '', false );
 
-    $title = post_type_archive_title( '', false );
+    } elseif ( is_post_type_archive() ) {
 
-  } 
+      $title = post_type_archive_title( '', false );
 
-  return $title;
+    } 
+
+    return $title;
+
+  }
+
+  add_filter( 'get_the_archive_title', 'rebuild_foundation_remove_archive_title_prefix' );
 
 }
 
-add_filter( 'get_the_archive_title', 'rebuild_foundation_remove_archive_title_prefix' );
 
 
 /**
  * Change excerpt
- * Add Learn More link to excerpts
+ * Modify excerpts, based on archive type.
  */
 
-function rebuild_custom_excerpt_more( $more ) {
-  return '... <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'Learn More', 'rebuild-foundation' ) . '</a>';
-}
+if(! function_exists( 'rebuild_custom_excerpt_more' ) ) {
 
-add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
+  function rebuild_custom_excerpt_more( $more ) {
+
+    // If Site or Event excerpt, show ellipses only
+    if( 'site' == get_post_type() || 'exhibition' == get_post_type() ) {
+
+      return '... ';
+
+      // Otherwise, show ellipses and learn more link
+    } else {
+
+      return '... <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'Learn More', 'rebuild-foundation' ) . '</a>';
+    }
+
+  }
+
+  add_filter( 'excerpt_more', 'rebuild_custom_excerpt_more' );
+
+}
 
 
 /**
@@ -362,3 +382,24 @@ if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
   add_filter( 'jetpack_sharing_display_text', 'jetpack_developer_custom_sharing_text', 20, 4 );
 
 }
+
+/**
+ * Admin Bar
+ * Modify display of admin bar on front-end
+ *
+ */
+
+//add_filter('show_admin_bar', '__return_false');
+
+// remove wordpress trying to style the admin bar with inline css
+function hide_admin_bar_from_front_end() {
+
+  if( is_admin() ) {
+    return;
+  }
+  
+  //remove_action( 'wp_head', '_admin_bar_bump_cb' );
+
+  return true;
+}
+//add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
