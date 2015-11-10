@@ -43,12 +43,10 @@
         <div class="entry-content">
 
             <?php
-                the_excerpt( sprintf(
-                    /* translators: %s: Name of current post. */
-                    wp_kses( __( 'Learn more %s <span class="meta-nav">&rarr;</span>', 'rebuild-foundation' ), array( 'span' => array( 'class' => array() ) ) ),
-                    the_title( '<span class="screen-reader-text">"', '"</span>', false )
-                ) );
+                the_excerpt();
             ?>
+
+            <a class="read-more" href="<?php echo get_permalink( get_the_ID() ); ?>"><?php _e( 'Learn More', 'rebuild-foundation' ); ?></a>
 
             <?php
                 wp_link_pages( array(
