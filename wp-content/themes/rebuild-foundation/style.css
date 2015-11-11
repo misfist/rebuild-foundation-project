@@ -2391,7 +2391,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .single-site article.site.site_category-archive-house .site-header ~ #site-gallery::before, .single-site article.site.site_category-archive-house .site-header ~ .single-image::before, .single-site article.site.site_category-archive-house .site-header ~ .single-image::before {
   content: url("img/graphic_ah.svg");
   margin-top: 100px;
-  margin-left: -28%; }
+  margin-left: -26%; }
 .single-site article.site section > h2, .single-site article.site .upcoming-events h2, .single-site article.site .past-events h2 {
   display: inline-block;
   margin-bottom: 20px;
