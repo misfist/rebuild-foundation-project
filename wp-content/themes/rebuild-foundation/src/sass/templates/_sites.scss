@@ -125,6 +125,7 @@
 				content: url('img/graphic_lh.svg');
 				max-width: 350px;
 				margin-left: -15%;
+				margin-top: 240px;
 			}
 
 		}
@@ -134,7 +135,7 @@
 			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
 				content: url('img/graphic_ah.svg');
 				margin-top: 100px;
-				margin-left: -24%;
+				margin-left: -28%;
 			}
 
 		}
@@ -284,7 +285,7 @@
 
 				article {
 					.event-date {
-						text-align: left;
+						text-align: center;
 					}
 				}
 			}
