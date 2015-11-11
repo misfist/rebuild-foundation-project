@@ -1032,7 +1032,8 @@ a {
     padding: 0; }
 
 .tax-event_category .context-header, .tax-event_tag .context-header, .search-results .context-header {
-  padding-top: 55px; }
+  padding-top: 55px;
+  border: none; }
   .tax-event_category .context-header h1.page-title, .tax-event_tag .context-header h1.page-title, .search-results .context-header h1.page-title {
     font: 16px "Akkurat-Regular";
     letter-spacing: 0.1em;
@@ -1237,7 +1238,7 @@ ul.event-year-filter, ul.exhibition-filter {
 .post-navigation, .search-results
 .post-navigation, .single-site
 .post-navigation {
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
   padding-top: 15px; }
 .comment-navigation .nav-previous,
 .posts-navigation .nav-previous,
@@ -1559,19 +1560,19 @@ figcaption {
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
 
-#site-gallery {
+#site-gallery, .single-site article.site .site-header ~ .single-image {
   margin-top: 0;
   border: none; }
-  #site-gallery .slick-list {
+  #site-gallery .slick-list, .single-site article.site .site-header ~ .single-image .slick-list {
     padding-top: 60px; }
-  #site-gallery figure.slide-item {
+  #site-gallery figure.slide-item, .single-site article.site .site-header ~ .single-image figure.slide-item {
     width: 100%;
     height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
     background-position: center center; }
-  #site-gallery figcaption {
+  #site-gallery figcaption, .single-site article.site .site-header ~ .single-image figcaption {
     width: 100%;
     font: 13px "Akkuratmono-Regular";
     margin-top: -30px;
@@ -1579,16 +1580,16 @@ figcaption {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 0 100px 10px 0; }
-    #site-gallery figcaption:hover {
+    #site-gallery figcaption:hover, .single-site article.site .site-header ~ .single-image figcaption:hover {
       background-color: #e9e6df;
       overflow: visible;
       white-space: normal; }
-  #site-gallery button.slick-arrow {
+  #site-gallery button.slick-arrow, .single-site article.site .site-header ~ .single-image button.slick-arrow {
     background-color: rgba(255, 255, 255, 0.5);
     top: 50%; }
-    #site-gallery button.slick-arrow.slick-prev {
+    #site-gallery button.slick-arrow.slick-prev, .single-site article.site .site-header ~ .single-image button.slick-arrow.slick-prev {
       margin-left: 25px; }
-    #site-gallery button.slick-arrow.slick-next {
+    #site-gallery button.slick-arrow.slick-next, .single-site article.site .site-header ~ .single-image button.slick-arrow.slick-next {
       margin-right: 25px; }
 
 /*--------------------------------------------------------------
@@ -1722,6 +1723,10 @@ ul.social-links {
       font: 25px "Akkurat-Light";
       text-decoration: none;
       color: black; }
+      .post-type-archive-event article .site-name a em, .post-type-archive-event article .site-name a cite, .post-type-archive-event article .site-name a i, .post-type-archive-event article .site-name a dfn, .tax-event_category article .site-name a em, .tax-event_category article .site-name a cite, .tax-event_category article .site-name a i, .tax-event_category article .site-name a dfn, .tax-event_tag article .site-name a em, .tax-event_tag article .site-name a cite, .tax-event_tag article .site-name a i, .tax-event_tag article .site-name a dfn {
+        font-family: "Akkurat-Lightitalic";
+        font-weight: normal;
+        font-style: normal; }
       .post-type-archive-event article .site-name a label, .tax-event_category article .site-name a label, .tax-event_tag article .site-name a label {
         font: 16px "Akkurat-Regular";
         letter-spacing: 0.1em;
@@ -2081,7 +2086,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .site-info::before, #details::before {
   position: relative;
   display: block;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 5px; }
 
 .single-exhibition {
   #primary-width: 100%; }
@@ -2124,7 +2130,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
       width: 75%;
       margin: -70% 0 0 5%; }
       .single-exhibition article #details h4 {
-        margin: 25px 0 5px; }
+        margin: 10px 0 5px; }
       .single-exhibition article #details .address, .single-exhibition article #details .hours {
         font: 14px "Akkuratmono-Regular"; }
     .single-exhibition article .entry-footer {
@@ -2315,34 +2321,28 @@ article.site_category-listening-house .entry-meta.location a:hover {
     line-height: 1.2em;
     text-transform: uppercase;
     font-size: 25px; }
-.single-site article.site #site-gallery {
+.single-site article.site .site-header ~ #site-gallery, .single-site article.site .site-header ~ .single-image {
   display: inline-block;
   vertical-align: top;
   width: 75%;
   vertical-align: bottom;
   margin-left: -5px;
   margin-bottom: 0; }
-  .single-site article.site #site-gallery::before {
+  .single-site article.site .site-header ~ #site-gallery::before, .single-site article.site .site-header ~ .single-image::before {
     position: absolute;
     display: block;
     width: 50%;
     max-width: 400px;
-    margin: 200px 0 0 -20%;
+    margin: 150px 0 0 -20%;
     z-index: 2;
     pointer-events: none; }
-.single-site article.site .single-image {
-  display: inline-block;
-  vertical-align: top;
-  width: 75%;
-  vertical-align: bottom;
-  margin: 60px 0 0 -5px; }
-  .single-site article.site .single-image figure {
+  .single-site article.site .site-header ~ #site-gallery figure, .single-site article.site .site-header ~ .single-image figure {
     width: 100%;
     height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0; }
-    .single-site article.site .single-image figure figcaption {
+    .single-site article.site .site-header ~ #site-gallery figure figcaption, .single-site article.site .site-header ~ .single-image figure figcaption {
       width: 100%;
       font: 13px "Akkuratmono-Regular";
       margin-top: -30px;
@@ -2350,18 +2350,10 @@ article.site_category-listening-house .entry-meta.location a:hover {
       white-space: nowrap;
       text-overflow: ellipsis;
       padding: 0 100px 10px 0; }
-      .single-site article.site .single-image figure figcaption:hover {
+      .single-site article.site .site-header ~ #site-gallery figure figcaption:hover, .single-site article.site .site-header ~ .single-image figure figcaption:hover {
         background-color: #e9e6df;
         overflow: visible;
         white-space: normal; }
-  .single-site article.site .single-image::before {
-    position: absolute;
-    display: block;
-    width: 50%;
-    max-width: 400px;
-    margin: 200px 0 0 -20%;
-    z-index: 2;
-    pointer-events: none; }
 .single-site article.site #no-results {
   display: none; }
 .single-site article.site .main-content {
@@ -2381,17 +2373,24 @@ article.site_category-listening-house .entry-meta.location a:hover {
     width: 35%;
     margin-left: -5px;
     padding: 0 5%; }
-.single-site article.site.site_category-dorchester-art-housing-collaborative #site-gallery::before {
-  content: url("img/graphic_da-hc.svg"); }
-.single-site article.site.site_category-black-cinema-house #site-gallery::before {
+.single-site article.site.site_category-dorchester-art-housing-collaborative .site-header ~ #site-gallery::before, .single-site article.site.site_category-dorchester-art-housing-collaborative .site-header ~ .single-image::before, .single-site article.site.site_category-dorchester-art-housing-collaborative .site-header ~ .single-image::before {
+  content: url("img/graphic_da-hc.svg");
+  max-width: 450px;
+  width: 55%;
+  margin-left: -25%;
+  margin-top: 100px; }
+.single-site article.site.site_category-black-cinema-house .site-header ~ #site-gallery::before, .single-site article.site.site_category-black-cinema-house .site-header ~ .single-image::before, .single-site article.site.site_category-black-cinema-house .site-header ~ .single-image::before {
   content: url("img/graphic_bch.svg"); }
-.single-site article.site.site_category-stony-island-arts-bank #site-gallery::before {
+.single-site article.site.site_category-stony-island-arts-bank .site-header ~ #site-gallery::before, .single-site article.site.site_category-stony-island-arts-bank .site-header ~ .single-image::before, .single-site article.site.site_category-stony-island-arts-bank .site-header ~ .single-image::before {
   content: url("img/graphic_siab.svg"); }
-.single-site article.site.site_category-listening-house #site-gallery::before {
-  content: url("img/graphic_lh.svg"); }
-.single-site article.site.site_category-archive-house #site-gallery::before {
+.single-site article.site.site_category-listening-house .site-header ~ #site-gallery::before, .single-site article.site.site_category-listening-house .site-header ~ .single-image::before, .single-site article.site.site_category-listening-house .site-header ~ .single-image::before {
+  content: url("img/graphic_lh.svg");
+  max-width: 350px;
+  margin-left: -15%; }
+.single-site article.site.site_category-archive-house .site-header ~ #site-gallery::before, .single-site article.site.site_category-archive-house .site-header ~ .single-image::before, .single-site article.site.site_category-archive-house .site-header ~ .single-image::before {
   content: url("img/graphic_ah.svg");
-  margin: 200px 0 0 -28%; }
+  margin-top: 100px;
+  margin-left: -24%; }
 .single-site article.site section > h2, .single-site article.site .upcoming-events h2, .single-site article.site .past-events h2 {
   display: inline-block;
   margin-bottom: 20px;
@@ -2449,6 +2448,12 @@ article.site_category-listening-house .entry-meta.location a:hover {
           text-overflow: ellipsis;
           font: normal 20px "Akkurat-Light";
           color: white; }
+          .single-site article.site .events .upcoming-events article .event-info .entry-title em, .single-site article.site .events .upcoming-events article .event-info .entry-title cite, .single-site article.site .events .upcoming-events article .event-info .entry-title i, .single-site article.site .events .upcoming-events article .event-info .entry-title dfn {
+            font-family: "Akkurat-Lightitalic";
+            font-weight: normal;
+            font-style: normal; }
+          .single-site article.site .events .upcoming-events article .event-info .entry-title:hover {
+            color: rgba(255, 255, 255, 0.5); }
           .single-site article.site .events .upcoming-events article .event-info .entry-title a {
             font: normal 20px "Akkurat-Light";
             color: white; }
@@ -2646,7 +2651,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .single-post article .entry-content {
     padding-left: calc(180px - 60px); }
 .single-post .entry-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
   padding-top: 25px;
   margin-top: 40px; }
   .single-post .entry-footer span, .single-post .entry-footer .meta {
@@ -2705,6 +2710,10 @@ article.site_category-listening-house .entry-meta.location a:hover {
         -ms-transition-duration: 0.2s;
         -o-transition-duration: 0.2s;
         transition-duration: 0.2s; }
+      .blog .entry-header .entry-title a em, .blog .entry-header .entry-title a cite, .blog .entry-header .entry-title a i, .blog .entry-header .entry-title a dfn, .category .entry-header .entry-title a em, .category .entry-header .entry-title a cite, .category .entry-header .entry-title a i, .category .entry-header .entry-title a dfn, .tag .entry-header .entry-title a em, .tag .entry-header .entry-title a cite, .tag .entry-header .entry-title a i, .tag .entry-header .entry-title a dfn, .tax-site_category .entry-header .entry-title a em, .tax-site_category .entry-header .entry-title a cite, .tax-site_category .entry-header .entry-title a i, .tax-site_category .entry-header .entry-title a dfn {
+        font-family: "Akkurat-Lightitalic";
+        font-weight: normal;
+        font-style: normal; }
   .blog .entry-header .entry-date, .category .entry-header .entry-date, .tag .entry-header .entry-date, .tax-site_category .entry-header .entry-date {
     display: inline-block;
     vertical-align: top;
@@ -2720,6 +2729,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
   margin-top: 0; }
   .blog .entry-content p, .category .entry-content p, .tag .entry-content p, .tax-site_category .entry-content p {
     margin-top: 0; }
+.blog .posts-navigation, .category .posts-navigation, .tag .posts-navigation, .tax-site_category .posts-navigation {
+  padding-left: 60px; }
 
 .search-results #main {
   position: relative;

@@ -217,7 +217,8 @@ h6 {
   padding-top: 0; }
 
 .context-header {
-  padding-top: 25px; }
+  padding-top: 25px;
+  padding-right: 30px; }
 
 .tax-event_category .context-header, .tax-event_tag .context-header, .search-results .context-header {
   padding-top: 25px; }
