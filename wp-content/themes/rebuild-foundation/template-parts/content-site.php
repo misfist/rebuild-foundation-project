@@ -87,7 +87,7 @@ $today = date( 'Ymd' );
 
         ?>
 
-        <?php if( isset( $exhibition_query ) && $exhibition_query->have_posts ) : ?>
+        <?php if( isset( $exhibition_query ) && $exhibition_query->have_posts() ) : ?>
 
         <!-- //// Exhibitions Section -->
 
