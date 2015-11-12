@@ -194,3 +194,8 @@ require_once get_template_directory() . '/inc/event-functions.php';
  */
 require_once get_template_directory() . '/inc/exhibition-functions.php';
 
+/**
+ * Load blog functions.
+ */
+require_once get_template_directory() . '/inc/blog-functions.php';
+
