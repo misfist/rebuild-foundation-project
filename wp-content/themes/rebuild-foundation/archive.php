@@ -66,7 +66,7 @@ get_header(); ?>
 
                 <?php endwhile; ?>
 
-            <?php the_posts_navigation(); ?>
+                <?php rebuild_custom_posts_navigation(); ?>
 
             <?php else : ?>
 
