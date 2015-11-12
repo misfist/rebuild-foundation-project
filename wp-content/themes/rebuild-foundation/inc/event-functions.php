@@ -240,7 +240,7 @@ if(! function_exists( 'rebuild_event_query' ) ) {
 
     }
 
-    $trans_name = ( $site_cat ) ? $site_name . '_' . $scope . '_ev_q' : '_exh_q';
+    $trans_name = ( $site_cat ) ? 'event_q_' . $site_name . '_' . $scope: 'event_q';
 
     $cache_time = 240;
 

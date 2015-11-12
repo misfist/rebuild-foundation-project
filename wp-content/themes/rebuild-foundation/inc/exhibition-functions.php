@@ -93,7 +93,7 @@ if(! function_exists( 'rebuild_get_exhibition_query' ) ) {
     $taxonomy = 'exhibition_category';
     $scope = ( $scope ) ? $scope : rebuild_exhibition_scope( $site_cat );
 
-    $trans_name = ( $site_cat ) ? $site_name . '_' . $scope . '_exhib_q' : $scope . '_exhib_q';
+    $trans_name = ( $site_cat ) ? 'exh_q_' . $site_name . '_' . $scope   : 'exh_q_' . $scope ;
     $cache_time = 240;
 
     $today = date( 'Ymd' );
@@ -183,9 +183,9 @@ if(! function_exists( 'rebuild_exhibition_scope' ) ) {
 
     $prefix = 'trans_name_';
 
-    ${$prefix . $tax_terms[0]} = ( $site_cat ) ? $site_name . '_' . $tax_terms[0] . '_exh_scope' : $tax_terms[0] . '_exh_scope';
-    ${$prefix . $tax_terms[1]} = ( $site_cat ) ? $site_name . '_' . $tax_terms[1] . '_exh_scope' : $tax_terms[1] . '_exh_scope';
-    ${$prefix . $tax_terms[2]} = ( $site_cat ) ? $site_name . '_' . $tax_terms[2] . '_exh_scope' : $tax_terms[2] . '_exh_scope';
+    ${$prefix . $tax_terms[0]} = ( $site_cat ) ? 'exh_scope_' .$site_name . '_' . $tax_terms[0] : 'exh_scope-' . $tax_terms[0];
+    ${$prefix . $tax_terms[1]} = ( $site_cat ) ? 'exh_scope_' . $site_name . '_' . $tax_terms[1] : 'exh_scope_' . $tax_terms[1];
+    ${$prefix . $tax_terms[2]} = ( $site_cat ) ? 'exh_scope_' . $site_name . '_' . $tax_terms[2]: 'exh_scope_' . $tax_terms[2];
 
      // Time in minutes between updates
     $cache_time = 240;
