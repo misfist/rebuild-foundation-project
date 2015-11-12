@@ -52,13 +52,13 @@ if ( ! function_exists( 'rebuild_foundation_entry_footer' ) ) :
         // Posts
         if( is_singular( array( 'post' ) ) ) {
 
-            $categories_list = get_the_category_list( esc_html__( ', ', 'starter-theme' ) );
+            $categories_list = get_the_category_list( esc_html__( ', ', 'rebuild-foundation' ) );
             if ( $categories_list ) {
                 printf( '<span class="cat-links">' . esc_html__( 'Categories: %1$s', 'rebuild-foundation' ) . '</span> | ', $categories_list ); // WPCS: XSS OK.
             }
 
             /* translators: used between list items, there is a space after the comma */
-            $tags_list = get_the_tag_list( '', esc_html__( ', ', 'starter-theme' ) );
+            $tags_list = get_the_tag_list( '', esc_html__( ', ', 'rebuild-foundation' ) );
             if ( $tags_list ) {
                 printf( '<span class="tags-links">' . esc_html__( 'Tags: %1$s', 'rebuild-foundation' ) . '</span> | ', $tags_list ); // WPCS: XSS OK.
             }

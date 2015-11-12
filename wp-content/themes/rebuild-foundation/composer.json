@@ -1,8 +1,8 @@
 {
-  "name": "starter-theme",
+  "name": "rebuild-foundation",
   "description": "Custom Wordpress starter theme based on underscores (http://underscores.me)",
   "keywords": ["wordpress", "theme", "_"],
-  "homepage": "https://github.com/misfist/starter-theme",
+  "homepage": "https://github.com/misfist/rebuild-foundation",
   "license": "GPLv3",
   "authors": [
     {
@@ -12,7 +12,7 @@
   ],
   "dist": {
     "type": "git",
-    "url": "https://github.com/misfist/starter-theme.git"
+    "url": "https://github.com/misfist/rebuild-foundation.git"
   },
   "type": "wordpress-theme",
   "require": {
