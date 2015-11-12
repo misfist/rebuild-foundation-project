@@ -228,7 +228,7 @@ if(! function_exists( 'rebuild_event_query' ) ) {
       case ( 'today' ) :
         $scope_meta_query = array(
             array(
-                'key' => 'end_date',
+                'key' => 'start_date',
                 'value'=> $today,
                 'compare'=> '==',
                 'type'=> 'date',
@@ -287,6 +287,45 @@ if(! function_exists( 'rebuild_event_query' ) ) {
     }
 
     return;
+
+  }
+
+}
+
+/**
+ * Event Scope
+ * Return scope of event relative to today
+ * @return string
+ */
+
+if(! function_exists( 'rebuild_get_event_scope' ) ) {
+
+  function rebuild_get_event_scope() {
+
+    $start_date = get_field( 'start_date' );
+    $end_date = get_field( 'end_date' );
+    $today = date( 'Ymd' );
+
+    switch ( true ) {
+
+      case ( $today == $start_date ) :
+        // today
+        $scope = 'today';
+        break;
+      case ( $start_date > $today ) :
+        // upcoming
+        $scope = 'upcoming';
+        break;
+      case ( $end_date < $today ) :
+        // past
+        $scope = 'past';
+        break;
+      default :
+        return;
+
+    }
+
+    return $scope;
 
   }
 

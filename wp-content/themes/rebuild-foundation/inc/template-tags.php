@@ -434,6 +434,23 @@ if(! function_exists( 'rebuild_custom_posts_navigation' ) ) {
 
 }
 
+/**
+ * Event Class
+ * Outputs custom class for events
+ * @return array
+ */
 
+if(! function_exists( 'rebuild_event_class' ) ) {
 
+    function rebuild_event_class() {
+
+        $event_class = array(
+            get_post_type(),
+            rebuild_get_event_scope()
+        );
+
+        return $event_class;
+
+    }
+}
 

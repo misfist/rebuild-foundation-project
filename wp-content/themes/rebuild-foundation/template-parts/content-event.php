@@ -9,8 +9,7 @@
 
 ?>
 
-
-<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_type() ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( rebuild_event_class() ); ?>>
 
     <header class="entry-header">
         
