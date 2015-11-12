@@ -65,6 +65,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
               break;
 
           // Year queried & not this year
+          // TODO: Change to display first month of year
           case ( 4 == strlen( $year_var ) && is_numeric( $year_var ) ):
               $vars[] = array(
                   'key'       => 'start_date',
@@ -101,6 +102,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
               break;
 
           // No date queried
+          // TODO: Change to first month of year for which there are events
           default:
             $year = date( 'Y' );
             $month = date( 'm' );
@@ -161,6 +163,132 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
   }
 
   add_action( 'pre_get_posts', 'rebuild_events_pre_query_filter', 10, 1 );
+
+}
+
+
+/**
+ * Event Query
+ * Gets event query
+ * @input optional $site_cat string, $scope string and $limit integer
+ * @return array
+ */
+
+if(! function_exists( 'rebuild_event_query' ) ) {
+
+  function rebuild_event_query( $site_cat = null, $scope = null, $limit = null ) {
+
+    // If $site_cat arg passed
+    if( $site_cat ) {
+
+      $site_tax = 'site_category';
+
+      $term_exists = term_exists( $site_cat, $site_tax );
+
+      if ( $term_exists !== 0 && $term_exists !== null ) {
+
+        $site_name = ( strlen( $site_cat ) < 20 ) ? $site_cat : substr( $site_cat, 0, 19 );
+
+        $site_tax_query = array(
+          array(
+                'taxonomy' => $site_tax,
+                'field'    => 'slug',
+                'terms'    => $site_cat
+              ),
+        );
+        
+      }
+
+    }
+
+    $today = date( 'Ymd' );
+
+    switch ( $scope ) {
+
+      case ( 'future' ) :
+        $scope_meta_query = array(
+            array(
+                'key' => 'start_date',
+                'value'=> $today,
+                'compare'=> '>=',
+                'type'=> 'date',
+            ),
+        );
+        break;
+      case ( 'past' ) :
+        $scope_meta_query = array(
+            array(
+                'key' => 'end_date',
+                'value'=> $today,
+                'compare'=> '<',
+                'type'=> 'date',
+            ),
+        );
+        break;
+      case ( 'today' ) :
+        $scope_meta_query = array(
+            array(
+                'key' => 'end_date',
+                'value'=> $today,
+                'compare'=> '==',
+                'type'=> 'date',
+            ),
+        );
+        break;
+      
+      default :
+
+    }
+
+    $trans_name = ( $site_cat ) ? $site_name . '_' . $scope . '_ev_q' : '_exh_q';
+
+    $cache_time = 240;
+
+    $post_type = 'event';
+    $today = date( 'Ymd' );
+
+    if( false === ( $site_event_query = get_transient( $trans_name ) ) ) {
+
+      $event_query = array( 
+          'post_type'   => $post_type,
+          'meta_key' => 'start_date',
+          'orderby' => 'meta_value_num',
+      );
+
+      if( isset( $limit ) && is_int( $limit ) ) {
+
+        $event_query['posts_per_page'] = $limit;
+
+      }
+
+      // If $site_cat arg passed
+      if( isset( $site_cat ) ) {
+
+        $event_query['tax_query'] = $site_tax_query;
+
+      }
+
+      if( isset( $scope ) ) {
+
+        $event_query['meta_query'] = $scope_meta_query;
+
+      }
+
+     $site_event_query = new WP_Query( $event_query );
+
+     set_transient( $trans_name, $site_event_query, 60 * $cache_time );
+
+    }
+
+    if( $site_event_query->have_posts() ) {
+
+      return $site_event_query;
+
+    }
+
+    return;
+
+  }
 
 }
 

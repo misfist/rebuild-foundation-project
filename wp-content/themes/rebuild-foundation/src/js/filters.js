@@ -82,9 +82,9 @@ jQuery( document ).ready( function( $ ) {
             $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );            
 
         // Exhibitions default to current scope. 
-        } else if( 'exhibition' == pageInfo.postType ) {
+        } else if( typeof pageInfo.exhibitionScope != 'undefined' ) {
 
-            $( 'li[data-exhibition_category="current"]' ).addClass( 'active' );
+            $( 'li[data-exhibition_category=' + pageInfo.exhibitionScope + ']' ).addClass( 'active' );
 
         }
 
