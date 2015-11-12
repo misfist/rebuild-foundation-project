@@ -169,8 +169,6 @@ $today = date( 'Ymd' );
 
             if( false === ( $site_blog_query = get_transient( $trans_name ) ) ) {
 
-                echo 'no transient';
-
                 $blog_args = array (
                     'post_type' => $blog_post_type,
                     'tax_query' => $site_tax,
