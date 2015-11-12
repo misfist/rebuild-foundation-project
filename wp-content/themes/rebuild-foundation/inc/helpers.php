@@ -9,7 +9,7 @@ if(! function_exists( 'rebuild_get_pretty_link' ) ) {
 
     function rebuild_get_pretty_link( $post_type = null ) {
 
-        $post_type = ( $post_type ) ? $post_type : get_post_type();
+        $post_type = ( $post_type ) ? sanitize_text_field( $post_type ) : get_post_type();
 
         $post_type_obj = get_post_type_object( $post_type );
 
@@ -71,7 +71,7 @@ if(! function_exists( 'rebuild_get_site_category_content_link' ) ) {
 
         if( $site_name && $site_slug ) {
 
-            $post_type = ( $post_type ) ? $post_type : get_post_type();
+            $post_type = ( $post_type ) ? sanitize_text_field( $post_type ) : get_post_type();
             $post_type_obj = get_post_type_object( $post_type );
             $post_type_name = $post_type_obj->labels->name;
 
@@ -279,7 +279,7 @@ if(! function_exists( 'rebuild_get_post_type_name' ) ) {
 
     function rebuild_get_post_type_name( $post_type = null, $singular = false ) {
 
-        $post_type = ( $post_type ) ? $post_type : get_post_type();
+        $post_type = ( $post_type ) ? sanitize_text_field( $post_type ) : get_post_type();
 
         $post_object = get_post_type_object( $post_type );
         
@@ -312,7 +312,7 @@ if(! function_exists( 'rebuild_all_content_url' ) ) {
 
     function rebuild_all_content_url( $post_type = null ) {
 
-        $post_type = ( $post_type ) ? $post_type : get_post_type();
+        $post_type = ( $post_type ) ? sanitize_text_field( $post_type ) : get_post_type();
 
         $path = rebuild_get_pretty_link( $post_type );
 
@@ -331,7 +331,7 @@ if(! function_exists( 'rebuild_all_content_link' ) ) {
 
     function rebuild_all_content_link( $post_type = null ) {
 
-        $post_type = ( $post_type ) ? $post_type : get_post_type();
+        $post_type = ( $post_type ) ? sanitize_text_field( $post_type ) : get_post_type();
         
         $url = rebuild_all_content_url( $post_type );
 
