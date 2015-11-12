@@ -392,3 +392,43 @@ if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
  */
 
 remove_action( 'wp_head', '_admin_bar_bump_cb' );
+
+
+/**
+ * Delete Transients
+ * Remove query transients when content is edited
+ * @return none
+ */
+
+if(! function_exists( 'rebuild_delete_query_transients' ) ) {
+
+  function rebuild_delete_query_transients( $post ) {
+
+      global $wpdb;
+
+      if( 'event' == get_post_type( $post ) ) {
+
+        $wpdb->query( "DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('_transient_event_q_%')" );
+
+      }
+
+      if( 'exhibition' == get_post_type( $post ) ) {
+
+        $wpdb->query( "DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('_transient_exh_q_%')" );
+
+      }
+
+      if( 'post' == get_post_type( $post ) ) {
+
+        $wpdb->query( "DELETE FROM `$wpdb->options` WHERE `option_name` LIKE ('_transient_blog_q%')" );
+
+      }
+
+      return;
+
+  }
+
+  add_action( 'edit_post', 'rebuild_delete_query_transients' );
+
+
+}
