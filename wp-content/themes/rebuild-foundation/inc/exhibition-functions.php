@@ -64,10 +64,10 @@ if(! function_exists( 'rebuild_exhibition_pre_query_filter' ) ) {
 
 if(! function_exists( 'rebuild_get_exhibition_query' ) ) {
 
-  function rebuild_get_exhibition_query( $site_cat = null, $scope = null ) {
+  function rebuild_get_exhibition_query( $site_cat = null, $scope = null, $limit = null ) {
 
     // If $site_cat arg passed
-    if( $site_cat ) {
+    if( isset( $site_cat ) ) {
 
       $site_tax = 'site_category';
 
@@ -91,9 +91,9 @@ if(! function_exists( 'rebuild_get_exhibition_query' ) ) {
 
     $post_type = 'exhibition';
     $taxonomy = 'exhibition_category';
-    $scope = ( $scope ) ? $scope : rebuild_exhibition_scope( $site_cat );
+    $scope = ( isset( $scope ) ) ? $scope : rebuild_exhibition_scope( $site_cat );
 
-    $trans_name = ( $site_cat ) ? 'exh_q_' . $site_name . '_' . $scope   : 'exh_q_' . $scope ;
+    $trans_name = ( isset( $site_cat ) ) ? 'exh_q_' . $site_name . '_' . $scope   : 'exh_q_' . $scope ;
     $cache_time = 240;
 
     $today = date( 'Ymd' );
@@ -109,9 +109,16 @@ if(! function_exists( 'rebuild_get_exhibition_query' ) ) {
       );
 
       // If $site_cat arg passed
-      if( $site_cat ) {
+      if( isset( $site_cat ) ) {
 
         $exhibition_tax[] = $site_tax_query;
+
+      }
+
+      // If limit arg passed
+      if( isset( $limit ) && is_int( $limit ) ) {
+
+        $exhibitions_query['posts_per_page'] = $limit;
 
       }
 
@@ -146,7 +153,21 @@ if(! function_exists( 'rebuild_exhibition_scope' ) ) {
   function rebuild_exhibition_scope( $site_cat = null ) {
 
     $site_var = get_query_var( 'site_category' );
-    $site_cat = isset( $site_cat ) ? $site_cat : $site_var;
+
+    switch ( true ) {
+
+      case ( isset( $site_cat ) && !empty( $site_cat ) ) :
+        $site_cat = $site_cat;
+        break;
+
+      case ( isset( $site_var ) && !empty( $site_var ) ) :
+        $site_cat = $site_var;
+        break;
+
+      default :
+        $site_cat = null;
+
+    }
 
     // If $site_cat arg passed
     if( isset( $site_cat ) ) {
@@ -183,9 +204,9 @@ if(! function_exists( 'rebuild_exhibition_scope' ) ) {
 
     $prefix = 'trans_name_';
 
-    ${$prefix . $tax_terms[0]} = ( $site_cat ) ? 'exh_scope_' .$site_name . '_' . $tax_terms[0] : 'exh_scope-' . $tax_terms[0];
-    ${$prefix . $tax_terms[1]} = ( $site_cat ) ? 'exh_scope_' . $site_name . '_' . $tax_terms[1] : 'exh_scope_' . $tax_terms[1];
-    ${$prefix . $tax_terms[2]} = ( $site_cat ) ? 'exh_scope_' . $site_name . '_' . $tax_terms[2]: 'exh_scope_' . $tax_terms[2];
+    ${$prefix . $tax_terms[0]} = ( isset( $site_cat ) ) ? 'exh_scope_' .$site_name . '_' . $tax_terms[0] : 'exh_scope-' . $tax_terms[0];
+    ${$prefix . $tax_terms[1]} = ( isset( $site_cat ) ) ? 'exh_scope_' . $site_name . '_' . $tax_terms[1] : 'exh_scope_' . $tax_terms[1];
+    ${$prefix . $tax_terms[2]} = ( isset( $site_cat ) ) ? 'exh_scope_' . $site_name . '_' . $tax_terms[2]: 'exh_scope_' . $tax_terms[2];
 
      // Time in minutes between updates
     $cache_time = 240;
@@ -193,7 +214,9 @@ if(! function_exists( 'rebuild_exhibition_scope' ) ) {
 
     for( $i = 0; $i < count( $tax_terms ); $i++ ) {
 
-      if( false === ( $rebuild_exhibition_query = get_transient( ${$prefix . $tax_terms[$i]} ) ) ) {
+      $query = &${$tax_terms[$i] . '_query'};
+
+      if( false === ( $query = get_transient( ${$prefix . $tax_terms[$i]} ) ) ) {
 
         $exhibition_tax = array(
             array(
@@ -203,7 +226,7 @@ if(! function_exists( 'rebuild_exhibition_scope' ) ) {
             ),
         );
 
-        if( $site_cat ) {
+        if( isset( $site_cat ) ) {
             $exhibition_tax[] = $site_tax_query;
         }
 
@@ -214,13 +237,12 @@ if(! function_exists( 'rebuild_exhibition_scope' ) ) {
             'orderby' => 'meta_value_num',
         );
 
-        $rebuild_exhibition_query = new WP_Query( $exhibition_query );
 
-        set_transient( ${$prefix . $tax_terms[$i]}, $rebuild_exhibition_query, 60 * $cache_time );
+        $query = new WP_Query( $exhibition_query );
+
+        set_transient( ${$prefix . $tax_terms[$i]}, $query, 60 * $cache_time );
 
         }
-
-        $query = get_transient( ${$prefix . $tax_terms[$i]} );
 
         if( $query->have_posts() ) {
 
