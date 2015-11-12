@@ -359,6 +359,8 @@ if(! function_exists( 'rebuild_all_content' ) ) {
 
             echo $link;
 
+            return;
+
         }
 
         return;
@@ -387,6 +389,46 @@ if(! function_exists( 'rebuild_print_taxonomy_name' ) ) {
         }
 
         return;
+
+    }
+
+}
+
+
+/**
+ * Custom Pagination
+ * Outputs the_posts_navigation with conditional $args, based on post_type
+ * @return the_posts_navigation
+ */
+
+if(! function_exists( 'rebuild_custom_posts_navigation' ) ) {
+
+    function rebuild_custom_posts_navigation() {
+
+        switch( true ) {
+
+            case ( is_post_type_archive( 'event' ) ) :
+                $args = array(
+                    'prev_text' => __( 'Next Events', 'rebuild-foundation' ),
+                    'next_text' => __( 'Previous Events', 'rebuild-foundation' ),
+                    'screen_reader_text' => __( 'Events Navigation', 'rebuild-foundation' )
+                );
+                break;
+
+            case ( is_post_type_archive( 'exhibition' ) ) :
+                $args = array(
+                    'prev_text' => __( 'Next Exhibitions', 'rebuild-foundation' ),
+                    'next_text' => __( 'Previous Exhibitions', 'rebuild-foundation' ),
+                    'screen_reader_text' => __( 'Exhibitions Navigation', 'rebuild-foundation' )
+                );
+                break;
+
+            default :
+                return the_posts_navigation();
+
+        }
+
+        return the_posts_navigation( $args );
 
     }
 

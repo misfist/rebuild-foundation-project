@@ -72,6 +72,8 @@
             wp_link_pages( array(
                 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
                 'after'  => '</div>',
+                'nextpagelink'     => __( 'Previous Events', 'rebuild-foundation' ),
+                'previouspagelink' => __( 'Next Events', 'rebuild-foundation' ),
             ) );
         ?>
     </footer><!-- .entry-footer -->

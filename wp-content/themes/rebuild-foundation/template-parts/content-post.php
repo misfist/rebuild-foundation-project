@@ -52,12 +52,7 @@
 
 		<?php get_template_part( 'template-parts/social-media' ); ?>
 
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
-				'after'  => '</div>',
-			) );
-		?>
+		
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
