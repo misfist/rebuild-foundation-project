@@ -46,6 +46,7 @@ if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
       
     }
 
+    // Localize scope of current exhibition
     if( is_singular( array( 'exhibition' ) ) ) {
       $scope = wp_get_post_terms( $post->ID, 'exhibition_category', array( 'fields' => 'slugs' ) );
       $post_info['exhibitionScope'] = ( count( $scope ) > 0 ) ? $scope[0] : '' ;
@@ -60,14 +61,15 @@ if( !function_exists( 'rebuild_foundation_enqueue_filter_script' ) ) {
 
     }
 
-    // Localize scope if exhibition_category `query_var` is set
-    $exhibition_scope = get_query_var( 'exhibition_category' );
-
-    if( $exhibition_scope ) {
-
-      $post_info['exhibitionScope'] = $exhibition_scope;
+    if( is_post_type_archive( 'exhibition' ) ) {
+      
+      // Localize scope if exhibition_category `query_var` is set
+      $exhibition_scope = get_query_var( 'exhibition_category' );
+      
+      $post_info['exhibitionScope'] = ( $exhibition_scope ) ? $exhibition_scope : rebuild_exhibition_scope( $site_var );
 
     }
+
 
     wp_localize_script( 'rebuild-foundation-filters', 'pageInfo', $post_info );
 
@@ -389,17 +391,4 @@ if(! function_exists( 'jetpack_developer_custom_sharing_text' ) ) {
  *
  */
 
-//add_filter('show_admin_bar', '__return_false');
-
-// remove wordpress trying to style the admin bar with inline css
-function hide_admin_bar_from_front_end() {
-
-  if( is_admin() ) {
-    return;
-  }
-  
-  //remove_action( 'wp_head', '_admin_bar_bump_cb' );
-
-  return true;
-}
-//add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
+remove_action( 'wp_head', '_admin_bar_bump_cb' );
