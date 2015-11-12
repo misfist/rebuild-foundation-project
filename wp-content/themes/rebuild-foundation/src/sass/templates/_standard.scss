@@ -122,7 +122,7 @@
 	}
 
 	.entry-footer {
-		border-top: 1px solid $black-transparent;
+		border-top: 1px solid $black-transparent-light;
 		padding-top: 25px;
 		margin-top: 40px;
 
@@ -194,6 +194,12 @@
 			a {
 				font: $font_size-4 $regular;
 				@include heading-link();
+
+				em, cite, i, dfn {
+					font-family: $light-i;
+					font-weight: normal;
+					font-style: normal;
+				}
 			}
 		}
 
@@ -214,6 +220,10 @@
 			margin-top: 0;
 		}
 
+	}
+
+	.posts-navigation {
+		padding-left: $size__left-margin;
 	}
 }
 

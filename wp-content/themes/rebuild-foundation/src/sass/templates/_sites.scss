@@ -21,7 +21,7 @@
 			}
 		}
 
-		#site-gallery {
+		.site-header ~ #site-gallery {
 			@include inblock (75%);
 			vertical-align: bottom;
 			margin-left: -5px;
@@ -32,16 +32,10 @@
 				display: block;
 				width: 50%;
 				max-width: 400px;
-				margin: 200px 0 0 -20%;
+				margin: 150px 0 0 -20%;
 				z-index: 2;
 				pointer-events: none;
 			}
-		}
-
-		.single-image {
-			@include inblock (75%);
-			vertical-align: bottom;
-			margin: 60px 0 0 -5px;
 
 			figure {
 				width: 100%;
@@ -66,16 +60,10 @@
 					}
 				}
 			}
+		}
 
-			&::before {
-				position: absolute;
-				display: block;
-				width: 50%;
-				max-width: 400px;
-				margin: 200px 0 0 -20%;
-				z-index: 2;
-				pointer-events: none;
-			}
+		.site-header ~ .single-image {
+			@extend #site-gallery;
 		}
 
 		#no-results {
@@ -105,15 +93,19 @@
 
 		&.site_category-dorchester-art-housing-collaborative {
 			
-			#site-gallery::before {
+			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
 				content: url('img/graphic_da-hc.svg');
+				max-width: 450px;
+				width: 55%;
+				margin-left: -25%;
+				margin-top: 100px;
 			}
 
 		}
 
 		&.site_category-black-cinema-house {
 			
-			#site-gallery::before {
+			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
 				content: url('img/graphic_bch.svg');
 			}
 
@@ -121,7 +113,7 @@
 
 		&.site_category-stony-island-arts-bank {
 			
-			#site-gallery::before {
+			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
 				content: url('img/graphic_siab.svg');
 			}
 
@@ -129,18 +121,21 @@
 
 		&.site_category-listening-house {
 			
-			#site-gallery::before {
+			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
 				content: url('img/graphic_lh.svg');
-
+				max-width: 350px;
+				margin-left: -15%;
+				margin-top: 240px;
 			}
 
 		}
 
 		&.site_category-archive-house {
 			
-			#site-gallery::before {
+			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
 				content: url('img/graphic_ah.svg');
-				margin: 200px 0 0 -28%;
+				margin-top: 100px;
+				margin-left: -26%;
 			}
 
 		}
@@ -219,6 +214,16 @@
 							font: normal $font_size-3 $light;
 							color: $white;
 
+							em, cite, i, dfn {
+								font-family: $light-i;
+								font-weight: normal;
+								font-style: normal;
+							}
+
+							&:hover {
+								color: $white-transparent;
+							}
+
 							a {
 								font: normal $font_size-3 $light;
 								color: $white;
@@ -280,7 +285,7 @@
 
 				article {
 					.event-date {
-						text-align: left;
+						text-align: center;
 					}
 				}
 			}

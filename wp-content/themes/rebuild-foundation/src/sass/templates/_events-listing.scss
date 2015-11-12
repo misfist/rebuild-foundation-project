@@ -25,6 +25,12 @@
 				text-decoration: none;
 				color: $black;
 
+				em, cite, i, dfn {
+					font-family: $light-i;
+					font-weight: normal;
+					font-style: normal;
+				}
+
 				label {
 					font: $font_size-2 $regular;
 					letter-spacing: 0.1em;
