@@ -16,9 +16,9 @@
 
 ?>
 
-<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>"  <?php post_class( get_post_type() ); ?>>
-	
-	<div class="site-name"><?php rebuild_get_site_category_content(); ?></div>
+<article id="event-<?php the_ID(); ?>" data-year="<?php echo date( 'Y', strtotime( $start_date ) ); ?>" data-month="<?php echo date( 'm', strtotime( $start_date ) ); ?>" <?php post_class( get_post_type() ); ?>>
+    
+    <div class="site-name"><?php rebuild_get_site_category_content(); ?></div>
 
     <?php the_title( sprintf( '<h3 class="entry-title event-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
 

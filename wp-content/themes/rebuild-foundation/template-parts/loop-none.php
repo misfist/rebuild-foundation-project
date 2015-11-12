@@ -18,6 +18,6 @@
 
 <article id="no-results" <?php post_class( $post_type ); ?>>
 	
-	<div class="no-posts"><?php _e( 'No ' . $post_type_label, 'rebuild-foundation'); ?></div>
+	<div class="no-posts"><?php _e( 'No ', 'rebuild-foundation'); ?> <?php echo $post_type_label ?></div>
     
 </article><!-- #post-## -->
