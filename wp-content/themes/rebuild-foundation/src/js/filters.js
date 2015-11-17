@@ -76,7 +76,7 @@ jQuery( document ).ready( function( $ ) {
         }
 
 
-        // If now query_var is set, set current to active
+        // If no query_var is set, set current to active
         if( typeof queryVars.exhibition_category != 'undefined' ) {
 
             $( 'li[data-exhibition_category=' + queryVars.exhibition_category + ']' ).addClass( 'active' );            
