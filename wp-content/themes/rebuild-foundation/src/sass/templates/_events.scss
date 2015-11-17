@@ -39,10 +39,31 @@
 		width: $size__site-main-center-2;
 		margin-top: 44px;
 		border: 1px solid $black-transparent-light;
-		padding: 50px 0 30px;
+		padding: 0 0 30px;
+
+		&::before {
+			position: absolute;
+			padding: 10px 5% 8px 5%;
+			font: $font_size-1 $regular;
+			color: $warm-gray;
+			letter-spacing: 0.1em;
+			background-color: $black-transparent;
+			margin-top: -1px;
+			margin-left: -1px;
+		}
+
+		&.upcoming::before {
+			content: "UPCOMING";
+			background-color: $black;
+		}
+
+		&.past::before {
+			content: "PAST";
+		}
 
 		header {
 			padding-bottom: 30px;
+			padding-top: 65px;
 		}
 
 		h2.site-name {

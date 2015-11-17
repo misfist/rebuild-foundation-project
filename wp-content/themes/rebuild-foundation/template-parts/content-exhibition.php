@@ -76,7 +76,7 @@
 
             <div id="details">
 
-                <h4><?php _e( 'On View At', 'rebuild-foundation' ); ?></h4>
+                <h4><?php _e( '', 'rebuild-foundation' ); ?></h4>
 
                 <div class="entry-meta location">
                     <?php echo ( function_exists( 'rebuild_get_site_link' ) ) ? rebuild_get_site_link() : ''; ?>

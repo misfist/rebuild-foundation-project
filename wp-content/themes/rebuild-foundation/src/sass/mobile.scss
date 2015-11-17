@@ -195,6 +195,7 @@ ul.event-year-filter, .single-event ul.event-year-filter {
 	left: 25px;
 	top: 100px;
 	border: none;
+	width: 60px;
 
 	li {
 		display: block;
@@ -428,46 +429,96 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 			width: $size__mobile-main-nested;
 			min-height: auto;
 
-			&:hover {
-				width: 100%;
+			&::before {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
 
+			&:hover {
+				width: $size__mobile-main-nested;
+				background-color: transparent;
+
+				&::before {
+					color: $black-transparent;
+					border-bottom: 1px solid $black-transparent-light;
+					border-right: 1px solid $black-transparent-light;
+				}
+
+
+				.entry-main {
+					.site-name {
+						a {
+							color: $black-transparent;
+
+							&:hover {
+								color: $black;
+							}
+						}
+					}
+
+					.event-title {
+						a {
+							color: $black;
+
+							&:hover {
+								color: $black-transparent;
+							}
+						}
+					}
+				}
 				.event-date {
+					height: auto;
+
+					time {
+						color: $black;
+					}
 
 					&::before {
-						background-color: transparent;
+						display: none;
 					}
+				}
+
+				.entry-excerpt {
+					display: none;
 				}
 			}
 
-			.site-name {
-				display: block;
-				width: 100%;
-				padding: 20px 20px;
-				line-height: 1.1em;
-
-				a {
-					font: $font_size-1 $regular;
-
-					label {
-						font-size: $font_size-1;
-						padding-left: 0;
-					}
-				}
-			}
-
-			.event-title {
-				margin-left: 0;
-				padding-left: 20px;
+			.entry-main {
 				width: 75%;
-				margin-top: 0;
-				padding-bottom: 30px;
+				margin-top: 30px;
 
-				a {
-					font: normal $font_size-3 $bold;
+				.site-name {
+					display: block;
+					width: 100%;
+					padding: 20px 20px;
+					line-height: 1.1em;
+
+					a {
+						font: $font_size-1 $regular;
+
+						label {
+							font-size: $font_size-1;
+							padding-left: 0;
+						}
+					}
+				}
+
+				.event-title {
+					display: block;
+					margin-left: 0;
+					padding-left: 20px;
+					width: 100%;
+					margin-top: 0;
+					padding-bottom: 30px;
+
+					a {
+						font: normal $font_size-3 $bold;
+					}
 				}
 			}
 
 			.event-date {
+				margin-top: 48px;
 				width: 20%;
 				min-height: auto;
 				background-image: none !important;
@@ -498,6 +549,11 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 		width: $size__mobile-main-nested;
 		padding: 15px;
 		margin-top: 30px;
+
+		&::before {
+			margin-top: -15px;
+			margin-left: -15px;
+		}
 
 		h2.site-name, h1.entry-title, h3.event-date {
 			@include clear-inblock();

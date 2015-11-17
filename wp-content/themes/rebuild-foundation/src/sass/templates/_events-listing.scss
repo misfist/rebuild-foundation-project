@@ -14,45 +14,78 @@
 		min-height: 200px;
 		@include transition-duration(0.5s);
 
-		.site-name {
-			@include inblock(35%);
-			padding: 40px 30px 0 40px;
-			text-transform: uppercase;
+		&::before {
+			position: absolute;
+			padding: 8px 40px 6px 40px;
+			font: $font_size-1 $bold;
+			color: $black-transparent;
 			letter-spacing: 0.1em;
+			border-bottom: 1px solid $black-transparent-light;
+			border-right: 1px solid $black-transparent-light;
 
-			a {
-				font: $font_size-4 $light;
-				text-decoration: none;
-				color: $black;
+		}
 
-				em, cite, i, dfn {
-					font-family: $light-i;
-					font-weight: normal;
-					font-style: normal;
-				}
+		&.upcoming::before {
+			content: "UPCOMING";
+		}
 
-				label {
+		&.past::before {
+			content: "PAST";
+		}
+
+		.entry-main {
+			@include inblock(80%);
+
+			.site-name {
+				@include inblock(35%);
+				padding: 60px 30px 0 40px;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				line-height: 1.1em;
+
+				a {
 					font: $font_size-2 $regular;
 					letter-spacing: 0.1em;
-					padding-left: 2px;
 				}
 			}
-		}
 
-		.event-title {
-			@include inblock(45%);
-			margin-left: -4px;
-			margin-top: 50px;
-			padding-right: 40px;
-			padding-left: 30px;
-			font: normal $font-size-2 $bold;
+			.event-title {
+				@include inblock(65%);
+				margin-left: -4px;
+				margin-top: 55px;
+				padding-right: 40px;
+				padding-left: 30px;
+				font: normal $font-size-3 $bold;
 
 
-			a {
-				color: $black;
-				text-decoration: none;
+				a {
+					color: $black;
+					text-decoration: none;
+				}
+			}
+
+			.entry-excerpt {
+				display: none;
+				padding: 15px 20px 0 40px;
+
+					p {
+						color: $warm-gray;
+						font: normal $font-size-2 $light;
+						letter-spacing: 0.01em;
+						line-height: 1.4em;
+
+						a.read-more {
+							text-decoration: underline;
+							color: $warm-gray;
+
+							&:hover {
+								text-decoration: none;
+							}
+						}
+					}
 			}
 		}
+
 
 		.event-date {
 			@include inblock(20%);
@@ -71,7 +104,7 @@
 			time {
 				font: normal $font-size-2 $bold;
 				position: relative;
-				margin: -150px auto 0 auto;
+				margin: -140px auto 0 auto;
 				z-index: 1;
 				display: block;
 				width: 55px;
@@ -80,43 +113,61 @@
 
 		&:hover {
 			width: 100%;
-			background-color: $black-transparent;
+			background-color: $black-transparent-opaque;
 			@include transition-duration(0.5s);
 
-			.site-name a {
-				color: $warm-gray;
-				@include transition-duration(0.25s);
-
-				&:hover {
-					color: $black;
-					@include transition-duration(0.25s);
-				}
+			&::before {
+				background-color: $warm-gray;
+				color: $black-transparent-opaque;
+				border: none;
 			}
 
-			.event-title {
-				width: 35%;
+			.entry-main {
+				width: 70%;
 
-				a {
+				.site-name a {
 					color: $warm-gray;
 					@include transition-duration(0.25s);
 
 					&:hover {
-						color: $black;
+						color: $warm-gray-transparent;
 						@include transition-duration(0.25s);
 					}
+				}
+
+				.event-title {
+
+					a {
+						color: $warm-gray;
+						@include transition-duration(0.25s);
+						font: normal $font-size-3 $regular;
+
+						&:hover {
+							color: $warm-gray-transparent;
+							@include transition-duration(0.25s);
+						}
+					}
+				}
+
+				.entry-excerpt {
+					display: block;
+
 				}
 			}
 
 			.event-date {
 				width: 30%;
 				@include background-size(cover);
+				height: 300px;
 
 				&::before {
 					background-color: $black-transparent-light;
+					height: 300px;
 				}
 
 				time {
 					color: $warm-gray;
+					margin-top: -240px;
 				}
 			}
 		}
@@ -142,6 +193,20 @@
 	.post-type-archive-event, .tax-event_category, .tax-event_tag {
 		article {
 			width: $size__site-main-center-2;
+
+			&:hover {
+				.event-date {
+					height: 350px;
+
+					&::before {
+						height: 350px;
+					}
+
+					time {
+						margin-top: -290px;
+					}
+				}
+			}
 		}
 	}	
 }
@@ -152,6 +217,7 @@
 		.posts-list {
 			left: 0;
 			width: 100%;
+			margin-top: 215px;
 		}
 	}
 }

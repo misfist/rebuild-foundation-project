@@ -135,6 +135,10 @@
 					color: $black;	
 				}
 			}
+
+			&:first-child.active {
+				margin-left: 0;
+			}
 		}
 	}	
 

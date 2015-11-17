@@ -1067,6 +1067,8 @@ a {
         margin-right: 1px; }
         .filters ul.event-month-filter li.active a {
           color: black; }
+      .filters ul.event-month-filter li:first-child.active {
+        margin-left: 0; }
   .filters .event-count {
     display: inline-block;
     vertical-align: top;
@@ -1712,37 +1714,58 @@ ul.social-links {
   -ms-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s; }
-  .post-type-archive-event article .site-name, .tax-event_category article .site-name, .tax-event_tag article .site-name {
+  .post-type-archive-event article::before, .tax-event_category article::before, .tax-event_tag article::before {
+    position: absolute;
+    padding: 8px 40px 6px 40px;
+    font: 13px "Akkurat-Bold";
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-right: 1px solid rgba(0, 0, 0, 0.25); }
+  .post-type-archive-event article.upcoming::before, .tax-event_category article.upcoming::before, .tax-event_tag article.upcoming::before {
+    content: "UPCOMING"; }
+  .post-type-archive-event article.past::before, .tax-event_category article.past::before, .tax-event_tag article.past::before {
+    content: "PAST"; }
+  .post-type-archive-event article .entry-main, .tax-event_category article .entry-main, .tax-event_tag article .entry-main {
     display: inline-block;
     vertical-align: top;
-    width: 35%;
-    padding: 40px 30px 0 40px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em; }
-    .post-type-archive-event article .site-name a, .tax-event_category article .site-name a, .tax-event_tag article .site-name a {
-      font: 25px "Akkurat-Light";
-      text-decoration: none;
-      color: black; }
-      .post-type-archive-event article .site-name a em, .post-type-archive-event article .site-name a cite, .post-type-archive-event article .site-name a i, .post-type-archive-event article .site-name a dfn, .tax-event_category article .site-name a em, .tax-event_category article .site-name a cite, .tax-event_category article .site-name a i, .tax-event_category article .site-name a dfn, .tax-event_tag article .site-name a em, .tax-event_tag article .site-name a cite, .tax-event_tag article .site-name a i, .tax-event_tag article .site-name a dfn {
-        font-family: "Akkurat-Lightitalic";
-        font-weight: normal;
-        font-style: normal; }
-      .post-type-archive-event article .site-name a label, .tax-event_category article .site-name a label, .tax-event_tag article .site-name a label {
+    width: 80%; }
+    .post-type-archive-event article .entry-main .site-name, .tax-event_category article .entry-main .site-name, .tax-event_tag article .entry-main .site-name {
+      display: inline-block;
+      vertical-align: top;
+      width: 35%;
+      padding: 60px 30px 0 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.1em; }
+      .post-type-archive-event article .entry-main .site-name a, .tax-event_category article .entry-main .site-name a, .tax-event_tag article .entry-main .site-name a {
         font: 16px "Akkurat-Regular";
-        letter-spacing: 0.1em;
-        padding-left: 2px; }
-  .post-type-archive-event article .event-title, .tax-event_category article .event-title, .tax-event_tag article .event-title {
-    display: inline-block;
-    vertical-align: top;
-    width: 45%;
-    margin-left: -4px;
-    margin-top: 50px;
-    padding-right: 40px;
-    padding-left: 30px;
-    font: normal 16px "Akkurat-Bold"; }
-    .post-type-archive-event article .event-title a, .tax-event_category article .event-title a, .tax-event_tag article .event-title a {
-      color: black;
-      text-decoration: none; }
+        letter-spacing: 0.1em; }
+    .post-type-archive-event article .entry-main .event-title, .tax-event_category article .entry-main .event-title, .tax-event_tag article .entry-main .event-title {
+      display: inline-block;
+      vertical-align: top;
+      width: 65%;
+      margin-left: -4px;
+      margin-top: 55px;
+      padding-right: 40px;
+      padding-left: 30px;
+      font: normal 20px "Akkurat-Bold"; }
+      .post-type-archive-event article .entry-main .event-title a, .tax-event_category article .entry-main .event-title a, .tax-event_tag article .entry-main .event-title a {
+        color: black;
+        text-decoration: none; }
+    .post-type-archive-event article .entry-main .entry-excerpt, .tax-event_category article .entry-main .entry-excerpt, .tax-event_tag article .entry-main .entry-excerpt {
+      display: none;
+      padding: 15px 20px 0 40px; }
+      .post-type-archive-event article .entry-main .entry-excerpt p, .tax-event_category article .entry-main .entry-excerpt p, .tax-event_tag article .entry-main .entry-excerpt p {
+        color: #e9e6df;
+        font: normal 16px "Akkurat-Light";
+        letter-spacing: 0.01em;
+        line-height: 1.4em; }
+        .post-type-archive-event article .entry-main .entry-excerpt p a.read-more, .tax-event_category article .entry-main .entry-excerpt p a.read-more, .tax-event_tag article .entry-main .entry-excerpt p a.read-more {
+          text-decoration: underline;
+          color: #e9e6df; }
+          .post-type-archive-event article .entry-main .entry-excerpt p a.read-more:hover, .tax-event_category article .entry-main .entry-excerpt p a.read-more:hover, .tax-event_tag article .entry-main .entry-excerpt p a.read-more:hover {
+            text-decoration: none; }
   .post-type-archive-event article .event-date, .tax-event_category article .event-date, .tax-event_tag article .event-date {
     display: inline-block;
     vertical-align: top;
@@ -1759,58 +1782,68 @@ ul.social-links {
     .post-type-archive-event article .event-date time, .tax-event_category article .event-date time, .tax-event_tag article .event-date time {
       font: normal 16px "Akkurat-Bold";
       position: relative;
-      margin: -150px auto 0 auto;
+      margin: -140px auto 0 auto;
       z-index: 1;
       display: block;
       width: 55px; }
   .post-type-archive-event article:hover, .tax-event_category article:hover, .tax-event_tag article:hover {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
     -webkit-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
     -ms-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
     transition-duration: 0.5s; }
-    .post-type-archive-event article:hover .site-name a, .tax-event_category article:hover .site-name a, .tax-event_tag article:hover .site-name a {
-      color: #e9e6df;
-      -webkit-transition-duration: 0.25s;
-      -moz-transition-duration: 0.25s;
-      -ms-transition-duration: 0.25s;
-      -o-transition-duration: 0.25s;
-      transition-duration: 0.25s; }
-      .post-type-archive-event article:hover .site-name a:hover, .tax-event_category article:hover .site-name a:hover, .tax-event_tag article:hover .site-name a:hover {
-        color: black;
-        -webkit-transition-duration: 0.25s;
-        -moz-transition-duration: 0.25s;
-        -ms-transition-duration: 0.25s;
-        -o-transition-duration: 0.25s;
-        transition-duration: 0.25s; }
-    .post-type-archive-event article:hover .event-title, .tax-event_category article:hover .event-title, .tax-event_tag article:hover .event-title {
-      width: 35%; }
-      .post-type-archive-event article:hover .event-title a, .tax-event_category article:hover .event-title a, .tax-event_tag article:hover .event-title a {
+    .post-type-archive-event article:hover::before, .tax-event_category article:hover::before, .tax-event_tag article:hover::before {
+      background-color: #e9e6df;
+      color: rgba(0, 0, 0, 0.75);
+      border: none; }
+    .post-type-archive-event article:hover .entry-main, .tax-event_category article:hover .entry-main, .tax-event_tag article:hover .entry-main {
+      width: 70%; }
+      .post-type-archive-event article:hover .entry-main .site-name a, .tax-event_category article:hover .entry-main .site-name a, .tax-event_tag article:hover .entry-main .site-name a {
         color: #e9e6df;
         -webkit-transition-duration: 0.25s;
         -moz-transition-duration: 0.25s;
         -ms-transition-duration: 0.25s;
         -o-transition-duration: 0.25s;
         transition-duration: 0.25s; }
-        .post-type-archive-event article:hover .event-title a:hover, .tax-event_category article:hover .event-title a:hover, .tax-event_tag article:hover .event-title a:hover {
-          color: black;
+        .post-type-archive-event article:hover .entry-main .site-name a:hover, .tax-event_category article:hover .entry-main .site-name a:hover, .tax-event_tag article:hover .entry-main .site-name a:hover {
+          color: rgba(233, 230, 223, 0.25);
           -webkit-transition-duration: 0.25s;
           -moz-transition-duration: 0.25s;
           -ms-transition-duration: 0.25s;
           -o-transition-duration: 0.25s;
           transition-duration: 0.25s; }
+      .post-type-archive-event article:hover .entry-main .event-title a, .tax-event_category article:hover .entry-main .event-title a, .tax-event_tag article:hover .entry-main .event-title a {
+        color: #e9e6df;
+        -webkit-transition-duration: 0.25s;
+        -moz-transition-duration: 0.25s;
+        -ms-transition-duration: 0.25s;
+        -o-transition-duration: 0.25s;
+        transition-duration: 0.25s;
+        font: normal 20px "Akkurat-Regular"; }
+        .post-type-archive-event article:hover .entry-main .event-title a:hover, .tax-event_category article:hover .entry-main .event-title a:hover, .tax-event_tag article:hover .entry-main .event-title a:hover {
+          color: rgba(233, 230, 223, 0.25);
+          -webkit-transition-duration: 0.25s;
+          -moz-transition-duration: 0.25s;
+          -ms-transition-duration: 0.25s;
+          -o-transition-duration: 0.25s;
+          transition-duration: 0.25s; }
+      .post-type-archive-event article:hover .entry-main .entry-excerpt, .tax-event_category article:hover .entry-main .entry-excerpt, .tax-event_tag article:hover .entry-main .entry-excerpt {
+        display: block; }
     .post-type-archive-event article:hover .event-date, .tax-event_category article:hover .event-date, .tax-event_tag article:hover .event-date {
       width: 30%;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
-      background-size: cover; }
+      background-size: cover;
+      height: 300px; }
       .post-type-archive-event article:hover .event-date::before, .tax-event_category article:hover .event-date::before, .tax-event_tag article:hover .event-date::before {
-        background-color: rgba(0, 0, 0, 0.25); }
+        background-color: rgba(0, 0, 0, 0.25);
+        height: 300px; }
       .post-type-archive-event article:hover .event-date time, .tax-event_category article:hover .event-date time, .tax-event_tag article:hover .event-date time {
-        color: #e9e6df; }
+        color: #e9e6df;
+        margin-top: -240px; }
   .post-type-archive-event article#no-results, .tax-event_category article#no-results, .tax-event_tag article#no-results {
     border: none;
     margin-top: 145px; }
@@ -1822,11 +1855,18 @@ ul.social-links {
 
 @media (max-width: 1200px) {
   .post-type-archive-event article, .tax-event_category article, .tax-event_tag article {
-    width: calc(100% - 60px); } }
+    width: calc(100% - 60px); }
+    .post-type-archive-event article:hover .event-date, .tax-event_category article:hover .event-date, .tax-event_tag article:hover .event-date {
+      height: 350px; }
+      .post-type-archive-event article:hover .event-date::before, .tax-event_category article:hover .event-date::before, .tax-event_tag article:hover .event-date::before {
+        height: 350px; }
+      .post-type-archive-event article:hover .event-date time, .tax-event_category article:hover .event-date time, .tax-event_tag article:hover .event-date time {
+        margin-top: -290px; } }
 @media (max-width: 1024px) {
   .post-type-archive-event .posts-list, .tax-event_category .posts-list, .tax-event_tag .posts-list {
     left: 0;
-    width: 100%; } }
+    width: 100%;
+    margin-top: 215px; } }
 .single-event #main {
   width: calc(100% - 180px);
   left: 180px;
@@ -1851,9 +1891,24 @@ ul.social-links {
   width: calc(100% - 60px);
   margin-top: 44px;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  padding: 50px 0 30px; }
+  padding: 0 0 30px; }
+  .single-event article::before {
+    position: absolute;
+    padding: 10px 5% 8px 5%;
+    font: 13px "Akkurat-Regular";
+    color: #e9e6df;
+    letter-spacing: 0.1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: -1px;
+    margin-left: -1px; }
+  .single-event article.upcoming::before {
+    content: "UPCOMING";
+    background-color: black; }
+  .single-event article.past::before {
+    content: "PAST"; }
   .single-event article header {
-    padding-bottom: 30px; }
+    padding-bottom: 30px;
+    padding-top: 65px; }
   .single-event article h2.site-name {
     display: inline-block;
     vertical-align: top;
@@ -1983,7 +2038,7 @@ ul.social-links {
 article.exhibition {
   width: calc(100% - 60px);
   margin-bottom: 35px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   border-bottom: 1px solid white; }
   article.exhibition:last-child {
     border: none; }
