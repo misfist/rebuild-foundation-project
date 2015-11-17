@@ -8,6 +8,30 @@
  */
 
 /**
+ * Enqueue scroll script
+ */
+
+if( !function_exists( 'rebuild_foundation_enqueue_event_scroll' ) ) {
+
+  function rebuild_foundation_enqueue_event_scroll() {
+
+    if( is_admin() ) {
+      return;
+    }
+
+    if( is_post_type_archive( 'event' ) || is_tax( 'event_tag', 'event_category' ) ) {
+
+      // To make changes, edit source and compile
+      wp_enqueue_script( 'rebuild-event-scroll', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/eventScroll.js', array( 'jquery' ), '', true );
+
+    }
+
+  }
+
+  add_action( 'wp_enqueue_scripts', 'rebuild_foundation_enqueue_event_scroll' );
+}
+
+/**
  * Event Meta Query Vars
  * Builds the date query vars based on conditions
  * @return array
@@ -310,7 +334,7 @@ if(! function_exists( 'rebuild_get_event_scope' ) ) {
 
       case ( $today == $start_date ) :
         // today
-        $scope = 'today';
+        $scope = 'today current';
         break;
       case ( $start_date > $today ) :
         // upcoming
