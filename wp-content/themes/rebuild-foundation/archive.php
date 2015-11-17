@@ -48,7 +48,7 @@ get_header(); ?>
 
         <?php global $wp_query; ?>
 
-            <div class="posts-list">
+            <div <?php echo ( 'event' == get_post_type() ) ? 'id="scrollable"' : '' ?> class="posts-list">
 
             <?php if ( have_posts() ) : ?>
 
