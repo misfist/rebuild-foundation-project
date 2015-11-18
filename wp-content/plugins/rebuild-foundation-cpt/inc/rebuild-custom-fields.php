@@ -95,6 +95,11 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'operator' => '==',
                     'value' => 'post',
                 ),
+                array(
+                    'param' => 'post_category',
+                    'operator' => '!=',
+                    'value' => 'category:staff',
+                ),
             ),
             array(
                 array(
@@ -704,7 +709,53 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'description' => '',
     ));
 
+    acf_add_local_field_group( array(
+        'key' => 'group_564bb18ed063a',
+        'title' => 'Staff Group',
+        'fields' => array(
+            array(
+                'key' => 'field_564bb1ab499d2',
+                'label' => 'Title',
+                'name' => 'staff_title',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array (
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+                'readonly' => 0,
+                'disabled' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'staff',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'acf_after_title',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => 1,
+        'description' => '',
+    ));
+
 }
+
 
 /**
  * Year and Month Query Vars
