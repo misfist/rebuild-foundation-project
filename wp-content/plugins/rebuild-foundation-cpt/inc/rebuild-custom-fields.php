@@ -19,6 +19,11 @@
 
 if( function_exists( 'acf_add_local_field_group' ) ) {
 
+    /*
+     * Location Fields
+     *
+     */
+
     acf_add_local_field_group( array(
         'key' => 'group_5618bc8728ddf',
         'title' => 'Location Details',
@@ -60,6 +65,11 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'active' => 1,
         'description' => '',
     ));
+
+    /*
+     * Site Fields
+     *
+     */
 
     acf_add_local_field_group( array(
         'key' => 'group_5622c317754a9',
@@ -140,6 +150,11 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'active' => 1,
         'description' => '',
     ));
+
+    /*
+     * Event Fields
+     *
+     */
 
     acf_add_local_field_group( array(
         'key' => 'group_561990787d10e',
@@ -320,6 +335,11 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'active' => 1,
         'description' => '',
     ));
+
+    /*
+     * Exhibition Fields
+     *
+     */
 
     acf_add_local_field_group( array(
         'key' => 'group_5622bb53e29c8',
@@ -547,6 +567,11 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'description' => '',
     ));
 
+    /*
+     * Site Fields
+     *
+     */
+
     acf_add_local_field_group( array(
         'key' => 'group_5618c1002e81e',
         'title' => 'Site Details',
@@ -709,10 +734,150 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'description' => '',
     ));
 
+    /*
+     * Staff CPT Fields
+     *
+     */
+
     acf_add_local_field_group( array(
         'key' => 'group_564bb18ed063a',
         'title' => 'Staff Group',
         'fields' => array(
+            array(
+                'key' => 'field_564cf4e909298',
+                'label' => 'Group',
+                'name' => 'staff_category',
+                'type' => 'flexible_content',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array (
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'button_label' => 'Add Staff Member',
+                'min' => 1,
+                'max' => '',
+                'layouts' => array (
+                    array(
+                        'key' => '564cf51758f85',
+                        'name' => 'group_name',
+                        'label' => 'Group Name',
+                        'display' => 'row',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_564cf52209299',
+                                'label' => 'Staff Name',
+                                'name' => 'staff_name',
+                                'type' => 'text',
+                                'instructions' => '',
+                                'required' => 1,
+                                'conditional_logic' => 0,
+                                'wrapper' => array (
+                                    'width' => '',
+                                    'class' => '',
+                                    'id' => '',
+                                ),
+                                'default_value' => '',
+                                'placeholder' => 'Please enter name',
+                                'prepend' => '',
+                                'append' => '',
+                                'maxlength' => '',
+                                'readonly' => 0,
+                                'disabled' => 0,
+                            ),
+                            array(
+                                'key' => 'field_564cf767f59c8',
+                                'label' => 'Staff Title',
+                                'name' => 'Title',
+                                'type' => 'text',
+                                'instructions' => '',
+                                'required' => 0,
+                                'conditional_logic' => 0,
+                                'wrapper' => array(
+                                    'width' => '',
+                                    'class' => '',
+                                    'id' => '',
+                                ),
+                                'default_value' => '',
+                                'placeholder' => '',
+                                'prepend' => '',
+                                'append' => '',
+                                'maxlength' => '',
+                                'readonly' => 0,
+                                'disabled' => 0,
+                            ),
+                            array(
+                                'key' => 'field_564cf56f0929a',
+                                'label' => 'Email',
+                                'name' => 'staff_email',
+                                'type' => 'email',
+                                'instructions' => '',
+                                'required' => 0,
+                                'conditional_logic' => 0,
+                                'wrapper' => array (
+                                    'width' => '',
+                                    'class' => '',
+                                    'id' => '',
+                                ),
+                                'default_value' => '',
+                                'placeholder' => 'staff@rebuild-foundation.org',
+                                'prepend' => 'mailto:',
+                                'append' => '',
+                            ),
+                            array(
+                                'key' => 'field_564cf5890929b',
+                                'label' => 'Staff Photo',
+                                'name' => 'staff_photo',
+                                'type' => 'image',
+                                'instructions' => '',
+                                'required' => 0,
+                                'conditional_logic' => 0,
+                                'wrapper' => array(
+                                    'width' => '',
+                                    'class' => '',
+                                    'id' => '',
+                                ),
+                                'return_format' => 'url',
+                                'preview_size' => 'thumbnail',
+                                'library' => 'all',
+                                'min_width' => '',
+                                'min_height' => '',
+                                'min_size' => '',
+                                'max_width' => '',
+                                'max_height' => '',
+                                'max_size' => '',
+                                'mime_types' => '',
+                            ),
+                            array(
+                                'key' => 'field_564cf78df59c9',
+                                'label' => 'Staff Category',
+                                'name' => 'staff_category',
+                                'type' => 'taxonomy',
+                                'instructions' => '',
+                                'required' => 0,
+                                'conditional_logic' => 0,
+                                'wrapper' => array(
+                                    'width' => '',
+                                    'class' => '',
+                                    'id' => '',
+                                ),
+                                'taxonomy' => 'staff_category',
+                                'field_type' => 'checkbox',
+                                'allow_null' => 0,
+                                'add_term' => 1,
+                                'save_terms' => 1,
+                                'load_terms' => 1,
+                                'return_format' => 'id',
+                                'multiple' => 0,
+                            ),
+                        ),
+                        'min' => '',
+                        'max' => '',
+                    ),
+                ),
+            ),
             array(
                 'key' => 'field_564bb1ab499d2',
                 'label' => 'Title',
@@ -721,7 +886,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array (
+                'wrapper' => array(
                     'width' => '',
                     'class' => '',
                     'id' => '',
@@ -733,6 +898,24 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                 'maxlength' => '',
                 'readonly' => 0,
                 'disabled' => 0,
+            ),
+            array(
+                'key' => 'field_564cebe2ebbd4',
+                'label' => 'Email',
+                'name' => 'staff_email',
+                'type' => 'email',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => 'staff@rebuild-foundation.org',
+                'prepend' => 'mailto:',
+                'append' => '',
             ),
         ),
         'location' => array(
@@ -753,6 +936,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
         'active' => 1,
         'description' => '',
     ));
+
 
 }
 
