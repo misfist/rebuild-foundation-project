@@ -34,10 +34,6 @@ get_header(); ?>
             <h1 class="entry-title page-title"><?php the_title( ); ?></h1>
 
         </header><!-- .entry-header -->
-
-        <nav class="page-sub-menu">
-  
-        </nav>
         
         <main id="main" class="site-main" role="main">
 
