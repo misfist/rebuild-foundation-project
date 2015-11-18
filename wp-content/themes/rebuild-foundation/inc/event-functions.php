@@ -22,7 +22,7 @@ if( !function_exists( 'rebuild_foundation_enqueue_event_scroll' ) ) {
     if( is_post_type_archive( 'event' ) || is_tax( 'event_tag', 'event_category' ) ) {
 
       // To make changes, edit source and compile
-      wp_enqueue_script( 'rebuild-event-scroll', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/eventScroll.js', array( 'jquery' ), '', true );
+      wp_enqueue_script( 'rebuild-event-scroll', trailingslashit( get_stylesheet_directory_uri() ) . 'assets/js/eventScroll.min.js', array( 'jquery' ), '', true );
 
     }
 
