@@ -759,6 +759,71 @@ if(! function_exists( 'rebuild_custom_columns' ) ) {
                 )
             ) );
 
+            /*
+             * Staff Columns
+             *
+             */
+
+            ac_register_columns( 'staff', array(
+                'ssid' => array(
+                    'column-name' => 'ssid',
+                    'type' => 'ssid',
+                    'clone' => '',
+                    'label' => 'ID',
+                    'width' => '',
+                    'width_unit' => '%'
+                ),
+                'title' => array(
+                    'column-name' => 'title',
+                    'type' => 'title',
+                    'clone' => '',
+                    'label' => 'Name',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'sort' => 'on',
+                    'edit' => 'on'
+                ),
+                'column-featured_image' => array(
+                    'column-name' => 'column-featured_image',
+                    'type' => 'column-featured_image',
+                    'clone' => '',
+                    'label' => 'Photo',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'image_size' => 'cpac-custom',
+                    'image_size_w' => '80',
+                    'image_size_h' => '80',
+                    'filter' => 'off',
+                    'sort' => 'off',
+                    'edit' => 'off'
+                ),
+                'column-taxonomy' => array(
+                    'column-name' => 'column-taxonomy',
+                    'type' => 'column-taxonomy',
+                    'clone' => '',
+                    'label' => 'Group',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'taxonomy' => 'staff_category',
+                    'filter' => 'on',
+                    'sort' => 'on',
+                    'edit' => 'off',
+                    'enable_term_creation' => 'off'
+                ),
+                'column-acf_field' => array(
+                    'column-name' => 'column-acf_field',
+                    'type' => 'column-acf_field',
+                    'clone' => '',
+                    'label' => 'Title',
+                    'width' => '',
+                    'width_unit' => '%',
+                    'field' => 'field_564bb1ab499d2',
+                    'filter' => 'on',
+                    'sort' => 'on',
+                    'edit' => 'off'
+                )
+            ) );
+
         }
 
         add_action( 'init', 'rebuild_custom_columns' );

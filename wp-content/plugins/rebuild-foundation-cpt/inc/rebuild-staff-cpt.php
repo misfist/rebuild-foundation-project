@@ -49,7 +49,7 @@ if ( ! function_exists('rebuild_foundation_staff_post_type') ) {
             'public'                => true,
             'show_ui'               => true,
             'show_in_menu'          => true,
-            'menu_position'         => 10,
+            'menu_position'         => 5,
             'menu_icon'             => 'dashicons-id',
             'show_in_admin_bar'     => true,
             'show_in_nav_menus'     => true,
@@ -77,8 +77,8 @@ if ( ! function_exists( 'rebuild_foundation_staff_category' ) ) {
     function rebuild_foundation_staff_category() {
 
         $labels = array(
-            'name'                       => _x( 'Groups', 'Taxonomy General Name', 'rebuild_cpt' ),
-            'singular_name'              => _x( 'Group', 'Taxonomy Singular Name', 'rebuild_cpt' ),
+            'name'                       => _x( 'Staff Groups', 'Taxonomy General Name', 'rebuild_cpt' ),
+            'singular_name'              => _x( 'Staff Group', 'Taxonomy Singular Name', 'rebuild_cpt' ),
             'menu_name'                  => __( 'Staff Group', 'rebuild_cpt' ),
             'all_items'                  => __( 'All Groups', 'rebuild_cpt' ),
             'parent_item'                => __( 'Parent Group', 'rebuild_cpt' ),
