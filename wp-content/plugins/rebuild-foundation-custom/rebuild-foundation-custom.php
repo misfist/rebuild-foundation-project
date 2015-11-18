@@ -24,9 +24,22 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+/* ---------------------------------- *
+ * Constants
+ * ---------------------------------- */
+
+if ( !defined( 'REBUILD_CUSTOM_PLUGIN_DIR' ) ) {
+    define( 'REBUILD_CUSTOM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+if ( !defined( 'REBUILD_CUSTOM_PLUGIN_URL' ) ) {
+    define( 'REBUILD_CUSTOM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
 // Include files
-include_once( 'inc/rebuild-foundation-shortcodes.php' );
-include_once( 'inc/rebuild-foundation-fields.php' );
+include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/rebuild-foundation-shortcodes.php' );
+include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/rebuild-foundation-fields.php' );
+include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/disable-theme-and-plugin-editor.php' );
 
 
 
