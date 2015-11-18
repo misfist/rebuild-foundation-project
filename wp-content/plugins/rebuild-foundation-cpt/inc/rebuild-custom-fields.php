@@ -741,7 +741,7 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
 
     acf_add_local_field_group( array(
         'key' => 'group_564bb18ed063a',
-        'title' => 'Staff Group',
+        'title' => 'Staff Details',
         'fields' => array(
             array(
                 'key' => 'field_564bb1ab499d2',
