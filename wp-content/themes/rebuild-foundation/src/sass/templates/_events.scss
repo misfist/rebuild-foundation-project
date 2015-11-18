@@ -48,17 +48,20 @@
 			color: $warm-gray;
 			letter-spacing: 0.1em;
 			background-color: $black-transparent;
-			margin-top: -1px;
-			margin-left: -1px;
+		}
+
+		&.today::before {
+			content: "TODAY";
+			background-color: $black;
 		}
 
 		&.upcoming::before {
 			content: "UPCOMING";
-			background-color: $black;
 		}
 
 		&.past::before {
 			content: "PAST";
+			background-color: $black-transparent-light;
 		}
 
 		header {

@@ -25,6 +25,12 @@
 
 		}
 
+		&.today::before {
+			content: "TODAY";
+			background-color: $black;
+			color: $warm-gray;
+		}
+
 		&.upcoming::before {
 			content: "UPCOMING";
 		}

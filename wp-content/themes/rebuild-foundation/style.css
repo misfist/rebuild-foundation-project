@@ -1063,12 +1063,9 @@ a {
       .filters ul.event-month-filter li.active {
         font: normal 25px "Akkurat-Regular";
         line-height: 24px;
-        margin-left: -5px;
-        margin-right: 1px; }
+        margin-right: 12px; }
         .filters ul.event-month-filter li.active a {
           color: black; }
-      .filters ul.event-month-filter li:first-child.active {
-        margin-left: 0; }
   .filters .event-count {
     display: inline-block;
     vertical-align: top;
@@ -1722,6 +1719,10 @@ ul.social-links {
     letter-spacing: 0.1em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     border-right: 1px solid rgba(0, 0, 0, 0.25); }
+  .post-type-archive-event article.today::before, .tax-event_category article.today::before, .tax-event_tag article.today::before {
+    content: "TODAY";
+    background-color: black;
+    color: #e9e6df; }
   .post-type-archive-event article.upcoming::before, .tax-event_category article.upcoming::before, .tax-event_tag article.upcoming::before {
     content: "UPCOMING"; }
   .post-type-archive-event article.past::before, .tax-event_category article.past::before, .tax-event_tag article.past::before {
@@ -1898,14 +1899,15 @@ ul.social-links {
     font: 13px "Akkurat-Regular";
     color: #e9e6df;
     letter-spacing: 0.1em;
-    background-color: rgba(0, 0, 0, 0.5);
-    margin-top: -1px;
-    margin-left: -1px; }
-  .single-event article.upcoming::before {
-    content: "UPCOMING";
+    background-color: rgba(0, 0, 0, 0.5); }
+  .single-event article.today::before {
+    content: "TODAY";
     background-color: black; }
+  .single-event article.upcoming::before {
+    content: "UPCOMING"; }
   .single-event article.past::before {
-    content: "PAST"; }
+    content: "PAST";
+    background-color: rgba(0, 0, 0, 0.25); }
   .single-event article header {
     padding-bottom: 30px;
     padding-top: 65px; }
