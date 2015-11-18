@@ -7,5 +7,8 @@ Author: Farzad Setoode
 Version: 1.1
 License: GPLv2
 */
-define('DISALLOW_FILE_EDIT', TRUE);
+
+if ( !defined( 'DISALLOW_FILE_EDIT' ) ) {
+    define( 'DISALLOW_FILE_EDIT', TRUE );
+}
 ?>
