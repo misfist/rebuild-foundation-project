@@ -341,7 +341,7 @@ if(! function_exists( 'rebuild_all_content_link' ) ) {
 
             $link = '<a href="';
             $link .= $url;
-            $link .= '">' . __( 'view all ' ) . 'Rebuild ';
+            $link .= '">' . __( 'view all ', 'rebuild-foundation' ) . 'Rebuild ';
             $link .= '<label>';
             $link .= ( isset( $post_type_obj->labels->name ) ) ? $post_type_obj->labels->name : 'Posts' ;
             $link .= '</label>';

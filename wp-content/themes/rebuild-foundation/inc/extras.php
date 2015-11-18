@@ -165,7 +165,7 @@ if(! function_exists( 'rebuild_foundation_image_sizes' ) ) {
 
   function rebuild_foundation_image_sizes( $sizes ) {
       return array_merge( $sizes, array(
-          'exhibition-thumbnail' => __( 'Exhibition Thumbnail' ),
+          'exhibition-thumbnail' => __( 'Exhibition Thumbnail', 'rebuild-foundation' ),
       ) );
   }
 

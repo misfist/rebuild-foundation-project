@@ -141,7 +141,7 @@ endif;
 /**
  * Print Site Category Link
  * Renders link to site_category content relative to current content
-* @input optionally supply $post_type argument
+ * @param optionally supply $post_type argument
  * @return echo string
  */
 
@@ -227,6 +227,7 @@ if(! function_exists( 'rebuild_get_the_feature_caption' ) ) {
  * Google Map Link
  * If location exists make google map link
  * e.g. https://maps.google.com?q=760+West+Genesee+Street+Syracuse+NY+13204
+ * @param post ID for location, optional
  * @return echo url string
  */
 
@@ -453,4 +454,3 @@ if(! function_exists( 'rebuild_event_class' ) ) {
 
     }
 }
-
