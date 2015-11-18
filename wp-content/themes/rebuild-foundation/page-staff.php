@@ -11,15 +11,27 @@ get_header(); ?>
 
     <div id="primary" class="content-area">
 
-        <header class="page-header">
+        <header class="page-header entry-header">
 
-            <h1 class="page-title"><?php post_type_archive_title( '' ); ?></h1>
+            <?php the_title( '<h1 class="entry-title page-title">', '</h1>' ); ?>
 
         </header><!-- .entry-header -->
 
         <main id="main" class="site-main" role="main">
 
-            <ul class="posts-list">
+            <?php if( have_posts() ) : ?>
+
+                <?php while( have_posts() ) : ?>
+
+                    <?php the_post(); ?>
+
+                    <?php get_template_part( 'template-parts/content', 'staff' ); ?>
+
+                <?php endwhile ?>
+
+            <?php endif; ?>
+
+            <article class="posts-list">
 
                 <?php $taxonomy = 'staff_category'; ?>
                 <?php $post_type = 'staff'; ?>
@@ -31,6 +43,8 @@ get_header(); ?>
                     <h2 class="tax-title">
                         <?php echo $term->name; ?>
                     </h2>
+
+                    <ul class="<?php echo $term->slug; ?>-group">
 
                     <?php $args = array(
                         'posts_per_page' => -1,
@@ -66,9 +80,25 @@ get_header(); ?>
 
                     <?php endif; ?>
 
+                    </ul>
+
                 <?php endforeach; ?>
 
-            </ul>
+                <footer class="entry-footer">
+                <?php
+                    edit_post_link(
+                        sprintf(
+                            /* translators: %s: Name of current post */
+                            esc_html__( 'Edit %s', 'rebuild-foundation' ),
+                            the_title( '<span class="screen-reader-text">"', '"</span>', false )
+                        ),
+                        '<span class="edit-link">',
+                        '</span>'
+                    );
+                ?>
+                </footer><!-- .entry-footer -->
+
+            </article>
 
         </main><!-- #main -->
     </div><!-- #primary -->

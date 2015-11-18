@@ -21,8 +21,24 @@
         <?php endif; ?>
     </div>
 
-    <?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
+    <h3 class="entry-title">
 
+        <?php if( get_field( 'staff_email' ) ) :?>
+
+            <a href="<?php echo 'mailto:' . get_field( 'staff_email' ) ;?>">
+
+        <?php endif; ?>
+
+        <?php the_title( ); ?>
+
+        <?php if( get_field( 'staff_title' ) ) :?>
+
+            </a>
+
+        <?php endif; ?>
+
+    </h3>
+    
     <?php if( get_field( 'staff_title' ) ) :?>
 
         <div class="entry-meta staff-title">
