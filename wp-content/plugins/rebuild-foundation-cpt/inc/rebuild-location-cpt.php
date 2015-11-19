@@ -47,7 +47,7 @@ if ( ! function_exists('rebuild_location_cpt') ) {
         $args = array(
             'label'               => __( 'Location', 'rebuild_cpt' ),
             'labels'              => $labels,
-            'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', ),
+            'supports'            => array( 'title' ),
             'taxonomies'          => array( 'site_category' ),
             'hierarchical'        => false,
             'public'              => true,
@@ -69,6 +69,20 @@ if ( ! function_exists('rebuild_location_cpt') ) {
 
     }
     add_action( 'init', 'rebuild_location_cpt', 0 );
+
+}
+
+/*
+* Remove the site category metabox
+*/
+
+if(! function_exists( 'remove_location_site_category_meta' ) ) {
+
+    function remove_location_site_category_meta() {
+        remove_meta_box( 'site_categorydiv', 'location', 'side');
+    }
+
+    add_action( 'admin_menu' , 'remove_location_site_category_meta' );
 
 }
 
