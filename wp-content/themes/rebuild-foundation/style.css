@@ -3004,10 +3004,16 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .home .site-footer {
   margin-top: 0; }
 
+.post-staff .featured-image {
+  position: absolute;
+  right: 0; }
+.post-staff article {
+  width: calc(100% - 550px); }
 .post-staff .posts-list .staff-category {
   margin-bottom: 60px; }
 .post-staff .posts-list h2.tax-title {
-  margin: 0 0 30px; }
+  margin: 0 0 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
 .post-staff .posts-list ul {
   list-style-type: none;
   padding: 0; }
