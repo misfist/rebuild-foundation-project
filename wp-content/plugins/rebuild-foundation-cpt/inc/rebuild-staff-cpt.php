@@ -114,10 +114,26 @@ if ( ! function_exists( 'rebuild_foundation_staff_category' ) ) {
         );
         register_taxonomy( 'staff_category', array( 'staff' ), $args );
 
+        
+
     }
+
 add_action( 'init', 'rebuild_foundation_staff_category', 0 );
 
 }
 
+/*
+* Remove the metabox, will be added with ACF
+*/
+
+if(! function_exists( 'remove_staff_category_meta' ) ) {
+
+    function remove_staff_category_meta() {
+        remove_meta_box( 'staff_categorydiv', 'staff', 'side');
+    }
+
+    add_action( 'admin_menu' , 'remove_staff_category_meta' );
+
+}
 
 ?>
