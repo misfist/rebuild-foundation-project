@@ -105,11 +105,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'operator' => '==',
                     'value' => 'post',
                 ),
-                array(
-                    'param' => 'post_category',
-                    'operator' => '!=',
-                    'value' => 'category:staff',
-                ),
             ),
             array(
                 array(
