@@ -3008,9 +3008,15 @@ article.site_category-listening-house .entry-meta.location a:hover {
   position: absolute;
   right: 0; }
 .post-staff article {
-  width: calc(100% - 550px); }
+  width: calc(70% - 100px);
+  margin-bottom: 50px; }
+.post-staff .posts-list .staff-category:nth-of-type(1) .tax-title, .post-staff .posts-list .staff-category:nth-of-type(2) .tax-title {
+  display: none; }
+.post-staff .posts-list .staff-category:nth-of-type(2) {
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding-top: 30px; }
 .post-staff .posts-list .staff-category {
-  margin-bottom: 60px; }
+  margin-bottom: 75px; }
 .post-staff .posts-list h2.tax-title {
   margin: 0 0 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
