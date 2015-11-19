@@ -580,6 +580,20 @@ article.exhibition {
 .home section#partners h2 {
   background-image: url("img/home-partners-m.jpg"); }
 
+.post-staff .featured-image {
+  position: relative; }
+.post-staff .posts-list ul li .staff-image {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+.post-staff .posts-list ul li .staff-main {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px; }
+
 img.alignleft, figure.alignleft {
   max-width: 100%;
   float: none;
