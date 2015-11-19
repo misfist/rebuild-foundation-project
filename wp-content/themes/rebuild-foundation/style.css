@@ -3004,4 +3004,52 @@ article.site_category-listening-house .entry-meta.location a:hover {
 .home .site-footer {
   margin-top: 0; }
 
+.post-staff .posts-list .staff-category {
+  margin-bottom: 60px; }
+.post-staff .posts-list h2.tax-title {
+  margin: 0 0 30px; }
+.post-staff .posts-list ul {
+  list-style-type: none;
+  padding: 0; }
+  .post-staff .posts-list ul li {
+    padding: 0;
+    margin-bottom: 40px; }
+    .post-staff .posts-list ul li .staff-image {
+      display: inline-block;
+      vertical-align: top;
+      width: 150px; }
+      .post-staff .posts-list ul li .staff-image figure {
+        margin: 0;
+        width: 120px; }
+    .post-staff .posts-list ul li .staff-main {
+      display: inline-block;
+      vertical-align: top;
+      width: calc(100% - 155px);
+      margin-left: 150px; }
+      .post-staff .posts-list ul li .staff-main h3 {
+        margin: 0 0 10px 0; }
+        .post-staff .posts-list ul li .staff-main h3 a {
+          color: black;
+          border-bottom: 2px solid white;
+          -webkit-transition-duration: 0.2s;
+          -moz-transition-duration: 0.2s;
+          -ms-transition-duration: 0.2s;
+          -o-transition-duration: 0.2s;
+          transition-duration: 0.2s; }
+          .post-staff .posts-list ul li .staff-main h3 a:hover {
+            background-color: white;
+            -webkit-transition-duration: 0.2s;
+            -moz-transition-duration: 0.2s;
+            -ms-transition-duration: 0.2s;
+            -o-transition-duration: 0.2s;
+            transition-duration: 0.2s; }
+      .post-staff .posts-list ul li .staff-main .staff-title {
+        font: 16px "Akkuratmono-Regular"; }
+      .post-staff .posts-list ul li .staff-main .entry-content {
+        margin-top: 20px; }
+    .post-staff .posts-list ul li .staff-image ~ .staff-main {
+      margin-left: 0; }
+.post-staff .posts-list .board-of-directors-group .staff-title {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

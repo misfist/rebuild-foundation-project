@@ -1,0 +1,69 @@
+.post-staff {
+
+	.posts-list {
+		// .tax-title:nth-of-type(1), .tax-title:nth-of-type(2) {
+		// 	display:none;
+		// }
+
+		.staff-category {
+			margin-bottom: 60px;
+		}
+
+		h2.tax-title {
+			margin: 0 0 30px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+
+			li {
+				padding: 0;
+				margin-bottom: 40px;
+
+				.staff-image {
+					@include inblock(150px);
+
+					figure {
+						margin: 0;
+						width: 120px;
+					}
+
+				}
+
+				.staff-main {
+					@include inblock(calc(100% - 155px));
+					margin-left: 150px;
+
+					h3 {
+						margin: 0 0 10px 0;
+
+						a {
+							color: $black;
+							@include text-link();
+						}
+					}
+
+					.staff-title {
+						font: $font_size-2 $mono;
+					}
+
+					.entry-content {
+						margin-top: 20px;
+					}
+				}
+
+				.staff-image ~ .staff-main {
+					margin-left: 0;
+				}
+			}
+		}
+
+		.board-of-directors-group {
+			.staff-title {
+				display: none;
+			}
+		}
+
+	}
+}

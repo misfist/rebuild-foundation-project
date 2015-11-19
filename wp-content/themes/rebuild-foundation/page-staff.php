@@ -40,11 +40,12 @@ get_header(); ?>
 
                 <?php foreach ( $tax_terms as $term ) : ?>
 
+                <div class="staff-category <?php echo $term->slug; ?>-group">
                     <h2 class="tax-title">
                         <?php echo $term->name; ?>
                     </h2>
 
-                    <ul class="<?php echo $term->slug; ?>-group">
+                    <ul>
 
                     <?php $args = array(
                         'posts_per_page' => -1,
@@ -81,6 +82,7 @@ get_header(); ?>
                     <?php endif; ?>
 
                     </ul>
+                </div>
 
                 <?php endforeach; ?>
 
