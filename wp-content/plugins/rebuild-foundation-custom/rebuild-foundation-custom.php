@@ -40,6 +40,8 @@ if ( !defined( 'REBUILD_CUSTOM_PLUGIN_URL' ) ) {
 include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/rebuild-foundation-shortcodes.php' );
 include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/rebuild-foundation-fields.php' );
 include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/disable-theme-and-plugin-editor.php' );
+include_once( REBUILD_CUSTOM_PLUGIN_DIR . '/inc/rebuild-foundation-functions.php' );
+
 
 
 
