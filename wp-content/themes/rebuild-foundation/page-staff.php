@@ -65,8 +65,6 @@ get_header(); ?>
                         'posts_per_page' => -1,
                         $taxonomy => $term->slug,
                         'post_type' => $post_type,
-                        'orderby' => 'title',
-                        'order'   => 'ASC',
                     );
                     ?>
                     <?php $tax_query = new WP_Query( $args ); ?>
