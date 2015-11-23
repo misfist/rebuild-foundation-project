@@ -3,7 +3,9 @@
 /**
  * Takes care of requests to the MailChimp API
  *
+ * @access public
  * @uses WP_HTTP
+ * @since 1.0
  */
 class MC4WP_API {
 
@@ -23,7 +25,7 @@ class MC4WP_API {
 	protected $error_message = '';
 
 	/**
-	 * @var int The error code of the lastest API request (if any)
+	 * @var int The error code of the last API request (if any)
 	 */
 	protected $error_code = 0;
 
@@ -59,6 +61,7 @@ class MC4WP_API {
 	 * @return bool
 	 */
 	private function show_error( $message ) {
+
 		if( ! is_admin() || ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}

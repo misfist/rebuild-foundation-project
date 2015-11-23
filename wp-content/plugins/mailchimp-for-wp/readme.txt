@@ -4,45 +4,64 @@ Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-f
 Tags: email, mailchimp, marketing, newsletter, signup, widget, mc4wp, contact form 7, woocommerce, buddypress,ibericode
 Requires at least: 3.7
 Tested up to: 4.4
-Stable tag: 2.3.18
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-MailChimp for WordPress, the absolute best. Add subscribers to your MailChimp lists from your WordPress site, with ease.
+MailChimp for WordPress, the absolute best. Subscribe your visitors from your WordPress site to your MailChimp lists, with ease.
 
 == Description ==
 
 = MailChimp for WordPress =
 
-*Adding sign-up methods for your MailChimp lists to your WordPress site should be easy. With this MailChimp for WordPress, it finally is.*
+*Adding sign-up methods for your MailChimp lists to your WordPress site should be easy. With this plugin, it finally is.*
 
-This plugin helps you add subscribers to your MailChimp lists using various methods. You can create good looking opt-in forms or integrate with any other form on your site, like your comment form or WooCommerce checkout.
+This plugin helps you add subscribers to your MailChimp lists using various methods. You can create good looking opt-in forms or integrate with any other form on your site, like your comment or checkout form.
 
-= MailChimp for WordPress features =
+[youtube https://www.youtube.com/watch?v=fZCYPnFybqU]
 
-- Connect with your MailChimp account in just 1 click.
-- User friendly & mobile optimized sign-up forms.
-- Complete control over your form fields. Send anything you like to MailChimp.
-- 1-click MailChimp sign-up for your comment and registration form(s).
-- Show sign-up forms in your posts or pages using the form shortcode, or in your sidebar or footer using the MailChimp widget.
-- Redirect users to a "thank you" page after subscribing to your MailChimp list(s).
-- All fields & messages are customizable so you can translate them into your preferred language.
-- Built-in integration with Contact Form 7, WooCommerce and many other plugins.
-- Developer friendly. You have full control over the form HTML and there are many available action & filter hooks.
+= Some of the MailChimp for WordPress features =
 
-> **MailChimp for WordPress Pro**<br /><br />
-> This plugin has a premium version which comes with the following features.<br /><br />
-> - As many forms as you want, each subscribing to one or multiple MailChimp lists.<br />
-> - AJAX Forms. Forms do not require a full page reload.<br />
-> - Visual Styles Builder, create your own style without the need for code.<br />
-> - Custom Color Themes, a quick way to blend-in with your theme.<br />
-> - Log & Statistics, providing you with useful insights like your new MailChimp subscribers came from.<br />
+- Connect with your MailChimp account in seconds.
+
+- Sign-up forms which are good looking, user-friendly and mobile optimized. You have complete control over the form fields and can send anything you like to MailChimp.
+
+- Built-in integration with the following plugins:
+	- WP Comment Form
+	- WP Registration Form
+	- Contact Form 7
+	- WooCommerce
+	- Ninja Forms
+	- Easy Digital Downloads
+	- Events Manager
+	- BuddyPress
+
+- A multitude of available add-on plugins:
+	- [Captcha](https://wordpress.org/plugins/mc4wp-captcha/)
+	- [MailChimp Top Bar](https://wordpress.org/plugins/mailchimp-top-bar/)
+	- [MailChimp User Sync](https://wordpress.org/plugins/mailchimp-sync/)
+	- [MailChimp for WordPress Premium](https://mc4wp.com/)
+	- [Scroll Triggered Boxes](https://wordpress.org/plugins/scroll-triggered-boxes/)
+
+- Developer friendly. MailChimp for WordPress is built to be extensible, and comes with a dedicated [code reference for developers](http://developer.mc4wp.com/).
+
+> **MailChimp for WordPress - Premium Features**<br /><br />
+> This plugin has a premium add-on which comes with the following additional features.<br /><br />
+> - Multiple Forms. Create more than one form, each subscribing to one or multiple MailChimp lists.<br />
+> - AJAX Forms. Forms are submitted without reloading the page.<br />
+> - Form Styles Builder. Create your own style without the need for code.<br />
+> - Email Notifications. Instant email notifications for every form submission.<br />
+> - Custom Color Themes. A quick way to blend-in with your theme.<br />
+> - Reports. Logs all sign-up attempts & visualizes them in insightful charts<br />
 > - Priority support over email.<br /><br />
-> [Upgrade to MailChimp for WordPress Pro >>](https://mc4wp.com/features/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=after-features-link)
+>
+> [Get MailChimp for WordPress - Premium >>](https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=after-features-link)
 
-= Wait, but what is MailChimp? =
+= What is MailChimp? =
 
-MailChimp for WordPress acts as a bridge between your WordPress site and your MailChimp account. MailChimp is a newsletter service that allows you to send out email campaigns to a list of email subscribers. MailChimp is absolutely free for lists up to 2000 subscribers, which is why it is the go-to choice for small businesses or starting entrepreneurs. That doesn't mean MailChimp is not a great choice for bigger businesses though.
+MailChimp is a newsletter service that allows you to send out email campaigns to a list of email subscribers. MailChimp is free for lists up to 2000 subscribers, which is why it is the newsletter-service of choice for thousands of businesses.
+
+This plugin acts as a bridge between your WordPress site and your MailChimp account, connecting the two together.
 
 If you do not yet have a MailChimp account, [creating one is 100% free and only takes you about 30 seconds](http://mailchimp.com/monkey-rewards/?utm_source=freemium_newsletter&utm_medium=email&utm_campaign=monkey_rewards&aid=a2d08947dcd3683512ce174c5&afl=1).
 
@@ -65,8 +84,8 @@ If you do not yet have a MailChimp account, [creating one is 100% free and only 
 `
 <?php
 
-if( function_exists( 'mc4wp_form' ) ) {
-	mc4wp_form();
+if( function_exists( 'mc4wp_show_form' ) ) {
+	mc4wp_show_form();
 }
 `
 
@@ -83,15 +102,6 @@ Use the `[mc4wp_form]` shortcode.
 
 = How to display a form in widget areas like the sidebar or footer? =
 Go to **Appearance > Widgets** and use the **MailChimp for WP Form** widget that comes with the plugin.
-
-= How to display a form in my template files? =
-Use the `mc4wp_form()` function.
-
-`
-if( function_exists( 'mc4wp_form' ) ) {
-	mc4wp_form();
-}
-`
 
 = Where can I find my MailChimp API key? =
 [You can find your MailChimp API key here](http://kb.mailchimp.com/accounts/management/about-api-keys#Find-or-Generate-Your-API-Key)
@@ -167,6 +177,39 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 
 == Changelog ==
 
+= 3.0.0 & 3.0.1 - November 23, 2015 =
+
+Version 3.0 is a total revamp of the plugin. For a quick overview of the changes, please [read this post on our blog](https://mc4wp.com/blog/whats-new-in-mailchimp-for-wordpress-the-big-three-o/).
+
+Before upgrading, please go through the [upgrade guide](https://mc4wp.com/kb/upgrading-to-3-0/) as some things have changed.
+
+**Breaking Changes**
+
+- Captcha fields: `{captcha}` field is now handled by the [Captcha add-on plugin](https://wordpress.org/plugins/mc4wp-captcha/).
+- New dynamic content tags syntax: `{data_NAME}` is now `{data key="NAME"}`
+- Event binding: `jQuery(document).on('subscribe.mc4wp','.mc4wp-form', function(){ ... })` is now `mc4wp.forms.on('subscribed', function(form) { ... })`
+- Removed integrations: MultiSite & bbPress.
+
+**Improvements**
+
+- New form editor with syntax highlighting, more advanced field options & better visual feedback.
+- Better support for MailChimp `address` fields.
+- Better support for choice fields (eg groupings, list choice & country fields).
+- All fields marked as `required` are now validated server-side as well (instead of just MailChimp required fields).
+- All integrations have their own settings page now.
+- Events Manager: checkbox is now automatically added to booking forms.
+- Tons of usability & accessibility improvements.
+- Tons of code improvements: improved memory usage, 100+ new unit tests & better usage of various best practices.
+- The [premium plugin](https://mc4wp.com/) is now an add-on of this plugin.
+
+**Additions**
+
+- New "Preview Form" option, showing unsaved form changes.
+- Integrations can now be "implicit", thus no longer showing a checkbox option to visitors.
+- New JavaScript API, replacing jQuery event hooks.
+- Ninja Forms integration
+- Introduced various new filter & action hooks, please see the new [code reference for developers](http://developer.mc4wp.com/) for more information.
+
 = 2.3.18 - November 2, 2015 =
 
 **Fixes**
@@ -188,6 +231,7 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 **Improvements**
 
 - Updated Portugese translations.
+
 
 = 2.3.16 - October 14, 2015 =
 
@@ -541,7 +585,6 @@ Minor improvements and additions for compatibility with the [MailChimp Sync plug
 - You can now set `MC_LOCATION`, `MC_NOTES` and `MC_LANGUAGE` from your form HTML
 - The submit button now has a default value when generating HTML for it
 
-
 = 2.2 - December 9, 2014 =
 
 **Fixes**
@@ -561,221 +604,8 @@ Minor improvements and additions for compatibility with the [MailChimp Sync plug
 - Added sign-up checkbox integration for [Easy Digital Downloads](https://wordpress.org/plugins/easy-digital-downloads/) checkout.
 - The entered email will now be appended to the URL when redirecting to another page
 
-= 2.1.7 - December 1, 2014 =
-
-**Fixes**
-
-- Fixes onclick event in older versions of IE, props [Simon Schick](https://github.com/SimonSimCity)
-
-**Improvements**
-
-- Updated Dutch, French, Hungarian, Italian, Norwegian, Swedish and Taiwanese translations.
-- Some textual improvements.
-
-**Additions**
-
-- {email} shortcode to use in form mark-up.
-
-= 2.1.6 - November 18, 2014 =
-
-**Fixes**
-
-- Notice in `class-widget.php` when widget options are never saved.
-
-**Improvements**
-
-- Added some missing gettext calls so strings can be translated.
-- Updated translations
-
-= 2.1.5 - October 13, 2014 =
-
-**Fixes**
-
-- Notice in `class-mailchimp.php` when fetching lists from MailChimp.
-
-= 2.1.4 - October 13, 2014 =
-
-**Fixes**
-
-- Fixed `mc4wp_get_current_url()` function for IIS servers using `index.php` in URL's.
-- Nonce verification was failing with aggressive caching
-- Only call `is_email()` on strings.
-
-**Improvements**
-
-- Minor improvements to memory usage and overall performance
-- Improved sanitization for third-party integrations
-- Wrapped debug messages for checkbox integrations in gettext calls so they can be translated
-- Updated Dutch translations
-
-**Additions**
-
-- Submitted forms now get `mc4wp-form-submitted` CSS class.
-- Filter: `mc4wp_cookie_expiration_time` to alter expiration time of email cookie. Defaults to 30 days.
-- Hungarian translation, thanks to Németh Balázs
-- Partial French translations
-
-
-= 2.1.3 - September 15, 2014 =
-
-**Improvements**
-
-- Updated Spanish and Dutch translations
-- Fixed missing text domains
-- Removed obsolete code in upgrade routine
-- All settings are now properly sanitized before being stored.
-
-**Additions**
-
-- Added Slovak language files, thanks to [Henrich Koszegi - Webworks.sk](http://www.webworks.sk/).
-
-
-= 2.1.2 - August, 26, 2014 =
-
-**Fixes**
-
-- Remove `type` attribute from `textarea` elements
-- Check for array fields in form when checking presence of required MailChimp list fields
-
-**Improvements**
-
-- Added `-webkit-appearance` reset to checkbox CSS
-- Updated Italian translations
-- Updated links to point to the new [MailChimp for WordPress Pro](https://mc4wp.com/) site.
-- Don't use `{response}` tag if form is hidden after successful submissions
-
-**Additions**
-
-- Added official integration with [Events Manager](https://wordpress.org/plugins/events-manager/). Just include a `mc4wp-subscribe` checkbox field and MailChimp for WordPress will do the rest.
-
-= 2.1.1 - August 12, 2014 =
-
-**Fixes**
-
-- `mc4wp_get_current_url()` now takes ports and the WP site url option into account
-- Quicktags buttons were not showing because script was not loaded, now it is.
-
-**Improvements**
-
-- Improved CSS reset for the sign-up checkbox
-- Added deprecated warning to some functions
-- Improvements to third-party forms integration for the sign-up checkbox. Integrating with the [Events Manager](https://wordpress.org/plugins/events-manager/) plugin should work now.
-- Updated Dutch translations
-- Updated English translations
-
-**Additions**
-
-- Added `mc4wp_form_error_{ERROR_CODE}` action hook to allow hooking into all form errors.
-- Added `{response}` tag to allow setting a custom response position
-- Added various filters to customize form HTML
-- Added German language, thanks to [Jochen Gererstorfer](http://slotnerd.de/)
-- Added Italian language, thanks to [Gianpaolo Rolando](http://www.gianpaolorolando.eu/)
-
-= 2.1 - July 29, 2014 =
-
-**Fixes**
-
-- Some fields lost its value when a form error occurred
-
-**Improvements**
-
-- Minified all CSS and JS files
-- Required MailChimp fields are now validated server side as well.
-- Birthday and address fields are now automatically formatted in the correct format
-- Improved code, memory usage and class documentation
-
-**Additions**
-
-- Brazilian translations, thanks to [Felipe Scuissiatto of Evonline](http://www.evonline.com.br/)
-- `mc4wp_form_messages` filter to register custom error messages
-- `mc4wp_form_message_position` filter to set position of error messages (before or after fields)
-- Option to set the text for when a required field is missing
-
-= 2.0.5 - July 21, 2014 =
-
-**Improvements**
-
-- Ignore Captcha fields in sign-up data
-- Updated Spanish translations
-- Minor improvements to Admin and MailChimp API class
-- Show field tag and required status in Lists overview table
-
-**Additions**
-
-- Add visitor IP address to sign-up data
-
-
-= 2.0.4 - July 2, 2014 =
-
-**Fixes**
-
-- Double sign-up requests for checkbox sign-ups
-
-**Improvements**
-
-- Reset checkbox label in default CSS for improved theme compatibility
-- Improved checkbox integration classes
-- Optimised function to retrieve the current URL
-
-**Additions**
-
-- Added `{language}` text variable to print the current site language.
-- Added merge tag names to list overview table
-
-= 2.0.3 - June 17, 2014 =
-
-**Fixes**
-
-- Fixed undefined index notice in Contact Form 7 integration class
-
-**Improvements**
-
-- Reset form width in all stylesheets
-
-= 2.0.2 - June 12, 2014 =
-
-**Fixes**
-
-- Fix fatal error when using `mc4wp_checkbox()` function
-- No more double API request when integrating with Contact Form 7
-
-**Improvements**
-
-- Template functions are now always loaded when needed
-- A warning will now show when required fields are missing in the form mark-up
-- Required form classes can no longer be accidentally removed
-- Various checkbox integration improvements
-- Various CSS improvements to colored form themes
-- Updated Spanish translations
-
-= 2.0.1 - May 15, 2014 =
-
-**Improvements**
-
-- Allowed translation of more strings in the settings screens.
-- Added Spanish translations, thanks [Paul Benitez - Tecnofilos](http://www.administrandowp.com/)
-- Minor code improvements
-
-**Additions**
-
-- Saving forms without an `EMAIL` field or submit button will show a notice.
-
-= 2.0 - April 29, 2014 =
-
-**Improvements**
-
-- CSS is now served as static CSS instead of being served through PHP.
-- The anti-spam honeypot is now added to the sign-up checkbox as well.
-- Improved object-oriented code architecture and better class documentation
-- Better CSS reset for the various form themes to increase theme compatibility
-- Added class autoloading to the plugin
-- Various minor code improvements
-
-**Additions**
-
-- You can now add a captcha field to your sign-up forms by installing the [BWS Captcha](http://wordpress.org/plugins/captcha/) plugin and using `[captcha]` inside your form mark-up.
-- All settings pages are now fully translatable. The plugin has just 2 translations available yet (`en_US` and `nl_NL`) so if you're good at translating, please send me your language pack for the plugin.
-- You can now use tab indentation in the form markup textarea
-
 == Upgrade Notice ==
 
+= 3.0.1 =
+
+Please read through the [upgrade guide](https://mc4wp.com/kb/upgrading-to-3-0/) before updating to version 3.
