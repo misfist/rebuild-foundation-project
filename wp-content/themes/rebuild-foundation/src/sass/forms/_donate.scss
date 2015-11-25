@@ -1,0 +1,232 @@
+.give-form-wrap {
+	h2 {
+		border-bottom: 1px solid $black;
+
+	}
+
+	.goal-progress {
+
+		.raised {
+			.income {
+				font: $font_size-6 $light;
+			}
+
+			.goal-text {
+
+			}
+		}
+
+		.progress-bar {
+			background-color: $white;
+			height: 4px;
+			@include border-radius(0);
+		}
+	}
+}
+
+
+form.give-form {
+	legend {
+		font: $font_size-3 $bold;
+		width: auto;
+		color: $black;
+		margin: -13px 0 20px -5px;
+		padding: 0 5px;
+		background-color: $warm-gray;
+		border: none
+	}
+
+	label {
+		font: normal $font_size-2 $bold;
+	}
+
+	fieldset {
+		border: 1px solid $black-transparent;
+		margin-top: 30px;
+		padding: 0 25px 0 25px;
+	}
+
+	p.form-row {
+		margin-bottom: 25px;
+	}
+
+	p.give-loading-text {
+		font: normal $font_size-2 $bold;
+		font-style: normal;
+		padding-bottom: 20px;
+	}
+
+	.give-loading-animation {
+		
+	}
+
+	.blockUI.blockOverlay {
+		background-color: $warm-gray !important;
+	}
+
+	.give-donation-amount {
+		border-bottom: 1px solid $black-transparent;
+
+		.give-currency-symbol {
+			width: 50px;
+			height: 50px;
+			background-color: $black;
+			font: $font_size-5 $light;
+			color: $white;
+			text-align: center;
+			border: none;
+			padding-top: 7px;
+		}
+
+		#give-amount {
+			font: $font_size-5 $regular;
+			height: 50px;
+			border: none;
+			border-top: 1px solid $white;
+			border-right: 1px solid $white;
+			width: 150px;
+
+			&:focus {
+				border-top: 1px solid $black-transparent;
+				border-right: 1px solid $black-transparent;
+				outline: none;
+			}
+		}
+	}
+
+	#give-donation-level-radio-list {
+		@include flex();
+		@include justify-content(space-between);
+		margin-bottom: 50px;
+	}
+
+	#give-gateway-radio-list {
+		@include flex();
+		@include justify-content(space-around);
+		float: none;
+
+		& > li {
+			float: none;
+		}
+	}
+	#give_offline_payment_info {
+		background-color: $black-transparent-opaque;
+		border: none;
+		padding: 25px;
+		color: $warm-gray;
+	}
+
+	#give_purchase_submit {
+		border-top: 1px solid $black-transparent;
+		margin-top: 40px;
+		padding: 0;
+		border: none;
+
+		#give-final-total-wrap {
+			width: 50%;
+			margin: 0;
+
+			.give-donation-total-label {
+				width: 50%;
+				border: 1px solid $black;
+				text-align: center;
+				padding-top: 6px;
+				@include border-radius (10px 0 0 0);
+				background-color: transparent;
+				height: 50px;
+				color: $black;
+			}
+
+			.give-final-total-amount {
+				width: 50%;
+				@include border-radius (0 10px 0 0);
+				text-align: center;
+				font: $font_size-5 $regular;
+				color: $black;
+				padding-top: 6px;
+				border: 1px solid $black;
+				border-left: none;
+				height: 50px;
+			}
+		}
+
+		.give-submit-button-wrap {
+
+			.give-submit {
+				@include border-radius (0 0 10px 10px);
+				padding: 12px;
+			}
+		}
+	}
+
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"] {
+		border: none;
+		background-color: $black;
+		color: $white;
+		font: $font_size-2 $regular;
+		padding: 10px;
+		min-width: 200px;
+		width: 50%;
+		text-shadow: none;
+		@include box-shadow(none);
+		@include transition-duration(0.25s);
+		@include border-radius(3px);
+
+		&:hover {
+			background-color: $black-transparent-light;
+			@include transition-duration(0.25s);
+		}
+	}
+
+	::-webkit-input-placeholder {
+	   color: transparent;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   color: transparent;
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: transparent;
+	}
+
+	:-ms-input-placeholder {  
+	   color: transparent;
+	}
+}
+
+table.give-table {
+	background-color: transparent;
+	border-color: $black-transparent;
+	text-shadow: none;
+	font-size: $font_size-2;
+	color: $black;
+	text-align: left;
+
+	th {
+		background-color: $black;
+		border-color: $black-transparent;
+		font: normal $font_size-2 $regular;
+		color: $warm-gray;
+		text-align: left;
+		border-color: $warm-gray;
+		padding: 18px;
+	}
+
+	tbody {
+		tr {
+			td {
+				background-color: transparent;
+				border-color: $black-transparent;
+				text-align: left;
+			}
+		}
+
+		tr:nth-child(even) td {
+			background-color: transparent;
+		}
+	}
+}

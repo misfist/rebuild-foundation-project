@@ -648,28 +648,19 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
-  color: #666;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font: normal 15px "Akkuratmono-Regular"; }
+  border: none;
+  padding: 6px 10px;
+  border: 1px solid white;
+  width: 100%;
+  font: 16px "Akkuratmono-Regular"; }
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="url"]:focus,
   input[type="password"]:focus,
   input[type="search"]:focus,
   textarea:focus {
-    color: #111; }
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"] {
-  padding: 3px; }
-
-textarea {
-  padding-left: 3px;
-  width: 100%; }
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    outline: none; }
 
 ::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.5); }
@@ -753,6 +744,195 @@ input.search-field {
       -ms-transition-duration: 0.25s;
       -o-transition-duration: 0.25s;
       transition-duration: 0.25s; }
+
+.give-form-wrap h2 {
+  border-bottom: 1px solid black; }
+.give-form-wrap .goal-progress .raised .income {
+  font: 40px "Akkurat-Light"; }
+.give-form-wrap .goal-progress .progress-bar {
+  background-color: white;
+  height: 4px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0; }
+
+form.give-form legend {
+  font: 20px "Akkurat-Bold";
+  width: auto;
+  color: black;
+  margin: -13px 0 20px -5px;
+  padding: 0 5px;
+  background-color: #e9e6df;
+  border: none; }
+form.give-form label {
+  font: normal 16px "Akkurat-Bold"; }
+form.give-form fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  padding: 0 25px 0 25px; }
+form.give-form p.form-row {
+  margin-bottom: 25px; }
+form.give-form p.give-loading-text {
+  font: normal 16px "Akkurat-Bold";
+  font-style: normal;
+  padding-bottom: 20px; }
+form.give-form .blockUI.blockOverlay {
+  background-color: #e9e6df !important; }
+form.give-form .give-donation-amount {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+  form.give-form .give-donation-amount .give-currency-symbol {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    font: 32px "Akkurat-Light";
+    color: white;
+    text-align: center;
+    border: none;
+    padding-top: 7px; }
+  form.give-form .give-donation-amount #give-amount {
+    font: 32px "Akkurat-Regular";
+    height: 50px;
+    border: none;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    width: 150px; }
+    form.give-form .give-donation-amount #give-amount:focus {
+      border-top: 1px solid rgba(0, 0, 0, 0.5);
+      border-right: 1px solid rgba(0, 0, 0, 0.5);
+      outline: none; }
+form.give-form #give-donation-level-radio-list {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+  margin-bottom: 50px; }
+form.give-form #give-gateway-radio-list {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  justify-content: space-around;
+  float: none; }
+  form.give-form #give-gateway-radio-list > li {
+    float: none; }
+form.give-form #give_offline_payment_info {
+  background-color: rgba(0, 0, 0, 0.75);
+  border: none;
+  padding: 25px;
+  color: #e9e6df; }
+form.give-form #give_purchase_submit {
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 40px;
+  padding: 0;
+  border: none; }
+  form.give-form #give_purchase_submit #give-final-total-wrap {
+    width: 50%;
+    margin: 0; }
+    form.give-form #give_purchase_submit #give-final-total-wrap .give-donation-total-label {
+      width: 50%;
+      border: 1px solid black;
+      text-align: center;
+      padding-top: 6px;
+      -webkit-border-radius: 10px 0 0 0;
+      -moz-border-radius: 10px 0 0 0;
+      -ms-border-radius: 10px 0 0 0;
+      border-radius: 10px 0 0 0;
+      background-color: transparent;
+      height: 50px;
+      color: black; }
+    form.give-form #give_purchase_submit #give-final-total-wrap .give-final-total-amount {
+      width: 50%;
+      -webkit-border-radius: 0 10px 0 0;
+      -moz-border-radius: 0 10px 0 0;
+      -ms-border-radius: 0 10px 0 0;
+      border-radius: 0 10px 0 0;
+      text-align: center;
+      font: 32px "Akkurat-Regular";
+      color: black;
+      padding-top: 6px;
+      border: 1px solid black;
+      border-left: none;
+      height: 50px; }
+  form.give-form #give_purchase_submit .give-submit-button-wrap .give-submit {
+    -webkit-border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -ms-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    padding: 12px; }
+form.give-form button,
+form.give-form input[type="button"],
+form.give-form input[type="reset"],
+form.give-form input[type="submit"] {
+  border: none;
+  background-color: black;
+  color: white;
+  font: 16px "Akkurat-Regular";
+  padding: 10px;
+  min-width: 200px;
+  width: 50%;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -ms-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px; }
+  form.give-form button:hover,
+  form.give-form input[type="button"]:hover,
+  form.give-form input[type="reset"]:hover,
+  form.give-form input[type="submit"]:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -ms-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s; }
+form.give-form ::-webkit-input-placeholder {
+  color: transparent; }
+form.give-form :-moz-placeholder {
+  /* Firefox 18- */
+  color: transparent; }
+form.give-form ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: transparent; }
+form.give-form :-ms-input-placeholder {
+  color: transparent; }
+
+table.give-table {
+  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.5);
+  text-shadow: none;
+  font-size: 16px;
+  color: black;
+  text-align: left; }
+  table.give-table th {
+    background-color: black;
+    border-color: rgba(0, 0, 0, 0.5);
+    font: normal 16px "Akkurat-Regular";
+    color: #e9e6df;
+    text-align: left;
+    border-color: #e9e6df;
+    padding: 18px; }
+  table.give-table tbody tr td {
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.5);
+    text-align: left; }
+  table.give-table tbody tr:nth-child(even) td {
+    background-color: transparent; }
 
 /*--------------------------------------------------------------
 # Navigation
