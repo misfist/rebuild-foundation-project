@@ -1,0 +1,44 @@
+.rsvpParagraph {
+	font: normal $font_size-2 $bold;
+}
+
+#rsvpPlugin {
+	margin-top: 50px;
+	padding-top: 20px;
+	border-top: 1px solid $black-transparent;
+
+	label {
+		font: normal $font_size-2 $bold;
+	}
+
+	.rsvpFormField {
+		margin-bottom: 30px;
+	}
+
+	#rsvpNew {
+		margin: 30px auto 0 auto;
+	}
+
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"] {
+		border: none;
+		background-color: $black;
+		color: $white;
+		font: $font_size-2 $regular;
+		padding: 10px;
+		min-width: 200px;
+		width: 50%;
+		text-shadow: none;
+		@include box-shadow(none);
+		@include transition-duration(0.25s);
+		@include border-radius(3px);
+
+		&:hover {
+			background-color: $black-transparent-light;
+			@include transition-duration(0.25s);
+		}
+	}
+
+}

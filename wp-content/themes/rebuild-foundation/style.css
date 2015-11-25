@@ -934,6 +934,54 @@ table.give-table {
   table.give-table tbody tr:nth-child(even) td {
     background-color: transparent; }
 
+.rsvpParagraph {
+  font: normal 16px "Akkurat-Bold"; }
+
+#rsvpPlugin {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5); }
+  #rsvpPlugin label {
+    font: normal 16px "Akkurat-Bold"; }
+  #rsvpPlugin .rsvpFormField {
+    margin-bottom: 30px; }
+  #rsvpPlugin #rsvpNew {
+    margin: 30px auto 0 auto; }
+  #rsvpPlugin button,
+  #rsvpPlugin input[type="button"],
+  #rsvpPlugin input[type="reset"],
+  #rsvpPlugin input[type="submit"] {
+    border: none;
+    background-color: black;
+    color: white;
+    font: 16px "Akkurat-Regular";
+    padding: 10px;
+    min-width: 200px;
+    width: 50%;
+    text-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-duration: 0.25s;
+    -ms-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px; }
+    #rsvpPlugin button:hover,
+    #rsvpPlugin input[type="button"]:hover,
+    #rsvpPlugin input[type="reset"]:hover,
+    #rsvpPlugin input[type="submit"]:hover {
+      background-color: rgba(0, 0, 0, 0.25);
+      -webkit-transition-duration: 0.25s;
+      -moz-transition-duration: 0.25s;
+      -ms-transition-duration: 0.25s;
+      -o-transition-duration: 0.25s;
+      transition-duration: 0.25s; }
+
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
