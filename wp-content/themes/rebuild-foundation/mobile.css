@@ -182,17 +182,17 @@ h6 {
     border-left: 1px solid rgba(0, 0, 0, 0.5);
     margin: 10px 0 0 15px; }
   #site-navigation.toggled {
-    width: 70%;
+    width: 100%;
     bottom: 0;
     border-right: 1px solid rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
     padding: 50px 40px 0 50px;
     z-index: 10;
-    background-color: #e9e6df; }
+    background-color: rgba(233, 230, 223, 0.95); }
     #site-navigation.toggled button.menu-toggle {
       position: fixed;
       top: 20px;
-      right: calc(30% + 20px);
+      right: 20px;
       background-image: url("img/menu_button-close.svg"); }
     #site-navigation.toggled .menu-main-menu-container::before {
       content: url("img/logo-foundation_a.svg");
@@ -286,7 +286,7 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
     width: calc(100% - 30px); }
     .single-site article.site header.site-header .entry-meta {
       margin-top: 25px; }
-  .single-site article.site #site-gallery, .single-site article.site .single-image {
+  .single-site article.site .site-header ~ #site-gallery, .single-site article.site .site-header ~ .single-image {
     display: block;
     width: 100%;
     padding: 0;
@@ -294,12 +294,12 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
     height: 300px;
     margin-top: 0;
     margin-bottom: 100px; }
-    .single-site article.site #site-gallery .slide-item, .single-site article.site .single-image .slide-item {
+    .single-site article.site .site-header ~ #site-gallery figure, .single-site article.site .site-header ~ .single-image figure {
       height: 300px; }
-    .single-site article.site #site-gallery::before, .single-site article.site .single-image::before {
+    .single-site article.site .site-header ~ #site-gallery::before, .single-site article.site .site-header ~ .single-image::before {
       width: 50%;
       right: 0;
-      margin-top: -100px; }
+      margin-top: 0; }
   .single-site article.site .single-image {
     margin-bottom: 50px; }
     .single-site article.site .single-image figure {
@@ -336,7 +336,7 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
         width: calc(100% - 30px); }
         .single-site article.site .events .upcoming-events article:hover {
           width: 100%; }
-    .single-site article.site .events .past-events {
+    .single-site article.site .events .past-events, .single-site article.site .events .upcoming-events ~ .past-events {
       display: block;
       width: 100%;
       padding: 0;
@@ -360,7 +360,8 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
         width: 100%;
         padding: 0;
         margin: 0;
-        margin: 10px 0; }
+        margin: 10px 0;
+        text-align: left; }
     .single-site article.site .posts article .entry-content {
       display: block;
       width: 100%;

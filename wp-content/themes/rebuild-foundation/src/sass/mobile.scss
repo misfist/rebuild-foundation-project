@@ -121,18 +121,18 @@ h6 {
 	}
 
 	&.toggled {
-		width: 70%;
+		width: 100%;
 		bottom: 0;
 		border-right: 1px solid $black-transparent;
 		overflow-y: scroll;
 		padding: 50px 40px 0 50px;
 		z-index: 10;
-		background-color: $warm-gray;
+		background-color: $warm-gray-opaque;
 
 		button.menu-toggle {
 			position: fixed;
 			top: 20px;
-			right: calc(30% + 20px);
+			right: 20px;
 			background-image: url("img/menu_button-close.svg");
 		}
 
@@ -304,20 +304,20 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 			}
 		}
 
-		#site-gallery, .single-image {
+		.site-header ~ #site-gallery, .site-header ~ .single-image {
 			@include clear-inblock();
 			height: 300px;
 			margin-top: 0;
 			margin-bottom: 100px;
 
-			.slide-item {
+			figure {
 				height: 300px;
 			}
 
 			&::before {
 				width: 50%;
 				right: 0;
-				margin-top: -100px;
+				margin-top: 0;
 			}
 
 			figcaption {
@@ -376,7 +376,7 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 				}
 			}
 
-			.past-events {
+			.past-events, .upcoming-events ~ .past-events {
 				@include clear-inblock();
 				margin-top: 30px;
 			}
@@ -397,6 +397,7 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 					.entry-meta {
 						@include clear-inblock();
 						margin: 10px 0;
+						text-align: left;
 					}
 
 				}

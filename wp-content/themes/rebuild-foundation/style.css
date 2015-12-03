@@ -3264,8 +3264,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
     .post-staff .posts-list ul li .staff-main {
       display: inline-block;
       vertical-align: top;
-      width: calc(100% - 155px);
-      margin-left: 155px; }
+      width: calc(100% - 155px); }
       .post-staff .posts-list ul li .staff-main h3 {
         margin: 0 0 10px 0; }
         .post-staff .posts-list ul li .staff-main h3 a {
@@ -3287,8 +3286,6 @@ article.site_category-listening-house .entry-meta.location a:hover {
         font: 16px "Akkuratmono-Regular"; }
       .post-staff .posts-list ul li .staff-main .entry-content {
         margin-top: 20px; }
-    .post-staff .posts-list ul li .staff-image ~ .staff-main {
-      margin-left: 0; }
 .post-staff .posts-list .board-of-directors-group .staff-title {
   display: none; }
 
