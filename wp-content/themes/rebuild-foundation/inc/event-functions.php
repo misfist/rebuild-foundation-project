@@ -200,7 +200,7 @@ if(! function_exists( 'rebuild_events_pre_query_filter' ) ) {
 
 if(! function_exists( 'rebuild_event_query' ) ) {
 
-  function rebuild_event_query( $site_cat = null, $scope = null, $limit = null ) {
+  function rebuild_event_query( $site_cat = null, $scope = null, $limit = null, $order = null ) {
 
     // If $site_cat arg passed
     if( $site_cat ) {
@@ -211,6 +211,7 @@ if(! function_exists( 'rebuild_event_query' ) ) {
 
       if ( $term_exists !== 0 && $term_exists !== null ) {
 
+        // Limit site name so it doesn't exceed so the option_name for the transient doesn't exceed 64 characters
         $site_name = ( strlen( $site_cat ) < 20 ) ? $site_cat : substr( $site_cat, 0, 19 );
 
         $site_tax_query = array(
@@ -278,6 +279,12 @@ if(! function_exists( 'rebuild_event_query' ) ) {
           'meta_key' => 'start_date',
           'orderby' => 'meta_value_num',
       );
+
+      if( isset( $order ) ) {
+
+        $event_query['order'] = $order;
+
+      }
 
       if( isset( $limit ) && is_int( $limit ) ) {
 

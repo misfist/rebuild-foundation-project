@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: 		Admin Columns - ACF add-on
-Version: 			1.3.1
+Plugin Name: 		Admin Columns - Advanced Custom Fields add-on
+Version: 			1.3.2
 Description: 		Show Advanced Custom Fields fields in your admin post overviews and edit them inline! ACF integration Add-on for Admin Columns.
 Author: 			Codepress
 Author URI: 		https://admincolumns.com

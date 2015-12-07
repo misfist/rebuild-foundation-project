@@ -244,6 +244,9 @@ abstract class CPAC_ACF_Column_ACF_Field extends CPAC_Column {
 				$pwchar_length = strlen( $pwchar );
 				$value = str_pad( '', strlen( $value ) * $pwchar_length, $pwchar );
 				break;
+			case 'oembed':
+				$value = wp_oembed_get( $value, array( 'width' => '200', 'height' => '200' ) );
+				break;
 			case 'taxonomy':
 				$values = (array) $value;
 				foreach ( $values as $index => $value ) {
@@ -430,14 +433,17 @@ abstract class CPAC_ACF_Column_ACF_Field extends CPAC_Column {
 		 */
 		$value = apply_filters( 'cac/acf/format_acf_value', $value, $field, $id, $originalvalue, $this );
 
-		$prepend = ! empty( $field['prepend'] ) ? $field['prepend'] . ' ' : '';
-		$append = ! empty( $field['append'] ) ? $field['append'] . ' ' : '';
+		if ( $value ) {
 
-		// remove &nbsp; characters
-		$prepend = str_replace( chr( 194 ) . chr( 160 ), ' ', $prepend );
-		$append = str_replace( chr( 194 ) . chr( 160 ), ' ', $append );
+			$prepend = ! empty( $field['prepend'] ) ? $field['prepend'] . ' ' : '';
+			$append  = ! empty( $field['append'] ) ? $field['append'] . ' ' : '';
 
-		$value = $prepend . $value . $append;
+			// remove &nbsp; characters
+			$prepend = str_replace( chr( 194 ) . chr( 160 ), ' ', $prepend );
+			$append  = str_replace( chr( 194 ) . chr( 160 ), ' ', $append );
+
+			$value = $prepend . $value . $append;
+		}
 
 		return $value;
 	}

@@ -113,7 +113,7 @@ $today = date( 'Ymd' );
         <section class="events">
 
             <?php 
-            $site_event_future_query = rebuild_event_query( $site_cat, $scope = 'future', 4 );
+            $site_event_future_query = rebuild_event_query( $site_cat, $scope = 'future', 4, 'ASC' );
 
             ?>
 

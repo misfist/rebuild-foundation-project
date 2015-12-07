@@ -1,6 +1,14 @@
 == Changelog ==
 
+= 1.3.2 =
+Release Date: November 26th, 2015
+
+* [Added] Oembed field support with a video preview
+* [Fixed] Prepend and append from the field will not get added when the value is empty
+
 = 1.3.1 =
+Release Date: October 13th, 2015
+
 * [Fixed] Replaced text-domains
 * [Fixed] Translations will be loaded from pro version
 * [Fixed] Error when Flexible box column was no longer available
