@@ -54,6 +54,7 @@ class MC4WP_Form_Previewer {
 		$instance = new self( $form_id, $is_preview );
 
 		add_filter( 'mc4wp_form_stylesheets', array( $instance, 'set_stylesheet' ) );
+		add_filter( 'mc4wp_form_css_classes', array( $instance, 'add_css_class' ), 10, 2 );
 		add_filter( 'the_title', array( $instance, 'set_page_title' ) );
 		add_filter( 'the_content', array( $instance, 'set_page_content' ) );
 	}
@@ -88,7 +89,7 @@ class MC4WP_Form_Previewer {
 	public function get_preview_page_id() {
 		$page = get_page_by_path( self::PAGE_SLUG );
 
-		if( $page instanceof WP_Post ) {
+		if( $page instanceof WP_Post && in_array( $page->post_status, array( 'draft', 'publish' ) ) ) {
 			$page_id = $page->ID;
 		} else {
 			$page_id = wp_insert_post(
@@ -145,6 +146,8 @@ class MC4WP_Form_Previewer {
 	}
 
 	/**
+	 * We only need the stylesheet of this form for this preview page.
+	 *
 	 * @param $stylesheets
 	 *
 	 * @return string
@@ -169,4 +172,24 @@ class MC4WP_Form_Previewer {
 		return $this->form;
 	}
 
+	/**
+	 * Adds the real CSS class to the preview form-id
+	 *
+	 * @param array $classes
+	 * @return array
+	 */
+	public function add_css_class( $classes, $form ) {
+
+		// only act on our preview form
+		if( $form !== $this->form ) {
+			return $classes;
+		}
+
+		// replace preview ID with actual form ID in all classes
+		foreach( $classes as $key => $class ) {
+			$classes[ $key ] = str_replace( $this->preview_form_id, $this->form_id, $class );
+		}
+
+		return $classes;
+	}
 }

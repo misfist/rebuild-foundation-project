@@ -380,9 +380,8 @@ class MC4WP_Form {
 	 * This method should be called before `get_errors()`
 	 *
 	 * @return bool
-	 * @throws Exception
 	 */
-	public function is_valid() {
+	public function validate() {
 
 		if( ! $this->is_submitted ) {
 			return true;
@@ -400,7 +399,6 @@ class MC4WP_Form {
 			$validator = new MC4WP_Validator( $this->raw_data );
 			$validator->add_rule( '_mc4wp_timestamp', 'range', 'spam', array( 'max' => time() - 2 ) );
 			$validator->add_rule( '_mc4wp_honeypot', 'empty', 'spam' );
-			$validator->add_rule( '_mc4wp_form_nonce', 'valid_nonce', 'spam', array( 'action' => '_mc4wp_form_nonce' ) );
 			$valid = $validator->validate();
 
 			// validate actual (visible) fields
@@ -431,7 +429,16 @@ class MC4WP_Form {
 		 */
 		$this->errors = (array) apply_filters( 'mc4wp_form_errors', $errors, $form );
 
-		return $valid;
+		/**
+		 * @ignore
+		 * @deprecated 3.0 Use `mc4wp_form_errors` instead
+		 */
+		$form_validity = apply_filters( 'mc4wp_valid_form_request', true, $this->data );
+		if( is_string( $form_validity ) ) {
+			$this->errors[] = $form_validity;
+		}
+
+		return ! $this->has_errors();
 	}
 
 	/**
@@ -502,6 +509,18 @@ class MC4WP_Form {
 
 		// uppercase all field keys
 		$data = array_change_key_case( $data, CASE_UPPER );
+
+		/**
+		 * Filters received data from a submitted form before it is processed.
+		 *
+		 * Keys are uppercased and internal fields have been stripped at this point.
+		 *
+		 * @since 3.0
+		 *
+		 * @param array $data Array containing all data in key-value pairs.
+		 * @param MC4WP_Form $form Instance of the submitted form.
+		 */
+		$data = (array) apply_filters( 'mc4wp_form_data', $data, $form );
 
 		return $data;
 	}
