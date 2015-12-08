@@ -83,7 +83,7 @@ $today = date( 'Ymd' );
 
         $exhibition_post_type = 'exhibition';
         $scope = rebuild_exhibition_scope( $site_cat );
-        $exhibition_query = rebuild_get_exhibition_query( $site_cat, $scope );
+        $exhibition_query = rebuild_get_exhibition_query( $site_cat, $scope, 1 );
 
         ?>
 

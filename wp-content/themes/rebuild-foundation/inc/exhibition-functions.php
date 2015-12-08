@@ -115,13 +115,6 @@ if(! function_exists( 'rebuild_get_exhibition_query' ) ) {
 
       }
 
-      // If limit arg passed
-      if( isset( $limit ) && is_int( $limit ) ) {
-
-        $exhibitions_query['posts_per_page'] = $limit;
-
-      }
-
       $exhibitions_query = array( 
           'post_type'   => $post_type,
           'meta_key' => 'start_date',
@@ -129,6 +122,13 @@ if(! function_exists( 'rebuild_get_exhibition_query' ) ) {
           'orderby' => 'meta_value_num',
       );
      
+      // If limit arg passed
+      if( isset( $limit ) && is_int( $limit ) ) {
+
+        $exhibitions_query['posts_per_page'] = $limit;
+
+      }
+
      $rebuild_exhibition_query = new WP_Query( $exhibitions_query );
 
      set_transient( $trans_name, $rebuild_exhibition_query, 60 * $cache_time );
