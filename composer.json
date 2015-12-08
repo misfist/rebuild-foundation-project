@@ -32,8 +32,8 @@
         {
             "type": "package",
             "package": {
-                "name": "misfist/rebuild-foundation-cpt",
-                "version": "v1.0",
+                "name": "misfist/rebuild-foundation-custom-post-types",
+                "version": "master",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
@@ -56,7 +56,7 @@
         "wpackagist-plugin/admin-post-navigation": ">=1.9.2",
         "misfist/admin-columns-acf": "*",
         "misfist/advanced-custom-columns": "*",
-        "misfist/rebuild-foundation-cpt": ">=v1.0"
+        "misfist/rebuild-foundation-custom-post-types": "dev-master"
     },
     "require-dev": {
         "wpackagist-plugin/developer": "1.2.5",
