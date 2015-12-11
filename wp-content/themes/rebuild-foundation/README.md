@@ -6,11 +6,11 @@ Customized starter theme built using `underscores`.
 Template Structure
 ---------------
 
-Custom post type (site, event, exhibition) listing pages are rendered by archive.php, which calls a partial template (loop-{post_type}) to render each list item.
+Custom post type (site, event, exhibition, staff) listing pages are rendered by archive.php, which calls a partial template (loop-{post_type}) to render each list item. These custom post types and associated functions are defined in the rebuild-foundation-cpt plugin, which must be activated in order to be rendered (see Core Dependencies).
 
 Single custom post type (site, event, exhibition) pages are rendered by single.php, which calls a partial template (content-{post_type}) to render the content area.
 
-The home page template (page-home.php) renders each custom field associated with the front page. If additional custom fields are added and contain content, they will be rendered.
+The home page template (page-home.php) renders each custom field associated with the front page. If additional custom fields are added and contain content, they will be rendered. `page-home-static.php` is a static version that can be selected from the home page template list (in the dashboard), if desired.
 
 
 Functions
@@ -18,17 +18,17 @@ Functions
 
 functions.php has not been modified except to add calls to files in /inc. 
 
-/inc/blog-functions.php contains the blog query function `function rebuild_posts_query( $site_cat = null, $limit = null )`
+`/inc/blog-functions.php` contains the blog query function `function rebuild_posts_query( $site_cat = null, $limit = null )`
 
-/inc/event-functions.php contains functions related to the display of the event post type, such as event js script enqueue, building the date query vars based on conditions, pre-get query, cached date queries and various helper functions.
+`/inc/event-functions.php` contains functions related to the display of the event post type, such as event js script enqueue, building the date query vars based on conditions, pre-get query, cached date queries and various helper functions.
 
-/inc/extras.php contains functions that call WP actions and filters to modify content display.
+`/inc/extras.php` contains functions that call WP actions and filters to modify content display.
 
-/inc/filters.php contains various filters that are displayed on archive pages to filter post items. 
+`/inc/filters.php` contains various filters that are displayed on archive pages to filter post items. 
 
-/inc/helpers.php contains functions that helper functions that are generally only used by other functions.
+`/inc/helpers.php` contains functions that helper functions that are generally only used by other functions.
 
-/inc/template-tags.php contains tags that can be used to display content such as taxonomy links, custom field filters, etc. In general, it contains only functions that render content ( echo or printf );
+`/inc/template-tags.php` contains tags that can be used to display content such as taxonomy links, custom field filters, etc. In general, it contains only functions that render content ( echo or printf );
 
 
 Core Dependencies
