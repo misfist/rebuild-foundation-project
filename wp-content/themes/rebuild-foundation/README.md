@@ -18,6 +18,10 @@ Functions
 
 functions.php has not been modified except to add calls to files in /inc. 
 
+/inc/blog-functions.php contains the blog query function `function rebuild_posts_query( $site_cat = null, $limit = null )`
+
+/inc/event-functions.php contains functions related to the display of the event post type, such as event js script enqueue, building the date query vars based on conditions, pre-get query, cached date queries and various helper functions.
+
 /inc/extras.php contains functions that call WP actions and filters to modify content display.
 
 /inc/filters.php contains various filters that are displayed on archive pages to filter post items. 
@@ -36,6 +40,7 @@ Core Dependencies
 File Structure
 ---------------
 
+```
 rebuild-foundation
     - 404.php
     - archive.php
@@ -50,11 +55,14 @@ rebuild-foundation
     - header.php
     - img
     - inc
+        - blog-functions.php
         - custom-header.php
         - customizer.php
         - event-functions.php
+        - exhibition-functions.php
         - extras.php
         - filters.php
+        - helpers.php
         - jetpack.php
         - template-tags.php
     - index.php
@@ -85,12 +93,20 @@ rebuild-foundation
         - content-search.php
         - content-single.php
         - content-site.php
+        - content-staff.php
         - content.php
+        - gallery-site.php
+        - gallery-static.php
+        - gallery.php
         - loop-event.php
         - loop-exhibition.php
+        - loop-none.php
         - loop-page.php
         - loop-post.php
         - loop-site-event-future.php
         - loop-site-event-past.php
         - loop-site-post.php
         - loop-site.php
+        - loop-staff.php
+        - social-media.php
+```
