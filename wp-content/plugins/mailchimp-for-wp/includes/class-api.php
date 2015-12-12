@@ -349,14 +349,16 @@ class MC4WP_API {
 		}
 
 		$data['apikey'] = $this->api_key;
-		$url = $this->api_url . $method . '.json';
 
-		$response = wp_remote_post( $url, array(
-				'body' => $data,
-				'timeout' => 10,
-				'headers' => $this->get_headers()
-			)
+		$url = $this->api_url . $method . '.json';
+		$request_args = array(
+			'body' => $data,
+			'timeout' => 10,
+			'headers' => $this->get_headers(),
+			'sslverify' => apply_filters( 'mc4wp_use_sslverify', true ),
 		);
+
+		$response = wp_remote_post( $url, $request_args );
 
 		// test for wp errors
 		if( is_wp_error( $response ) ) {
