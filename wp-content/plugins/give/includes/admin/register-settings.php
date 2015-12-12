@@ -131,7 +131,7 @@ class Give_Plugin_Settings {
 		?>
 
 		<div class="wrap give_settings_page cmb2_options_page <?php echo $this->key; ?>">
-			<h2 class="nav-tab-wrapper">
+			<h1 class="nav-tab-wrapper">
 				<?php
 				foreach ( $this->give_get_settings_tabs() as $tab_id => $tab_name ) {
 
@@ -148,7 +148,7 @@ class Give_Plugin_Settings {
 					echo '</a>';
 				}
 				?>
-			</h2>
+			</h1>
 
 			<?php cmb2_metabox_form( $this->give_settings( $active_tab ), $this->key ); ?>
 
@@ -185,7 +185,7 @@ class Give_Plugin_Settings {
 						),
 						array(
 							'name'    => __( 'Success Page', 'give' ),
-							'desc'    => __( 'This is the page donators are sent to after completing their donations. The <code>[give_receipt]</code> shortcode should be on this page.', 'give' ),
+							'desc'    => sprintf( __( 'This is the page donors are sent to after completing their donations. The %1$s[give_receipt]%2$s shortcode should be on this page.', 'give' ), '<code>', '</code>' ),
 							'id'      => 'success_page',
 							'type'    => 'select',
 							'options' => give_cmb2_get_post_options( array(
@@ -227,7 +227,7 @@ class Give_Plugin_Settings {
 							'id'   => 'give_title_general_settings_2'
 						),
 						array(
-							'name'    => __( 'Currency', 'cmb' ),
+							'name'    => __( 'Currency', 'give' ),
 							'desc'    => 'Choose your currency. Note that some payment gateways have currency restrictions.',
 							'id'      => 'currency',
 							'type'    => 'select',
@@ -235,7 +235,7 @@ class Give_Plugin_Settings {
 							'default' => 'USD',
 						),
 						array(
-							'name'    => __( 'Currency Position', 'cmb' ),
+							'name'    => __( 'Currency Position', 'give' ),
 							'desc'    => 'Choose the position of the currency sign.',
 							'id'      => 'currency_position',
 							'type'    => 'select',
@@ -543,7 +543,7 @@ class Give_Plugin_Settings {
 						array(
 							'id'      => 'admin_notice_emails',
 							'name'    => __( 'Donation Notification Emails', 'give' ),
-							'desc'    => sprintf(__( 'Enter the email address(es) that should receive a notification anytime a donation is made, please only enter %1$sone email address per line%2$s and not separated by commas.', 'give' ), '<span class="give-underline">', '</span>'),
+							'desc'    => sprintf( __( 'Enter the email address(es) that should receive a notification anytime a donation is made, please only enter %1$sone email address per line%2$s and not separated by commas.', 'give' ), '<span class="give-underline">', '</span>' ),
 							'type'    => 'textarea',
 							'default' => get_bloginfo( 'admin_email' )
 						),
@@ -854,7 +854,12 @@ function give_get_settings() {
  *
  * @since 1.0
  *
- * @global $give_options Array of all the Give Options
+ * @param $field_object
+ * @param $escaped_value
+ * @param $object_id
+ * @param $object_type
+ * @param $field_type_object
+ *
  * @return void
  */
 function give_enabled_gateways_callback( $field_object, $escaped_value, $object_id, $object_type, $field_type_object ) {
@@ -1112,10 +1117,11 @@ function give_hook_callback( $args ) {
  * @description: Checks to see if CMB2 plugin is installed first the uses included CMB2; we can still use it even it it's not active. This prevents fatal error conflicts with other themes and users of the CMB2 WP.org plugin
  *
  */
-if ( file_exists( WP_PLUGIN_DIR . '/cmb2/init.php' ) ) {
+
+if ( file_exists( WP_PLUGIN_DIR . '/cmb2/init.php' ) && ! defined( 'CMB2_LOADED' ) ) {
 	require_once WP_PLUGIN_DIR . '/cmb2/init.php';
-} elseif ( file_exists( GIVE_PLUGIN_DIR . '/includes/libraries/cmb2/init.php' ) ) {
+} elseif ( file_exists( GIVE_PLUGIN_DIR . '/includes/libraries/cmb2/init.php' ) && ! defined( 'CMB2_LOADED' ) ) {
 	require_once GIVE_PLUGIN_DIR . '/includes/libraries/cmb2/init.php';
-} elseif ( file_exists( GIVE_PLUGIN_DIR . '/includes/libraries/CMB2/init.php' ) ) {
+} elseif ( file_exists( GIVE_PLUGIN_DIR . '/includes/libraries/CMB2/init.php' ) && ! defined( 'CMB2_LOADED' ) ) {
 	require_once GIVE_PLUGIN_DIR . '/includes/libraries/CMB2/init.php';
 }

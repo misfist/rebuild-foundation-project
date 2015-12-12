@@ -2,9 +2,9 @@
 Contributors: wordimpress, dlocc, webdevmattcrom
 Donate link: http://givewp.com/
 Tags: donation, donations, donation plugin, wordpress donation plugin, wp donation, ecommerce, e-commerce, fundraising, fundraiser, crowdfunding, wordpress donations, commerce, wordpress ecommerce, giving, charity, donate, gifts, non-profit, paypal, stripe, churches, nonprofit, paypal donations, paypal donate, stripe donations, stripe donate, authorize.net, authorize.net donations
-Requires at least: 3.8
-Tested up to: 4.3.2
-Stable tag: 1.3.1.1
+Requires at least: 4.0
+Tested up to: 4.4.1
+Stable tag: 1.3.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,7 +66,7 @@ Stay in touch with us for important plugin news and updates:
 
 = Contribute to Give =
 
-This plugin is open source and we're always looking for more contributors. Whether you know another language, can code like no ones business, or just have an idea, we would love your help and input. To contribute to Give please head over to [our website](https://givewp.com "Visit the the Give website") or view/fork/watch the [GitHub repository](github.com/WordImpress/Give "Visit the the Give GitHub Repo") to learn more about what issues we're tackling and the project is developing.
+This plugin is open source and we're always looking for more contributors. Whether you know another language, can code like no ones business, or just have an idea, we would love your help and input. To contribute to Give please head over to [our website](https://givewp.com "Visit the the Give website") or view/fork/watch the [GitHub repository](https://github.com/WordImpress/Give "Visit the the Give GitHub Repo") to learn more about what issues we're tackling and the project is developing.
 
 = A Tribute to Open Source =
 
@@ -128,6 +128,42 @@ We also really like WooCommerce. It's hands-down the most robust eCommerce platf
 4. Multi-level donations
 
 == Changelog ==
+
+= 1.3.2 =
+* New: German/Deutsch translation for Give provided by Konrad - Thanks! :) - https://github.com/WordImpress/Give/issues/383
+* New: Polish/Polski translation provided by Emilia - Thanks! :) - https://github.com/WordImpress/Give/issues/418
+* New: Introduced Give_Cron class for scheduling routine events - https://github.com/WordImpress/Give/issues/422
+* New: Introduced `give_can_view_receipt` function with `give_user_can_view_receipt_item` - https://github.com/WordImpress/Give/issues/407
+* Unit Test: Restructured unit testing #415 - https://github.com/WordImpress/Give/issues/415
+* Unit Test: New install unit test that verifies roles, version matches, pages create #222 - https://github.com/WordImpress/Give/issues/222
+* Unit Test: Login / Register functionality #342 - https://github.com/WordImpress/Give/issues/342
+* Accessibility: Multi-level select field has no label - https://github.com/WordImpress/Give/issues/331
+* Accessibility: Multi-level select field has no label - https://github.com/WordImpress/Give/issues/331
+* Accessibility: #give-amount ID output multiple times on the page - https://github.com/WordImpress/Give/issues/326
+* Accessibility: Login form submit surrounded incorrectly with <p> tag - https://github.com/WordImpress/Give/issues/332
+* Accessibility: .give-amount input didn't have a label associated with it, now it does :) - https://github.com/WordImpress/Give/issues/328
+* Fix: Payments that are in "Pending" status for more then 10 days are not automatically set to "Abandoned" status instead of staying in "Pending" status
+* Fix: Shortcode builder dialogs do not work when the "SiteOrigin Widgets Bundle" plugin is active - https://github.com/WordImpress/Give/issues/405
+* Fix: Missing calculation in give stats earnings - thanks @andrejcremoznik - https://github.com/WordImpress/Give/issues/408
+* Fix: Give donation form shortcode not respecting show_goal="false" - https://github.com/WordImpress/Give/issues/360
+* Fix: HTML5 required attribute needs to respect give_is_field_required() conditonal - https://github.com/WordImpress/Give/issues/361
+* Fix: Custom wrapper added for the popular Avada theme - https://github.com/WordImpress/Give/issues/366
+* Fix: Basic CSS style added for .give-btn buttons - https://github.com/WordImpress/Give/issues/234
+* Fix: Address field is not editable on Donor information screen - https://github.com/WordImpress/Give/issues/369
+* Fix: Optimized conditional check in give_install_roles_on_network - thanks @jimwebb - https://github.com/WordImpress/Give/issues/376
+* Fix: Wrong param order for _x() i18n function - thanks @andrejcremoznik - https://github.com/WordImpress/Give/issues/376
+* Fix: North/South Korea country codes reversed - https://github.com/WordImpress/Give/issues/382
+* Fix: [give_register] shortcode template file missing - https://github.com/WordImpress/Give/issues/393
+* Fix: [give_register] and [give_login] shortcodes not properly outputting error notices - https://github.com/WordImpress/Give/issues/394
+* Fix: Discrepancies between competing metakeys causing donor details dropdown to not reflect saved value when switching donors; develop accompanying upgrade routine - https://github.com/WordImpress/Give/issues/388
+* Fix: Theme compatibility issues with the new twentysixteen WordPress default theme - https://github.com/WordImpress/Give/issues/401
+* Fix: Fixed Safari iOS bug with HTML5 required attribute and form reloading - https://github.com/WordImpress/Give/issues/402
+* Tweak: Added table_exists method to Give_DB class - https://github.com/WordImpress/Give/pull/404
+* Tweak: Change labels to "Donation Form" within admin - https://github.com/WordImpress/Give/issues/303
+* Tweak: "Donor" column link under Give > Transactions now goes to donor's page - https://github.com/WordImpress/Give/issues/285
+* Tweak: Updated nav-tab wrappers heading tag to h1s for WordPress 4.4s #a11y release - https://github.com/WordImpress/Give/issues/377
+* Tweak: Updated how CMB2 is included to prevent conflicts with other themes and/or plugins - https://github.com/WordImpress/Give/issues/389
+* Tweak: Add visual line break to Donor card second address line
 
 = 1.3.1.1 =
 * Fix: Multi-level amounts were incorrectly re-saving to the default of 1.00 due to a bug within the recent update

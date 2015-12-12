@@ -16,6 +16,10 @@ Layout
 
 [id*='give-form'] {
 
+  .give-hidden {
+	display: none;
+  }
+
   fieldset {
 	border: none;
 	padding: 0;
@@ -122,6 +126,9 @@ form[id*='give-form'], #give-recurring-form, form.give-form {
   margin: 0 0 25px;
   padding: 0;
 
+  .give-hidden {
+	display: none;
+  }
   .give-tooltip {
 	margin: 0 3px;
 	padding: 0;
@@ -150,7 +157,7 @@ form[id*='give-form'], #give-recurring-form, form.give-form {
   }
 
   div[id^='section-'] .give-section-break {
-	margin:0;
+	margin: 0;
   }
 
   //Form Layout
@@ -165,6 +172,7 @@ form[id*='give-form'], #give-recurring-form, form.give-form {
 	  margin: 0 0 5px;
 	  position: relative;
 	  line-height: 1.7;
+	  text-align:left;
 
 	  &.checkbox {
 		display: inline;
@@ -267,7 +275,8 @@ form[id*='give-form'] {
 
 	}
 
-	#give-amount {
+	#give-amount,
+	#give-amount-text {
 	  @include give-input();
 	  width: 125px;
 
@@ -653,6 +662,20 @@ p.give-recurring-login-toggle {
   font-style: italic;
 }
 
+/* Login Shortcode Form */
+#give-login-form, #give-register-form {
+
+  legend, div.give-login {
+	line-height: 2;
+	margin-bottom: 15px;
+  }
+
+  label {
+	min-width: 100px;
+	display: inline-block;
+  }
+}
+
 /*---------------------------------
 Modal - Magnific Popup
 -----------------------------------*/
@@ -678,6 +701,24 @@ div.mfp-content {
 }
 
 /*---------------------------------
+Basic Button Style
+-----------------------------------*/
+
+.give-btn {
+  background: #eeeeee;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  cursor: pointer;
+  line-height: 1.2em;
+  font-size: 14px;
+
+  &:hover {
+	background: #dbdbdb;
+  }
+
+}
+
+/*---------------------------------
 Responsiveness
 -----------------------------------*/
 @media (max-width: 768px) {
@@ -691,14 +732,5 @@ Responsiveness
 	}
 
   }
-
-  /* Form */
-  form[id*='give-form'] {
-
-	#give-card-name-wrap, .card-expiration {
-	  width: 46%;
-	}
-
-  }
-
+  
 }

@@ -150,7 +150,7 @@ function give_install() {
 
 		// When new upgrade routines are added, mark them as complete on fresh install
 		$upgrade_routines = array(
-			'upgrade_donor_payments_association'
+			'upgrade_give_payment_customer_id'
 		);
 
 		foreach ( $upgrade_routines as $upgrade ) {
@@ -215,7 +215,7 @@ function give_install_roles_on_network() {
 		return;
 	}
 
-	if ( ! in_array( 'give_manager', $wp_roles->roles ) ) {
+	if ( ! array_key_exists( 'give_manager', $wp_roles->roles ) ) {
 
 		// Create Give shop roles
 		$roles = new Give_Roles;
