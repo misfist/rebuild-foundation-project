@@ -62,7 +62,7 @@ form.give-form {
 
 	fieldset {
 		border: 1px solid $black-transparent;
-		@include border-radius(5px);
+		@include border-radius(10px);
 		margin-top: 30px;
 		padding: 0 25px 0 25px;
 	}
@@ -176,7 +176,7 @@ form.give-form {
 		#give-final-total-wrap {
 			@include inblock(calc(66.66% + 20px));
 			margin: 0 -5px 0 0;
-			@include border-radius(5px 0 0 5px);
+			@include border-radius(10px 0 0 10px);
 			border: 2px solid $black;
 			border-right: none;
 			
@@ -204,7 +204,7 @@ form.give-form {
 			margin-left: -20px;
 
 			.give-submit {
-				@include border-radius(25px);
+				@include border-radius(10px);
 				font: $font_size-3 $regular;
 				padding: 12px;
 				height: 54px;

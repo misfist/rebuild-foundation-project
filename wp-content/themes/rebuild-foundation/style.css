@@ -778,10 +778,10 @@ form.give-form label {
   font: normal 16px "Akkurat-Bold"; }
 form.give-form fieldset {
   border: 1px solid rgba(0, 0, 0, 0.5);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
   margin-top: 30px;
   padding: 0 25px 0 25px; }
 form.give-form p.form-row {
@@ -869,10 +869,10 @@ form.give-form #give_purchase_submit {
     vertical-align: top;
     width: calc(66.66% + 20px);
     margin: 0 -5px 0 0;
-    -webkit-border-radius: 5px 0 0 5px;
-    -moz-border-radius: 5px 0 0 5px;
-    -ms-border-radius: 5px 0 0 5px;
-    border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    -ms-border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
     border: 2px solid black;
     border-right: none; }
     form.give-form #give_purchase_submit #give-final-total-wrap .give-donation-total-label {
@@ -894,10 +894,10 @@ form.give-form #give_purchase_submit {
     width: 33.33%;
     margin-left: -20px; }
     form.give-form #give_purchase_submit .give-submit-button-wrap .give-submit {
-      -webkit-border-radius: 25px;
-      -moz-border-radius: 25px;
-      -ms-border-radius: 25px;
-      border-radius: 25px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      border-radius: 10px;
       font: 20px "Akkurat-Regular";
       padding: 12px;
       height: 54px;
