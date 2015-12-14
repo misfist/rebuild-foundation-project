@@ -714,4 +714,36 @@ input.search-field:focus {
   left: 80px;
   margin-top: 10px; }
 
+form.give-form #give-donation-level-radio-list {
+  display: block; }
+  form.give-form #give-donation-level-radio-list li {
+    margin-bottom: 15px; }
+form.give-form p.form-row {
+  float: none;
+  width: 100%; }
+form.give-form #give-gateway-radio-list {
+  display: block; }
+form.give-form #give_purchase_submit #give-final-total-wrap {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 2px solid black;
+  border-bottom: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  min-height: 80px; }
+form.give-form #give_purchase_submit .give-submit-button-wrap {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  border-radius: 15px;
+  margin-top: -25px; }
+
 /*# sourceMappingURL=mobile.css.map */

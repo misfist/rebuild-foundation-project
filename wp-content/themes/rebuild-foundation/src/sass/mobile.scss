@@ -986,3 +986,40 @@ input.search-field:focus {
 		margin-top: 10px;
 	}
 }
+
+// Donations
+
+form.give-form {
+	#give-donation-level-radio-list {
+		display: block;
+
+		li {
+			margin-bottom: 15px;
+		}
+	}
+
+	p.form-row {
+		float: none;
+		width: 100%;
+	}
+
+	#give-gateway-radio-list {
+		display: block;
+	}
+
+	#give_purchase_submit {
+		#give-final-total-wrap {
+			@include clear-inblock();
+			border: 2px solid $black;
+			border-bottom: none;
+			@include border-radius(5px);
+			min-height: 80px;
+		}
+
+		.give-submit-button-wrap {
+			@include clear-inblock();
+			@include border-radius(15px);
+			margin-top: -25px;
+		}
+	}
+}

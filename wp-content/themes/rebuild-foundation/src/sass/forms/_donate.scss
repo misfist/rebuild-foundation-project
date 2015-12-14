@@ -22,7 +22,20 @@
 			@include border-radius(0);
 		}
 	}
+
+	div.give-form-content-wrap {
+		margin-bottom: 60px;
+
+		ul {
+
+			li {
+				padding: 4px 0;
+			}
+		}
+	}
 }
+
+
 
 
 form.give-form {
@@ -42,6 +55,7 @@ form.give-form {
 
 	fieldset {
 		border: 1px solid $black-transparent;
+		@include border-radius(5px);
 		margin-top: 30px;
 		padding: 0 25px 0 25px;
 	}
@@ -78,13 +92,13 @@ form.give-form {
 			padding-top: 7px;
 		}
 
-		#give-amount {
+		#give-amount  {
 			font: $font_size-5 $regular;
 			height: 50px;
 			border: none;
 			border-top: 1px solid $white;
 			border-right: 1px solid $white;
-			width: 150px;
+			min-width: 300px;
 
 			&:focus {
 				border-top: 1px solid $black-transparent;
@@ -92,6 +106,16 @@ form.give-form {
 				outline: none;
 			}
 		}
+
+		#give-amount-text {
+			font: $font_size-5 $regular;
+			height: 50px;
+			padding-top: 6px;
+			text-align: center;
+			border-color: $black-transparent;
+			border-bottom: none;
+		}
+
 	}
 
 	#give-donation-level-radio-list {
@@ -117,44 +141,47 @@ form.give-form {
 	}
 
 	#give_purchase_submit {
-		border-top: 1px solid $black-transparent;
 		margin-top: 40px;
 		padding: 0;
 		border: none;
-
+		
 		#give-final-total-wrap {
-			width: 50%;
-			margin: 0;
-
+			@include inblock(calc(66.66% + 20px));
+			margin: 0 -5px 0 0;
+			@include border-radius(5px 0 0 5px);
+			border: 2px solid $black;
+			border-right: none;
+			
 			.give-donation-total-label {
-				width: 50%;
-				border: 1px solid $black;
-				text-align: center;
-				padding-top: 6px;
-				@include border-radius (10px 0 0 0);
+				font: normal $font_size-2 $bold;
+				padding-top: 20px;
 				background-color: transparent;
-				height: 50px;
+				min-height: 50px;
 				color: $black;
+				border: none;
 			}
 
 			.give-final-total-amount {
-				width: 50%;
-				@include border-radius (0 10px 0 0);
-				text-align: center;
 				font: $font_size-5 $regular;
 				color: $black;
 				padding-top: 6px;
-				border: 1px solid $black;
-				border-left: none;
-				height: 50px;
+				border: none;
+				min-height: 50px;
+
 			}
 		}
 
 		.give-submit-button-wrap {
+			@include inblock(33.33%);
+			margin-left: -20px;
 
 			.give-submit {
-				@include border-radius (0 0 10px 10px);
+				@include border-radius(25px);
+				font: $font_size-3 $regular;
 				padding: 12px;
+				height: 54px;
+				width: 100%;
+				border: 2px solid $black;
 			}
 		}
 	}
@@ -178,6 +205,7 @@ form.give-form {
 		&:hover {
 			background-color: $black-transparent-light;
 			@include transition-duration(0.25s);
+			color: $black;
 		}
 	}
 
