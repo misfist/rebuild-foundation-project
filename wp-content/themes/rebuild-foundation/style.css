@@ -759,7 +759,8 @@ input.search-field {
 .give-form-wrap div.give-form-content-wrap {
   margin-bottom: 60px; }
   .give-form-wrap div.give-form-content-wrap ul li {
-    padding: 4px 0; }
+    padding: 6px 0;
+    line-height: 1.3em; }
 
 form.give-form legend {
   font: 20px "Akkurat-Bold";

@@ -29,7 +29,8 @@
 		ul {
 
 			li {
-				padding: 4px 0;
+				padding: 6px 0;
+				line-height: 1.3em;
 			}
 		}
 	}
@@ -135,7 +136,7 @@ form.give-form {
 			button {
 				background-color: $black-transparent-light;
 				color: $black;
-				
+
 
 				&:hover {
 					background-color: $black;
