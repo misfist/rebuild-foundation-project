@@ -804,7 +804,7 @@ form.give-form .give-donation-amount {
     border: none;
     border-top: 1px solid white;
     border-right: 1px solid white;
-    min-width: 300px; }
+    width: auto; }
     form.give-form .give-donation-amount #give-amount:focus {
       border-top: 1px solid rgba(0, 0, 0, 0.5);
       border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -815,7 +815,8 @@ form.give-form .give-donation-amount {
     padding-top: 6px;
     text-align: center;
     border-color: rgba(0, 0, 0, 0.5);
-    border-bottom: none; }
+    border-bottom: none;
+    width: auto; }
 form.give-form #give-donation-level-radio-list {
   display: -webkit-box;
   display: -moz-box;
@@ -826,6 +827,17 @@ form.give-form #give-donation-level-radio-list {
   -moz-justify-content: space-between;
   justify-content: space-between;
   margin-bottom: 50px; }
+form.give-form #give-donation-level-button-wrap {
+  margin-bottom: 60px; }
+  form.give-form #give-donation-level-button-wrap li {
+    padding-left: 0;
+    padding-right: 15px; }
+    form.give-form #give-donation-level-button-wrap li button {
+      background-color: rgba(0, 0, 0, 0.25);
+      color: black; }
+      form.give-form #give-donation-level-button-wrap li button:hover {
+        background-color: black;
+        color: white; }
 form.give-form #give-gateway-radio-list {
   display: -webkit-box;
   display: -moz-box;

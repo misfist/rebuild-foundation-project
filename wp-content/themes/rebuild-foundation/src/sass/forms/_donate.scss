@@ -98,7 +98,7 @@ form.give-form {
 			border: none;
 			border-top: 1px solid $white;
 			border-right: 1px solid $white;
-			min-width: 300px;
+			width: auto;
 
 			&:focus {
 				border-top: 1px solid $black-transparent;
@@ -114,6 +114,7 @@ form.give-form {
 			text-align: center;
 			border-color: $black-transparent;
 			border-bottom: none;
+			width: auto;
 		}
 
 	}
@@ -122,6 +123,26 @@ form.give-form {
 		@include flex();
 		@include justify-content(space-between);
 		margin-bottom: 50px;
+	}
+
+	#give-donation-level-button-wrap {
+		margin-bottom: 60px;
+
+		li {
+			padding-left: 0;
+			padding-right: 15px;
+
+			button {
+				background-color: $black-transparent-light;
+				color: $black;
+				
+
+				&:hover {
+					background-color: $black;
+					color: $white;
+				}
+			}
+		}
 	}
 
 	#give-gateway-radio-list {
