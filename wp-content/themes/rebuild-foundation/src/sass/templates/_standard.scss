@@ -345,12 +345,8 @@
 @media (max-width: 1024px) {
 	.page-template-default{
 
-		.entry-header {
-			padding-left: 0;	
-		}
-
 		article {
-			padding-left: 0;
+			width: calc(100% - 40px);
 		}
 	}
 

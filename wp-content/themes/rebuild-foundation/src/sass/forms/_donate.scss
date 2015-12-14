@@ -42,12 +42,18 @@
 form.give-form {
 	legend {
 		font: $font_size-3 $bold;
-		width: auto;
 		color: $black;
-		margin: -13px 0 20px -5px;
+		margin: 0 0 20px -5px;
 		padding: 0 5px;
 		background-color: $warm-gray;
-		border: none
+		border: none;
+		border-bottom: 1px solid $black-transparent;
+	}
+
+	legend:first-of-type {
+		margin-top: -13px;
+		border: none;
+		width: auto;
 	}
 
 	label {

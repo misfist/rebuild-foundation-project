@@ -764,12 +764,16 @@ input.search-field {
 
 form.give-form legend {
   font: 20px "Akkurat-Bold";
-  width: auto;
   color: black;
-  margin: -13px 0 20px -5px;
+  margin: 0 0 20px -5px;
   padding: 0 5px;
   background-color: #e9e6df;
-  border: none; }
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+form.give-form legend:first-of-type {
+  margin-top: -13px;
+  border: none;
+  width: auto; }
 form.give-form label {
   font: normal 16px "Akkurat-Bold"; }
 form.give-form fieldset {
@@ -1230,7 +1234,7 @@ a {
   float: initial;
   position: initial; }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .page-template-default .main-navigation .current-menu-item .sub-menu, .page-template-default .main-navigation .current-menu-ancestor .sub-menu {
     position: relative;
     left: 0;
@@ -3125,10 +3129,8 @@ article.site_category-listening-house .entry-meta.location a:hover {
   .search-results article, .search-results .posts-navigation {
     width: calc(100% - 60px); } }
 @media (max-width: 1024px) {
-  .page-template-default .entry-header {
-    padding-left: 0; }
   .page-template-default article {
-    padding-left: 0; }
+    width: calc(100% - 40px); }
 
   .single-post #primary {
     padding-left: 0; }
@@ -3269,7 +3271,7 @@ article.site_category-listening-house .entry-meta.location a:hover {
   position: absolute;
   right: 0; }
 .post-staff article {
-  width: calc(70% - 100px);
+  width: calc(100% - 100px);
   margin-bottom: 50px; }
 .post-staff .posts-list .staff-category:nth-of-type(1) .tax-title, .post-staff .posts-list .staff-category:nth-of-type(2) .tax-title {
   display: none; }

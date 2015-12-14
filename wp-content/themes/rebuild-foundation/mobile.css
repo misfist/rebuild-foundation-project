@@ -746,4 +746,34 @@ form.give-form #give_purchase_submit .give-submit-button-wrap {
   border-radius: 15px;
   margin-top: -25px; }
 
+table#give_user_history {
+  border: 1px solid rgba(0, 0, 0, 0.5); }
+  table#give_user_history thead th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px; }
+  table#give_user_history tbody td {
+    display: block;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+  table#give_user_history tbody td:last-child {
+    border-bottom: none; }
+  table#give_user_history tbody td:before {
+    content: "test";
+    position: absolute;
+    display: block;
+    width: 50%;
+    font: normal 16px "Akkurat-Bold";
+    text-align: left;
+    margin-left: calc(-50% + 20px); }
+  table#give_user_history tbody td.give_purchase_id:before {
+    content: "ID"; }
+  table#give_user_history tbody td.give_purchase_date:before {
+    content: "Date"; }
+  table#give_user_history tbody td.give_purchase_amount:before {
+    content: "Amount"; }
+  table#give_user_history tbody td.give_purchase_details:before {
+    content: "Details"; }
+
 /*# sourceMappingURL=mobile.css.map */
