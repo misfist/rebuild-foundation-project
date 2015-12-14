@@ -790,6 +790,10 @@ form.give-form p.give-loading-text {
   font: normal 16px "Akkurat-Bold";
   font-style: normal;
   padding-bottom: 20px; }
+form.give-form p.give-loading-text.give-updating-price-loader {
+  position: absolute;
+  right: 20px;
+  margin-top: 15px; }
 form.give-form .blockUI.blockOverlay {
   background-color: #e9e6df !important; }
 form.give-form .give-donation-amount {
@@ -809,7 +813,7 @@ form.give-form .give-donation-amount {
     border: none;
     border-top: 1px solid white;
     border-right: 1px solid white;
-    width: auto; }
+    width: calc(100% - 50px); }
     form.give-form .give-donation-amount #give-amount:focus {
       border-top: 1px solid rgba(0, 0, 0, 0.5);
       border-right: 1px solid rgba(0, 0, 0, 0.5);
@@ -821,7 +825,7 @@ form.give-form .give-donation-amount {
     text-align: center;
     border-color: rgba(0, 0, 0, 0.5);
     border-bottom: none;
-    width: auto; }
+    width: calc(100% - 50px); }
 form.give-form #give-donation-level-radio-list {
   display: -webkit-box;
   display: -moz-box;

@@ -77,6 +77,12 @@ form.give-form {
 		padding-bottom: 20px;
 	}
 
+	p.give-loading-text.give-updating-price-loader {
+		position: absolute;
+		right: 20px;
+		margin-top: 15px;
+	}
+
 	.give-loading-animation {
 		
 	}
@@ -105,7 +111,7 @@ form.give-form {
 			border: none;
 			border-top: 1px solid $white;
 			border-right: 1px solid $white;
-			width: auto;
+			width: calc(100% - 50px);
 
 			&:focus {
 				border-top: 1px solid $black-transparent;
@@ -121,7 +127,7 @@ form.give-form {
 			text-align: center;
 			border-color: $black-transparent;
 			border-bottom: none;
-			width: auto;
+			width: calc(100% - 50px);
 		}
 
 	}
