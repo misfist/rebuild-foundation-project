@@ -1,0 +1,498 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Give - PDF Receipts\n"
+"POT-Creation-Date: 2015-05-25 11:57-0800\n"
+"PO-Revision-Date: 2015-05-25 11:56-0800\n"
+"Last-Translator: Matt Cromwell <matt@wordimpress.com>\n"
+"Language-Team: Matt Cromwell <matt@wordimpress.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: give-pdf-receipts.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: give-pdf-receipts.php:98 give-pdf-receipts.php:110
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: give-pdf-receipts.php:321
+#, php-format
+msgid "You must install %sGive%s for the PDF Receipts Add-On to work."
+msgstr ""
+
+#: give-pdf-receipts.php:325
+msgid ""
+"The Give PDF Receipts plugin requires at least Give Version 0.8+. Please "
+"update Give for the PDF Receipts Add-On to work correctly."
+msgstr ""
+
+#: give-pdf-receipts.php:329
+#, php-format
+msgid ""
+"Please visit the %sPDF Receipt Settings%s to configure the plugin. Currently "
+"the settings have not been configured correctly therefore you may have "
+"issues when trying to generate receipts."
+msgstr ""
+
+#: give-pdf-receipts.php:357 give-pdf-receipts.php:394
+#: give-pdf-receipts.php:416 includes/email-template-tag.php:42
+msgid "Download Receipt"
+msgstr ""
+
+#: give-pdf-receipts.php:373 give-pdf-receipts.php:414
+#: includes/email-templates.php:63 includes/email-templates.php:110
+#: includes/email-templates.php:156 includes/email-templates.php:202
+#: includes/email-templates.php:241 includes/email-templates.php:357
+#: includes/templates/template-blue-stripe.php:56
+#: includes/templates/template-colors.php:145
+msgid "Receipt"
+msgstr ""
+
+#: give-pdf-receipts.php:484
+msgid "The receipt that you requested was not found."
+msgstr ""
+
+#: give-pdf-receipts.php:484
+msgid "Receipt Not Found"
+msgstr ""
+
+#: give-pdf-receipts.php:540
+msgid "Receipt "
+msgstr ""
+
+#: give-pdf-receipts.php:541 give-pdf-receipts.php:590
+msgid "Give"
+msgstr ""
+
+#: give-pdf-receipts.php:589
+msgid "Donation Receipt "
+msgstr ""
+
+#: includes/email-template-tag.php:17
+msgid "Creates a link to a downloadable receipt"
+msgstr ""
+
+#: includes/email-templates.php:28
+msgid "Receipt Default"
+msgstr ""
+
+#: includes/email-templates.php:29 includes/settings.php:97
+msgid "Blue Stripe"
+msgstr ""
+
+#: includes/email-templates.php:30 includes/settings.php:98
+msgid "Lines"
+msgstr ""
+
+#: includes/email-templates.php:31 includes/settings.php:99
+msgid "Minimal"
+msgstr ""
+
+#: includes/email-templates.php:32 includes/settings.php:100
+msgid "Traditional"
+msgstr ""
+
+#: includes/email-templates.php:33
+msgid "Receipt Blue"
+msgstr ""
+
+#: includes/email-templates.php:34
+msgid "Receipt Green"
+msgstr ""
+
+#: includes/email-templates.php:35
+msgid "Receipt Orange"
+msgstr ""
+
+#: includes/email-templates.php:36
+msgid "Receipt Pink"
+msgstr ""
+
+#: includes/email-templates.php:37
+msgid "Receipt Purple"
+msgstr ""
+
+#: includes/email-templates.php:38
+msgid "Receipt Red"
+msgstr ""
+
+#: includes/email-templates.php:39
+msgid "Receipt Yellow"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: includes/i18n.php:16
+msgid "Give - PDF Receipts"
+msgstr ""
+
+#: includes/i18n.php:19
+msgid ""
+"Creates PDF Receipts for each purchase available to both admins and customers"
+msgstr ""
+
+#. Author of the plugin/theme
+#: includes/i18n.php:22
+msgid "WordImpress"
+msgstr ""
+
+#: includes/settings.php:31
+msgid "Receipt Logo"
+msgstr ""
+
+#: includes/settings.php:33
+msgid "Upload or choose a logo to be displayed at the top of the email."
+msgstr ""
+
+#: includes/settings.php:51
+msgid "PDF Receipts"
+msgstr ""
+
+#: includes/settings.php:81 includes/settings.php:85
+msgid "PDF Receipt Settings"
+msgstr ""
+
+#: includes/settings.php:92
+msgid "Receipt Template"
+msgstr ""
+
+#: includes/settings.php:93
+msgid ""
+"Please select a template for your PDF Receipts. This template will be used "
+"for all Give PDF Receipts."
+msgstr ""
+
+#: includes/settings.php:96
+msgid "Default"
+msgstr ""
+
+#: includes/settings.php:101
+msgid "Blue"
+msgstr ""
+
+#: includes/settings.php:102
+msgid "Green"
+msgstr ""
+
+#: includes/settings.php:103
+msgid "Orange"
+msgstr ""
+
+#: includes/settings.php:104
+msgid "Pink"
+msgstr ""
+
+#: includes/settings.php:105
+msgid "Purple"
+msgstr ""
+
+#: includes/settings.php:106
+msgid "Red"
+msgstr ""
+
+#: includes/settings.php:107
+msgid "Yellow"
+msgstr ""
+
+#: includes/settings.php:112
+msgid "Characters not displaying correctly?"
+msgstr ""
+
+#: includes/settings.php:113
+msgid ""
+"Check to enable the Free Sans/Free Serif font replacing Open Sans/Helvetica/"
+"Times. Only do this if you have characters which do not display correctly (e."
+"g. Greek characters)"
+msgstr ""
+
+#: includes/settings.php:118
+msgid "Logo Upload"
+msgstr ""
+
+#: includes/settings.php:119
+msgid ""
+"Upload your logo here which will show up on the receipt. If the logo is "
+"greater than 90px in height, it will not be shown. On the Traditional "
+"template, if the logo is greater than 80px in height, it will not be shown. "
+"Also note that the logo will be output at 96 dpi."
+msgstr ""
+
+#: includes/settings.php:124
+msgid "Company Name"
+msgstr ""
+
+#: includes/settings.php:125
+msgid "Enter the company name that will be shown on the receipt."
+msgstr ""
+
+#: includes/settings.php:132
+msgid "Name"
+msgstr ""
+
+#: includes/settings.php:133
+msgid "Enter the name that will be shown on the receipt."
+msgstr ""
+
+#: includes/settings.php:139
+msgid "Address Line 1"
+msgstr ""
+
+#: includes/settings.php:140
+msgid "Enter the first address line that will appear on the receipt."
+msgstr ""
+
+#: includes/settings.php:146
+msgid "Address Line 2"
+msgstr ""
+
+#: includes/settings.php:147
+msgid "Enter the second address line that will appear on the receipt."
+msgstr ""
+
+#: includes/settings.php:153
+msgid "City, State and Zip Code"
+msgstr ""
+
+#: includes/settings.php:154
+msgid "Enter the city, state and zip code that will appear on the receipt."
+msgstr ""
+
+#: includes/settings.php:160
+msgid "Email Address"
+msgstr ""
+
+#: includes/settings.php:161
+msgid "Enter the email address that will appear on the receipt."
+msgstr ""
+
+#: includes/settings.php:167
+msgid "Show website address?"
+msgstr ""
+
+#: includes/settings.php:168
+msgid "Check this box if you would like your website address to be shown."
+msgstr ""
+
+#: includes/settings.php:173
+msgid "Header Message"
+msgstr ""
+
+#: includes/settings.php:174
+msgid ""
+"Enter the message you would like to be shown on the header of the receipt. "
+"Please note that the header will not show up on the Blue Stripe and "
+"Traditional template."
+msgstr ""
+
+#: includes/settings.php:179
+msgid "Footer Message"
+msgstr ""
+
+#: includes/settings.php:180
+msgid ""
+"Enter the message you would like to be shown on the footer of the receipt."
+msgstr ""
+
+#: includes/settings.php:185 includes/templates/template-blue-stripe.php:228
+#: includes/templates/template-colors.php:330
+#: includes/templates/template-default.php:241
+#: includes/templates/template-lines.php:232
+#: includes/templates/template-minimal.php:201
+msgid "Additional Notes"
+msgstr ""
+
+#: includes/settings.php:186
+msgid ""
+"Enter any messages you would to be displayed at the end of the receipt. Only "
+"plain text is currently supported. Any HTML will not be shown on the receipt."
+msgstr ""
+
+#: includes/settings.php:186
+msgid ""
+"The following template tags will work for the Header and Footer message as "
+"well as the Additional Notes:"
+msgstr ""
+
+#: includes/settings.php:186
+msgid "{page} - Page Number"
+msgstr ""
+
+#: includes/settings.php:186
+msgid "{sitename} - Site Name"
+msgstr ""
+
+#: includes/settings.php:186
+msgid "{today} - Date of Receipt Generation"
+msgstr ""
+
+#: includes/settings.php:186
+msgid "{date} - Receipt Date"
+msgstr ""
+
+#: includes/settings.php:186
+msgid "{receipt_id} - Receipt ID"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:68
+#: includes/templates/template-colors.php:216
+#: includes/templates/template-default.php:113
+#: includes/templates/template-lines.php:69
+msgid "Receipt ID"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:73
+#: includes/templates/template-colors.php:221
+#: includes/templates/template-default.php:118
+#: includes/templates/template-lines.php:74
+msgid "Transaction Key"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:78
+#: includes/templates/template-colors.php:226
+#: includes/templates/template-default.php:123
+#: includes/templates/template-lines.php:79
+#: includes/templates/template-minimal.php:75
+msgid "Donation Status"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:83
+#: includes/templates/template-default.php:128
+#: includes/templates/template-minimal.php:80
+msgid "Payment Method"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:157
+#: includes/templates/template-default.php:149
+#: includes/templates/template-lines.php:165
+#: includes/templates/template-minimal.php:141
+#: includes/templates/template-traditional.php:162
+msgid "Donation Name"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:158
+#: includes/templates/template-default.php:150
+#: includes/templates/template-lines.php:166
+#: includes/templates/template-minimal.php:142
+#: includes/templates/template-traditional.php:163
+msgid "Donation Total"
+msgstr ""
+
+#: includes/templates/template-blue-stripe.php:220
+#: includes/templates/template-colors.php:322
+#: includes/templates/template-default.php:232
+#: includes/templates/template-lines.php:224
+#: includes/templates/template-minimal.php:193
+#: includes/templates/template-traditional.php:222
+msgid "Total Donation"
+msgstr ""
+
+#: includes/templates/template-colors.php:150
+#: includes/templates/template-default.php:54
+msgid "From"
+msgstr ""
+
+#: includes/templates/template-colors.php:186
+#: includes/templates/template-default.php:82
+msgid "To"
+msgstr ""
+
+#: includes/templates/template-colors.php:209
+#: includes/templates/template-default.php:106
+msgid "Receipt Date"
+msgstr ""
+
+#: includes/templates/template-colors.php:231
+#: includes/templates/template-lines.php:84
+msgid "Donation Method"
+msgstr ""
+
+#: includes/templates/template-colors.php:241
+msgid "Donation"
+msgstr ""
+
+#: includes/templates/template-colors.php:251
+msgid "DONATION NAME"
+msgstr ""
+
+#: includes/templates/template-colors.php:252
+msgid "DONATION TOTAL"
+msgstr ""
+
+#: includes/templates/template-colors.php:301
+msgid "Receipt Totals"
+msgstr ""
+
+#: includes/templates/template-default.php:50
+#: includes/templates/template-lines.php:57
+#: includes/templates/template-minimal.php:55
+msgid "Donation Receipt"
+msgstr ""
+
+#: includes/templates/template-default.php:139
+msgid "Receipt Items"
+msgstr ""
+
+#: includes/templates/template-default.php:202
+msgid "Receipt Total"
+msgstr ""
+
+#: includes/templates/template-minimal.php:65
+msgid "Transaction ID"
+msgstr ""
+
+#: includes/templates/template-minimal.php:70
+msgid "Donation Key"
+msgstr ""
+
+#: includes/templates/template-traditional.php:62
+msgid "DONATION RECEIPT"
+msgstr ""
+
+#: includes/templates/template-traditional.php:73
+msgid "DONATION ID"
+msgstr ""
+
+#: includes/templates/template-traditional.php:78
+msgid "TRANSACTION KEY"
+msgstr ""
+
+#: includes/templates/template-traditional.php:83
+msgid "DONATION STATUS"
+msgstr ""
+
+#: includes/templates/template-traditional.php:88
+msgid "PAYMENT METHOD"
+msgstr ""
+
+#: includes/templates/template-traditional.php:95
+msgid "FROM:"
+msgstr ""
+
+#: includes/templates/template-traditional.php:126
+msgid "TO:"
+msgstr ""
+
+#: includes/templates/template-traditional.php:153
+msgid "RECEIPT ITEMS"
+msgstr ""
+
+#: includes/templates/template-traditional.php:231
+msgid "ADDITIONAL NOTES:"
+msgstr ""
+
+#: includes/templates/template-traditional.php:243
+msgid "THANK YOU FOR YOUR DONATION!"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Creates PDF Receipts for each donation that is downloadable via email and "
+"donation history"
+msgstr ""
