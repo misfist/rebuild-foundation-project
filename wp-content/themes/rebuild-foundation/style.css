@@ -472,6 +472,9 @@ h4.hours-location {
   margin-top: 0;
   margin-bottom: 12px; }
 
+.shop hr, .post-shop hr {
+  clear: both; }
+
 p {
   margin-bottom: 1.5em; }
 
