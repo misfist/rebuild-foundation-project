@@ -144,11 +144,13 @@ form.give-form {
 		li {
 			padding-left: 0;
 			padding-right: 15px;
+			min-width: 200px;
+			width: 32%;
 
 			button {
 				background-color: $black-transparent-light;
 				color: $black;
-
+				width: 100%;
 
 				&:hover {
 					background-color: $black;
@@ -178,6 +180,18 @@ form.give-form {
 		margin-top: 40px;
 		padding: 0;
 		border: none;
+
+		fieldset#give_mailchimp {
+			margin-top: 0;
+			margin-bottom: 45px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+			p {
+				margin-bottom: 0;
+			}
+
+		}
 		
 		#give-final-total-wrap {
 			@include inblock(calc(66.66% + 20px));

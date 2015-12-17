@@ -840,10 +840,13 @@ form.give-form #give-donation-level-button-wrap {
   margin-bottom: 60px; }
   form.give-form #give-donation-level-button-wrap li {
     padding-left: 0;
-    padding-right: 15px; }
+    padding-right: 15px;
+    min-width: 200px;
+    width: 32%; }
     form.give-form #give-donation-level-button-wrap li button {
       background-color: rgba(0, 0, 0, 0.25);
-      color: black; }
+      color: black;
+      width: 100%; }
       form.give-form #give-donation-level-button-wrap li button:hover {
         background-color: black;
         color: white; }
@@ -868,6 +871,13 @@ form.give-form #give_purchase_submit {
   margin-top: 40px;
   padding: 0;
   border: none; }
+  form.give-form #give_purchase_submit fieldset#give_mailchimp {
+    margin-top: 0;
+    margin-bottom: 45px;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    form.give-form #give_purchase_submit fieldset#give_mailchimp p {
+      margin-bottom: 0; }
   form.give-form #give_purchase_submit #give-final-total-wrap {
     display: inline-block;
     vertical-align: top;
