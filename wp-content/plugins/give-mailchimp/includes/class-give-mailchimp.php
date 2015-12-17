@@ -65,7 +65,7 @@ class Give_MailChimp extends Give_Newsletter {
 
 			$list_data = get_transient( 'give_mailchimp_list_data' );
 
-			if ( false === $list_data ) {
+			if ( false === $list_data || empty( $list_data )) {
 
 				$api       = new Give_MailChimp_API( trim( $give_options['give_mailchimp_api'] ) );
 				$list_data = $api->call( 'lists/list' );

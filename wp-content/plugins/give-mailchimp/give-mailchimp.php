@@ -3,14 +3,14 @@
  * Plugin Name: Give - MailChimp
  * Plugin URL: https://givewp.com/addons/mailchimp/
  * Description: Integrate MailChimp with your Give donation forms
- * Version: 1.1
+ * Version: 1.2
  * Author: WordImpress
  * Author URI: http://wordimpress.com
- * Contributors: dlocc, webdevmattcrom, Pippin Williamson, Dave Kiss
+ * Contributors: wordimpress
  */
 
 //Constants
-define( 'GIVE_MAILCHIMP_VERSION', '1.1' );
+define( 'GIVE_MAILCHIMP_VERSION', '1.2' );
 
 if ( ! defined( 'GIVE_MAILCHIMP_STORE_API_URL' ) ) {
 	define( 'GIVE_MAILCHIMP_STORE_API_URL', 'https://givewp.com' );

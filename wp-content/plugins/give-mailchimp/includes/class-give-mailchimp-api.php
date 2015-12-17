@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Super-simple, minimum abstraction MailChimp API v2 wrapper
  *
  * This probably has more comments than code.
  *
  * @copyright   Copyright (c) 2015, WordImpress
- * @author  Based on class by Drew McLellan <drew.mclellan@gmail.com>
- * @version 1.0
+ * @author      Based on class by Drew McLellan <drew.mclellan@gmail.com>
+ * @version     1.0
  */
 class Give_MailChimp_API {
 	private $api_key;
@@ -55,6 +56,7 @@ class Give_MailChimp_API {
 			'redirection' => 5,
 			'httpversion' => '1.0',
 			'blocking'    => true,
+			'sslverify'   => false,
 			'headers'     => array(
 				'content-type' => 'application/json'
 			),
