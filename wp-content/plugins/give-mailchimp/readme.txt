@@ -1,9 +1,9 @@
 === Give - MailChimp ===
 Contributors: wordimpress, dlocc, webdevmattcrom
 Tags: mailchimp, mail chimp, email, email marketing
-Requires at least: 3.8
-Tested up to: 4.1.1
-Stable tag: 1.1
+Requires at least: 4.0
+Tested up to: 4.4.1
+Stable tag: 1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,7 +17,7 @@ This plugin requires the Give plugin activated to function properly. When activa
 
 = Minimum Requirements =
 
-* WordPress 3.8 or greater
+* WordPress 4.0 or greater
 * PHP version 5.3 or greater
 * MySQL version 5.0 or greater
 
@@ -36,6 +36,9 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.2 =
+* Tweak: Improved connectivity issues to MailChimp when CA certificate has issues verifying
 
 = 1.1 =
 * Fix: Account for users who elect to NOT subscribe to the newsletter
