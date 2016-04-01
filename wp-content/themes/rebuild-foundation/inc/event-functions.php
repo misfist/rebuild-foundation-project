@@ -54,6 +54,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
           // Year and month queried
           case ( ( 4 == strlen( $year_var ) && is_numeric( $year_var ) ) && is_numeric( $month_var ) ) :
               $days_in_month = cal_days_in_month( CAL_GREGORIAN, $month_var, $year_var );
+
               $vars[] = array(
                   'key'       => 'start_date',
                   'value'     => date( 'Ymd', strtotime( $year_var . $month_var . '01' ) ),
@@ -63,7 +64,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
               $vars[] = array(
                   'key'       => 'start_date',
                   'value'     => date( 'Ymd', strtotime( $year_var . $month_var . $days_in_month ) ),
-                  'compare'   => '<',
+                  'compare'   => '<=',
                   'type'      => 'NUMERIC'
               );
 
@@ -82,7 +83,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
               $vars[] = array(
                   'key'       => 'start_date',
                   'value'     => date( 'Ymd', strtotime( $year_var . $month . $days_in_month ) ),
-                  'compare'   => '<',
+                  'compare'   => '<=',
                   'type'      => 'NUMERIC'
               );
 
@@ -100,7 +101,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
               $vars[] = array(
                   'key'       => 'start_date',
                   'value'     => date( 'Ymd', strtotime( $year_var . '1231' ) ),
-                  'compare'   => '<',
+                  'compare'   => '<=',
                   'type'      => 'NUMERIC'
               );
 
@@ -119,7 +120,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
               $vars[] = array(
                   'key'       => 'start_date',
                   'value'     => date( 'Ymd', strtotime( $year . $month_var . $days_in_month ) ),
-                  'compare'   => '<',
+                  'compare'   => '<=',
                   'type'      => 'NUMERIC'
               );
 
@@ -140,7 +141,7 @@ if(! function_exists( 'rebuild_events_meta_query_vars' ) ) {
             $vars[] = array(
                 'key'       => 'start_date',
                 'value'     => date( 'Ymd', strtotime( $year . $month . $days_in_month ) ),
-                'compare'   => '<',
+                'compare'   => '<=',
                 'type'      => 'NUMERIC'
             );
 
