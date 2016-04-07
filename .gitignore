@@ -52,7 +52,6 @@ sitemap.xml.gz
 # ignore core WP files
 
 wp-config.php
-wp-admin/
 wp-includes/
 wp-content/advanced-cache.php
 wp-content/backup-db/
