@@ -333,6 +333,12 @@ abstract class MC4WP_Integration {
 		$lists = $this->get_lists();
 		$result = false;
 
+		// validate lists
+		if( empty( $lists ) ) {
+			$this->get_log()->warning( sprintf( '%s > No MailChimp lists were selected', $this->name ) );
+			return false;
+		}
+
 		/**
 		 * Filters the final merge variables before the request is sent to MailChimp, for all integrations.
 		 *
@@ -359,11 +365,21 @@ abstract class MC4WP_Integration {
 			$result = $api->subscribe( $list_id, $email, $list_field_data, $email_type, $this->options['double_optin'], $this->options['update_existing'], $this->options['replace_interests'], $this->options['send_welcome'] );
 		}
 
-		// if result failed, show error message (only to admins for non-AJAX)
-		if ( ! $result && $api->has_error() ) {
-			error_log( sprintf( 'MailChimp for WordPres (%s): %s', $this->slug, $api->get_error_message() ) );
+		// if result failed, show error message
+		if( ! $result ) {
+
+			// log error
+			if( $api->get_error_code() === 214 ) {
+				$this->get_log()->warning( sprintf( "%s > %s is already subscribed to the selected list(s)", $this->name, mc4wp_obfuscate_string( $email ) ) );
+			} else {
+				$this->get_log()->error( sprintf( '%s > MailChimp API Error: %s', $this->name, $api->get_error_message() ) );
+			}
+
+			// bail
 			return false;
 		}
+
+		$this->get_log()->info( sprintf( '%s > Successfully subscribed %s', $this->name, $email ) );
 
 		/**
 		 * Runs right after someone is subscribed using an integration
@@ -436,6 +452,15 @@ abstract class MC4WP_Integration {
 	 */
 	public function get_data() {
 		$request = mc4wp('request');
-		return $request->params->all();
+		$data = $request->params->all();
+		return $data;
 	}
+
+	/**
+	 * @return MC4WP_Debug_Log
+	 */
+	protected function get_log() {
+		return mc4wp('log');
+	}
+
 }

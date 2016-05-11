@@ -7,6 +7,13 @@ $tabs = array(
 	'appearance'    => __( 'Appearance', 'mailchimp-for-wp' )
 );
 
+/**
+ * Filters the setting tabs on the "edit form" screen.
+ *
+ * @param array $tabs
+ * @ignore
+ */
+$tabs = apply_filters( 'mc4wp_admin_edit_form_tabs', $tabs );
 
 ?>
 <div id="mc4wp-admin" class="wrap mc4wp-settings">
@@ -15,7 +22,7 @@ $tabs = array(
 		<span class="prefix"><?php echo __( 'You are here: ', 'mailchimp-for-wp' ); ?></span>
 		<a href="<?php echo admin_url( 'admin.php?page=mailchimp-for-wp' ); ?>">MailChimp for WordPress</a> &rsaquo;
 		<a href="<?php echo admin_url( 'admin.php?page=mailchimp-for-wp-forms' ); ?>"><?php _e( 'Forms', 'mailchimp-for-wp' ); ?></a> &rsaquo;
-		<span class="current-crumb"><strong><?php echo __( 'Form', 'mailchimp-for-wp' ); ?> <?php echo $form_id; ?> | <?php echo $form->name; ?></strong></span>
+		<span class="current-crumb"><strong><?php echo __( 'Form', 'mailchimp-for-wp' ); ?> <?php echo $form_id; ?> | <?php echo esc_html( $form->name ); ?></strong></span>
 	</p>
 
 	<div class="row">
@@ -27,7 +34,13 @@ $tabs = array(
 				<?php _e( "Edit Form", 'mailchimp-for-wp' ); ?>
 
 				<!-- Form actions -->
-				<?php do_action( 'mc4wp_admin_edit_forms_after_title' ); ?>
+				<?php
+
+				/**
+				 * @ignore
+				 */
+				do_action( 'mc4wp_admin_edit_form_after_title' );
+				?>
 			</h1>
 
 			<h2 style="display: none;"></h2><?php // fake h2 for admin notices ?>
@@ -71,16 +84,30 @@ $tabs = array(
 
 				<div id="mc4wp-tabs">
 
-					<?php foreach( $tabs as $tab => $name ) : ?>
+					<?php foreach( $tabs as $tab => $name ) :
 
-						<!-- .tab -->
-						<div class="tab <?php if( $active_tab === $tab ) { echo 'tab-active'; } ?>" id="tab-<?php echo $tab; ?>">
-							<?php include dirname( __FILE__ ) . '/tabs/form-' . $tab .'.php'; ?>
-						</div>
-						<!-- / .tab -->
+						$class = ( $active_tab === $tab ) ? 'tab-active' : '';
 
-					<?php endforeach; // foreach tabs ?>
+						// start of .tab
+						echo sprintf( '<div class="tab %s" id="tab-%s">', $class, $tab );
 
+						/**
+						 * Runs when outputting a tab section on the "edit form" screen
+						 *
+						 * @param string $tab
+						 * @ignore
+						 */
+						do_action( 'mc4wp_admin_edit_form_output_' . $tab . '_tab', $opts, $form );
+
+						$tab_file = dirname( __FILE__ ) . '/tabs/form-' . $tab . '.php';
+						if( file_exists( $tab_file ) ) {
+							include $tab_file;
+						}
+
+						// end of .tab
+						echo '</div>';
+
+					endforeach; // foreach tabs ?>
 
 				</div>
 

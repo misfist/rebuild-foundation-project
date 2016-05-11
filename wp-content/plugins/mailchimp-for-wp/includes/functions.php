@@ -46,7 +46,12 @@ function mc4wp_get_options() {
 		$options = array_merge( $defaults, $options );
 	}
 
-	return $options;
+	/**
+	 * Filters the MailChimp for WordPress settings (general).
+	 *
+	 * @param array $options
+	 */
+	return apply_filters( 'mc4wp_settings', $options );
 }
 
 
@@ -64,6 +69,36 @@ function mc4wp_get_api() {
 	$opts = mc4wp_get_options();
 	$instance = new MC4WP_API( $opts['api_key'] );
 	return $instance;
+}
+
+/**
+ * Creates a new instance of the Debug Log
+ *
+ * @return MC4WP_Debug_Log
+ */
+function mc4wp_get_debug_log() {
+
+	// get default log file location
+	$upload_dir = wp_upload_dir();
+	$file = trailingslashit( $upload_dir['basedir'] ) . 'mc4wp-debug.log';
+
+	/**
+	 * Filters the log file to write to.
+	 *
+	 * @param string $file The log file location. Default: /wp-content/uploads/mc4wp-debug.log
+	 */
+	$file = apply_filters( 'mc4wp_debug_log_file', $file );
+
+	/**
+	 * Filters the minimum level to log messages.
+	 *
+	 * @see MC4WP_Debug_Log
+	 *
+	 * @param string|int $level The minimum level of messages which should be logged.
+	 */
+	$level = apply_filters( 'mc4wp_debug_log_level', 'warning' );
+
+	return new MC4WP_Debug_Log( $file, $level );
 }
 
 /**
@@ -205,22 +240,25 @@ function __mc4wp_use_sslverify() {
 		return false;
 	}
 
-	$ssl_version = preg_replace( '/[^0-9\.]/', '', $curl['ssl_version'] );
-	$required_ssl_version = '1.0.1';
-
-	// Disable if OpenSSL is not at version 1.0.1
-	if( version_compare( $ssl_version, $required_ssl_version, '<' ) ) {
+	// Disable if on WP 4.4, see https://core.trac.wordpress.org/ticket/34935
+	if( $GLOBALS['wp_version'] === '4.4' ) {
 		return false;
 	}
 
-	// Last character should be "f" or higher in alphabet.
-	// Example: 1.0.1f
-	$last_character = substr( $curl['ssl_version'], -1 );
-	if( is_string( $last_character ) ) {
-		if( ord( strtoupper( $last_character ) ) < ord( 'F' ) ) {
-			return false;
-		}
-	}
-
 	return true;
+}
+
+/**
+ * This will replace the first half of a string with "*" characters.
+ *
+ * @param string $string
+ * @return string
+ */
+function mc4wp_obfuscate_string( $string ) {
+
+	$length = strlen( $string );
+	$obfuscated_length = ceil( $length / 2 );
+
+	$string = str_repeat( '*', $obfuscated_length ) . substr( $string, $obfuscated_length );
+	return $string;
 }

@@ -23,6 +23,11 @@
 			<h2 style="display: none;"></h2>
 			<?php settings_errors(); ?>
 
+			<div id="notice-additional-fields" class="notice notice-info" style="display: none;">
+				<p><?php _e( 'The selected MailChimp lists require non-default fields, which may prevent this integration from working.', 'mailchimp-for-wp' ); ?></p>
+				<p><?php echo sprintf( __( 'Please ensure you <a href="%s">configure the plugin to send all required fields</a> or <a href="%s">log into your MailChimp account</a> and make sure only the email & name fields are marked as required fields for the selected list(s).', 'mailchimp-for-wp' ), 'https://mc4wp.com/kb/send-additional-fields-from-integrations/', 'https://admin.mailchimp.com/lists/' ); ?></p>
+			</div>
+
 			<p>
 				<?php echo $integration->description; ?>
 			</p>
@@ -39,9 +44,10 @@
 				 * @since 3.0
 				 *
 				 * @param MC4WP_Integration $integration
+				 * @param array $opts
 				 */
-				do_action( 'mc4wp_admin_before_integration_settings', $integration );
-				do_action( 'mc4wp_admin_before_' . $integration->slug . '_integration_settings' );
+				do_action( 'mc4wp_admin_before_integration_settings', $integration, $opts );
+				do_action( 'mc4wp_admin_before_' . $integration->slug . '_integration_settings', $integration, $opts );
 				?>
 
 				<table class="form-table">
@@ -57,7 +63,8 @@
 					</tr>
 					<?php } ?>
 
-					<tbody class="integration-toggled-settings" <?php if( $integration->has_ui_element( 'enabled' ) && ! $opts['enabled'] ) echo 'style="opacity: 0.5;"';?>>
+					<?php $config = array( 'element' => 'mc4wp_integrations['. $integration->slug .'][enabled]', 'value' => '1', 'hide' => false ); ?>
+					<tbody class="integration-toggled-settings" data-showif="<?php echo esc_attr( json_encode( $config ) ); ?>">
 
 					<?php if( $integration->has_ui_element( 'implicit' ) ) { ?>
 						<tr valign="top">
@@ -219,9 +226,10 @@
 				 * Runs right after integration settings are outputted (before the submit button).
 				 *
 				 * @param MC4WP_Integration $integration
+				 * @param array $opts
 				 */
-				do_action( 'mc4wp_admin_after_integration_settings', $integration );
-				do_action( 'mc4wp_admin_after_' . $integration->slug . '_integration_settings' );
+				do_action( 'mc4wp_admin_after_integration_settings', $integration, $opts );
+				do_action( 'mc4wp_admin_after_' . $integration->slug . '_integration_settings', $integration, $opts );
 				?>
 
 				<?php submit_button(); ?>
@@ -239,25 +247,3 @@
 	</div>
 
 </div>
-
-<div id="notice-additional-fields" class="notice notice-info" style="display: none;">
-	<p><?php _e( 'The selected MailChimp lists require non-default fields, which may prevent this integration from working.', 'mailchimp-for-wp' ); ?></p>
-	<p><?php echo sprintf( __( 'Please ensure you <a href="%s">configure the plugin to send all required fields</a> or <a href="%s">log into your MailChimp account</a> and make sure only the email & name fields are marked as required fields for the selected list(s).', 'mailchimp-for-wp' ), 'https://mc4wp.com/kb/send-additional-fields-from-integrations/', 'https://admin.mailchimp.com/lists/' ); ?></p>
-</div>
-
-<script>
-	(function($) {
-		if(typeof($)==='undefined') { return; }
-		var $toggles = $('.integration-toggles-wrap input');
-		var $settings = $('.integration-toggled-settings');
-		$toggles.change(toggleSettings);
-
-		function toggleSettings() {
-			var enabled = $toggles.filter(':checked').val() > 0;
-			var opacity = enabled ? '1' : '0.5';
-			$settings.css( 'opacity', opacity );
-			/* ie 8 */
-			$settings.css('-ms-filter', "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)");
-		}
-	})(window.jQuery);
-</script>

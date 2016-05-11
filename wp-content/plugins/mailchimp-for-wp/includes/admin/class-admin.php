@@ -29,6 +29,11 @@ class MC4WP_Admin {
 	protected $ads;
 
 	/**
+	 * @var MC4WP_Update_Optin
+	 */
+	protected $update_optin;
+
+	/**
 	 * Constructor
 	 *
 	 * @param MC4WP_Admin_Messages $messages
@@ -40,6 +45,9 @@ class MC4WP_Admin {
 		$this->plugin_file = plugin_basename( MC4WP_PLUGIN_FILE );
 		$this->ads = new MC4WP_Admin_Ads();
 		$this->load_translations();
+
+		// update opt-in
+		$this->update_optin = new MC4WP_Update_Optin( '4.0.0', $this->plugin_file, MC4WP_PLUGIN_DIR . 'includes/views/parts/update-4.x-notice.php' );
 	}
 
 	/**
@@ -53,11 +61,12 @@ class MC4WP_Admin {
 		add_action( 'current_screen', array( $this, 'customize_admin_texts' ) );
 		add_action( 'wp_dashboard_setup', array( $this, 'register_dashboard_widgets' ) );
 		add_action( 'mc4wp_admin_empty_lists_cache', array( $this, 'renew_lists_cache' ) );
-
+		add_action( 'mc4wp_admin_empty_debug_log', array( $this, 'empty_debug_log' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 
 		$this->ads->add_hooks();
 		$this->messages->add_hooks();
+		$this->update_optin->add_hooks();
 	}
 
 	/**
@@ -84,7 +93,7 @@ class MC4WP_Admin {
 	public function listen_for_actions() {
 
 		// listen for any action (if user is authorised)
-		if( ! current_user_can( 'manage_options' ) || ! isset( $_REQUEST['_mc4wp_action'] ) ) {
+		if( ! $this->is_user_authorized() || ! isset( $_REQUEST['_mc4wp_action'] ) ) {
 			return false;
 		}
 
@@ -164,7 +173,7 @@ class MC4WP_Admin {
 		// try getting new lists to fill cache again
 		$lists = $this->mailchimp->get_lists();
 		if( ! empty( $lists ) ) {
-			$this->messages->flash( __( 'Success! The cached configuration for your MailChimp lists has been renewed.', 'mailchimp-for-wp' ), 'updated' );
+			$this->messages->flash( __( 'Success! The cached configuration for your MailChimp lists has been renewed.', 'mailchimp-for-wp' ) );
 		}
 	}
 
@@ -196,20 +205,35 @@ class MC4WP_Admin {
 
 		$current = mc4wp_get_options();
 
-		// Toggle usage tracking
-		if( isset( $settings['allow_usage_tracking'] ) ) {
-			MC4WP_Usage_Tracking::instance()->toggle( (bool) $settings['allow_usage_tracking'] );
+		// merge with current settings to allow passing partial arrays to this method
+		$settings = array_merge( $current, $settings );
+
+		// toggle usage tracking
+		if( $settings['allow_usage_tracking'] !== $current['allow_usage_tracking'] ) {
+			MC4WP_Usage_Tracking::instance()->toggle( $settings['allow_usage_tracking'] );
 		}
 
-		// Sanitize API key & empty cache when API key changed
-		if( isset( $settings['api_key'] ) ) {
-
-			$settings['api_key'] = sanitize_text_field( $settings['api_key'] );
-
-			if ( $settings['api_key'] !== $current['api_key'] ) {
-				$this->mailchimp->empty_cache();
-			}
+		// Make sure not to use obfuscated key
+		if( strpos( $settings['api_key'], '*' ) !== false ) {
+			$settings['api_key'] = $current['api_key'];
 		}
+
+		// Sanitize API key
+		$settings['api_key'] = sanitize_text_field( $settings['api_key'] );
+
+		// if API key changed, empty MailChimp cache
+		if ( $settings['api_key'] !== $current['api_key'] ) {
+			$this->mailchimp->empty_cache();
+		}
+
+
+		/**
+		 * Runs right before general settings are saved.
+		 *
+		 * @param array $settings The updated settings array
+		 * @param array $current The old settings array
+		 */
+		do_action( 'mc4wp_save_settings', $settings, $current );
 
 		return $settings;
 	}
@@ -324,6 +348,14 @@ class MC4WP_Admin {
 				'text' => __( 'MailChimp', 'mailchimp-for-wp' ),
 				'slug' => '',
 				'callback' => array( $this, 'show_generals_setting_page' ),
+				'position' => 0
+			),
+			'other' => array(
+				'title' => __( 'Other Settings', 'mailchimp-for-wp' ),
+				'text' => __( 'Other', 'mailchimp-for-wp' ),
+				'slug' => 'other',
+				'callback' => array( $this, 'show_other_setting_page' ),
+				'position' => 90
 			)
 		);
 
@@ -336,7 +368,8 @@ class MC4WP_Admin {
 		 *     'title' => 'Page title',
 		 *     'text'  => 'Menu text',
 		 *     'slug' => 'Page slug',
-		 *     'callback' => 'my_page_function'
+		 *     'callback' => 'my_page_function',
+		 *     'position' => 50
 		 * );
 		 *
 		 * @param array $menu_items
@@ -347,8 +380,11 @@ class MC4WP_Admin {
 		// add top menu item
 		add_menu_page( 'MailChimp for WP', 'MailChimp for WP', $required_cap, 'mailchimp-for-wp', array( $this, 'show_generals_setting_page' ), MC4WP_PLUGIN_URL . 'assets/img/icon.png', '99.68491' );
 
+		// sort submenu items by 'position'
+		uasort( $menu_items, array( $this, 'sort_menu_items_by_position' ) );
+
 		// add sub-menu items
-		array_map( array( $this, 'add_menu_item' ), $menu_items );
+		array_walk( $menu_items, array( $this, 'add_menu_item' ) );
 	}
 
 	/**
@@ -356,9 +392,14 @@ class MC4WP_Admin {
 	 */
 	public function add_menu_item( array $item ) {
 
+		// generate menu slug
+		$slug = 'mailchimp-for-wp';
+		if( ! empty( $item['slug'] ) ) {
+			$slug .= '-' . $item['slug'];
+		}
+
 		// provide some defaults
-		$slug = ! empty( $item['slug'] ) ? "mailchimp-for-wp-{$item['slug']}" : 'mailchimp-for-wp';
-		$parent_slug = array_key_exists( 'parent_slug', $item ) ? $item['parent_slug'] : 'mailchimp-for-wp';
+		$parent_slug = ! empty( $item['parent_slug']) ? $item['parent_slug'] : 'mailchimp-for-wp';
 		$capability = ! empty( $item['capability'] ) ? $item['capability'] : $this->get_required_capability();
 
 		// register page
@@ -371,15 +412,53 @@ class MC4WP_Admin {
 	}
 
 	/**
-	 * Show the API settings page
+	 * Show the API Settings page
 	 */
 	public function show_generals_setting_page() {
 		$opts = mc4wp_get_options();
 		$connected = ( mc4wp('api')->is_connected() );
 		$lists = $this->mailchimp->get_lists();
-
+		$obfuscated_api_key = mc4wp_obfuscate_string( $opts['api_key'] );
 		require MC4WP_PLUGIN_DIR . 'includes/views/general-settings.php';
 	}
 
+	/**
+	 * Show the Other Settings page
+	 */
+	public function show_other_setting_page() {
+		$opts = mc4wp_get_options();
+		$log = $this->get_log();
+		$log_reader = new MC4WP_Debug_Log_Reader( $log->file );
+		require MC4WP_PLUGIN_DIR . 'includes/views/other-settings.php';
+	}
+
+	/**
+	 * @param $a
+	 * @param $b
+	 *
+	 * @return int
+	 */
+	public function sort_menu_items_by_position( $a, $b ) {
+		$pos_a = isset( $a['position'] ) ? $a['position'] : 80;
+		$pos_b = isset( $b['position'] ) ? $b['position'] : 90;
+		return $pos_a < $pos_b ? -1 : 1;
+	}
+
+	/**
+	 * Empties the log file
+	 */
+	public function empty_debug_log() {
+		$log = $this->get_log();
+		file_put_contents( $log->file, '' );
+
+		$this->messages->flash( __( 'Log successfully emptied.', 'mailchimp-for-wp' ) );
+	}
+
+	/**
+	 * @return MC4WP_Debug_Log
+	 */
+	protected function get_log() {
+		return mc4wp('log');
+	}
 
 }

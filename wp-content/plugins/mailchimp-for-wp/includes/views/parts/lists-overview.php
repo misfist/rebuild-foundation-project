@@ -62,7 +62,16 @@
 									echo '<span style="color:red;">*</span>';
 								} ?></td>
 							<td><code><?php echo esc_html( $merge_var->tag ); ?></code></td>
-							<td><?php echo esc_html( $merge_var->field_type ); ?></td>
+							<td>
+								<?php
+									echo esc_html( $merge_var->field_type );
+
+									if( ! empty( $merge_var->choices ) ) {
+										echo ' (' . join( ', ', $merge_var->choices ) . ')';
+									}
+								?>
+
+							</td>
 						</tr>
 					<?php } ?>
 				</table>
@@ -76,12 +85,14 @@
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>ID</th>
 							<th>Groups</th>
 						</tr>
 					</thead>
 					<?php foreach ( $list->groupings as $grouping ) { ?>
 						<tr title="<?php esc_attr( printf( __( '%s (ID: %s) with type %s.', 'mailchimp-for-wp' ), $grouping->name, $grouping->id, $grouping->field_type ) ); ?>">
 							<td><?php echo esc_html( $grouping->name ); ?></td>
+							<td><?php echo esc_html( $grouping->id ); ?></td>
 							<td>
 								<ul class="ul-square">
 									<?php foreach ( $grouping->groups as $group ) { ?>

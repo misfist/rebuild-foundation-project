@@ -5,14 +5,17 @@
 # Adriano Genovese <adrygese@gmail.com>, 2015
 # andrea.gatopoulos <andrea.gatopoulos@gmail.com>, 2015
 # Dan <d.murtas@gmail.com>, 2014
-# francesca mecca <meccafrancesca@gmail.com>, 2015
+# francesca mecca <meccafrancesca@gmail.com>, 2015-2016
+# guido brancalion <eccessivo@gmail.com>, 2016
+# Martina <martina@missmarpol.it>, 2016
+# Mauro Pronesti <mauropronesti85@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: MailChimp for WordPress\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mailchimp-for-wp\n"
 "POT-Creation-Date: 2015-11-30 10:15:18+00:00\n"
-"PO-Revision-Date: 2015-12-02 14:16+0000\n"
-"Last-Translator: Adriano Genovese <adrygese@gmail.com>\n"
+"PO-Revision-Date: 2016-02-08 15:35+0000\n"
+"Last-Translator: guido brancalion <eccessivo@gmail.com>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/ibericode/mailchimp-for-wordpress/language/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +25,7 @@ msgstr ""
 
 #: config/default-form-content.php:3
 msgid "Email address"
-msgstr "Indirizzo E-M@il"
+msgstr "Indirizzo e-mail:"
 
 #: config/default-form-content.php:4
 msgid "Your email address"
@@ -348,7 +351,7 @@ msgstr "Aggiungi variabile dinamica al formulario"
 msgid ""
 "The following list of variables can be used to <a href=\"%s\">add some "
 "dynamic content to your form or success and error messages</a>."
-msgstr ""
+msgstr "la seguente lista di variabili può essere usata per   <a href=\"%s\">aggiungere del contenuto dinamico al modulo o ai messaggi di errore o conferma</a>."
 
 #: includes/forms/views/parts/dynamic-content-tags.php:8
 msgid "This allows you to personalise your form or response messages."
@@ -490,7 +493,7 @@ msgstr "Non iscritto."
 msgid ""
 "When using the unsubscribe method, this is the text that shows when the "
 "given email address is not on the selected list(s)."
-msgstr ""
+msgstr "Qundo usi l'opzione unsubscribe questo testo verrà mostrato quando l'indirizzo inserito non è presente nelle liste selezionate(a)"
 
 #: includes/forms/views/tabs/form-messages.php:64
 msgid "HTML tags like %s are allowed in the message fields."
@@ -597,7 +600,7 @@ msgstr "Sostituire gruppi di interesse?"
 msgid ""
 "Select \"no\" if you want to add the selected groupings to any previously "
 "selected groupings when updating a subscriber."
-msgstr ""
+msgstr "Selezionare \"no\" se si vuole aggiungere i gruppi selezionati a dei gruppi precedentemente selezionati durante l'aggiornamento di un iscritto."
 
 #: includes/forms/views/tabs/form-settings.php:93
 #: includes/integrations/views/integration-settings.php:207
@@ -707,7 +710,7 @@ msgstr "Inviare mail di Benvenuto ?"
 msgid ""
 "The selected MailChimp lists require non-default fields, which may prevent "
 "this integration from working."
-msgstr ""
+msgstr "La seguente lista MailChimp richiede campi non di default, che potrebbero impedire a questa integrazione di funzionare."
 
 #: includes/integrations/views/integration-settings.php:245
 msgid ""
@@ -715,7 +718,7 @@ msgid ""
 "fields</a> or <a href=\"%s\">log into your MailChimp account</a> and make "
 "sure only the email & name fields are marked as required fields for the "
 "selected list(s)."
-msgstr ""
+msgstr "Per favore assicurati di <a href=\"%s\">configurare il plugin per l'invio di tutti i campi obbligatori</a> oppure <a href=\"%s\">effettua il login nel tuo account MailChimp</a> e assicurati soltanto di aver settato come obbligatori per la lista/e  selezionata, i soli campi E-mail e nome."
 
 #: includes/integrations/views/integrations.php:30
 msgid "Enabled"
@@ -779,7 +782,7 @@ msgstr "Monitoraggio dell'utilizzo"
 msgid ""
 "Allow us to anonymously track how this plugin is used to help us make it "
 "better fit your needs."
-msgstr ""
+msgstr "Consenti di tracciare anonimamente come viene usato il plugin per aiutarci a renderlo piu' adatto alle tue esigenze."
 
 #: includes/views/general-settings.php:73
 msgid "This is what we track."
@@ -807,7 +810,7 @@ msgid ""
 "The table below shows your MailChimp lists and their details. If you just "
 "applied changes to your MailChimp lists, please use the following button to "
 "renew the cached lists configuration."
-msgstr ""
+msgstr "La tabella sottostante mostra mostra le tue liste MailChimp e i loro dettagli. Se hai appena effettuato delle modifiche a questi elenchi, usa il seguente tasto per riaggiornare la configurazione delle liste memorizzate nella cache."
 
 #: includes/views/parts/lists-overview.php:14
 msgid "No lists were found in your MailChimp account"
@@ -845,13 +848,13 @@ msgstr "%s (ID: %s) con tipo %s."
 msgid ""
 "To integrate with Contact Form 7, configure the settings below and then add "
 "%s to your CF7 form mark-up."
-msgstr ""
+msgstr "Per integrare a Contact Form 7, configurare le impostazioni di seguito e quindi aggiungere %s al codice del tuo modulo CF7."
 
 #: integrations/custom/admin-before.php:2
 msgid ""
 "To get a custom integration to work, include the following HTML in the form "
 "you are trying to integrate with."
-msgstr ""
+msgstr "Per far funzionare correttamente un'integrazione personalizzata, includere il seguente codice HTML nel form che si desidera integrare."
 
 #: integrations/woocommerce/class-woocommerce.php:102
 msgid "Order #%d"
@@ -871,7 +874,7 @@ msgstr "https://mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_
 msgid ""
 "MailChimp for WordPress by ibericode. Adds various highly effective sign-up "
 "methods to your site."
-msgstr ""
+msgstr "MailChimp per Wordpress by ibericode. Aggiunge differenti ed estremamente efficaci metodi di iscrizione al tuo sito."
 
 #. Author of the plugin/theme
 msgid "ibericode"

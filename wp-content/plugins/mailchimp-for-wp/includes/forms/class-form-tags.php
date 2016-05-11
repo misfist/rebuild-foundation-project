@@ -18,6 +18,10 @@ class MC4WP_Form_Tags {
 	 */
 	protected $form;
 
+	/**
+	 * @var MC4WP_Form_Element
+	 */
+	protected $form_element;
 
 	/**
 	 * Constructor
@@ -30,7 +34,7 @@ class MC4WP_Form_Tags {
 	public function add_hooks() {
 		add_filter( 'mc4wp_dynamic_content_tags_form', array( $this, 'register' ) );
 		add_filter( 'mc4wp_form_response_html', array( $this, 'replace' ), 10, 2 );
-		add_filter( 'mc4wp_form_content', array( $this, 'replace' ), 10, 2 );
+		add_filter( 'mc4wp_form_content', array( $this, 'replace' ), 10, 3 );
 		add_filter( 'mc4wp_form_redirect_url', array( $this, 'replace_in_url' ), 10, 2 );
 	}
 
@@ -46,6 +50,11 @@ class MC4WP_Form_Tags {
 	 * @return array
 	 */
 	public function register( array $tags ) {
+
+		/**
+		 * @var MC4WP_Request
+		 */
+		$request = mc4wp('request');
 
 		$tags['response'] = array(
 			'description'   => __( 'Replaced with the form response (error or success messages).', 'mailchimp-for-wp' ),
@@ -75,7 +84,7 @@ class MC4WP_Form_Tags {
 
 		$tags['current_path'] = array(
 			'description' => __( 'The path of the page.', 'mailchimp-for-wp' ),
-			'callback'    => array( $this, 'get_current_path' )
+			'callback'    => array( $request, 'get_url' ),
 		);
 
 		$tags['date']         = array(
@@ -95,13 +104,19 @@ class MC4WP_Form_Tags {
 
 		$tags['ip']           = array(
 			'description' => sprintf( __( 'The visitor\'s IP address. Example: %s.', 'mailchimp-for-wp' ), '<strong>' . mc4wp('request')->get_client_ip() . '</strong>' ),
-			'callback'    => array( mc4wp('request'), 'get_client_ip' )
+			'callback'    => array( $request, 'get_client_ip' )
 		);
 
 		$tags['user']      = array(
 			'description' => sprintf( __( "The property of the currently logged-in user.", 'mailchimp-for-wp' ) ),
 			'callback'    => array( $this, 'get_user_property' ),
 			'example'     => "user property='user_email'"
+		);
+
+		$tags['post'] = array(
+			'description' => sprintf( __( "Property of the current page or post.", 'mailchimp-for-wp' ) ),
+			'callback'    => array( $this, 'get_post_property' ),
+			'example'     => "post property='ID'"
 		);
 
 		return $tags;
@@ -115,11 +130,13 @@ class MC4WP_Form_Tags {
 	 *
 	 * @param string $string
 	 * @param MC4WP_Form $form
+	 * @param MC4WP_Form_Element $element
 	 *
 	 * @return string
 	 */
-	public function replace( $string, MC4WP_Form $form ) {
+	public function replace( $string, MC4WP_Form $form, MC4WP_Form_Element $element = null ) {
 		$this->form = $form;
+		$this->form_element = $element;
 		$string = $this->tags->replace( $string );
 		return $string;
 	}
@@ -154,15 +171,12 @@ class MC4WP_Form_Tags {
 	 * @return string
 	 */
 	public function get_form_response() {
-		return $this->form->get_response_html();
-	}
 
-	/**
-	 *
-	 * @return string
-	 */
-	public function get_current_path() {
-		return ! empty( $_SERVER['REQUEST_URI'] ) ? esc_html( $_SERVER['REQUEST_URI'] ) : '';
+		if( $this->form_element instanceof MC4WP_Form_Element ) {
+			return $this->form_element->get_response_html();
+		}
+
+		return '';
 	}
 
 	/**
@@ -204,6 +218,24 @@ class MC4WP_Form_Tags {
 		return '';
 	}
 
+	/*
+	 * Get property of viewed post
+	 *
+	 * @param array $args
+	 *
+	 * @return string
+	 */
+	public function get_post_property( $args = array() ) {
+		$property = empty( $args['property'] ) ? 'ID' : $args['property'];
+		global $post;
+
+		if( $post instanceof WP_Post ) {
+			return $post->{$property};
+		}
+
+		return '';
+	}
+
 	/**
 	 * @return string
 	 */
@@ -222,8 +254,9 @@ class MC4WP_Form_Tags {
 			return $user->user_email;
 		}
 
-		// then, try visitor tracking
-		return mc4wp('tracking')->get_field( 'EMAIL', '' );
+		// TODO: Read from cookie? Or add $_COOKIE support to {data} tag?
+
+		return '';
 	}
 
 }

@@ -19,6 +19,11 @@ class MC4WP_Integration_Manager {
 	protected $options = array();
 
 	/**
+	 * @var MC4WP_Integration_Tags
+	 */
+	protected $tags;
+
+	/**
 	* Constructor
 	*/
 	public function __construct() {
@@ -132,6 +137,9 @@ class MC4WP_Integration_Manager {
 
 		// get all enabled integrations
 		$enabled_integrations = array_filter( $this->integrations, array( $this, 'is_enabled' ) );
+
+		// remove duplicate values, for whatever reason..
+		$enabled_integrations = array_unique( $enabled_integrations );
 
 		// filter out integrations which are not installed
 		$installed_enabled_integrations = array_filter( $enabled_integrations, array( $this, 'is_installed' ) );

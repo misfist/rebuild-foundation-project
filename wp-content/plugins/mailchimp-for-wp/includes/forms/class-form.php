@@ -141,48 +141,38 @@ class MC4WP_Form {
 
 	/**
 	 * Gets the form response string
-	 * // TODO: Move to `Form_Element`
 	 *
-	 * @param bool $submitted
+	 * This does not take the submitted form element into account.
+	 *
+	 * @see MC4WP_Form_Element::get_response_html()
+	 *
 	 * @return string
 	 */
-	public function get_response_html( $submitted = null ) {
+	public function get_response_html() {
+		return $this->get_element()->get_response_html( true );
+	}
 
-		if( is_null( $submitted ) ) {
-			$submitted = $this->is_submitted;
-		}
+	/**
+	 * Get HTML string for a message, including wrapper element.
+	 *
+	 * @deprecated 3.2
+	 *
+	 * @param string $key
+	 *
+	 * @return string
+	 */
+	public function get_message_html( $key ) {
+		_deprecated_function( __METHOD__, '3.2' );
+		return '';
+	}
 
-		$html = '';
-		$form = $this;
-
-		if( $submitted ) {
-			if( $this->has_errors() ) {
-
-				// create html string of all errors
-				foreach( $this->errors as $key ) {
-					$html .= $this->get_message_html( $key );
-				}
-
-			} else {
-				$html = $this->get_message_html( $this->get_action() . 'd' );
-			}
-		}
-
-		/**
-		 * Filter the form response HTML
-		 *
-		 * Use this to add your own HTML to the form response. The form instance is passed to the callback function.
-		 *
-		 * @since 3.0
-		 *
-		 * @param string $html The complete HTML string of the response, excluding the wrapper element.
-		 * @param MC4WP_Form $form The form object
-		 */
-		$html = (string) apply_filters( 'mc4wp_form_response_html', $html, $form );
-
-		// wrap entire response in div, regardless of a form was submitted
-		$html = '<div class="mc4wp-response">' . $html . '</div>';
-		return $html;
+	/**
+	 * @param string $element_id
+	 * @param array $config
+	 * @return MC4WP_Form_element
+	 */
+	public function get_element( $element_id = 'mc4wp-form', $config = array() ) {
+		return new MC4WP_Form_Element( $this, $element_id, $config );
 	}
 
 	/**
@@ -196,7 +186,7 @@ class MC4WP_Form {
 	 * @return string
 	 */
 	public function get_html( $element_id = 'mc4wp-form', array $config = array() ) {
-		$element = new MC4WP_Form_Element( $this, $element_id, $config );
+		$element = $this->get_element( $element_id, $config );
 		$html = $element->generate_html();
 		return $html;
 	}
@@ -310,21 +300,6 @@ class MC4WP_Form {
 		$field_types = $result[1];
 
 		return $field_types;
-	}
-
-	/**
-	 * Get HTML string for a message, including wrapper element.
-	 *
-	 * @param string $key
-	 *
-	 * @return string
-	 */
-	public function get_message_html( $key ) {
-		$message = $this->get_message( $key );
-
-		$html = sprintf( '<div class="mc4wp-alert mc4wp-%s"><p>%s</p></div>', esc_attr( $message->type ), $message->text );
-
-		return $html;
 	}
 
 	/**
@@ -442,8 +417,9 @@ class MC4WP_Form {
 	}
 
 	/**
-	 * Handle an incoming request. Should be called before calling `is_valid`.
+	 * Handle an incoming request. Should be called before calling validate() method.
 	 *
+	 * @see MC4WP_Form::validate
 	 * @param MC4WP_Request $request
 	 * @return void
 	 */
@@ -452,21 +428,20 @@ class MC4WP_Form {
 		$this->raw_data = $request->post->all();
 		$this->data = $this->parse_request_data( $request );
 
-
 		// update form configuration from given data
 		$config = array();
+		$map = array(
+			'_mc4wp_lists' => 'lists',
+			'_mc4wp_action' => 'action',
+			'_mc4wp_form_element_id' => 'element_id',
+			'_mc4wp_email_type' => 'email_type'
+		);
 
 		// use isset here to allow empty lists (which should show a notice)
-		if( isset( $this->raw_data['_mc4wp_lists'] ) ) {
-			$config['lists'] = $this->raw_data['_mc4wp_lists'];
-		}
-
-		if( isset( $this->raw_data['_mc4wp_action'] ) ) {
-			$config['action'] = $this->raw_data['_mc4wp_action'];
-		}
-
-		if( isset( $this->raw_data['_mc4wp_form_element_id'] ) ) {
-			$config['element_id'] = $this->raw_data['_mc4wp_form_element_id'];
+		foreach( $map as $param_key => $config_key ) {
+			if( isset( $this->raw_data[ $param_key ] ) ) {
+				$config[ $config_key ] = $this->raw_data[ $param_key ];
+			}
 		}
 
 		if( ! empty( $config ) ) {
@@ -508,6 +483,7 @@ class MC4WP_Form {
 		$data = array_diff_key( $data, array_flip( $ignored_field_names ) );
 
 		// uppercase all field keys
+		// @todo do this deep / recursive?
 		$data = array_change_key_case( $data, CASE_UPPER );
 
 		/**
@@ -544,6 +520,11 @@ class MC4WP_Form {
 			$this->config['action'] = 'subscribe';
 		}
 
+		// email_type should be a valid value
+		if( ! in_array( $this->config['email_type'], array( 'html', 'text' ) ) ) {
+			$this->config['email_type'] = '';
+		}
+
 		return $this->config;
 	}
 
@@ -571,6 +552,7 @@ class MC4WP_Form {
 		 * @param MC4WP_Form $form
 		 */
 		$lists = (array) apply_filters( 'mc4wp_form_lists', $lists, $form );
+
 		return $lists;
 	}
 
@@ -620,7 +602,16 @@ class MC4WP_Form {
 
 		// explode required fields (generated in JS) to an array (uppercased)
 		$required_fields_string = strtoupper( $this->settings['required_fields'] );
+
+		// remove array-formatted fields
+		// workaround for #261 (https://github.com/ibericode/mailchimp-for-wordpress/issues/261)
+		$required_fields_string = preg_replace( '/\[\w+\]/', '', $required_fields_string );
+
+		// turn into an array
 		$required_fields = explode( ',', $required_fields_string );
+
+		// We only need unique values here.
+		$required_fields = array_unique( $required_fields );
 
 		// EMAIL is not a required field as it has its own validation rules
 		$required_fields = array_diff( $required_fields, array( 'EMAIL' ) );
@@ -640,7 +631,7 @@ class MC4WP_Form {
 		 * @param MC4WP_Form $form
 		 */
 		$required_fields = (array) apply_filters( 'mc4wp_form_required_fields', $required_fields, $form );
-		
+
 		return $required_fields;
 	}
 

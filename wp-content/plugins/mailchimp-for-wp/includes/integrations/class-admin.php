@@ -80,6 +80,7 @@ class MC4WP_Integration_Admin {
 			'text' => __( 'Integrations', 'mailchimp-for-wp' ),
 			'slug' => 'integrations',
 			'callback' => array( $this, 'show_integrations_page' ),
+			'position' => 20
 		);
 
 		return $items;
@@ -161,7 +162,12 @@ class MC4WP_Integration_Admin {
 			return;
 		}
 
-		$integrations = $this->integrations->get_all();
+		// get all installed & enabled integrations
+		$enabled_integrations = $this->integrations->get_enabled_integrations();
+
+		// get all integrations but remove enabled integrations from the resulting array
+		$available_integrations = $this->integrations->get_all();
+		$available_integrations = array_diff( $available_integrations, $enabled_integrations );
 
 		require dirname( __FILE__ ) . '/views/integrations.php';
 	}
