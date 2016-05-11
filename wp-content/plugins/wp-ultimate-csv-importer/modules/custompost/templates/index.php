@@ -173,41 +173,41 @@ $nonce_Key = $impCE->create_nonce_key();
 									<option value='select'>---Select---</option>
 									<?php
 									$cust_post_list_count = 0;
-				if(is_array(get_post_types())){
-				foreach (get_post_types() as $key => $value) {
-                                $cctm_post_type = array();
-                                $cctm_post_type = get_option('cctm_data');
-                                if(!empty($cctm_post_type) && is_array($cctm_post_type)){
-                                        foreach($cctm_post_type['post_type_defs'] as $cctmptkey => $cctmptval) {
-                                                if($cctmptkey === $value){
-                                                        $value = 'createdByCCTM';
-                                                }
-                                        }
-                                }
-                                $types_post_types = array();
-                                $types_post_types = get_option('wpcf-custom-types');
-                                if(!empty($types_post_types) && is_array($types_post_types)) {
-                                        foreach($types_post_types as $tptKey => $tptVal){
-                                                if($tptKey === $value) {
-                                                        $value = 'createdByTypes';
-                                                }
-                                        }
-                                }
-				$pods_post_types = array();
-				$pods_post_types = get_option('_transient_pods_get_type_post_type');
-				if(!empty($pods_post_types) && is_array($pods_post_types)){
-                                	foreach($pods_post_types as $podskey => $podsvalue){
-                                        	if($podsvalue['name'] === $value){
-                                                        $value = 'createdByPODS';
-                                                }
-                                	}
-				}
-                                        if (($value !== 'featured_image') && ($value !== 'attachment') && ($value !== 'wpsc-product') && ($value !== 'wpsc-product-file') && ($value !== 'revision') && ($value !== 'nav_menu_item') && ($value !== 'post') && ($value !== 'page') && ($value !== 'wp-types-group') && ($value !== 'wp-types-user-group') && ($value !== 'product') && ($value !== 'product_variation') && ($value !== 'shop_order') && ($value !== 'shop_coupon') && ($value !== 'acf') && ($value !== 'acf-field-group') && ($value !== 'acf-field') && ($value !== '_pods_pod') && ($value !== '_pods_field') && ($value !== 'mp_order') && ($value !== 'createdByTypes') &&($value !== 'createdByCCTM') && ($value !== 'createdByPODS')) {?>
-                                                <option id="<?php echo($value); ?>"> <?php echo($value);?> </option>
-                                                        <?php
-                                                        $cust_post_list_count++;
-                                        }
-				}
+									if(is_array(get_post_types())){
+										foreach (get_post_types() as $key => $value) {
+											$cctm_post_type = array();
+											$cctm_post_type = get_option('cctm_data');
+											if(!empty($cctm_post_type) && is_array($cctm_post_type)){
+												foreach($cctm_post_type['post_type_defs'] as $cctmptkey => $cctmptval) {
+													if($cctmptkey === $value){
+														$value = 'createdByCCTM';
+													}
+												}
+											}
+											$types_post_types = array();
+											$types_post_types = get_option('wpcf-custom-types');
+											if(!empty($types_post_types) && is_array($types_post_types)) {
+												foreach($types_post_types as $tptKey => $tptVal){
+													if($tptKey === $value) {
+														$value = 'createdByTypes';
+													}
+												}
+											}
+											$pods_post_types = array();
+											$pods_post_types = get_option('_transient_pods_get_type_post_type');
+											if(!empty($pods_post_types) && is_array($pods_post_types)){
+												foreach($pods_post_types as $podskey => $podsvalue){
+													if($podsvalue['name'] === $value){
+														$value = 'createdByPODS';
+													}
+												}
+											}
+											if (($value !== 'featured_image') && ($value !== 'attachment') && ($value !== 'wpsc-product') && ($value !== 'wpsc-product-file') && ($value !== 'revision') && ($value !== 'nav_menu_item') && ($value !== 'post') && ($value !== 'page') && ($value !== 'wp-types-group') && ($value !== 'wp-types-user-group') && ($value !== 'product') && ($value !== 'product_variation') && ($value !== 'shop_order') && ($value !== 'shop_coupon') && ($value !== 'acf') && ($value !== 'acf-field-group') && ($value !== 'acf-field') && ($value !== '_pods_pod') && ($value !== '_pods_field') && ($value !== 'mp_order') && ($value !== 'createdByTypes') &&($value !== 'createdByCCTM') && ($value !== 'createdByPODS')) {?>
+												<option id="<?php echo($value); ?>"> <?php echo($value);?> </option>
+												<?php
+												$cust_post_list_count++;
+											}
+										}
 									} ?>
 								</select>
 	
@@ -677,7 +677,10 @@ $nonce_Key = $impCE->create_nonce_key();
 									<input type="hidden" id="currentlimit" name="currentlimit" value="1"/>
 									<input type="hidden" id="tmpcount" name="tmpcount" value="0"/>
 									<input type="hidden" id="terminateaction" name="terminateaction" value="continue"/>
-									<label id="innertitle">Inline image options</label><br/>
+									<label id="innertitle"><?php echo esc_html__('Media Options', 'wp-ultimate-csv-importer'); ?></label><br/>
+									<label id='importalign'>
+										<input type='checkbox' id='useexistingimages' name='useexistingimages' value='' /> <?php echo esc_html__("Reuse image with same name in Media", 'wp-ultimate-csv-importer'); ?>
+									</label> <?php echo $impCE->helpnotes('skipDuplicate'); ?> <br>
 									<label id='importalign'> <input type='checkbox' id='multiimage' name='multiimage'
 																	value=''> <?php echo esc_attr__('Insert Inline Images', 'wp-ultimate-csv-importer'); ?>
 									</label><br>

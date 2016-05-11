@@ -515,11 +515,14 @@ function importRecordsbySettings(siteurl) {
     var importinlineimage = false;
     var imagehandling = false;
     var inline_image_location = false;
+    var useexistingimages = false;
     var currentModule = document.getElementById('current_module').value;
+    //alert('currentModule: ' + currentModule); alert('ImportAs: ' + importas);
     if (currentModule != 'users' && currentModule != 'comments') {
         importinlineimage = document.getElementById('multiimage').checked;
         imagehandling = document.getElementById('inlineimagevalue').value;
         inline_image_location = document.getElementById('inline_image_location').value;
+        useexistingimages = document.getElementById('useexistingimages').checked;
     }
     var get_log = document.getElementById('log').innerHTML;
     document.getElementById('reportLog').style.display = '';
@@ -565,7 +568,7 @@ function importRecordsbySettings(siteurl) {
         'dupContent': dupContent,
         'dupTitle': dupTitle,
         'importlimit': importlimit,
-	'get_requested_count': get_requested_count,
+        'get_requested_count': get_requested_count,
         'limit': currentlimit,
         'totRecords': tot_no_of_records,
         'selectedImporter': importas,
@@ -575,6 +578,7 @@ function importRecordsbySettings(siteurl) {
         'inlineimagehandling': imagehandling,
         'inline_image_location': inline_image_location,
         'advance_media': advancemedia,
+        'useexistingimages': useexistingimages,
         'wpnonce': noncekey
     }
 

@@ -572,9 +572,11 @@ $nonce_Key = $impCE->create_nonce_key();
 										<input type="hidden" id="tmpcount" name="tmpcount" value="0"/>
 										<input type="hidden" id="terminateaction" name="terminateaction" value="continue"/>
 										<label
-												id="innertitle"><?php echo esc_html__('Inline image options', 'wp-ultimate-csv-importer'); ?></label><br/>
-										<label id='importalign'> <input type='checkbox' id='multiimage' name='multiimage'
-																		value=''> <?php echo esc_html__('Insert Inline Images', 'wp-ultimate-csv-importer'); ?>
+												id="innertitle"><?php echo esc_html__('Media Options', 'wp-ultimate-csv-importer'); ?></label><br/>
+										<label id='importalign'>
+											<input type='checkbox' id='useexistingimages' name='useexistingimages' value='' /> <?php echo esc_html__("Reuse image with same name in Media", 'wp-ultimate-csv-importer'); ?>
+										</label> <?php echo $impCE->helpnotes('skipDuplicate'); ?> <br>
+										<label id='importalign'> <input type='checkbox' id='multiimage' name='multiimage' value=''> <?php echo esc_html__('Insert Inline Images', 'wp-ultimate-csv-importer'); ?>
 										</label><br>
 										<input type='hidden' id='inlineimagevalue' name='inlineimagevalue' value='none'/>
 									</li>

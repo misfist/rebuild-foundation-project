@@ -168,7 +168,8 @@ for ($i = $limit; $i <= $count; $i++) {
 		$extracted_image_location = sanitize_text_field($_POST['postdata']['inline_image_location']);
 		$sample_inlineimage_url = sanitize_text_field($_POST['postdata']['inlineimagehandling']);
 	}
-	$importObj->processDataInWP($to_be_import_rec, $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $i, $extracted_image_location, $importinlineimageoption, $sample_inlineimage_url);
+	$useexistingimages = isset($_POST['postdata']['useexistingimages']) ? sanitize_text_field($_POST['postdata']['useexistingimages']) : false;
+	$importObj->processDataInWP($to_be_import_rec, $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $_SESSION['SMACK_MAPPING_SETTINGS_VALUES'], $i, $extracted_image_location, $importinlineimageoption, $sample_inlineimage_url, $useexistingimages);
 	$logarr = array('post_id','Failed','assigned_author', 'category', 'tags', 'postdate', 'image', 'poststatus');
 	if ($curr_action == 'post' || $curr_action == 'page' || $curr_action == 'custompost' || $curr_action == 'eshop') {
 		if(!empty($importObj->detailedLog) && is_array($importObj->detailedLog)){
