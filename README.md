@@ -1,4 +1,15 @@
 Rebuild Foundation Site
+
+Contributors: misfist
+Tags: translation-ready, custom-background, theme-options, custom-menu, post-formats
+
+Requires at least: 4.0
+Tested up to: 4.4
+Stable tag: 1.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Wordpress website built using an `underscores` starter theme.
 ===
 
 Wordpress website built using an `underscores` starter theme.
@@ -17,3 +28,11 @@ Content Management
 * Adding/managing Rebuild Sites
 * Associating Content
 * Adding Sites, Events, Locations and Exhibitions
+
+Changelog
+---------------
+= 1.0.1 - May 11 2016 =
+* Added Residencies section
+
+= 1.0 - December 17 2015 =
+* Initial release

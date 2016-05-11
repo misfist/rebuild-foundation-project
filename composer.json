@@ -46,14 +46,17 @@
         }
     ],
     "require": {
+        "wpackagist-plugin/admin-post-navigation": "2.0",
+        "wpackagist-plugin/akismet": "3.1.9",
         "wpackagist-plugin/advanced-custom-fields": ">=4.4.3",
         "wpackagist-plugin/acf-field-date-time-picker": ">=2.0.18.1",
         "wpackagist-plugin/codepress-admin-columns": ">=2.4.7",
-        "wpackagist-plugin/mailchimp-for-wp": ">=2.3.14",
-        "wpackagist-plugin/give": ">=1.3.1.1",
-        "wpackagist-plugin/jetpack": ">=3.7.2",
-        "wpackagist-plugin/jetpack-module-control": ">=1.3",
-        "wpackagist-plugin/admin-post-navigation": ">=1.9.2",
+        "wpackagist-plugin/give": "1.4.2",
+        "wpackagist-plugin/jetpack": "4.0.2",
+        "wpackagist-plugin/jetpack-module-control": "1.4.2",
+        "wpackagist-plugin/mailchimp-for-wp": "3.1.7",
+        "wpackagist-plugin/post-type-archive-links": "1.3.1",
+        "wpackagist-plugin/wp-ultimate-csv-importer": "3.9.4",
         "misfist/admin-columns-acf": "*",
         "misfist/advanced-custom-columns": "*",
         "misfist/rebuild-foundation-custom-post-types": "dev-master"
