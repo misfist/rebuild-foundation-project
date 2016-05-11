@@ -4,7 +4,7 @@
  *
  * @package     Give
  * @subpackage  Payments
- * @copyright   Copyright (c) 2015, WordImpress
+ * @copyright   Copyright (c) 2016, WordImpress
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Complete a purchase
+ * Complete a purchase aka donation
  *
  * Performs all necessary actions to complete a purchase.
  * Triggered by the give_update_payment_status() function.
@@ -29,9 +29,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function give_complete_purchase( $payment_id, $new_status, $old_status ) {
+	
+	// Make sure that payments are only completed once
 	if ( $old_status == 'publish' || $old_status == 'complete' ) {
 		return;
-	} // Make sure that payments are only completed once
+	}
 
 	// Make sure the payment completion is only processed when new status is complete
 	if ( $new_status != 'publish' && $new_status != 'complete' ) {
@@ -226,7 +228,7 @@ add_action( 'give_upgrade_payments', 'give_update_old_payments_with_totals' );
  * @return void
  */
 function give_mark_abandoned_donations() {
-	$args = array(
+	$args     = array(
 		'status' => 'pending',
 		'number' => - 1,
 		'fields' => 'ids'
@@ -240,6 +242,12 @@ function give_mark_abandoned_donations() {
 
 	if ( $payments ) {
 		foreach ( $payments as $payment ) {
+			$gateway = give_get_payment_gateway( $payment );
+			//Skip offline gateway payments
+			if ( $gateway == 'offline' ) {
+				continue;
+			}
+			//Non-offline get marked as 'abandoned'
 			give_update_payment_status( $payment, 'abandoned' );
 		}
 	}

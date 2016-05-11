@@ -6,7 +6,7 @@
  *
  * @package     Give
  * @subpackage  Functions/AJAX
- * @copyright   Copyright (c) 2015, WordImpress
+ * @copyright   Copyright (c) 2016, WordImpress
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -50,9 +50,9 @@ function give_test_ajax_works() {
 	}
 
 	$params = array(
-		'sslverify'  => false,
-		'timeout'    => 30,
-		'body'       => array(
+		'sslverify' => false,
+		'timeout'   => 30,
+		'body'      => array(
 			'action' => 'give_test_ajax'
 		)
 	);
@@ -66,19 +66,19 @@ function give_test_ajax_works() {
 
 	} else {
 
-		if( empty( $ajax['response'] ) ) {
+		if ( empty( $ajax['response'] ) ) {
 			$works = false;
 		}
 
-		if( empty( $ajax['response']['code'] ) || 200 !== (int) $ajax['response']['code'] ) {
+		if ( empty( $ajax['response']['code'] ) || 200 !== (int) $ajax['response']['code'] ) {
 			$works = false;
 		}
 
-		if( empty( $ajax['response']['message'] ) || 'OK' !== $ajax['response']['message'] ) {
+		if ( empty( $ajax['response']['message'] ) || 'OK' !== $ajax['response']['message'] ) {
 			$works = false;
 		}
 
-		if( ! isset( $ajax['body'] ) || 0 !== (int) $ajax['body'] ) {
+		if ( ! isset( $ajax['body'] ) || 0 !== (int) $ajax['body'] ) {
 			$works = false;
 		}
 
@@ -125,17 +125,28 @@ function give_load_checkout_login_fields() {
 add_action( 'wp_ajax_nopriv_give_checkout_login', 'give_load_checkout_login_fields' );
 
 /**
- * Load Checkout Register Fields via AJAX
+ * Load Checkout Fields
  *
- * @since 1.0
+ * @since 1.3.6
  * @return void
  */
-function give_load_checkout_register_fields() {
-	do_action( 'give_purchase_form_register_fields' );
-	give_die();
+function give_load_checkout_fields() {
+	$form_id = isset( $_POST['form_id'] ) ? $_POST['form_id'] : '';
+
+	ob_start();
+
+	do_action( 'give_purchase_form_register_login_fields', $form_id );
+
+	$fields = ob_get_clean();
+
+	wp_send_json( array(
+		'fields' => wp_json_encode( $fields ),
+		'submit' => wp_json_encode( give_checkout_button_purchase( $form_id ) ),
+	) );
 }
 
-add_action( 'wp_ajax_nopriv_checkout_register', 'give_load_checkout_register_fields' );
+add_action( 'wp_ajax_nopriv_give_cancel_login', 'give_load_checkout_fields' );
+add_action( 'wp_ajax_nopriv_give_checkout_register', 'give_load_checkout_fields' );
 
 /**
  * Get Form Title via AJAX (used only in WordPress Admin)

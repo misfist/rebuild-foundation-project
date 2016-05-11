@@ -4,7 +4,7 @@
  *
  * @package     Give
  * @subpackage  Functions
- * @copyright   Copyright (c) 2015, WordImpress
+ * @copyright   Copyright (c) 2016, WordImpress
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -52,9 +52,21 @@ function give_process_purchase_form() {
 		}
 	}
 
+	//If AJAX send back success to proceed with form submission
 	if ( $is_ajax ) {
 		echo 'success';
 		give_die();
+	}
+
+	//After AJAX: Setup session if not using php_sessions
+	if ( ! Give()->session->use_php_sessions() ) {
+		//Double-check that set_cookie is publicly accessible;
+		// we're using a slightly modified class-wp-sessions.php
+		$session_reflection = new ReflectionMethod( 'WP_Session', 'set_cookie' );
+		if ( $session_reflection->isPublic() ) {
+			// Manually set the cookie.
+			Give()->session->init()->set_cookie();
+		}
 	}
 
 	// Setup user information
@@ -86,7 +98,7 @@ function give_process_purchase_form() {
 	// Allow themes and plugins to hook before the gateway
 	do_action( 'give_checkout_before_gateway', $_POST, $user_info, $valid_data );
 
-
+	//Sanity check for price
 	if ( ! $purchase_data['price'] ) {
 		// Revert to manual
 		$purchase_data['gateway'] = 'manual';
@@ -101,6 +113,7 @@ function give_process_purchase_form() {
 
 	// Make sure credit card numbers are never stored in sessions
 	unset( $session_data['card_info']['card_number'] );
+	unset( $session_data['post_data']['card_number'] );
 
 	// Used for showing data to non logged-in users after purchase, and for other plugins needing purchase data.
 	give_set_purchase_session( $session_data );
@@ -160,8 +173,6 @@ add_action( 'wp_ajax_nopriv_give_process_checkout_login', 'give_process_form_log
  */
 function give_purchase_form_validate_fields() {
 
-	global $give_options;
-
 	// Check if there is $_POST
 	if ( empty( $_POST ) ) {
 		return false;
@@ -171,7 +182,7 @@ function give_purchase_form_validate_fields() {
 
 	// Start an array to collect valid data
 	$valid_data = array(
-		'gateway'          => give_purchase_form_validate_gateway(), // Gateway fallback
+		'gateway'          => give_purchase_form_validate_gateway(), // Gateway fallback (amount is validated here)
 		'need_new_user'    => false,     // New user flag
 		'need_user_login'  => false,     // Login user flag
 		'logged_user_data' => array(),   // Logged user collected data
@@ -186,9 +197,6 @@ function give_purchase_form_validate_fields() {
 	if ( isset( $terms_option ) && $terms_option === 'yes' ) {
 		give_purchase_form_validate_agree_to_terms();
 	}
-
-	//Validate amount is more than 0
-
 
 	if ( is_user_logged_in() ) {
 		// Collect logged in user data
@@ -234,6 +242,14 @@ function give_purchase_form_validate_gateway() {
 
 			give_set_error( 'invalid_donation_amount', __( 'Please insert a valid donation amount.', 'give' ) );
 
+		} //Check for a minimum custom amount
+		elseif ( ! give_verify_minimum_price() ) {
+
+			$minimum       = give_currency_filter( give_format_amount( give_get_form_minimum_price( $_REQUEST['give-form-id'] ) ) );
+			$error_message = __( 'This form has a minimum donation amount of %s', 'give' );
+
+			give_set_error( 'invalid_donation_minimum', sprintf( $error_message, $minimum ) );
+
 		} //Is this test mode zero donation? Let it through but set to manual gateway
 		elseif ( '0.00' == $_REQUEST['give-amount'] && give_is_test_mode() ) {
 
@@ -250,6 +266,38 @@ function give_purchase_form_validate_gateway() {
 
 	return $gateway;
 
+}
+
+/**
+ * Donation Form Validate Minimum Donation Amount
+ *
+ * @access      private
+ * @since       1.3.6
+ * @return      bool
+ */
+function give_verify_minimum_price() {
+
+	$amount          = give_sanitize_amount( $_REQUEST['give-amount'] );
+	$form_id         = $_REQUEST['give-form-id'];
+	$price_id        = isset( $_REQUEST['give-price-id'] ) ? $_REQUEST['give-price-id'] : 0;
+	$variable_prices = give_has_variable_prices( $form_id );
+
+	if ( $variable_prices && ! empty( $price_id ) ) {
+
+		$price_level_amount = give_get_price_option_amount( $form_id, $price_id );
+
+		if ( $price_level_amount == $amount ) {
+			return true;
+		}
+	}
+
+	$minimum = give_get_form_minimum_price( $form_id );
+
+	if ( $minimum > $amount ) {
+		return false;
+	}
+
+	return true;
 }
 
 /**
@@ -398,16 +446,16 @@ function give_purchase_form_validate_logged_in_user() {
 }
 
 /**
- * Purchase Form Validate New User
+ * Donate Form Validate New User
  *
  * @access      private
  * @since       1.0
  * @return      array
  */
 function give_purchase_form_validate_new_user() {
-	$registering_new_user = false;
 
-	$form_id = isset( $_POST['give-form-id'] ) ? $_POST['give-form-id'] : '';
+	$registering_new_user = false;
+	$form_id              = isset( $_POST['give-form-id'] ) ? $_POST['give-form-id'] : '';
 
 	// Start an empty array to collect valid user data
 	$valid_user_data = array(
@@ -452,20 +500,18 @@ function give_purchase_form_validate_new_user() {
 			// All the checks have run and it's good to go
 			$valid_user_data['user_login'] = $user_login;
 		}
-	} else {
-		if ( give_no_guest_checkout( $form_id ) ) {
-			give_set_error( 'registration_required', __( 'You must register or login to complete your donation', 'give' ) );
-		}
+	} elseif ( give_logged_in_only( $form_id ) ) {
+		give_set_error( 'registration_required', esc_html__( 'You must register or login to complete your donation', 'give' ) );
 	}
 
 	// Check if we have an email to verify
 	if ( $user_email && strlen( $user_email ) > 0 ) {
 		// Validate email
 		if ( ! is_email( $user_email ) ) {
-			give_set_error( 'email_invalid', __( 'Invalid email', 'give' ) );
+			give_set_error( 'email_invalid', __( 'Sorry, that email is invalid', 'give' ) );
 			// Check if email exists
 		} else if ( email_exists( $user_email ) && $registering_new_user ) {
-			give_set_error( 'email_used', __( 'Email already used', 'give' ) );
+			give_set_error( 'email_used', __( 'Sorry, that email already active for another user', 'give' ) );
 		} else {
 			// All the checks have run and it's good to go
 			$valid_user_data['user_email'] = $user_email;
@@ -584,8 +630,8 @@ function give_purchase_form_validate_guest_user() {
 	);
 
 	// Show error message if user must be logged in
-	if ( give_logged_in_only() ) {
-		give_set_error( 'logged_in_only', __( 'You must be logged into an account to donation', 'give' ) );
+	if ( give_logged_in_only( $form_id ) ) {
+		give_set_error( 'logged_in_only', __( 'You must be logged into to donate', 'give' ) );
 	}
 
 	// Get the guest email
@@ -676,6 +722,7 @@ function give_register_and_login_new_user( $user_data = array() ) {
  * @return  array
  */
 function give_get_purchase_form_user( $valid_data = array() ) {
+
 	// Initialize user
 	$user    = false;
 	$is_ajax = defined( 'DOING_AJAX' ) && DOING_AJAX;
@@ -685,7 +732,6 @@ function give_get_purchase_form_user( $valid_data = array() ) {
 		return true;
 	} else if ( is_user_logged_in() ) {
 		// Set the valid user as the logged in collected data
-
 		$user = $valid_data['logged_in_user'];
 	} else if ( $valid_data['need_new_user'] === true || $valid_data['need_user_login'] === true ) {
 		// New user registration
@@ -715,7 +761,7 @@ function give_get_purchase_form_user( $valid_data = array() ) {
 	}
 
 	// Check guest checkout
-	if ( false === $user && false === give_no_guest_checkout( $_POST['give-form-id'] ) ) {
+	if ( false === $user && false === give_logged_in_only( $_POST['give-form-id'] ) ) {
 		// Set user
 		$user = $valid_data['guest_user_data'];
 	}
@@ -750,7 +796,7 @@ function give_get_purchase_form_user( $valid_data = array() ) {
 	} // Country will always be set if address fields are present
 
 	if ( ! empty( $user['user_id'] ) && $user['user_id'] > 0 && ! empty( $user['address'] ) ) {
-		// Store the address in the user's meta so the cart can be pre-populated with it on return purchases
+		// Store the address in the user's meta so the donation form can be pre-populated with it on return purchases
 		update_user_meta( $user['user_id'], '_give_user_address', $user['address'] );
 	}
 
@@ -816,7 +862,7 @@ function give_get_purchase_cc_info() {
  *
  * @since  1.0
  *
- * @param int    $zip
+ * @param int $zip
  * @param string $country_code
  *
  * @return bool|mixed|void

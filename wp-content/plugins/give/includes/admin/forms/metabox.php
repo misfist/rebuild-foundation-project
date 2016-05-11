@@ -4,7 +4,7 @@
  *
  * @package     Give
  * @subpackage  Admin/Forms
- * @copyright   Copyright (c) 2015, WordImpress
+ * @copyright   Copyright (c) 2016, WordImpress
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -25,15 +25,21 @@ add_filter( 'cmb2_meta_boxes', 'give_single_forms_cmb2_metaboxes' );
  */
 function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 
-	$post_id          = give_get_admin_post_id();
-	$price            = give_get_form_price( $post_id );
-	$goal             = give_get_form_goal( $post_id );
-	$variable_pricing = give_has_variable_prices( $post_id );
-	$prices           = give_get_variable_prices( $post_id );
+	$post_id               = give_get_admin_post_id();
+	$price                 = give_get_form_price( $post_id );
+	$custom_amount_minimum = give_get_form_minimum_price( $post_id );
+	$goal                  = give_get_form_goal( $post_id );
+	$variable_pricing      = give_has_variable_prices( $post_id );
+	$prices                = give_get_variable_prices( $post_id );
 
 	//No empty prices - min. 1.00 for new forms
-	if ( empty( $price ) ) {
+	if ( empty( $price ) && is_null( $post_id ) ) {
 		$price = esc_attr( give_format_amount( '1.00' ) );
+	}
+
+	//Min. $1.00 for new forms
+	if ( empty( $custom_amount_minimum ) ) {
+		$custom_amount_minimum = esc_attr( give_format_amount( '1.00' ) );
 	}
 
 	// Start with an underscore to hide fields from custom fields list
@@ -63,7 +69,7 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 				),
 				array(
 					'name'         => __( 'Set Donation', 'give' ),
-					'description'  => __( 'This is the set donation amount for this form.', 'give' ),
+					'description'  => __( 'This is the set donation amount for this form. If you have a "Custom Amount Minimum" set, make sure it is less than this amount.', 'give' ),
 					'id'           => $prefix . 'set_price',
 					'type'         => 'text_small',
 					'row_classes'  => 'give-subfield',
@@ -71,7 +77,7 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 					'after_field'  => give_get_option( 'currency_position' ) == 'after' ? '<span class="give-money-symbol give-money-symbol-after">' . give_currency_symbol() . '</span>' : '',
 					'attributes'   => array(
 						'placeholder' => give_format_amount( '1.00' ),
-						'value'       => $price,
+						'value'       => give_format_amount( $price ),
 						'class'       => 'cmb-type-text-small give-money-field',
 					),
 				),
@@ -115,7 +121,7 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 							'type'       => 'text',
 							'attributes' => array(
 								'placeholder' => __( 'Donation Level', 'give' ),
-								'rows'        => 3,
+								'class'       => 'give-multilevel-text-field',
 							),
 						),
 						array(
@@ -151,8 +157,22 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 					),
 				),
 				array(
+					'name'         => __( 'Custom Amount Minimum', 'give' ),
+					'description'  => __( 'If you would like to set a minimum custom donation amount please enter it here.', 'give' ),
+					'id'           => $prefix . 'custom_amount_minimum',
+					'type'         => 'text_small',
+					'row_classes'  => 'give-subfield',
+					'before_field' => give_get_option( 'currency_position' ) == 'before' ? '<span class="give-money-symbol give-money-symbol-before">' . give_currency_symbol() . '</span>' : '',
+					'after_field'  => give_get_option( 'currency_position' ) == 'after' ? '<span class="give-money-symbol give-money-symbol-after">' . give_currency_symbol() . '</span>' : '',
+					'attributes'   => array(
+						'placeholder' => give_format_amount( '1.00' ),
+						'value'       => give_format_amount( $custom_amount_minimum ),
+						'class'       => 'cmb-type-text-small give-money-field',
+					),
+				),
+				array(
 					'name'        => __( 'Custom Amount Text', 'give' ),
-					'description' => __( 'This text appears as a label next to the custom amount field for single level forms. For multi-level forms the text will appear as it\'s own level (ie button, radio, or select option). Add your own message or leave this field blank to prevent it from displaying within your form.', 'give' ),
+					'description' => __( 'This text appears as a label below the custom amount field for set donation forms. For multi-level forms the text will appear as it\'s own level (ie button, radio, or select option).', 'give' ),
 					'id'          => $prefix . 'custom_amount_text',
 					'type'        => 'text',
 					'row_classes' => 'give-subfield',
@@ -175,7 +195,7 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 				),
 				array(
 					'name'         => __( 'Set Goal', 'give' ),
-					'description'  => __( 'This is the goal you want to achieve for this form.', 'give' ),
+					'description'  => __( 'This is the monetary goal amount you want to reach for this donation form.', 'give' ),
 					'id'           => $prefix . 'set_goal',
 					'type'         => 'text_small',
 					'row_classes'  => 'give-subfield',
@@ -185,6 +205,19 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 						'placeholder' => give_format_amount( '0.00' ),
 						'value'       => isset( $goal ) ? esc_attr( give_format_amount( $goal ) ) : '',
 						'class'       => 'cmb-type-text-small give-money-field',
+					),
+				),
+
+				array(
+					'name'        => __( 'Goal Format', 'give' ),
+					'description' => __( 'Would you like to display the total amount raised based on your monetary goal or a percentage? For instance, "$500 of $1,000 raised" or "50% funded".', 'give' ),
+					'id'          => $prefix . 'goal_format',
+					'type'        => 'radio_inline',
+					'default'     => 'amount',
+					'row_classes' => 'give-subfield',
+					'options'     => array(
+						'amount'     => __( 'Amount ', 'give' ),
+						'percentage' => __( 'Percentage', 'give' ),
 					),
 				),
 				array(
@@ -291,7 +324,7 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 					),
 					array(
 						'name'    => __( 'Register / Login Form', 'give' ),
-						'desc'    => __( 'Display the registration and login forms in the checkout section for non-logged-in users. Note: this option will not require users to register or log in prior to completing a donation. It simply determines whether the login and/or registration form are displayed on the checkout page.', 'give' ),
+						'desc'    => __( 'Display the registration and login forms in the payment section for non-logged-in users.', 'give' ),
 						'id'      => $prefix . 'show_register_form',
 						'type'    => 'select',
 						'options' => array(
@@ -371,13 +404,11 @@ function give_single_forms_cmb2_metaboxes( array $meta_boxes ) {
 /**
  * Repeatable Levels Custom Field
  */
-add_action( 'cmb2_render_levels_repeater_header', 'give_cmb_render_levels_repeater_header', 10 );
 function give_cmb_render_levels_repeater_header() {
 	?>
 
 	<div class="table-container">
 		<div class="table-row">
-			<div class="table-cell col-id"><?php _e( 'ID', 'give' ); ?></div>
 			<div class="table-cell col-amount"><?php _e( 'Amount', 'give' ); ?></div>
 			<div class="table-cell col-text"><?php _e( 'Text', 'give' ); ?></div>
 			<div class="table-cell col-default"><?php _e( 'Default', 'give' ); ?></div>
@@ -389,15 +420,23 @@ function give_cmb_render_levels_repeater_header() {
 
 	<?php
 }
+add_action( 'cmb2_render_levels_repeater_header', 'give_cmb_render_levels_repeater_header', 10 );
 
 
 /**
+ *
  * CMB2 Repeatable ID Field
  *
  * @description: Custom CMB2 incremental Levels ID Field
+ * 
  * @since      1.0
+ * 
+ * @param $field_object
+ * @param $escaped_value
+ * @param $object_id
+ * @param $object_type
+ * @param $field_type_object
  */
-add_action( 'cmb2_render_levels_id', 'give_cmb_render_levels_id', 10, 5 );
 function give_cmb_render_levels_id( $field_object, $escaped_value, $object_id, $object_type, $field_type_object ) {
 
 	$escaped_value = ( isset( $escaped_value['level_id'] ) ? $escaped_value['level_id'] : '' );
@@ -415,17 +454,25 @@ function give_cmb_render_levels_id( $field_object, $escaped_value, $object_id, $
 	echo $field_type_object->input( $field_options_array );
 
 }
+add_action( 'cmb2_render_levels_id', 'give_cmb_render_levels_id', 10, 5 );
 
 
 /**
- * CMB2 Repeatable Default ID Field
+ * Default Radio Inline
+ *
+ * @param $field_object
+ * @param $escaped_value
+ * @param $object_id
+ * @param $object_type
+ * @param $field_type_object
  */
-add_action( 'cmb2_render_give_default_radio_inline', 'give_cmb_give_default_radio_inline', 10, 5 );
 function give_cmb_give_default_radio_inline( $field_object, $escaped_value, $object_id, $object_type, $field_type_object ) {
 	echo '<input type="radio" class="cmb2-option donation-level-radio" name="' . $field_object->args['_name'] . '" id="' . $field_object->args['id'] . '" value="default" ' . checked( 'default', $escaped_value, false ) . '>';
 	echo '<label for="' . $field_object->args['id'] . '">Default</label>';
 
 }
+
+add_action( 'cmb2_render_give_default_radio_inline', 'give_cmb_give_default_radio_inline', 10, 5 );
 
 
 /**

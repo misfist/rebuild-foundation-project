@@ -4,7 +4,7 @@
  *
  * @package     Give
  * @subpackage  Functions/Templates
- * @copyright   Copyright (c) 2015, WordImpress
+ * @copyright   Copyright (c) 2016, WordImpress
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -43,7 +43,7 @@ function give_get_templates_url() {
  *
  * @param string $slug
  * @param string $name Optional. Default null
- * @param bool   $load
+ * @param bool $load
  *
  * @return string
  *
@@ -82,8 +82,8 @@ function give_get_template_part( $slug, $name = null, $load = true ) {
  * @since 1.0
  *
  * @param string|array $template_names Template file(s) to search for, in order.
- * @param bool         $load           If true the template file will be loaded if it is found.
- * @param bool         $require_once   Whether to require_once or require. Default true.
+ * @param bool $load If true the template file will be loaded if it is found.
+ * @param bool $require_once Whether to require_once or require. Default true.
  *                                     Has no effect if $load is false.
  *
  * @return string The template filename if one is located.
@@ -180,7 +180,7 @@ add_action( 'wp_head', 'give_version_in_header' );
  */
 function give_is_donation_history_page() {
 
-	$ret = is_page( give_get_option( 'purchase_history_page' ) );
+	$ret = is_page( give_get_option( 'history_page' ) );
 
 	return apply_filters( 'give_is_donation_history_page', $ret );
 }
@@ -247,9 +247,9 @@ add_filter( 'body_class', 'give_add_body_classes' );
  *
  * @since       1.0
  *
- * @param array        $classes
+ * @param array $classes
  * @param string|array $class
- * @param int          $post_id
+ * @param int $post_id
  *
  * @return array
  */
@@ -270,33 +270,6 @@ function give_add_post_class( $classes, $class = '', $post_id = '' ) {
 
 add_filter( 'post_class', 'give_add_post_class', 20, 3 );
 
-
-/**
- * Get an image size.
- *
- * Variable is filtered by give_get_image_size_{image_size}
- *
- * @param string $image_size
- *
- * @return array
- */
-function give_get_image_size( $image_size ) {
-	if ( in_array( $image_size, array( 'give_form_thumbnail', 'give_form_single' ) ) ) {
-		$size           = get_option( $image_size . '_image_size', array() );
-		$size['width']  = isset( $size['width'] ) ? $size['width'] : '300';
-		$size['height'] = isset( $size['height'] ) ? $size['height'] : '300';
-		$size['crop']   = isset( $size['crop'] ) ? $size['crop'] : 0;
-	} else {
-		$size = array(
-			'width'  => '300',
-			'height' => '300',
-			'crop'   => 1
-		);
-	}
-
-	return apply_filters( 'give_get_image_size_' . $image_size, $size );
-}
-
 /**
  * Get the placeholder image URL for forms etc
  *
@@ -305,9 +278,7 @@ function give_get_image_size( $image_size ) {
  */
 function give_get_placeholder_img_src() {
 
-	$image_size = give_get_image_size( 'give_form_thumbnail' );
-
-	$placeholder_url = 'http://placehold.it/' . $image_size['width'] . 'x' . $image_size['height'] . '&text=' . __( 'Give+Placeholder+Image+', 'give' ) . '(' . $image_size['width'] . 'x' . $image_size['height'] . ')';
+	$placeholder_url = 'http://placehold.it/600x600&text=' . urlencode( esc_attr__( 'Give Placeholder Image', 'give' ) );
 
 	return apply_filters( 'give_placeholder_img_src', $placeholder_url );
 }

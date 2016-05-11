@@ -4,40 +4,23 @@
  * @description: Scripts that power the Give experience
  * @package:     Give
  * @subpackage:  Assets/JS
- * @copyright:   Copyright (c) 2015, WordImpress
+ * @copyright:   Copyright (c) 2016, WordImpress
  * @license:     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 
 var give_scripts;
 
-function customEvents( el ) {
-	var id = el.attr( 'id' );
-
-	if ( id === 'card_number' ) {
-		el.after( '<span class="off card-type"/>' );
-	}
-}
-
 jQuery( function ( $ ) {
 
 	var doc = $( document );
 
-	// floatlabels
-	var options = {
-		exclude     : ['#give-amount, .give-select-level, .multiselect, .give-repeater-table input, select, input[type="url"]'],
-		customEvent : customEvents
-	};
-
-	$( '.float-labels-enabled' ).floatlabels( options );
+	// Trigger float-labels
+	give_fl_trigger();
 
 	doc.on( 'give_gateway_loaded', function ( ev, response, form_id ) {
-
-		var form = $( 'form#' + form_id );
-
-		if ( form.hasClass( 'float-labels-enabled' ) ) {
-			form.floatlabels( options );
-		}
+		// Trigger float-labels
+		give_fl_trigger();
 	} );
 
 	doc.on( 'give_checkout_billing_address_updated', function ( ev, response, form_id ) {
@@ -63,7 +46,8 @@ jQuery( function ( $ ) {
 
 			el.parent().removeClass( 'is-active' );
 
-			form.floatlabels( options );
+			// Trigger float-labels
+			give_fl_trigger();
 		}
 	} );
 
@@ -114,10 +98,31 @@ jQuery( function ( $ ) {
 					//Remove popup class
 					this_form.removeClass( 'mfp-hide' );
 					//Show all fields again
-					this_form.children().not( '#give_purchase_form_wrap, #give-payment-mode-select, .mfp-close' ).show();
+					this_form.children().not( '#give_purchase_form_wrap, #give-payment-mode-select, .mfp-close, .give-hidden' ).show();
 				}
 			}
 		} );
 	} );
 
 } );
+
+/**
+ * Floating Labels Custom Events
+ */
+function give_fl_trigger() {
+	var options = {
+		exclude    : ['#give-amount, .give-select-level, .multiselect, .give-repeater-table input, input[type="url"]'],
+		customEvent: give_fl_custom_events
+	};
+	jQuery( '.float-labels-enabled' ).floatlabels( options );
+}
+
+/**
+ * Floating Labels Custom Events
+ * @param el
+ */
+function give_fl_custom_events( el ) {
+	if ( el.hasClass( 'card-number' ) ) {
+		el.after( '<span class="off card-type"/>' );
+	}
+}

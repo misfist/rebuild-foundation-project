@@ -4,7 +4,7 @@
  *
  * @package     Give
  * @subpackage  Functions
- * @copyright   Copyright (c) 2015, WordImpress
+ * @copyright   Copyright (c) 2016, WordImpress
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -42,6 +42,20 @@ function give_get_currency() {
 	return apply_filters( 'give_currency', $currency );
 }
 
+/**
+ * Get the set currency position
+ *
+ * @since 1.3.6
+ *
+ * @return string The currency code
+ */
+function give_get_currency_position() {
+	global $give_options;
+	$currency_pos = isset( $give_options['currency_position'] ) ? $give_options['currency_position'] : 'before';
+
+	return apply_filters( 'give_currency_position', $currency_pos );
+}
+
 
 /**
  * Get Currencies
@@ -51,33 +65,33 @@ function give_get_currency() {
  */
 function give_get_currencies() {
 	$currencies = array(
-		'USD'  => __( 'US Dollars (&#36;)', 'give' ),
-		'EUR'  => __( 'Euros (&euro;)', 'give' ),
-		'GBP'  => __( 'Pounds Sterling (&pound;)', 'give' ),
-		'AUD'  => __( 'Australian Dollars (&#36;)', 'give' ),
-		'BRL'  => __( 'Brazilian Real (R&#36;)', 'give' ),
-		'CAD'  => __( 'Canadian Dollars (&#36;)', 'give' ),
-		'CZK'  => __( 'Czech Koruna', 'give' ),
-		'DKK'  => __( 'Danish Krone', 'give' ),
-		'HKD'  => __( 'Hong Kong Dollar (&#36;)', 'give' ),
-		'HUF'  => __( 'Hungarian Forint', 'give' ),
-		'ILS'  => __( 'Israeli Shekel (&#8362;)', 'give' ),
-		'JPY'  => __( 'Japanese Yen (&yen;)', 'give' ),
-		'MYR'  => __( 'Malaysian Ringgits', 'give' ),
-		'MXN'  => __( 'Mexican Peso (&#36;)', 'give' ),
-		'NZD'  => __( 'New Zealand Dollar (&#36;)', 'give' ),
+		'USD'  => __( 'US Dollars ($)', 'give' ),
+		'EUR'  => __( 'Euros (€)', 'give' ),
+		'GBP'  => __( 'Pounds Sterling (£)', 'give' ),
+		'AUD'  => __( 'Australian Dollars ($)', 'give' ),
+		'BRL'  => __( 'Brazilian Real (R$)', 'give' ),
+		'CAD'  => __( 'Canadian Dollars ($)', 'give' ),
+		'CZK'  => __( 'Czech Koruna (Kč)', 'give' ),
+		'DKK'  => __( 'Danish Krone (kr)', 'give' ),
+		'HKD'  => __( 'Hong Kong Dollar ($)', 'give' ),
+		'HUF'  => __( 'Hungarian Forint (Ft)', 'give' ),
+		'ILS'  => __( 'Israeli Shekel (₪)', 'give' ),
+		'JPY'  => __( 'Japanese Yen (¥)', 'give' ),
+		'MYR'  => __( 'Malaysian Ringgits (RM)', 'give' ),
+		'MXN'  => __( 'Mexican Peso ($)', 'give' ),
+		'NZD'  => __( 'New Zealand Dollar ($)', 'give' ),
 		'NOK'  => __( 'Norwegian Krone (Kr.)', 'give' ),
-		'PHP'  => __( 'Philippine Pesos', 'give' ),
-		'PLN'  => __( 'Polish Zloty', 'give' ),
-		'SGD'  => __( 'Singapore Dollar (&#36;)', 'give' ),
-		'SEK'  => __( 'Swedish Krona', 'give' ),
-		'CHF'  => __( 'Swiss Franc', 'give' ),
-		'TWD'  => __( 'Taiwan New Dollars', 'give' ),
-		'THB'  => __( 'Thai Baht (&#3647;)', 'give' ),
-		'INR'  => __( 'Indian Rupee (&#8377;)', 'give' ),
-		'TRY'  => __( 'Turkish Lira (&#8378;)', 'give' ),
-		'RIAL' => __( 'Iranian Rial (&#65020;)', 'give' ),
-		'RUB'  => __( 'Russian Rubles', 'give' )
+		'PHP'  => __( 'Philippine Pesos (₱)', 'give' ),
+		'PLN'  => __( 'Polish Zloty (zł)', 'give' ),
+		'SGD'  => __( 'Singapore Dollar ($)', 'give' ),
+		'SEK'  => __( 'Swedish Krona (kr)', 'give' ),
+		'CHF'  => __( 'Swiss Franc (CHF)', 'give' ),
+		'TWD'  => __( 'Taiwan New Dollars (NT$)', 'give' ),
+		'THB'  => __( 'Thai Baht (฿)', 'give' ),
+		'INR'  => __( 'Indian Rupee (₹)', 'give' ),
+		'TRY'  => __( 'Turkish Lira (₺)', 'give' ),
+		'RIAL' => __( 'Iranian Rial (﷼)', 'give' ),
+		'RUB'  => __( 'Russian Rubles (руб)', 'give' )
 	);
 
 	return apply_filters( 'give_currencies', $currencies );
@@ -85,10 +99,11 @@ function give_get_currencies() {
 
 
 /**
- * Given a currency determine the symbol to use. If no currency given, site default is used.
- * If no symbol is determine, the currency string is returned.
+ * Give Currency Symbol
  *
- * @since  1.0
+ * @description: Given a currency determine the symbol to use. If no currency given, site default is used. If no symbol is determine, the currency string is returned.
+ *
+ * @since      1.0
  *
  * @param  string $currency The currency string
  *
@@ -100,28 +115,68 @@ function give_currency_symbol( $currency = '' ) {
 		$currency = give_get_currency();
 	}
 	switch ( $currency ) :
-		case "GBP" :
-			$symbol = '&pound;';
+		case 'GBP' :
+			$symbol = '£';
 			break;
-		case "BRL" :
-			$symbol = 'R&#36;';
+		case 'BRL' :
+			$symbol = 'R$';
 			break;
-		case "EUR" :
-			$symbol = '&euro;';
+		case 'EUR' :
+			$symbol = '€';
 			break;
-		case "NOK" :
+		case 'NOK' :
 			$symbol = 'Kr.';
 			break;
-		case "USD" :
-		case "AUD" :
-		case "CAD" :
-		case "HKD" :
-		case "MXN" :
-		case "SGD" :
-			$symbol = '&#36;';
+		case 'INR' :
+			$symbol = '₹';
 			break;
-		case "JPY" :
-			$symbol = '&yen;';
+		case 'USD' :
+		case 'AUD' :
+		case 'CAD' :
+		case 'HKD' :
+		case 'MXN' :
+		case 'SGD' :
+			$symbol = '$';
+			break;
+		case 'JPY' :
+			$symbol = '¥';
+			break;
+		case 'THB' :
+			$symbol = '฿';
+			break;
+		case 'TRY' :
+			$symbol = '₺';
+			break;
+		case 'TWD' :
+			$symbol = 'NT$';
+			break;
+		case 'ILS' :
+			$symbol = '₪';
+			break;
+		case 'RIAL' :
+			$symbol = '﷼';
+			break;
+		case 'RUB' :
+			$symbol = 'руб';
+			break;
+		case 'DKK' :
+		case 'SEK' :
+			$symbol = 'kr';
+			break;
+		case 'PLN' :
+			$symbol = 'zł';
+			break;
+		case 'PHP' :
+			$symbol = '₱';
+			break;
+		case 'MYR' :
+			$symbol = 'RM';
+			break;
+		case 'HUF' :
+			$symbol = 'Ft';
+			break;
+		case 'CZK' :
+			$symbol = 'Kč';
 			break;
 		default :
 			$symbol = $currency;
@@ -136,29 +191,17 @@ function give_currency_symbol( $currency = '' ) {
  * Get the current page URL
  *
  * @since 1.0
- * @return string $page_url Current page URL
+ * @return string $current_url Current page URL
  */
 function give_get_current_page_url() {
 
-	if ( is_front_page() ) :
-		$page_url = home_url();
-	else :
-		$page_url = 'http';
+	if ( is_front_page() ) {
+		$current_url = home_url( '/' );
+	} else {
+		$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	}
 
-		if ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ) {
-			$page_url .= "s";
-		}
-
-		$page_url .= "://";
-
-		if ( isset( $_SERVER["SERVER_PORT"] ) && $_SERVER["SERVER_PORT"] != "80" ) {
-			$page_url .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-		} else {
-			$page_url .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-		}
-	endif;
-
-	return apply_filters( 'give_get_current_page_url', esc_url( $page_url ) );
+	return apply_filters( 'give_get_current_page_url', esc_url( $current_url ) );
 }
 
 
@@ -189,25 +232,6 @@ function give_is_cc_verify_enabled() {
 
 	return (bool) apply_filters( 'give_verify_credit_cards', $ret );
 }
-
-
-/**
- * Checks if users can only give when logged in
- *
- * @since 1.0
- * @global $give_options
- * @return bool $ret Whether or not the logged_in_only setting is set
- */
-function give_logged_in_only() {
-
-	global $give_options;
-
-	$ret = ! empty( $give_options['logged_in_only'] );
-
-	return (bool) apply_filters( 'give_logged_in_only', $ret );
-
-}
-
 
 /**
  * Retrieve timezone
@@ -288,6 +312,7 @@ function give_get_ip() {
  */
 function give_set_purchase_session( $purchase_data = array() ) {
 	Give()->session->set( 'give_purchase', $purchase_data );
+	Give()->session->set( 'give_email', $purchase_data['user_email'] );
 }
 
 /**
@@ -452,6 +477,45 @@ function give_is_host( $host = false ) {
 	return $return;
 }
 
+/**
+ * Marks a function as deprecated and informs when it has been used.
+ *
+ * There is a hook edd_deprecated_function_run that will be called that can be used
+ * to get the backtrace up to what file and function called the deprecated
+ * function.
+ *
+ * The current behavior is to trigger a user error if WP_DEBUG is true.
+ *
+ * This function is to be used in every function that is deprecated.
+ *
+ * @uses do_action() Calls 'edd_deprecated_function_run' and passes the function name, what to use instead,
+ *   and the version the function was deprecated in.
+ * @uses apply_filters() Calls 'edd_deprecated_function_trigger_error' and expects boolean value of true to do
+ *   trigger or false to not trigger error.
+ *
+ * @param string $function The function that was called
+ * @param string $version The version of EDD that deprecated the function
+ * @param string $replacement Optional. The function that should have been called
+ * @param array $backtrace Optional. Contains stack backtrace of deprecated function
+ */
+function _give_deprecated_function( $function, $version, $replacement = null, $backtrace = null ) {
+	do_action( 'give_deprecated_function_run', $function, $replacement, $version );
+
+	$show_errors = current_user_can( 'manage_options' );
+
+	// Allow plugin to filter the output error trigger
+	if ( WP_DEBUG && apply_filters( 'give_deprecated_function_trigger_error', $show_errors ) ) {
+		if ( ! is_null( $replacement ) ) {
+			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Give version %2$s! Use %3$s instead.', 'give' ), $function, $version, $replacement ) );
+			trigger_error( print_r( $backtrace, 1 ) ); // Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
+			// Alternatively we could dump this to a file.
+		} else {
+			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since Give version %2$s with no alternative available.', 'give' ), $function, $version ) );
+			trigger_error( print_r( $backtrace, 1 ) );// Limited to previous 1028 characters, but since we only need to move back 1 in stack that should be fine.
+			// Alternatively we could dump this to a file.
+		}
+	}
+}
 
 /**
  * Give Get Admin ID
@@ -468,25 +532,6 @@ function give_get_admin_post_id() {
 
 	return $post_id;
 }
-
-
-/**
- * Checks if Guest checkout is enabled for a particular donation form
- *
- * @since 1.0
- * @global    $give_options
- *
- * @param int $form_id
- *
- * @return bool $ret True if guest checkout is enabled, false otherwise
- */
-function give_no_guest_checkout( $form_id ) {
-
-	$ret = get_post_meta( $form_id, '_give_logged_in_only', true );
-
-	return (bool) apply_filters( 'give_no_guest_checkout', $ret );
-}
-
 
 /**
  * Get PHP Arg Separator Output
@@ -572,7 +617,7 @@ function give_get_newsletter() { ?>
 	</div>
 
 	<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-	<script type='text/javascript'>(function ( $ ) {
+	<script type='text/javascript'>(function ($) {
 			window.fnames = new Array();
 			window.ftypes = new Array();
 			fnames[0] = 'EMAIL';
@@ -583,20 +628,20 @@ function give_get_newsletter() { ?>
 			ftypes[2] = 'text';
 
 			//Successful submission
-			$( 'form[name="mc-embedded-subscribe-form"]' ).on( 'submit', function () {
+			$('form[name="mc-embedded-subscribe-form"]').on('submit', function () {
 
-				var email_field = $( this ).find( '#mce-EMAIL' ).val();
-				if ( !email_field ) {
+				var email_field = $(this).find('#mce-EMAIL').val();
+				if (!email_field) {
 					return false;
 				}
-				$( this ).find( '.give-newsletter-confirmation' ).show().delay( 5000 ).slideUp();
-				$( this ).find( '.give-newsletter-form' ).hide();
+				$(this).find('.give-newsletter-confirmation').show().delay(5000).slideUp();
+				$(this).find('.give-newsletter-form').hide();
 
-			} );
+			});
 
 
-		}( jQuery ));
-		var $mcj = jQuery.noConflict( true );
+		}(jQuery));
+		var $mcj = jQuery.noConflict(true);
 
 
 	</script>
@@ -617,15 +662,15 @@ function give_social_media_elements() { ?>
 		<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fwpgive&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=220596284639969" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 
 		<a href="https://twitter.com/givewp" class="twitter-follow-button" data-show-count="false">Follow @givewp</a>
-		<script>!function ( d, s, id ) {
-				var js, fjs = d.getElementsByTagName( s )[0], p = /^http:/.test( d.location ) ? 'http' : 'https';
-				if ( !d.getElementById( id ) ) {
-					js = d.createElement( s );
+		<script>!function (d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+				if (!d.getElementById(id)) {
+					js = d.createElement(s);
 					js.id = id;
 					js.src = p + '://platform.twitter.com/widgets.js';
-					fjs.parentNode.insertBefore( js, fjs );
+					fjs.parentNode.insertBefore(js, fjs);
 				}
-			}( document, 'script', 'twitter-wjs' );</script>
+			}(document, 'script', 'twitter-wjs');</script>
 	</div>
 	<!--/.social-items-wrap -->
 
@@ -693,12 +738,12 @@ if ( ! function_exists( 'array_column' ) ) {
 	 * Optionally, you may provide an $indexKey to index the values in the returned
 	 * array by the values from the $indexKey column in the input array.
 	 *
-	 * @param array $input     A multi-dimensional array (record set) from which to pull
+	 * @param array $input A multi-dimensional array (record set) from which to pull
 	 *                         a column of values.
 	 * @param mixed $columnKey The column of values to return. This value may be the
 	 *                         integer key of the column you wish to retrieve, or it
 	 *                         may be the string key name for an associative array.
-	 * @param mixed $indexKey  (Optional.) The column to use as the index/keys for
+	 * @param mixed $indexKey (Optional.) The column to use as the index/keys for
 	 *                         the returned array. This value may be the integer key
 	 *                         of the column, or it may be the string key name.
 	 *
