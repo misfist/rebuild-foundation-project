@@ -1,4 +1,14 @@
-Rebuild Foundation Theme
+Rebuild Foundation Site
+
+Contributors: misfist
+Tags: translation-ready, custom-background, theme-options, custom-menu, post-formats
+
+Requires at least: 4.0
+Tested up to: 4.4
+Stable tag: 1.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
 ===
 
 Customized starter theme built using `underscores`.
@@ -110,3 +120,11 @@ rebuild-foundation
         - loop-staff.php
         - social-media.php
 ```
+
+Changelog
+---------------
+= 1.0.1 - May 11 2016 =
+* Added Residencies section
+
+= 1.0 - December 17 2015 =
+* Initial release

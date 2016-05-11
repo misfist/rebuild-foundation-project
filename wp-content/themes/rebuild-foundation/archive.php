@@ -33,6 +33,13 @@ get_header(); ?>
 
                 <?php endif; ?>
 
+                <?php if( is_post_type_archive( 'residency' ) ) : ?>
+
+                    <?php rebuild_residency_filter(); ?>
+
+                <?php endif; ?>
+
+
                 <?php if( is_post_type_archive( 'event' ) || is_tax( array( 'event_category', 'event_tag' ) )) : ?>
 
                     <?php rebuild_event_month_filter(); ?>
