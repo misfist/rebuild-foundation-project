@@ -22,6 +22,23 @@ if(! function_exists( 'rebuild_add_rewrite_rules' ) ) {
         // e.g. http://rebuild.site/exhibitions/site/stony-island-arts-bank/scope/current/
         add_rewrite_rule('^exhibitions/site/([^/]*)/?','index.php?site_category=$matches[1]&post_type=exhibition','top');
 
+        //--- Residencies
+        // http://rebuild.com/residencies/scope/{cat}/site/{site-cat}
+        // e.g. http://rebuild.site/residencies/scope/current/site/stony-island-arts-bank/
+        add_rewrite_rule('^residencies/scope/([^/]*)/site/([^/]*)/?','index.php?residency_category=$matches[1]&site_category=$matches[2]','top');
+
+        // http://rebuild.com/residencies/site/{site-cat}/scope/{cat}
+        // e.g. http://rebuild.site/residencies/site/stony-island-arts-bank/scope/current/
+        add_rewrite_rule('^residencies/site/([^/]*)/scope/([^/]*)/?','index.php?residency_category=$matches[2]&site_category=$matches[1]','top');
+
+        // http://rebuild.com/residencies/scope/{cat}
+        // e.g. http://rebuild.site/residencies/scope/current/
+        add_rewrite_rule('^residencies/scope/([^/]*)/?','index.php?residency_category=$matches[1]','top');
+
+        // http://rebuild.com/residencies/site/{site-cat}/scope/{cat}
+        // e.g. http://rebuild.site/residencies/site/stony-island-arts-bank/scope/current/
+        add_rewrite_rule('^residencies/site/([^/]*)/?','index.php?site_category=$matches[1]&post_type=residency','top');
+
         //--- Events
         // e.g. http://rebuild.com/events/type/{cat}/site/{site}
         add_rewrite_rule('^events/type/([^/]*)/site/([^/]*)/?','index.php?event_category=$matches[1]&site_category=$matches[2]','top');
@@ -73,7 +90,6 @@ if(! function_exists( 'rebuild_add_rewrite_rules' ) ) {
     add_action( 'init', 'rebuild_add_rewrite_rules' );
 
 }
-
 
 
 ?>

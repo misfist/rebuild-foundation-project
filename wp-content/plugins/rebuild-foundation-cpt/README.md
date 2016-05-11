@@ -1,7 +1,17 @@
-Rebuild Foundation Custom Posts
+=== Rebuild Foundation Custom Posts ===
+Contributors: Pea
+Tags: taxonomy, posts
+Requires at least: 4.4
+Tested up to: 4.5
+Stable tag: 1.1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This plugin adds custom post types and taxonomy
+
 ===
 
-This plugin adds custom post types and taxonomy for sites, events, exhibitions and locations. 
+This plugin adds custom post types and taxonomy for sites, events, exhibitions, locations and residencies. 
 
 In addition, it adds the following:
 
@@ -14,7 +24,16 @@ In addition, it adds the following:
 * Google calendar link for event post type
 * Helper functions for getting meta data and other things.
 
-Core Dependencies
----------------
+== Core Dependencies ==
+
 * Advanced Custom Fields [https://github.com/elliotcondon/acf](https://github.com/elliotcondon/acf)
 * Admin Columns [https://wordpress.org/plugins/codepress-admin-columns/](https://wordpress.org/plugins/codepress-admin-columns/)
+
+== Changelog ==
+
+= Version 1.1.0 =
+* Added Residencies
+
+= Version 1.0 =
+
+* Initial Release

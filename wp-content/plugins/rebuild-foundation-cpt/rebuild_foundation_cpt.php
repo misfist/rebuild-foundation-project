@@ -13,7 +13,7 @@
  * Plugin Name:       Rebuild Foundation Custom Post Types
  * Plugin URI:        
  * Description:       Adds custom post types and taxonomy for sites, events, exhibitions and locations.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Pea
  * Author URI:        http://misfist.com
  * License:           GPL-2.0+
@@ -42,6 +42,7 @@ include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-event-cpt.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-exhibition-cpt.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-staff-cpt.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-location-cpt.php' );
+include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-residency-cpt.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-rewrite-rules.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-custom-fields.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/rebuild-custom-columns.php' );
@@ -51,6 +52,14 @@ include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/ical.php' );
 include_once( REBUILD_CPT_PLUGIN_DIR . '/inc/google-calendar.php' );
 
 
+/**
+ * Flush Rewrite Rules on Activation/Deactivation
+ *
+ * @uses register_deactivation_hook
+ * @uses register_activation_hook
+ * @since 1.0.0
+ * @link https://codex.wordpress.org/Function_Reference/flush_rewrite_rules
+ */
 function rebuild_plugin_activation() {
 
     // Then flush them
@@ -65,6 +74,5 @@ function rebuild_plugin_deactivation() {
     flush_rewrite_rules();
 }
 register_activation_hook( __FILE__, 'rebuild_plugin_deactivation');
-
 
 ?>

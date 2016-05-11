@@ -23,7 +23,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
      * Location Fields
      *
      */
-
     acf_add_local_field_group( array(
         'key' => 'group_5618bc8728ddf',
         'title' => 'Location Details',
@@ -70,7 +69,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
      * Site Fields
      *
      */
-
     acf_add_local_field_group( array(
         'key' => 'group_5622c317754a9',
         'title' => 'Site Association',
@@ -127,9 +125,16 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
                     'value' => 'exhibition',
                 ),
             ),
+             array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'residency',
+                ),
+            ),
         ),
         'menu_order' => 0,
-        'position' => 'normal',
+        'position' => 'side',
         'style' => 'default',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
@@ -150,7 +155,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
      * Event Fields
      *
      */
-
     acf_add_local_field_group( array(
         'key' => 'group_561990787d10e',
         'title' => 'Event Details',
@@ -335,7 +339,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
      * Exhibition Fields
      *
      */
-
     acf_add_local_field_group( array(
         'key' => 'group_5622bb53e29c8',
         'title' => 'Exhibition Details',
@@ -563,10 +566,254 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
     ));
 
     /*
+     * Residency Fields
+     *
+     */
+    acf_add_local_field_group( array(
+        'key' => 'group_residencydetails',
+        'title' => 'Details',
+        'fields' =>  array(
+             array(
+                'key' => 'field_residencybio',
+                'label' => 'Bio',
+                'name' => 'residencybio',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' =>  array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'new_lines' => 'wpautop',
+                'readonly' => 0,
+                'disabled' => 0,
+            ),
+             array(
+                'key' => 'field_residencygallery',
+                'label' => 'Gallery',
+                'name' => 'residencygallery',
+                'type' => 'gallery',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' =>  array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'min' => '',
+                'max' => '',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => '',
+            ),
+        ),
+        'location' =>  array(
+             array(
+                 array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'residency',
+                ),
+            ),
+        ),
+        'menu_order' => 15,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => 1,
+        'description' => '',
+    ));
+
+
+    acf_add_local_field_group( array(
+        'key' => 'group_residencyschedule',
+        'title' => 'Schedule & Location',
+        'fields' => array(
+            array(
+                'key' => 'field_residencyscope',
+                'label' => 'Scope',
+                'name' => 'residency_scope',
+                'type' => 'taxonomy',
+                'instructions' => '',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'taxonomy' => 'residency_category',
+                'field_type' => 'select',
+                'allow_null' => 0,
+                'add_term' => 0,
+                'save_terms' => 1,
+                'load_terms' => 1,
+                'return_format' => 'id',
+                'multiple' => 0,
+            ),
+            array(
+                'key' => 'field_residencyschduled',
+                'label' => 'Residency Scheduled',
+                'name' => 'residency_scheduled',
+                'type' => 'true_false',
+                'instructions' => 'If specific start and end dates aren\'t yet scheduled, uncheck this box to enter ad hoc month and year.',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 1,
+            ),
+            array(
+                'key' => 'field_residencystartdate',
+                'label' => 'Start Date',
+                'name' => 'start_date',
+                'type' => 'date_picker',
+                'instructions' => '',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'display_format' => 'm/d/Y',
+                'return_format' => 'm/d/Y',
+                'first_day' => 1,
+            ),
+            array(
+                'key' => 'field_residencyenddate',
+                'label' => 'End Date',
+                'name' => 'end_date',
+                'type' => 'date_picker',
+                'instructions' => '',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'display_format' => 'm/d/Y',
+                'return_format' => 'Y-m-d',
+                'first_day' => 1,
+            ),
+            array(
+                'key' => 'field_residencyadhocdate',
+                'label' => 'Ad Hoc Date',
+                'name' => 'ad_hoc_date',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_residencyschduled',
+                            'operator' => '!=',
+                            'value' => '1',
+                        ),
+                    ),
+                ),
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => 'e.g. February 2016',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+                'readonly' => 0,
+                'disabled' => 0,
+            ),
+            array(
+                'key' => 'field_residencylocation',
+                'label' => 'Location',
+                'name' => 'location',
+                'type' => 'post_object',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'post_type' => array(
+                    0 => 'location',
+                ),
+                'taxonomy' => array(
+                ),
+                'allow_null' => 0,
+                'multiple' => 0,
+                'return_format' => 'object',
+                'ui' => 1,
+            ),
+            array(
+                'key' => 'field_residencyhours',
+                'label' => 'Hours',
+                'name' => 'hours',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => 4,
+                'new_lines' => 'wpautop',
+                'readonly' => 0,
+                'disabled' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'residency',
+                ),
+            ),
+        ),
+        'menu_order' => 20,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => 1,
+        'description' => '',
+    ));
+
+
+    /*
      * Site Fields
      *
      */
-
     acf_add_local_field_group( array(
         'key' => 'group_5618c1002e81e',
         'title' => 'Site Details',
@@ -733,7 +980,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
      * Staff CPT Fields
      *
      */
-
     acf_add_local_field_group( array(
         'key' => 'group_564bb18ed063a',
         'title' => 'Staff Details',
@@ -841,7 +1087,6 @@ if( function_exists( 'acf_add_local_field_group' ) ) {
  * Add `year` and `month` query_var for events
  * @return
  */
-
 if(! function_exists( 'rebuild_register_query_vars' ) ) {
 
     function rebuild_register_query_vars() {
