@@ -1,3 +1,4 @@
+### WordPress ###
 
 # ignore all files starting with . or ~
 .*
@@ -44,11 +45,15 @@ codekit-config.json
 node_modules/
 composer.lock
 
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+
 # ignore core WP files
 
-### WordPress ###
 wp-config.php
-wp-content/index.php
+wp-admin/
+wp-includes/
 wp-content/advanced-cache.php
 wp-content/backup-db/
 wp-content/backups/
@@ -58,22 +63,20 @@ wp-content/upgrade/
 wp-content/uploads/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
-wp-admin/
-wp-includes/
-/vendor/
-/readme.html
-/license.txt
-/index.php
-/wp-activate.php
-/wp-blog-header.php
-/wp-comments-post.php
-/wp-cron.php
-/wp-links-opml.php
-/wp-load.php
-/wp-login.php
-/wp-mail.php
-/wp-settings.php
-/wp-signup.php
-/wp-trackback.php
-/xmlrpc.php
 
+vendor/
+readme.html
+license.txt
+index.php
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
