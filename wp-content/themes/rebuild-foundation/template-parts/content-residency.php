@@ -112,6 +112,8 @@
 
                 <div class="bio">
 
+                    <h3 class="section-title"><?php _e( 'Biography', 'rebuild-foundation' ); ?></h3>
+
                     <?php the_field( 'residencybio' ); ?>
 
                 </div>

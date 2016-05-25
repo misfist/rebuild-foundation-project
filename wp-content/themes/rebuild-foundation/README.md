@@ -1,4 +1,4 @@
-Rebuild Foundation Site
+Rebuild Foundation Theme
 
 Contributors: misfist
 Tags: translation-ready, custom-background, theme-options, custom-menu, post-formats

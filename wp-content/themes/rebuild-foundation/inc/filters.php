@@ -305,7 +305,7 @@ if(! function_exists( 'rebuild_residency_filter' ) ) {
           $taxonomy => $term->slug
         );
 
-        $path = ( is_singular( ) ) ? home_url( 'residency' ) : '';
+        $path = ( is_singular( ) ) ? home_url( 'residencies' ) : '';
 
         // If flag set to true
         if( $has_posts ) {
