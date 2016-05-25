@@ -333,13 +333,13 @@ ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
 		}
 	}
 
-	.single-exhibition {
+	.single-exhibition, .single-residency {
 		#primary > .page-header {
 			margin-left: 0;
 		}
 	}
 
-	ul.exhibition-filter {
+	ul.exhibition-filter, ul.residency-filter  {
 		position: relative;
 		width: 100%;
 		top: 0;
@@ -380,7 +380,7 @@ ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
 
 	}
 
-	.post-type-archive-exhibition{
+	.post-type-archive-exhibition, .post-type-archive-residency {
 		.context-header {
 			border-bottom: 1px dotted $black-transparent-light;
 		}

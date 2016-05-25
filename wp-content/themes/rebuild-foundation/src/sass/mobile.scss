@@ -235,7 +235,7 @@ ul.event-year-filter, .single-event ul.event-year-filter {
 }
 
 
-ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
+ul.exhibition-filter, .single-exhibition ul.exhibition-filter, ul.residency-filter, .single-residency ul.residency-filter {
 	position: relative;
 	width: 100%;
 	left: 0;
@@ -348,7 +348,7 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 			}
 		}
 
-		.exhibitions {
+		.exhibitions, .residency {
 			width: $size__mobile-main-nested;
 			margin-left: 0;
 
@@ -584,6 +584,86 @@ ul.exhibition-filter, .single-exhibition ul.exhibition-filter {
 
 }
 
+// Residency Listing 
+
+article.residency {
+	.entry-header, #details, .entry-content {
+		@include clear-inblock();
+	}
+
+	#details {
+		margin: 40px 0;
+	}
+}
+
+.post-type-archive-residency {
+
+	.posts-list {
+		width: $size__mobile-main-nested;
+		left: 0;
+		margin-top: 40px;
+	}
+
+}
+
+// Single Residency
+
+.single-residency {
+	#main {
+		width: $size__mobile-main-nested;
+		left: 0;
+		margin-top: 15px;
+	}
+
+	article {
+		margin-top: 0;
+		padding-left: 0;
+
+		.entry-header {
+			width: 100%;
+			margin-top: 20px;
+
+			.entry-meta {
+				margin-top: 20px;
+			}
+		}
+
+		#details {
+			.hours {
+				white-space: normal;
+			}
+
+			&::before {
+				width: 250px;
+				margin-top: -300px;
+			}
+		}
+
+		.description {
+			@include clear-inblock();
+		}
+
+		.entry-content {
+			margin-top: 20px;
+		}
+
+		.content-side {
+			@include clear-inblock();
+			max-width: 400px;
+			margin-top: 60px;
+		}
+
+		.entry-footer {
+			width: 100%;
+		}
+	}
+
+	.post-navigation {
+		width: 100%;
+		margin-left: 0;
+	}
+}
+
 
 // Exhibitions Listing 
 
@@ -650,6 +730,7 @@ article.exhibition {
 
 	.post-navigation {
 		width: 100%;
+		margin-left: 0;
 	}
 }
 

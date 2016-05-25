@@ -1458,10 +1458,10 @@ ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
     left: 0;
     width: 100%; }
 
-  .single-exhibition #primary > .page-header {
+  .single-exhibition #primary > .page-header, .single-residency #primary > .page-header {
     margin-left: 0; }
 
-  ul.exhibition-filter {
+  ul.exhibition-filter, ul.residency-filter {
     position: relative;
     width: 100%;
     top: 0;
@@ -1475,7 +1475,7 @@ ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
     -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
     justify-content: space-between; }
-    ul.exhibition-filter li {
+    ul.exhibition-filter li, ul.residency-filter li {
       padding-bottom: 0; }
 
   ul.event-year-filter {
@@ -1496,13 +1496,13 @@ ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
       ul.event-year-filter li.active a {
         font-size: 16px; }
 
-  .post-type-archive-exhibition .context-header {
+  .post-type-archive-exhibition .context-header, .post-type-archive-residency .context-header {
     border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
-  .post-type-archive-exhibition .filters {
+  .post-type-archive-exhibition .filters, .post-type-archive-residency .filters {
     padding: 20px 0 8px 0; }
-    .post-type-archive-exhibition .filters ul.exhibition-filter li {
+    .post-type-archive-exhibition .filters ul.exhibition-filter li, .post-type-archive-residency .filters ul.exhibition-filter li {
       padding-top: 5px; }
-      .post-type-archive-exhibition .filters ul.exhibition-filter li.active {
+      .post-type-archive-exhibition .filters ul.exhibition-filter li.active, .post-type-archive-residency .filters ul.exhibition-filter li.active {
         line-height: 25px;
         padding-top: 0; } }
 /*--------------------------------------------------------------
