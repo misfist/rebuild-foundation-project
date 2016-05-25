@@ -13,7 +13,7 @@ get_header(); ?>
         
         <header class="page-header">
 
-            <?php if( is_singular( array( 'event', 'exhibition', 'post' ) ) ) : ?>
+            <?php if( is_singular( array( 'event', 'exhibition', 'post', 'residency' ) ) ) : ?>
 
                 <?php rebuild_site_context_nav(); ?>
 
@@ -36,6 +36,14 @@ get_header(); ?>
                 <div class="filters">
 
                     <?php rebuild_exhibition_filter(); ?>
+
+                </div>
+
+            <?php elseif( is_singular( array( 'residency' ) ) ) : ?>
+
+                <div class="filters">
+
+                    <?php rebuild_residency_filter(); ?>
 
                 </div>
 

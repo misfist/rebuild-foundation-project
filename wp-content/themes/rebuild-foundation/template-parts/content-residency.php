@@ -45,6 +45,8 @@
 
         <div class="bio">
 
+            <h3 class="section-title"><?php _e( 'Biography', 'rebuild-foundation' ); ?></h3>
+
             <?php the_field( 'residencybio' ); ?>
 
         </div>
@@ -52,6 +54,9 @@
         <?php endif; ?>
 
         <div class="description">
+
+            <h3 class="section-title"><?php _e( 'Description', 'rebuild-foundation' ); ?></h3>
+
             <?php the_content(); ?>
 
             <?php get_template_part( 'template-parts/gallery' ); ?>

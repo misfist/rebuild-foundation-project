@@ -57,7 +57,7 @@ if(! function_exists( 'rebuild_residency_pre_query_filter' ) ) {
 
 
 /**
- * residency Query
+ * Residency Query
  * Gets residency query
  * @return array
  */
@@ -142,7 +142,7 @@ if(! function_exists( 'rebuild_get_residency_query' ) ) {
 }
 
 /**
- * residency Scope
+ * Residency Scope
  * Gets first residency_category that has content
  * @input optional $site_category string
  * @return string
