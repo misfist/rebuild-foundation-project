@@ -41,15 +41,7 @@
 
     <div class="entry-content">
 
-        <?php if( get_field( 'residencybio' ) ) : ?>
-
-        <div class="bio">
-
-            <?php the_field( 'residencybio' ); ?>
-
-        </div>
-
-        <?php endif; ?>
+        
 
         <div class="description">
             <?php the_content(); ?>
@@ -113,6 +105,16 @@
                         </div>
 
                     <?php endif; ?>
+
+                <?php endif; ?>
+
+                <?php if( get_field( 'residencybio' ) ) : ?>
+
+                <div class="bio">
+
+                    <?php the_field( 'residencybio' ); ?>
+
+                </div>
 
                 <?php endif; ?>
 

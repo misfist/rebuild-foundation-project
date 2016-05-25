@@ -79,34 +79,6 @@ $today = date( 'Ymd' );
             
         </section>
 
-        <?php
-
-        $residency_post_type = 'residency';
-        $scope = rebuild_residency_scope( $site_cat );
-        $residency_query = rebuild_get_residency_query( $site_cat, $scope, 1 );
-
-        ?>
-
-        <?php if( isset( $residency_query ) && $residency_query->have_posts() ) : ?>
-
-        <!-- //// Exhibitions Section -->
-
-        <section class="residency">
-
-           <h2><?php _e( 'Residencies', 'rebuild-foundation' ); ?></h2> | 
-           <?php rebuild_get_site_category_content( 'residency' ); ?>
-
-           <?php while ( $residency_query->have_posts() ) : $residency_query->the_post(); ?>
-
-                <?php get_template_part( 'template-parts/loop', $residency_post_type ); ?>
-
-            <?php endwhile; ?>
-
-        </section>
-
-        <?php endif; ?>
-
-        <?php wp_reset_postdata(); ?>
 
         <?php
 
@@ -185,6 +157,35 @@ $today = date( 'Ymd' );
             <?php wp_reset_postdata(); ?>
     
         </section>
+
+        <?php
+
+        $residency_post_type = 'residency';
+        $scope = rebuild_residency_scope( $site_cat );
+        $residency_query = rebuild_get_residency_query( $site_cat, $scope, 1 );
+
+        ?>
+
+        <?php if( isset( $residency_query ) && $residency_query->have_posts() ) : ?>
+
+        <!-- //// Residencies Section -->
+
+        <section class="residency">
+
+           <h2><?php _e( 'Residencies', 'rebuild-foundation' ); ?></h2> | 
+           <?php rebuild_get_site_category_content( 'residency' ); ?>
+
+           <?php while ( $residency_query->have_posts() ) : $residency_query->the_post(); ?>
+
+                <?php get_template_part( 'template-parts/loop', $residency_post_type ); ?>
+
+            <?php endwhile; ?>
+
+        </section>
+
+        <?php endif; ?>
+
+        <?php wp_reset_postdata(); ?>
 
         <!-- //// Blog Section - Only show if 'show_blog_posts' is true -->
 

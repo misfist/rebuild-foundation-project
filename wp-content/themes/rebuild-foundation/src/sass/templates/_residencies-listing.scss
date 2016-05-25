@@ -1,0 +1,174 @@
+
+.post-type-archive-residency {
+
+	.posts-list {
+		width: $size__site-main-nested;
+		position: relative;
+		left: $align__site-3;
+		margin-top: 125px;
+	}
+
+
+}
+
+
+article.residency {
+	width: $size__site-main-center-2;
+	margin-bottom: 35px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid $white;
+
+	&:last-child {
+		border: none;
+	}
+
+	.entry-header, #details, .entry-content {
+		@include inblock(30%);
+		margin-right: 3%;
+	}
+
+	.site-info {
+		margin: -60% 0 6px 0;
+		width: 60%;
+		font-size: $font_size-2;
+	}
+
+	.entry-meta.location {
+		width: 100%;
+	}
+
+	.featured-image {
+		width: 65%;
+		margin-left: 10%;
+		margin-top: 5px;
+	}
+
+	.entry-header {
+		.entry-title {
+			font: normal $font_size-6 $bold;
+			margin-top: 0;
+		}
+
+		.entry-meta {
+			font: $font_size-2 $mono;
+			margin-top: 15px;
+		}
+
+	}
+
+	.entry-content {
+		margin-top: 0; 
+
+		p {
+			margin-top: 0;
+		}
+	}
+
+
+	.read-more  {
+		font: normal $font_size-2 $bold;
+		display: block;
+		margin-top: 20px;
+		border: none;
+
+		
+	}
+
+	&.site_category-dorchester-art-housing-collaborative {
+		
+		.site-info::before {
+			content: url('img/graphic_da-hc.svg');
+		}
+
+		.entry-title a, .read-more  {
+			color: $color__da-hc;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}
+		}
+		
+	}
+
+	&.site_category-black-cinema-house {
+		
+		.site-info::before {
+			content: url('img/graphic_bch.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__bch;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}	
+		}
+
+	}
+
+	&.site_category-stony-island-arts-bank {
+		
+		.site-info::before {
+			content: url('img/graphic_siab.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__siab;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}	
+		}
+		
+	}
+
+	&.site_category-listening-house {
+		
+		.site-info::before {
+			content: url('img/graphic_lh.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__dorchester;
+
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}	
+		}
+		
+	}
+
+	&.site_category-archive-house {
+		
+		.site-info::before {
+			content: url('img/graphic_ah.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__dorchester;
+			
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}				
+		}
+		
+	}
+
+}
+
+
+@media (max-width: 1024px) {
+	.post-type-archive-exhibition {
+		.posts-list {
+			width: 100%;
+			position: relative;
+			left: 0;
+			margin-top: 192px;
+		}
+	}
+}

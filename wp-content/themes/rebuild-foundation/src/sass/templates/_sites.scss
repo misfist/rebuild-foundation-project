@@ -158,6 +158,22 @@
 			}
 		}
 
+		.residency {
+			margin-left: $size__left-margin;
+			margin-top: 50px;
+			margin-bottom: 50px;
+
+			article.residency {
+				border: none;
+				width: 100%;
+				margin: 0;
+
+				.single-image {
+					margin: 0 0 0 10%;
+				}
+			}
+		}
+
 		.exhibitions {
 			margin-left: $size__left-margin;
 			margin-top: 50px;

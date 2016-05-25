@@ -17,7 +17,6 @@
 
 <article id="residency-<?php the_ID(); ?>" data-start-date="<?php echo ( $start_date ) ? date( 'Y-m-d', strtotime( $start_date ) )  : ''; ?>" data-end-date="<?php echo ( $end_date ) ? date( 'Y-m-d', strtotime( $end_date ) )  : ''; ?>" <?php post_class( get_post_type() ); ?>>
 
-    <div class="col-1">
         <header class="entry-header">
 
             <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
@@ -39,29 +38,7 @@
             </div><!-- .entry-meta -->
 
         </header><!-- .entry-header -->
-
-        <div class="entry-content">
-
-            <?php
-                the_excerpt();
-            ?>
-
-            <a class="read-more" href="<?php echo get_permalink( get_the_ID() ); ?>"><?php _e( 'Learn More', 'rebuild-foundation' ); ?></a>
-
-            <?php
-                wp_link_pages( array(
-                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
-                    'after'  => '</div>',
-                ) );
-            ?>
-        </div><!-- .entry-content -->
-
-        <footer class="entry-footer">
-
-        </footer><!-- .entry-footer -->
-    </div>
-
-    <div class="col-2">
+        
         <div id="details">
 
             <?php if( has_post_thumbnail() ) { ?>
@@ -81,5 +58,23 @@
             </div>
             
         </div>
-    </div>
+
+        <div class="entry-content">
+
+            <?php
+                the_excerpt();
+            ?>
+
+            <a class="read-more" href="<?php echo get_permalink( get_the_ID() ); ?>"><?php _e( 'Learn More', 'rebuild-foundation' ); ?></a>
+
+            <?php
+                wp_link_pages( array(
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),
+                    'after'  => '</div>',
+                ) );
+            ?>
+        </div><!-- .entry-content -->
+
+
+
 </article><!-- #post-## -->

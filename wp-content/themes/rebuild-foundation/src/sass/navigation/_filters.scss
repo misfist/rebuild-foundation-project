@@ -158,7 +158,7 @@
 
 
 
-ul.event-year-filter, ul.exhibition-filter {
+ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
 	width: $size__subnavigation;
 	position: fixed;
 	left: $size__navigation;
@@ -245,7 +245,7 @@ ul.event-year-filter, ul.exhibition-filter {
 	}
 }
 
-.post-type-archive-exhibition{
+.post-type-archive-exhibition, .post-type-archive-residency {
 	.context-header {
 		border: none;
 	}
@@ -254,14 +254,14 @@ ul.event-year-filter, ul.exhibition-filter {
 	}
 }
 
-.single-exhibition {
+.single-exhibition, .single-residency {
 	#primary > .page-header {
 		margin-left: $size__left-margin;
 		border-bottom: 1px solid $black-transparent;
 	}
 
 
-	ul.exhibition-filter {
+	ul.exhibition-filter, ul.residency-filter {
 		position: relative;
 		width: 100%;
 		top: 0;

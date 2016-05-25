@@ -1361,7 +1361,7 @@ a {
       text-transform: uppercase;
       letter-spacing: 0.1em; }
 
-ul.event-year-filter, ul.exhibition-filter {
+ul.event-year-filter, ul.exhibition-filter, ul.residency-filter {
   width: 180px;
   position: fixed;
   left: 220px;
@@ -1369,18 +1369,18 @@ ul.event-year-filter, ul.exhibition-filter {
   margin: 0;
   padding: 0;
   list-style-type: none; }
-  ul.event-year-filter li, ul.exhibition-filter li {
+  ul.event-year-filter li, ul.exhibition-filter li, ul.residency-filter li {
     display: block;
     padding: 0 0 15px 0;
     line-height: 20px;
     font: normal 13px "Akkurat-Bold";
     letter-spacing: 0.05em;
     text-transform: uppercase; }
-    ul.event-year-filter li.active, ul.exhibition-filter li.active {
+    ul.event-year-filter li.active, ul.exhibition-filter li.active, ul.residency-filter li.active {
       margin-left: -1px;
       line-height: 24px;
       font: normal 25px "Akkurat-Regular"; }
-      ul.event-year-filter li.active a, ul.exhibition-filter li.active a {
+      ul.event-year-filter li.active a, ul.exhibition-filter li.active a, ul.residency-filter li.active a {
         color: black; }
 
 .single-event #primary > .page-header {
@@ -1407,15 +1407,15 @@ ul.event-year-filter, ul.exhibition-filter {
   .single-event ul.event-year-filter li.active a:hover {
     color: black; }
 
-.post-type-archive-exhibition .context-header {
+.post-type-archive-exhibition .context-header, .post-type-archive-residency .context-header {
   border: none; }
-.post-type-archive-exhibition .filters {
+.post-type-archive-exhibition .filters, .post-type-archive-residency .filters {
   padding: 0; }
 
-.single-exhibition #primary > .page-header {
+.single-exhibition #primary > .page-header, .single-residency #primary > .page-header {
   margin-left: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
-.single-exhibition ul.exhibition-filter {
+.single-exhibition ul.exhibition-filter, .single-exhibition ul.residency-filter, .single-residency ul.exhibition-filter, .single-residency ul.residency-filter {
   position: relative;
   width: 100%;
   top: 0;
@@ -1429,15 +1429,15 @@ ul.event-year-filter, ul.exhibition-filter {
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
   justify-content: space-between; }
-  .single-exhibition ul.exhibition-filter li {
+  .single-exhibition ul.exhibition-filter li, .single-exhibition ul.residency-filter li, .single-residency ul.exhibition-filter li, .single-residency ul.residency-filter li {
     padding-bottom: 0; }
-.single-exhibition .context-header {
+.single-exhibition .context-header, .single-residency .context-header {
   border-bottom: 1px dotted rgba(0, 0, 0, 0.25); }
-.single-exhibition .filters {
+.single-exhibition .filters, .single-residency .filters {
   padding: 20px 0 8px 0; }
-  .single-exhibition .filters ul.exhibition-filter li {
+  .single-exhibition .filters ul.exhibition-filter li, .single-residency .filters ul.exhibition-filter li {
     padding-top: 5px; }
-    .single-exhibition .filters ul.exhibition-filter li.active {
+    .single-exhibition .filters ul.exhibition-filter li.active, .single-residency .filters ul.exhibition-filter li.active {
       line-height: 25px;
       padding-top: 0; }
 
@@ -2742,6 +2742,16 @@ article.site_category-listening-house .entry-meta.location a:hover {
     .single-site article.site .site-cat-link a:hover {
       background-color: transparent;
       color: rgba(0, 0, 0, 0.5); }
+.single-site article.site .residency {
+  margin-left: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px; }
+  .single-site article.site .residency article.residency {
+    border: none;
+    width: 100%;
+    margin: 0; }
+    .single-site article.site .residency article.residency .single-image {
+      margin: 0 0 0 10%; }
 .single-site article.site .exhibitions {
   margin-left: 60px;
   margin-top: 50px;
@@ -3340,5 +3350,176 @@ article.site_category-listening-house .entry-meta.location a:hover {
         margin-top: 20px; }
 .post-staff .posts-list .board-of-directors-group .staff-title {
   display: none; }
+
+.post-type-archive-residency .posts-list {
+  width: calc(100% - 180px);
+  position: relative;
+  left: 180px;
+  margin-top: 125px; }
+
+article.residency {
+  width: calc(100% - 60px);
+  margin-bottom: 35px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid white; }
+  article.residency:last-child {
+    border: none; }
+  article.residency .entry-header, article.residency #details, article.residency .entry-content {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    margin-right: 3%; }
+  article.residency .site-info {
+    margin: -60% 0 6px 0;
+    width: 60%;
+    font-size: 16px; }
+  article.residency .entry-meta.location {
+    width: 100%; }
+  article.residency .featured-image {
+    width: 65%;
+    margin-left: 10%;
+    margin-top: 5px; }
+  article.residency .entry-header .entry-title {
+    font: normal 40px "Akkurat-Bold";
+    margin-top: 0; }
+  article.residency .entry-header .entry-meta {
+    font: 16px "Akkuratmono-Regular";
+    margin-top: 15px; }
+  article.residency .entry-content {
+    margin-top: 0; }
+    article.residency .entry-content p {
+      margin-top: 0; }
+  article.residency .read-more {
+    font: normal 16px "Akkurat-Bold";
+    display: block;
+    margin-top: 20px;
+    border: none; }
+  article.residency.site_category-dorchester-art-housing-collaborative .site-info::before {
+    content: url("img/graphic_da-hc.svg"); }
+  article.residency.site_category-dorchester-art-housing-collaborative .entry-title a, article.residency.site_category-dorchester-art-housing-collaborative .read-more {
+    color: #ff674d; }
+    article.residency.site_category-dorchester-art-housing-collaborative .entry-title a:hover, article.residency.site_category-dorchester-art-housing-collaborative .read-more:hover {
+      color: black;
+      background-color: transparent; }
+  article.residency.site_category-black-cinema-house .site-info::before {
+    content: url("img/graphic_bch.svg"); }
+  article.residency.site_category-black-cinema-house .entry-title a, article.residency.site_category-black-cinema-house .read-more {
+    color: #ffb111; }
+    article.residency.site_category-black-cinema-house .entry-title a:hover, article.residency.site_category-black-cinema-house .read-more:hover {
+      color: black;
+      background-color: transparent; }
+  article.residency.site_category-stony-island-arts-bank .site-info::before {
+    content: url("img/graphic_siab.svg"); }
+  article.residency.site_category-stony-island-arts-bank .entry-title a, article.residency.site_category-stony-island-arts-bank .read-more {
+    color: #6490e8; }
+    article.residency.site_category-stony-island-arts-bank .entry-title a:hover, article.residency.site_category-stony-island-arts-bank .read-more:hover {
+      color: black;
+      background-color: transparent; }
+  article.residency.site_category-listening-house .site-info::before {
+    content: url("img/graphic_lh.svg"); }
+  article.residency.site_category-listening-house .entry-title a, article.residency.site_category-listening-house .read-more {
+    color: #c2907f; }
+    article.residency.site_category-listening-house .entry-title a:hover, article.residency.site_category-listening-house .read-more:hover {
+      color: black;
+      background-color: transparent; }
+  article.residency.site_category-archive-house .site-info::before {
+    content: url("img/graphic_ah.svg"); }
+  article.residency.site_category-archive-house .entry-title a, article.residency.site_category-archive-house .read-more {
+    color: #c2907f; }
+    article.residency.site_category-archive-house .entry-title a:hover, article.residency.site_category-archive-house .read-more:hover {
+      color: black;
+      background-color: transparent; }
+
+@media (max-width: 1024px) {
+  .post-type-archive-exhibition .posts-list {
+    width: 100%;
+    position: relative;
+    left: 0;
+    margin-top: 192px; } }
+.single-residency {
+  #primary-width: 100%; }
+  .single-residency #main {
+    width: 100%;
+    left: 0;
+    position: relative; }
+  .single-residency article {
+    width: 100%;
+    margin-top: 40px;
+    border: none;
+    padding-left: 60px; }
+    .single-residency article .entry-header {
+      width: 55%;
+      display: block; }
+      .single-residency article .entry-header .entry-title {
+        font-size: 40px; }
+      .single-residency article .entry-header .entry-meta {
+        font: 20px "Akkuratmono-Regular";
+        margin-top: 35px; }
+    .single-residency article .entry-content {
+      margin-top: 20px;
+      width: 100%; }
+    .single-residency article .description {
+      display: inline-block;
+      vertical-align: top;
+      width: 60%;
+      padding-right: 5%;
+      padding-top: 20px; }
+    .single-residency article .content-side {
+      display: inline-block;
+      vertical-align: top;
+      width: 40%;
+      margin-left: -5px;
+      margin-top: -100px;
+      padding-left: 0; }
+      .single-residency article .content-side figure {
+        margin: 0 0 0 20%;
+        width: 80%; }
+        .single-residency article .content-side figure figcaption {
+          display: none; }
+    .single-residency article #details {
+      width: 75%;
+      margin: -70% 0 0 5%; }
+      .single-residency article #details h4 {
+        margin: 10px 0 5px; }
+      .single-residency article #details .address, .single-residency article #details .hours {
+        font: 14px "Akkuratmono-Regular"; }
+      .single-residency article #details .bio {
+        margin-top: 40px; }
+    .single-residency article .entry-footer {
+      border-top: 1px dotted rgba(0, 0, 0, 0.5);
+      width: 100%;
+      padding-top: 15px;
+      margin-top: 30px;
+      clear: both; }
+      .single-residency article .entry-footer .meta a label {
+        text-transform: lowercase; }
+    .single-residency article.site_category-dorchester-art-housing-collaborative #details::before {
+      content: url("img/graphic_da-hc.svg"); }
+    .single-residency article.site_category-dorchester-art-housing-collaborative .entry-title {
+      color: #ff674d; }
+    .single-residency article.site_category-black-cinema-house #details::before {
+      content: url("img/graphic_bch.svg"); }
+    .single-residency article.site_category-black-cinema-house .entry-title {
+      color: #ffb111; }
+    .single-residency article.site_category-stony-island-arts-bank #details::before {
+      content: url("img/graphic_siab.svg"); }
+    .single-residency article.site_category-stony-island-arts-bank .entry-title {
+      color: #6490e8; }
+    .single-residency article.site_category-listening-house #details::before {
+      content: url("img/graphic_lh.svg"); }
+    .single-residency article.site_category-listening-house .entry-title {
+      color: #c2907f; }
+    .single-residency article.site_category-archive-house #details::before {
+      content: url("img/graphic_ah.svg"); }
+    .single-residency article.site_category-archive-house .entry-title {
+      color: #c2907f; }
+  .single-residency .post-navigation {
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    width: calc(100% - 180px);
+    margin-left: 60px; }
+
+@media (max-width: 1024px) {
+  .single-residency article {
+    padding-left: 0; } }
 
 /*# sourceMappingURL=style.css.map */
