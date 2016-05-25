@@ -2,8 +2,8 @@
 Contributors: mdedev
 Tags: rsvp, reserve, wedding, guestlist
 Requires at least: 3.0.0
-Tested up to: 4.3.0
-Stable tag: 2.0.0
+Tested up to: 4.5
+Stable tag: 2.1.8
 
 Easy to use rsvp plugin to handle multiple events. 
 
@@ -66,6 +66,82 @@ For example if you have a page that is /rsvp for domain example.com your URL mig
 1. Create a blank page and add in the short code it will look like `[rsvp-pluginhere-X]` on the page
 
 == Changelog ==
+
+= 2.1.8 = 
+* Added an option to search for the attendee via email instead of first and last name 
+
+= 2.1.7 = 
+* Fixed a bug in the recurring functionality where in some cases it would get enabled when it shouldn't be
+* Added the ability to set the page size in the guest list area
+
+= 2.1.6 = 
+* Forgot to call resize when in wizard mode so modified that JavaScript
+* Fixed an issue related to escaping in custom question answers on the public attendee list
+* Refactored the JavaScript for adding attendees and made it so the form inputs look like the rest of the form elements
+
+= 2.1.5 = 
+* Made some small changes to the frontend so it would work better with one-page themes and themes that try to load pages dynamically in containers
+* Call resize when adding or removing additional guests. This was done to fix an error with themes that use dynamic containers and can cause it so when adding or removing the additional guests the scroll bar doesn't behave correctly. Leading to content being chopped off or a lot of empty space. 
+
+= 2.1.4 = 
+* Fixed an issue with the "add additional attendees" area when the greeting text had a line break in it
+
+= 2.1.3 = 
+* Added in the ability to sort with the passcode on the admin attendee list
+
+= 2.1.2 = 
+* Fixed an issue with the JavaScript not loading correctly when both the pro and free versions of the plugin were enabled on the same site
+* Added in two hooks for thank you text area, rsvp_pro_thank_you_text and rsvp_pro_no_thank_you_text
+
+= 2.1.1 = 
+* Added the ability to create reoccurring events
+
+= 2.1.0 = 
+* Fixed an issue with the open registration when the email field was hidden the attendee would not be added
+
+= 2.0.9 = 
+* Changed the calendar links to only show if the user has access to the event
+* Added the option to the send message functionality to only send to attendees with a specific RSVP status
+
+= 2.0.8 = 
+* Made it so the sub-events can have calendar invites
+* Surfaced the event ID on the event list page
+
+= 2.0.7 =
+* Added the RSVP Pro icon to the admin side menu
+* Added the ability to specify styling via a RSVP Pro general settings area 
+* Added the ability to delete all the tables and data related to the RSVP Pro plugin on uninstall
+* Added the option to copy over attendees when copying an event
+* Removed the checkboxes on the event list as they did not do anything
+
+= 2.0.6 = 
+* Fixed an issue with custom question types when the custom question types have a different ID than expected
+* Added in an option to specify the text for additional attendee greetings 
+
+= 2.0.5 = 
+* Changed the open date text to match the date format specified in general settings
+* Added the ability to download a calendar ICS file 
+* Added in general event information fields to the event settings page
+
+= 2.0.4 = 
+* Added an option to make the last name not required for look-up or adding an attendee
+* Added a RSVP recap tag to the send mesage functionality
+* Added an option to the waitlist functionality that once the waitlist is hit there will always be a waitlist after that
+* Added an option to automatically change people status from "waitlist" to "yes" if spots open up for an event 
+* Added an option to set the email notification text for when an attendees status was automatically changed from "waitlist" to "yes"
+
+= 2.0.3 = 
+* Made it so the import process can use an xls, xlsx and csv file format
+* Added the ability to specify a primary guest which would become the automatic selected attendee when multiple matches are found 
+
+= 2.0.2 = 
+* Fixed an issue with the "add attendee" area not using the custom greeting for associated attendees
+
+= 2.0.1 = 
+* Changed the send message textarea to the WordPress editor to make it easier for generating the body of the email
+* Made it so disabled fuzzy search worked correctly for user searching
+* Fixed a bug with adding additional attendees and the yes or no text had quotes in it, it would cause a JavaScript error
+* Added an option to do partial matches on first and last name instead of fuzzy matching 
 
 = 2.0.0 = 
 * Made it so the "no" custom message shows up for new attendees 

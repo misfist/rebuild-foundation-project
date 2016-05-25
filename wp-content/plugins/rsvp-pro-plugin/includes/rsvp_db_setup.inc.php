@@ -252,6 +252,33 @@
       $sql = "ALTER TABLE ".$table." ADD `nicknames` VARCHAR(250) NULL;";
       $wpdb->query($sql);
     }
+
+    $table = $wpdb->prefix."rsvpAttendees";
+    if(((int)$installed_ver < 28) || ($wpdb->get_var("SHOW COLUMNS FROM `$table` LIKE 'primaryAttendee'") != "primaryAttendee")) {
+      $sql = "ALTER TABLE ".$table." ADD `primaryAttendee` VARCHAR(1) NULL;";
+      $wpdb->query($sql);
+    }
+
+    $table = $wpdb->prefix."rsvpEvents";
+    if(((int)$installed_ver < 29) || ($wpdb->get_var("SHOW COLUMNS FROM `$table` LIKE 'eventDate'") != "eventDate")) {
+      $sql = "ALTER TABLE ".$table." ADD `eventStartDate` DATETIME NULL, 
+        ADD `eventEndDate` DATETIME NULL, 
+        ADD `eventLocation` VARCHAR(350) NULL, 
+        ADD `eventDescription` mediumtext;";
+      $wpdb->query($sql);
+    }
+
+    $table = $wpdb->prefix."rsvpEvents";
+    if(((int)$installed_ver < 30) || ($wpdb->get_var("SHOW COLUMNS FROM `$table` LIKE 'repeatStartDate'") != "repeatStartDate")) {
+      $sql = "ALTER TABLE `$table` ADD `repeatStartDate` DATE NULL, 
+              ADD `repeatEndDate` DATE NULL, 
+              ADD `repeatFrequencyType` ENUM('day','week','month','year') NULL, 
+              ADD `repeatFrequency` INT NULL, 
+              ADD `eventLength` INT NULL, 
+              ADD `eventLengthType` ENUM('day','week','month','year') NULL,
+              ADD `currentRepeatEndDate` DATE NULL;";
+      $wpdb->query($sql);
+    }
     
   	update_option( "rsvp_pro_db_version", RSVP_PRO_DB_VERSION);
   }  // function rsvp_pro_update_database($wpdb) {

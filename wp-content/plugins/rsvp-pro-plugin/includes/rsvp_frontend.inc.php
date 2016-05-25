@@ -55,7 +55,7 @@ function rsvp_pro_frontend_handler($text) {
 	global $wpdb; 
   	global $rsvpId;
   	global $rsvp_has_been_ran; 
-  	global $rsvp_form_action;
+  	$rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
   
 	if (!rsvp_pro_placeholder_found($text)) return $text;
 
@@ -84,7 +84,7 @@ function rsvp_pro_frontend_handler($text) {
 			$messageOpenText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_OPEN_DATE_TEXT);
 		}
 
-		return rsvp_pro_handle_output($text, sprintf(RSVP_PRO_START_PARA.$messageOpenText.RSVP_PRO_END_PARA, date("m/d/Y", strtotime($openDate))));
+		return rsvp_pro_handle_output($text, sprintf(RSVP_PRO_START_PARA.$messageOpenText.RSVP_PRO_END_PARA, date_i18n( get_option( 'date_format'),strtotime($openDate))));
 	} 
 	
 	if((strtotime($closeDate) !== false) && (strtotime($closeDate) < time())) {
@@ -99,22 +99,23 @@ function rsvp_pro_frontend_handler($text) {
 	if(isset($_POST['rsvpStep'])) {
 		$output = "";
 		switch(strtolower($_POST['rsvpStep'])) {
-      case("newattendee"):
-        return rsvp_pro_handlenewattendee($output, $text);
-        break;
-      case("addattendee"):
-        return rsvp_pro_handleNewRsvp($output, $text);
-        break;
+      		case("newattendee"):
+        		return rsvp_pro_handlenewattendee($output, $text);
+        		break;
+      		case("addattendee"):
+        		//return rsvp_pro_handleNewRsvp($output, $text);
+        		return rsvp_pro_handlersvp($output, $text);
+        		break;
 			case("handlersvp") :
 				$output = rsvp_pro_handlersvp($output, $text);
 				if(!empty($output)) 
 					return $output;
 				break;
-      case("wizardattendee"):
-        $output = rsvp_pro_frontend_wizard_form(-1, "handleRsvp", $text);
-        if(!empty($output))
-          return $output;
-        break;
+      		case("wizardattendee"):
+        		$output = rsvp_pro_frontend_wizard_form(-1, "handleRsvp", $text);
+        		if(!empty($output))
+          			return $output;
+        		break;
 			case("editattendee") :
 				$output = rsvp_pro_editAttendee($output, $text);
 				if(!empty($output)) 
@@ -171,210 +172,9 @@ function rsvp_pro_handlenewattendee($output, $text) {
   return rsvp_pro_handle_output($text, $output);
 }
 
-function rsvp_pro_handleGroupQuestions($attendeeID, $formName = "mainquestion") {
-	global $wpdb;
-  global $rsvpId;
-  
-  // Get associated attendees....                      
-	$sql = "SELECT id FROM ".PRO_ATTENDEES_TABLE." 
-	 	WHERE id IN (SELECT attendeeID FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE." WHERE associatedAttendeeID = %d) 
-			OR id in (SELECT associatedAttendeeID FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE." WHERE attendeeID = %d)";
-      
-  $associatedAttendees = $wpdb->get_results($wpdb->prepare($sql, $attendeeID, $attendeeID));
-  foreach($associatedAttendees as $aa) {
-    $sql = "DELETE FROM ".PRO_ATTENDEE_ANSWERS." WHERE attendeeID = %d AND questionID IN (SELECT id FROM ".PRO_QUESTIONS_TABLE." WHERE grouping = '".RSVP_PRO_QG_MULTI."')";
-    $wpdb->query($wpdb->prepare($sql, $aa->id));   
-  }
-	
-	$qRs = $wpdb->get_results($wpdb->prepare("SELECT q.id, questionType, q.sortOrder FROM ".PRO_QUESTIONS_TABLE." q 
-					INNER JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
-          WHERE q.rsvpEventID = %d AND q.grouping = '".RSVP_PRO_QG_MULTI."' 
-          UNION 
-          SELECT q.id, questionType, q.sortOrder FROM ".PRO_QUESTIONS_TABLE." q 
-          INNER JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
-          INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = q.rsvpEventID 
-          WHERE e.parentEventID = %d AND grouping = '".RSVP_PRO_QG_MULTI."' 
-					ORDER BY sortOrder", $rsvpId, $rsvpId));
-	if(count($qRs) > 0) {
-		foreach($qRs as $q) {
-			if(isset($_POST[$formName.$q->id]) && !empty($_POST[$formName.$q->id])) {
-				if($q->questionType == QT_MULTI) {
-					$selectedAnswers = "";
-					$aRs = $wpdb->get_results($wpdb->prepare("SELECT id, answer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d", $q->id));
-					if(count($aRs) > 0) {
-						foreach($aRs as $a) {
-							if(in_array($a->id, $_POST[$formName.$q->id])) {
-								$selectedAnswers .= ((strlen($selectedAnswers) == "0") ? "" : "||").stripslashes($a->answer);
-							}
-						}
-					}
-					
-					if(!empty($selectedAnswers)) {
-						$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $attendeeID, 
-																	"answer" => stripslashes($selectedAnswers), 
-																	"questionID" => $q->id), 
-															array('%d', '%s', '%d'));
-			            foreach($associatedAttendees as $aa) {
-	   						$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $aa->id, 
-	   																  "answer" => stripslashes($selectedAnswers), 
-	   																  "questionID" => $q->id), 
-	   															array('%d', '%s', '%d'));
-			            }
-					}
-				} else if (($q->questionType == QT_DROP) || ($q->questionType == QT_RADIO)) {
-					$aRs = $wpdb->get_results($wpdb->prepare("SELECT id, answer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d", $q->id));
-					if(count($aRs) > 0) {
-						foreach($aRs as $a) {
-							if($a->id == $_POST[$formName.$q->id]) {
-								$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $attendeeID, 
-																		 "answer" => stripslashes($a->answer), 
-																		 "questionID" => $q->id), 
-																	array('%d', '%s', '%d'));
-                                                 
-				                foreach($associatedAttendees as $aa) {
-				       						$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $aa->id, 
-				       																"answer" => stripslashes($a->answer), 
-				       																"questionID" => $q->id), 
-				       															array('%d', '%s', '%d'));
-				                }
-								break;
-							}
-						}
-					}
-				} else {
-					$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $attendeeID, 
-															"answer" => $_POST[$formName.$q->id], 
-															"questionID" => $q->id), 
-														array('%d', '%s', '%d'));
-		          	foreach($associatedAttendees as $aa) {
-	   					$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $aa->id, 
-	   															"answer" => $_POST[$formName.$q->id], 
-	   															"questionID" => $q->id), 
-	   														array('%d', '%s', '%d'));
-		          	}
-				}
-			}
-		}
-	}
-}
-
-function rsvp_pro_handleAdditionalQuestions($attendeeID, $formName, $isAdmin = false) {
-	global $wpdb;
-  global $rsvpId;
-	
-  if($isAdmin) {
-  	$wpdb->query($wpdb->prepare("DELETE FROM ".PRO_ATTENDEE_ANSWERS." WHERE attendeeID = %d AND 
-        questionID IN (SELECT q.id FROM ".PRO_QUESTIONS_TABLE." q 
-                       INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = q.rsvpEventID 
-                       WHERE (e.id = $rsvpId OR e.parentEventID = $rsvpId) AND 
-                         (IFNULL(e.event_access, '".RSVP_PRO_PRIVATE_EVENT_ACCESS."') != '".RSVP_PRO_PRIVATE_EVENT_ACCESS."' OR (%d IN (SELECT rsvpAttendeeID FROM ".PRO_EVENT_ATTENDEE_TABLE." WHERE rsvpEventID = e.id)))) ", $attendeeID, $attendeeID));
-  } else {
-  	$wpdb->query($wpdb->prepare("DELETE FROM ".PRO_ATTENDEE_ANSWERS." WHERE attendeeID = %d AND 
-        questionID IN (SELECT q.id FROM ".PRO_QUESTIONS_TABLE." q 
-                       INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = q.rsvpEventID 
-                       INNER JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
-                       WHERE (e.id = $rsvpId OR e.parentEventID = $rsvpId) AND 
-                         qt.questionType NOT IN ('hidden', 'readonly') AND 
-                         (IFNULL(e.event_access, '".RSVP_PRO_PRIVATE_EVENT_ACCESS."') != '".RSVP_PRO_PRIVATE_EVENT_ACCESS."' 
-                         OR (%d IN (SELECT rsvpAttendeeID FROM ".PRO_EVENT_ATTENDEE_TABLE." WHERE rsvpEventID = e.id)))) ", $attendeeID, $attendeeID));
-  }       
-	$qRs = $wpdb->get_results($wpdb->prepare("SELECT q.id, questionType, q.sortOrder FROM ".PRO_QUESTIONS_TABLE." q 
-					INNER JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
-          WHERE q.rsvpEventID = %d AND grouping <> '".RSVP_PRO_QG_MULTI."' 
-          UNION 
-          SELECT q.id, questionType, q.sortOrder FROM ".PRO_QUESTIONS_TABLE." q 
-          INNER JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
-          INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = q.rsvpEventID 
-          WHERE e.parentEventID = %d AND grouping <> '".RSVP_PRO_QG_MULTI."' 
-					ORDER BY sortOrder", $rsvpId, $rsvpId));
-          
-	if(count($qRs) > 0) {
-		foreach($qRs as $q) {
-			if(isset($_POST[$formName.$q->id]) && !empty($_POST[$formName.$q->id])) {
-				if($q->questionType == QT_MULTI) {
-					$selectedAnswers = "";
-					$aRs = $wpdb->get_results($wpdb->prepare("SELECT id, answer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d", $q->id));
-					if((count($aRs) > 0) && is_array($_POST[$formName.$q->id])) {
-						foreach($aRs as $a) {
-							if(in_array($a->id, $_POST[$formName.$q->id])) {
-								$selectedAnswers .= ((strlen($selectedAnswers) == "0") ? "" : "||").stripslashes($a->answer);
-							}
-						}
-					}
-					
-					if(!empty($selectedAnswers)) {
-						$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $attendeeID, 
-																									 "answer" => stripslashes($selectedAnswers), 
-																									 "questionID" => $q->id), 
-																						 array('%d', '%s', '%d'));
-					}
-				} else if (($q->questionType == QT_DROP) || ($q->questionType == QT_RADIO)) {
-					$aRs = $wpdb->get_results($wpdb->prepare("SELECT id, answer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d", $q->id));
-					if(count($aRs) > 0) {
-						foreach($aRs as $a) {
-							if($a->id == $_POST[$formName.$q->id]) {
-								$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $attendeeID, 
-																											 "answer" => stripslashes($a->answer), 
-																											 "questionID" => $q->id), 
-																								 array('%d', '%s', '%d'));
-								break;
-							}
-						}
-					}
-				} else {
-					$wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $attendeeID, 
-																								 "answer" => $_POST[$formName.$q->id], 
-																								 "questionID" => $q->id), 
-																					 array('%d', '%s', '%d'));
-				}
-			}
-		}
-	}
-}
-
-function rsvp_pro_handleSubEvents($attendeeID, $formName) {
-  global $wpdb;
-  global $rsvpId;
-  
-  $sql = "SELECT e.id, se.id AS attendeeRecId, se.rsvpStatus 
-                FROM ".PRO_EVENT_TABLE." e 
-                LEFT JOIN ".PRO_ATTENDEE_SUB_EVENTS_TABLE." se ON se.rsvpEventID = e.id AND se.rsvpAttendeeID = %d 
-                WHERE e.parentEventID = %d";
-  $subevents = $wpdb->get_results($wpdb->prepare($sql, $attendeeID, $rsvpId));
-  foreach($subevents as $se) {
-    if(isset($_POST[$formName."RsvpSub".$se->id])) {
-      $rsvpStatus = (strToUpper($_POST[$formName."RsvpSub".$se->id]) == "Y") ? "Yes" : "No";
-      if(strToUpper($_POST[$formName."RsvpSub".$se->id]) == "W") {
-      	$rsvpStatus = "Waitlist";
-      }
-      
-	  // Handle the case when the limit is hit but people want to RSVP as yes, don't allow it...
-  	  if(rsvp_pro_frontend_max_limit_hit($se->id)) {
-  	  	if(($se->rsvpStatus != "Yes") && ($rsvpStatus == "Yes")) {
-  	  		$rsvpStatus = "No";
-  	  	}
-  	  }
-
-      if($se->attendeeRecId > 0) {
-  		  $wpdb->update(PRO_ATTENDEE_SUB_EVENTS_TABLE, 
-          array("rsvpStatus" => $rsvpStatus, 
-          		"rsvpDate" => date("Y-m-d")), 
-    			array("id" => $se->attendeeRecId, "rsvpEventID" => $se->id), 
-    			array("%s", "%s"), 
-    			array("%d", "%d"));
-      } else {
-				$wpdb->insert(PRO_ATTENDEE_SUB_EVENTS_TABLE, array("rsvpAttendeeID" => $attendeeID, 
-                           "rsvpStatus" => $rsvpStatus, 
-                           "rsvpEventID" => $se->id, 
-                           "rsvpDate" => date("Y-m-d")), 
-							array('%d', '%s', '%d', '%s'));
-      }
-    }
-  }
-}
-
 function rsvp_pro_frontend_prompt_to_edit($attendee) {
-	global $rsvp_form_action, $rsvpId;
+	global $rsvpId;
+  $rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
 	$prompt = RSVP_PRO_START_CONTAINER; 
 	$editGreeting = __("Hi %s it looks like you have already RSVP'd. Would you like to edit your reservation?", 'rsvp-pro-plugin');
 	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EDIT_PROMPT_TEXT) != "") {
@@ -396,16 +196,17 @@ function rsvp_pro_frontend_prompt_to_edit($attendee) {
 	$prompt .= "<form method=\"post\" action=\"$rsvp_form_action\">\r\n
 								<input type=\"hidden\" name=\"attendeeID\" value=\"".$attendee->id."\" />
 								<input type=\"hidden\" name=\"rsvpStep\" id=\"rsvpStep\" value=\"editattendee\" />
-								<input type=\"submit\" value=\"".$yesText."\" onclick=\"document.getElementById('rsvpStep').value='editattendee';\" />
-								<input type=\"submit\" value=\"".$noText."\" onclick=\"document.getElementById('rsvpStep').value='newsearch';\"  />
+								<input type=\"submit\" value=\"".esc_attr($yesText)."\" onclick=\"document.getElementById('rsvpStep').value='editattendee';\" />
+								<input type=\"submit\" value=\"".esc_attr($noText)."\" onclick=\"document.getElementById('rsvpStep').value='newsearch';\"  />
 							</form>\r\n";
   $prompt .= RSVP_PRO_END_CONTAINER;
 	return $prompt;
 }
 
 function rsvp_pro_frontend_main_form($attendeeID, $rsvpStep = "handleRsvp") {
-  global $wpdb, $rsvp_form_action, $rsvp_saved_form_vars;
+  global $wpdb, $rsvp_saved_form_vars;
   global $rsvpId, $my_plugin_file, $hasSubEvents; 
+  $rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
 
   if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_FRONTEND_WIZARD) == "Y") {
     return rsvp_pro_frontend_wizard_form($attendeeID, $rsvpStep);
@@ -415,8 +216,10 @@ function rsvp_pro_frontend_main_form($attendeeID, $rsvpStep = "handleRsvp") {
 }
 
 function rsvp_pro_frontend_wizard_form($attendeeID, $rsvpStep = "handleRsvp", $text = "") {
-	global $wpdb, $rsvp_form_action, $rsvp_saved_form_vars;
+	global $wpdb, $rsvp_saved_form_vars;
   global $rsvpId, $my_plugin_file, $hasSubEvents;
+
+  $rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
   
   if(($attendeeID < 0) && isset($_POST['attendeeID'])) {
 		$attendee = $wpdb->get_row($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus 
@@ -527,8 +330,10 @@ function rsvp_pro_frontend_wizard_form($attendeeID, $rsvpStep = "handleRsvp", $t
 }
 
 function rsvp_pro_frontend_old_form($attendeeID, $rsvpStep = "handleRsvp") {
-	global $wpdb, $rsvp_form_action, $rsvp_saved_form_vars;
+    global $wpdb, $rsvp_saved_form_vars;
   	global $rsvpId, $my_plugin_file, $hasSubEvents; 
+
+    $rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
   
 	$attendee = $wpdb->get_row($wpdb->prepare("SELECT id, firstName, lastName, email, rsvpStatus, note, additionalAttendee, personalGreeting, numGuests, suffix, salutation   
 																						 FROM ".PRO_ATTENDEES_TABLE." 
@@ -729,7 +534,7 @@ function rsvp_pro_frontend_old_form($attendeeID, $rsvpStep = "handleRsvp") {
           				$greeting = sprintf($greeting, esc_html(stripslashes($a->firstName." ".$a->lastName)));
           			}
 
-    				$form .= rsvp_pro_BeginningFormField("", "rsvpRsvpGreeting").RSVP_PRO_START_PARA.$greeting.RSVP_PRO_END_PARA.RSVP_PRO_END_FORM_FIELD.
+    				$form .= rsvp_pro_BeginningFormField("", "rsvpRsvpGreeting")."<h4>".$greeting."</h4>".RSVP_PRO_END_FORM_FIELD.
               			rsvp_pro_BeginningFormField("", "rsvpRsvpQuestionArea").
                   			"<input type=\"radio\" name=\"attending".$a->id."\" value=\"Y\" id=\"attending".$a->id."Y\" ".(($a->rsvpStatus == "Yes") ? "checked=\"checked\"" : "" )." $requiredRsvp /> ".
                   			"<label for=\"attending".$a->id."Y\">$yesVerbiage</label>".
@@ -1044,11 +849,14 @@ function rsvp_pro_buildAdditionalQuestions($attendeeID, $prefix, $includeGroupQu
 }
 
 function rsvp_pro_find(&$output, &$text) {
-	global $wpdb, $rsvp_form_action, $rsvp_first_name, $rsvp_last_name, $rsvp_passcode;
+	global $wpdb, $rsvp_first_name, $rsvp_last_name, $rsvp_passcode;
   	global $rsvpId;
 
+  $rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
 	$passcodeOptionEnabled = (rsvp_pro_require_passcode($rsvpId)) ? true : false;
+  $emailLookupEnabled = (rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL) == "Y") ? true : false;
 	$passcodeOnlyOption = (rsvp_pro_require_only_passcode_to_register($rsvpId)) ? true : false;
+	$lastNameNotRequired = (rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED) == "Y") ? true : false;
 	$rsvp_first_name = $_REQUEST['firstName'];
 	$rsvp_last_name = $_REQUEST['lastName'];
 	$passcode = "";
@@ -1060,82 +868,104 @@ function rsvp_pro_find(&$output, &$text) {
 	$firstName = $_REQUEST['firstName'];
 	$lastName = $_REQUEST['lastName'];
 				
-	if(!$passcodeOnlyOption && ((strlen($firstName) <= 1) || (strlen($lastName) <= 1))) {
+	if(!$passcodeOnlyOption && !$emailLookupEnabled && ((strlen($firstName) <= 1) || (!$lastNameNotRequired && (strlen($lastName) <= 1)))) {
 		$output = "<p class=\"rsvpParagraph\" style=\"color:red\">".__("A first and last name must be specified", 'rsvp-pro-plugin')."</p>\r\n";
 		$output .= rsvp_pro_frontend_greeting();
 					
 		return rsvp_pro_handle_output($text, $output);
+	}
+
+	$baseWhere = " (SOUNDEX(firstName) = SOUNDEX(%s) OR (FIND_IN_SET(%s, nicknames) > 0)) AND SOUNDEX(lastName) = SOUNDEX(%s) ";
+
+	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH) == "Y") {
+		$baseWhere = " (firstName LIKE '%%%s%%' OR (FIND_IN_SET(%s, nicknames) > 0)) AND lastName LIKE '%%%s%%' ";
+	}
+
+	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_DISABLE_USER_SEARCH) == "Y") {
+		$baseWhere = " (firstName = %s OR (FIND_IN_SET(%s, nicknames) > 0)) AND lastName = %s ";		
 	}
 				
 	// Try to find the user.
 	if($passcodeOptionEnabled) {
 	    if($passcodeOnlyOption) {
 	  		$attendee = $wpdb->get_results($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus, 
-	  				 									 (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus   
+	  				 									 (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus, primaryAttendee   
 														 FROM ".PRO_ATTENDEES_TABLE." a 
-														 WHERE passcode = %s AND rsvpEventID = %d", $passcode, $rsvpId));
+														 WHERE passcode = %s AND rsvpEventID = %d  ORDER BY primaryAttendee DESC", $passcode, $rsvpId));
 	    } else {
-	  		$attendee = $wpdb->get_results($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus, email, suffix, salutation , 
-	  													 (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus   
-														 FROM ".PRO_ATTENDEES_TABLE." a 
-														 WHERE (SOUNDEX(firstName) = SOUNDEX(%s) OR (FIND_IN_SET(%s, nicknames) > 0)) AND SOUNDEX(lastName) = SOUNDEX(%s) AND passcode = %s AND rsvpEventID = %d", $firstName, $firstName, $lastName, $passcode, $rsvpId));
+        if($emailLookupEnabled) {
+          $attendee = $wpdb->get_results($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus, email, suffix, salutation , 
+                               (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus, primaryAttendee   
+                             FROM ".PRO_ATTENDEES_TABLE." a 
+                             WHERE email = %s AND passcode = %s AND rsvpEventID = %d  ORDER BY primaryAttendee DESC", $_REQUEST['email'], $passcode, $rsvpId));
+        } else {
+          $attendee = $wpdb->get_results($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus, email, suffix, salutation , 
+                               (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus, primaryAttendee   
+                             FROM ".PRO_ATTENDEES_TABLE." a 
+                             WHERE $baseWhere AND passcode = %s AND rsvpEventID = %d  ORDER BY primaryAttendee DESC", $firstName, $firstName, $lastName, $passcode, $rsvpId));
+        }
 	    }
+  }  elseif ($emailLookupEnabled) {
+    $attendee = $wpdb->get_results($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus, email, suffix, salutation , 
+                           (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus, primaryAttendee   
+                           FROM ".PRO_ATTENDEES_TABLE." a 
+                           WHERE email = %s AND rsvpEventID = %d ORDER BY primaryAttendee DESC", $_REQUEST['email'], $rsvpId));
 	} else {
 		$attendee = $wpdb->get_results($wpdb->prepare("SELECT id, firstName, lastName, rsvpStatus, email, suffix, salutation , 
-													 (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus   
+													 (SELECT COUNT(*) FROM ".PRO_ATTENDEE_SUB_EVENTS_TABLE." WHERE rsvpStatus <> 'NoResponse' AND rsvpAttendeeID = a.id) AS subStatus, primaryAttendee   
 													 FROM ".PRO_ATTENDEES_TABLE." a 
-													 WHERE (SOUNDEX(firstName) = SOUNDEX(%s) OR (FIND_IN_SET(%s, nicknames) > 0)) AND SOUNDEX(lastName) = SOUNDEX(%s) AND rsvpEventID = %d", $firstName, $firstName, $lastName, $rsvpId));
+													 WHERE $baseWhere AND rsvpEventID = %d ORDER BY primaryAttendee DESC", $firstName, $firstName, $lastName, $rsvpId));
 	}
   
 	if($attendee != null) {
-    if(count($attendee) > 1) {
-      $output = "<div>\r\n";
-      
-      $multipleText = __("we found multiple people with that name, please select your record", "rsvp-pro-plugin");
+	    if((count($attendee) > 1) && ($attendee[0]->primaryAttendee != "Y")) {
+	      $output = "<div>\r\n";
+	      
+	      $multipleText = __("we found multiple people with that name, please select your record", "rsvp-pro-plugin");
 
-      if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT) != "") {
-      	$multipleText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT);
-      }
+	      if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT) != "") {
+	      	$multipleText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT);
+	      }
 
-      $output .= RSVP_PRO_START_PARA.__("Hi ", "rsvp-pro-plugin").esc_html(stripslashes($attendee[0]->firstName." ".$attendee[0]->lastName)).
-        " ".$multipleText.RSVP_PRO_END_PARA;
-      
-      foreach($attendee as $a) {
-        $output .= RSVP_PRO_START_PARA;
-        $output .= "<form method=\"post\" action=\"{$rsvp_form_action}\">";
-        $output .= "  <input type=\"hidden\" value=\"foundattendee\" name=\"rsvpStep\" />";
-        $output .= "  <input type=\"hidden\" name=\"attendeeID\" value=\"".$a->id."\" />";
-        $output .= esc_html(stripslashes($a->salutation." ".$a->firstName." ".$a->lastName." ".$a->suffix));
-        
-        if(!empty($a->email)) {
-          $output .= " - ".esc_html(stripslashes($a->email));
-        }
-        
-        $output .= " <input type=\"submit\" value=\"".__("RSVP", "rsvp-pro-plugin")."\" />";
-        $output .= "</form>".RSVP_PRO_END_PARA;
-      }
-      
-      return rsvp_pro_handle_output($text, $output."</div>\r\n");
-    } else {
-      $attendee = $attendee[0];
-  		// hey we found something, we should move on and print out any associated users and let them rsvp
-  		$output = "<div>\r\n";
-  		if((strtolower($attendee->rsvpStatus) == "noresponse") && ($attendee->subStatus <= 0)) {
-  			$output .= RSVP_PRO_START_PARA."Hi ".htmlspecialchars(stripslashes($attendee->firstName." ".$attendee->lastName))."!".RSVP_PRO_END_PARA;
+	      $output .= RSVP_PRO_START_PARA.__("Hi ", "rsvp-pro-plugin").esc_html(stripslashes($attendee[0]->firstName." ".$attendee[0]->lastName)).
+	        " ".$multipleText.RSVP_PRO_END_PARA;
+	      
+	      foreach($attendee as $a) {
+	        $output .= RSVP_PRO_START_PARA;
+	        $output .= "<form method=\"post\" action=\"{$rsvp_form_action}\">";
+	        $output .= "  <input type=\"hidden\" value=\"foundattendee\" name=\"rsvpStep\" />";
+	        $output .= "  <input type=\"hidden\" name=\"attendeeID\" value=\"".$a->id."\" />";
+	        $output .= esc_html(stripslashes($a->salutation." ".$a->firstName." ".$a->lastName." ".$a->suffix));
+	        
+	        if(!empty($a->email)) {
+	          $output .= " - ".esc_html(stripslashes($a->email));
+	        }
+	        
+	        $output .= " <input type=\"submit\" value=\"".__("RSVP", "rsvp-pro-plugin")."\" />";
+	        $output .= "</form>".RSVP_PRO_END_PARA;
+	      }
+	      
+	      return rsvp_pro_handle_output($text, $output."</div>\r\n");
+	    } else {
+      		$attendee = $attendee[0];
+  			// hey we found something, we should move on and print out any associated users and let them rsvp
+  			$output = "<div>\r\n";
+  			if((strtolower($attendee->rsvpStatus) == "noresponse") && ($attendee->subStatus <= 0)) {
+  				$output .= RSVP_PRO_START_PARA."Hi ".htmlspecialchars(stripslashes($attendee->firstName." ".$attendee->lastName))."!".RSVP_PRO_END_PARA;
 						
-  			if(trim(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WELCOME_TEXT)) != "") {
-  				$output .= RSVP_PRO_START_PARA.trim(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WELCOME_TEXT)).RSVP_PRO_END_PARA;
+  				if(trim(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WELCOME_TEXT)) != "") {
+  					$output .= RSVP_PRO_START_PARA.trim(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WELCOME_TEXT)).RSVP_PRO_END_PARA;
+  				} else {
+  					$output .= RSVP_PRO_START_PARA.__("There are a few more questions we need to ask you if you could please fill them out below to finish up the RSVP process.", 'rsvp-pro-plugin').RSVP_PRO_END_PARA;
+  				}
+						
+  				$output .= rsvp_pro_frontend_main_form($attendee->id);
   			} else {
-  				$output .= RSVP_PRO_START_PARA.__("There are a few more questions we need to ask you if you could please fill them out below to finish up the RSVP process.", 'rsvp-pro-plugin').RSVP_PRO_END_PARA;
+  				$output .= rsvp_pro_frontend_prompt_to_edit($attendee);
   			}
-						
-  			$output .= rsvp_pro_frontend_main_form($attendee->id);
-  		} else {
-  			$output .= rsvp_pro_frontend_prompt_to_edit($attendee);
-  		}
-  		return rsvp_pro_handle_output($text, $output."</div>\r\n");
-    }
-	}
+  			return rsvp_pro_handle_output($text, $output."</div>\r\n");
+    	}
+	} // if($attendee != null) {
 				
 	// We did not find anyone let's try and do a rough search
 	$attendees = null;
@@ -1179,285 +1009,6 @@ function rsvp_pro_find(&$output, &$text) {
 
 	$notFoundText .= rsvp_pro_frontend_greeting();
 	return rsvp_pro_handle_output($text, $notFoundText);
-}
-
-function rsvp_pro_handleNewRsvp(&$output, &$text) {
-  	global $wpdb, $rsvp_saved_form_vars, $rsvpId;
-  	$thankYouPrimary = "";
-  	$thankYouAssociated = array();
-
-  	if(rsvp_pro_frontend_max_limit_for_all_events()) {
-  		return rsvp_pro_handle_max_limit_reached_message($rsvpId);
-  	}
-
-  	foreach($_POST as $key=>$val) {
-    	$rsvp_saved_form_vars[$key] = $val;
-  	}
-  
-	if(empty($_POST['attendeeFirstName']) || empty($_POST['attendeeLastName'])) {
-		return rsvp_pro_handlenewattendee($output, $text);
-	}
-  
- 	$rsvpPassword = "";
-  	$mainRsvpStatus = "No";
-	if(strToUpper($_POST['mainRsvp']) == "Y" && !rsvp_pro_frontend_max_limit_hit($rsvpId)) {
-		$mainRsvpStatus = "Yes";
-	}
-
-	if(strToUpper($_POST['mainRsvp']) == "W") {
-      	$mainRsvpStatus = "Waitlist";
-    }
-  	$thankYouPrimary = $_POST['attendeeFirstName'];
-	$wpdb->insert(PRO_ATTENDEES_TABLE, array("rsvpDate" => date("Y-m-d"), 
-                                       "firstName" => $_POST['attendeeFirstName'], 
-                                       "lastName"  => $_POST['attendeeLastName'], 
-                                       "email"     => $_POST['mainEmail'], 
-                                       "rsvpStatus" => $mainRsvpStatus, 
-                                       "note" => $_POST['rsvp_note'], 
-                                       "rsvpEventID" => $rsvpId), 
-																 array("%s", "%s", "%s", "%s", "%s", "%s", "%d"));
-			
-  $attendeeID = $wpdb->insert_id;
-  $attendee = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".PRO_ATTENDEES_TABLE." WHERE id = %d AND rsvpEventID = %d", $attendeeID, $rsvpId));
-  
-	if(rsvp_pro_require_passcode($rsvpId)) {
-    $length = 6;
-    
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_PASSWORD_LENGTH) > 0) {
-      $length = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_PASSWORD_LENGTH);
-    }
-    $rsvpPassword = trim(rsvp_pro_generate_passcode($length));
-		$wpdb->update(PRO_ATTENDEES_TABLE, 
-									array("passcode" => $rsvpPassword), 
-									array("id"=>$attendeeID), 
-									array("%s"), 
-									array("%d"));
-	}
-  
-  rsvp_pro_handleSuffixAndSalutation($attendeeID, "main");
-  rsvp_pro_handleSubEvents($attendeeID, "main");
-	rsvp_pro_handleAdditionalQuestions($attendeeID, "mainquestion");
-				
-	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_HIDE_ADDITIONAL) != "Y") {
-    	$numGuests = get_number_additional($rsvpId, $attendee);
-		if(is_numeric($_POST['additionalRsvp']) && ($_POST['additionalRsvp'] > 0)) {
-			for($i = 1; $i <= $_POST['additionalRsvp']; $i++) {
-				if(($i <= $numGuests) && 
-				   !empty($_POST['newAttending'.$i.'FirstName']) && 
-				   !empty($_POST['newAttending'.$i.'LastName'])) {		
-             
-	      				if($_POST['newAttending'.$i] == "Y") {
-	      					$rsvpStatus = "Yes";
-	      				} else if($_POST['newAttending'.$i] == "W") {
-	      					$rsvpStatus = "Waitlist";
-	              		} else if($_POST['newAttending'.$i] == "NoResponse") {
-	                		$rsvpStatus = "NoResponse";
-	      				} else {
-	      					$rsvpStatus = "No";
-	      				}
-          				$thankYouAssociated[] = $_POST['newAttending'.$i.'FirstName'];
-						$wpdb->insert(PRO_ATTENDEES_TABLE, array("firstName" => trim($_POST['newAttending'.$i.'FirstName']), 
-										"lastName" => trim($_POST['newAttending'.$i.'LastName']), 
-	                  					"email" => trim($_POST['newAttending'.$i."Email"]), 
-										"rsvpDate" => date("Y-m-d"), 
-										"rsvpStatus" => $rsvpStatus, 
-										"additionalAttendee" => "Y", 
-	                  					"rsvpEventID" => $rsvpId), 
-										array('%s', '%s', '%s', '%s', '%s', '%d'));
-						$newAid = $wpdb->insert_id;
-          
-			        	if(rsvp_pro_require_passcode($rsvpId)) {
-			            	$length = 6;
-			    
-				            if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_PASSWORD_LENGTH) > 0) {
-				              	$length = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_PASSWORD_LENGTH);
-				            }
-			            	$rsvpPassword = trim(rsvp_pro_generate_passcode($length));
-			        		$wpdb->update(PRO_ATTENDEES_TABLE, 
-			        									array("passcode" => $rsvpPassword), 
-			        									array("id"=>$newAid), 
-			        									array("%s"), 
-			        									array("%d"));
-			        	}
-          
-			          	rsvp_pro_handleSuffixAndSalutation($newAid, "newAttending".$i);
-			          	rsvp_pro_handleSubEvents($newAid, $i);
-						rsvp_pro_handleAdditionalQuestions($newAid, $i.'question');
-			          	rsvp_pro_copy_event_permissions($newAid, $attendeeID);
-          
-						// Add associations for this new user
-						$wpdb->insert(PRO_ASSOCIATED_ATTENDEES_TABLE, array("attendeeID" => $newAid, 
-											"associatedAttendeeID" => $attendeeID), 
-											array("%d", "%d"));
-						$wpdb->query("INSERT INTO ".PRO_ASSOCIATED_ATTENDEES_TABLE."(attendeeID, associatedAttendeeID)
-																				 SELECT ".$newAid.", associatedAttendeeID 
-																				 FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE." 
-																				 WHERE attendeeID = ".$attendeeID);
-				}
-			} // for($i = 1; $i <= $_POST['additionalRsvp']; $i++)
-		} // if(is_numeric($_POST['additionalRsvp']) && ($_POST['additionalRsvp'] > 0))
-	} // if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_HIDE_ADDITIONAL) != "Y")
-  
-  	rsvp_pro_handleGroupQuestions($attendeeID);
-  	rsvp_pro_frontend_handle_email_notifications($attendeeID, $rsvpId);
-				
-	return rsvp_pro_handle_output($text, rsvp_pro_frontend_new_attendee_thankyou($thankYouPrimary, $thankYouAssociated, $mainRsvpStatus, $rsvpPassword));
-}
-
-function rsvp_pro_handlersvp(&$output, &$text) {
-	global $wpdb;
-  global $rsvpId;
-  $thankYouPrimary = "";
-  $thankYouAssociated = array();
-  $mainRsvpStatus = "";
-
-	if(is_numeric($_POST['attendeeID']) && ($_POST['attendeeID'] > 0)) {
-    	$attendeeID = $_POST['attendeeID'];
-    	$attendee = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".PRO_ATTENDEES_TABLE." WHERE id = %d AND rsvpEventID = %d", $attendeeID, $rsvpId));
-    	// Get Attendee first name
-    	$thankYouPrimary = $wpdb->get_var($wpdb->prepare("SELECT firstName FROM ".PRO_ATTENDEES_TABLE." WHERE id = %d AND rsvpEventID = %d", $attendeeID, $rsvpId));
-    
-	    if(isset($_POST['mainRsvp'])) {    
-	  		// update their information and what not....
-	  		if(strToUpper($_POST['mainRsvp']) == "Y") {
-	  			$rsvpStatus = "Yes";
-	  		} else if(strToUpper($_POST['mainRsvp']) == "W") {
-	  			$rsvpStatus = "Waitlist";
-	  		} else {
-	  			$rsvpStatus = "No";
-	  		}
-
-	  		if(rsvp_pro_frontend_max_limit_hit($rsvpId)) {
-	  			if(($attendee->rsvpStatus != "Yes") && ($rsvpStatus == "Yes")) {
-	  				$rsvpStatus = "No";
-	  			}
-	  		}
-	      	$mainRsvpStatus = $rsvpStatus;
-	    
-	  	  	$wpdb->update(PRO_ATTENDEES_TABLE, array("rsvpDate" => date("Y-m-d"), 
-	  					"rsvpStatus" => $rsvpStatus, 
-	  					"note" => $_POST['rsvp_note']), 
-						array("id" => $attendeeID, "rsvpEventID" => $rsvpId), 
-						array("%s", "%s", "%s"), 
-						array("%d", "%d"));
-	    }
-    
-	    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_HIDE_EMAIL_FIELD) != "Y") {
-			  $wpdb->update(PRO_ATTENDEES_TABLE, array("note" => $_POST['rsvp_note'],
-	            "email" => $_POST['mainEmail']), 
-							array("id" => $attendeeID, "rsvpEventID" => $rsvpId), 
-							array("%s", "%s"), 
-							array("%d", "%d"));
-	    }
-    
-    	rsvp_pro_handleSuffixAndSalutation($attendeeID, "main"); 
-    	rsvp_pro_handleSubEvents($attendeeID, "main");
-		rsvp_pro_handleAdditionalQuestions($attendeeID, "mainquestion");
-																				
-		$sql = "SELECT id, firstName, rsvpStatus FROM ".PRO_ATTENDEES_TABLE." 
-		 	WHERE (id IN (SELECT attendeeID FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE." WHERE associatedAttendeeID = %d) 
-				OR id in (SELECT associatedAttendeeID FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE." WHERE attendeeID = %d)) AND 
-        rsvpEventID = %d";
-		$associations = $wpdb->get_results($wpdb->prepare($sql, $attendeeID, $attendeeID, $rsvpId));
-		foreach($associations as $a) {
-	      	if(isset($_POST['attending'.$a->id]) && 
-	      		(($_POST['attending'.$a->id] == "Y") || ($_POST['attending'.$a->id] == "N") || ($_POST['attending'.$a->id] == "NoResponse"))) {
-	        	$thankYouAssociated[] = $a->firstName;
-
-				if($_POST['attending'.$a->id] == "Y") {
-					$rsvpStatus = "Yes";
-				} else if($_POST['attending'.$a->id] == "W") {
-					$rsvpStatus = "Waitlist";
-		        } else if($_POST['attending'.$a->id] == "NoResponse") {
-		          $rsvpStatus = "NoResponse";
-				} else {
-					$rsvpStatus = "No";
-				}
-
-				if(rsvp_pro_frontend_max_limit_hit($rsvpId)) {
-		  			if(($attendee->rsvpStatus != "Yes") && ($rsvpStatus == "Yes")) {
-		  				$rsvpStatus = "No";
-		  			}
-		  		}
-		        $wpdb->update(PRO_ATTENDEES_TABLE, array("rsvpDate" => date("Y-m-d"), 
-								"rsvpStatus" => $rsvpStatus),
-								array("id" => $a->id, "rsvpEventID" => $rsvpId), 
-								array("%s", "%s"), 
-								array("%d", "%d"));
-		  	}
-      
-			if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_HIDE_EMAIL_FIELD) != "Y") {
-				$wpdb->update(PRO_ATTENDEES_TABLE, array("email" => $_POST['attending'.$a->id."Email"]),
-								array("id" => $a->id, "rsvpEventID" => $rsvpId), 
-								array("%s"), 
-								array("%d", "%d"));
-			}
-      
-      		rsvp_pro_handleSuffixAndSalutation($a->id, "attending".$a->id);
-			rsvp_pro_handleAdditionalQuestions($a->id, $a->id."question");
-      		rsvp_pro_handleSubEvents($a->id, $a->id."Existing");
-		} // foreach($associations as $a) {
-					
-		if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_HIDE_ADDITIONAL) != "Y") {
-      		$numGuests = get_number_additional($rsvpId, $attendee);
-			if(is_numeric($_POST['additionalRsvp']) && ($_POST['additionalRsvp'] > 0)) {
-				for($i = 1; $i <= $_POST['additionalRsvp']; $i++) {
-          
-					if(($i <= $numGuests) && 
-					   !empty($_POST['newAttending'.$i.'FirstName']) && 
-					   !empty($_POST['newAttending'.$i.'LastName'])) {		
-               
-       				if($_POST['newAttending'.$i] == "Y") {
-       					$rsvpStatus = "Yes";
-       				} else if($_POST['newAttending'.$i] == "W") {
-       					$rsvpStatus = "Waitlist";
-               		} else if($_POST['newAttending'.$i] == "NoResponse") {
-                 		$rsvpStatus = "NoResponse";
-       				} else {
-       					$rsvpStatus = "No";
-       				}
-
-       				if(rsvp_pro_frontend_max_limit_hit($rsvpId)) {
-			  			if($rsvpStatus == "Yes") {
-			  				$rsvpStatus = "No";
-			  			}
-			  		}
-            		$thankYouAssociated[] = $_POST['newAttending'.$i.'FirstName'];
-						$wpdb->insert(PRO_ATTENDEES_TABLE, array("firstName" => trim($_POST['newAttending'.$i.'FirstName']), 
-										"lastName" => trim($_POST['newAttending'.$i.'LastName']), 
-                    					"email" => trim($_POST['newAttending'.$i.'Email']), 
-										"rsvpDate" => date("Y-m-d"), 
-										"rsvpStatus" => $rsvpStatus, 
-										"additionalAttendee" => "Y", 
-                    					"rsvpEventID" => $rsvpId), 
-										array('%s', '%s', '%s', '%s', '%s', '%s', '%d'));
-						$newAid = $wpdb->insert_id;
-            			rsvp_pro_handleSuffixAndSalutation($newAid, "newAttending".$i);
-						rsvp_pro_handleAdditionalQuestions($newAid, $i.'question');
-            			rsvp_pro_handleSubEvents($newAid, $i);
-            			rsvp_pro_copy_event_permissions($newAid, $attendeeID);
-            
-						// Add associations for this new user
-						$wpdb->insert(PRO_ASSOCIATED_ATTENDEES_TABLE, array("attendeeID" => $newAid, 
-											"associatedAttendeeID" => $attendeeID), 
-											array("%d", "%d"));
-						$wpdb->query($wpdb->prepare("INSERT INTO ".PRO_ASSOCIATED_ATTENDEES_TABLE."(attendeeID, associatedAttendeeID)
-																				 SELECT ".$newAid.", associatedAttendeeID 
-																				 FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE." 
-																				 WHERE attendeeID = %d", $attendeeID));
-					}
-				}
-			}
-		} // if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_HIDE_ADDITIONAL) != "Y") {
-		
-    	rsvp_pro_handleGroupQuestions($attendeeID);
-    
-    	rsvp_pro_frontend_handle_email_notifications($attendeeID, $rsvpId);    
-    
-		return rsvp_pro_handle_output($text, rsvp_pro_frontend_thankyou($thankYouPrimary, $thankYouAssociated, $mainRsvpStatus));
-	} else {
-		return rsvp_pro_handle_output($text, rsvp_pro_frontend_greeting());
-	}
 }
 
 function rsvp_pro_editAttendee(&$output, &$text) {
@@ -1517,17 +1068,58 @@ function rsvp_pro_foundAttendee(&$output, &$text) {
 	}
 }
 	
-	
+function rsvp_pro_frontend_thankyou_calendar_links($attendeeID) {
+	global $wpdb, $rsvpId;
+	$output = "";
 
-function rsvp_pro_frontend_thankyou($thankYouPrimary, $thankYouAssociated, $rsvpStatus = "Yes") {
+	if((rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SHOW_CALENDAR_LINK) == "Y") && 
+		does_user_have_access_to_event($rsvpId, $attendeeID)) {
+		$linkText = __("Add to your calendar.", "rsvp-pro-plugin");
+		if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_CALENDAR_LINK_TEXT) != "") {
+			$linkText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_CALENDAR_LINK_TEXT);
+		}
+		$output .= RSVP_PRO_START_PARA;
+		$output .= "<a href=\"".site_url()."?rsvp_calendar_download=".$rsvpId."\">".$linkText."</a>";
+		$output .= RSVP_PRO_END_PARA;
+	}
+
+	// Get the sub-events calendar information...
+	$sql = "SELECT id, eventName FROM ".PRO_EVENT_TABLE." WHERE parentEventID = %d";
+	$subevents = $wpdb->get_results($wpdb->prepare($sql, $rsvpId));
+	foreach($subevents as $se) {
+		if((rsvp_pro_get_sub_event_option($se->id, RSVP_PRO_OPTION_SHOW_CALENDAR_LINK) == "Y") && 
+			does_user_have_access_to_event($se->id, $attendeeID)) {
+			$linkText = __("Add to your calendar.", "rsvp-pro-plugin");
+			if(rsvp_pro_get_sub_event_option($se->id, RSVP_PRO_OPTION_CALENDAR_LINK_TEXT) != "") {
+				$linkText = rsvp_pro_get_sub_event_option($se->id, RSVP_PRO_OPTION_CALENDAR_LINK_TEXT);
+			}
+
+			$output .= RSVP_PRO_START_PARA;
+			$output .= "<a href=\"".site_url()."?rsvp_calendar_download=".$se->id."\">".$linkText."</a>";
+			$output .= RSVP_PRO_END_PARA;
+		}
+	}
+
+	return $output;
+}
+
+function rsvp_pro_frontend_thankyou($thankYouPrimary, $thankYouAssociated, $rsvpStatus, $attendeeID) {
   	global $rsvpId;
+  	$filterParams = array("attendeeID" => $attendeeID, "rsvpStatus" => $rsvpStatus);
   
 	$customTy = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_THANKYOU);
   	$customNoVerbiage = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_NOT_COMING);
+
+  	$customTy = apply_filters("rsvp_pro_thank_you_text", $customTy, $filterParams);
+  	$customNoVerbiage = apply_filters("rsvp_pro_no_thank_you_text", $customNoVerbiage, $filterParams);
+  	
   	if(($rsvpStatus == "No") && !empty($customNoVerbiage)) {
     	return nl2br($customNoVerbiage);
   	} else if(!empty($customTy)) {
-		return nl2br($customTy);
+  		$output = nl2br($customTy);
+  		$output .= rsvp_pro_frontend_thankyou_calendar_links($attendeeID);
+  		
+		return $output;
 	} else {    
     	$tyText = __("Thank you", 'rsvp-pro-plugin');
     	if(!empty($thankYouPrimary)) {
@@ -1542,7 +1134,11 @@ function rsvp_pro_frontend_thankyou($thankYouPrimary, $thankYouAssociated, $rsvp
       		}
       		$tyText = rtrim(trim($tyText), ",").".";
     	}
-		return RSVP_PRO_START_CONTAINER.RSVP_PRO_START_PARA.$tyText.RSVP_PRO_END_PARA.RSVP_PRO_END_CONTAINER;
+    	$output = RSVP_PRO_START_CONTAINER.RSVP_PRO_START_PARA.$tyText.RSVP_PRO_END_PARA;
+    	$output .= rsvp_pro_frontend_thankyou_calendar_links($attendeeID);
+
+    	$output .= RSVP_PRO_END_CONTAINER;
+		return $output;
 	}
 }
 
@@ -1551,6 +1147,10 @@ function rsvp_pro_frontend_new_attendee_thankyou($thankYouPrimary, $thankYouAsso
 
   	$customTy = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_THANKYOU);
   	$customNoVerbiage = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_NOT_COMING);
+
+  	$customTy = apply_filters("rsvp_pro_thank_you_text", $customTy, $filterParams);
+  	$customNoVerbiage = apply_filters("rsvp_pro_no_thank_you_text", $customNoVerbiage, $filterParams);
+
   	$thankYouText = "";
 
   	if(($rsvpStatus == "No") && !empty($customNoVerbiage)) {
@@ -1599,10 +1199,10 @@ function rsvp_pro_BeginningFormField($id, $additionalClasses) {
 }
 
 function rsvp_pro_frontend_greeting() {
-  	global $rsvp_form_action;
  	global $rsvpId;
 	global $rsvp_first_name, $rsvp_last_name, $rsvp_passcode;
 
+  $rsvp_form_action = htmlspecialchars(rsvp_pro_getCurrentPageURL());
 	$customGreeting = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_GREETING);
 	$output = RSVP_PRO_START_PARA.__("Please enter your first and last name to RSVP.", 'rsvp-pro-plugin').RSVP_PRO_END_PARA;
 	$firstName = "";
@@ -1650,7 +1250,8 @@ function rsvp_pro_frontend_greeting() {
 	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_CANT_EDIT) != "Y") {
 	  	$output .= "<form name=\"rsvp\" method=\"post\" id=\"rsvp\" action=\"$rsvp_form_action\" autocomplete=\"off\">\r\n";
 	  	$output .= "	<input type=\"hidden\" name=\"rsvpStep\" value=\"find\" />";
-	    if(!rsvp_pro_require_only_passcode_to_register($rsvpId)) {
+	    if(!rsvp_pro_require_only_passcode_to_register($rsvpId) && 
+         (rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL) != "Y")) {
 	    	$firstNameLabel = __("First Name", 'rsvp-pro-plugin');
 	    	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_FIRST_NAME_LABEL) != "") {
 	    		$firstNameLabel = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_FIRST_NAME_LABEL);
@@ -1661,11 +1262,22 @@ function rsvp_pro_frontend_greeting() {
 	    		$lastNameLabel = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_LAST_NAME_LABEL);
 	    	}
 
-	  	$output .= rsvp_pro_BeginningFormField("", "")."<label for=\"firstName\">".$firstNameLabel.":</label> 
+	  	  $output .= rsvp_pro_BeginningFormField("", "")."<label for=\"firstName\">".$firstNameLabel.":</label> 
 	  								 <input type=\"text\" name=\"firstName\" id=\"firstName\" size=\"30\" value=\"".esc_html($firstName)."\" class=\"required\" />".RSVP_PRO_END_FORM_FIELD;
-	  	$output .= rsvp_pro_BeginningFormField("", "")."<label for=\"lastName\">".$lastNameLabel.":</label> 
-	  								 <input type=\"text\" name=\"lastName\" id=\"lastName\" size=\"30\" value=\"".esc_html($lastName)."\" class=\"required\" />".RSVP_PRO_END_FORM_FIELD;
+	  	  $output .= rsvp_pro_BeginningFormField("", "")."<label for=\"lastName\">".$lastNameLabel.":</label> 
+	  								 <input type=\"text\" name=\"lastName\" id=\"lastName\" size=\"30\" value=\"".esc_html($lastName)."\" class=\"".((rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED) != "Y") ? "required" : "")."\" />".RSVP_PRO_END_FORM_FIELD;
 	    }
+
+      if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL) == "Y") {
+        $emailLabel = __("Email", "rsvp-pro-plugin");
+        if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_LABEL) != "") {
+          $emailLabel = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_LABEL);
+        }
+
+        $output .= rsvp_pro_BeginningFormField("", "")."<label for=\"email\">".esc_html($emailLabel).":</label>
+                    <input type=\"text\" name=\"email\" id=\"email\" size=\"30\" class=\"required\" />".RSVP_PRO_END_FORM_FIELD;
+      }
+
 	  	if(rsvp_pro_require_passcode($rsvpId)) {
 	  		$passcodeLabel = __("Passcode", 'rsvp-pro-plugin');
 	  		if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_PASSCODE_LABEL) != "") {
@@ -1947,7 +1559,7 @@ function rsvp_pro_attendeelist_frontend_handler($rsvpId) {
     				WHERE q.id IN(".implode(",", $qIds).")";
     		$answers = $wpdb->get_results($wpdb->prepare($sql, $a->id));
     		foreach($answers as $ans) {
-    			$output .= "<td>".(($ans->answer != "") ? esc_html($ans->answer) : "&nbsp;")."</td>\r\n";
+    			$output .= "<td>".(($ans->answer != "") ? esc_html(stripslashes($ans->answer)) : "&nbsp;")."</td>\r\n";
     		}
     	}
         $output .= "</tr>\r\n";
@@ -1959,207 +1571,6 @@ function rsvp_pro_attendeelist_frontend_handler($rsvpId) {
   return $output;
 }
 
-function rsvp_pro_output_additional_js($rsvpId, $attendee, $attendeeID) {
-	if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_HIDE_ADDITIONAL) != "Y") {
-    $yesText = __("Yes", 'rsvp-pro-plugin');
-    $noText  = __("No", 'rsvp-pro-plugin'); 
-    $waitlistText = __("Waitlist", "rsvp-pro-plugin");
-    $noResponseText = __("No Response", "rsvp-pro-plugin");
-    $hasAccessToMainEvent = does_user_have_access_to_event($rsvpId, $attendeeID);
-    $salutation = __("Salutation", 'rsvp-pro-plugin');
-    $firstName = __("First name", 'rsvp-pro-plugin');
-    $lastName = __("Last name", 'rsvp-pro-plugin');
-    $suffix = __("Suffix", 'rsvp-pro-plugin');
-    $email = __("Email address", 'rsvp-pro-plugin');
-    $removeButton = __("Remove Guest", "rsvp-pro-plugin");
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_YES_VERBIAGE) != "") {
-    	$yesText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_YES_VERBIAGE);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_NO_VERBIAGE) != "") {
-    	$noText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_NO_VERBIAGE);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WAITLIST_VERBIAGE) != "") {
-    	$waitlistText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WAITLIST_VERBIAGE);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_NO_RESPONSE_TEXT) != "") {
-    	$noResponseText = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_NO_RESPONSE_TEXT);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SALUTATION_LABEL) != "") {
-    	$salutation = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SALUTATION_LABEL);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_FIRST_NAME_LABEL) != "") {
-    	$firstName = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_FIRST_NAME_LABEL);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_LAST_NAME_LABEL) != "") {
-    	$lastName = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_LAST_NAME_LABEL);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SUFFIX_LABEL) != "") {
-    	$suffix = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SUFFIX_LABEL);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_LABEL) != "") {
-    	$email = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_LABEL);
-    }
-
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_REMOVE_ATTENDEE_BUTTON_TEXT) != "") {
-    	$removeButton = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_REMOVE_ATTENDEE_BUTTON_TEXT);
-    }
-
-    $numGuests = 3;
-    if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_NUM_ADDITIONAL_GUESTS) != "") {
-      $numGuests = rsvp_pro_get_event_option($rsvpId, RSVP_PRO_NUM_ADDITIONAL_GUESTS);
-      if(!is_numeric($numGuests) || ($numGuests < 0)) {
-        $numGuests = 3;
-      }
-    }
-    
-    if(($attendee != null) && ($attendee->numGuests > 0)) {
-      $numGuests = $attendee->numGuests;
-    }
-    
-		$form .= "<script type=\"text/javascript\" language=\"javascript\">\r\n							
-								function handleAddRsvpClick() {
-									var numAdditional = jQuery(\"#additionalRsvp\").val();
-									numAdditional++;
-									if(numAdditional > ".$numGuests.") {
-										alert('".__("You have already added ".$numGuests." additional rsvp\'s you can add no more.", 'rsvp-pro-plugin')."');
-									} else {
-										jQuery(\"#additionalRsvpContainer\").append(\"<div class=\\\"rsvpAdditionalAttendee\\\">\" + \r\n
-                        \"<div class=\\\"rsvpAdditionalAttendeeQuestions\\\">\" + \r\n";
-                        
-                        if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SHOW_SALUTATION) == "Y") {    
-  												$form .= "\"<div class=\\\"rsvpFormField\\\">\" + \r\n
-                          \"	<label for=\\\"newAttending\" + numAdditional + \"Salutation\\\">".$salutation."</label> \" + \r\n 
-  													\"  <select name=\\\"newAttending\" + numAdditional + \"Salutation\\\" id=\\\"newAttending\" + numAdditional + \"Salutation\\\" size=\\\"1\\\"><option value=\\\"\\\">--</option>\" + \r\n";
-                            $salutations = rsvp_pro_get_salutation_options($rsvpId);
-                            foreach($salutations as $s) {
-                              $form .= "\"<option value=\\\"".esc_html($s)."\\\">".esc_html($s)."</option>\" + \r\n";
-                            }
-                            
-                          $form .= "\"</select></div>\" + \r\n";
-                        }
-                        
-												$form .= "\"<div class=\\\"rsvpFormField\\\">\" + \r\n
-                        \"	<label for=\\\"newAttending\" + numAdditional + \"FirstName\\\">".$firstName."&nbsp;</label>\" + \r\n 
-													\"  <input type=\\\"text\\\" name=\\\"newAttending\" + numAdditional + \"FirstName\\\" id=\\\"newAttending\" + numAdditional + \"FirstName\\\" />\" + \r\n
-										  	\"</div>\" + \r\n
-												\"<div class=\\\"rsvpFormField\\\">\" + \r\n
-                        \"	<label for=\\\"newAttending\" + numAdditional + \"LastName\\\">".$lastName."</label>\" + \r\n 
-													\"  <input type=\\\"text\\\" name=\\\"newAttending\" + numAdditional + \"LastName\\\" id=\\\"newAttending\" + numAdditional + \"LastName\\\" />\" + \r\n
-                        \"</div>\" + \r\n";
-                        
-                        if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SHOW_SUFFIX) == "Y") {
-  												$form .= "\"<div class=\\\"rsvpFormField\\\">\" + \r\n
-                          \"	<label for=\\\"newAttending\" + numAdditional + \"Suffix\\\">".$suffix."</label>\" + \r\n 
-  													\"  <input type=\\\"text\\\" name=\\\"newAttending\" + numAdditional + \"Suffix\\\" id=\\\"newAttending\" + numAdditional + \"Suffix\\\" />\" + \r\n
-                          \"</div>\" + \r\n";
-                        }
-                        if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_HIDE_EMAIL_FIELD) != "Y") {
-  												$form .= "\"<div class=\\\"rsvpFormField\\\">\" + \r\n
-                          \"	<label for=\\\"newAttending\" + numAdditional + \"Email\\\">".$email."</label>\" + \r\n 
-  													\"  <input type=\\\"text\\\" name=\\\"newAttending\" + numAdditional + \"Email\\\" id=\\\"newAttending\" + numAdditional + \"Email\\\" ".((rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_REQUIRED) == "Y") ? "required" : "")." />\" + \r\n
-                          \"</div>\" + \r\n";
-                        }
-                        
-                        if($hasAccessToMainEvent) {
-                          $required = "";
-                          if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_RSVP_REQUIRED) == "Y") {
-                            $required = " required";
-                          }
-
-                          if(rsvp_pro_frontend_max_limit_hit($rsvpId)) {
-                          	$required .= " disabled=\\\"true\\\"";
-                          }
-  										  	$form .= "\"<div class=\\\"rsvpFormField rsvpRsvpGreeting\\\">\" + \r\n
-  														\"<p>Will this person be attending?</p>\" + \r\n
-                              \"<div class=\\\"rsvpFormField rsvpRsvpQuestionArea\\\">\" + \r\n
-  														\"<input type=\\\"radio\\\" name=\\\"newAttending\" + numAdditional + \"\\\" value=\\\"Y\\\" id=\\\"newAttending\" + numAdditional + \"Y\\\" $required /> \" + 
-  														\"<label for=\\\"newAttending\" + numAdditional + \"Y\\\">$yesText</label></div> \" + 
-                              \"<div class=\\\"rsvpFormField rsvpRsvpQuestionArea\\\">\" + \r\n
-  														\"<input type=\\\"radio\\\" name=\\\"newAttending\" + numAdditional + \"\\\" value=\\\"N\\\" id=\\\"newAttending\" + numAdditional + \"N\\\"> <label for=\\\"newAttending\" + numAdditional + \"N\\\">$noText</label></div>\" + \r\n";
-
-  							if((rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_ENABLE_WAITLIST) == "Y") && rsvp_pro_frontend_max_limit_hit($rsvpId)) {
-  								$form .= "\"<div class=\\\"rsvpFormField rsvpRsvpQuestionArea\\\">\" + \r\n
-                              \"<input type=\\\"radio\\\" name=\\\"newAttending\" + numAdditional + \"\\\" value=\\\"W\\\" id=\\\"newAttending\" + numAdditional + \"Waitlist\\\"> <label for=\\\"newAttending\" + numAdditional + \"Waitlist\\\">$waitlistText</label></div>\" + ";	
-  							}
-
-                          if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SHOW_NORESPONSE_FOR_ASSOCIATED) == "Y") {
-                            $form .= "\"<div class=\\\"rsvpFormField rsvpRsvpQuestionArea\\\">\" + \r\n
-                              \"<input type=\\\"radio\\\" name=\\\"newAttending\" + numAdditional + \"\\\" value=\\\"NoResponse\\\" id=\\\"newAttending\" + numAdditional + \"NoResponse\\\"> <label for=\\\"newAttending\" + numAdditional + \"NoResponse\\\">$noResponseText</label></div>\" + ";
-                          }
-                            
-  												$form .= "\"</div>\" + \r\n";
-  												
-                        } // if ($hasAccessToMain...)
-                        $tmpVar = str_replace("\r\n", "", str_replace("||", "\"", addSlashes(rsvp_pro_buildSubEventMainForm(0, "|| + numAdditional + ||"))));
-                        $form .= "\"".$tmpVar."\" + ";
-												$tmpVar = str_replace("\r\n", "", str_replace("||", "\"", addSlashes(rsvp_pro_buildAdditionalQuestions(0, "|| + numAdditional + ||"))));
-
-												$form .= "\"".$tmpVar."\" + 
-                          \"<p><button onclick=\\\"removeAdditionalRSVP(this);\\\">".$removeButton."</button></p>\" + 
-											\"</div>\");
-										jQuery(\"#additionalRsvp\").val(numAdditional);
-                    jQuery(\"#numAvailableToAdd\").text(".$numGuests." - numAdditional);
-									}
-								}
-                
-                function removeAdditionalRSVP(rsvp) {
-									var numAdditional = jQuery(\"#additionalRsvp\").val();
-									numAdditional--;
-                  jQuery(rsvp).parent().parent().remove();
-                  jQuery(\"#additionalRsvp\").val(numAdditional);
-                  jQuery(\"#numAvailableToAdd\").text({$numGuests} - numAdditional);
-                }
-							</script>\r\n";
-              
-    echo $form;
-	}
-}
-
-function rsvp_pro_handleSuffixAndSalutation($attendeeId, $formPrefix) {
-  global $rsvpId;
-  global $wpdb;
-  
-  if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SHOW_SALUTATION) == "Y") {
-		$wpdb->update(PRO_ATTENDEES_TABLE, 
-									array("salutation" => trim($_POST[$formPrefix.'Salutation'])),
-									array("id" => $attendeeId), 
-									array("%s"), 
-									array("%d"));
-  }
-  
-  if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_SHOW_SUFFIX) == "Y") {
-		$wpdb->update(PRO_ATTENDEES_TABLE, 
-									array("suffix" => trim($_POST[$formPrefix.'Suffix'])),
-									array("id" => $attendeeId), 
-									array("%s"), 
-									array("%d"));
-  }
-}
-
-/*
- * This fucntion was created to fulfill the requirement that when a new additional attendee is added 
- * they copy the events the other main attendee has access to. The logic is that if the main user has 
- * access to the event and they are adding an additional user they should have access as well...
-*/
-function rsvp_pro_copy_event_permissions($copyToAttendeeID, $copyFromAttendeeID) {
-  global $wpdb;
-  
-  $sql = "INSERT INTO ".PRO_EVENT_ATTENDEE_TABLE."(rsvpEventID, rsvpAttendeeID) 
-    SELECT rsvpEventID, %d FROM ".PRO_EVENT_ATTENDEE_TABLE." 
-    WHERE rsvpAttendeeID = %d";
-    
-  $wpdb->query($wpdb->prepare($sql, $copyToAttendeeID, $copyFromAttendeeID));
-}
-
 /* 
  * Checks to see if the max limit is set and if so returns true or false depending on if the limit is hit
  */
@@ -2168,11 +1579,16 @@ function rsvp_pro_frontend_max_limit_hit($rsvpEventId) {
 
 	$maxLimit = array();
 	$isSubEvent = rsvp_pro_is_sub_event($rsvpEventId);
+	$function = "rsvp_pro_get_event_option";
 
 	if($isSubEvent) {
-		$tmpLimit = rsvp_pro_get_sub_event_option($rsvpEventId, RSVP_PRO_OPTION_EVENT_COUNT_LIMIT);
-	} else {
-		$tmpLimit = rsvp_pro_get_event_option($rsvpEventId, RSVP_PRO_OPTION_EVENT_COUNT_LIMIT);	
+		$function = "rsvp_pro_get_sub_event_option";
+	}
+
+	$tmpLimit = $function($rsvpEventId, RSVP_PRO_OPTION_EVENT_COUNT_LIMIT);
+
+	if(($function($rsvpEventId, RSVP_PRO_OPTION_ENABLE_WAITLIST) == "Y") && ($function($rsvpEventId, RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE) == "Y") && ($function($rsvpEventId, RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH) == "Y")) {
+		return true;
 	}
 	
 	if(is_numeric($tmpLimit) && ($tmpLimit > 0)) {
@@ -2195,6 +1611,9 @@ function rsvp_pro_frontend_max_limit_hit($rsvpEventId) {
 		}
 
 		if($attendeeCount[$rsvpEventId] >= $maxLimit[$rsvpEventId]) {
+			if(($function($rsvpEventId, RSVP_PRO_OPTION_ENABLE_WAITLIST) == "Y") && ($function($rsvpEventId, RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH) == "Y") && ($function($rsvpEventId, RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE) != "Y")) {
+				rsvp_pro_set_yes_unavailable($rsvpEventId);
+			}
 			return true;
 		} else {
 			return false;
@@ -2278,6 +1697,9 @@ function rsvp_pro_frontend_max_limit_for_all_events() {
 		if(!isset($attendeeCount[$rsvpId]) || ($attendeeCount[$rsvpId] < 0)) {
 			$sql = "SELECT COUNT(*) FROM ".PRO_ATTENDEES_TABLE." WHERE rsvpStatus = 'Yes' AND rsvpEventID = %d";
 			$attendeeCount[$rsvpId] = $wpdb->get_var($wpdb->prepare($sql, $rsvpId));
+			if((rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_ENABLE_WAITLIST) == "Y") && (rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH) == "Y") && (rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE)== "Y")) {
+				$attendeeCount[$rsvpId] = $maxLimits[$rsvpId];
+			}
 		}
 
 		if($isParentEvent) {
@@ -2286,6 +1708,9 @@ function rsvp_pro_frontend_max_limit_for_all_events() {
 				JOIN ".PRO_ATTENDEES_TABLE." a ON a.id = ase.rsvpAttendeeID 
 				WHERE ase.rsvpStatus = 'Yes' AND ase.rsvpEventID = %d";	
 				$attendeeCount[$se->id] = $wpdb->get_var($wpdb->prepare($sql, $se->id));
+				if((rsvp_pro_get_sub_event_option($se->id, RSVP_PRO_OPTION_ENABLE_WAITLIST) == "Y") && (rsvp_pro_get_sub_event_option($se->id, RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH) == "Y") && (rsvp_pro_get_sub_event_option($se->id, RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE)== "Y")) {
+					$attendeeCount[$se->id] = $maxLimits[$se->id];
+				}
 			}
 		}
 		
@@ -2411,4 +1836,48 @@ function rsvp_pro_frontend_handle_email_notifications($attendeeID, $rsvpId) {
 	        wp_mail($attendee->email, $subject, nl2br($body), $headers);
       }
     }
+}
+
+function rsvp_pro_set_yes_unavailable($rsvpEventId) {
+	global $wpdb;
+	$sql = "SELECT eventName, open_date, close_date, options, parentEventID, event_access  
+              FROM ".PRO_EVENT_TABLE." WHERE id = %d";
+	$event = $wpdb->get_row($wpdb->prepare($sql, $rsvpEventId));
+	$options = json_decode($event->options, true);
+
+	$options[RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE] = "Y";
+
+	$json_options = json_encode($options);
+	$wpdb->update(PRO_EVENT_TABLE, array("options" => $json_options), 
+                                      array("id"  => $rsvpEventId), 
+									  array('%s'), 
+                                      array("%d"));
+}
+
+function rsvp_pro_send_waitlist_status_change_notification($rsvpEventId, $attendeeId) {
+	global $wpdb;
+	global $rsvpId;
+
+	$function = "rsvp_pro_get_event_option";
+	if(rsvp_pro_is_sub_event($rsvpEventId)) {
+		$function = "rsvp_pro_get_sub_event_option";
+	}
+
+	$emailText = $function($rsvpEventId, RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL);
+	$emailText = trim($emailText);
+	if(empty($emailText)) {
+		// Use the default text...
+		$emailText = sprintf(__("Your RSVP status has changed from \"Waitlisted\" to \"Yes\" for event %s.", "rsvp-pro-plugin"), get_event_name($rsvpEventId));
+	}
+
+	// Get the person's email...
+	$email = $wpdb->get_var($wpdb->prepare("SELECT email FROM ".PRO_ATTENDEES_TABLE." WHERE id = %d", $attendeeId));
+	if(!empty($email)) {
+		$headers = array('Content-Type: text/html; charset=UTF-8');
+		if(rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_FROM) != "") {
+          $headers[] = 'From: '. rsvp_pro_get_event_option($rsvpId, RSVP_PRO_OPTION_EMAIL_FROM);		
+        }
+
+		wp_mail($email, __("RSVP Status Change for ", "rsvp-pro-plugin").get_event_name($rsvpEventId), nl2br($emailText), $headers);
+	}
 }

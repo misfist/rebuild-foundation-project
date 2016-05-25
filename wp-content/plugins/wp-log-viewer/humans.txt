@@ -1,0 +1,9 @@
+/* TEAM */
+Name: Maxwell Berkel
+Title: Lead Developer
+Github: allbitsnbytes
+Twitter: allbitsnbytes
+
+/* META */
+Updated: 05-11-2016
+See: http://humanstxt.org/

@@ -1,70 +1,20 @@
 <?php
-/**
- * @package rsvp-pro
- * @author Swim or Die Software
- * @version 2.0.0
- */
-/*
-Plugin Name: RSVP Pro
-Text Domain: rsvp-pro-plugin
-Plugin URI: http://www.rsvpproplugin.com
-Description: This plugin allows guests to RSVP to an event.  
-Author: Swim or Die Software
-Version: 2.0.0
-Author URI: http://www.swimordiesoftware.com
-License: Commercial
-*/
-#
-# INSTALLATION: see readme.txt
-#
-# USAGE: Once the RSVP plugin has been installed, you can set the custom text 
-#        via Settings -> RSVP Options in the  admin area. 
-#      
-#        To add, edit, delete and see rsvp status there will be a new RSVP admin
-#        area just go there.
-# 
-#        To allow people to rsvp create a new page and add "rsvp-pro-pluginhere" to the text
-  $my_plugin_file = __FILE__;
-
-  if (isset($plugin)) {
-    $my_plugin_file = $plugin;
-  }
-  else if (isset($mu_plugin)) {
-    $my_plugin_file = $mu_plugin;
-  }
-  else if (isset($network_plugin)) {
-    $my_plugin_file = $network_plugin;
-  }
   $rsvp_options = "";
   $rsvp_sub_options = array();
   $event_information = array();
   
-  require_once("wp-constants.php");
-  define('RSVP_PLUGIN_FILE', $my_plugin_file);
-  define('RSVP_PLUGIN_PATH', WP_PLUGIN_DIR.'/'.basename(dirname($my_plugin_file)));
 	if((isset($_GET['page']) && (strToLower($_GET['page']) == 'rsvp-admin-export')) || 
 		 (isset($_POST['rsvp-bulk-action']) && (strToLower($_POST['rsvp-bulk-action']) == "export")) || 
      (isset($_GET['page']) && (strToLower($_GET['page']) == "rsvp-pro-top-level") && (strToLower($_GET['action']) == "export"))) {
 		add_action('init', 'rsvp_pro_admin_export');
 	}
-	
-  require_once("rsvp_utils.inc.php");
-  require_once("rsvp_db_setup.inc.php");
-	require_once("rsvp_frontend.inc.php");
-  require_once("rsvp_licensing.inc.php");
-  require_once("rsvp_pro_wizard_forms.inc.php");
-  
-  if( !class_exists( 'RSVP_PRO_SL_Plugin_Updater' ) ) {
-  	// load our custom updater if it doesn't already exist 
-  	include( dirname( __FILE__) . '/rsvp_updater.inc.php' );
-  }
   
   // retrieve our license key from the DB
   $license_key = trim( get_option( 'rsvp_pro_license_key' ) ); 
 
   // setup the updater
-  $rsvp_updater = new RSVP_PRO_SL_Plugin_Updater( RSVP_PRO_STORE_URL, $my_plugin_file, array(
-  	'version' 	=> '2.0.0',		// current version number
+  $rsvp_updater = new RSVP_PRO_SL_Plugin_Updater( RSVP_PRO_STORE_URL, RSVP_PRO_PLUGIN_FILE, array(
+  	'version' 	=> '2.1.8',		// current version number
   	'license' 	=> $license_key,	// license key (used get_option above to retrieve from DB)
   	'item_name' => RSVP_PRO_ITEM_NAME,	// name of this plugin
   	'author' 	=> 'Swim or Die Software',	// author of this plugin
@@ -73,6 +23,10 @@ License: Commercial
   
   function rsvp_pro_admin_events() {
     global $wpdb;
+
+    if(wp_next_scheduled("rsvp_pro_reoccurring_events") === false) {
+      rsvp_pro_scheduler();
+    }
     
     $action = "";
     if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])) {
@@ -192,6 +146,7 @@ License: Commercial
       rsvp_pro_admin_eventList();
       return;
     }
+    // TODO: Rewrite this
     require_once("admin/manage_event_form.inc.php");
   }
   
@@ -262,10 +217,10 @@ License: Commercial
   				<div class="clear"></div>
   			</div>
       </form>
-  		<table class="widefat post fixed" cellspacing="0">
+  		<table class="widefat post fixed striped" cellspacing="0">
   			<thead>
   				<tr>
-            <th scope="col" class="manage-column column-cb check-column" style=""><input type="checkbox" id="cb" /></th>
+            <th width="75"><?php _e("Event ID", "rsvp-pro-plugin"); ?></th>
             <th><?php _e("Event Name", "rsvp-pro-plugin"); ?></th>
             <th><?php _e("Short Code", "rsvp-pro-plugin"); ?></th>
             <th><?php _e("Attendees", "rsvp-pro-plugin"); ?></th>
@@ -279,10 +234,9 @@ License: Commercial
             $delete_nonce = wp_create_nonce("rsvp-pro-top-level");
         ?>
           <tr class="format-standard hentry category-uncategorized  iedit author-self" valign="top">
-            <th scope="row" class="check-column">
-          		<label class="screen-reader-text" for="cb-select-1"><?php _e("Select", "rsvp-pro-plugin"); ?> <?php echo esc_html($event->eventName); ?></label>
-          		<input id="cb-select-1" name="event[]" value="<?php echo $event->id; ?>" type="checkbox">
-          	</th>
+            <td>
+              <?php echo $event->id; ?>
+            </td>
           	<td class="post-title page-title column-title">
               <strong><a class="row-title" href="<?php echo admin_url('admin.php?page=rsvp-pro-admin-manage-event&id='.$event->id);  ?>" title="Edit “<?php echo htmlspecialchars($event->eventName); ?>”">
                 <?php echo htmlspecialchars($event->eventName); ?></a></strong>
@@ -328,6 +282,7 @@ License: Commercial
                     <table class="widefat post fixed" cellspacing="0">
                 			<thead>
                 				<tr>
+                          <th width="75"><?php _e("Event ID", "rsvp-pro-plugin"); ?></th>
                           <th><?php _e(sprintf("Sub-Events for <strong>%s</strong>", $event->eventName), "rsvp-pro-plugin"); ?></th>
                           <th><?php _e("Attendees", "rsvp-pro-plugin"); ?></th>
                         </tr>
@@ -336,6 +291,7 @@ License: Commercial
                       foreach($subEvents as $se) {
                       ?>
                         <tr>
+                          <td><?php echo $se->id; ?></td>
                           <td><a class="row-title" href="<?php echo admin_url('admin.php?page=rsvp-pro-admin-manage-event&id='.$se->id);  ?>" title="Edit “<?php echo esc_html($se->eventName); ?>”"><?php echo esc_html($se->eventName); ?></a>
                           <?php 
                           if(rsvp_pro_admin_user_has_access_to_settings($se->id)) {
@@ -372,7 +328,6 @@ License: Commercial
   
 	function rsvp_pro_admin_guestlist($eventID, $showAll = false) {
 		global $wpdb;		
-    global $my_plugin_file; 
     $isSubEvent = false;
     $subEventID = 0;
     
@@ -393,30 +348,36 @@ License: Commercial
     // Pagination work 
     $pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
     $limit = 25; // number of rows in page
+    $limitOptions = array(25, 50, 100, "all");
+    if(in_array($_GET['pagesize'], $limitOptions)) {
+      $limit = $_GET['pagesize'];
+    }
     $offset = ( $pagenum - 1 ) * $limit;
     
-    $totalEventID = $eventID;
-    if($isSubEvent) {
-      $totalEventID = $parentEventID;
+    if($limit != "all") {
+      $totalEventID = $eventID;
+      if($isSubEvent) {
+        $totalEventID = $parentEventID;
+      }
+      $totalQuery = $wpdb->prepare("SELECT COUNT(`id`) FROM ".PRO_ATTENDEES_TABLE." WHERE rsvpEventID = %d", $totalEventID);
+      
+      if(isset($_GET['s']) && !empty($_GET['s'])) {
+        $totalQuery = $wpdb->prepare("SELECT COUNT(`id`) FROM ".PRO_ATTENDEES_TABLE." 
+          WHERE rsvpEventID = %d AND (firstName LIKE '%%%s%%' OR lastName LIKE '%%%s%%' OR email LIKE '%%%s%%')", 
+          $totalEventID, $_GET['s'], $_GET['s'], $_GET['s']);
+      }
+      $total = $wpdb->get_var($totalQuery);
+      
+      $num_of_pages = ceil( $total / $limit );
+      $page_links = paginate_links( array(
+          'base' => add_query_arg( 'pagenum', '%#%' ),
+          'format' => '',
+          'prev_text' => __( '&laquo;', 'text-domain' ),
+          'next_text' => __( '&raquo;', 'text-domain' ),
+          'total' => $num_of_pages,
+          'current' => $pagenum
+      ) );
     }
-    $totalQuery = $wpdb->prepare("SELECT COUNT(`id`) FROM ".PRO_ATTENDEES_TABLE." WHERE rsvpEventID = %d", $totalEventID);
-    
-    if(isset($_GET['s']) && !empty($_GET['s'])) {
-      $totalQuery = $wpdb->prepare("SELECT COUNT(`id`) FROM ".PRO_ATTENDEES_TABLE." 
-        WHERE rsvpEventID = %d AND (firstName LIKE '%%%s%%' OR lastName LIKE '%%%s%%' OR email LIKE '%%%s%%')", 
-        $totalEventID, $_GET['s'], $_GET['s'], $_GET['s']);
-    }
-    $total = $wpdb->get_var($totalQuery);
-    
-    $num_of_pages = ceil( $total / $limit );
-    $page_links = paginate_links( array(
-        'base' => add_query_arg( 'pagenum', '%#%' ),
-        'format' => '',
-        'prev_text' => __( '&laquo;', 'text-domain' ),
-        'next_text' => __( '&raquo;', 'text-domain' ),
-        'total' => $num_of_pages,
-        'current' => $pagenum
-    ) );
 		
 		rsvp_pro_install_passcode_field();
 		if((count($_POST) > 0) && ($_POST['rsvp-bulk-action'] == "delete") && (is_array($_POST['attendee']) && (count($_POST['attendee']) > 0))) {
@@ -478,9 +439,15 @@ License: Commercial
 				$orderBy = " lastName $direction, firstName $direction";
 			}	else if(strToLower($_GET['sort']) == "additional") {
 				$orderBy = " additionalAttendee ".((strtolower($_GET['sortDirection']) == "desc") ? "DESC" : "ASC") .", ".$orderBy;
-			}			
+			}	else if(strToLower($_GET['sort']) == "passcode") {
+        $orderBy = " passcode ".((strtolower($_GET['sortDirection']) == "desc") ? "DESC" : "ASC") .", ".$orderBy;
+      }
 		}
-		$sql .= " ORDER BY ".$orderBy." LIMIT $offset, $limit ";
+		$sql .= " ORDER BY ".$orderBy;
+
+    if($limit != "all") {
+      $sql .= " LIMIT $offset, $limit ";  
+    }
     
     if($isSubEvent) {
       if(isset($_GET['s']) && !empty($_GET['s'])) {
@@ -533,8 +500,30 @@ License: Commercial
         </form>
 			</div>
       <?php
-      if ( $page_links ) {
-          echo '<div class="tablenav"><div class="tablenav-pages" style="margin: 1em 0">' . $page_links . '</div></div>';
+      if ( $page_links && ($limit != "all") ) {
+      ?>
+          <div class="tablenav">
+            <div class="alignright" style="margin: 1em 0">
+              <div class="alignleft">
+                <form action="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID"); ?>">
+                  <input type="hidden" name="page" value="rsvp-pro-top-level" />
+                  <input type="hidden" name="action" value="attendees" />
+                  <input type="hidden" name="eventID" value="<?php echo $eventID; ?>" />
+                <label>
+                  <?php _e("Results per page", "rsvp-pro-plugin"); ?>
+                  <select name="pagesize" size="1" class="pagesize-selector">
+                    <option value="25" <?php echo ($limit == 25) ? "selected=\"selected\"" : ""; ?> ><?php _e("25", "rsvp-pro-plugin"); ?></option>
+                    <option value="50" <?php echo ($limit == 50) ? "selected=\"selected\"" : ""; ?>><?php _e("50", "rsvp-pro-plugin"); ?></option>
+                    <option value="100" <?php echo ($limit == 100) ? "selected=\"selected\"" : ""; ?>><?php _e("100", "rsvp-pro-plugin"); ?></option>
+                    <option value="all" <?php echo ($limit == "all") ? "selected=\"selected\"" : ""; ?>><?php _e("All", "rsvp-pro-plugin"); ?></option>
+                  </select>
+                </label>
+                </form>
+              </div>
+              <div class="tablenav-pages"><?php echo $page_links; ?></div>
+            </div>
+          </div>
+      <?php
       }
       ?>
       <div class="clear"></div>
@@ -614,36 +603,36 @@ License: Commercial
 						<th scope="col" class="manage-column column-cb check-column" style=""><input type="checkbox" id="cb" /></th>
 						<th scope="col" id="attendeeName" class="manage-column column-title" style=""><?php _e("Attendee", "rsvp-pro-plugin"); ?></a> &nbsp;
 							<a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=attendee&amp;sortDirection=asc");?>">
-								<img src="<?php echo plugins_url( "uparrow".((($sort == "attendee") && ($sortDirection == "asc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+								<img src="<?php echo plugins_url( "uparrow".((($sort == "attendee") && ($sortDirection == "asc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
 									alt="Sort Ascending Attendee Status" title="Sort Ascending Attendee Status" border="0"></a> &nbsp;
 							<a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=attendee&amp;sortDirection=desc");?>">
-								<img src="<?php echo plugins_url( "downarrow".((($sort == "attendee") && ($sortDirection == "desc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+								<img src="<?php echo plugins_url( "downarrow".((($sort == "attendee") && ($sortDirection == "desc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
 									alt="Sort Descending Attendee Status" title="Sort Descending Attendee Status" border="0"></a>
 						</th>			
             <!--<th scope="col" id="rsvpEmail" class="manage-column column-title"><?php echo __("Email", 'rsvp-pro-plugin'); ?></th>-->
 						<th scope="col" id="rsvpStatus" class="manage-column column-title" style=""><?php _e("RSVP Status", "rsvp-pro-plugin"); ?> &nbsp;
 							<a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=rsvpStatus&amp;sortDirection=asc");?>">
-								<img src="<?php echo plugins_url( "uparrow".((($sort == "rsvpStatus") && ($sortDirection == "asc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+								<img src="<?php echo plugins_url( "uparrow".((($sort == "rsvpStatus") && ($sortDirection == "asc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
 									alt="Sort Ascending RSVP Status" title="Sort Ascending RSVP Status" border="0"></a> &nbsp;
 							<a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=rsvpStatus&amp;sortDirection=desc");?>">
-								<img src="<?php echo plugins_url( "downarrow".((($sort == "rsvpStatus") && ($sortDirection == "desc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+								<img src="<?php echo plugins_url( "downarrow".((($sort == "rsvpStatus") && ($sortDirection == "desc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
 									alt="Sort Descending RSVP Status" title="Sort Descending RSVP Status" border="0"></a>
 						</th>
             <th scope="col" id="rsvpDate" class="manage-column column-title"><?php echo __("RSVP Date", 'rsvp-pro-plugin'); ?> &nbsp; 
               <a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=rsvpDate&amp;sortDirection=asc");?>">
-                <img src="<?php echo plugins_url( "uparrow".((($sort == "rsvpDate") && ($sortDirection == "asc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+                <img src="<?php echo plugins_url( "uparrow".((($sort == "rsvpDate") && ($sortDirection == "asc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
                   alt="Sort Ascending RSVP Date" title="Sort Ascending RSVP Date" border="0"></a> &nbsp;
               <a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=rsvpDate&amp;sortDirection=desc");?>">
-                <img src="<?php echo plugins_url( "downarrow".((($sort == "rsvpDate") && ($sortDirection == "desc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+                <img src="<?php echo plugins_url( "downarrow".((($sort == "rsvpDate") && ($sortDirection == "desc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
                   alt="Sort Descending RSVP Date" title="Sort Descending RSVP Date" border="0"></a></th>
   
             <?php if(!$isSubEvent) { ?>
 						<th scope="col" id="additionalAttendee" class="manage-column column-title" style=""><?php _e("Additional Attendee", "rsvp-pro-plugin"); ?>		 &nbsp;
 									<a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=additional&amp;sortDirection=asc");?>">
-										<img src="<?php echo plugins_url( "uparrow".((($sort == "additional") && ($sortDirection == "asc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+										<img src="<?php echo plugins_url( "uparrow".((($sort == "additional") && ($sortDirection == "asc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
 											alt="Sort Ascending Additional Attendees Status" title="Sort Ascending Additional Attendees Status" border="0"></a> &nbsp;
 									<a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=additional&amp;sortDirection=desc");?>">
-										<img src="<?php echo plugins_url( "downarrow".((($sort == "additional") && ($sortDirection == "desc")) ? "_selected" : "").".gif", $my_plugin_file); ?>" width="11" height="9" 
+										<img src="<?php echo plugins_url( "downarrow".((($sort == "additional") && ($sortDirection == "desc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
 											alt="Sort Descending Additional Attendees Status" title="Sort Descending Additional Atttendees Status" border="0"></a>
 						</th>
             <?php } ?>
@@ -653,7 +642,13 @@ License: Commercial
 						<?php
 						if(rsvp_pro_require_passcode($eventID)) {
 						?>
-							<th scope="col" id="passcode" class="manage-column column-title" style=""><?php _e("Passcode", "rsvp-pro-plugin"); ?></th>
+							<th scope="col" id="passcode" class="manage-column column-title" style=""><?php _e("Passcode", "rsvp-pro-plugin"); ?>&nbsp; 
+              <a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=passcode&amp;sortDirection=asc");?>">
+                <img src="<?php echo plugins_url( "uparrow".((($sort == "passcode") && ($sortDirection == "asc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
+                  alt="Sort Ascending Passcode" title="Sort Ascending Passcode" border="0"></a> &nbsp;
+              <a href="<?php echo admin_url("admin.php?page=rsvp-pro-top-level&action=attendees&eventID=$eventID&sort=passcode&amp;sortDirection=desc");?>">
+                <img src="<?php echo plugins_url( "downarrow".((($sort == "passcode") && ($sortDirection == "desc")) ? "_selected" : "").".gif", RSVP_PRO_PLUGIN_FILE); ?>" width="11" height="9" 
+                  alt="Sort Descending Passcode" title="Sort Descending Passcode" border="0"></a></th>
 						<?php
 						}
 						
@@ -764,12 +759,34 @@ License: Commercial
 				?>
           </tbody>
 				</table>
+        </form>
         <?php
-        if ( $page_links ) {
-            echo '<div class="tablenav"><div class="tablenav-pages" style="margin: 1em 0">' . $page_links . '</div></div>';
+        if ( $page_links && ($limit != "all") ) {
+        ?>
+            <div class="tablenav">
+              <div class="alignright" style="margin: 1em 0">
+                <div class="alignleft">
+                  <form action="<?php echo admin_url("admin.php"); ?>">
+                    <input type="hidden" name="page" value="rsvp-pro-top-level" />
+                    <input type="hidden" name="action" value="attendees" />
+                    <input type="hidden" name="eventID" value="<?php echo $eventID; ?>" />
+                  <label>
+                    <?php _e("Results per page", "rsvp-pro-plugin"); ?>
+                    <select name="pagesize" size="1" class="pagesize-selector">
+                      <option value="25" <?php echo ($limit == 25) ? "selected=\"selected\"" : ""; ?> ><?php _e("25", "rsvp-pro-plugin"); ?></option>
+                      <option value="50" <?php echo ($limit == 50) ? "selected=\"selected\"" : ""; ?>><?php _e("50", "rsvp-pro-plugin"); ?></option>
+                      <option value="100" <?php echo ($limit == 100) ? "selected=\"selected\"" : ""; ?>><?php _e("100", "rsvp-pro-plugin"); ?></option>
+                      <option value="all" <?php echo ($limit == "all") ? "selected=\"selected\"" : ""; ?>><?php _e("All", "rsvp-pro-plugin"); ?></option>
+                    </select>
+                  </label>
+                  </form>
+                </div>
+                <div class="tablenav-pages"><?php echo $page_links; ?></div>
+              </div>
+            </div>
+        <?php
         }
         ?>
-			</form>
 		</div>
 	<?php
 	}
@@ -812,14 +829,14 @@ License: Commercial
     
       if($isSubEvent) {
   			$sql = "SELECT a.id, firstName, lastName, IFNULL(se.rsvpStatus, 'NoResponse') AS rsvpStatus, 
-                note, additionalAttendee, passcode, email, salutation, suffix, a.rsvpDate  
+                note, additionalAttendee, passcode, email, salutation, suffix, a.rsvpDate, a.primaryAttendee   
   							FROM ".PRO_ATTENDEES_TABLE." a 
                 INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = %d 
                 LEFT JOIN ".PRO_ATTENDEE_SUB_EVENTS_TABLE." se ON se.rsvpAttendeeID = a.id AND se.rsvpEventID = %d 
                WHERE a.rsvpEventID = %d AND ((IFNULL(e.event_access, '".RSVP_PRO_OPEN_EVENT_ACCESS."') != '".RSVP_PRO_PRIVATE_EVENT_ACCESS."') OR (a.id IN (SELECT rsvpAttendeeID FROM ".PRO_EVENT_ATTENDEE_TABLE." WHERE rsvpEventID = e.id)))" ;
       } else { 
   			$sql = "SELECT a.id, firstName, lastName, rsvpStatus, note, additionalAttendee, 
-                passcode, email, salutation, suffix, a.rsvpDate  
+                passcode, email, salutation, suffix, a.rsvpDate, a.primaryAttendee  
   							FROM ".PRO_ATTENDEES_TABLE." a
                 INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = a.rsvpEventID 
                 WHERE rsvpEventID = %d AND ((IFNULL(e.event_access, '".RSVP_PRO_OPEN_EVENT_ACCESS."') != '".RSVP_PRO_PRIVATE_EVENT_ACCESS."') OR (a.id IN (SELECT rsvpAttendeeID FROM ".PRO_EVENT_ATTENDEE_TABLE." WHERE rsvpEventID = e.id)))" ;
@@ -868,7 +885,7 @@ License: Commercial
       if(rsvp_pro_require_passcode($eventID)) {
         $csv .= "\"Passcode\",";
       }
-			$csv .= "\"Note\",\"Email\",\"Associated Attendees\"";
+			$csv .= "\"Note\",\"Email\",\"Primary Attendee\",\"Associated Attendees\"";
 			
 			$qRs = $wpdb->get_results($wpdb->prepare("SELECT id, question FROM ".PRO_QUESTIONS_TABLE." WHERE rsvpEventID = %d ORDER BY sortOrder, id", ($isSubEvent) ? $subEventID : $eventID));
 			if(count($qRs) > 0) {
@@ -914,6 +931,8 @@ License: Commercial
         }
 				$csv .= "\"".(str_replace("\"", "\"\"", stripslashes($a->note)))."\",\"";
         $csv .= stripslashes($a->email)."\",\"";
+
+        $csv .= (($a->primaryAttendee == "Y") ? "Y" : "N")."\",\"";
 			
 				$sql = "SELECT CONCAT_WS('', firstName, lastName) AS name FROM ".PRO_ATTENDEES_TABLE." a 
           JOIN ".PRO_EVENT_TABLE." e ON e.id = a.rsvpEventID 
@@ -973,151 +992,30 @@ License: Commercial
         $passcodeLength = rsvp_pro_get_event_option($eventID, RSVP_PRO_OPTION_PASSWORD_LENGTH);
       }
 
-			require_once("Excel/reader.php");
-			$data = new Spreadsheet_Excel_Reader();
-			$data->read($_FILES['importFile']['tmp_name']);
+      // TODO: Rewrite this
+      require(RSVP_PRO_PLUGIN_PATH.'/spreadsheet-reader/php-excel-reader/excel_reader2.php');
+      require(RSVP_PRO_PLUGIN_PATH.'/spreadsheet-reader/SpreadsheetReader.php');
+      require(RSVP_PRO_PLUGIN_PATH."/includes/admin/import_handlers.inc.php");
+			
+      $data = new SpreadsheetReader($_FILES['importFile']['tmp_name'], $_FILES['importFile']['name']);
       $skipFirstRow = false;
-      if($data->sheets[0]['numCols'] >= 14) {
+      $numCols = count($data->current());
+      $i = 0;
+      if($numCols >= 14) {
         // Associating private questions... have to skip the first row
         $skipFirstRow = true;
       }
       
-			if($data->sheets[0]['numCols'] >= 2) {
+			if($numCols >= 2) {
 				$count = 0;
-        $i = ($skipFirstRow) ? 2 : 1;
-				for ($i; $i <= $data->sheets[0]['numRows']; $i++) {
-          $salutation = trim($data->sheets[0]['cells'][$i][1]);
-					$fName = trim($data->sheets[0]['cells'][$i][2]);
-          $fName = mb_convert_encoding($fName, 'UTF-8', mb_detect_encoding($fName, 'UTF-8, ISO-8859-1', true));
-          
-					$lName = trim($data->sheets[0]['cells'][$i][3]);
-          $lName = mb_convert_encoding($lName, 'UTF-8', mb_detect_encoding($lName, 'UTF-8, ISO-8859-1', true));
-          
-          $suffix = trim($data->sheets[0]['cells'][$i][4]);
-          $email = trim($data->sheets[0]['cells'][$i][5]);
-					$personalGreeting = (isset($data->sheets[0]['cells'][$i][7])) ? $personalGreeting = $data->sheets[0]['cells'][$i][7] : "";
-          $passcode = (isset($data->sheets[0]['cells'][$i][8])) ? $data->sheets[0]['cells'][$i][8] : "";
-          $rsvpStatus = "noresponse";
-          if(isset($data->sheets[0]['cells'][$i][9])) {
-            $tmpStatus = strtolower($data->sheets[0]['cells'][$i][9]);
-            if(($tmpStatus == "yes") || ($tmpStatus == "no")) {
-              $rsvpStatus = $tmpStatus;
-            }
+        $headerRow = array();
+				foreach($data as $row) {
+          if(!$skipFirstRow || ($i > 0)) {
+            handleImportRow($row, $headerRow, $numCols, $count, $eventID);
+          } else {
+            $headerRow = $row;
           }
-          $numGuests = "";
-          if(isset($data->sheets[0]['cells'][$i][10]) && is_numeric($data->sheets[0]['cells'][$i][10]) && ($data->sheets[0]['cells'][$i][10] >= 0)) {
-            $numGuests = $data->sheets[0]['cells'][$i][10];
-          }
-
-          $note = (isset($data->sheets[0]['cells'][$i][11])) ? $data->sheets[0]['cells'][$i][11] : "";
-					if(!empty($fName) && !empty($lName)) {
-						$sql = "SELECT id FROM ".PRO_ATTENDEES_TABLE." 
-						 	WHERE firstName = %s AND lastName = %s AND rsvpEventID = %d AND (email = %s OR passcode = %s) ";
-						$res = $wpdb->get_results($wpdb->prepare($sql, $fName, $lName, $eventID, $email, $passcode));
-						if(count($res) == 0) {
-              if($passcode == "") {
-                $passcode = rsvp_pro_generate_passcode($passcodeLength); 
-              }
-							$wpdb->insert(PRO_ATTENDEES_TABLE, array("firstName" 				=> $fName, 
-																									 "lastName" 				=> $lName,
-                                                   "email"            => $email, 
-																									 "personalGreeting" => $personalGreeting, 
-                                                   "passcode"         => $passcode,
-                                                   "salutation"       => $salutation, 
-                                                   "suffix"           => $suffix,  
-                                                   "rsvpEventID"      => $eventID, 
-                                                   "rsvpStatus"       => $rsvpStatus, 
-                                                   "numGuests"        => $numGuests, 
-                                                   "note"             => $note), 
-																						 array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s'));
-							$count++;
-						}
-            
-    				if(($data->sheets[0]['numCols'] >= 6)) {
-    					// There must be associated users so let's associate them
-    					// Get the user's id 
-							$sql = "SELECT id FROM ".PRO_ATTENDEES_TABLE." 
-							 	WHERE firstName = %s AND lastName = %s AND rsvpEventID = %d";
-							$res = $wpdb->get_results($wpdb->prepare($sql, $fName, $lName, $eventID));
-							if((count($res) > 0) && isset($data->sheets[0]['cells'][$i][6])) {
-								$userId = $res[0]->id;
-						
-								// Deal with the assocaited users...
-								$associatedUsers = explode(",", trim($data->sheets[0]['cells'][$i][6]));
-								if(is_array($associatedUsers)) {
-									foreach($associatedUsers as $au) {
-										$user = explode(" ", trim($au), 2);
-										// Three cases, they didn't enter in all of the information, user exists or doesn't.  
-										// If user exists associate the two users
-										// If user does not exist add the user and then associate the two
-										if(is_array($user) && (count($user) == 2)) {
-											$sql = "SELECT id FROM ".PRO_ATTENDEES_TABLE." 
-											 	WHERE firstName = %s AND lastName = %s AND rsvpEventID = %d";
-											$userRes = $wpdb->get_results($wpdb->prepare($sql, mb_convert_encoding(trim($user[0]), 'UTF-8', mb_detect_encoding(trim($user[0]), 'UTF-8, ISO-8859-1', true)), mb_convert_encoding(trim($user[1]), 'UTF-8', mb_detect_encoding(trim($user[1]), 'UTF-8, ISO-8859-1', true)), $eventID));
-											if(count($userRes) > 0) {
-												$newUserId = $userRes[0]->id;
-											} else {
-												// Insert them and then we can associate them...
-												$wpdb->insert(PRO_ATTENDEES_TABLE, array("firstName" => mb_convert_encoding(trim($user[0]), 'UTF-8', mb_detect_encoding(trim($user[0]), 'UTF-8, ISO-8859-1', true)), "lastName" => mb_convert_encoding(trim($user[1]), 'UTF-8', mb_detect_encoding(trim($user[1]), 'UTF-8, ISO-8859-1', true)), "rsvpEventID" => $eventID), array('%s', '%s', '%d'));
-												$newUserId = $wpdb->insert_id;
-												$count++;
-											}
-									
-											$wpdb->insert(PRO_ASSOCIATED_ATTENDEES_TABLE, array("attendeeID" => $newUserId, 
-																																			"associatedAttendeeID" => $userId), 
-																																array("%d", "%d"));
-																														
-											$wpdb->insert(PRO_ASSOCIATED_ATTENDEES_TABLE, array("attendeeID" => $userId, 
-																																			"associatedAttendeeID" => $newUserId), 
-																																array("%d", "%d"));
-										}
-									}
-								}
-							}
-    				} // if($data->sheets[0]['numCols'] >= 6...
-        
-            if($data->sheets[0]['numCols'] >= 12) {
-              $private_questions = array();
-              $question_values = array();
-              for($qid = 12; $qid <= $data->sheets[0]['numCols']; $qid++) {
-                $pqid = str_replace("pq_", "", $data->sheets[0]['cells'][1][$qid]);
-                if(is_numeric($pqid)) {
-                  $private_questions[$qid] = $pqid;
-                }
-              }
-
-              for($qid = 12; $qid <= $data->sheets[0]['numCols']; $qid++) {
-                $cqid = str_replace("cq_", "", $data->sheets[0]['cells'][1][$qid]);
-                if(is_numeric($cqid)) {
-                  $question_values[$qid] = $cqid;
-                }
-              }
-          
-              if((count($private_questions) > 0) || (count($question_values) > 0)) {
-  							// Get the user's id 
-  							$sql = "SELECT id FROM ".PRO_ATTENDEES_TABLE." 
-  							 	WHERE firstName = %s AND lastName = %s AND rsvpEventID = %d AND (email = %s OR passcode = %s) ";
-  							$res = $wpdb->get_results($wpdb->prepare($sql, $fName, $lName, $eventID, $email, $passcode));
-  							if(count($res) > 0) {
-  								$userId = $res[0]->id;
-                  foreach($private_questions as $key => $val) {
-                    if(strToUpper($data->sheets[0]['cells'][$i][$key]) == "Y") {
-                      $wpdb->insert(PRO_QUESTION_ATTENDEES_TABLE, array("attendeeID" => $userId, 
-                                                                    "questionID" => $val), 
-                                                              array("%d", "%d"));
-                    }
-                  }
-              
-                  foreach($question_values as $key => $val) {
-                    $wpdb->insert(PRO_ATTENDEE_ANSWERS, array("attendeeID" => $userId, 
-                                                              "questionID" => $val, 
-                                                              "answer" => trim($data->sheets[0]['cells'][$i][$key])), 
-                                                       array("%d", "%d", "%s"));
-                  }
-                }
-              } // if(count($priv...))
-            } // if($data->sheets[0]['numCols'] >= 9)....
-					}
+          $i++;
 				}
         
 			?>
@@ -1130,7 +1028,7 @@ License: Commercial
       <h3><?php echo get_event_name($_GET['eventID']); ?> Import</h3>
 			<form name="rsvp_import" method="post" enctype="multipart/form-data">
 				<?php wp_nonce_field('rsvp-import'); ?>
-				<p><?php _e("Select an excel file (only xls please, xlsx is not supported....yet) in the following format:", "rsvp-pro-plugin"); ?><br />
+				<p><?php _e("Select an Excel file or CSV in the following format:", "rsvp-pro-plugin"); ?><br />
 				Column 1: <strong><?php _e("Salutation", "rsvp-pro-plugin"); ?></strong><br />
         Column 2: <strong><?php _e("First Name", "rsvp-pro-plugin"); ?></strong><br />
         Column 3: <strong><?php _e("Last Name", "rsvp-pro-plugin"); ?></strong><br />
@@ -1142,8 +1040,9 @@ License: Commercial
         Column 9: <strong><?php _e("RSVP Status (valid values: yes, no, noresponse)", "rsvp-pro-plugin"); ?></strong><br />
         Column 10: <strong><?php _e("Number of guests allowed for attendee", "rsvp-pro-plugin"); ?></strong><br />
         Column 11: <strong><?php _e("Admin Note", "rsvp-pro-plugin"); ?></strong><br />
-        Columns 12+: <strong><?php _e("Private Question Association", "rsvp-pro-plugin"); ?>**</strong><br />
-        Columns 12+: <strong><?php _e("Custom Question Values", "rsvp-pro-plugin"); ?>***</strong>
+        Column 12: <strong><?php _e("Primary Attendee", "rsvp-pro-plugin"); ?></strong><br />
+        Columns 13+: <strong><?php _e("Private Question Association", "rsvp-pro-plugin"); ?>**</strong><br />
+        Columns 13+: <strong><?php _e("Custom Question Values", "rsvp-pro-plugin"); ?>***</strong>
 				</p>
 				<p>
 				* <?php _e("associated attendees should be separated by a comma it is assumed that the first space encountered will separate the first and last name.", "rsvp-pro-plugin"); ?>
@@ -1221,6 +1120,10 @@ License: Commercial
                 INNER JOIN ".PRO_EVENT_TABLE." e ON e.id = a.rsvpEventID 
                 WHERE rsvpEventID = %d AND email <> '' AND ((IFNULL(e.event_access, '".RSVP_PRO_OPEN_EVENT_ACCESS."') != '".RSVP_PRO_PRIVATE_EVENT_ACCESS."') OR (a.id IN (SELECT rsvpAttendeeID FROM ".PRO_EVENT_ATTENDEE_TABLE." WHERE rsvpEventID = e.id)))" ;
       }
+
+      if(!empty($_POST['rsvp_status'])) {
+        $sql .= " AND a.rsvpStatus = %s ";
+      }
       
       if(isset($_POST['attendees'])) {
         $attendees = explode(",", $_POST['attendees']);
@@ -1239,10 +1142,20 @@ License: Commercial
         }
       }
       if($isSubEvent) {
-        $preparedSql = $wpdb->prepare($sql, $subEventID, $subEventID, $eventID);
+        if(!empty($_POST['rsvp_status'])) {
+          $preparedSql = $wpdb->prepare($sql, $subEventID, $subEventID, $eventID, $_POST['rsvp_status']);
+        } else {
+          $preparedSql = $wpdb->prepare($sql, $subEventID, $subEventID, $eventID);
+        }
+        
       } else {
-        $preparedSql = $wpdb->prepare($sql, $eventID);
+        if(!empty($_POST['rsvp_status'])) {
+          $preparedSql = $wpdb->prepare($sql, $eventID, $_POST['rsvp_status']);
+        } else {
+          $preparedSql = $wpdb->prepare($sql, $eventID);
+        }
       }
+
       $attendees = $wpdb->get_results($preparedSql);
       $headers = array('Content-Type: text/html; charset=UTF-8');
       if(!empty($_POST['email_from'])) {
@@ -1252,7 +1165,6 @@ License: Commercial
       foreach($attendees as $a) {
         $subject = rsvp_pro_admin_replaceVariablesForEmail($a, $eventUrl, $_POST['email_subject'], ($isSubEvent) ? $subEventID : $eventID);
         $email_body = rsvp_pro_admin_replaceVariablesForEmail($a, $eventUrl, $_POST['email_body'], ($isSubEvent) ? $subEventID : $eventID);
-        
         $subject    = stripslashes($subject);
         $email_body = nl2br(stripslashes($email_body));
 
@@ -1299,6 +1211,22 @@ License: Commercial
             </tr>
             <tr>
               <th scope="row">
+                <label for="rsvp_status"><?php _e("Limit to RSVP Status", "rsvp-pro-plugin"); ?></label>
+              </th>
+              <td>
+                <select name="rsvp_status" id="rsvp_status" size="1">
+                  <option value="">--</option>
+                  <option value="No"><?php _e("No", "rsvp-pro-plugin"); ?></option>
+                  <option value="NoResponse"><?php _e("No Response", "rsvp-pro-plugin"); ?></option>
+                  <?php if(rsvp_pro_get_event_option($eventID, RSVP_PRO_OPTION_ENABLE_WAITLIST) == "Y"): ?>
+                  <option value="Waitlist"><?php _e("Waitlist", "rsvp-pro-plugin"); ?></option>
+                <?php endif; ?>
+                  <option value="Yes"><?php _e("Yes", "rsvp-pro-plugin"); ?></option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
                 Available attendee data placeholders for subject &amp; message:
               </th>
               <td>
@@ -1308,6 +1236,7 @@ License: Commercial
                 [[Passcode]]<br />
                 [[EventUrl]]<br />
                 [[EventName]]<br />
+                [[Attendee_Rsvp_Full_Info]]<br />
                 <?php
                 $sql = "SELECT q.id, question FROM ".PRO_QUESTIONS_TABLE." q 
                   JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
@@ -1334,7 +1263,7 @@ License: Commercial
                 <label for="email_body"><?php _e("Message", "rsvp-pro-plugin"); ?></label>
               </th>
               <td>
-                <textarea name="email_body" id="email_body" rows="10" class="large-text code"></textarea>
+                <?php wp_editor( "", "email_body", $settings = array() ); ?> 
               </td>
             </tr>
           </tbody>
@@ -1342,6 +1271,186 @@ License: Commercial
         <p class="submit"><input type="submit" value="<?php _e("Send Message", "rsvp-pro-plugin"); ?>" class="button-primary" name="sendMessage"></p>
       </form>
     <?php
+    }
+  }
+
+  function rsvp_pro_admin_handle_copy_event($eventID, $newEventName, $copyOverAttendees = false, $copySubEvents = false) {
+    global $wpdb;
+
+    $sql = "SELECT close_date, eventName, event_access, open_date, options, parentEventID FROM ".PRO_EVENT_TABLE." WHERE id = %d";
+    $eventToCopy = $wpdb->get_row($wpdb->prepare($sql, $eventID));
+
+    if($eventToCopy) {     
+      $wpdb->insert(PRO_EVENT_TABLE, 
+                    array(
+                        "close_date"    => $eventToCopy->close_date, 
+                        "open_date"     => $eventToCopy->open_date, 
+                        "eventName"     => $newEventName, 
+                        "event_access"  => $eventToCopy->event_access, 
+                        "options"       => $eventToCopy->options,
+                      ), 
+                    array('%s', '%s', '%s', '%s', '%s'));
+
+      $newEventId = $wpdb->insert_id;
+
+      if($newEventId > 0) {
+        $oldQuestionIdToNewId = array();
+        // Copy over the custom questions... 
+        $sql = "SELECT id, grouping, permissionLevel, question, questionTypeID, 
+                       required, sortOrder 
+                FROM ".PRO_QUESTIONS_TABLE." WHERE rsvpEventID = %d";
+        $questions = $wpdb->get_results($wpdb->prepare($sql, $eventID));
+        if($questions) {
+          foreach($questions as $q) {
+            $wpdb->insert(PRO_QUESTIONS_TABLE, 
+                          array(
+                              "grouping"          => $q->grouping, 
+                              "permissionLevel"   => $q->permissionLevel, 
+                              "question"          => stripslashes($q->question), 
+                              "questionTypeID"    => $q->questionTypeID, 
+                              "required"          => $q->required, 
+                              "sortOrder"         => $q->sortOrder, 
+                              "rsvpEventID"       => $newEventId, 
+                            ), 
+                            array('%s', '%s', '%s', '%s', '%s', '%s', '%d'));
+            $newQuestionId = $wpdb->insert_id;
+            $oldQuestionIdToNewId[$q->id] = $newQuestionId;
+
+            $sql = "SELECT answer, defaultAnswer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d";
+            $answers = $wpdb->get_results($wpdb->prepare($sql, $q->id));
+            if($answers) {
+              foreach($answers as $a) {
+                $wpdb->insert(PRO_QUESTION_ANSWERS_TABLE, 
+                              array(
+                                "questionID"      => $newQuestionId, 
+                                "answer"          => stripslashes($a->answer), 
+                                "defaultAnswer"   => $a->defaultAnswer, 
+                              ), 
+                              array('%d', '%s', '%s'));
+              }
+            } // if($answers)...
+          } // foreach($questions as...
+        } // if($questions
+
+        if($copySubEvents) {
+          $sql = "SELECT id, close_date, eventName, event_access, open_date, options, parentEventID FROM ".PRO_EVENT_TABLE." WHERE parentEventID = %d";
+          $subEvents = $wpdb->get_results($wpdb->prepare($sql, $eventID));
+          foreach($subEvents as $se) {
+            $wpdb->insert(PRO_EVENT_TABLE, 
+                    array(
+                        "close_date"    => $se->close_date, 
+                        "open_date"     => $se->open_date, 
+                        "eventName"     => stripslashes($se->eventName)." - copy", 
+                        "event_access"  => $se->event_access, 
+                        "options"       => $se->options,
+                        "parentEventID" => $newEventId
+                      ), 
+                    array('%s', '%s', '%s', '%s', '%s', '%d'));
+            $subEventId = $wpdb->insert_id;
+            if($subEventId > 0) {
+              // Copy over the custom questions... 
+              $sql = "SELECT id, grouping, permissionLevel, question, questionTypeID, 
+                             required, sortOrder 
+                      FROM ".PRO_QUESTIONS_TABLE." WHERE rsvpEventID = %d";
+              $questions = $wpdb->get_results($wpdb->prepare($sql, $se->id));
+              if($questions) {
+                foreach($questions as $q) {
+                  $wpdb->insert(PRO_QUESTIONS_TABLE, 
+                                array(
+                                    "grouping"          => $q->grouping, 
+                                    "permissionLevel"   => $q->permissionLevel, 
+                                    "question"          => stripslashes($q->question), 
+                                    "questionTypeID"    => $q->questionTypeID, 
+                                    "required"          => $q->required, 
+                                    "sortOrder"         => $q->sortOrder, 
+                                    "rsvpEventID"       => $subEventId, 
+                                  ), 
+                                  array('%s', '%s', '%s', '%s', '%s', '%s', '%d'));
+                  $newQuestionId = $wpdb->insert_id;
+                  $oldQuestionIdToNewId[$q->id] = $newQuestionId;
+
+                  $sql = "SELECT answer, defaultAnswer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d";
+                  $answers = $wpdb->get_results($wpdb->prepare($sql, $q->id));
+                  if($answers) {
+                    foreach($answers as $a) {
+                      $wpdb->insert(PRO_QUESTION_ANSWERS_TABLE, 
+                                    array(
+                                      "questionID"      => $newQuestionId, 
+                                      "answer"          => stripslashes($a->answer), 
+                                      "defaultAnswer"   => $a->defaultAnswer, 
+                                    ), 
+                                    array('%d', '%s', '%s'));
+                    }
+                  } // if($answers)...
+                } // foreach($questions as...
+              } // if($questions
+            }
+          }
+        }
+
+        if($copyOverAttendees) {
+          $oldAttendeeIdToNewId = array();
+          $sql = "SELECT id, firstName, lastName, note, additionalAttendee, ". 
+                  "personalGreeting, rsvpEventID, passcode, email, numGuests, suffix, ".
+                  "salutation, nicknames, primaryAttendee ".
+                  "FROM ".PRO_ATTENDEES_TABLE." WHERE rsvpEventID = %d";
+          $attendees = $wpdb->get_results($wpdb->prepare($sql, $eventID));
+
+          // Copy over attendee
+          foreach($attendees as $a) {
+            $wpdb->insert(PRO_ATTENDEES_TABLE, 
+              array(
+                "rsvpEventID"         => $newEventId,  
+                "firstName"           => stripslashes($a->firstName), 
+                "lastName"            => stripslashes($a->lastName), 
+                "note"                => stripslashes($a->note),
+                "additionalAttendee"  => stripslashes($a->additionalAttendee),
+                "personalGreeting"    => stripslashes($a->personalGreeting),
+                "passcode"            => stripslashes($a->passcode),
+                "email"               => stripslashes($a->email),
+                "numGuests"           => stripslashes($a->numGuests),
+                "suffix"              => stripslashes($a->suffix),
+                "salutation"          => stripslashes($a->salutation),
+                "nicknames"           => stripslashes($a->nicknames),
+                "primaryAttendee"     => stripslashes($a->primaryAttendee)
+              ),
+              array('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s'));
+
+            $newAttendeeId = $wpdb->insert_id;
+            $oldAttendeeIdToNewId[$a->id] = $newAttendeeId;
+          }         
+          // Copy over associations...
+          $sql = "SELECT attendeeID, associatedAttendeeID FROM ".PRO_ASSOCIATED_ATTENDEES_TABLE.
+                " WHERE attendeeID IN (".implode(",", array_keys($oldAttendeeIdToNewId)).")";
+          $associatedAttendees = $wpdb->get_results($sql);
+          foreach($associatedAttendees as $aa) {
+            $wpdb->insert(PRO_ASSOCIATED_ATTENDEES_TABLE, 
+              array("attendeeID" => $oldAttendeeIdToNewId[$aa->attendeeID], 
+                    "associatedAttendeeID" => $oldAttendeeIdToNewId[$aa->associatedAttendeeID]), 
+              array('%d', '%d'));
+          }
+
+          // Copy over question attendee associations 
+          $sql = "SELECT questionID, attendeeID FROM ".PRO_QUESTION_ATTENDEES_TABLE." WHERE questionID IN (".implode(",", array_keys($oldQuestionIdToNewId)).")";
+          $questionAttendees = $wpdb->get_results($sql);
+          foreach($questionAttendees as $qa) {
+            $wpdb->insert(PRO_QUESTION_ATTENDEES_TABLE, 
+              array("questionID" => $oldQuestionIdToNewId[$qa->questionID], 
+                    "attendeeID" => $oldAttendeeIdToNewId[$qa->attendeeID]), 
+              array("%d", "%d"));
+          }
+          
+          // Copy over event access association 
+          $sql = "SELECT rsvpEventID, rsvpAttendeeID FROM ".PRO_EVENT_ATTENDEE_TABLE." WHERE rsvpEventID = %d";
+          $attendees = $wpdb->get_results($wpdb->prepare($sql, $eventID));
+          foreach($attendees as $aa) {
+            $wpdb->insert(PRO_EVENT_ATTENDEE_TABLE, 
+              array("rsvpEventID" => $newEventId, 
+                    "rsvpAttendeeID" => $oldAttendeeIdToNewId[$aa->rsvpAttendeeID]), 
+              array('%d', '%d'));
+          }
+        }
+      } // if($newEventId
     }
   }
 
@@ -1354,62 +1463,17 @@ License: Commercial
     if(isset($_POST['copyEventSubmit'])) {
       check_admin_referer('rsvp-copy');
 
-      $sql = "SELECT close_date, eventName, event_access, open_date, options, parentEventID FROM ".PRO_EVENT_TABLE." WHERE id = %d";
-      $eventToCopy = $wpdb->get_row($wpdb->prepare($sql, $eventID));
+        $sql = "SELECT close_date, eventName, event_access, open_date, options, parentEventID FROM ".PRO_EVENT_TABLE." WHERE id = %d";
+        $eventToCopy = $wpdb->get_row($wpdb->prepare($sql, $eventID));
 
-      if($eventToCopy) {
-        $newEventName = stripslashes($eventToCopy->eventName)." - Copy";
-        
-        $wpdb->insert(PRO_EVENT_TABLE, 
-                      array(
-                          "close_date"    => $eventToCopy->close_date, 
-                          "open_date"     => $eventToCopy->open_date, 
-                          "eventName"     => $newEventName, 
-                          "event_access"  => $eventToCopy->event_access, 
-                          "options"       => $eventToCopy->options,
-                        ), 
-                      array('%s', '%s', '%s', '%s', '%s'));
-
-        $newEventId = $wpdb->insert_id;
-
-        if($newEventId > 0) {
-          // Copy over the custom questions... 
-          $sql = "SELECT id, grouping, permissionLevel, question, questionTypeID, 
-                         required, sortOrder 
-                  FROM ".PRO_QUESTIONS_TABLE." WHERE rsvpEventID = %d";
-          $questions = $wpdb->get_results($wpdb->prepare($sql, $eventID));
-          if($questions) {
-            foreach($questions as $q) {
-              $wpdb->insert(PRO_QUESTIONS_TABLE, 
-                            array(
-                                "grouping"          => $q->grouping, 
-                                "permissionLevel"   => $q->permissionLevel, 
-                                "question"          => stripslashes($q->question), 
-                                "questionTypeID"    => $q->questionTypeID, 
-                                "required"          => $q->required, 
-                                "sortOrder"         => $q->sortOrder, 
-                                "rsvpEventID"       => $newEventId, 
-                              ), 
-                              array('%s', '%s', '%s', '%s', '%s', '%s', '%d'));
-              $newQuestionId = $wpdb->insert_id;
-
-              $sql = "SELECT answer, defaultAnswer FROM ".PRO_QUESTION_ANSWERS_TABLE." WHERE questionID = %d";
-              $answers = $wpdb->get_results($wpdb->prepare($sql, $q->id));
-              if($answers) {
-                foreach($answers as $a) {
-                  $wpdb->insert(PRO_QUESTION_ANSWERS_TABLE, 
-                                array(
-                                  "questionID"      => $newQuestionId, 
-                                  "answer"          => stripslashes($a->answer), 
-                                  "defaultAnswer"   => $a->defaultAnswer, 
-                                ), 
-                                array('%d', '%s', '%s'));
-                }
-              } // if($answers)...
-            } // foreach($questions as...
-          } // if($questions
-        } // if($newEventId
-      }
+        if($eventToCopy) { 
+          $newEventName = stripslashes($eventToCopy->eventName)." - Copy";
+          $copyOverAttendees = false;
+          if($_POST['copyOverAttendees'] == "Y") {
+            $copyOverAttendees = true;
+          }
+          rsvp_pro_admin_handle_copy_event($eventID, $newEventName, $copyOverAttendees);
+        }
       ?>
         <div id="message" class="updated"><p class="updated"><?php _e("Event copied to ", "rsvp-pro-plugin"); ?><?php echo $newEventName; ?></p></div>
       <?php
@@ -1421,8 +1485,9 @@ License: Commercial
         <?php wp_nonce_field('rsvp-copy'); ?>
         <p><?php _e("Copy all settings and custom questions from ", "rsvp-pro-plugin"); ?>
           <?php echo get_event_name($eventID); ?> <?php _e(" to a new event?", "rsvp-pro-plugin"); ?></p>
+        <p><label><?php _e("Copy attendees as well?", "rsvp-pro-plugin"); ?> 
+          <input type="checkbox" name="copyOverAttendees" value="Y" /></label></p>
         <p class="submit"><input type="submit" value="<?php _e("Copy Event", "rsvp-pro-plugin"); ?>" name="copyEventSubmit" class="button-primary" /></p>
-        <p class="description"><?php _e("If you are wanting to copy over attendees a sub-event is a better solution", "rsvp-pro-plugin"); ?></p>
       </form>
     <?php
     }
@@ -1430,13 +1495,16 @@ License: Commercial
   
   function rsvp_pro_admin_replaceVariablesForEmail($attendee, $eventUrl, $stringToReplace, $eventID) {
     global $wpdb;
+    global $rsvpId; 
+    $rsvpId = $eventID;
     $replacedString = $stringToReplace;
-    $replacedString = str_replace("[[FirstName]]", stripslashes($attendee->firstName), $replacedString);
-    $replacedString = str_replace("[[LastName]]", stripslashes($attendee->lastName), $replacedString);
-    $replacedString = str_replace("[[Email]]", stripslashes($attendee->email), $replacedString);
-    $replacedString = str_replace("[[Passcode]]", stripslashes($attendee->passcode), $replacedString);
-    $replacedString = str_replace("[[EventUrl]]", $eventUrl, $replacedString);
-    $replacedString = str_replace("[[EventName]]", get_event_name($eventID), $replacedString);
+    $replacedString = str_ireplace("[[FirstName]]", stripslashes($attendee->firstName), $replacedString);
+    $replacedString = str_ireplace("[[LastName]]", stripslashes($attendee->lastName), $replacedString);
+    $replacedString = str_ireplace("[[Email]]", stripslashes($attendee->email), $replacedString);
+    $replacedString = str_ireplace("[[Passcode]]", stripslashes($attendee->passcode), $replacedString);
+    $replacedString = str_ireplace("[[EventUrl]]", $eventUrl, $replacedString);
+    $replacedString = str_ireplace("[[EventName]]", get_event_name($eventID), $replacedString);
+    $replacedString = str_ireplace("[[Attendee_Rsvp_Full_Info]]", rsvp_pro_retrieveEmailBodyContent($attendee->id, $attendee), $replacedString);
     $sql = "SELECT q.id, question, a.answer FROM ".PRO_QUESTIONS_TABLE." q 
       JOIN ".PRO_QUESTION_TYPE_TABLE." qt ON qt.id = q.questionTypeID 
       LEFT JOIN ".PRO_ATTENDEE_ANSWERS." a ON a.questionID = q.id AND a.attendeeID = %d
@@ -1447,9 +1515,9 @@ License: Commercial
     foreach($questions as $q) {
       if($q->answer != "") {
         $tmpString = stripslashes($q->question).": ".stripslashes($q->answer);
-        $replacedString = str_replace("[[CustomQ_".$q->id."]]", $tmpString, $replacedString);
+        $replacedString = str_ireplace("[[CustomQ_".$q->id."]]", $tmpString, $replacedString);
       } else {
-        $replacedString = str_replace("[[CustomQ_".$q->id."]]", "", $replacedString);
+        $replacedString = str_ireplace("[[CustomQ_".$q->id."]]", "", $replacedString);
       }
     }
     return $replacedString;
@@ -1467,10 +1535,8 @@ License: Commercial
     }
     
 		if((count($_POST) > 0) && 
-    (
-      (!empty($_POST['firstName']) && !empty($_POST['lastName'])) || 
-      $isSubEvent
-    )) {
+       (!empty($_POST['firstName']) || $isSubEvent)
+      ) {
 			check_admin_referer('rsvp_add_guest');
       
       if($isSubEvent) {
@@ -1499,6 +1565,7 @@ License: Commercial
           $numGuests = $_POST['numGuests'];
         }
     
+        $primaryAttendee = ($_POST['primaryAttendee'] == "Y") ? "Y" : "N";
   			if(isset($_POST['attendeeID']) && is_numeric($_POST['attendeeID'])) {
   				$wpdb->update(PRO_ATTENDEES_TABLE, 
   											array("firstName" => trim($_POST['firstName']), 
@@ -1508,10 +1575,11 @@ License: Commercial
   														"rsvpStatus" => trim($_POST['rsvpStatus']),
                               "email" => trim($_POST['email']), 
                               "note" => trim($_POST['note']), 
+                              "primaryAttendee" => $primaryAttendee,
                               "numGuests" => $numGuests, 
                               "rsvpEventID" => $eventID),
   											array("id" => $_POST['attendeeID']), 
-  											array("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%d", "%d"), 
+  											array("%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%d", "%d"), 
   											array("%d"));
   				$attendeeId = $_POST['attendeeID'];
   			} else {
@@ -1522,9 +1590,10 @@ License: Commercial
   																						 "rsvpStatus" => trim($_POST['rsvpStatus']),
                                                "email" => trim($_POST['email']), 
                                                "note" => trim($_POST['note']), 
+                                               "primaryAttendee" => $primaryAttendee,
                                                "numGuests" => $numGuests,  
                                                "rsvpEventID" => $eventID), 
-  				                               array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d'));
+  				                               array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d'));
 				
   				$attendeeId = $wpdb->insert_id;
   			} // if(isset($_POST['attendeeID']) && is_numeric($_POST['attendeeID'])) 
@@ -1616,16 +1685,17 @@ License: Commercial
       $suffix = "";
       $salutation = "";
       $nicknames = "";
+      $primaryAttendee = "N";
       
 			
 			if(isset($_GET['id']) && is_numeric($_GET['id'])) {
         $sql = "SELECT id, firstName, lastName, personalGreeting, nicknames, 
-                rsvpStatus, passcode, numGuests, email, note, suffix, salutation    
+                rsvpStatus, passcode, numGuests, email, note, suffix, salutation, primaryAttendee     
                 FROM ".PRO_ATTENDEES_TABLE." WHERE id = %d AND rsvpEventID = %d";
         
         if($isSubEvent) {
           $sql = "SELECT a.id, firstName, lastName, personalGreeting, nicknames, 
-                  se.rsvpStatus, passcode, numGuests, email, note, a.suffix, a.salutation   
+                  se.rsvpStatus, passcode, numGuests, email, note, a.suffix, a.salutation, a.primaryAttendee 
                   FROM ".PRO_ATTENDEES_TABLE." a 
                   LEFT JOIN ".PRO_ATTENDEE_SUB_EVENTS_TABLE." se ON se.rsvpAttendeeID = a.id AND se.rsvpEventID = %d
                   WHERE a.id = %d AND a.rsvpEventID = %d";
@@ -1652,6 +1722,7 @@ License: Commercial
           $note = stripslashes($attendee->note);
           $suffix = stripslashes($attendee->suffix);
           $salutation = stripslashes($attendee->salutation);
+          $primaryAttendee = ($attendee->primaryAttendee == "Y") ? "Y" : "N";
             
 					
 					// Get the associated attendees and add them to an array
@@ -1766,9 +1837,18 @@ License: Commercial
   					<tr>
   						<th scope="row"><label for="email"><?php _e("Email", "rsvp-pro-plugin"); ?>:</label></th>
   						<td>
-                <input type="text" name="email" id="email" size="30" value="<?php echo htmlentities($email); ?>" />
+                <input type="text" name="email" id="email" size="30" value="<?php echo esc_attr_e($email); ?>" />
               </td>
   					</tr>
+            <tr>
+              <th scope="row"><label for="primaryAttendee"><?php _e("Primary Attendee", "rsvp-pro-plugin"); ?>:</label></th>
+              <td>
+                <input type="checkbox" name="primaryAttendee" id="primaryAttendee" value="Y" 
+                  <?php echo ($primaryAttendee == "Y") ? "checked=\"checked\"" : ""; ?> />
+                <br />
+                <span class="description"><?php _e("Primary attendees will be shown first when associated guests try to RSVP", "rsvp-pro-plugin"); ?></span>
+              </td>
+            </tr>
             <?php endif; ?>
   					<?php
   					if(rsvp_pro_get_event_option($eventID, RSVP_PRO_OPTION_PASSCODE) == "Y") {
@@ -2073,6 +2153,20 @@ License: Commercial
 		</div>
 	<?php
 	}
+
+  function rsvp_pro_get_question_with_answer_type_ids() {
+    global $wpdb;
+
+    $ids = array();
+    $sql = "SELECT id FROM ".PRO_QUESTION_TYPE_TABLE." 
+        WHERE questionType IN ('".QT_MULTI."', '".QT_DROP."', '".QT_RADIO."')";
+    $results = $wpdb->get_results($sql);
+    foreach($results as $r) {
+      $ids[] = (int)$r->id;
+    }
+
+    return $ids;
+  }
 	
 	function rsvp_pro_admin_custom_question($eventID) {
 		global $wpdb;
@@ -2082,7 +2176,7 @@ License: Commercial
       return;
     }
 
-		$answerQuestionTypes = array(2,4,5);
+		$answerQuestionTypes = rsvp_pro_get_question_with_answer_type_ids();
 		$isSubEvent = false;
     $parentEventID = $wpdb->get_var($wpdb->prepare("SELECT parentEventID FROM ".PRO_EVENT_TABLE." WHERE id = %d", $eventID));
     if($parentEventID > 0) {
@@ -2207,6 +2301,12 @@ License: Commercial
 			$questionTypes = $wpdb->get_results($sql);
 			?>
 				<script type="text/javascript">
+          var questionTypeId = [<?php 
+            foreach($answerQuestionTypes as $aqt) {
+              echo "\"".$aqt."\",";
+            }
+          ?>];
+
 					function addAnswer(counterElement) {
 						var currAnswer = jQuery("#numNewAnswers").val();
 						if(isNaN(currAnswer)) {
@@ -2240,7 +2340,7 @@ License: Commercial
 						?>
 						jQuery("#questionType").change(function() {
 							var selectedValue = jQuery("#questionType").val();
-							if((selectedValue == 2) || (selectedValue == 4) || (selectedValue == 5)) {
+							if(questionTypeId.indexOf(selectedValue) != -1) {
 								jQuery("#answerContainer").show();
 							} else {
 								jQuery("#answerContainer").hide();
@@ -2491,13 +2591,54 @@ License: Commercial
     <?php
     } // if(count($_POST) > 0)...
   }
+
+  function rsvp_pro_global_options() {
+  ?>
+    <div class="wrap">
+      <h1><?php echo __("RSVP Pro General Settings", 'rsvp-pro-plugin'); ?></h1>
+      <?php
+        settings_errors();
+      ?>
+      <form method="post" action="options.php">
+        <?php wp_nonce_field('rsvp_pro_global_settings'); ?>
+        <?php settings_fields( 'rsvp-pro-option-group' ); ?>
+        <table class="form-table">
+          <tbody>
+            <tr>
+              <th scope="row">
+                <label for="<?php echo RSVP_PRO_GLOBAL_OPTION_DELETE_TABLES; ?>"><?php _e("Delete all data on uninstall:", "rsvp-pro-plugin"); ?></label>
+              </th>
+              <td>
+                <input type="checkbox" name="<?php echo RSVP_PRO_GLOBAL_OPTION_DELETE_TABLES; ?>" id="<?php echo RSVP_PRO_GLOBAL_OPTION_DELETE_TABLES; ?>" 
+              value="Y" <?php echo ((get_option(RSVP_PRO_GLOBAL_OPTION_DELETE_TABLES) == "Y") ? " checked=\"checked\"" : ""); ?> />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="<?php echo RSVP_PRO_GLOBAL_OPTION_STYLES; ?>"><?php echo __("Custom Styling:", 'rsvp-plugin'); ?></label>
+              </th>
+              <td>
+                <textarea name="<?php echo RSVP_PRO_GLOBAL_OPTION_STYLES; ?>" id="<?php echo RSVP_PRO_GLOBAL_OPTION_STYLES; ?>" rows="20" cols="70" class="large-text code"><?php echo esc_html(get_option(RSVP_PRO_GLOBAL_OPTION_STYLES)); ?></textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="hidden" name="action" value="update" />
+        <p class="submit">
+          <input type="submit" class="button-primary" value="<?php echo __('Save Changes', 'rsvp-plugin'); ?>" />
+        </p>
+      </form>
+    </div>
+  <?php
+  }
   
 	function rsvp_pro_modify_menu() {
 		$page = add_menu_page("RSVP Pro", 
 									"RSVP Pro", 
 									"publish_posts", 
 									"rsvp-pro-top-level", 
-									"rsvp_pro_admin_events");
+									"rsvp_pro_admin_events",
+                  plugins_url("images/rsvp_pro_icon_16_x_16.png", RSVP_PRO_PLUGIN_FILE));
     
     $page = add_submenu_page("rsvp-pro-top-level", 
     										 __("Event Management", "rsvp-pro-plugin"),
@@ -2505,6 +2646,15 @@ License: Commercial
     										 "publish_posts", 
     										 "rsvp-pro-admin-manage-event",
     										 "rsvp_pro_admin_manage_event");
+
+    $page = add_submenu_page("rsvp-pro-top-level",
+                     __('RSVP Pro General settings', "rsvp-pro-plugin"),  //page title
+                     __('General settings', "rsvp-pro-plugin"),  //subpage title
+                     'publish_posts',  //access
+                     'rsvp-pro-global-options',    //current file
+                     'rsvp_pro_global_options' //options function above
+                     );
+    
     if(!rsvp_pro_is_network_activated()) {
       add_plugins_page('RSVP Pro Plugin License', 'RSVP Pro Plugin License', 'manage_options', 'rsvppro-license', 'rsvp_pro_license_page');
     }
@@ -2528,7 +2678,10 @@ License: Commercial
   	$status 	= rsvp_pro_get_option_license( 'rsvp_pro_license_status' );
   	?>
   	<div class="wrap">
-  		<h2><?php _e('RSVP Pro Plugin License Options'); ?></h2>
+  		<h1><?php _e('RSVP Pro Plugin License Options'); ?></h1>
+      <?php
+        
+      ?>
   		<form method="post">
 	       <?php wp_nonce_field( 'rsvp_pro_license_nonce', 'rsvp_pro_license_nonce' ); ?>
   			<?php settings_fields('rsvppro-license'); ?>
@@ -2567,32 +2720,68 @@ License: Commercial
   	<?php
   }
 	
+  function rsvp_pro_generate_calendar_invite($rsvpEventId) {
+    global $wpdb;
+
+    $sql = "SELECT id, eventName, eventStartDate, eventEndDate, eventLocation, eventDescription 
+      FROM ".PRO_EVENT_TABLE." WHERE id = %d";
+    $eventInfo = $wpdb->get_row($wpdb->prepare($sql, $rsvpEventId));
+    if($eventInfo) {
+      $invite = "BEGIN:VCALENDAR\r\n".
+        "VERSION:2.0\r\n".
+        "METHOD:PUBLISH\r\n".
+        "BEGIN:VEVENT\r\n".
+        "DTSTART:".date("Ymd\THis\Z",strtotime($eventInfo->eventStartDate))."\r\n".
+        "DTEND:".date("Ymd\THis\Z",strtotime($eventInfo->eventEndDate))."\r\n".
+        "LOCATION:".stripslashes($eventInfo->eventLocation)."\r\n".
+        "TRANSP: OPAQUE\r\n".
+        "SEQUENCE:0\r\n".
+        "DTSTAMP:".date("Ymd\THis\Z")."\r\n".
+        "SUMMARY:".stripslashes($eventInfo->eventName)."\r\n".
+        "DESCRIPTION:".stripslashes($eventInfo->eventDescription)."\r\n".
+        "PRIORITY:1\r\n".
+        "CLASS:PUBLIC\r\n".
+        "END:VEVENT\r\n".
+      "END:VCALENDAR\r\n";
+
+      header("Content-type:text/calendar");
+      header('Content-Disposition: attachment; filename="'.stripslashes($eventInfo->eventName).'.ics"');
+      Header('Content-Length: '.strlen($invite));
+      Header('Connection: close');
+      echo $invite;
+      exit();
+    }
+  }
+
 	function rsvp_pro_register_settings() {	
-		wp_register_script('jquery_table_sort', plugins_url('jquery.tablednd_0_5.js',RSVP_PLUGIN_FILE));
+		wp_register_script('jquery_table_sort', plugins_url('jquery.tablednd_0_5.js',RSVP_PRO_PLUGIN_FILE));
 		wp_register_style('jquery_ui_stylesheet', rsvp_pro_getHttpProtocol()."://ajax.microsoft.com/ajax/jquery.ui/1.8.5/themes/redmond/jquery-ui.css");
+
+    register_setting('rsvp-pro-option-group', RSVP_PRO_GLOBAL_OPTION_DELETE_TABLES);
+    register_setting('rsvp-pro-option-group', RSVP_PRO_GLOBAL_OPTION_STYLES);
 	}
 	
 	function rsvp_pro_admin_scripts() {
 		wp_enqueue_script("jquery_table_sort");
-		wp_enqueue_script("jquery_ui");
+		wp_enqueue_script("jquery-ui-core");
 		wp_enqueue_style( 'jquery_ui_stylesheet');
     wp_enqueue_style("rsvp_pro_admin_css");
     
-    wp_register_script('jquery_multi_select', plugins_url('multi-select/js/jquery.multi-select.js',RSVP_PLUGIN_FILE));
+    wp_register_script('jquery_multi_select', plugins_url('multi-select/js/jquery.multi-select.js',RSVP_PRO_PLUGIN_FILE));
     wp_enqueue_script("jquery_multi_select");
-    wp_register_style('jquery_multi_select_css', plugins_url("multi-select/css/multi-select.css", RSVP_PLUGIN_FILE));
+    wp_register_style('jquery_multi_select_css', plugins_url("multi-select/css/multi-select.css", RSVP_PRO_PLUGIN_FILE));
     wp_enqueue_style( 'jquery_multi_select_css');
     
-    wp_register_script('rsvp_admin', plugins_url('rsvp_plugin_admin.js',RSVP_PLUGIN_FILE));
-    wp_enqueue_script("rsvp_admin");
+    wp_register_script('rsvp_pro_admin', plugins_url('rsvp_plugin_admin.js',RSVP_PRO_PLUGIN_FILE));
+    wp_enqueue_script("rsvp_pro_admin");
 	}
   add_action( 'admin_enqueue_scripts', 'rsvp_pro_admin_scripts' );
 	
 	function rsvp_pro_init() {
-		wp_register_script('jquery_validate', rsvp_pro_getHttpProtocol()."://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js");
-    wp_register_script('rsvp_pro_plugin', plugins_url("rsvp_plugin.js", RSVP_PLUGIN_FILE));
-    wp_register_style('rsvp_pro_css', plugins_url("rsvp_plugin.css", RSVP_PLUGIN_FILE));
-    wp_register_style('rsvp_pro_admin_css', plugins_url("rsvp_admin.css", RSVP_PLUGIN_FILE));
+		wp_register_script('jquery_validate', rsvp_pro_getHttpProtocol()."://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js");
+    wp_register_script('rsvp_pro_plugin', plugins_url("rsvp_plugin.js", RSVP_PRO_PLUGIN_FILE));
+    wp_register_style('rsvp_pro_css', plugins_url("rsvp_plugin.css", RSVP_PRO_PLUGIN_FILE));
+    wp_register_style('rsvp_pro_admin_css', plugins_url("rsvp_admin.css", RSVP_PRO_PLUGIN_FILE));
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jquery_validate');
     wp_enqueue_script('rsvp_pro_plugin');
@@ -2616,6 +2805,37 @@ License: Commercial
     }
     return "";
   }
+
+  function rsvp_pro_scheduler() {
+    if (! wp_next_scheduled ( 'rsvp_pro_reoccurring_events' )) {
+      wp_schedule_event(time(), 'hourly', 'rsvp_pro_reoccurring_events');
+    }
+  }
+
+  function rsvp_pro_deactivation() {
+    wp_clear_scheduled_hook('rsvp_pro_reoccurring_events');
+  }
+
+  function rsvp_pro_add_css() {
+    $css = get_option(RSVP_PRO_GLOBAL_OPTION_STYLES);
+
+    if(!empty($css)) {
+      $output = "<!-- RSVP Pro Styling -->";
+      $output .= "<style type=\"text/css\">".esc_html($css)."</style>";
+
+      echo $output;
+    }
+  }
+
+  function rsvp_pro_calendar_invite_handler() {
+    if ( isset($_GET['rsvp_calendar_download']) && 
+         is_numeric($_GET['rsvp_calendar_download']) && 
+         ($_GET['rsvp_calendar_download'] > 0)
+       ) {
+        rsvp_pro_generate_calendar_invite($_GET['rsvp_calendar_download']);
+    }
+  }
+  add_action("init", "rsvp_pro_calendar_invite_handler");
   
   add_shortcode( 'rsvppro', 'rsvp_pro_shortcode_handler' );
   add_shortcode("rsvppro-attendeelist", "rsvp_pro_attendeelist_shortcode_handler");
@@ -2628,5 +2848,9 @@ License: Commercial
 	add_action('init', 'rsvp_pro_init');
   add_action("plugins_loaded", "rsvp_pro_update_db_check");
 	add_filter('the_content', 'rsvp_pro_frontend_handler');
+  add_action('wp_head','rsvp_pro_add_css');
+  add_action('rsvp_pro_reoccurring_events', 'rsvp_pro_handle_reoccurring_events');
 	register_activation_hook(__FILE__,'rsvp_pro_database_setup');
+  register_activation_hook(__FILE__, 'rsvp_pro_scheduler');
+  register_deactivation_hook(__FILE__, 'rsvp_pro_deactivation');
 ?>

@@ -81,10 +81,33 @@
     $fuzzyMatchText         = "";
     $unableFindText         = "";
     $welcomeBackText        = "";
-
+    $partialUserSearch      = "N";
+    $lastNameNotRequired    = "N";
+    $autoWaitlistToYes      = "N";
+    $waitlistYesUnavailable = "N";
+    $waitlistPermSwitch     = "N";
+    $waitlistStatusEmail    = "";
+    $eventEndDate           = "";
+    $eventStartDate         = "";
+    $eventLocation          = "";
+    $eventDescription       = "";
+    $showCalendarLink       = "N";
+    $calendarLinkText       = "";
+    $additionalAttendeeText = "";
+    $repeatStatDate         = "";
+    $repeatEndDate          = "";
+    $repeatFrequencyType    = "";
+    $repeatFrequency        = 1;
+    $repeatLength           = 1;
+    $repeatLengthType       = "";
+    $repeatCurrentEndDate   = "";
+    $repeatDoNotSaveEvent   = "N";
+    $useEmailForLookup      = "N";
     
     if(isset($_POST) && (!empty($_POST['eventName']))) {
       $eventName = $_POST['eventName'];
+      $eventLocation = $_POST['eventLocation'];
+      $eventDescription = $_POST['eventDescription'];
       $opendate = "";
       $closedate = "";
       $parentEventID = 0;
@@ -158,6 +181,18 @@
       $attendeeListHideStatus = ($_POST[RSVP_PRO_OPTION_ATTENDEE_LIST_HIDE_STATUS] == "Y") ? "Y" : "N";
       $welcomeBackText = $_POST[RSVP_PRO_OPTION_WELCOME_BACK_TEXT];
       $unableFindText = $_POST[RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT];
+      $partialUserSearch = ($_POST[RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH] == "Y") ? "Y" : "N";
+      $lastNameNotRequired = ($_POST[RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED] == "Y") ? "Y" : "N";
+      $autoWaitlistToYes = ($_POST[RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE] == "Y") ? "Y" : "N";
+      $waitlistYesUnavailable = ($_POST[RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE] == "Y") ? "Y" : "N";
+      $waitlistPermSwitch = ($_POST[RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH] == "Y") ? "Y" : "N";
+      $waitlistStatusEmail = $_POST[RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL];
+      $showCalendarLink = ($_POST[RSVP_PRO_OPTION_SHOW_CALENDAR_LINK] == "Y") ? "Y" : "N";
+      $calendarLinkText = $_POST[RSVP_PRO_OPTION_CALENDAR_LINK_TEXT];
+      $additionalAttendeeText = $_POST[RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT];
+      $repeatDoNotSaveEvent = ($_POST[RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS] == "Y") ? "Y" : "N";
+      $useEmailForLookup = ($_POST[RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL] == "Y") ? "Y" : "N";
+
 
       if(is_array($_POST['adminRoles'])) {
         $adminRoles = $_POST["adminRoles"];
@@ -188,6 +223,24 @@
       } else {
         $attendeeListCustomQs = explode(",", $_POST[RSVP_PRO_OPTION_ATTENDEE_LIST_CUSTOM_QUESTIONS]);
       }
+
+      $tmp = strtolower($_POST[RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE]);
+      if(($tmp == "month") || ($tmp == "year") || ($tmp == "week") || ($tmp == "day")) {
+        $repeatFrequencyType = $tmp;
+      }
+
+      $tmp = strtolower($_POST[RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE]);
+      if(($tmp == "month") || ($tmp == "year") || ($tmp == "week") || ($tmp == "day")) {
+        $repeatLengthType = $tmp;
+      }
+
+      if(is_numeric($_POST[RSVP_PRO_OPTION_REPEAT_FREQUENCY]) && ($_POST[RSVP_PRO_OPTION_REPEAT_FREQUENCY] > 0)) {
+        $repeatFrequency = (int)$_POST[RSVP_PRO_OPTION_REPEAT_FREQUENCY];
+      }
+
+      if(is_numeric($_POST[RSVP_PRO_OPTION_REPEAT_LENGTH]) && ($_POST[RSVP_PRO_OPTION_REPEAT_LENGTH] > 0)) {
+        $repeatLength = (int)$_POST[RSVP_PRO_OPTION_REPEAT_LENGTH];
+      }
       
       $eventID = 0;
       
@@ -198,9 +251,25 @@
       if(strtotime($_POST['close_date'])) {
         $closedate = date("Y-m-d", strtotime($_POST['close_date']));
       }
+
+      if(strToTime($_POST['eventStartDate'])) {
+        $eventStartDate = date("Y-m-d H:i:s", strtotime($_POST['eventStartDate']));
+      }
+
+      if(strToTime($_POST['eventStartDate'])) {
+        $eventEndDate = date("Y-m-d H:i:s", strtotime($_POST['eventEndDate']));
+      }
       
       if(is_numeric($_POST['parentEventID']) && ($_POST['parentEventID'] > 0)) {
         $parentEventID = $_POST['parentEventID'];
+      }
+
+      if(strtotime($_POST[RSVP_PRO_OPTION_REPEAT_START_DATE])) {
+        $repeatStartDate = date("Y-m-d", strtotime($_POST[RSVP_PRO_OPTION_REPEAT_START_DATE]));
+      }
+
+      if(strtotime($_POST[RSVP_PRO_OPTION_REPEAT_END_DATE])) {
+        $repeatEndDate = date("Y-m-d", strtotime($_POST[RSVP_PRO_OPTION_REPEAT_END_DATE]));
       }
       
       $options = array(
@@ -279,20 +348,42 @@
         RSVP_PRO_OPTION_FUZZY_MATCH_TEXT                => $fuzzyMatchText, 
         RSVP_PRO_OPTION_WELCOME_BACK_TEXT               => $welcomeBackText, 
         RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT             => $unableFindText, 
+        RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH       => $partialUserSearch, 
+        RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED          => $lastNameNotRequired, 
+        RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE            => $autoWaitlistToYes, 
+        RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE         => $waitlistYesUnavailable, 
+        RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH            => $waitlistPermSwitch, 
+        RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL    => $waitlistStatusEmail, 
+        RSVP_PRO_OPTION_SHOW_CALENDAR_LINK              => $showCalendarLink, 
+        RSVP_PRO_OPTION_CALENDAR_LINK_TEXT              => $calendarLinkText, 
+        RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT        => $additionalAttendeeText, 
+        RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS         => $repeatDoNotSaveEvent,
+        RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL       => $useEmailForLookup,
       );
 
       $json_options = json_encode($options);
 
       if(isset($_POST['eventID']) && is_numeric($_POST['eventID']) && ($_POST['eventID'] > 0)) {
         // update existing event
-				$wpdb->update(PRO_EVENT_TABLE, array("eventName" 				        => $eventName, 
+				$wpdb->update(PRO_EVENT_TABLE, array("eventName" 				    => $eventName, 
 																				 "open_date" 				        => $opendate,
 																				 "close_date"               => $closedate, 
                                          "parentEventID"            => $parentEventID, 
                                          "options"                  => $json_options, 
-                                         "event_access"             => $eventAccess), 
+                                         "event_access"             => $eventAccess, 
+                                         "eventStartDate"           => $eventStartDate, 
+                                         "eventEndDate"             => $eventEndDate, 
+                                         "eventLocation"            => $eventLocation, 
+                                         "eventDescription"         => $eventDescription, 
+                                         "repeatStartDate"          => $repeatStartDate, 
+                                         "repeatEndDate"            => $repeatEndDate, 
+                                         "repeatFrequency"          => $repeatFrequency, 
+                                         "repeatFrequencyType"      => $repeatFrequencyType, 
+                                         "eventLength"              => $repeatLength, 
+                                         "eventLengthType"          => $repeatLengthType), 
                                       array("id"  => $_POST['eventID']), 
-																			array('%s', '%s', '%s', '%d', '%s', '%s'), 
+																			array('%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', 
+                                        '%s', '%s', '%s', '%s', '%d', '%s', '%d', '%s'), 
                                       array("%d"));
         
         if($requirePasscode == "Y") {
@@ -322,8 +413,19 @@
 																				 "close_date"               => $closedate, 
                                          "parentEventID"            => $parentEventID, 
                                          "options"                  => $json_options, 
-                                         "event_access"             => $eventAccess), 
-																			 array('%s', '%s', '%s', '%d', '%s', '%s'));
+                                         "event_access"             => $eventAccess, 
+                                         "eventStartDate"           => $eventStartDate, 
+                                         "eventEndDate"             => $eventEndDate, 
+                                         "eventLocation"            => $eventLocation, 
+                                         "eventDescription"         => $eventDescription,
+                                         "repeatStartDate"          => $repeatStartDate, 
+                                         "repeatEndDate"            => $repeatEndDate, 
+                                         "repeatFrequency"          => $repeatFrequency, 
+                                         "repeatFrequencyType"      => $repeatFrequencyType, 
+                                         "eventLength"              => $repeatLength, 
+                                         "eventLengthType"          => $repeatLengthType), 
+																			 array('%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', 
+                                             '%s', '%s', '%s', '%d', '%s', '%d', '%s'));
            
         $eventId = $wpdb->insert_id;                    
         if($requirePasscode == "Y") {
@@ -349,9 +451,11 @@
       
     }
     if(isset($_GET['id']) && is_numeric($_GET['id']) && ($_GET['id'] > 0)) {
-      $sql = "SELECT eventName, open_date, close_date, options, parentEventID, event_access  
+      $sql = "SELECT eventName, open_date, close_date, options, parentEventID, 
+                    event_access, eventStartDate, eventEndDate, eventLocation, eventDescription, 
+                    repeatStartDate, repeatEndDate, repeatFrequencyType, repeatFrequency, 
+                    eventLength, eventLengthType  
               FROM ".PRO_EVENT_TABLE." WHERE id = %d";
-              $wpdb->show_errors = true;
       $event = $wpdb->get_row($wpdb->prepare($sql, $_GET['id']));
       if($event) {
         $options = json_decode($event->options, true);
@@ -361,7 +465,30 @@
         $eventName = $event->eventName;
         $opendate = date("m/d/Y", strtotime($event->open_date));
         $closedate = date("m/d/Y", strtotime($event->close_date));
+        if(strtotime($event->eventStartDate)) {
+          $eventStartDate = date_i18n( get_option( 'date_format'), strtotime($event->eventStartDate));  
+        }
+        
+        if(strtotime($event->eventEndDate)) {
+          $eventEndDate = date_i18n( get_option( 'date_format'), strtotime($event->eventEndDate));  
+        }
+
+        if(strtotime($event->repeatStartDate) && ($event->repeatStartDate != "0000-00-00")) {
+          $repeatStartDate = date_i18n( get_option( 'date_format'), strtotime($event->repeatStartDate));
+        }
+
+        if(strtotime($event->repeatEndDate) && ($event->repeatEndDate != "0000-00-00")) {
+          $repeatEndDate = date_i18n(get_option('date_format'), strtotime($event->repeatEndDate));
+        }
+
+        $repeatFrequency = $event->repeatFrequency;
+        $repeatFrequencyType = $event->repeatFrequencyType;
+        $repeatLength = $event->eventLength;
+        $repeatLengthType = $event->eventLengthType;
+        $eventLocation = stripslashes($event->eventLocation);
+        $eventDescription = stripslashes($event->eventDescription);
         $eventAccess = ($event->event_access == RSVP_PRO_PRIVATE_EVENT_ACCESS) ? RSVP_PRO_PRIVATE_EVENT_ACCESS : RSVP_PRO_OPEN_EVENT_ACCESS;
+
         $parentEventID = $event->parentEventID;
         $greetingText = stripslashes($options[RSVP_PRO_OPTION_GREETING]);
         $welcomeText = stripslashes($options[RSVP_PRO_OPTION_WELCOME_TEXT]);
@@ -435,6 +562,17 @@
         $fuzzyMatchText         = stripslashes($options[RSVP_PRO_OPTION_FUZZY_MATCH_TEXT]);
         $welcomeBackText        = stripslashes($options[RSVP_PRO_OPTION_WELCOME_BACK_TEXT]);
         $unableFindText         = stripslashes($options[RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT]);
+        $partialUserSearch      = stripslashes($options[RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH] == "Y") ? "Y" : "N";
+        $lastNameNotRequired    = ($options[RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED] == "Y") ? "Y" : "N";
+        $autoWaitlistToYes      = ($options[RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE] == "Y") ? "Y" : "N";
+        $waitlistYesUnavailable = ($options[RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE] == "Y") ? "Y" : "N";
+        $waitlistPermSwitch     = ($options[RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH] == "Y") ? "Y" : "N";
+        $waitlistStatusEmail    = stripslashes($options[RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL]);
+        $showCalendarLink       = ($options[RSVP_PRO_OPTION_SHOW_CALENDAR_LINK] == "Y") ? "Y" : "N";
+        $calendarLinkText       = stripslashes($options[RSVP_PRO_OPTION_CALENDAR_LINK_TEXT]);
+        $additionalAttendeeText = stripslashes($options[RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT]);
+        $repeatDoNotSaveEvent   = ($options[RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS] == "Y") ? "Y" : "N";
+        $useEmailForLookup      = ($options[RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL] == "Y") ? "Y" : "N";
 
         if(is_array($options[RSVP_PRO_OPTION_ADMIN_ROLES])) {
           $adminRoles = $options[RSVP_PRO_OPTION_ADMIN_ROLES];
@@ -473,8 +611,8 @@
     			<a href="<?php echo add_query_arg('tab', 'text', remove_query_arg('settings-updated')); ?>" class="nav-tab <?php echo $active_tab == 'text' ? 'nav-tab-active' : ''; ?>"><?php _e('Front-End Text', 'rsvp-pro-plugin'); ?></a>
           <?php if($event->parentEventID <= 0): ?>
           <a href="<?php echo add_query_arg('tab', 'attendeelist', remove_query_arg('settings-updated')); ?>" class="nav-tab <?php echo $active_tab == 'attendeelist' ? 'nav-tab-active' : ''; ?>"><?php _e('Public Attendee List', 'rsvp-pro-plugin'); ?></a>
-          <a href="<?php echo add_query_arg('tab', 'email', remove_query_arg('settings-updated')); ?>" class="nav-tab <?php echo $active_tab == 'email' ? 'nav-tab-active' : ''; ?>"><?php _e('Notifications', 'rsvp-pro-plugin'); ?></a>
           <?php endif; ?>
+          <a href="<?php echo add_query_arg('tab', 'email', remove_query_arg('settings-updated')); ?>" class="nav-tab <?php echo $active_tab == 'email' ? 'nav-tab-active' : ''; ?>"><?php _e('Notifications', 'rsvp-pro-plugin'); ?></a>
         <?php endif; ?>
       </h2>
         
@@ -491,31 +629,38 @@
         ?>
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EVENT_COUNT_LIMIT; ?>" value="<?php echo esc_html($rsvpLimit)?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ENABLE_WAITLIST; ?>" value="<?php echo esc_html($rsvpEnableWaitlist); ?>" />
-          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" value="<?php echo htmlspecialchars($rsvpNoEditing); ?>" />
-          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" value="<?php echo htmlspecialchars($attendeeAutoLogin); ?>" />
-          <input type="hidden" name="rsvp_num_additional_guests" value="<?php echo htmlspecialchars($numAdditionalGuests); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE; ?>" value="<?php echo esc_attr_e($autoWaitlistToYes); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>" value="<?php echo esc_attr_e($waitlistYesUnavailable); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>" value="<?php echo esc_attr_e($waitlistPermSwitch); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>" value="<?php echo esc_attr_e($waitlistStatusEmail); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" value="<?php echo esc_attr_e($rsvpNoEditing); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>" value="<?php echo esc_attr_e($useEmailForLookup); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" value="<?php echo esc_attr_e($attendeeAutoLogin); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>" value="<?php echo esc_attr_e($lastNameNotRequired); ?>" />
+          <input type="hidden" name="rsvp_num_additional_guests" value="<?php echo esc_attr_e($numAdditionalGuests); ?>" />
           <input type="hidden" name="require_passcode" value="<?php echo $requirePasscode; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PASSWORD_LENGTH; ?>" value="<?php echo $password_length; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_ONLY_PASSCODE; ?>" value="<?php echo $onlyPasscode; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_RSVP_OPEN_NO_PASSCODE; ?>" value="<?php echo esc_html($noPasscodeOnOpen); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_OPEN_REGISTRATION; ?>" value="<?php echo $rsvpOpenReg; ?>" />
           <input type="hidden" name="hide_additional_guests" value="<?php echo $hideAdditionalGuests; ?>" />
-          <input type="hidden" name="rsvp_question_text" value="<?php echo htmlspecialchars($rsvpQuestionText); ?>" />
-          <input type="hidden" name="rsvp_yes_label" value="<?php echo htmlspecialchars($rsvpYesLabel); ?>" />
-          <input type="hidden" name="rsvp_no_label" value="<?php echo htmlspecialchars($rsvpNoLabel); ?>" />
-          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_VERBIAGE; ?>" value="<?php echo htmlspecialchars($rsvpWaitlistLabel); ?>" />
-          <input type="hidden" name="additional_note_label" value="<?php echo htmlspecialchars($additionalNoteLabel); ?>" />
+          <input type="hidden" name="rsvp_question_text" value="<?php echo esc_attr_e($rsvpQuestionText); ?>" />
+          <input type="hidden" name="rsvp_yes_label" value="<?php echo esc_attr_e($rsvpYesLabel); ?>" />
+          <input type="hidden" name="rsvp_no_label" value="<?php echo esc_attr_e($rsvpNoLabel); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_VERBIAGE; ?>" value="<?php echo esc_attr_e($rsvpWaitlistLabel); ?>" />
+          <input type="hidden" name="additional_note_label" value="<?php echo esc_attr_e($additionalNoteLabel); ?>" />
           <input type="hidden" name="hide_note" value="<?php echo $hideNote; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_DONT_USE_HASH; ?>" value="<?php echo $dontUseHash; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_HIDE_EMAIL_FIELD; ?>" value="<?php echo $hideEmailField; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_REQUIRED; ?>" value="<?php echo $requireEmail; ?>" />
-          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ADD_ADDITIONAL_VERBIAGE; ?>" value="<?php echo htmlspecialchars($addAdditionalText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ADD_ADDITIONAL_VERBIAGE; ?>" value="<?php echo esc_attr_e($addAdditionalText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_DISABLE_USER_SEARCH; ?>" value="<?php echo $rsvpDisableUserSearch; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>" value="<?php echo $partialUserSearch; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_FRONTEND_WIZARD; ?>" value="<?php echo $frontendWizard; ?>" />
-          <input type="hidden" name="greeting_text" value="<?php echo htmlspecialchars($greetingText); ?>" />
-          <input type="hidden" name="welcome_text" value="<?php echo htmlspecialchars($welcomeText); ?>" />
-          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_TEXT; ?>" value="<?php echo htmlspecialchars($rsvpEmailText); ?>" />
-          <input type="hidden" name="thank_you_text" value="<?php echo htmlspecialchars($thankYouText); ?>" />
+          <input type="hidden" name="greeting_text" value="<?php echo esc_attr_e($greetingText); ?>" />
+          <input type="hidden" name="welcome_text" value="<?php echo esc_attr_e($welcomeText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_TEXT; ?>" value="<?php echo esc_attr_e($rsvpEmailText); ?>" />
+          <input type="hidden" name="thank_you_text" value="<?php echo esc_attr_e($thankYouText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_NOT_COMING; ?>" value="<?php echo esc_html($notComingVerbiage); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SALUTATION ?>" value="<?php echo esc_html($showSalutation); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SUFFIX; ?>" value="<?php echo esc_html($showSuffix); ?>" />
@@ -536,7 +681,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LIST_HIDE_STATUS; ?>" value="<?php echo esc_attr_e($attendeeListHideStatus); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LIST_CUSTOM_QUESTIONS; ?>" value="<?php echo esc_attr_e(implode(",", $attendeeListCustomQs)); ?>" />
           <input type="hidden" name="notify_user" value="<?php echo $notifyUser; ?>" />
-          <input type="hidden" name="notify_email" value="<?php echo htmlspecialchars($notifyEmail); ?>" />
+          <input type="hidden" name="notify_email" value="<?php echo esc_attr_e($notifyEmail); ?>" />
           <input type="hidden" name="rsvp_guest_email_confirmation" value="<?php echo $guestEmailConfirm; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_FROM; ?>" value="<?php echo esc_attr_e($emailFrom); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_CC_ASSOCIATED; ?>" value="<?php echo esc_attr_e($emailCCAssociated); ?>" />
@@ -552,6 +697,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_LABEL; ?>" value="<?php echo esc_attr_e($emailLabel); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ASSOCIATED_MESSAGE; ?>" value="<?php echo esc_attr_e($associatedMessage); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ASSOCIATED_ATTENDEE_GREETING; ?>" value="<?php echo esc_attr_e($associatedGreeting); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>" value="<?php echo esc_attr_e($additionalAttendeeText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTI_EVENT_TITLE; ?>" value="<?php echo esc_attr_e($multiEventTitle); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTI_OPTION_TEXT; ?>" value="<?php echo esc_attr_e($multiOptionText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REMOVE_ATTENDEE_BUTTON_TEXT; ?>" value="<?php echo esc_attr_e($removeAttendeeButton); ?>" />
@@ -562,6 +708,8 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT; ?>" value="<?php echo esc_attr_e($multipleMatchesText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WELCOME_BACK_TEXT; ?>" value="<?php echo esc_attr_e($welcomeBackText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT; ?>" value="<?php echo esc_attr_e($unableFindText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>" value="<?php echo esc_attr_e($calendarLinkText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>" value="<?php echo esc_attr_e($showCalendarLink); ?>" />
           <?php
           if(!$hasMultipleEvents):
           ?>
@@ -689,6 +837,137 @@
               <?php
               endif;
               ?>
+               <tr>
+                <th scope="row" colspan="2">
+                  <h3><?php _e("General Event Information", "rsvp-pro-plugin"); ?></h3>
+                  <span class="description"><?php _e("Information used for calendar files", "rsvp-pro-plugin"); ?></span>
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="eventStartDate"><?php _e("Event Start Date:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="text" name="eventStartDate" id="eventStartDate" value="<?php echo esc_attr_e($eventStartDate); ?>" />
+                  <br />
+                  <span class="description"><?php _e("mm/dd/yyyy h:m:s AM/PM TIMEZONE(i.e. 05/05/2015 10:30:00 AM PST)", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="eventEndDate"><?php _e("Event End Date:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="text" name="eventEndDate" id="eventEndDate" value="<?php echo esc_attr_e($eventEndDate); ?>" />
+                  <br />
+                  <span class="description"><?php _e("mm/dd/yyyy h:m:s AM/PM(i.e. 05/05/2015 10:30:00 AM)", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="eventLocation"><?php _e("Event Location:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="text" name="eventLocation" id="eventLocation" value="<?php echo esc_attr_e($eventLocation); ?>" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="eventDescription"><?php _e("Event Description:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                   <textarea name="eventDescription" id="eventDescription" rows="5" cols="60"><?php echo esc_html($eventDescription); ?></textarea>
+                </td>
+              </tr>
+              <!-- Reoccurring Events Info -->
+              <tr class="subEventHide">
+                <th scope="row" colspan="2">
+                  <h3><?php _e("Recurring Event Information", "rsvp-pro-plugin"); ?></h3>
+                  <span class="description"><?php _e("Information used for making an event repeat", "rsvp-pro-plugin"); ?></span>
+                </th>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>"><?php _e("Repeating start date:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="text" name="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>" value="<?php echo esc_attr_e($repeatStartDate); ?>" />
+                  <br />
+                  <span class="description"><?php _e("The date to which the recurring event starts", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>"><?php _e("Repeating end date", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="text" name="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>" value="<?php echo esc_attr_e($repeatEndDate); ?>" />
+                  <br />
+                  <span class="description"><?php _e("The date to which the recurring event ends", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>"><?php _e("Repeating frequency:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="number" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>" value="<?php echo esc_attr_e($repeatFrequency); ?>" />
+                  <br />
+                  <span class="description"><?php _e("How often does it repeat (i.e. 1 week, 2 months), any whole number greater than zero is allowed.", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>"><?php _e("Repeating frequency type:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <select name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>" size="1">
+                    <option value="">--</option>
+                    <option value="day" <?php echo ($repeatFrequencyType == "day") ? "selected=\"selected\"" : ""; ?>><?php _e("Day", "rsvp-pro-plugin"); ?></option>
+                    <option value="week" <?php echo ($repeatFrequencyType == "week") ? "selected=\"selected\"" : ""; ?>><?php _e("Week", "rsvp-pro-plugin"); ?></option>
+                    <option value="month" <?php echo ($repeatFrequencyType == "month") ? "selected=\"selected\"" : ""; ?>><?php _e("Month", "rsvp-pro-plugin"); ?></option>
+                    <option value="year" <?php echo ($repeatFrequencyType == "year") ? "selected=\"selected\"" : ""; ?>><?php _e("Year", "rsvp-pro-plugin"); ?></option>
+                  </select>
+                  <br />
+                  <span class="description"><?php _e("The frequency at which the event repeats (i.e. every week, a month, etc..)", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>"><?php _e("Length of each event", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="number" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>" value="<?php echo esc_attr_e($repeatLength); ?>" />
+                  <br />
+                  <span class="description"><?php _e("How long each instance of the event goes for, any whole number greater than zero is allowed.", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>"><?php _e("Length type of each event", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <select name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>" size="1">
+                    <option value="">--</option>
+                    <option value="day" <?php echo ($repeatLengthType == "day") ? "selected=\"selected\"" : ""; ?>><?php _e("Day", "rsvp-pro-plugin"); ?></option>
+                    <option value="week" <?php echo ($repeatLengthType == "week") ? "selected=\"selected\"" : ""; ?>><?php _e("Week", "rsvp-pro-plugin"); ?></option>
+                    <option value="month" <?php echo ($repeatLengthType == "month") ? "selected=\"selected\"" : ""; ?>><?php _e("Month", "rsvp-pro-plugin"); ?></option>
+                    <option value="year" <?php echo ($repeatLengthType == "year") ? "selected=\"selected\"" : ""; ?>><?php _e("Year", "rsvp-pro-plugin"); ?></option>
+                  </select>
+                  <br />
+                  <span class="description"><?php _e("The length type of each instance (i.e. day, month, etc...).", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>"><?php _e("Do not keep a history of repeated events", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>" id="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>" value="Y" <?php echo ($repeatDoNotSaveEvent == "Y") ? "checked=\"checked\"" : ""; ?> />
+                  <br />
+                  <span class="description"><?php _e("By default whenever an event repeats we will keep a copy of the previous date of event.", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
             </tbody>
           </table>
         <?php
@@ -696,10 +975,21 @@
           
           if($active_tab == "form"): 
         ?>
-          <input type="hidden" name="eventName" value="<?php echo htmlspecialchars($eventName); ?>" />
-          <input type="hidden" name="open_date" value="<?php echo htmlspecialchars($opendate); ?>" />
-          <input type="hidden" name="close_date" value="<?php echo htmlspecialchars($closedate); ?>" />
-          <input type="hidden" name="parentEventID" id="parentEventID" value="<?php echo htmlspecialchars($parentEventID); ?>" />
+          <input type="hidden" name="eventName" value="<?php echo esc_attr_e($eventName); ?>" />
+          <input type="hidden" name="open_date" value="<?php echo esc_attr_e($opendate); ?>" />
+          <input type="hidden" name="close_date" value="<?php echo esc_attr_e($closedate); ?>" />
+          <input type="hidden" name="eventStartDate" value="<?php echo esc_attr_e($eventStartDate); ?>" />
+          <input type="hidden" name="eventEndDate" value="<?php echo esc_attr_e($eventEndDate); ?>" />
+          <input type="hidden" name="eventLocation" value="<?php echo esc_attr_e($eventLocation); ?>" />
+          <input type="hidden" name="eventDescription" value="<?php echo esc_attr_e($eventDescription); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>" value="<?php echo esc_attr_e($repeatStartDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>" value="<?php echo esc_attr_e($repeatEndDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>" value="<?php echo esc_attr_e($repeatFrequencyType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>" value="<?php echo esc_attr_e($repeatFrequency); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>" value="<?php echo esc_attr_e($repeatLength); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>" value="<?php echo esc_attr_e($repeatLengthType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>" value="<?php echo esc_attr_e($repeatDoNotSaveEvent); ?>" />
+          <input type="hidden" name="parentEventID" id="parentEventID" value="<?php echo esc_attr_e($parentEventID); ?>" />
           <input type="hidden" name="notify_user" value="<?php echo $notifyUser; ?>" />
           <input type="hidden" name="notify_email" value="<?php echo htmlspecialchars($notifyEmail); ?>" />
           <input type="hidden" name="rsvp_guest_email_confirmation" value="<?php echo $guestEmailConfirm; ?>" />
@@ -717,6 +1007,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_NEXT_BUTTON_TEXT;?>" value="<?php echo esc_html($nextButtonText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MAX_COUNT_REACHED_TEXT;?>" value="<?php echo esc_html($rsvpLimitText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_TEXT; ?>" value="<?php echo esc_html($rsvpWaitlistText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>" value="<?php echo esc_attr_e($waitlistStatusEmail); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_OPEN_DATE_TEXT; ?>" value="<?php echo esc_html($openDateText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CLOSE_DATE_TEXT; ?>" value="<?php echo esc_html($closeDateText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LIST_FILTER; ?>" value="<?php echo esc_html($attendeelistFilter); ?>" />
@@ -754,6 +1045,8 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT; ?>" value="<?php echo esc_attr_e($multipleMatchesText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WELCOME_BACK_TEXT; ?>" value="<?php echo esc_attr_e($welcomeBackText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT; ?>" value="<?php echo esc_attr_e($unableFindText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>" value="<?php echo esc_attr_e($calendarLinkText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>" value="<?php echo esc_attr_e($additionalAttendeeText); ?>" />
           <table class="form-table">
             <tbody>
               <tr>
@@ -788,6 +1081,15 @@
                     <?php echo (($rsvpDisableUserSearch == "Y") ? " checked=\"checked\"" : ""); ?> />
                 </td>
               </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>"><?php _e("Do partial match on attendee's first and last name:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>" id="<?Php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>" value="Y" 
+                    <?php echo (($partialUserSearch == "Y") ? " checked=\"checked\"" : ""); ?> />
+                </td>
+              </tr>
               <tr>
                 <th scope="row">
                   <label for="<?php echo RSVP_PRO_OPTION_EVENT_COUNT_LIMIT; ?>"><?php _e("Max guest limit for event:", "rsvp-pro-plugin"); ?></label>
@@ -806,6 +1108,36 @@
                   <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_ENABLE_WAITLIST; ?>" id="<?php echo RSVP_PRO_OPTION_ENABLE_WAITLIST; ?>" value="Y" <?php echo (($rsvpEnableWaitlist == "Y") ? " checked=\"checked\"" : ""); ?> />
                   <br />
                   <span class="description"><?php _e("Only applies when an event specifies a max guest limit", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE; ?>"><?php _e("Automatically change \"waitlist\" status to \"yes\" when a spot opens up:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE; ?>" id="<?php echo RSVP_PRO_OPTION_WAILIST_AUTO_CHANGE; ?>" value="Y" <?php echo (($autoWaitlistToYes == "Y") ? " checked=\"checked\"" : ""); ?> />
+                  <br />
+                  <span class="description"><?php _e("Will select attendees based on how has the oldest RSVP date", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>"><?php _e("Once \"waitlist\" is triggered \"yes\" will no longer be available:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>" id="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>" value="Y" <?php echo (($waitlistPermSwitch == "Y") ? " checked=\"checked\"" : ""); ?> />
+                  <br />
+                  <span class="description"><?php _e("With this option once a waitlist situation occurs it will never go back to open registration", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>"><?php _e("Is the \"yes\" option unavailable to be selected?:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>" id="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>" value="Y" <?php echo (($waitlistYesUnavailable == "Y") ? " checked=\"checked\"" : ""); ?> />
+                  <br />
+                  <span class="description"><?php _e("This will set the flag for if the \"yes\" option should be available when waitlists are enabled", "rsvp-pro-plugin"); ?></span>
                 </td>
               </tr>
               <tr class="subEventHide">
@@ -834,7 +1166,7 @@
                   <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_OPEN_REGISTRATION; ?>" id="<?php echo RSVP_PRO_OPTION_OPEN_REGISTRATION; ?>" value="Y" 
                      <?php echo (($rsvpOpenReg == "Y") ? " checked=\"checked\"" : ""); ?> />
                   <br>
-                  <span class="description">This will force passcodes for attendees</span>
+                  <span class="description"><?php _e("This will force passcodes for attendees", "rsvp-pro-plugin"); ?></span>
                 </td>
               </tr>
               <tr class="subEventHide">
@@ -845,18 +1177,51 @@
                   <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" id="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" value="Y" 
                      <?php echo (($rsvpNoEditing == "Y") ? " checked=\"checked\"" : ""); ?> />
                   <br>
-                  <span class="description">This should only be used in conjunction with open registrations</span>
+                  <span class="description"><?php _e("This should only be used in conjunction with open registrations", "rsvp-pro-plugin"); ?></span>
                 </td>
               </tr>
               <tr class="subEventHide">
                 <th scope="row">
-                  <label for="<?PHP echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>"><?php _e("Automatically authenticate logged in WP-Users:", "rsvp-pro-plugin"); ?></label>
+                  <label for="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>"><?php _e("Automatically authenticate logged in WP-Users:", "rsvp-pro-plugin"); ?></label>
                 </th>
                 <td>
                   <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" id="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" value="Y" 
                      <?php echo (($attendeeAutoLogin == "Y") ? " checked=\"checked\"" : ""); ?> />
                   <br>
-                  <span class="description">Checking this option will automatically skip the user lookup form if they are logged in and the user and attendee emails match</span>
+                  <span class="description"><?php _e("Checking this option will automatically skip the user lookup form if they are logged in and the user and attendee emails match", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>"><?php _e("Use email address instead of first and last name for lookup:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>" id="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>" value="Y" 
+                     <?php echo (($useEmailForLookup == "Y") ? " checked=\"checked\"" : ""); ?> />
+                  <br>
+                  <span class="description"><?php _e("Checking this option will use the email address instead of the first and last name of the attendee when trying to find the user.", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>"><?php _e("Do not require the last name for attendees:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>" id="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>" value="Y" 
+                     <?php echo (($lastNameNotRequired == "Y") ? " checked=\"checked\"" : ""); ?> />
+                  <br>
+                  <span class="description"><?php _e("Checking this option will allow attendees to look-up themselves with just their first name and also allow people to not enter in their last name if they do not want.", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>"><?php _e("Show calendar invite link on confirmation page:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="checkbox" name="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>" id="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>" value="Y" 
+                     <?php echo (($showCalendarLink == "Y") ? " checked=\"checked\"" : ""); ?> />
+                  <br>
+                  <span class="description"><?php _e("Displays a link to download a calendar ICS file on the \"Yes\" confirmation page.", "rsvp-pro-plugin"); ?></span>
                 </td>
               </tr>
 
@@ -987,9 +1352,20 @@
           
           if($active_tab == "text"):
         ?>
-          <input type="hidden" name="eventName" value="<?php echo htmlspecialchars($eventName); ?>" />
-          <input type="hidden" name="open_date" value="<?php echo htmlspecialchars($opendate); ?>" />
-          <input type="hidden" name="close_date" value="<?php echo htmlspecialchars($closedate); ?>" />
+          <input type="hidden" name="eventName" value="<?php echo esc_attr_e($eventName); ?>" />
+          <input type="hidden" name="open_date" value="<?php echo esc_attr_e($opendate); ?>" />
+          <input type="hidden" name="close_date" value="<?php echo esc_attr_e($closedate); ?>" />
+          <input type="hidden" name="eventStartDate" value="<?php echo esc_attr_e($eventStartDate); ?>" />
+          <input type="hidden" name="eventEndDate" value="<?php echo esc_attr_e($eventEndDate); ?>" />
+          <input type="hidden" name="eventLocation" value="<?php echo esc_attr_e($eventLocation); ?>" />
+          <input type="hidden" name="eventDescription" value="<?php echo esc_attr_e($eventDescription); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>" value="<?php echo esc_attr_e($repeatStartDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>" value="<?php echo esc_attr_e($repeatEndDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>" value="<?php echo esc_attr_e($repeatFrequencyType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>" value="<?php echo esc_attr_e($repeatFrequency); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>" value="<?php echo esc_attr_e($repeatLength); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>" value="<?php echo esc_attr_e($repeatLengthType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>" value="<?php echo esc_attr_e($repeatDoNotSaveEvent); ?>" />
           <input type="hidden" name="parentEventID" id="parentEventID" value="<?php echo htmlspecialchars($parentEventID); ?>" />
           <input type="hidden" name="rsvp_num_additional_guests" value="<?php echo htmlspecialchars($numAdditionalGuests); ?>" />
           <input type="hidden" name="require_passcode" value="<?php echo $requirePasscode; ?>" />
@@ -1000,16 +1376,23 @@
           <input type="hidden" name="notify_email" value="<?php echo htmlspecialchars($notifyEmail); ?>" />
           <input type="hidden" name="rsvp_guest_email_confirmation" value="<?php echo $guestEmailConfirm; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_OPEN_REGISTRATION; ?>" value="<?php echo $rsvpOpenReg; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>" value="<?php echo esc_attr_e($useEmailForLookup); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" value="<?php echo htmlspecialchars($rsvpNoEditing); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" value="<?php echo htmlspecialchars($attendeeAutoLogin); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>" value="<?php echo esc_attr_e($lastNameNotRequired); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EVENT_COUNT_LIMIT; ?>" value="<?php echo esc_html($rsvpLimit)?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ENABLE_WAITLIST; ?>" value="<?php echo esc_html($rsvpEnableWaitlist); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE; ?>" value="<?php echo esc_attr_e($autoWaitlistToYes); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>" value="<?php echo esc_attr_e($waitlistYesUnavailable); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>" value="<?php echo esc_attr_e($waitlistPermSwitch); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>" value="<?php echo esc_attr_e($waitlistStatusEmail); ?>" />
           <input type="hidden" name="adminRoles" value="<?php echo esc_attr_e(implode(",", $adminRoles)); ?>" />
           <input type="hidden" name="hide_note" value="<?php echo $hideNote; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_DONT_USE_HASH; ?>" value="<?php echo $dontUseHash; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_HIDE_EMAIL_FIELD; ?>" value="<?php echo $hideEmailField; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_REQUIRED; ?>" value="<?php echo $requireEmail; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_DISABLE_USER_SEARCH; ?>" value="<?php echo $rsvpDisableUserSearch; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>" value="<?php echo $partialUserSearch; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SALUTATION ?>" value="<?php echo esc_html($showSalutation); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SUFFIX; ?>" value="<?php echo esc_html($showSuffix); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SALUTATIONS; ?>" value="<?php echo esc_html($salutations); ?>" />
@@ -1028,6 +1411,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_BCC_ADDRESS; ?>" value="<?php echo esc_attr_e($emailBCCAddresses); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_SUBJECT; ?>" value="<?php echo esc_attr_e($emailSubject); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_TEXT; ?>" value="<?php echo esc_attr_e($rsvpEmailText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>" value="<?php echo esc_attr_e($showCalendarLink); ?>" />
           <table class="form-table">
             <tbody>
               <tr class="subEventHide">
@@ -1425,6 +1809,16 @@
                   <span class="description"><?php _e("Default is: &quot;The following people are associated with you.  At this time you can RSVP for them as well.&quot;", "rsvp-pro-plugin"); ?></span>
                 </td>
               </tr>
+              <tr class="subEventHide">
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>"><?php _e("Additional attendee greeting:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <textarea name="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>" id="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>" rows="5" cols="60"><?php echo esc_html($additionalAttendeeText); ?></textarea>
+                  <br />
+                  <span class="description"><?php _e("Default is: &quot;Will this person be attending?&quot;", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
 
               <tr class="subEventHide">
                 <th scope="row" colspan="2">
@@ -1476,6 +1870,17 @@
                 </td>
               </tr>
 
+              <tr>
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>"><?php _e("Calendar download link text:", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <input type="text" name="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>" id="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>" value="<?php echo esc_attr_e($calendarLinkText); ?>" />
+                  <br />
+                  <span class="description"><?php _e("Default is: &quot;Add to your calendar&quot;", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+
             </tbody>
           </table>
 
@@ -1484,11 +1889,22 @@
 
           if($active_tab == "attendeelist"):
         ?>
-          <input type="hidden" name="eventName" value="<?php echo htmlspecialchars($eventName); ?>" />
-          <input type="hidden" name="open_date" value="<?php echo htmlspecialchars($opendate); ?>" />
-          <input type="hidden" name="close_date" value="<?php echo htmlspecialchars($closedate); ?>" />
-          <input type="hidden" name="parentEventID" id="parentEventID" value="<?php echo htmlspecialchars($parentEventID); ?>" />
-          <input type="hidden" name="rsvp_num_additional_guests" value="<?php echo htmlspecialchars($numAdditionalGuests); ?>" />
+          <input type="hidden" name="eventName" value="<?php echo esc_attr_e($eventName); ?>" />
+          <input type="hidden" name="open_date" value="<?php echo esc_attr_e($opendate); ?>" />
+          <input type="hidden" name="close_date" value="<?php echo esc_attr_e($closedate); ?>" />
+          <input type="hidden" name="eventStartDate" value="<?php echo esc_attr_e($eventStartDate); ?>" />
+          <input type="hidden" name="eventEndDate" value="<?php echo esc_attr_e($eventEndDate); ?>" />
+          <input type="hidden" name="eventLocation" value="<?php echo esc_attr_e($eventLocation); ?>" />
+          <input type="hidden" name="eventDescription" value="<?php echo esc_attr_e($eventDescription); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>" value="<?php echo esc_attr_e($repeatStartDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>" value="<?php echo esc_attr_e($repeatEndDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>" value="<?php echo esc_attr_e($repeatFrequencyType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>" value="<?php echo esc_attr_e($repeatFrequency); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>" value="<?php echo esc_attr_e($repeatLength); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>" value="<?php echo esc_attr_e($repeatLengthType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>" value="<?php echo esc_attr_e($repeatDoNotSaveEvent); ?>" />
+          <input type="hidden" name="parentEventID" id="parentEventID" value="<?php echo esc_attr_e($parentEventID); ?>" />
+          <input type="hidden" name="rsvp_num_additional_guests" value="<?php echo esc_attr_e($numAdditionalGuests); ?>" />
           <input type="hidden" name="require_passcode" value="<?php echo $requirePasscode; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PASSWORD_LENGTH; ?>" value="<?php echo $password_length; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_ONLY_PASSCODE; ?>" value="<?php echo $onlyPasscode; ?>" />
@@ -1497,10 +1913,16 @@
           <input type="hidden" name="notify_email" value="<?php echo htmlspecialchars($notifyEmail); ?>" />
           <input type="hidden" name="rsvp_guest_email_confirmation" value="<?php echo $guestEmailConfirm; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_OPEN_REGISTRATION; ?>" value="<?php echo $rsvpOpenReg; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>" value="<?php echo esc_attr_e($useEmailForLookup); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" value="<?php echo htmlspecialchars($rsvpNoEditing); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" value="<?php echo htmlspecialchars($attendeeAutoLogin); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>" value="<?php echo esc_attr_e($lastNameNotRequired); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EVENT_COUNT_LIMIT; ?>" value="<?php echo esc_html($rsvpLimit)?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ENABLE_WAITLIST; ?>" value="<?php echo esc_html($rsvpEnableWaitlist); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE; ?>" value="<?php echo esc_attr_e($autoWaitlistToYes); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>" value="<?php echo esc_attr_e($waitlistYesUnavailable); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>" value="<?php echo esc_attr_e($waitlistPermSwitch); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>" value="<?php echo esc_attr_e($waitlistStatusEmail); ?>" />
           <input type="hidden" name="adminRoles" value="<?php echo esc_attr_e(implode(",", $adminRoles)); ?>" />
           <input type="hidden" name="rsvp_question_text" value="<?php echo htmlspecialchars($rsvpQuestionText); ?>" />
           <input type="hidden" name="rsvp_yes_label" value="<?php echo htmlspecialchars($rsvpYesLabel); ?>" />
@@ -1512,6 +1934,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_HIDE_EMAIL_FIELD; ?>" value="<?php echo $hideEmailField; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_REQUIRED; ?>" value="<?php echo $requireEmail; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_DISABLE_USER_SEARCH; ?>" value="<?php echo $rsvpDisableUserSearch; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>" value="<?php echo $partialUserSearch; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SALUTATION ?>" value="<?php echo esc_html($showSalutation); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SUFFIX; ?>" value="<?php echo esc_html($showSuffix); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SALUTATIONS; ?>" value="<?php echo esc_html($salutations); ?>" />
@@ -1552,6 +1975,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ASSOCIATED_ATTENDEE_GREETING; ?>" value="<?php echo esc_attr_e($associatedGreeting); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTI_EVENT_TITLE; ?>" value="<?php echo esc_attr_e($multiEventTitle); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTI_OPTION_TEXT; ?>" value="<?php echo esc_attr_e($multiOptionText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>" value="<?php echo esc_attr_e($additionalAttendeeText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REMOVE_ATTENDEE_BUTTON_TEXT; ?>" value="<?php echo esc_attr_e($removeAttendeeButton); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_YES_TEXT; ?>" value="<?php echo esc_attr_e($yesText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_NO_TEXT; ?>" value="<?php echo esc_attr_e($noText); ?>" />
@@ -1560,6 +1984,8 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT; ?>" value="<?php echo esc_attr_e($multipleMatchesText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WELCOME_BACK_TEXT; ?>" value="<?php echo esc_attr_e($welcomeBackText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT; ?>" value="<?php echo esc_attr_e($unableFindText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>" value="<?php echo esc_attr_e($calendarLinkText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>" value="<?php echo esc_attr_e($showCalendarLink); ?>" />
           <table class="form-table">
             <tbody>
               <tr>
@@ -1630,20 +2056,36 @@
 
           if($active_tab == "email"): 
         ?>
-          <input type="hidden" name="eventName" value="<?php echo htmlspecialchars($eventName); ?>" />
-          <input type="hidden" name="open_date" value="<?php echo htmlspecialchars($opendate); ?>" />
-          <input type="hidden" name="close_date" value="<?php echo htmlspecialchars($closedate); ?>" />
+          <input type="hidden" name="eventName" value="<?php echo esc_attr_e($eventName); ?>" />
+          <input type="hidden" name="open_date" value="<?php echo esc_attr_e($opendate); ?>" />
+          <input type="hidden" name="close_date" value="<?php echo esc_attr_e($closedate); ?>" />
+          <input type="hidden" name="eventStartDate" value="<?php echo esc_attr_e($eventStartDate); ?>" />
+          <input type="hidden" name="eventEndDate" value="<?php echo esc_attr_e($eventEndDate); ?>" />
+          <input type="hidden" name="eventLocation" value="<?php echo esc_attr_e($eventLocation); ?>" />
+          <input type="hidden" name="eventDescription" value="<?php echo esc_attr_e($eventDescription); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_START_DATE; ?>" value="<?php echo esc_attr_e($repeatStartDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_END_DATE; ?>" value="<?php echo esc_attr_e($repeatEndDate); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY_TYPE; ?>" value="<?php echo esc_attr_e($repeatFrequencyType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_FREQUENCY; ?>" value="<?php echo esc_attr_e($repeatFrequency); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH; ?>" value="<?php echo esc_attr_e($repeatLength); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_LENGTH_TYPE; ?>" value="<?php echo esc_attr_e($repeatLengthType); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_REPEAT_DONT_SAVE_EVENTS; ?>" value="<?php echo esc_attr_e($repeatDoNotSaveEvent); ?>" />
           <input type="hidden" name="parentEventID" id="parentEventID" value="<?php echo htmlspecialchars($parentEventID); ?>" />
           <input type="hidden" name="rsvp_num_additional_guests" value="<?php echo htmlspecialchars($numAdditionalGuests); ?>" />
           <input type="hidden" name="require_passcode" value="<?php echo $requirePasscode; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PASSWORD_LENGTH; ?>" value="<?php echo $password_length; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_ONLY_PASSCODE; ?>" value="<?php echo $onlyPasscode; ?>" />
           <input type="hidden" name="hide_additional_guests" value="<?php echo $hideAdditionalGuests; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LOOKUP_VIA_EMAIL; ?>" value="<?php echo esc_attr_e($useEmailForLookup); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_OPEN_REGISTRATION; ?>" value="<?php echo $rsvpOpenReg; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CANT_EDIT; ?>" value="<?php echo htmlspecialchars($rsvpNoEditing); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_AUTO_LOGIN_ATTENDEE; ?>" value="<?php echo htmlspecialchars($attendeeAutoLogin); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_LAST_NAME_NOT_REQUIRED; ?>" value="<?php echo esc_attr_e($lastNameNotRequired); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EVENT_COUNT_LIMIT; ?>" value="<?php echo esc_html($rsvpLimit)?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ENABLE_WAITLIST; ?>" value="<?php echo esc_html($rsvpEnableWaitlist); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_AUTO_CHANGE; ?>" value="<?php echo esc_attr_e($autoWaitlistToYes); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_YES_UNAVAILABLE; ?>" value="<?php echo esc_attr_e($waitlistYesUnavailable); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WAITLIST_PERM_SWITCH; ?>" value="<?php echo esc_attr_e($waitlistPermSwitch); ?>" />
           <input type="hidden" name="adminRoles" value="<?php echo esc_attr_e(implode(",", $adminRoles)); ?>" />
           <input type="hidden" name="rsvp_question_text" value="<?php echo htmlspecialchars($rsvpQuestionText); ?>" />
           <input type="hidden" name="rsvp_yes_label" value="<?php echo htmlspecialchars($rsvpYesLabel); ?>" />
@@ -1655,6 +2097,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_HIDE_EMAIL_FIELD; ?>" value="<?php echo $hideEmailField; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_EMAIL_REQUIRED; ?>" value="<?php echo $requireEmail; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_DISABLE_USER_SEARCH; ?>" value="<?php echo $rsvpDisableUserSearch; ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_PARTIAL_MATCH_USER_SEARCH; ?>" value="<?php echo $partialUserSearch; ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SALUTATION ?>" value="<?php echo esc_html($showSalutation); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_SUFFIX; ?>" value="<?php echo esc_html($showSuffix); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SALUTATIONS; ?>" value="<?php echo esc_html($salutations); ?>" />
@@ -1675,6 +2118,7 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LIST_HIDE_STATUS; ?>" value="<?php echo esc_attr_e($attendeeListHideStatus); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ATTENDEE_LIST_CUSTOM_QUESTIONS; ?>" value="<?php echo esc_attr_e(implode(",", $attendeeListCustomQs)); ?>" />
           <input type="hidden" name="greeting_text" value="<?php echo htmlspecialchars($greetingText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_ADDITIONAL_GREETING_TEXT; ?>" value="<?php echo esc_attr_e($additionalAttendeeText); ?>" />
           <input type="hidden" name="welcome_text" value="<?php echo htmlspecialchars($welcomeText); ?>" />
           <input type="hidden" name="thank_you_text" value="<?php echo htmlspecialchars($thankYouText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_NOT_COMING; ?>" value="<?php echo esc_html($notComingVerbiage); ?>" />
@@ -1702,9 +2146,11 @@
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_MULTIPLE_MATCHES_TEXT; ?>" value="<?php echo esc_attr_e($multipleMatchesText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_WELCOME_BACK_TEXT; ?>" value="<?php echo esc_attr_e($welcomeBackText); ?>" />
           <input type="hidden" name="<?php echo RSVP_PRO_OPTION_UNABLE_TO_FIND_TEXT; ?>" value="<?php echo esc_attr_e($unableFindText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_CALENDAR_LINK_TEXT; ?>" value="<?php echo esc_attr_e($calendarLinkText); ?>" />
+          <input type="hidden" name="<?php echo RSVP_PRO_OPTION_SHOW_CALENDAR_LINK; ?>" value="<?php echo esc_attr_e($showCalendarLink); ?>" />
           <table class="form-table">
             <tbody>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="notify_user"><?php _e("Notify When Guest RSVPs:", "rsvp-pro-plugin"); ?></label> 
                 </th>
@@ -1712,7 +2158,7 @@
                   <input type="checkbox" name="notify_user" id="notify_user" value="Y" <?php echo (($notifyUser == "Y") ? " checked=\"checked\"" : ""); ?> />
                 </td>
               </tr>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="notify_email"><?php _e("Admin notification email:", "rsvp-pro-plugin"); ?></label> 
                 </th>
@@ -1720,7 +2166,7 @@
                   <input type="text" name="notify_email" id="notify_email" value="<?php echo esc_attr_e($notifyEmail); ?>" class="regular-text" />
                 </td>
               </tr>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="rsvp_guest_email_confirmation"><?php _e("Email guests when RSVP is completed:", "rsvp-pro-plugin"); ?></label>
                 </th>
@@ -1737,7 +2183,7 @@
                   <textarea name="<?php echo RSVP_PRO_OPTION_EMAIL_TEXT; ?>" id="<?php echo RSVP_PRO_OPTION_EMAIL_TEXT; ?>" rows="5" cols="60"><?php echo esc_html($rsvpEmailText); ?></textarea>
                 </td>
               </tr>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="<?php echo RSVP_PRO_OPTION_EMAIL_FROM; ?>"><?php _e("Email address notifications could come from?", "rsvp-pro-plugin"); ?></label>
                 </th>
@@ -1748,7 +2194,7 @@
                    Examples of expected data: test@test.com or &quot;Test Bob&quot; &lt;test@test.com&gt;", "rsvp-pro-plugin"); ?></span>
                 </td>
               </tr>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="<?php echo RSVP_PRO_OPTION_EMAIL_CC_ASSOCIATED; ?>"><?php _e("CC associated attendees", "rsvp-pro-plugin"); ?></label>
                 </th>
@@ -1757,7 +2203,7 @@
                     <?php echo (($emailCCAssociated == "Y") ? " checked=\"checked\"": ""); ?> />
                 </td>
               </tr>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="<?php echo RSVP_PRO_OPTION_EMAIL_BCC_ADDRESS; ?>"><?php _e("Email addresses to BCC when attendee RSVPs:", "rsvp-pro-plugin"); ?></label>
                 </th>
@@ -1767,7 +2213,7 @@
                   <span class="description"><?php _e("Separate each email address with a semicolon (;)", "rsvp-pro-plugin"); ?>
                 </td>
               </tr>
-              <tr>
+              <tr class="subEventHide">
                 <th scope="row">
                   <label for="<?php echo RSVP_PRO_OPTION_EMAIL_SUBJECT; ?>"><?php _e("Email subject for the attendee email:", "rsvp-pro-plugin"); ?></label>
                 </th>
@@ -1775,6 +2221,14 @@
                   <input type="text" name="<?php echo RSVP_PRO_OPTION_EMAIL_SUBJECT; ?>" id="<?php echo RSVP_PRO_OPTION_EMAIL_SUBJECT; ?>" value="<?php echo esc_attr_e($emailSubject); ?>" class="regular-text" />
                   <br />
                   <span class="description"><?php _e("Default is: &quot;RSVP Confirmation&quot;", "rsvp-pro-plugin"); ?></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>"><?php _e("Email sent to attendees when they are automatically changed from \"waitlist\" to \"yes\":", "rsvp-pro-plugin"); ?></label>
+                </th>
+                <td>
+                  <textarea name="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>" id="<?php echo RSVP_PRO_OPTION_WAITLIST_STATUS_CHANGE_EMAIL; ?>" rows="5" cols="60"><?php echo esc_html($waitlistStatusEmail); ?></textarea>
                 </td>
               </tr>
             </tbody>

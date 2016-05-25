@@ -13,6 +13,10 @@ jQuery(document).ready(function(){
     handleShowSalutationChange();
   });
   handleShowSalutationChange();
+
+  jQuery(".pagesize-selector").change(function() {
+    this.form.submit();
+  })
 });
 
 function handleParentEventChange() {

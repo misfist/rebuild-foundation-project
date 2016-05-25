@@ -292,8 +292,6 @@ function does_user_have_access_to_event($rsvpId, $attendeeId) {
 }
 
 function get_event_name($eventId) {
-  global $wpdb;
-
   return rsvp_pro_get_event_information($eventId, RSVP_PRO_INFO_EVENT_NAME);
 }
 

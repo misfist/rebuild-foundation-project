@@ -1,498 +1,524 @@
-# Copyright (C) 2015 RSVP Pro
+# Copyright (C) 2016 RSVP Pro
 # This file is distributed under the same license as the RSVP Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: RSVP Pro 1.9.7\n"
+"Project-Id-Version: RSVP Pro 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rsvp-pro-plugin\n"
-"POT-Creation-Date: 2015-10-15 21:29:56+00:00\n"
+"POT-Creation-Date: 2016-01-26 06:27:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: admin/manage_event_form.inc.php:342
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:342
+#: admin/manage_event_form.inc.php:361
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:361
 msgid "Update Event"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:444
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:444
+#: admin/manage_event_form.inc.php:470
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:470
 #: rsvp-pro-plugin/wp-rsvp.php:293 rsvp-pro-plugin/wp-rsvp.php:344
 #: wp-rsvp.php:293 wp-rsvp.php:344
 msgid "Settings"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:448 admin/manage_event_form.inc.php:1003
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:448
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1003
+#: admin/manage_event_form.inc.php:474 admin/manage_event_form.inc.php:1050
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:474
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1050
 msgid "General"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:450
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:450
+#: admin/manage_event_form.inc.php:476
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:476
 msgid "Front-End"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:451
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:451
+#: admin/manage_event_form.inc.php:477
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:477
 msgid "Front-End Text"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:453
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:453
+#: admin/manage_event_form.inc.php:479
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:479
 msgid "Public Attendee List"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:454
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:454
+#: admin/manage_event_form.inc.php:480
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:480
 msgid "Notifications"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:551
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:551
+#: admin/manage_event_form.inc.php:582
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:582
 msgid "Event Name:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:559
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:559
+#: admin/manage_event_form.inc.php:590
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:590
 msgid "RSVP Open Date:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:569
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:569
+#: admin/manage_event_form.inc.php:600
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:600
 msgid "RSVP Close Date:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:579
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:579
+#: admin/manage_event_form.inc.php:610
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:610
 msgid "Parent Event:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:602
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:602
+#: admin/manage_event_form.inc.php:633
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:633
 msgid "Specify roles that can access configuration functionality:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:627
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:627
+#: admin/manage_event_form.inc.php:658
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:658
 msgid "Attendee access to event:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:643
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:643
+#: admin/manage_event_form.inc.php:674
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:674
 msgid "Attendee Access List:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:731
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:731
+#: admin/manage_event_form.inc.php:766
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:766
 msgid "General Form Settings"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:737
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:737
+#: admin/manage_event_form.inc.php:772
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:772
 msgid "Frontend has one step per event:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:745
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:745
+#: admin/manage_event_form.inc.php:780
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:780
 msgid "Remove scrolling to the top of the RSVP form:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:754
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:754
+#: admin/manage_event_form.inc.php:789
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:789
 msgid "Disable fuzzy user search:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:763
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:763
+#: admin/manage_event_form.inc.php:798
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:798
+msgid "Do partial match on attendee's first and last name:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:807
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:807
 msgid "Max guest limit for event:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:768
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:768
+#: admin/manage_event_form.inc.php:812
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:812
 msgid "Default has no max guest limit for each event"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:773
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:773
+#: admin/manage_event_form.inc.php:817
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:817
 msgid "Allow for a wait list:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:778
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:778
+#: admin/manage_event_form.inc.php:822
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:822
 msgid "Only applies when an event specifies a max guest limit"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:783
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:783
+#: admin/manage_event_form.inc.php:827
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:827
 msgid "Number of Additional Guests:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:788
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:788
+#: admin/manage_event_form.inc.php:832
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:832
 msgid ""
 "Default is 3 guests, it is also possible to set different limits for "
 "individual attendees"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:793
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:793
+#: admin/manage_event_form.inc.php:837
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:837
 msgid "No additional guests:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:801
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:801
+#: admin/manage_event_form.inc.php:845
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:845
 msgid "Allow Open Registration:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:812
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:812
+#: admin/manage_event_form.inc.php:856
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:856
 msgid "Attendees can't edit their RSVP:"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:823
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:823
-msgid "Automatically authenticate logged in WP-Users:"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:835
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:835
-msgid "Form Field Settings"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:841
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:841
-msgid "Show Salutations:"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:849
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:849
-msgid "Possible Salutations:"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:854
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:854
-msgid "One salutation per-line"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:859
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:859
-msgid "Show Suffix:"
 msgstr ""
 
 #: admin/manage_event_form.inc.php:867
 #: rsvp-pro-plugin/admin/manage_event_form.inc.php:867
-msgid "Show &quot;No Response&quot; for Associated Attendees:"
+msgid "Automatically authenticate logged in WP-Users:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:875
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:875
-msgid "Hide Note Field:"
+#: admin/manage_event_form.inc.php:879
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:879
+msgid "Form Field Settings"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:883
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:883
-msgid "Hide email field on rsvp form:"
+#: admin/manage_event_form.inc.php:885
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:885
+msgid "Show Salutations:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:892
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:892
-msgid "Require email question:"
+#: admin/manage_event_form.inc.php:893
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:893
+msgid "Possible Salutations:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:901
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:901
-msgid "Require RSVP question:"
+#: admin/manage_event_form.inc.php:898
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:898
+msgid "One salutation per-line"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:903
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:903
+msgid "Show Suffix:"
 msgstr ""
 
 #: admin/manage_event_form.inc.php:911
 #: rsvp-pro-plugin/admin/manage_event_form.inc.php:911
-msgid "Passcode Settings"
+msgid "Show &quot;No Response&quot; for Associated Attendees:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:917
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:917
-msgid "Require a Passcode to RSVP:"
+#: admin/manage_event_form.inc.php:919
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:919
+msgid "Hide Note Field:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:925
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:925
-msgid "Passcode length:"
+#: admin/manage_event_form.inc.php:927
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:927
+msgid "Hide email field on rsvp form:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:930
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:930
-msgid "Valid values 1 to 50"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:935
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:935
-msgid "Just a Passcode to RSVP:"
-msgstr ""
-
-#: admin/manage_event_form.inc.php:940
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:940
-msgid "Requires that passcodes are unique"
+#: admin/manage_event_form.inc.php:936
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:936
+msgid "Require email question:"
 msgstr ""
 
 #: admin/manage_event_form.inc.php:945
 #: rsvp-pro-plugin/admin/manage_event_form.inc.php:945
+msgid "Require RSVP question:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:955
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:955
+msgid "Passcode Settings"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:961
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:961
+msgid "Require a Passcode to RSVP:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:969
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:969
+msgid "Passcode length:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:974
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:974
+msgid "Valid values 1 to 50"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:979
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:979
+msgid "Just a Passcode to RSVP:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:984
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:984
+msgid "Requires that passcodes are unique"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:989
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:989
 msgid "No passcode required on open registration:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:950
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:950
+#: admin/manage_event_form.inc.php:994
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:994
 msgid ""
 "This will override the requirement of having a passcode for open registration"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1009
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1009
+#: admin/manage_event_form.inc.php:1056
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1056
 msgid "&quot;First Name&quot; label:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1018
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1018
+#: admin/manage_event_form.inc.php:1065
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1065
 msgid "&quot;Last Name&quot; label:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1027
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1027
+#: admin/manage_event_form.inc.php:1074
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1074
 msgid "&quot;Yes&quot; text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1036
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1036
+#: admin/manage_event_form.inc.php:1083
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1083
 msgid "&quot;No&quot; text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1045
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1045
+#: admin/manage_event_form.inc.php:1092
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1092
 msgid "&quot;No Response&quot; text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1055
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1055
+#: admin/manage_event_form.inc.php:1102
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1102
 msgid "Greeting Page"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1061
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1061
+#: admin/manage_event_form.inc.php:1108
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1108
 msgid "Message displayed before the event is open for RSVP'ing"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1066
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1066
+#: admin/manage_event_form.inc.php:1113
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1113
 msgid ""
 "Default is: &quot;I am sorry but the ability to RSVP for our event won't "
 "open till &lt;strong&gt;%s&lt;/strong&gt;&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1071
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1071
+#: admin/manage_event_form.inc.php:1118
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1118
 msgid "Message displayed once the event is closed for RSVP'ing"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1076
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1076
+#: admin/manage_event_form.inc.php:1123
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1123
 msgid "Default is: &quot;The deadline to RSVP for this event has passed.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1081
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1081
+#: admin/manage_event_form.inc.php:1128
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1128
 msgid "Custom greeting:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1086
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1086
+#: admin/manage_event_form.inc.php:1133
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1133
 msgid "Default is: &quot;Please enter your first and last name to RSVP.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1091
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1091
+#: admin/manage_event_form.inc.php:1138
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1138
 msgid "&quot;Modify Attendee&quot; button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1097
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1097
+#: admin/manage_event_form.inc.php:1144
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1144
 msgid ""
 "Default text is: &quot;Need to modify your registration? Start with the "
 "below form.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1102
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1102
+#: admin/manage_event_form.inc.php:1149
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1149
 msgid "&quot;Passcode&quot; label:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1111
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1111
+#: admin/manage_event_form.inc.php:1158
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1158
 msgid "&quot;New Attendee&quot; button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1117
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1117
+#: admin/manage_event_form.inc.php:1164
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1164
 msgid "Default text is: &quot;New Attendee Registration&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1122
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1122
+#: admin/manage_event_form.inc.php:1169
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1169
 msgid "&quot;Complete RSVP&quot; button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1128
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1128
+#: admin/manage_event_form.inc.php:1175
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1175
 msgid "Default text is: &quot;Complete your RSVP!&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1134
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1134
+#: admin/manage_event_form.inc.php:1180
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1180
+msgid "Unable to find:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:1186
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1186
+msgid ""
+"Default text is: &quot;We were unable to find anyone with a name of...&quot;"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:1193
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1193
 msgid "Edit Confirmation Page"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1140
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1140
+#: admin/manage_event_form.inc.php:1199
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1199
 msgid "Edit prompt:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1146
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1146
+#: admin/manage_event_form.inc.php:1205
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1205
 msgid ""
 "Default text is: &quot;Hi %s it looks like you have already RSVP'd. Would "
 "you like to edit your reservation?&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1152
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1152
+#: admin/manage_event_form.inc.php:1211
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1211
 msgid "Not found screen"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1157
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1157
+#: admin/manage_event_form.inc.php:1216
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1216
 msgid "Fuzzy match results text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1163
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1163
+#: admin/manage_event_form.inc.php:1222
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1222
 msgid ""
 "Default text is: &quot;We could not find an exact match but could any of the "
 "below entries be you?&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1168
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1168
+#: admin/manage_event_form.inc.php:1227
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1227
 msgid "Multiple match results text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1174
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1174
+#: admin/manage_event_form.inc.php:1233
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1233
 msgid ""
 "Default text is: &quot;we found multiple people with that name, please "
 "select your record&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1182
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1182
+#: admin/manage_event_form.inc.php:1240
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1240
 msgid "Main RSVP Page"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1188
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1188
+#: admin/manage_event_form.inc.php:1246
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1246
 msgid "Custom welcome:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1193
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1193
+#: admin/manage_event_form.inc.php:1251
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1251
 msgid ""
 "Default is: &quot;There are a few more questions we need to ask you if \n"
 "                    you could please fill them out below to finish up the "
 "RSVP process.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1199
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1199
+#: admin/manage_event_form.inc.php:1257
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1257
+msgid "Welcome back:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:1262
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1262
+msgid "Default is: &quot;Welcome back&quot;"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:1267
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1267
 msgid "RSVP question verbiage:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1204
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1204
+#: admin/manage_event_form.inc.php:1272
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1272
 msgid "Default is: &quot;So, how about it?&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1209
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1209
+#: admin/manage_event_form.inc.php:1277
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1277
 msgid "RSVP yes:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1214
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1214
+#: admin/manage_event_form.inc.php:1282
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1282
 msgid ""
 "Default is: &quot;Yes, of course I will be there! Who doesn't like family, "
 "friends, weddings, and a good time?&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1219
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1219
+#: admin/manage_event_form.inc.php:1287
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1287
 msgid "RSVP no:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1224
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1224
+#: admin/manage_event_form.inc.php:1292
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1292
 msgid ""
 "Default is: &quot;Um, unfortunately, there is a Star Trek marathon on that "
 "day that I just cannot miss.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1229
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1229
+#: admin/manage_event_form.inc.php:1297
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1297
 msgid "RSVP waitlist:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1234
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1234
+#: admin/manage_event_form.inc.php:1302
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1302
 msgid ""
 "Default is: &quot;The event is full but we can add you to the waitlist.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1239
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1239
+#: admin/manage_event_form.inc.php:1307
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1307
 msgid "&quot;Salutation&quot; label:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1244
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1244
+#: admin/manage_event_form.inc.php:1312
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1312
 msgid "Default is: &quot;Salutation&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1249
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1249
+#: admin/manage_event_form.inc.php:1317
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1317
 msgid "&quot;Suffix&quot; label:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1254
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1254
+#: admin/manage_event_form.inc.php:1322
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1322
 msgid "Default is: &quot;Suffix&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1259
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1259
+#: admin/manage_event_form.inc.php:1327
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1327
 msgid "&quot;Email&quot; label:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1264
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1264
+#: admin/manage_event_form.inc.php:1332
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1332
 msgid "Default is: &quot;Email address&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1269
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1269
+#: admin/manage_event_form.inc.php:1337
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1337
 msgid "Note question:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1274
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1274
+#: admin/manage_event_form.inc.php:1342
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1342
 msgid ""
 "Default is: &quot;If you have any <strong style=\"color:red;\">food "
 "allergies</strong>, please indicate what \n"
@@ -501,266 +527,274 @@ msgid ""
 "                  have any questions, please send us an email.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1281
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1281
+#: admin/manage_event_form.inc.php:1349
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1349
 msgid "&quot;RSVP&quot; button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1287
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1287
+#: admin/manage_event_form.inc.php:1355
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1355
 msgid "Default text is: &quot;RSVP&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1292
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1292
+#: admin/manage_event_form.inc.php:1360
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1360
 msgid "&quot;Next&quot; button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1298
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1298
+#: admin/manage_event_form.inc.php:1366
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1366
 msgid ""
 "Default text is: &quot;Next&quot; (this only applies to when the multiple "
 "step option is enabled)"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1303
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1303
+#: admin/manage_event_form.inc.php:1371
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1371
 msgid "Add additional:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1309
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1309
+#: admin/manage_event_form.inc.php:1377
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1377
 msgid ""
 "Default is: &quot;You currently can invite &lt;span id=\"numAvailableToAdd"
 "\"&gt;%d&lt;/span&gt; more people.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1314
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1314
+#: admin/manage_event_form.inc.php:1382
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1382
 msgid "Associated attendee greeting:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1320
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1320
+#: admin/manage_event_form.inc.php:1388
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1388
 msgid "Default is: &quot;Will %s be attending?&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1325
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1325
+#: admin/manage_event_form.inc.php:1393
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1393
 msgid "New attendee button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1331
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1331
+#: admin/manage_event_form.inc.php:1399
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1399
 msgid "Default is: &quot;Add Additional Guests&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1336
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1336
+#: admin/manage_event_form.inc.php:1404
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1404
 msgid "Remove attendee button:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1342
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1342
+#: admin/manage_event_form.inc.php:1410
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1410
 msgid "Default is: &quot;Remove Guest&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1347
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1347
+#: admin/manage_event_form.inc.php:1415
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1415
 msgid "Message when the max guest limit is reached:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1352
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1352
+#: admin/manage_event_form.inc.php:1420
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1420
 msgid ""
 "Default is: &quot;The maximum limit of %d has been reached for this event."
 "&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1357
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1357
+#: admin/manage_event_form.inc.php:1425
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1425
 msgid "Waitlist text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1362
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1362
+#: admin/manage_event_form.inc.php:1430
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1430
 msgid "Default is: &quot;This event has a waitlist available.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1367
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1367
+#: admin/manage_event_form.inc.php:1435
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1435
 msgid "Associated RSVP message:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1372
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1372
+#: admin/manage_event_form.inc.php:1440
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1440
 msgid ""
 "Default is: &quot;The following people are associated with you.  At this "
 "time you can RSVP for them as well.&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1378
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1378
+#: admin/manage_event_form.inc.php:1446
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1446
 msgid "One Step Per Event"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1383
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1383
+#: admin/manage_event_form.inc.php:1451
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1451
 msgid "Event title text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1388
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1388
+#: admin/manage_event_form.inc.php:1456
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1456
 msgid "Default is: &quot;RSVP for&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1393
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1393
+#: admin/manage_event_form.inc.php:1461
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1461
 msgid "&quot;Option&quot; text:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1403
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1403
+#: admin/manage_event_form.inc.php:1471
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1471
 msgid "Confirmation Page"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1409
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1409
+#: admin/manage_event_form.inc.php:1477
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1477
 msgid "Custom thank you:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1414
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1414
+#: admin/manage_event_form.inc.php:1482
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1482
 msgid "Default is: &quot;Thank you for RSVPing&quot;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1419
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1419
+#: admin/manage_event_form.inc.php:1487
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1487
 msgid "Thank You when an attendee RSVPs with &quot;no&quot;:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1512
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1512
+#: admin/manage_event_form.inc.php:1583
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1583
 msgid "Only show a specific rsvp status on public attendee list:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1517
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1517
+#: admin/manage_event_form.inc.php:1588
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1588
 #: rsvp-pro-plugin/rsvp_frontend.inc.php:383
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:541
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:867
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1898
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:869
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1974
 #: rsvp-pro-plugin/rsvp_utils.inc.php:178 rsvp-pro-plugin/wp-rsvp.php:599
 #: rsvp-pro-plugin/wp-rsvp.php:697 rsvp-pro-plugin/wp-rsvp.php:1800
-#: rsvp_frontend.inc.php:383 rsvp_frontend.inc.php:541
-#: rsvp_frontend.inc.php:867 rsvp_frontend.inc.php:1898 rsvp_utils.inc.php:178
-#: wp-rsvp.php:599 wp-rsvp.php:697 wp-rsvp.php:1800
+#: rsvp_frontend.inc.php:383 rsvp_frontend.inc.php:869
+#: rsvp_frontend.inc.php:1974 rsvp_utils.inc.php:178 wp-rsvp.php:599
+#: wp-rsvp.php:697 wp-rsvp.php:1800
 msgid "Yes"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1518
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1518
+#: admin/manage_event_form.inc.php:1589
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1589
 #: rsvp-pro-plugin/rsvp_frontend.inc.php:384
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:542
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:868
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1899
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:870
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1975
 #: rsvp-pro-plugin/rsvp_utils.inc.php:180 rsvp-pro-plugin/wp-rsvp.php:600
 #: rsvp-pro-plugin/wp-rsvp.php:697 rsvp-pro-plugin/wp-rsvp.php:1803
-#: rsvp_frontend.inc.php:384 rsvp_frontend.inc.php:542
-#: rsvp_frontend.inc.php:868 rsvp_frontend.inc.php:1899 rsvp_utils.inc.php:180
-#: wp-rsvp.php:600 wp-rsvp.php:697 wp-rsvp.php:1803
+#: rsvp_frontend.inc.php:384 rsvp_frontend.inc.php:870
+#: rsvp_frontend.inc.php:1975 rsvp_utils.inc.php:180 wp-rsvp.php:600
+#: wp-rsvp.php:697 wp-rsvp.php:1803
 msgid "No"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1519
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1519
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:544
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1901
+#: admin/manage_event_form.inc.php:1590
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1590
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:543
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1977
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:30
 #: rsvp-pro-plugin/rsvp_utils.inc.php:176 rsvp-pro-plugin/wp-rsvp.php:605
-#: rsvp-pro-plugin/wp-rsvp.php:1797 rsvp_frontend.inc.php:544
-#: rsvp_frontend.inc.php:1901 rsvp_pro_wizard_forms.inc.php:30
+#: rsvp-pro-plugin/wp-rsvp.php:1797 rsvp_frontend.inc.php:543
+#: rsvp_frontend.inc.php:1977 rsvp_pro_wizard_forms.inc.php:30
 #: rsvp_utils.inc.php:176 wp-rsvp.php:605 wp-rsvp.php:1797
 msgid "No Response"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1520
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1520
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:543
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:869
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1900
+#: admin/manage_event_form.inc.php:1591
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1591
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:542
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:871
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1976
 #: rsvp-pro-plugin/rsvp_utils.inc.php:182 rsvp-pro-plugin/wp-rsvp.php:602
-#: rsvp-pro-plugin/wp-rsvp.php:1808 rsvp_frontend.inc.php:543
-#: rsvp_frontend.inc.php:869 rsvp_frontend.inc.php:1900 rsvp_utils.inc.php:182
+#: rsvp-pro-plugin/wp-rsvp.php:1808 rsvp_frontend.inc.php:542
+#: rsvp_frontend.inc.php:871 rsvp_frontend.inc.php:1976 rsvp_utils.inc.php:182
 #: wp-rsvp.php:602 wp-rsvp.php:1808
 msgid "Waitlist"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1526
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1526
+#: admin/manage_event_form.inc.php:1597
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1597
 msgid "Attendee list sort order:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1531
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1531
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1629
+#: admin/manage_event_form.inc.php:1602
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1602
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1664
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:332
 #: rsvp-pro-plugin/wp-rsvp.php:1135 rsvp-pro-plugin/wp-rsvp.php:1700
-#: rsvp_frontend.inc.php:1629 rsvp_pro_wizard_forms.inc.php:332
+#: rsvp_frontend.inc.php:1664 rsvp_pro_wizard_forms.inc.php:332
 #: wp-rsvp.php:1135 wp-rsvp.php:1700
 msgid "First Name"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1532
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1532
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1634
+#: admin/manage_event_form.inc.php:1603
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1603
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1669
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:337
 #: rsvp-pro-plugin/wp-rsvp.php:1136 rsvp-pro-plugin/wp-rsvp.php:1723
-#: rsvp_frontend.inc.php:1634 rsvp_pro_wizard_forms.inc.php:337
+#: rsvp_frontend.inc.php:1669 rsvp_pro_wizard_forms.inc.php:337
 #: wp-rsvp.php:1136 wp-rsvp.php:1723
 msgid "Last Name"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1533
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1533
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1862 rsvp-pro-plugin/wp-rsvp.php:624
-#: rsvp-pro-plugin/wp-rsvp.php:1791 rsvp_frontend.inc.php:1862 wp-rsvp.php:624
+#: admin/manage_event_form.inc.php:1604
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1604
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1921 rsvp-pro-plugin/wp-rsvp.php:624
+#: rsvp-pro-plugin/wp-rsvp.php:1791 rsvp_frontend.inc.php:1921 wp-rsvp.php:624
 #: wp-rsvp.php:1791
 msgid "RSVP Status"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1536
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1536
+#: admin/manage_event_form.inc.php:1607
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1607
 msgid "Default sort order is: First Name"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1618
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1618
+#: admin/manage_event_form.inc.php:1612
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1612
+msgid "Hide RSVP status from list:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:1624
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1624
+msgid "Show custom questions in list:"
+msgstr ""
+
+#: admin/manage_event_form.inc.php:1726
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1726
 msgid "Notify When Guest RSVPs:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1626
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1626
+#: admin/manage_event_form.inc.php:1734
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1734
 msgid "Admin notification email:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1634
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1634
+#: admin/manage_event_form.inc.php:1742
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1742
 msgid "Email guests when RSVP is completed:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1643
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1643
+#: admin/manage_event_form.inc.php:1751
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1751
 msgid "Email Text: <br />Sent to guests in confirmation, at top of email"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1651
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1651
+#: admin/manage_event_form.inc.php:1759
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1759
 msgid "Email address notifications could come from?"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1656
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1656
+#: admin/manage_event_form.inc.php:1764
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1764
 msgid ""
 "Note: depending on your web host they might block emails with this setting "
 "turned on.<br />\n"
@@ -768,28 +802,28 @@ msgid ""
 "Bob&quot; &lt;test@test.com&gt;"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1662
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1662
+#: admin/manage_event_form.inc.php:1770
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1770
 msgid "CC associated attendees"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1671
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1671
+#: admin/manage_event_form.inc.php:1779
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1779
 msgid "Email addresses to BCC when attendee RSVPs:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1676
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1676
+#: admin/manage_event_form.inc.php:1784
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1784
 msgid "Separate each email address with a semicolon (;)"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1681
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1681
+#: admin/manage_event_form.inc.php:1789
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1789
 msgid "Email subject for the attendee email:"
 msgstr ""
 
-#: admin/manage_event_form.inc.php:1686
-#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1686
+#: admin/manage_event_form.inc.php:1794
+#: rsvp-pro-plugin/admin/manage_event_form.inc.php:1794
 msgid "Default is: &quot;RSVP Confirmation&quot;"
 msgstr ""
 
@@ -804,9 +838,9 @@ msgid "The deadline to RSVP for this event has passed."
 msgstr ""
 
 #: rsvp-pro-plugin/rsvp_frontend.inc.php:166
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1127
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1491 rsvp_frontend.inc.php:166
-#: rsvp_frontend.inc.php:1127 rsvp_frontend.inc.php:1491
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1139
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1514 rsvp_frontend.inc.php:166
+#: rsvp_frontend.inc.php:1139 rsvp_frontend.inc.php:1514
 msgid ""
 "There are a few more questions we need to ask you if you could please fill "
 "them out below to finish up the RSVP process."
@@ -822,24 +856,24 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:548
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:22 rsvp_frontend.inc.php:548
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:550
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:22 rsvp_frontend.inc.php:550
 #: rsvp_pro_wizard_forms.inc.php:22
 msgid ""
 "Yes, of course I will be there! Who doesn't like family, friends, weddings, "
 "and a good time?"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:550
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:24 rsvp_frontend.inc.php:550
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:552
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:24 rsvp_frontend.inc.php:552
 #: rsvp_pro_wizard_forms.inc.php:24
 msgid ""
 "Um, unfortunately, there is a Star Trek marathon on that day that I just "
 "cannot miss."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:552
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:271 rsvp_frontend.inc.php:552
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:554
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:271 rsvp_frontend.inc.php:554
 #: rsvp_pro_wizard_forms.inc.php:271
 msgid ""
 "If you have any <strong style=\"color:red;\">food allergies</strong>, please "
@@ -848,240 +882,240 @@ msgid ""
 "please send us an email."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:553
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:25 rsvp_frontend.inc.php:553
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:555
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:25 rsvp_frontend.inc.php:555
 #: rsvp_pro_wizard_forms.inc.php:25
 msgid "The event is full but we can add you to the waitlist."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:568 rsvp_frontend.inc.php:568
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:570 rsvp_frontend.inc.php:570
 msgid "First Name: "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:573 rsvp_frontend.inc.php:573
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:575 rsvp_frontend.inc.php:575
 msgid "Last Name: "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:597
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:56 rsvp_frontend.inc.php:597
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:599
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:56 rsvp_frontend.inc.php:599
 #: rsvp_pro_wizard_forms.inc.php:56
 msgid "So, how about it?"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:631
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:757
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1903
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:633
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:759
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1979
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:314
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:425
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:504
 #: rsvp-pro-plugin/wp-rsvp.php:1134 rsvp-pro-plugin/wp-rsvp.php:1737
-#: rsvp_frontend.inc.php:631 rsvp_frontend.inc.php:757
-#: rsvp_frontend.inc.php:1903 rsvp_pro_wizard_forms.inc.php:314
+#: rsvp_frontend.inc.php:633 rsvp_frontend.inc.php:759
+#: rsvp_frontend.inc.php:1979 rsvp_pro_wizard_forms.inc.php:314
 #: rsvp_pro_wizard_forms.inc.php:425 rsvp_pro_wizard_forms.inc.php:504
 #: wp-rsvp.php:1134 wp-rsvp.php:1737
 msgid "Salutation"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:650
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:775
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1906
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:652
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:777
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1982
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:358
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:443
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:507
 #: rsvp-pro-plugin/wp-rsvp.php:1137 rsvp-pro-plugin/wp-rsvp.php:1760
-#: rsvp_frontend.inc.php:650 rsvp_frontend.inc.php:775
-#: rsvp_frontend.inc.php:1906 rsvp_pro_wizard_forms.inc.php:358
+#: rsvp_frontend.inc.php:652 rsvp_frontend.inc.php:777
+#: rsvp_frontend.inc.php:1982 rsvp_pro_wizard_forms.inc.php:358
 #: rsvp_pro_wizard_forms.inc.php:443 rsvp_pro_wizard_forms.inc.php:507
 #: wp-rsvp.php:1137 wp-rsvp.php:1760
 msgid "Suffix"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:661
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:787
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:663
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:789
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:369
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:454 rsvp_frontend.inc.php:661
-#: rsvp_frontend.inc.php:787 rsvp_pro_wizard_forms.inc.php:369
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:454 rsvp_frontend.inc.php:663
+#: rsvp_frontend.inc.php:789 rsvp_pro_wizard_forms.inc.php:369
 #: rsvp_pro_wizard_forms.inc.php:454
 msgid "Email Address"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:698
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:700
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:195
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:401 rsvp_frontend.inc.php:698
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:401 rsvp_frontend.inc.php:700
 #: rsvp_pro_wizard_forms.inc.php:195 rsvp_pro_wizard_forms.inc.php:401
 msgid ""
 "The following people are associated with you.  At this time you can RSVP for "
 "them as well."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:721
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:723
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:77
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:145
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:223 rsvp_frontend.inc.php:721
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:223 rsvp_frontend.inc.php:723
 #: rsvp_pro_wizard_forms.inc.php:77 rsvp_pro_wizard_forms.inc.php:145
 #: rsvp_pro_wizard_forms.inc.php:223
 msgid " Will %s be attending?"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:799 rsvp_frontend.inc.php:799
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:801 rsvp_frontend.inc.php:801
 msgid "%s's events."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:817
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:289 rsvp_frontend.inc.php:817
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:819
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:289 rsvp_frontend.inc.php:819
 #: rsvp_pro_wizard_forms.inc.php:289
 msgid ""
 "You currently can invite <span id=\"numAvailableToAdd\">%d</span> more "
 "people."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:828
-#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:301 rsvp_frontend.inc.php:828
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:830
+#: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:301 rsvp_frontend.inc.php:830
 #: rsvp_pro_wizard_forms.inc.php:301
 msgid "Add Additional Guests"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:841
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1112 rsvp_frontend.inc.php:841
-#: rsvp_frontend.inc.php:1112
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:843
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1124 rsvp_frontend.inc.php:843
+#: rsvp_frontend.inc.php:1124
 msgid "RSVP"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:865 rsvp_frontend.inc.php:865
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:867 rsvp_frontend.inc.php:867
 msgid "RSVP for "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:872 rsvp_frontend.inc.php:872
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:874 rsvp_frontend.inc.php:874
 msgid "Yes, I will attend %s"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:874 rsvp_frontend.inc.php:874
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:876 rsvp_frontend.inc.php:876
 msgid "No, I will not be able to attend %s"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:875 rsvp_frontend.inc.php:875
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:877 rsvp_frontend.inc.php:877
 msgid "Add me to the waitlist for even %s"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1062 rsvp_frontend.inc.php:1062
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1064 rsvp_frontend.inc.php:1064
 msgid "A first and last name must be specified"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1092 rsvp_frontend.inc.php:1092
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1104 rsvp_frontend.inc.php:1104
 msgid "we found multiple people with that name, please select your record"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1098 rsvp_frontend.inc.php:1098
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1110 rsvp_frontend.inc.php:1110
 msgid "Hi "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1147 rsvp_frontend.inc.php:1147
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1159 rsvp_frontend.inc.php:1159
 msgid ""
 "We could not find an exact match but could any of the below entries be you?"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1169 rsvp_frontend.inc.php:1169
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1181 rsvp_frontend.inc.php:1181
 msgid "We were unable to find anyone with a name of %1$s %2$s"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1171 rsvp_frontend.inc.php:1171
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1183 rsvp_frontend.inc.php:1183
 msgid "We were unable to find anyone with that passcode"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1467 rsvp_frontend.inc.php:1467
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1483 rsvp_frontend.inc.php:1483
 msgid "Welcome back"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1486 rsvp_frontend.inc.php:1486
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1509 rsvp_frontend.inc.php:1509
 msgid "Hi"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1519 rsvp_frontend.inc.php:1519
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1542 rsvp_frontend.inc.php:1542
 msgid "Thank you"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1523
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1542 rsvp_frontend.inc.php:1523
-#: rsvp_frontend.inc.php:1542
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1546
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1575 rsvp_frontend.inc.php:1546
+#: rsvp_frontend.inc.php:1575
 msgid " for RSVPing."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1526 rsvp_frontend.inc.php:1526
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1549 rsvp_frontend.inc.php:1549
 msgid " You have also RSVPed for - "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1538 rsvp_frontend.inc.php:1538
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1571 rsvp_frontend.inc.php:1571
 msgid "Thank you "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1548 rsvp_frontend.inc.php:1548
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1582 rsvp_frontend.inc.php:1582
 msgid " You will also need to know your password which is"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1554 rsvp_frontend.inc.php:1554
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1589 rsvp_frontend.inc.php:1589
 msgid "<br /><br />You have also RSVPed for - "
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1582 rsvp_frontend.inc.php:1582
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1617 rsvp_frontend.inc.php:1617
 msgid "Please enter your first and last name to RSVP."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1606 rsvp_frontend.inc.php:1606
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1641 rsvp_frontend.inc.php:1641
 msgid "New Attendee Registration"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1618 rsvp_frontend.inc.php:1618
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1653 rsvp_frontend.inc.php:1653
 msgid "Need to modify your registration? Start with the below form."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1645 rsvp-pro-plugin/wp-rsvp.php:656
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1680 rsvp-pro-plugin/wp-rsvp.php:656
 #: rsvp-pro-plugin/wp-rsvp.php:1141 rsvp-pro-plugin/wp-rsvp.php:1781
-#: rsvp_frontend.inc.php:1645 wp-rsvp.php:656 wp-rsvp.php:1141
+#: rsvp_frontend.inc.php:1680 wp-rsvp.php:656 wp-rsvp.php:1141
 #: wp-rsvp.php:1781
 msgid "Passcode"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1653 rsvp_frontend.inc.php:1653
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1688 rsvp_frontend.inc.php:1688
 msgid "Complete your RSVP!"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1861 rsvp_frontend.inc.php:1861
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1918 rsvp_frontend.inc.php:1918
 msgid "Name"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1904
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1980
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:505
-#: rsvp_frontend.inc.php:1904 rsvp_pro_wizard_forms.inc.php:505
+#: rsvp_frontend.inc.php:1980 rsvp_pro_wizard_forms.inc.php:505
 msgid "First name"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1905
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1981
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:506
-#: rsvp_frontend.inc.php:1905 rsvp_pro_wizard_forms.inc.php:506
+#: rsvp_frontend.inc.php:1981 rsvp_pro_wizard_forms.inc.php:506
 msgid "Last name"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1907
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1983
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:508
-#: rsvp_frontend.inc.php:1907 rsvp_pro_wizard_forms.inc.php:508
+#: rsvp_frontend.inc.php:1983 rsvp_pro_wizard_forms.inc.php:508
 msgid "Email address"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:1908
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:1984
 #: rsvp-pro-plugin/rsvp_pro_wizard_forms.inc.php:509
-#: rsvp_frontend.inc.php:1908 rsvp_pro_wizard_forms.inc.php:509
+#: rsvp_frontend.inc.php:1984 rsvp_pro_wizard_forms.inc.php:509
 msgid "Remove Guest"
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:2154 rsvp_frontend.inc.php:2154
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:2230 rsvp_frontend.inc.php:2236
 msgid "The maximum limit of %d has been reached for this event."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:2176 rsvp_frontend.inc.php:2176
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:2252 rsvp_frontend.inc.php:2258
 msgid "This event has a waitlist available."
 msgstr ""
 
-#: rsvp-pro-plugin/rsvp_frontend.inc.php:2340 rsvp_frontend.inc.php:2340
+#: rsvp-pro-plugin/rsvp_frontend.inc.php:2416 rsvp_frontend.inc.php:2422
 msgid "RSVP Confirmation"
 msgstr ""
 
@@ -1522,6 +1556,10 @@ msgstr ""
 
 #: rsvp-pro-plugin/wp-rsvp.php:2555 wp-rsvp.php:2555
 msgid "Deactivate License"
+msgstr ""
+
+#: rsvp_frontend.inc.php:2026
+msgid "Will this person be attending?"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
