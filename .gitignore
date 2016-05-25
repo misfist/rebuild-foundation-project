@@ -81,3 +81,6 @@ wp-signup.php
 wp-trackback.php
 xmlrpc.php
 
+!wp-content/plugins/
+!wp-content/themes/
+
