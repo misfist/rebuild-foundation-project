@@ -40,6 +40,12 @@ article.site_category-listening-house   {
 	}
 }
 
+article.site_category-black-artists-retreat  {
+	.entry-meta.location a:hover {
+		color: $color__bar;
+	}
+}
+
 
 
 
@@ -194,6 +200,18 @@ article.site_category-listening-house   {
 
 			.entry-title {
 				color: $color__dorchester;
+			}
+			
+		}
+
+		&.site_category-black-artists-retreat{
+			
+			#details::before {
+				content: url('img/graphic_bar.svg');
+			}
+
+			.entry-title {
+				color: $color__bar;
 			}
 			
 		}

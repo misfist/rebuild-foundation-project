@@ -147,6 +147,21 @@
 	}
 }
 
+.site-black-artists-retreat {
+
+	#masthead .site-branding {
+
+		.site-title {
+			background-image: url('img/logo-bar_a.svg');
+		}
+
+		&:hover .site-title {
+			background-image: url('img/logo-foundation_b.svg');
+		}
+
+	}
+}
+
 #primary {
 	width: $size__site-main-full;
 	position: relative;

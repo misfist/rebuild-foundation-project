@@ -150,6 +150,18 @@
 			}
 			
 		}
+
+		&.site_category-black-artists-retreat {
+			
+			#details::before {
+				content: url('img/graphic_bar.svg');
+			}
+
+			.entry-title {
+				color: $color__bar;
+			}
+			
+		}
 	}
 
 	.post-navigation {

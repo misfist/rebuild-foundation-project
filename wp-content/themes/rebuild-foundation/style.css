@@ -216,6 +216,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .site-black-cinema-house #masthead .site-branding:hover .site-title {
   background-image: url("img/logo-foundation_b.svg"); }
 
+.site-black-artists-retreat #masthead .site-branding .site-title {
+  background-image: url("img/logo-bar_a.svg"); }
+.site-black-artists-retreat #masthead .site-branding:hover .site-title {
+  background-image: url("img/logo-foundation_b.svg"); }
+
 #primary {
   width: calc(100% - 220px);
   position: relative;
@@ -1232,6 +1237,8 @@ a {
         background-image: url("img/logo-da-hc_b.svg"); }
       .menu-sites #menu-sites-list li.black-cinema-house {
         background-image: url("img/logo-bch_b.svg"); }
+      .menu-sites #menu-sites-list li.black-artists-retreat {
+        background-image: url("img/logo-bar_b.svg"); }
 
 .site-branding:hover .menu-sites {
   display: block; }
@@ -2393,6 +2400,13 @@ article.exhibition {
     article.exhibition.site_category-archive-house .entry-title a:hover, article.exhibition.site_category-archive-house .read-more:hover {
       color: black;
       background-color: transparent; }
+  article.exhibition.site_category-black-artists-retreat .site-info::before {
+    content: url("img/graphic_bar.svg"); }
+  article.exhibition.site_category-black-artists-retreat .entry-title a, article.exhibition.site_category-black-artists-retreat .read-more {
+    color: #00d1b6; }
+    article.exhibition.site_category-black-artists-retreat .entry-title a:hover, article.exhibition.site_category-black-artists-retreat .read-more:hover {
+      color: black;
+      background-color: transparent; }
 
 @media (max-width: 1024px) {
   .post-type-archive-exhibition .posts-list {
@@ -2421,6 +2435,9 @@ article.site_category-archive-house .entry-meta.location a:hover {
 
 article.site_category-listening-house .entry-meta.location a:hover {
   color: #c2907f; }
+
+article.site_category-black-artists-retreat .entry-meta.location a:hover {
+  color: #00d1b6; }
 
 .site-info::before, #details::before {
   position: relative;
@@ -2500,6 +2517,10 @@ article.site_category-listening-house .entry-meta.location a:hover {
       content: url("img/graphic_ah.svg"); }
     .single-exhibition article.site_category-archive-house .entry-title {
       color: #c2907f; }
+    .single-exhibition article.site_category-black-artists-retreat #details::before {
+      content: url("img/graphic_bar.svg"); }
+    .single-exhibition article.site_category-black-artists-retreat .entry-title {
+      color: #00d1b6; }
   .single-exhibition .post-navigation {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     width: calc(100% - 180px);
@@ -2729,6 +2750,10 @@ article.site_category-listening-house .entry-meta.location a:hover {
   margin-top: 240px; }
 .single-site article.site.site_category-archive-house .site-header ~ #site-gallery::before, .single-site article.site.site_category-archive-house .site-header ~ .single-image::before, .single-site article.site.site_category-archive-house .site-header ~ .single-image::before {
   content: url("img/graphic_ah.svg");
+  margin-top: 100px;
+  margin-left: -26%; }
+.single-site article.site.site_category-black-artists-retreat .site-header ~ #site-gallery::before, .single-site article.site.site_category-black-artists-retreat .site-header ~ .single-image::before, .single-site article.site.site_category-black-artists-retreat .site-header ~ .single-image::before {
+  content: url("img/graphic_bar.svg");
   margin-top: 100px;
   margin-left: -26%; }
 .single-site article.site section > h2, .single-site article.site .upcoming-events h2, .single-site article.site .past-events h2 {
@@ -3429,6 +3454,13 @@ article.residency {
     article.residency.site_category-archive-house .entry-title a:hover, article.residency.site_category-archive-house .read-more:hover {
       color: black;
       background-color: transparent; }
+  article.residency.site_category-black-artists-retreat .site-info::before {
+    content: url("img/graphic_bar.svg"); }
+  article.residency.site_category-black-artists-retreat .entry-title a, article.residency.site_category-black-artists-retreat .read-more {
+    color: #00d1b6; }
+    article.residency.site_category-black-artists-retreat .entry-title a:hover, article.residency.site_category-black-artists-retreat .read-more:hover {
+      color: black;
+      background-color: transparent; }
 
 @media (max-width: 1200px) {
   article.residency .entry-header, article.residency #details {
@@ -3519,6 +3551,10 @@ article.residency {
       content: url("img/graphic_ah.svg"); }
     .single-residency article.site_category-archive-house .entry-title {
       color: #c2907f; }
+    .single-residency article.site_category-black-artists-retreat #details::before {
+      content: url("img/graphic_bar.svg"); }
+    .single-residency article.site_category-black-artists-retreat .entry-title {
+      color: #00d1b6; }
   .single-residency .post-navigation {
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     width: calc(100% - 180px);

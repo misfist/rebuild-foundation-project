@@ -160,6 +160,23 @@ article.exhibition {
 		
 	}
 
+	&.site_category-black-artists-retreat {
+		
+		.site-info::before {
+			content: url('img/graphic_bar.svg');
+		}
+
+		.entry-title a, .read-more {
+			color: $color__bar;
+			
+			&:hover {
+				color: $black;
+				background-color: transparent;
+			}				
+		}
+		
+	}
+
 }
 
 

@@ -140,6 +140,16 @@
 
 		}
 
+		&.site_category-black-artists-retreat {
+			
+			.site-header ~ #site-gallery::before, .site-header ~ .single-image::before {
+				content: url('img/graphic_bar.svg');
+				margin-top: 100px;
+				margin-left: -26%;
+			}
+
+		}
+
 		section > h2, .upcoming-events h2, .past-events h2 {
 			display: inline-block;
 			margin-bottom: 20px;
