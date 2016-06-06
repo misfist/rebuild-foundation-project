@@ -65,8 +65,6 @@
                 the_excerpt();
             ?>
 
-            <a class="read-more" href="<?php echo get_permalink( get_the_ID() ); ?>"><?php _e( 'Learn More', 'rebuild-foundation' ); ?></a>
-
             <?php
                 wp_link_pages( array(
                     'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'rebuild-foundation' ),

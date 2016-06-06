@@ -3430,8 +3430,14 @@ article.residency {
       color: black;
       background-color: transparent; }
 
+@media (max-width: 1200px) {
+  article.residency .entry-header, article.residency #details {
+    width: 45%; }
+  article.residency .entry-content {
+    width: 90%;
+    margin-top: 30px; } }
 @media (max-width: 1024px) {
-  .post-type-archive-exhibition .posts-list {
+  .post-type-archive-residency .posts-list {
     width: 100%;
     position: relative;
     left: 0;

@@ -161,9 +161,23 @@ article.residency {
 
 }
 
+@media (max-width: 1200px) {
+	article.residency {
+		.entry-header, #details {
+			width: 45%;
+		}
+
+		.entry-content {
+			width: 90%;
+			margin-top: 30px;
+		}
+	}
+}
+
+
 
 @media (max-width: 1024px) {
-	.post-type-archive-exhibition {
+	.post-type-archive-residency {
 		.posts-list {
 			width: 100%;
 			position: relative;
